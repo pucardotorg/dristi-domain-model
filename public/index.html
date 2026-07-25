@@ -68,6 +68,9 @@
   .nav a.active{background:var(--brand-dim); color:var(--brand-hi)}
   .nav a.active .count{background:var(--brand-border); color:#fff}
   .nav .scoped-wrap{margin:2px 0 0}
+  .nav a.ov-toggle .nav-chev{margin-left:auto; font-size:10px; color:var(--ink-3); transition:transform .15s}
+  .nav .scoped-wrap:not(.ov-collapsed) a.ov-toggle .nav-chev{transform:rotate(180deg)}
+  .nav .scoped-wrap.ov-collapsed .nav-sub{display:none}
   .nav .nav-sub{margin:1px 0 3px 19px; padding-left:11px; border-left:1px solid var(--line-2); display:flex; flex-direction:column}
   .nav .nav-sub a.subnav{font-size:13px; color:var(--ink-3); padding:6px 9px}
   .nav .nav-sub a.subnav .ico{font-size:12.5px; opacity:.7}
@@ -371,6 +374,8 @@ const CASE_TYPES = [
    blurb:"Dishonour of a cheque for insufficiency of funds — a criminal complaint. Around 15% of a typical court's caseload; high volume, relatively standard."}
 ];
 let activeCase = "active";
+let overviewOpen = false;
+const OV_SUBVIEWS = ["structure","split","time"];
 const caseById = id => CASE_TYPES.find(c=>c.id===id);
 
 const DOMAIN_LABELS = {
@@ -1058,8 +1063,8 @@ function buildNav(){
         ${CASE_TYPES.map(ct=>{const on=ct.id===activeCase, planned=ct.status!=="active"; return `<div class="casedd-item ${on?'on':''} ${planned?'planned':''}" data-id="${ct.id}"><span>${ct.name} <span class="ci-sub">· ${ct.act.split('·').pop().trim()}</span></span>${on?'<span class="ci-check">✓ active</span>':(planned?'<span class="ci-check" style="color:var(--ink-3)">soon</span>':'')}</div>`;}).join("")}
       </div>
     </div>
-    <div class="scoped-wrap">
-      <a data-view="overview"><span class="ico">◆</span> Overview</a>
+    <div class="scoped-wrap ${overviewOpen?'':'ov-collapsed'}">
+      <a data-view="overview" class="ov-toggle"><span class="ico">◆</span> Overview <span class="nav-chev">▾</span></a>
       <div class="nav-sub">
         <a data-view="structure" class="subnav"><span class="ico">▚</span> The structure</a>
         <a data-view="split" class="subnav"><span class="ico">⇆</span> Shared vs State</a>
@@ -1070,7 +1075,14 @@ function buildNav(){
       <a data-view="words"><span class="ico">A</span> Vocabulary <span class="count">${isModelled()?Object.keys(TERMS).length:'—'}</span></a>
       <a data-view="caselaw"><span class="ico">⚖</span> Case law <span class="count">${isModelled()?(CASES.length||'—'):'—'}</span></a>
     </div>`;
-  nav.querySelectorAll("a").forEach(a=>a.onclick=()=>go(a.dataset.view));
+  nav.querySelectorAll("a").forEach(a=>a.onclick=()=>{
+    if(a.classList.contains("ov-toggle")){
+      const w=a.closest(".scoped-wrap");
+      w.classList.toggle("ov-collapsed");
+      overviewOpen=!w.classList.contains("ov-collapsed");
+    }
+    go(a.dataset.view);
+  });
   const dd=$("#casedd",nav), btn=$("#caseddBtn",nav);
   if(btn) btn.onclick=e=>{ e.stopPropagation(); dd.classList.toggle("open"); };
   nav.querySelectorAll(".casedd-item").forEach(it=>it.onclick=()=>{
@@ -1082,6 +1094,10 @@ function buildNav(){
 function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
 function go(view){
   if(!V[view]) view="overview";
+  if(OV_SUBVIEWS.includes(view)){
+    overviewOpen=true;
+    const w=document.querySelector("#nav .scoped-wrap"); if(w) w.classList.remove("ov-collapsed");
+  }
   document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
   setMain(V[view]());
   if(history.replaceState) history.replaceState(null,"","#"+view);
