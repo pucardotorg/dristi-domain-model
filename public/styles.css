@@ -406,6 +406,17 @@
   .pdf-orig{margin-top:11px; display:inline-flex; align-items:center; gap:7px; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; padding:6px 12px; cursor:pointer; font-family:var(--font-sans); font-size:12.5px}
   .pdf-orig:hover{border-color:var(--brand-border); color:var(--ink)}
   .pdf-orig svg.lu{width:14px; height:14px; opacity:.85}
+  /* state-layer instruments (State rules / amendments / notifications) */
+  .instruments{display:flex; flex-direction:column; gap:12px; margin-top:6px}
+  .instrument{border:1px solid var(--line); border-radius:12px; background:var(--panel); padding:15px 18px}
+  .inst-title{font-size:15.5px; font-weight:650; color:var(--ink); letter-spacing:-.01em}
+  .inst-cite{font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); margin-top:3px}
+  .inst-note{font-size:13.5px; color:var(--ink-2); line-height:1.55; margin:10px 0 0}
+  .inst-actions{display:flex; flex-wrap:wrap; gap:8px; margin-top:13px}
+  .inst-actions .stdoc{display:inline-flex; align-items:center; gap:7px; background:var(--brand-dim); border:1px solid var(--brand-border); color:var(--brand-hi); border-radius:8px; padding:6px 12px; cursor:pointer; font-family:var(--font-sans); font-size:12.5px}
+  .inst-actions .stdoc:hover{border-color:var(--brand)}
+  .inst-actions .stdoc svg.lu{width:14px; height:14px}
+  .inst-actions .pdf-orig{margin-top:0}
   .ad-loading{padding:80px 30px; text-align:center; color:var(--ink-3)}
   .actdoc-h{position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--line); padding:20px 30px 15px; z-index:2}
   .ad-title{font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.01em; padding-right:70px}

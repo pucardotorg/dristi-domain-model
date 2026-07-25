@@ -1,0 +1,53 @@
+{
+  "state": "kerala",
+  "name": "Kerala",
+  "as_of": "2025",
+  "amendments": {
+    "summary": "There is no Kerala amendment to Section 138, or to ss.139-147, of the Negotiable Instruments Act. The offence, the presumptions, the notice period and limitation, and compounding are uniform central law, and Kerala adds nothing to the statute itself. What changes in Kerala is the procedural and administrative layer that decides how a case is filed, tried and executed. See State rules and Notifications.",
+    "items": []
+  },
+  "rules": {
+    "summary": "How a Section 138 case is actually filed, tried and executed in Kerala. These state instruments sit on top of the uniform central offence and govern the form of process, service, the warrant ladder and who executes it.",
+    "items": [
+      {
+        "title": "Criminal Rules of Practice, Kerala, 1982",
+        "cite": "State rules of practice",
+        "note": "The core state instrument for how a criminal court in Kerala signs, forms and serves process. Rules 7 to 14 cover summons to the accused and witnesses (police officers are summoned through their superior officer); Rule 13 sets the form; Rule 14 requires an English translation of process issued in Malayalam. Rules 72 to 73 define the court diary and proceedings paper, and the Rules carry the forms and mechanics for warrants and for proclamation and attachment.",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "pdf": "state/kerala/sources/criminal-rules-of-practice-kerala-1982.pdf"
+      },
+      {
+        "title": "Rules of the High Court of Kerala, 1971",
+        "cite": "High Court rules",
+        "note": "Govern the High Court's own side: appeals, revisions and criminal miscellaneous petitions, including quashing a s.138 complaint under s.482 CrPC / s.528 BNSS or a revision against conviction. A large share of Kerala s.138 litigation is the quashing and revision layer at the High Court.",
+        "akn": "state/kerala/akn/rules-of-the-high-court-of-kerala-1971.akn.xml",
+        "pdf": "state/kerala/sources/rules-of-the-high-court-of-kerala-1971.pdf"
+      },
+      {
+        "title": "Electronic Filing Rules for Courts (Kerala), 2021",
+        "cite": "E-filing rules",
+        "note": "The enabling rules for e-filing a complaint in Kerala courts. These govern how a s.138 complaint is filed, not how summons or warrants are served electronically.",
+        "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
+        "pdf": "state/kerala/sources/electronic-filing-rules-for-courts-kerala-2021.pdf"
+      },
+      {
+        "title": "Kerala Police Act, 2011",
+        "cite": "State Act, execution of process",
+        "note": "Who executes warrants and serves court process. A s.138 case is a complaint case with no police investigation and no arrest at the outset; the police enter only at execution, when the local Station House Officer executes a bailable or non-bailable warrant. Converted from an OCR source, so verify against the official text before relying on it.",
+        "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+        "pdf": "state/kerala/sources/kerala-police-act-2011.pdf"
+      }
+    ]
+  },
+  "notifications": {
+    "summary": "Circulars, standard operating procedures and practice directions that shape how a Kerala s.138 case runs day to day.",
+    "items": [
+      {
+        "title": "SOP for e-Filing in the District Judiciary through the DCMS portal",
+        "cite": "High Court of Kerala, 9 July 2025",
+        "note": "The current operating procedure for filing a complaint through the DCMS portal at filing.keralacourts.in. Source PDF only; not yet converted to structured text.",
+        "pdf": "state/kerala/sources/dcms-efiling-sop-kerala-2025.pdf"
+      }
+    ]
+  }
+}

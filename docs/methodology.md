@@ -1,4 +1,4 @@
-# Methodology — how the corpus is built
+# Methodology - how the corpus is built
 
 This is the working "how-to" behind the DRISTI domain model: the conventions,
 the Akoma Ntoso shapes, and the conversion pipelines. It's meant to be enough
@@ -22,7 +22,7 @@ model is, see the top-level `README.md`; this doc is the *how*.
 ```
 public/data/
 ├── acts/
-│   ├── akn/        <act> XML — canonical statutory text
+│   ├── akn/        <act> XML - canonical statutory text
 │   └── sources/    the Act PDFs the AKN was converted from
 ├── caselaw/
 │   ├── cheque-dishonour-s138.caselaw.json   the dataset
@@ -45,15 +45,15 @@ has its source PDF one folder over. The app only ever reads `public/data/`.
 lists are `<blockList><item>…`; nested lists go **inside** the parent `<item>`
 (a `<blockList>` may not directly contain another `<blockList>`).
 
-**Judgments** use `<akomaNtoso><judgment name="judgment">` — a *different*
-document type — with:
+**Judgments** use `<akomaNtoso><judgment name="judgment">` - a *different*
+document type - with:
 
-- `<meta>` — FRBR identity `/akn/in/judgment/<year>/<case-id>`, case name, decided
+- `<meta>` - FRBR identity `/akn/in/judgment/<year>/<case-id>`, case name, decided
   date, `#sc-india` as author, neutral citation as `FRBRnumber`, and a
   `<proprietary>` block of PUCAR fields (`caseId`, `status`, `benchSize`, `reportable`).
-- `<header>` — the caption: court, docket number, parties, neutral + reporter citations,
+- `<header>` - the caption: court, docket number, parties, neutral + reporter citations,
   date, author judge, bench.
-- `<judgmentBody>` — the opinion, as a sequence of `<introduction>` / `<motivation>` /
+- `<judgmentBody>` - the opinion, as a sequence of `<introduction>` / `<motivation>` /
   `<decision>` (the schema's choice list), each holding `<paragraph>` (`<num>` +
   `<content><p>`).
 
@@ -74,15 +74,15 @@ Pipeline per judgment:
 
 1. **Extract** text with `pdfplumber`; **strip** Indian Kanoon footers, running
    headers, and stray page numbers.
-2. **Classify** — is this actually the Supreme Court judgment it claims to be?
+2. **Classify** - is this actually the Supreme Court judgment it claims to be?
    A genuine SC judgment has an `IN THE SUPREME COURT OF INDIA` caption, an SCR
    report citation (`[YYYY] N SCR`), or the old Indian Kanoon SC template. If it
    fails (e.g. a Magistrate order or High Court judgment that merely *cites* the
    case), no AKN is written and the case is marked `source_status: "wrong-document"`.
-3. **Extract metadata** by pattern — neutral citation (`YYYY INSC N`, tolerating
+3. **Extract metadata** by pattern - neutral citation (`YYYY INSC N`, tolerating
    the spaceless `YYYYINSCN` form; present only for 2023+), decided date, author,
    bench, docket number, reportable flag.
-4. **Find the opinion boundary** across templates — modern `JUDGMENT` / `ORDER`
+4. **Find the opinion boundary** across templates - modern `JUDGMENT` / `ORDER`
    markers, the older `JUDGMENT:` / `PETITIONER:`–`RESPONDENT:` layout, the SCR
    "The Judgment of the Court was delivered by…", and the official-copy
    "`<Judge Name>, J.`" signature line.
@@ -107,8 +107,8 @@ against the official judgment before relying on exact wording.
 ## 5. Constitution conversion (`scripts/convert_constitution.py`)
 
 A one-off provenance pipeline (the Constitution's first AKN was garbled). It
-separates the PDF's text streams by **font size** — body ~10pt, marginal
-side-notes ~8pt (which become article headings), Part/Chapter heads ≥11pt — and
+separates the PDF's text streams by **font size** - body ~10pt, marginal
+side-notes ~8pt (which become article headings), Part/Chapter heads ≥11pt - and
 handles amendment-inserted articles (21A), repealed-article gaps (379–391 don't
 exist), and line-boundary clause parsing. Produces 456 articles that validate
 against the XSD. Best-effort; verify against the official source.
@@ -120,8 +120,8 @@ against the XSD. Best-effort; verify against the official source.
   pins the relevant sections with `tier` / `role` / `applies`; `act_alias_map`
   encodes the 2024 old→new code switch; `caselaw` points at the dataset.
 - **Dataset** (`caselaw/<case-type>.caselaw.json`) holds the case law: each case's
-  `holding`, `topics`, `construes` refs, `status`, and — filled in by the
-  converter — `akn`, `source_pdf`, `decided`, `neutral_citation`, `source_status`.
+  `holding`, `topics`, `construes` refs, `status`, and - filled in by the
+  converter - `akn`, `source_pdf`, `decided`, `neutral_citation`, `source_status`.
   The `corpus` block summarises counts and any `needs_recollection` ids.
 
 All paths inside the profile and dataset are **relative to `public/data/`**.

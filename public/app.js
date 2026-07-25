@@ -108,6 +108,14 @@ async function loadCaselaw(p){
     CASES.forEach(c=>{ (c.construes||[]).forEach(ref=>{ (CASES_BY_REF[ref]=CASES_BY_REF[ref]||[]).push(c.id); }); });
   }catch(e){ /* case law optional */ }
 }
+/* per-state layer (state amendments / rules / notifications); null if the state
+   has no manifest yet. Fetched from data/state/<id>.json. */
+let STATE_DATA=null;
+async function loadStateData(){
+  STATE_DATA=null;
+  try{ STATE_DATA=JSON.parse(await fetchText((DATA_BASE||"")+"state/"+activeState+".json")); }
+  catch(e){ /* state layer optional / not modelled */ }
+}
 async function getDoc(actId){
   if(docCache[actId]) return docCache[actId];
   const src=SOURCES[actId]; if(!src||!src.file) throw new Error("no file for "+actId);
@@ -440,24 +448,43 @@ V.practice=()=>{
 function stateInlineSelectHTML(){
   return `<span class="state-inline-wrap">${ic('map-pin')}<select class="state-inline" aria-label="Choose state">${JURISDICTIONS.map(s=>`<option value="${s.id}"${s.id===activeState?' selected':''}>${esc(s.name)}</option>`).join("")}</select></span>`;
 }
-function plannedStateObject(title, blurb){
+function instrumentCard(it){
+  const c=el("div","instrument");
+  const acts=[];
+  if(it.akn) acts.push(`<button class="stdoc" data-akn="${esc(it.akn)}" data-title="${esc(it.title)}" data-sub="${esc(it.cite||'')}"${it.pdf?` data-pdf="${esc(DATA_BASE+it.pdf)}"`:''}>${ic('book-open')} Read full text</button>`);
+  if(it.pdf) acts.push(`<button class="pdf-orig" data-pdf="${esc(DATA_BASE+it.pdf)}" data-pdftitle="${esc(it.title)}">${ic('file')} Original PDF</button>`);
+  c.innerHTML=`<div class="inst-title">${esc(it.title)}</div>${it.cite?`<div class="inst-cite">${esc(it.cite)}</div>`:''}${it.note?`<div class="inst-note">${it.note}</div>`:''}<div class="inst-actions">${acts.join("")}</div>`;
+  return c;
+}
+function stateObjectView(catKey, title, fallbackBlurb){
   return ()=>{
     if(!isModelled()) return notModelled();
     const st=stateById(activeState).name;
+    const data = STATE_DATA && STATE_DATA[catKey];
     const m=el("div"); m.appendChild(scopeBar());
     const head=el("div");
+    const lede = data && data.summary ? data.summary : `${fallbackBlurb} These sit on top of the shared national core and change from state to state, so pick the jurisdiction above.`;
     head.innerHTML=`<h1 class="page-title state-title">${esc(title)} ${stateInlineSelectHTML()}</h1>
-      <p class="lede">${blurb} These sit <strong>on top of the shared national core</strong> and change from state to state - pick the jurisdiction above.</p>
-      <div class="empty"><b>${esc(st)} - ${esc(title.toLowerCase())} not modelled yet.</b><br><span class="tiny">This state-layer object is planned. It will carry ${esc(st)}'s own ${esc(title.toLowerCase())} over the same shared core, the way the national objects already do.</span></div>`;
+      <p class="lede">${lede}</p>`;
     m.appendChild(head);
     const sel=m.querySelector(".state-inline");
-    if(sel) sel.onchange=e=>{ activeState=e.target.value; buildNav(); go(currentView); };
+    if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
+    const items = (data && data.items) || [];
+    if(items.length){
+      const list=el("div","instruments");
+      items.forEach(it=>list.appendChild(instrumentCard(it)));
+      m.appendChild(list);
+    } else if(data && data.summary){
+      m.appendChild(el("div","empty",`Nothing separate to list here for ${esc(st)} - the point above is the whole story.`));
+    } else {
+      m.appendChild(el("div","empty",`<b>${esc(st)} - ${esc(title.toLowerCase())} not modelled yet.</b><br><span class="tiny">This state-layer object is planned. It will carry ${esc(st)}'s own ${esc(title.toLowerCase())} over the same shared core, the way the national objects already do.</span>`));
+    }
     return m;
   };
 }
-V.amendments   = plannedStateObject("State amendments", "State-level changes to the central Acts - where a legislature has amended or added to the shared statute for this case type.");
-V.staterules   = plannedStateObject("State rules", "The rules of practice and procedure a High Court or state makes for its own courts - the Criminal Rules of Practice and the like.");
-V.notifications= plannedStateObject("Notifications", "Government orders and court notifications - special courts, pecuniary limits, designations - that shape how a case runs locally.");
+V.amendments   = stateObjectView("amendments","State amendments","State-level changes to the central Acts, where a legislature has amended or added to the shared statute for this case type.");
+V.staterules   = stateObjectView("rules","State rules","The rules of practice and procedure a High Court or state makes for its own courts.");
+V.notifications= stateObjectView("notifications","Notifications","Government orders and court notifications that shape how a case runs locally.");
 
 /* ---- case law helpers ---- */
 function provRefShort(ref){
@@ -667,6 +694,41 @@ async function openActModal(actId, focusEid){
 }
 function closeModal(){ $("#modal").classList.remove("show"); document.body.style.overflow=""; }
 
+/* render + open an arbitrary Akoma Ntoso <act> document (used for state instruments) */
+function renderStateDoc(title, subtitle, blocks, pdfUrl){
+  const nsec=blocks.filter(b=>b.t==="sec").length;
+  const unit=blocks.some(b=>b.unit==="article")?"articles":(blocks.some(b=>b.unit==="rule")?"rules":"sections");
+  const wrap=el("div");
+  wrap.appendChild(el("div","actdoc-h",
+    `<div class="ad-title">${esc(title)}</div>
+     <div class="ad-sub">${nsec} ${unit}${subtitle?` · ${esc(subtitle)}`:''} · verbatim Akoma Ntoso</div>
+     ${pdfUrl?`<button class="pdf-orig" data-pdf="${esc(pdfUrl)}" data-pdftitle="${esc(title)}">${ic('file')} Original PDF</button>`:''}`));
+  const bodyEl=el("div","actdoc-body");
+  if(!nsec) bodyEl.appendChild(el("div","callout amber",`This document's full text isn't in the corpus yet.`));
+  blocks.forEach(b=>{
+    if(b.t==="chap"){ bodyEl.appendChild(el("div","ad-chap",esc(b.label))); return; }
+    const secEl=el("div","ad-sec");
+    let h=`<div class="ad-sec-h"><span class="ad-num">${esc(b.num||'')}</span>${esc(b.heading||'')}</div>`;
+    h+=renderBody(b.body,"ad");
+    secEl.innerHTML=h; bodyEl.appendChild(secEl);
+  });
+  wrap.appendChild(bodyEl);
+  return wrap;
+}
+const stateDocCache={};
+async function openStateDocModal(aknPath, title, subtitle, pdfUrl){
+  const modal=$("#modal"), body=$("#modal-body");
+  body.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the document...</div>`;
+  modal.classList.add("show"); document.body.style.overflow="hidden";
+  try{
+    let doc=stateDocCache[aknPath];
+    if(!doc){ const xml=await fetchText((DATA_BASE||"")+aknPath); doc=new DOMParser().parseFromString(xml,"application/xml"); if(doc.getElementsByTagName("parsererror").length) throw new Error("parse error"); stateDocCache[aknPath]=doc; }
+    body.innerHTML=""; body.appendChild(renderStateDoc(title, subtitle, actBlocks(doc), pdfUrl)); body.scrollTop=0;
+  }catch(e){
+    body.innerHTML=`<div class="ad-loading">Couldn't load this document.<br><br>The viewer reads the <code>.akn.xml</code> files live, so it must be served over http.</div>`;
+  }
+}
+
 /* ============================================================ JUDGMENT MODAL */
 let jmtCache={};
 async function getJudgment(caseId, aknPath){
@@ -795,7 +857,7 @@ function buildNav(){
     else dd.classList.remove("open");
   });
   const ssel=nav.querySelector(".state-inline");
-  if(ssel) ssel.onchange=e=>{ activeState=e.target.value; buildNav(); go(currentView); };
+  if(ssel) ssel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
 }
 function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
 function go(view){
@@ -831,6 +893,8 @@ function setDrawer(open){
 document.addEventListener("click",e=>{
   const pv=e.target.closest(".pdf-orig");
   if(pv && pv.dataset.pdf){ if(window.openPdfModal) openPdfModal(pv.dataset.pdf, pv.dataset.pdftitle||"Original document"); else window.open(pv.dataset.pdf,"_blank"); return; }
+  const sd=e.target.closest(".stdoc");
+  if(sd && sd.dataset.akn){ openStateDocModal(sd.dataset.akn, sd.dataset.title, sd.dataset.sub, sd.dataset.pdf||""); return; }
   const b=e.target.closest(".view-full");
   if(b){ if(b.dataset.ref){const [a,eid]=b.dataset.ref.split(":"); openActModal(a,eid);} else if(b.dataset.act){ openActModal(b.dataset.act);} return; }
   if(e.target.closest("[data-close]")){ closeModal(); return; }
@@ -858,6 +922,7 @@ function showLoadError(err){
   try{
     await loadConfig();
     await loadProfile();
+    await loadStateData();
     buildNav();
     const start=(location.hash||"#overview").slice(1);
     go(V[start]?start:"overview");

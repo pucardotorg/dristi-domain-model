@@ -1,9 +1,9 @@
-# DRISTI 2.0 — Domain Model
+# DRISTI 2.0 - Domain Model
 
 > A browsable, data-driven reference of the legal domain that a single court **case type** is built on.
-> First (and currently only) modelled case type: **Cheque bounce — Section 138 of the Negotiable Instruments Act, 1881**.
+> First (and currently only) modelled case type: **Cheque bounce - Section 138 of the Negotiable Instruments Act, 1881**.
 
-DRISTI 2.0 is [PUCAR](https://pucar.org/)'s (Pukar) lightweight, modular **court-technology platform**. This repository is the **domain model** for it: the legal substrate — the Acts, provisions, vocabulary, constitutional layer, Supreme Court case law, and the 2024 code transition — that a case type sits on top of.
+DRISTI 2.0 is [PUCAR](https://pucar.org/)'s (Pukar) lightweight, modular **court-technology platform**. This repository is the **domain model** for it: the legal substrate - the Acts, provisions, vocabulary, constitutional layer, Supreme Court case law, and the 2024 code transition - that a case type sits on top of.
 
 The deliverable is a **single-file static viewer** (`index.html`) that reads a corpus of legal source files **at runtime** (nothing is hard-coded/baked into the HTML) and lets you navigate that domain.
 
@@ -31,6 +31,7 @@ The deliverable is a **single-file static viewer** (`index.html`) that reads a c
 8. [Engineering notes](#8-engineering-notes)
    - [The Constitution conversion](#81-the-constitution-conversion)
    - [The judgment conversion](#82-the-judgment-conversion-engineering-note)
+   - [The rules / State-Act conversion](#83-the-rules--state-act-conversion-engineering-note)
 9. [Data model reference](#9-data-model-reference)
    - [Profile JSON](#91-profile-json)
    - [Case-law JSON](#92-case-law-json)
@@ -53,9 +54,9 @@ The deliverable is a **single-file static viewer** (`index.html`) that reads a c
 **It is not:**
 - A case-management or filing system. It stores no case data.
 - A legal-advice engine. It surfaces statute and precedent; it does not opine.
-- A complete picture of any one state's practice. The **state layer** (High Court rules, e-filing, practice directions, local practice) is deliberately *not* in the corpus — it is configured per state.
+- A complete picture of any one state's practice. The **state layer** (High Court rules, e-filing, practice directions, local practice) is deliberately *not* in the corpus - it is configured per state.
 
-The one modelled case type — **s.138 cheque dishonour** — is roughly **15%** of a typical Indian court's caseload, which is why it was chosen first. The platform is designed to host many case types; the app already has a case-type dropdown even though only one is populated today.
+The one modelled case type - **s.138 cheque dishonour** - is roughly **15%** of a typical Indian court's caseload, which is why it was chosen first. The platform is designed to host many case types; the app already has a case-type dropdown even though only one is populated today.
 
 ---
 
@@ -70,7 +71,7 @@ python3 -m http.server 8000
 ```
 
 The deployable site is the **`public/`** folder (`index.html` + `data/`); serve from there.
-Opening `index.html` directly from disk (`file://`) shows a friendly **"serve over http"** page instead of the app — this is expected, not a bug.
+Opening `index.html` directly from disk (`file://`) shows a friendly **"serve over http"** page instead of the app - this is expected, not a bug.
 
 No build step, no dependencies, no package manager. It is a single static HTML file plus a folder of data. See [§14 Deployment](#14-deployment) for hosting.
 
@@ -80,9 +81,9 @@ No build step, no dependencies, no package manager. It is a single static HTML f
 
 ### 3.1 Case type
 
-A **case type** is a kind of court case — e.g. *cheque bounce*, *cheque bounce* being a criminal complaint under s.138 of the Negotiable Instruments Act. The platform is architected to host **many** case types; each is modelled by its own **relevance profile** (see §3.6). The app exposes a **case-type dropdown** at the top. Today it contains exactly one entry: **Cheque bounce · §138**.
+A **case type** is a kind of court case - e.g. *cheque bounce*, *cheque bounce* being a criminal complaint under s.138 of the Negotiable Instruments Act. The platform is architected to host **many** case types; each is modelled by its own **relevance profile** (see §3.6). The app exposes a **case-type dropdown** at the top. Today it contains exactly one entry: **Cheque bounce · §138**.
 
-Adding a case type does not require touching the app — it means authoring a new profile (and, if the new type needs statutes not already present, new AKN Act files). See [How to extend](#11-how-to-extend).
+Adding a case type does not require touching the app - it means authoring a new profile (and, if the new type needs statutes not already present, new AKN Act files). See [How to extend](#11-how-to-extend).
 
 ### 3.2 The three lenses: WHAT / WHERE / WHEN
 
@@ -92,13 +93,13 @@ Every provision in the model is read through three lenses:
 |------|----------|------------------|
 | **WHAT** | What is the rule? | The verbatim statutory text of the provision and its operative role. |
 | **WHERE** | Where does it apply? | Whether it is **shared core** (identical across India) or **state layer** (configured per state). |
-| **WHEN** | When is it live? | Point-in-time applicability — which set of codes governs, given when the cause of action arose. |
+| **WHEN** | When is it live? | Point-in-time applicability - which set of codes governs, given when the cause of action arose. |
 
 These three lenses are the organising idea of the whole model and are surfaced directly in the app's **The structure** view (rules / systems / context / time).
 
 ### 3.3 Shared core vs state layer
 
-Indian **central law is identical across the whole country** — the same Negotiable Instruments Act, the same BNSS, the same Constitution. That body of identical central law is the **shared core**, and it is what this domain model captures.
+Indian **central law is identical across the whole country** - the same Negotiable Instruments Act, the same BNSS, the same Constitution. That body of identical central law is the **shared core**, and it is what this domain model captures.
 
 On top of the shared core, **each state layers its own:**
 - High Court rules
@@ -108,7 +109,9 @@ On top of the shared core, **each state layers its own:**
 - filer mix (who typically files)
 - court language
 
-That **state layer is deliberately not in the corpus.** It is illustrative field context, configured per state, not statute. The model draws a hard line between the two so a state can adopt the shared core wholesale and only supply its own layer.
+That **state layer is separate from the uniform central core.** It is configured per state, so a state can adopt the shared core wholesale and only supply its own layer.
+
+It lives under **`public/data/state/<state>/`** and the viewer reads it through the **State objects** pages (State amendments, State rules, Notifications). **Kerala** is the first state modelled. For a s.138 case this overlay is *procedural*, not substantive: there is no state amendment to s.138 itself, so Kerala's amendments page says exactly that, while its rules and notifications pages carry the state's **rules of practice, High Court rules, e-filing rules, the police act (warrant execution)** and the **DCMS e-filing SOP**. The Kerala instruments are converted to Akoma Ntoso the same way the central Acts are (see [§8.3](#83-the-rules--state-act-conversion-engineering-note)), and a plain-language write-up lives at [`public/data/state/kerala/kerala-s138-state-layer.md`](public/data/state/kerala/kerala-s138-state-layer.md). Other states show a "not modelled yet" placeholder until their manifest is added.
 
 ### 3.4 Point-in-time and the 2024 code switch
 
@@ -124,7 +127,7 @@ On **1 July 2024**, India replaced three colonial-era codes with three 2023 Sanh
 
 ### 3.5 Akoma Ntoso (AKN)
 
-**Akoma Ntoso** (AKN) is the international XML standard for legislation — **OASIS / LegalDocML, v3.0**. Every Act in the corpus is stored as an `.akn.xml` file, which is the canonical legal text the app renders.
+**Akoma Ntoso** (AKN) is the international XML standard for legislation - **OASIS / LegalDocML, v3.0**. Every Act in the corpus is stored as an `.akn.xml` file, which is the canonical legal text the app renders.
 
 Structural shape (simplified):
 
@@ -155,22 +158,22 @@ The `eId` (element ID) is the stable within-document anchor the model references
 
 Crucially, **it does not copy statutory text.** It **points into** the AKN files. It declares, via relative paths under `public/data/`, where the Acts and the case-law file live, and it lists:
 
-- `sources` — the Acts, each with alias, title, domain, status, file, era.
-- `provisions` — each with a `ref` (`<alias>:<eId>`), tier, role, applies-window, note.
-- `terms` — vocabulary word → provision ref (the defining section).
-- `edges` — relationships between provisions.
-- `act_alias_map` — the old → new 2024 switch, topic by topic.
-- `link_integrity` and `caveats` — self-check metadata and disclaimers.
+- `sources` - the Acts, each with alias, title, domain, status, file, era.
+- `provisions` - each with a `ref` (`<alias>:<eId>`), tier, role, applies-window, note.
+- `terms` - vocabulary word → provision ref (the defining section).
+- `edges` - relationships between provisions.
+- `act_alias_map` - the old → new 2024 switch, topic by topic.
+- `link_integrity` and `caveats` - self-check metadata and disclaimers.
 
-The **ref format is `'<alias>:<eId>'`** — e.g. `ni:sec_138`, `constitution:art_21`.
+The **ref format is `'<alias>:<eId>'`** - e.g. `ni:sec_138`, `constitution:art_21`.
 
 ### 3.7 The case-law dataset
 
-`cheque-dishonour-s138.caselaw.json` holds **Supreme Court precedent**. Each case links to the provisions it **`construes`** (interprets) — e.g. *Rangappa v. Sri Mohan* → `ni:sec_139`. This linkage is what lets the app show, **on each provision**, the judgments that interpret it, and power a dedicated **Case law** view.
+`cheque-dishonour-s138.caselaw.json` holds **Supreme Court precedent**. Each case links to the provisions it **`construes`** (interprets) - e.g. *Rangappa v. Sri Mohan* → `ni:sec_139`. This linkage is what lets the app show, **on each provision**, the judgments that interpret it, and power a dedicated **Case law** view.
 
-Each case now also carries the **judgment itself as Akoma Ntoso** — the same standard as the Acts. The full text of all **43 Supreme Court judgments** lives under `public/data/caselaw/akn/` as `<judgment>` XML, converted from the source PDFs in `public/data/caselaw/sources/`. The dataset points at both (`akn`, `source_pdf`), so the viewer can open and render the judgment paragraph-by-paragraph, and each case shows its **neutral citation** and **decided date** where known. See [§8.2](#82-the-judgment-conversion-engineering-note) for how the conversion works.
+Each case now also carries the **judgment itself as Akoma Ntoso** - the same standard as the Acts. The full text of all **43 Supreme Court judgments** lives under `public/data/caselaw/akn/` as `<judgment>` XML, converted from the source PDFs in `public/data/caselaw/sources/`. The dataset points at both (`akn`, `source_pdf`), so the viewer can open and render the judgment paragraph-by-paragraph, and each case shows its **neutral citation** and **decided date** where known. See [§8.2](#82-the-judgment-conversion-engineering-note) for how the conversion works.
 
-Case law is the one part of the model that used to live entirely *outside* the corpus and is now **modelled the same way as legislation** — dataset + AKN.
+Case law is the one part of the model that used to live entirely *outside* the corpus and is now **modelled the same way as legislation** - dataset + AKN.
 
 ---
 
@@ -190,22 +193,30 @@ dristi-domain-model/
 │       │   ├── cheque-dishonour-s138.caselaw.json   # the dataset
 │       │   ├── akn/      #     43 judgments as Akoma Ntoso <judgment> XML (*.akn.xml)
 │       │   └── sources/  #     43 original judgment PDFs the AKN was converted from
-│       └── profiles/     #   per-case-type relevance profiles (*.profile.json) — the manifest
-├── scripts/              # conversion pipeline (PDF → Akoma Ntoso)
-│   ├── convert_judgments.py
-│   └── convert_constitution.py
+│       ├── profiles/     #   per-case-type relevance profiles (*.profile.json), the manifest
+│       └── state/        #   per-state overlay, read by the State objects pages
+│           ├── kerala.json               # Kerala manifest (amendments / rules / notifications)
+│           └── kerala/
+│               ├── kerala-s138-state-layer.md   # the Kerala write-up
+│               ├── akn/     #     Kerala rules/Acts as Akoma Ntoso <act> XML
+│               └── sources/ #     original Kerala rule/Act PDFs (+ OCR sidecar)
+├── scripts/              # conversion pipeline (PDF -> Akoma Ntoso)
+│   ├── convert_judgments.py     # SC judgments → <judgment>
+│   ├── convert_constitution.py  # Constitution PDF → <act>
+│   └── convert_rules.py         # state rules / State Acts → <act>
 ├── docs/
 │   └── methodology.md    # conventions, AKN shapes, how the pipelines work
-├── context/              # project research: meeting notes/recording — GITIGNORED, not deployed
+├── context/              # project research: meeting notes/recording - GITIGNORED, not deployed
 ├── README.md             # this file
 ├── netlify.toml          # Netlify config (publish = public/, no build)
 └── .gitignore            # ignores context/, _to_delete/, OS cruft
 ```
 
 - **`public/data/` is the only directory the app reads.** Serve the site from `public/`.
-- `context/` is human research and is **gitignored** — it is never committed or deployed.
-- **`acts/` and `caselaw/` share the same standardised shape:** an `akn/` folder holding the Akoma Ntoso XML and a `sources/` folder holding the original PDFs. Acts use `<act>`; judgments use `<judgment>`.
-- Every `.akn.xml` therefore has its source PDF one folder over (`…/akn/x.akn.xml` ↔ `…/sources/x.pdf`), kept for provenance and re-conversion.
+- `context/` is human research and is **gitignored** - it is never committed or deployed.
+- **`acts/`, `caselaw/` and each `state/<state>/` share the same standardised shape:** an `akn/` folder holding the Akoma Ntoso XML and a `sources/` folder holding the original PDFs. Acts and rules use `<act>`; judgments use `<judgment>`.
+- Every `.akn.xml` therefore has its source PDF one folder over (`…/akn/x.akn.xml` to `…/sources/x.pdf`), kept for provenance and re-conversion.
+- **`public/data/state/` is the per-state overlay** (see [§3.3](#33-shared-core-vs-state-layer)): a `<state>.json` manifest per state plus the state's own AKN + source PDFs. The viewer reads it through the **State objects** pages; **Kerala** is modelled, other states show a placeholder.
 - The conversion pipeline lives in `scripts/`; its methodology is documented in [`docs/methodology.md`](docs/methodology.md).
 
 ---
@@ -232,7 +243,7 @@ negotiable-instruments-act-1881.akn.xml
 constitution-of-india.akn.xml
 ```
 
-**The profile is the entry point / manifest.** It declares — via relative paths under `public/data/` — where the Acts (`sources[*].file`) and the case-law file (`caselaw`) live. To load a case type, the app loads its profile first and follows those paths.
+**The profile is the entry point / manifest.** It declares - via relative paths under `public/data/` - where the Acts (`sources[*].file`) and the case-law file (`caselaw`) live. To load a case type, the app loads its profile first and follows those paths.
 
 ---
 
@@ -296,18 +307,21 @@ Scoped views (about the selected case type):
 | **Provisions** | Every provision, with **verbatim text pulled from the AKN**. Filter by domain / role / era. Each provision also lists the **Supreme Court cases that construe it**. |
 | **Vocabulary** | Terms pinned to their **defining sections**. |
 
-Cross-cutting views (about the domain as a whole):
+| **Case law** | The Supreme Court precedent, filterable by topic. Each case shows its **neutral citation** and **decided date** where known, links to the provisions it **construes**, and - for the 43 with an AKN judgment - a **Read judgment** button (see below). |
+
+Cross-cutting views (about the domain as a whole) - grouped **under Overview** in the sidebar:
 
 | View | What it shows |
 |------|---------------|
 | **The structure** | The rules / systems / context / time diagram (the three-lens framing). |
 | **Shared vs State** | The [shared core vs state layer](#33-shared-core-vs-state-layer) split. |
 | **The 2024 code switch** | The old → new mapping from `act_alias_map`. |
-| **Case law** | The Supreme Court precedent, filterable; each case links to the provisions it construes. |
 
 **Full-Act modal:** renders any complete Act and **jumps to the section you came from**.
 
-**Statutory annotations** — *Explanation*, *Proviso*, *Illustration* — are detected and **styled distinctly** from enacting text so readers can tell interpretive scaffolding from the operative rule.
+**Judgment reader:** the **Read judgment** button on a case opens the full **Akoma Ntoso judgment** in the same modal, rendered from `caselaw/akn/` - caption (court, docket, bench, citations, date) plus the opinion split into **Introduction / Reasoning / Decision** with numbered paragraphs. Like the Acts, the judgment text is fetched and parsed in-browser, nothing is embedded.
+
+**Statutory annotations** - *Explanation*, *Proviso*, *Illustration* - are detected and **styled distinctly** from enacting text so readers can tell interpretive scaffolding from the operative rule.
 
 ### 7.3 Design system
 
@@ -326,11 +340,11 @@ The app mirrors the **pucar-ui design system** (https://github.com/abhiramrajila
 
 ### 8.1 The Constitution conversion
 
-The Constitution's AKN file was originally **garbled** — only **14 articles**, with left-margin **side-notes interleaved into the body text**. It was **re-converted** from `public/public/data/acts/sources/constitution-of-india.pdf` using a **Python + `pdfplumber`** pipeline.
+The Constitution's AKN file was originally **garbled** - only **14 articles**, with left-margin **side-notes interleaved into the body text**. It was **re-converted** from `public/public/data/acts/sources/constitution-of-india.pdf` using a **Python + `pdfplumber`** pipeline.
 
 What the pipeline does:
 
-- **Separates marginal headings from body text by font size** — body **10pt**, side-notes **8pt**, Part/Chapter headers **12pt**. This is robust regardless of which margin the notes sit in, because the notes **alternate margin by page**.
+- **Separates marginal headings from body text by font size** - body **10pt**, side-notes **8pt**, Part/Chapter headers **12pt**. This is robust regardless of which margin the notes sit in, because the notes **alternate margin by page**.
 - Handles **amendment-inserted articles** (e.g. `*[21A.`).
 - Handles **repealed-article gaps** (e.g. Articles **379–391 don't exist**).
 - Handles **bracketed clause markers**.
@@ -346,22 +360,54 @@ The 43 Supreme Court authorities in the dataset were collected as **Indian Kanoo
 
 **AKN judgment shape.** Root `<akomaNtoso>` → `<judgment name="judgment">` with three parts:
 
-- **`<meta>`** — FRBR identity (`/akn/in/judgment/<year>/<case-id>`), the case name, the decided date, `#sc-india` as author, the neutral citation as `FRBRnumber`, and a `<proprietary>` block carrying PUCAR fields (`caseId`, `status`, `benchSize`, `reportable`).
-- **`<header>`** — the caption: court, docket number, parties, neutral citation, reporter citation, date, author judge, and bench.
-- **`<judgmentBody>`** — the opinion, segmented into `<introduction>`, `<motivation>` (the numbered reasoning), and `<decision>` (the operative order), each holding `<paragraph>` elements with `<num>` + `<content><p>`.
+- **`<meta>`** - FRBR identity (`/akn/in/judgment/<year>/<case-id>`), the case name, the decided date, `#sc-india` as author, the neutral citation as `FRBRnumber`, and a `<proprietary>` block carrying PUCAR fields (`caseId`, `status`, `benchSize`, `reportable`).
+- **`<header>`** - the caption: court, docket number, parties, neutral citation, reporter citation, date, author judge, and bench.
+- **`<judgmentBody>`** - the opinion, segmented into `<introduction>`, `<motivation>` (the numbered reasoning), and `<decision>` (the operative order), each holding `<paragraph>` elements with `<num>` + `<content><p>`.
 
 What the pipeline does:
 
-- **Strips Indian Kanoon furniture** — running page headers, `Indian Kanoon — …` footers, stray page numbers.
-- **Extracts metadata by pattern** — neutral citation (`YYYY INSC N`, present only for 2023+ judgments), decided date, author, bench, docket number, reportable flag.
+- **Strips Indian Kanoon furniture** - running page headers, `Indian Kanoon - …` footers, stray page numbers.
+- **Extracts metadata by pattern** - neutral citation (`YYYY INSC N`, present only for 2023+ judgments), decided date, author, bench, docket number, reportable flag.
 - **Finds the opinion boundary** across the different IK templates (modern `JUDGMENT` / `ORDER` markers, and the older `JUDGMENT:` / `PETITIONER:`–`RESPONDENT:` layout).
 - **Reconstructs paragraph numbering** with a gap-tolerant sequencer that follows the true `1, 2, 3 …` run and **ignores stray inline numbers** (quoted paragraph numbers, years, sums) that would otherwise truncate or fragment the body.
 - **Reflows unnumbered older judgments** (pre-2003 running prose) into paragraphs on sentence-closing short lines.
 - **Segments** the numbered body into introduction / reasoning / decision heuristically (the operative order is detected from closing phrases like *"the appeal is allowed / dismissed / disposed of"*).
 
-**Source verification.** The pipeline also **classifies whether each PDF is actually the Supreme Court judgment it claims to be** — a genuine SC judgment has an `IN THE SUPREME COURT OF INDIA` caption, an SCR report citation, or the old IK SC template. This caught **3 wrong downloads** on the first pass (two Delhi Magistrate orders and a High Court judgment that merely *cited* the SC cases); those were **re-collected from the correct source and converted**, so the corpus is now complete. The converter also handles multiple source layouts — Indian Kanoon exports, the official Supreme Court PDF copy, and the SCR reporter format.
+**Source verification.** The pipeline also **classifies whether each PDF is actually the Supreme Court judgment it claims to be** - a genuine SC judgment has an `IN THE SUPREME COURT OF INDIA` caption, an SCR report citation, or the old IK SC template. This caught **3 wrong downloads** on the first pass (two Delhi Magistrate orders and a High Court judgment that merely *cited* the SC cases); those were **re-collected from the correct source and converted**, so the corpus is now complete. The converter also handles multiple source layouts - Indian Kanoon exports, the official Supreme Court PDF copy, and the SCR reporter format.
 
 **Result:** all **43 judgments** as `<judgment>` XML, **validating against the official Akoma Ntoso 3.0 XSD**. It is **best-effort**: the introduction/reasoning/decision split is heuristic and paragraph boundaries follow the reported text, not the certified record. **Verify against the official judgment** before relying on exact wording.
+
+### 8.3 The rules / State-Act conversion (engineering note)
+
+`scripts/convert_rules.py` converts the **state-layer** instruments (and any State
+Act/rules with a clean structure) to Akoma Ntoso `<act>` XML. Rules/sections become
+`<section>` (eId `rule_N` or `sec_N`), grouped under `<chapter>` where the source has
+chapters; sub-rules `(1)/(2)/(a)` become a nested `<blockList>` inside `<content>` -
+the same schema-valid nesting the Constitution converter uses. It supports four
+structural modes, one per source shape:
+
+- **`chapter-rule`** - `CHAPTER <roman> <title>` then `Rule - N. Heading.` (Criminal Rules of Practice, 1982).
+- **`flat-rule`** - flat `N. Heading:- …` (Electronic Filing Rules, 2021).
+- **`chapter-flatrule`** - `CHAPTER <roman>` with the title on the next line, plus continuous `N. Heading.-` numbering, and a leading table of contents that is cut away (Rules of the High Court, 1971).
+- **`flat-section`** - `N Heading -(1)…` where the number may lack a period and carry OCR noise; a gap-tolerant sequencer walks `1 … N` past OCR-missed headings (Kerala Police Act, 2011).
+
+**OCR path.** The Kerala Police Act PDF was a **scanned gazette** whose embedded text
+was garbage, so it was **re-OCR'd at 300 DPI** (`pdftoppm` + `tesseract`); the recovered
+text is kept beside the PDF as `…/sources/kerala-police-act-2011.ocr.txt` for provenance,
+and the converter reads that sidecar. Each output's `<note>` records that it is OCR-derived.
+
+**Result / coverage** (all four **XSD-valid**):
+
+| Instrument | Units | Coverage | Quality |
+|---|---|---|---|
+| Criminal Rules of Practice, 1982 | 30 chapters, 274 rules | complete | clean |
+| Electronic Filing Rules, 2021 | 17 rules | complete | clean |
+| Rules of the High Court, 1971 | 246 rules / 18 chapters | ~96% | clean |
+| Kerala Police Act, 2011 | 113 of 131 sections | ~86% | OCR-derived |
+
+Best-effort: tables are flattened to text; the 18 Police Act sections not detected had
+OCR-mangled heading lines (their text is absorbed into the preceding section, not lost).
+**Verify against the official text** before authoritative use.
 
 ---
 
@@ -374,7 +420,7 @@ What the pipeline does:
 ```jsonc
 {
   "profile": "cheque-dishonour-s138",
-  "title": "Cheque bounce — s.138 NI Act",
+  "title": "Cheque bounce - s.138 NI Act",
   "description": "Relevance profile for the s.138 cheque dishonour case type",
   "as_of": "2026-07-25",
   "maintained_by": "PUCAR / DRISTI",
@@ -448,7 +494,7 @@ Key points:
 ```jsonc
 {
   "profile": "cheque-dishonour-s138",
-  "title": "Supreme Court precedent — s.138 cheque dishonour",
+  "title": "Supreme Court precedent - s.138 cheque dishonour",
   "court": "Supreme Court of India",
   "as_of": "2026-07-25",
 
@@ -492,14 +538,14 @@ Key points:
 ```
 
 Key points:
-- `construes` is an array of **provision refs** (`<alias>:<eId>`) — this is the link the app follows to show precedent on a provision.
+- `construes` is an array of **provision refs** (`<alias>:<eId>`) - this is the link the app follows to show precedent on a provision.
 - `topics` is a key→label map used for filtering in the **Case law** view.
 - `relations` captures inter-case relationships (affirms, distinguishes, overrules, etc.).
 - `bench` is the bench strength (number of judges).
-- `akn` / `source_pdf` — paths (relative to `public/data/`) to the judgment's Akoma Ntoso file and its source PDF. `akn` is `null` when the source doc is wrong (see below).
-- `neutral_citation` — the `YYYY INSC N` citation, present for 2023+ judgments where the export carried it; `decided` — the actual decided date parsed from the judgment.
-- `source_status` — `"ok"` when the AKN was produced, or `"wrong-document"` with a `source_issue` string when the collected PDF is **not** the Supreme Court judgment claimed.
-- `corpus` — a top-level summary: where the AKN and source folders are, how many AKN files exist (43), and `needs_recollection` (now empty — every case has an AKN judgment).
+- `akn` / `source_pdf` - paths (relative to `public/data/`) to the judgment's Akoma Ntoso file and its source PDF. `akn` is `null` when the source doc is wrong (see below).
+- `neutral_citation` - the `YYYY INSC N` citation, present for 2023+ judgments where the export carried it; `decided` - the actual decided date parsed from the judgment.
+- `source_status` - `"ok"` when the AKN was produced, or `"wrong-document"` with a `source_issue` string when the collected PDF is **not** the Supreme Court judgment claimed.
+- `corpus` - a top-level summary: where the AKN and source folders are, how many AKN files exist (43), and `needs_recollection` (now empty - every case has an AKN judgment).
 
 ### 9.3 Enumerations
 
@@ -522,8 +568,8 @@ Key points:
 | Value | Meaning |
 |-------|---------|
 | `always` | Live regardless of date. |
-| `pre-2024-07-01` | Old codes — cause of action before the switch. |
-| `post-2024-07-01` | New Sanhitas — cause of action on/after the switch. |
+| `pre-2024-07-01` | Old codes - cause of action before the switch. |
+| `post-2024-07-01` | New Sanhitas - cause of action on/after the switch. |
 
 ---
 
@@ -531,9 +577,9 @@ Key points:
 
 Two things sit outside the modelled shared core:
 
-1. **The state layer** — High Court rules, e-filing rules, practice directions, local practice, filer mix, and court language. This is **configured per state**, not shipped in `data/`. In the app it appears as *illustrative field context*, and it is explicitly **not statute**.
+1. **The state layer** - a state's rules of practice, High Court rules, e-filing rules, practice directions, the police act (warrant execution), local practice, filer mix, and court language. This is **configured per state** under `public/data/state/<state>/`, kept separate from the uniform central core. **Kerala** is modelled (four instruments converted to AKN, plus a notification) and the viewer reads it through the **State objects** pages (see [§3.3](#33-shared-core-vs-state-layer) and [§8.3](#83-the-rules--state-act-conversion-engineering-note)); for s.138 it is *procedural overlay*, not a change to the offence, so there is no state amendment to model.
 
-2. **Case law** — historically outside the corpus, now **partly modelled** via `public/data/caselaw/*.caselaw.json`. Only Supreme Court precedent for the s.138 case type is captured today; it is not exhaustive.
+2. **Case law** - historically outside the corpus, now **modelled** via `public/data/caselaw/` (dataset + 43 AKN judgments). Only Supreme Court precedent for the s.138 case type is captured today; it is not exhaustive.
 
 Everything else the model needs (statutes, the Constitution, vocabulary, the 2024 mapping) is **inside** the corpus as the shared core.
 
@@ -552,24 +598,29 @@ Everything else the model needs (statutes, the Constitution, vocabulary, the 202
 
 **Add case law:**
 1. Append a case object to the relevant `*.caselaw.json` `cases[]` array.
-2. Populate its `construes` with the provision refs (`<alias>:<eId>`) it interprets — that's what wires it into the Provisions and Case-law views.
-3. Drop the judgment PDF into `public/data/caselaw/sources/`, convert it to a `<judgment>` `.akn.xml` under `public/data/caselaw/akn/` (see §8.2), and set the case's `akn`, `source_pdf`, `decided`, and `neutral_citation` fields — that's what lights up the **Read judgment** button.
+2. Populate its `construes` with the provision refs (`<alias>:<eId>`) it interprets - that's what wires it into the Provisions and Case-law views.
+3. Drop the judgment PDF into `public/data/caselaw/sources/`, convert it to a `<judgment>` `.akn.xml` under `public/data/caselaw/akn/` (see §8.2), and set the case's `akn`, `source_pdf`, `decided`, and `neutral_citation` fields - that's what lights up the **Read judgment** button.
 
-Because the app is a pure runtime reader of `data/`, **extending the model is a data task, not a code task.**
+**Add a state-layer instrument (e.g. a new state, or another Kerala rule):**
+1. Drop the source PDF into `public/data/state/<state>/sources/` (lowercase-hyphenated slug).
+2. Add an entry to `DOCS` in `scripts/convert_rules.py`: its title, FRBR work URI, date, and the matching parse mode (`chapter-rule` / `flat-rule` / `chapter-flatrule` / `flat-section`); for a scanned PDF, OCR it first and point `text_file` at the `.ocr.txt` sidecar.
+3. Run `python3 scripts/convert_rules.py` and validate against the XSD.
+
+Because the app is a pure runtime reader of `data/`, **extending the *app* model is a data task, not a code task** (adding a *new source shape* to the rules converter is the one place code changes).
 
 ---
 
 ## 12. Provenance & caveats
 
-- **AKN Acts** were converted from **India Code reprint PDFs**. Conversion is **best-effort** — verify against official sources before relying on exact text.
+- **AKN Acts** were converted from **India Code reprint PDFs**. Conversion is **best-effort** - verify against official sources before relying on exact text.
 - **The Constitution** was re-converted by a `pdfplumber` pipeline to 456 articles validating against the AKN 3.0 XSD; a few lettered articles and deep clause nesting are approximate (see §8.1).
 - **AKN judgments** (all 43) were converted from Indian Kanoon / official Supreme Court / SCR-reporter PDFs and validate against the AKN 3.0 XSD; the introduction/reasoning/decision split is heuristic and paragraph text follows the reported version, not the certified record (see §8.2).
-- **3 PDFs were wrong on the first collection pass** — two Delhi Magistrate orders and a High Court judgment that only *cited* the SC cases (Basalingappa, Dashrathbhai, Rajesh Jain). These were **re-collected from the correct source and converted**; the superseded PDFs were moved to `_to_delete/superseded-caselaw-pdfs/`.
+- **3 PDFs were wrong on the first collection pass** - two Delhi Magistrate orders and a High Court judgment that only *cited* the SC cases (Basalingappa, Dashrathbhai, Rajesh Jain). These were **re-collected from the correct source and converted**; the superseded PDFs were moved to `_to_delete/superseded-caselaw-pdfs/`.
 - **Citations** in the case-law dataset are **best-effort**.
-- **State-layer content** is **illustrative field context, not statute** — it describes typical practice, not binding law.
-- The model captures only the **shared core** plus a partial Supreme Court case-law layer; it is not a complete legal encyclopaedia for any state.
+- **State-layer instruments** (Kerala, under `state-layer/`) are **reference material outside the app corpus**. The four converted to AKN validate against the XSD but are **best-effort**: the **Kerala Police Act, 2011** is **OCR-derived from a scanned gazette** (~86% of sections, residual OCR noise), and tables are flattened to text. Verify against the official text.
+- The model captures the **shared core** plus the full s.138 Supreme Court case-law layer and the Kerala state-layer reference; it is not a complete legal encyclopaedia for any state.
 
-When accuracy matters, treat this model as a **map**, not the territory — cross-check against the official gazette / India Code / SCC.
+When accuracy matters, treat this model as a **map**, not the territory - cross-check against the official gazette / India Code / SCC.
 
 ---
 
@@ -579,13 +630,13 @@ When accuracy matters, treat this model as a **map**, not the territory — cros
 |------|---------|
 | **AKN (Akoma Ntoso)** | OASIS/LegalDocML XML standard (v3.0) for legal documents. Every Act here is an `<act>` `.akn.xml` file; every Supreme Court judgment is a `<judgment>` `.akn.xml` file. |
 | **Neutral citation** | Court-assigned, reporter-independent citation (`YYYY INSC N` for the Supreme Court, introduced 2023). Stored as `neutral_citation` where known. |
-| **eId** | Element ID — the stable within-document anchor for a provision, e.g. `sec_138`, `art_21`. |
-| **FRBR** | Functional Requirements for Bibliographic Records — the identity model AKN uses to name a legal work across its expressions/manifestations. |
+| **eId** | Element ID - the stable within-document anchor for a provision, e.g. `sec_138`, `art_21`. |
+| **FRBR** | Functional Requirements for Bibliographic Records - the identity model AKN uses to name a legal work across its expressions/manifestations. |
 | **Bounded context** | A self-contained slice of a domain with its own model and vocabulary; here, one case type is one bounded context. |
-| **Shared core** | The central law identical across all of India — what this model captures. |
-| **State layer** | Per-state additions (High Court rules, e-filing, practice directions, local practice, filer mix, court language) — configured per state, not in the corpus. |
+| **Shared core** | The central law identical across all of India - what this model captures. |
+| **State layer** | Per-state additions (High Court rules, e-filing, practice directions, local practice, filer mix, court language) - configured per state, not in the corpus. |
 | **Cause of action** | The event giving rise to a claim; for s.138, the dishonour + unpaid demand. Its **date** decides whether old codes or 2023 Sanhitas apply. |
-| **Sanhita** | A 2023 replacement code — BNSS (procedure), BNS (penal), BSA (evidence) — in force from 2024-07-01. |
+| **Sanhita** | A 2023 replacement code - BNSS (procedure), BNS (penal), BSA (evidence) - in force from 2024-07-01. |
 | **Bench strength** | The number of Supreme Court judges deciding a case; larger benches bind smaller ones. Stored as `bench` in the case-law data. |
 
 ---
@@ -621,4 +672,4 @@ else to configure.
 
 ---
 
-*Maintained by PUCAR / DRISTI. Case type modelled: Cheque bounce — s.138 Negotiable Instruments Act, 1881.*
+*Maintained by PUCAR / DRISTI. Case type modelled: Cheque bounce - s.138 Negotiable Instruments Act, 1881.*
