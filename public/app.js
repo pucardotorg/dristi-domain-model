@@ -800,41 +800,76 @@ function jumpToCase(id){
   setTimeout(()=>{ const c=document.getElementById("case-"+id); if(c){ c.scrollIntoView({block:"center"}); c.style.outline="2px solid var(--brand)"; c.style.outlineOffset="-1px"; setTimeout(()=>{c.style.outline="";},1800);} },70);
 }
 
-/* ---- provision hover-preview: peek a construed section without leaving the page ---- */
-let _pp=null, _ppTimer=null, _ppRef=null; const _ppCache={};
+/* ---- reference hover-preview: peek a cited provision in place, wherever it points
+   to a source on another page. Click still opens the full modal (handled elsewhere). ---- */
+const HOVER_SEL=".cchip[data-ref], .stedge[data-ref], .cite[data-nat], .cite[data-akn]";
+let _pp=null, _ppTimer=null, _ppKey=null, _ppAnchor=null, _ppHover=false; const _ppCache={};
+/* describe what a hovered element points at, or null if it isn't loadable */
+function provDesc(el){
+  const d=el.dataset;
+  const natRef=d.ref||d.nat;
+  if(natRef){ const a=natRef.split(":")[0]; return SOURCES[a] ? {key:"n:"+natRef, type:"nat", ref:natRef} : null; }
+  if(d.akn && d.eid) return {key:"s:"+d.akn+"#"+d.eid, type:"state", akn:d.akn, eid:d.eid, title:d.title||""};
+  return null;
+}
+function stateMiniMarkup(d,title,akn,eid){
+  if(!d) return `<div class="statute statute-mini"><div class="st-src">source text not found</div></div>`;
+  return `<div class="statute statute-mini"><div class="st-src">${ic('book-open')} from ${esc(title||'the state instrument')}</div>`
+    +((d.num||d.heading)?`<div class="st-h"><span class="st-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`:'')
+    +renderBody(d.body,"st")
+    +`<div class="st-inpar"><button class="stdoc" data-akn="${esc(akn)}" data-title="${esc(title||'')}" data-sub="" data-eid="${esc(eid)}">${ic('maximize-2')}&nbsp; Read this inside the full document</button></div></div>`;
+}
 function ppEl(){
   if(!_pp){
     _pp=document.createElement("div"); _pp.className="provpop";
-    _pp.addEventListener("mouseenter",()=>clearTimeout(_ppTimer));
-    _pp.addEventListener("mouseleave",hideProvPop);
+    _pp.addEventListener("mouseenter",()=>{ _ppHover=true; clearTimeout(_ppTimer); });
+    _pp.addEventListener("mouseleave",()=>{ _ppHover=false; hideProvPop(); });
     document.body.appendChild(_pp);
   }
   return _pp;
 }
-function positionProvPop(chip){
-  const pop=_pp, r=chip.getBoundingClientRect();
+function positionProvPop(el){
+  const pop=_pp, r=el.getBoundingClientRect();
   const pw=Math.min(430, window.innerWidth-24); pop.style.width=pw+"px";
   const ph=pop.offsetHeight;
   let left=Math.min(r.left, window.innerWidth-12-pw); if(left<12) left=12;
   let top=r.bottom+8; if(top+ph>window.innerHeight-12){ const up=r.top-8-ph; top=up>12?up:Math.max(12, window.innerHeight-12-ph); }
   pop.style.left=left+"px"; pop.style.top=top+"px";
 }
-async function showProvPop(chip){
-  const ref=chip.dataset.ref; if(!ref) return;
-  const pop=ppEl(); clearTimeout(_ppTimer); _ppRef=ref;
+async function showProvPop(el){
+  const desc=provDesc(el); if(!desc) return;
+  const pop=ppEl(); clearTimeout(_ppTimer); _ppKey=desc.key; _ppAnchor=el;
   pop.classList.add("show");
-  if(_ppCache[ref]){ pop.innerHTML=_ppCache[ref]; positionProvPop(chip); return; }
+  if(_ppCache[desc.key]){ pop.innerHTML=_ppCache[desc.key]; positionProvPop(el); return; }
   pop.innerHTML=`<div class="statute statute-mini"><div class="st-src"><span class="spinner" style="width:13px;height:13px;border-width:2px;margin:0"></span> loading the section…</div></div>`;
-  positionProvPop(chip);
-  try{ const d=await sectionByRef(ref); const html=statuteMarkup(ref,d,true); _ppCache[ref]=html; if(_ppRef===ref){ pop.innerHTML=html; positionProvPop(chip); } }
-  catch(e){ if(_ppRef===ref) pop.innerHTML=`<div class="statute statute-mini"><div class="st-src">couldn't load the section</div></div>`; }
+  positionProvPop(el);
+  try{
+    let html;
+    if(desc.type==="nat"){ const d=await sectionByRef(desc.ref); html=statuteMarkup(desc.ref,d,true); }
+    else { const d=await getStateSection(desc.akn,desc.eid); html=stateMiniMarkup(d,desc.title,desc.akn,desc.eid); }
+    _ppCache[desc.key]=html;
+    if(_ppKey===desc.key){ pop.innerHTML=html; positionProvPop(el); }
+  }catch(e){ if(_ppKey===desc.key) pop.innerHTML=`<div class="statute statute-mini"><div class="st-src">couldn't load the section</div></div>`; }
 }
-function hideProvPop(){ clearTimeout(_ppTimer); _ppTimer=setTimeout(()=>{ if(_pp) _pp.classList.remove("show"); _ppRef=null; },140); }
+function hideProvPop(){ clearTimeout(_ppTimer); _ppTimer=setTimeout(()=>{ if(_pp) _pp.classList.remove("show"); _ppKey=null; _ppAnchor=null; },160); }
 /* only on pointers that actually hover (skips touch, where the tap opens the modal) */
 if(window.matchMedia && window.matchMedia("(hover: hover)").matches){
-  document.addEventListener("mouseover",e=>{ const chip=e.target.closest && e.target.closest(".cchip"); if(chip && chip.dataset.ref){ clearTimeout(_ppTimer); _ppTimer=setTimeout(()=>showProvPop(chip),160); } });
-  document.addEventListener("mouseout",e=>{ const chip=e.target.closest && e.target.closest(".cchip"); if(chip){ hideProvPop(); } });
-  window.addEventListener("scroll",()=>{ if(_pp && _pp.classList.contains("show")) hideProvPop(); }, true);
+  document.addEventListener("mouseover",e=>{
+    const el=e.target.closest && e.target.closest(HOVER_SEL); if(!el) return;
+    if(el===_ppAnchor && _pp && _pp.classList.contains("show")){ clearTimeout(_ppTimer); return; } // already open for this one
+    clearTimeout(_ppTimer); _ppTimer=setTimeout(()=>showProvPop(el),160);
+  });
+  document.addEventListener("mouseout",e=>{
+    const el=e.target.closest && e.target.closest(HOVER_SEL); if(!el) return;
+    if(e.relatedTarget && el.contains(e.relatedTarget)) return; // still inside the same chip
+    hideProvPop();
+  });
+  // hide when the PAGE scrolls (the popover would detach), but never when scrolling inside it
+  window.addEventListener("scroll",e=>{
+    if(!_pp || !_pp.classList.contains("show")) return;
+    if(_ppHover || (e.target && e.target.nodeType===1 && _pp.contains(e.target))) return;
+    hideProvPop();
+  }, true);
 }
 
 V.caselaw=()=>{
