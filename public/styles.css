@@ -255,8 +255,8 @@
   .prov .caret{color:var(--ink-3); transition:transform .15s; flex:none} .prov.open .caret{transform:rotate(90deg)}
   .prov-body{display:none; padding:2px 16px 18px 133px; border-top:1px solid var(--line)}
   .prov.open .prov-body{display:block}
-  .prov-body .brief{color:var(--ink-2); font-size:13.5px; margin:13px 0 4px; padding:11px 14px; background:color-mix(in srgb,var(--purple) 6%,var(--panel-2)); border:1px solid color-mix(in srgb,var(--purple) 18%,var(--line)); border-radius:9px}
-  .prov-body .brief .bl{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--purple-txt); font-weight:700; display:block; margin-bottom:4px}
+  .brief{color:var(--ink-2); font-size:13.5px; margin:13px 0 4px; padding:11px 14px; background:color-mix(in srgb,var(--purple) 6%,var(--panel-2)); border:1px solid color-mix(in srgb,var(--purple) 18%,var(--line)); border-radius:9px}
+  .brief .bl{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--purple-txt); font-weight:700; display:block; margin-bottom:4px}
   .prov-body .kv{font-size:12.5px; color:var(--ink-3); margin:4px 0} .prov-body .kv b{color:var(--ink-2); font-weight:600}
   .rels{margin-top:12px; display:flex; flex-direction:column; gap:6px}
   .rel{font-size:12.5px; color:var(--ink-2); display:flex; gap:8px; align-items:baseline}

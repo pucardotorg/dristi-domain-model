@@ -482,8 +482,8 @@ function stateObjectView(catKey, title, fallbackBlurb){
     return m;
   };
 }
-V.amendments   = stateObjectView("amendments","State amendments","State-level changes to the central Acts, where a legislature has amended or added to the shared statute for this case type.");
-V.staterules   = stateObjectView("rules","State rules","The rules of practice and procedure a High Court or state makes for its own courts.");
+V.amendments   = stateObjectView("amendments","Acts & Provisions","State-level changes to the central Acts, where a legislature has amended or added to the shared statute for this case type.");
+V.staterules   = stateRulesView;   // organised like National objects (tree, not cards)
 V.notifications= stateObjectView("notifications","Notifications","Government orders and court notifications that shape how a case runs locally.");
 
 /* ---- case law helpers ---- */
@@ -729,6 +729,97 @@ async function openStateDocModal(aknPath, title, subtitle, pdfUrl){
   }
 }
 
+/* ============================================================ STATE RULES TREE
+   The State rules view, organised exactly like National objects: each instrument
+   is a collapsible group; inside, its rules/sections list by chapter, and each
+   row expands to the verbatim text - the state analogue of Act → provision. */
+function getStateDoc(aknPath){
+  if(stateDocCache[aknPath]) return Promise.resolve(stateDocCache[aknPath]);
+  return fetchText((DATA_BASE||"")+aknPath).then(xml=>{
+    const doc=new DOMParser().parseFromString(xml,"application/xml");
+    if(doc.getElementsByTagName("parsererror").length) throw new Error("parse error");
+    stateDocCache[aknPath]=doc; return doc;
+  });
+}
+function stateChapHead(label){
+  const d=el("div"); d.textContent=label;
+  d.style.cssText="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin:16px 0 4px;padding-left:2px";
+  return d;
+}
+function stateRuleRow(b){
+  const row=el("div","prov");
+  row.innerHTML=`
+    <div class="prov-head">
+      <span class="ref">${esc(b.num||'')}</span>
+      <span class="rt">${esc(b.heading||'(untitled)')}</span>
+      <span class="caret">›</span>
+    </div>
+    <div class="prov-body"></div>`;
+  const pbody=row.querySelector(".prov-body"); let filled=false;
+  row.querySelector(".prov-head").onclick=()=>{
+    row.classList.toggle("open");
+    if(row.classList.contains("open") && !filled){ filled=true;
+      const st=el("div","statute"); st.innerHTML=renderBody(b.body,"st")||`<div class="st-src">no text captured for this ${esc(b.num||'entry')}</div>`; pbody.appendChild(st);
+    }
+  };
+  return row;
+}
+function stateRuleGroup(it){
+  const grp=el("div","actgrp");
+  const yr=(it.title.match(/\d{4}/)||[''])[0];
+  const titleClean=it.title.replace(/,?\s*\d{4}\s*$/,'').replace(/\s*\(.*?\)\s*$/,'').trim();
+  grp.innerHTML=`
+    <div class="actgrp-head">
+      <span class="ag-chev">${ic('chevron-down')}</span>
+      <span class="dot" style="background:var(--brand)"></span>
+      <span class="ag-title">${esc(titleClean)} <span class="ag-year">${esc(yr)}</span></span>
+      <span class="ag-status">${esc(it.cite||'')}</span>
+      <span class="ag-count">${it.akn?'…':'PDF'}</span>
+    </div>
+    <div class="actgrp-body"></div>`;
+  const body=grp.querySelector(".actgrp-body"), countEl=grp.querySelector(".ag-count");
+  if(it.akn) getStateDoc(it.akn).then(doc=>{ countEl.textContent=actBlocks(doc).filter(b=>b.t==="sec").length; }).catch(()=>{ countEl.textContent='?'; });
+  // actions + PUCAR note (visible when the group is open)
+  const actions=el("div"); actions.style.cssText="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2px";
+  if(it.akn){ const ob=el("button","view-full ag-openfull"); ob.innerHTML=`${ic('book-open')}&nbsp; Open the whole document`; ob.onclick=e=>{ e.stopPropagation(); openStateDocModal(it.akn,it.title,it.cite||'',it.pdf?(DATA_BASE+it.pdf):''); }; actions.appendChild(ob); }
+  if(it.pdf){ const pb=el("button","pdf-orig"); pb.dataset.pdf=DATA_BASE+it.pdf; pb.dataset.pdftitle=it.title; pb.innerHTML=`${ic('file')} Original PDF`; actions.appendChild(pb); }
+  body.appendChild(actions);
+  if(it.note) body.appendChild(el("div","brief",`<span class="bl">In brief · PUCAR summary</span>${it.note}`));
+  const rulesHost=el("div"); rulesHost.style.marginTop="10px"; body.appendChild(rulesHost);
+  let loaded=false;
+  grp.querySelector(".actgrp-head").onclick=()=>{
+    grp.classList.toggle("open");
+    if(grp.classList.contains("open") && !loaded && it.akn){ loaded=true;
+      const slot=el("div","st-src"); slot.style.padding="10px 2px"; slot.innerHTML=`<span class="spinner" style="width:14px;height:14px;border-width:2px;margin:0"></span> loading the ${esc(it.cite||'rules')}…`;
+      rulesHost.appendChild(slot);
+      getStateDoc(it.akn).then(doc=>{
+        slot.remove();
+        actBlocks(doc).forEach(b=>{ rulesHost.appendChild(b.t==="chap"?stateChapHead(b.label):stateRuleRow(b)); });
+      }).catch(()=>{ slot.innerHTML=`<span class="tiny">couldn't load - the files load over http (see the note under the sidebar).</span>`; });
+    }
+  };
+  return grp;
+}
+function stateRulesView(){
+  if(!isModelled()) return notModelled();
+  const stName=stateById(activeState).name;
+  const m=el("div"); m.appendChild(scopeBar());
+  const data=STATE_DATA && STATE_DATA.rules;
+  const lede=(data&&data.summary) || "The rules of practice and procedure a High Court or state makes for its own courts. These sit on top of the shared national core and change from state to state, so pick the jurisdiction above.";
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title state-title">State rules ${stateInlineSelectHTML()}</h1><p class="lede">${lede}</p>`;
+  m.appendChild(head);
+  const sel=m.querySelector(".state-inline");
+  if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
+  const items=(data&&data.items)||[];
+  if(!items.length){ m.appendChild(el("div","empty", (data&&data.summary)?`Nothing separate to list here for ${esc(stName)}.`:`<b>${esc(stName)} - state rules not modelled yet.</b><br><span class="tiny">This state-layer object is planned.</span>`)); return m; }
+  m.appendChild(el("div","legend",`<span>Each instrument opens to its rules; each rule opens to the verbatim text - the same shape as <b>Acts &amp; provisions</b>, for the ${esc(stName)} layer.</span>`));
+  const list=el("div"); list.style.marginTop="14px";
+  items.forEach(it=>list.appendChild(stateRuleGroup(it)));
+  m.appendChild(list);
+  return m;
+}
+
 /* ============================================================ JUDGMENT MODAL */
 let jmtCache={};
 async function getJudgment(caseId, aknPath){
@@ -827,7 +918,7 @@ function buildNav(){
       <div class="state-layer-note">Everything below is specific to ${st.name}.</div>
       <div class="nav-group scoped">State objects</div>
       <div class="nav-scoped">
-        <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> State amendments ${stateBadge('amendments')}</a>
+        <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> Acts &amp; Provisions ${stateBadge('amendments')}</a>
         <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules ${stateBadge('rules')}</a>
         <a data-view="notifications"><span class="ico">${ic('bell')}</span> Notifications ${stateBadge('notifications')}</a>
       </div>
