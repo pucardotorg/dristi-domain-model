@@ -412,6 +412,11 @@
       "stages": [
         {
           "stage": "1 · Filing the complaint",
+          "timing": {
+            "prescribed": "Within 1 month of cause of action",
+            "regular": "1-2 weeks to file",
+            "oncourt": "Same day, e-filed"
+          },
           "steps": [
             {
               "t": "A cheque-bounce case is a complaint case: the payee or holder in due course files a written complaint, and the Magistrate can take cognizance only on such a complaint (never on a police report).",
@@ -458,6 +463,11 @@
         },
         {
           "stage": "2 · Cognizance & issue of process",
+          "timing": {
+            "prescribed": null,
+            "regular": "1-3 months",
+            "oncourt": "1-2 weeks"
+          },
           "steps": [
             {
               "t": "The Magistrate examines the complainant (and any witnesses) on oath and, if satisfied there is ground to proceed, takes cognizance and issues process to the accused.",
@@ -501,6 +511,11 @@
         },
         {
           "stage": "3 · Service of summons",
+          "timing": {
+            "prescribed": null,
+            "regular": "1-3 months",
+            "oncourt": "2-4 weeks"
+          },
           "steps": [
             {
               "t": "The summons is served in the manner the BNSS prescribes, and the NI Act's own mode of service also applies.",
@@ -543,6 +558,11 @@
         },
         {
           "stage": "4 · If the accused does not appear",
+          "timing": {
+            "prescribed": null,
+            "regular": "3-9 months",
+            "oncourt": "3-6 weeks"
+          },
           "steps": [
             {
               "t": "The court escalates up the warrant ladder: a warrant issues, and on continued absconding, proclamation and attachment of property.",
@@ -580,6 +600,11 @@
         },
         {
           "stage": "5 · Trial (summary)",
+          "timing": {
+            "prescribed": "6 months from filing (NI §143)",
+            "regular": "1-3 years",
+            "oncourt": "2-4 months"
+          },
           "steps": [
             {
               "t": "The case is tried summarily, and the complainant's evidence may be given on affidavit - the features that make §138 a fast-track offence.",
@@ -611,6 +636,11 @@
         },
         {
           "stage": "6 · Judgment, sentence & compensation",
+          "timing": {
+            "prescribed": null,
+            "regular": "2-8 weeks after trial",
+            "oncourt": "With or just after trial"
+          },
           "steps": [
             {
               "t": "On conviction the court may impose imprisonment up to two years and/or a fine up to twice the cheque amount, with compensation to the complainant.",
@@ -625,6 +655,11 @@
         },
         {
           "stage": "7 · Compounding / settlement",
+          "timing": {
+            "prescribed": "Any stage (NI §147)",
+            "regular": "Often settled late",
+            "oncourt": "Encouraged early"
+          },
           "steps": [
             {
               "t": "The offence is compoundable: the parties may settle at any stage and the case is compounded, ending the prosecution.",
@@ -639,6 +674,11 @@
         },
         {
           "stage": "8 · Appeal & revision",
+          "timing": {
+            "prescribed": "Appeal within 30 days",
+            "regular": "1-2 years",
+            "oncourt": "Heard by Sessions / High Court"
+          },
           "steps": [
             {
               "t": "The accused may appeal; the appellate court may require a deposit of a minimum of 20% of the fine/compensation as a condition of the appeal.",
@@ -679,7 +719,8 @@
             }
           ]
         }
-      ]
+      ],
+      "timing_note": "Prescribed shows the statutory or rule deadline where one exists. The Regular court and ON Court columns are indicative typical durations shown for illustration, not official statistics; actual timelines vary case to case."
     },
     "fees": {
       "summary": "What it costs to bring and contest a §138 case in Kerala - the ad valorem court fee scaled to the dishonoured-cheque amount, set by Article 21 of the Court Fees Act (inserted by the Finance Act 2024).",

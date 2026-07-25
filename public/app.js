@@ -561,22 +561,32 @@ V.story=()=>{
   const amap=stateAliasMap();
   const secH=(t,sub)=>el("div","story-sec-h",`<span>${esc(t)}</span>${sub?`<span class="ssh-sub">${esc(sub)}</span>`:''}`);
 
-  // 1 - PROCESS
+  // 1 - PROCESS (a timeline: one marker per stage, with prescribed vs actual timings)
   if(S.process){
     m.appendChild(secH("The process - filing to disposal", S.process.summary));
-    const wrap=el("div","story-flow");
-    (S.process.stages||[]).forEach(st=>{
-      const card=el("div","stage");
-      card.innerHTML=`<div class="stage-h">${esc(st.stage)}</div>`;
-      const body=el("div","stage-b");
-      (st.steps||[]).forEach(sp=>{
-        const r=el("div","pstep");
-        r.innerHTML=`<div class="pstep-t">${esc(sp.t)}</div>${citeRow(sp.c,amap)}`;
-        body.appendChild(r);
-      });
-      card.appendChild(body); wrap.appendChild(card);
+    const tl=el("div","timeline");
+    (S.process.stages||[]).forEach((st,i)=>{
+      const raw=String(st.stage||"");
+      const num=(raw.split("·")[0].trim().split(".")[0].trim())||String(i+1);
+      const title=raw.replace(/^\s*\d+\s*[·.\-]\s*/,"");
+      const item=el("div","tl-item");
+      let html=`<div class="tl-marker">${esc(num)}</div><div class="tl-content"><div class="tl-stage-title">${esc(title)}</div>`;
+      const t=st.timing;
+      if(t){
+        html+=`<div class="tl-timing">
+          <div class="tl-tcell tl-presc"><div class="tl-tlabel">Prescribed</div><div class="tl-tval">${t.prescribed?esc(t.prescribed):"No fixed limit"}</div></div>
+          <div class="tl-tcell tl-reg"><div class="tl-tlabel">Regular court</div><div class="tl-tval">${esc(t.regular||"-")}</div></div>
+          <div class="tl-tcell tl-on"><div class="tl-tlabel">ON Court</div><div class="tl-tval">${esc(t.oncourt||"-")}</div></div>
+        </div>`;
+      }
+      html+=`<div class="tl-steps">`;
+      (st.steps||[]).forEach(sp=>{ html+=`<div class="pstep"><div class="pstep-t">${esc(sp.t)}</div>${citeRow(sp.c,amap)}</div>`; });
+      html+=`</div></div>`;
+      item.innerHTML=html;
+      tl.appendChild(item);
     });
-    m.appendChild(wrap);
+    m.appendChild(tl);
+    if(S.process.timing_note) m.appendChild(el("div","story-note story-note-loose",esc(S.process.timing_note)));
   }
   // 2 - FEES
   if(S.fees){

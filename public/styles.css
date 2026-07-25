@@ -440,14 +440,32 @@
   .hide{display:none!important}
 
 /* ============================================================ STATE STORY */
-.story-sec-h{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:34px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line)}
-.story-sec-h>span:first-child{font-size:18px; font-weight:700; letter-spacing:-.01em; color:var(--ink)}
-.story-sec-h .ssh-sub{font-size:13px; color:var(--ink-2); font-weight:400; max-width:640px}
-.story-flow{display:flex; flex-direction:column; gap:12px}
-.stage{border:1px solid var(--line); border-radius:11px; background:var(--panel); overflow:hidden}
-.stage-h{font-size:13px; font-weight:700; letter-spacing:.02em; color:var(--brand); padding:11px 16px; background:color-mix(in srgb,var(--brand) 6%,var(--panel-2)); border-bottom:1px solid var(--line)}
-.stage-b{padding:6px 16px 12px}
+.story-sec-h{margin:36px 0 16px; padding-bottom:10px; border-bottom:1px solid var(--line)}
+.story-sec-h>span:first-child{display:block; font-size:18px; font-weight:700; letter-spacing:-.01em; color:var(--ink)}
+.story-sec-h .ssh-sub{display:block; margin-top:5px; font-size:13px; color:var(--ink-2); font-weight:400; max-width:760px; line-height:1.55}
+/* process timeline: a numbered spine, each stage carrying prescribed vs actual timings */
+.timeline{position:relative; margin:8px 0 2px}
+.tl-item{position:relative; display:grid; grid-template-columns:38px 1fr; gap:16px; padding-bottom:26px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:""; position:absolute; left:18px; top:40px; bottom:-2px; width:2px; background:var(--line-2)}
+.tl-item:last-child::before{display:none}
+.tl-marker{width:38px; height:38px; border-radius:50%; background:var(--brand-dim); color:var(--brand-hi); border:1px solid var(--brand-border); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; z-index:1}
+.tl-content{min-width:0; padding-top:6px}
+.tl-stage-title{font-size:15.5px; font-weight:700; color:var(--ink); letter-spacing:-.01em; margin-bottom:11px}
+.tl-timing{display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-bottom:14px}
+.tl-tcell{border:1px solid var(--line); border-radius:9px; padding:8px 11px; background:var(--panel)}
+.tl-tlabel{font-size:9.5px; letter-spacing:.07em; text-transform:uppercase; font-weight:700; color:var(--ink-3); margin-bottom:3px}
+.tl-tval{font-size:12.5px; font-weight:600; color:var(--ink); line-height:1.32}
+.tl-presc{border-color:var(--blue-border); background:color-mix(in srgb,var(--blue) 6%,var(--panel))}
+.tl-presc .tl-tlabel{color:var(--blue-txt)}
+.tl-reg{border-color:var(--amber-border); background:color-mix(in srgb,var(--amber) 8%,var(--panel))}
+.tl-reg .tl-tlabel{color:var(--amber-txt)}
+.tl-on{border-color:var(--brand-border); background:color-mix(in srgb,var(--brand) 8%,var(--panel))}
+.tl-on .tl-tlabel{color:var(--brand-hi)}
+.tl-steps{border-top:1px dashed var(--line)}
+@media(max-width:600px){ .tl-timing{grid-template-columns:1fr} }
 .pstep{padding:12px 0; border-bottom:1px dashed var(--line)}
+.tl-steps .pstep:last-child{padding-bottom:0}
 .pstep:last-child{border-bottom:0}
 .pstep-t{font-size:14px; color:var(--ink); line-height:1.5; margin-bottom:8px}
 .cites{display:flex; flex-wrap:wrap; gap:7px}
@@ -461,7 +479,11 @@
 .fee-row:last-child{border-bottom:0}
 .fee-stage{color:var(--ink); font-weight:600; flex:0 0 auto}
 .fee-amt{color:var(--ink-2); text-align:right}
-.story-note{font-size:12.5px; color:var(--ink-3); font-style:italic; margin:10px 2px 0}
+.story-note{font-size:12.5px; color:var(--ink-3); font-style:italic; line-height:1.5}
+.story-note-loose{margin:14px 0 0}
+/* note that sits inside the bordered fee block: give it real padding + a divider */
+.fee-block .story-note{margin:0; padding:11px 16px; border-top:1px solid var(--line)}
+.caseload-wrap + .story-note{margin:12px 0 0}
 .court-block{display:flex; flex-wrap:wrap; gap:12px}
 .court-card{border:1px solid var(--brand-border); border-radius:11px; background:color-mix(in srgb,var(--brand) 5%,var(--panel)); padding:14px 16px; min-width:260px; flex:1 1 300px}
 .court-name{font-size:15px; font-weight:700; color:var(--ink); margin-bottom:6px}
