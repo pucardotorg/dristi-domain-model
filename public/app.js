@@ -752,16 +752,7 @@ function buildNav(){
       <a data-view="caselaw"><span class="ico">${ic('scale')}</span> Case law <span class="count">${isModelled()?(CASES.length||'-'):'-'}</span></a>
     </div>
     <div class="state-layer">
-      <div class="casedd statedd" id="statedd">
-        <button class="casedd-btn" id="stateBtn">
-          <div class="ac-eyebrow">${ic('map-pin')} State</div>
-          <div class="ac-name">${st.name}</div>
-          <span class="casedd-chev">${ic('chevron-down')}</span>
-        </button>
-        <div class="casedd-menu" id="stateMenu">
-          ${JURISDICTIONS.map(s=>{const on=s.id===activeState; return `<div class="casedd-item ${on?'on':''}" data-state="${s.id}"><span>${s.name}</span>${on?'<span class="ci-check">✓</span>':''}</div>`;}).join("")}
-        </div>
-      </div>
+      <div class="statedd-wrap">${stateInlineSelectHTML()}</div>
       <div class="state-layer-note">Everything below is specific to ${st.name}.</div>
       <div class="nav-group scoped">State objects</div>
       <div class="nav-scoped">
@@ -795,20 +786,16 @@ function buildNav(){
     setDrawer(false);
   });
   const dd=$("#casedd",nav), btn=$("#caseddBtn",nav);
-  const sdd=$("#statedd",nav), sbtn=$("#stateBtn",nav);
   const ovt=$("#ovTrigger");
-  if(btn) btn.onclick=e=>{ e.stopPropagation(); sdd.classList.remove("open"); dd.classList.toggle("open"); };
-  if(sbtn) sbtn.onclick=e=>{ e.stopPropagation(); dd.classList.remove("open"); sdd.classList.toggle("open"); };
+  if(btn) btn.onclick=e=>{ e.stopPropagation(); dd.classList.toggle("open"); };
   if(ovt) ovt.onclick=e=>{ e.stopPropagation(); $("#ovMenu").classList.toggle("open"); };
   nav.querySelectorAll(".casedd-item[data-id]").forEach(it=>it.onclick=()=>{
     const ct=caseById(it.dataset.id);
     if(ct && ct.status==="active"){ activeCase=ct.id; buildNav(); go("overview"); }
     else dd.classList.remove("open");
   });
-  nav.querySelectorAll(".casedd-item[data-state]").forEach(it=>it.onclick=()=>{
-    activeState=it.dataset.state; sdd.classList.remove("open"); buildNav();
-    go(currentView); // re-render: some views (e.g. Local practice) depend on the state
-  });
+  const ssel=nav.querySelector(".state-inline");
+  if(ssel) ssel.onchange=e=>{ activeState=e.target.value; buildNav(); go(currentView); };
 }
 function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
 function go(view){

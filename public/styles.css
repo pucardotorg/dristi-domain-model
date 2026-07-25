@@ -123,7 +123,7 @@
   .ac-name span{color:var(--ink-3); font-weight:400; font-size:12px}
   /* the state layer: state selector + everything scoped to it, bracketed together */
   .state-layer{position:relative; margin:16px 0 2px; padding:2px 0 4px 11px; border-left:2px solid var(--brand-border)}
-  .state-layer .statedd{margin:0 4px 3px}
+  .state-layer .statedd-wrap{display:block; margin:0 4px 5px}
   .state-layer .nav-group{margin-top:12px}
   .state-layer .nav-group:first-of-type{margin-top:4px}
   .state-layer-note{font-size:10.5px; color:var(--ink-3); padding:1px 9px 3px; line-height:1.35}
