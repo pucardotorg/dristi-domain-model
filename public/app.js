@@ -419,14 +419,14 @@ V.words=()=>{
   const state={q:"", scope:"all", pos:"", role:""};
 
   function wcard(it){
-    const tags=`<div class="wtags">${it.pos?`<span class="wtag wtag-pos">${esc(POS_LABEL[it.pos]||it.pos)}</span>`:""}${it.role?`<span class="wtag wtag-role">${esc(ROLE_LABEL[it.role]||it.role)}</span>`:""}</div>`;
+    const clsTags=`${it.pos?`<span class="wtag wtag-pos">${esc(POS_LABEL[it.pos]||it.pos)}</span>`:""}${it.role?`<span class="wtag wtag-role">${esc(ROLE_LABEL[it.role]||it.role)}</span>`:""}`;
     if(it.kind==="national"){
       const w=it.w, v=it.v, p=PROVISIONS.find(x=>x.ref===v.ref), s=actOf(v.ref);
       const def=v.gloss || (p&&p.note) || "The canonical meaning the system uses for this term - fixed by the section below.";
       const c=el("div","word");
       c.innerHTML=`
-        <div class="wt">${esc(w[0].toUpperCase()+w.slice(1))} ${scopeBadge()} <span class="caret">${ic('chevron-right')}</span></div>
-        ${tags}
+        <div class="wtags">${scopeBadge()}${clsTags}</div>
+        <div class="wt">${esc(w[0].toUpperCase()+w.slice(1))} <span class="caret">${ic('chevron-right')}</span></div>
         <div class="def">${esc(def)}</div>
         <div class="src">from <code>${esc(secNum(v.ref))}</code> · ${esc(s?s.title.split(",")[0]:v.ref)}</div>
         <div class="wfull"><div class="statute-slot" data-ref="${esc(v.ref)}"></div></div>`;
@@ -435,8 +435,8 @@ V.words=()=>{
     }
     const t=it.t, c=el("div","word");
     c.innerHTML=`
-      <div class="wt">${esc(t.word)} <span class="badge b-state">${esc(stName)}</span> <span class="caret">${ic('chevron-right')}</span></div>
-      ${tags}
+      <div class="wtags"><span class="badge b-state">${esc(stName)}</span>${clsTags}</div>
+      <div class="wt">${esc(t.word)} <span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(t.gloss||'')}</div>
       <div class="src">from ${esc(t.source||'the state layer')}</div>
       <div class="wfull"><div class="ksec-slot"></div></div>`;

@@ -250,7 +250,7 @@
   .vfacet-row{display:flex; align-items:flex-start; gap:12px; margin-bottom:8px}
   .vfacet-lbl{flex:none; width:46px; padding-top:7px; font-size:10px; letter-spacing:.07em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
   /* per-word classification tags */
-  .wtags{display:flex; flex-wrap:wrap; gap:6px; margin:3px 0 8px}
+  .wtags{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 9px}
   .wtag{font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; font-weight:700; padding:2px 7px; border-radius:5px; line-height:1.5}
   .wtag-pos{background:var(--panel-2); color:var(--ink-3); border:1px solid var(--line)}
   .wtag-role{background:var(--brand-dim); color:var(--brand-hi); border:1px solid var(--brand-border)}
