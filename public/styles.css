@@ -249,11 +249,12 @@
   .vfacets{margin:2px 0 4px}
   .vfacet-row{display:flex; align-items:flex-start; gap:12px; margin-bottom:8px}
   .vfacet-lbl{flex:none; width:46px; padding-top:7px; font-size:10px; letter-spacing:.07em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
-  /* per-word classification tags */
-  .wtags{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 9px}
-  .wtag{font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; font-weight:700; padding:2px 7px; border-radius:5px; line-height:1.5}
-  .wtag-pos{background:var(--panel-2); color:var(--ink-3); border:1px solid var(--line)}
-  .wtag-role{background:var(--brand-dim); color:var(--brand-hi); border:1px solid var(--brand-border)}
+  /* per-word classification tags: small, inline with the word, all one shape+height */
+  .wtag{display:inline-flex; align-items:center; height:18px; padding:0 7px; border-radius:5px; border:1px solid var(--line); font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; font-weight:700; line-height:1; white-space:nowrap}
+  .wtag-national{background:var(--blue-dim); color:var(--blue-txt); border-color:var(--blue-border)}
+  .wtag-state{background:var(--purple-dim); color:var(--purple-txt); border-color:var(--purple-border)}
+  .wtag-pos{background:var(--panel-2); color:var(--ink-3); border-color:var(--line)}
+  .wtag-role{background:var(--brand-dim); color:var(--brand-hi); border-color:var(--brand-border)}
 
   .prov{border:1px solid var(--line); border-radius:11px; background:var(--panel); margin-bottom:9px; overflow:hidden}
   .prov-head{display:flex; align-items:center; gap:13px; padding:14px 16px; cursor:pointer}
@@ -363,7 +364,8 @@
   .view-full:hover{border-color:var(--brand); background:var(--brand-dim); color:var(--brand-hi)}
 
   .word{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 16px; margin-bottom:9px}
-  .word .wt{font-size:17px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:9px; cursor:pointer; letter-spacing:-.01em}
+  .word .wt{font-size:17px; font-weight:700; color:var(--ink); display:flex; align-items:center; flex-wrap:wrap; gap:7px; cursor:pointer; letter-spacing:-.01em}
+  .word .wname{margin-right:1px}
   .word .caret{color:var(--ink-2); margin-left:auto; transition:transform .15s; display:inline-flex} .word.open .caret{transform:rotate(90deg)}
   .word .def{color:var(--ink-2); font-size:13.5px; margin:6px 0 8px}
   .word .src{font-size:12px; color:var(--ink-3)} .word .src code{color:var(--brand); font-family:var(--font-mono)}

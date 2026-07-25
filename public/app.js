@@ -425,8 +425,7 @@ V.words=()=>{
       const def=v.gloss || (p&&p.note) || "The canonical meaning the system uses for this term - fixed by the section below.";
       const c=el("div","word");
       c.innerHTML=`
-        <div class="wtags">${scopeBadge()}${clsTags}</div>
-        <div class="wt">${esc(w[0].toUpperCase()+w.slice(1))} <span class="caret">${ic('chevron-right')}</span></div>
+        <div class="wt"><span class="wname">${esc(w[0].toUpperCase()+w.slice(1))}</span><span class="wtag wtag-national">national</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
         <div class="def">${esc(def)}</div>
         <div class="src">from <code>${esc(secNum(v.ref))}</code> · ${esc(s?s.title.split(",")[0]:v.ref)}</div>
         <div class="wfull"><div class="statute-slot" data-ref="${esc(v.ref)}"></div></div>`;
@@ -435,8 +434,7 @@ V.words=()=>{
     }
     const t=it.t, c=el("div","word");
     c.innerHTML=`
-      <div class="wtags"><span class="badge b-state">${esc(stName)}</span>${clsTags}</div>
-      <div class="wt">${esc(t.word)} <span class="caret">${ic('chevron-right')}</span></div>
+      <div class="wt"><span class="wname">${esc(t.word)}</span><span class="wtag wtag-state">${esc(stName)}</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(t.gloss||'')}</div>
       <div class="src">from ${esc(t.source||'the state layer')}</div>
       <div class="wfull"><div class="ksec-slot"></div></div>`;
@@ -1379,7 +1377,7 @@ function buildNav(){
   if(ovt) ovt.onclick=e=>{ e.stopPropagation(); $("#ovMenu").classList.toggle("open"); };
   nav.querySelectorAll(".casedd-item[data-id]").forEach(it=>it.onclick=()=>{
     const ct=caseById(it.dataset.id);
-    if(ct && ct.status==="active"){ activeCase=ct.id; buildNav(); go("graph"); }
+    if(ct && ct.status==="active"){ activeCase=ct.id; buildNav(); go("law"); }
     else dd.classList.remove("open");
   });
   const ssel=nav.querySelector(".state-inline");
@@ -1400,7 +1398,7 @@ window.go=go;
 function setTheme(t){document.documentElement.classList.toggle("dark",t==="dark"); document.querySelectorAll(".tt-opt").forEach(o=>o.classList.toggle("on",o.dataset.t===t));}
 document.querySelectorAll(".tt-opt").forEach(o=>o.onclick=()=>setTheme(o.dataset.t));
 setTheme("dark");
-$("#brand").onclick=()=>go("graph");
+$("#brand").onclick=()=>go("law");
 
 /* mobile off-canvas sidebar */
 function setDrawer(open){
@@ -1457,7 +1455,8 @@ function showLoadError(err){
     await loadProfile();
     await loadStateData();
     buildNav();
-    const start=(location.hash||"#graph").slice(1);
-    go(V[start]?start:"graph");
+    // the Map ("graph") is hidden for now; keep V.graph defined but never land on it
+    const start=(location.hash||"#law").slice(1);
+    go(V[start] && start!=="graph" ? start : "law");
   }catch(err){ showLoadError(err); }
 })();
