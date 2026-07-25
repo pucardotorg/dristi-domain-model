@@ -1,49 +1,68 @@
 /* flow.js - the interactive Section 138 relationship map.
    Loaded on demand (dynamic import) only when the Map tab is opened.
 
-   React and React Flow are pulled from esm.sh as ES modules (pinned to one shared
-   React instance via the import map in index.html). Unlike the rest of the corpus
-   and pdf.js, React Flow cannot be vendored without a build step, so this one view
-   needs network access; app.js shows a graceful fallback if the import fails.
+   React and React Flow load from esm.sh (pinned to one shared React instance by
+   the import map in index.html). React Flow cannot be vendored as a single UMD
+   file like pdf.js, so this one view needs network access; app.js shows a
+   graceful fallback if the import fails.
 
-   The module takes a plain {nodes, edges} model built by app.js from the domain
-   data. Node click handlers (open the Act / instrument / PDF) ride on node.data.open.
-   React Flow runs UNCONTROLLED (defaultNodes/defaultEdges) so it owns node
-   measurement internally - the controlled form needs an onNodesChange handler to
-   write measured sizes back, and without it edges never render. */
+   Design: boxed category-chip nodes (no border accents), and custom edges with
+   dots that flow along the line to show direction. Nodes paint above the edges,
+   so line work never sits on top of the labels. */
 
 import React from "react";
 import { createRoot } from "react-dom/client";
 import ReactFlow, {
-  Background, Controls, MiniMap, Handle, Position, MarkerType
+  Background, Controls, MiniMap, Handle, Position, MarkerType,
+  getSmoothStepPath, EdgeLabelRenderer
 } from "https://esm.sh/reactflow@11.11.4?external=react,react-dom";
 
 const h = React.createElement;
 
-export const NODE_W = 224;
-export const NODE_H = 58;
+export const NODE_W = 236;
+export const NODE_H = 60;
 
-const CAT_COLOR = {
-  case:         "#ec5d5e",
-  national:     "#3b9eff",
-  rule:         "#0bd8b6",
-  law:          "#ffc53d",
-  notification: "#9e8cff"
-};
-const EDGE = "#8a8f99";
+const CAT_COLOR = { case:"#ec5d5e", national:"#3b9eff", rule:"#0bd8b6", law:"#ffc53d", notification:"#9e8cff" };
+const CAT_LABEL = { case:"The offence", national:"National", rule:"State rule", law:"State Act", notification:"Notification" };
 
 let root = null;
 
-/* a small themeable card node */
+/* boxed node: a category chip (coloured dot + label) over a bold, clamped title */
 function CardNode({ data }){
-  return h("div", { className: "rf-card rf-" + (data.cat || "national"), title: data.open ? "Click to open" : "" },
+  const cat = data.cat || "national";
+  return h("div", { className: "rf-node rf-" + cat, title: data.open ? "Click to open" : "" },
     h(Handle, { type: "target", position: Position.Left, isConnectable: false }),
-    h("div", { className: "rf-card-t" }, data.label),
-    data.sub ? h("div", { className: "rf-card-s" }, data.sub) : null,
+    h("div", { className: "rf-node-cat" }, h("span", { className: "rf-node-dot" }), CAT_LABEL[cat] || cat),
+    h("div", { className: "rf-node-title" }, data.label),
     h(Handle, { type: "source", position: Position.Right, isConnectable: false })
   );
 }
 const nodeTypes = { card: CardNode };
+
+/* custom edge: a subtle base line, two dots flowing along it, and a pill label */
+function FlowEdge(props){
+  const { id, sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, markerEnd, label } = props;
+  const [path, labelX, labelY] = getSmoothStepPath({
+    sourceX, sourceY, sourcePosition, targetX, targetY, targetPosition, borderRadius: 16
+  });
+  const pid = "fp_" + String(id).replace(/[^a-zA-Z0-9]/g, "_");
+  return h(React.Fragment, null,
+    h("path", { id: pid, d: path, className: "rf-edge-line", markerEnd }),
+    h("circle", { className: "rf-flow-dot", r: 2.7 },
+      h("animateMotion", { dur: "2.8s", repeatCount: "indefinite", keyPoints: "0;1", keyTimes: "0;1", calcMode: "linear" },
+        h("mpath", { href: "#" + pid }))),
+    h("circle", { className: "rf-flow-dot rf-flow-dot-2", r: 2.7 },
+      h("animateMotion", { dur: "2.8s", begin: "1.4s", repeatCount: "indefinite", keyPoints: "0;1", keyTimes: "0;1", calcMode: "linear" },
+        h("mpath", { href: "#" + pid }))),
+    label ? h(EdgeLabelRenderer, null,
+      h("div", {
+        className: "rf-elabel",
+        style: { transform: `translate(-50%,-50%) translate(${labelX}px,${labelY}px)` }
+      }, label)
+    ) : null
+  );
+}
+const edgeTypes = { flow: FlowEdge };
 
 export function mountFlow(container, model){
   if(!container) return;
@@ -54,23 +73,18 @@ export function mountFlow(container, model){
   });
   const edges = (model.edges || []).map(e => ({
     ...e,
-    type: "smoothstep",
-    animated: true,
-    markerEnd: { type: MarkerType.ArrowClosed, width: 15, height: 15, color: EDGE },
-    style: { stroke: EDGE, strokeWidth: 1.4 },
-    labelShowBg: true,
-    labelStyle: { fontSize: 10, fill: "#b0b4ba" },
-    labelBgStyle: { fill: "#18191b", fillOpacity: 0.94 },
-    labelBgPadding: [5, 3],
-    labelBgBorderRadius: 4
+    type: "flow",
+    label: e.label,
+    markerEnd: { type: MarkerType.ArrowClosed, width: 14, height: 14, color: "#727888" }
   }));
 
+  // React Flow runs UNCONTROLLED so it owns node measurement internally.
   root = createRoot(container);
   root.render(
     h(ReactFlow, {
       defaultNodes: nodes,
       defaultEdges: edges,
-      nodeTypes,
+      nodeTypes, edgeTypes,
       fitView: true,
       fitViewOptions: { padding: 0.16 },
       minZoom: 0.12, maxZoom: 2,
@@ -80,7 +94,7 @@ export function mountFlow(container, model){
       proOptions: { hideAttribution: true },
       onNodeClick: (_e, node) => { if(node.data && typeof node.data.open === "function") node.data.open(); }
     },
-      h(Background, { gap: 22, size: 1, color: "rgba(130,130,140,0.28)" }),
+      h(Background, { gap: 24, size: 1, color: "rgba(130,130,140,0.24)" }),
       h(Controls, { showInteractive: false }),
       h(MiniMap, {
         pannable: true, zoomable: true,
