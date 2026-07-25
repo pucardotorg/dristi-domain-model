@@ -1418,6 +1418,7 @@ function buildNav(){
     <div class="nav-scoped">
       <a data-view="law"><span class="ico">${ic('library')}</span> Acts &amp; provisions <span class="count">${isModelled()?PROVISIONS.length:'-'}</span></a>
       <a data-view="caselaw"><span class="ico">${ic('scale')}</span> Case law <span class="count">${isModelled()?(CASES.length||'-'):'-'}</span></a>
+      <a data-view="web"><span class="ico">${ic('share-2')}</span> Relationship graph</a>
     </div>
     <div class="nav-divider"></div>
     <div class="state-layer nav-scroll">
@@ -1446,7 +1447,6 @@ function buildNav(){
       <div class="ov-pop">
         <a data-view="overview" class="ov-pop-item"><span class="ico">${ic('compass')}</span> Overview</a>
         <div class="ov-pop-sep"></div>
-        <a data-view="web" class="ov-pop-item"><span class="ico">${ic('share-2')}</span> Relationship graph</a>
         <a data-view="structure" class="ov-pop-item"><span class="ico">${ic('layers')}</span> The structure</a>
         <a data-view="split" class="ov-pop-item"><span class="ico">${ic('arrow-left-right')}</span> National vs State</a>
         <a data-view="time" class="ov-pop-item"><span class="ico">${ic('history')}</span> The 2024 code switch</a>
