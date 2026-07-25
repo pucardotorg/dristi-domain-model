@@ -1,0 +1,208 @@
+{
+  "icons": {
+    "home": "<path d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/><polyline points='9 22 9 12 15 12 15 22'/>",
+    "layers": "<polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/>",
+    "arrow-left-right": "<path d='M8 3 4 7l4 4'/><path d='M4 7h16'/><path d='m16 21 4-4-4-4'/><path d='M20 17H4'/>",
+    "history": "<path d='M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8'/><path d='M3 3v5h5'/><path d='M12 7v5l4 2'/>",
+    "library": "<path d='m16 6 4 14'/><path d='M12 6v14'/><path d='M8 8v12'/><path d='M4 4v16'/>",
+    "file-text": "<path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/><line x1='16' y1='13' x2='8' y2='13'/><line x1='16' y1='17' x2='8' y2='17'/><line x1='10' y1='9' x2='8' y2='9'/>",
+    "type": "<polyline points='4 7 4 4 20 4 20 7'/><line x1='9' y1='20' x2='15' y2='20'/><line x1='12' y1='4' x2='12' y2='20'/>",
+    "scale": "<path d='m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z'/><path d='m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z'/><path d='M7 21h10'/><path d='M12 3v18'/><path d='M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2'/>",
+    "chevron-down": "<polyline points='6 9 12 15 18 9'/>",
+    "book-open": "<path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 0 3-3h7z'/>",
+    "maximize-2": "<polyline points='15 3 21 3 21 9'/><polyline points='9 21 3 21 3 15'/><line x1='21' y1='3' x2='14' y2='10'/><line x1='3' y1='21' x2='10' y2='14'/>",
+    "menu": "<line x1='4' y1='6' x2='20' y2='6'/><line x1='4' y1='12' x2='20' y2='12'/><line x1='4' y1='18' x2='20' y2='18'/>",
+    "sun": "<circle cx='12' cy='12' r='4'/><path d='M12 2v2'/><path d='M12 20v2'/><path d='m4.93 4.93 1.41 1.41'/><path d='m17.66 17.66 1.41 1.41'/><path d='M2 12h2'/><path d='M20 12h2'/><path d='m6.34 17.66-1.41 1.41'/><path d='m19.07 4.93-1.41 1.41'/>",
+    "moon": "<path d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/>",
+    "map-pin": "<path d='M20 10c0 4.4-5.4 9-8 11-2.6-2-8-6.6-8-11a8 8 0 0 1 16 0Z'/><circle cx='12' cy='10' r='3'/>",
+    "messages-square": "<path d='M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2Z'/><path d='M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1'/>",
+    "file-pen": "<path d='M12 20h9'/><path d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z'/>",
+    "clipboard": "<path d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/><rect x='8' y='2' width='8' height='4' rx='1' ry='1'/><path d='M8 11h8'/><path d='M8 15h5'/>",
+    "bell": "<path d='M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9'/><path d='M13.73 21a2 2 0 0 1-3.46 0'/>",
+    "compass": "<circle cx='12' cy='12' r='10'/><polygon points='16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76'/>",
+    "file": "<path d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/><path d='M14 2v4a2 2 0 0 0 2 2h4'/>"
+  },
+  "case_types": [
+    {
+      "id": "active",
+      "name": "Cheque bounce",
+      "act": "NI Act, 1881 · §138",
+      "status": "active",
+      "blurb": "Dishonour of a cheque for insufficiency of funds - a criminal complaint. Around 15% of a typical court's caseload; high volume, relatively standard."
+    }
+  ],
+  "jurisdictions": [
+    {
+      "id": "kerala",
+      "name": "Kerala"
+    },
+    {
+      "id": "haryana",
+      "name": "Haryana"
+    },
+    {
+      "id": "gujarat",
+      "name": "Gujarat"
+    }
+  ],
+  "practice_notes": [
+    {
+      "quote": "For a cheque bounce we always file in the branch's town, not where the drawer lives. The magistrate here knows the bankers, it moves faster.",
+      "who": "Advocate, trial court",
+      "place": "kerala",
+      "establishes": "Forum choice by local convenience - a habit that sits on top of the §142 jurisdiction rules, not in them."
+    },
+    {
+      "quote": "The registry won't take the complaint without the original memo of dishonour stapled on top, even though the section only needs the fact of return.",
+      "who": "Filing clerk",
+      "place": "kerala",
+      "establishes": "A documentary norm enforced at the counter that is stricter than the statute's own requirement."
+    },
+    {
+      "quote": "Nine out of ten of these settle the day the accused is first summoned. Nobody wants the conviction; they want the money and the compounding.",
+      "who": "Retired judicial officer",
+      "place": "haryana",
+      "establishes": "The real disposal path - compounding under §147 - dwarfs contested trial, though the Act treats trial as the default."
+    },
+    {
+      "quote": "Banks here file in bulk - a clerk brings fifty complaints in one folder. We've built our own numbering just to keep the batch together.",
+      "who": "Bench clerk",
+      "place": "gujarat",
+      "establishes": "Institutional-filer reality that shapes court workflow well before any rule of procedure applies."
+    }
+  ],
+  "domain_labels": {
+    "substantive": {
+      "label": "Substantive",
+      "blurb": "the offence itself and the presumptions"
+    },
+    "procedure": {
+      "label": "Procedure",
+      "blurb": "how the case is taken up, tried, appealed"
+    },
+    "penal": {
+      "label": "Penal",
+      "blurb": "the general criminal code behind it"
+    },
+    "evidence": {
+      "label": "Evidence",
+      "blurb": "what proves dishonour, debt, records"
+    },
+    "interpretation": {
+      "label": "Interpretation",
+      "blurb": "how statutory words are read"
+    },
+    "limitation": {
+      "label": "Limitation",
+      "blurb": "time bars and condonation of delay"
+    },
+    "sentencing": {
+      "label": "Sentencing",
+      "blurb": "disposal, probation, compensation"
+    },
+    "electronic": {
+      "label": "Electronic",
+      "blurb": "e-cheques, digital signatures, CTS"
+    },
+    "banking": {
+      "label": "Banking",
+      "blurb": "clearing & settlement context"
+    },
+    "constitutional": {
+      "label": "Constitutional",
+      "blurb": "the powers courts draw on"
+    }
+  },
+  "tier_order": [
+    "operative",
+    "definition",
+    "supporting",
+    "procedure",
+    "evidence",
+    "notice",
+    "limitation",
+    "sentencing",
+    "constitutional"
+  ],
+  "state_categories": [
+    {
+      "name": "High Court rules of practice",
+      "desc": "Each High Court's own criminal & civil rules of practice govern how a matter is actually filed, listed and moved.",
+      "ill": false
+    },
+    {
+      "name": "E-filing rules & portals",
+      "desc": "State e-filing rules, formats and the local e-Courts / CIS configuration a filer must satisfy.",
+      "ill": false
+    },
+    {
+      "name": "Practice directions & circulars",
+      "desc": "A court's written instructions on how to do a specific thing - bulk cause-lists, service, adjournment norms.",
+      "ill": false
+    },
+    {
+      "name": "Local, unwritten practice",
+      "desc": "How one particular court actually runs day to day - registry habits, how adjournments and filing really happen.",
+      "ill": false
+    },
+    {
+      "name": "Filer profile & case volume",
+      "desc": "Who files and at what scale - this reshapes the whole workflow even though the law is identical.",
+      "ill": true
+    },
+    {
+      "name": "Court language & UI",
+      "desc": "The court's working language for notices, forms, orders and the interface (Malayalam, Gujarati…). Partly a formal rule.",
+      "ill": true
+    }
+  ],
+  "rollout_states": [
+    {
+      "name": "Kerala",
+      "tag": "pilot · Kollam, ~2 yrs",
+      "flag": "🟢",
+      "note": "Mostly individuals and small companies filing. The original clean-sheet pilot - ~2,000 cases/yr in Kollam. Court language: Malayalam."
+    },
+    {
+      "name": "Gujarat",
+      "tag": "expanding",
+      "flag": "🔵",
+      "note": "High share of institutional filers - banks and NBFCs - sometimes a thousand cases in a day. Needs bulk filing and case management at scale. Court language: Gujarati."
+    },
+    {
+      "name": "Punjab",
+      "tag": "requirements gathered",
+      "flag": "🟣",
+      "note": "Requirements captured; own sequencing of the same shared-core process."
+    },
+    {
+      "name": "Sikkim",
+      "tag": "early contact",
+      "flag": "🟠",
+      "note": "Early engagement - a small jurisdiction with its own local practice."
+    }
+  ],
+  "systems": [
+    {
+      "name": "eCourts",
+      "desc": "the national court programme"
+    },
+    {
+      "name": "CIS",
+      "desc": "the court's case-management software"
+    },
+    {
+      "name": "NJDG",
+      "desc": "the national judicial data grid - a database"
+    },
+    {
+      "name": "NSTEP · code masters",
+      "desc": "summons delivery · CNR & case-type codes"
+    },
+    {
+      "name": "DRISTI",
+      "desc": "your platform - hosts each state's copy over the shared core",
+      "you": true
+    }
+  ]
+}

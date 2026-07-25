@@ -1,0 +1,185 @@
+/* PDF viewer modal styles for DRISTI 2.0.
+   All colors use CSS custom properties with dark fallbacks. */
+
+.pdfv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+}
+
+.pdfv-overlay.pdfv-open {
+  display: block;
+}
+
+.pdfv-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.pdfv-panel {
+  position: absolute;
+  top: 4vh;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1000px, 94vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel, #14161b);
+  color: var(--ink, #e8eaed);
+  border: 1px solid var(--line, #2a2e37);
+  border-radius: 14px;
+  box-shadow: var(--shadow-modal, 0 24px 70px rgba(0, 0, 0, 0.6));
+  overflow: hidden;
+}
+
+.pdfv-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line, #2a2e37);
+  background: var(--panel-2, #1a1d24);
+  flex: 0 0 auto;
+}
+
+.pdfv-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink, #e8eaed);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdfv-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.pdfv-newtab {
+  font-size: 13px;
+  color: var(--ink-3, #9aa0ab);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.pdfv-newtab:hover {
+  color: var(--brand-hi, #7fb0ff);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--line-2, #33384334);
+}
+
+.pdfv-close {
+  appearance: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink-2, #c2c6cf);
+  background: transparent;
+  border: 1px solid var(--line, #2a2e37);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.pdfv-close:hover {
+  color: var(--ink, #e8eaed);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--line-2, #3a3f4a);
+}
+
+.pdfv-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  background: var(--bg, #0e0f13);
+  /* Firefox subtle scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
+/* WebKit subtle scrollbar */
+.pdfv-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.pdfv-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pdfv-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+}
+
+.pdfv-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.pdfv-page {
+  max-width: 100%;
+  height: auto;
+  background: #ffffff;
+  border: 1px solid var(--line, #2a2e37);
+  border-radius: 4px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  display: block;
+}
+
+.pdfv-status {
+  color: var(--ink-3, #9aa0ab);
+  font-size: 14px;
+  text-align: center;
+  padding: 32px 16px;
+  line-height: 1.5;
+}
+
+.pdfv-spinner {
+  width: 26px;
+  height: 26px;
+  margin: 0 auto 14px;
+  border: 3px solid var(--line, #2a2e37);
+  border-top-color: var(--brand, #4c8dff);
+  border-radius: 50%;
+  animation: pdfv-spin 0.8s linear infinite;
+}
+
+@keyframes pdfv-spin {
+  to { transform: rotate(360deg); }
+}
+
+.pdfv-error {
+  color: var(--ink-2, #c2c6cf);
+  font-size: 14px;
+  text-align: center;
+  padding: 32px 16px;
+  line-height: 1.6;
+}
+
+.pdfv-error a {
+  color: var(--brand-hi, #7fb0ff);
+}
