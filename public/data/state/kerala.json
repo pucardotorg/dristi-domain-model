@@ -297,7 +297,7 @@
     ]
   },
   "vocabulary": {
-    "summary": "The words the Kerala layer adds on top of the shared national vocabulary — the court officers, records, process and filing terms a s.138 case actually runs on in Kerala. (Terms drawn from the field — how people on the ground name things — will be added here as the Local practice layer is built.)",
+    "summary": "The words the Kerala layer adds on top of the shared national vocabulary - the court officers, records, process and filing terms a s.138 case actually runs on in Kerala. (Terms drawn from the field - how people on the ground name things - will be added here as the Local practice layer is built.)",
     "terms": [
       {
         "word": "Chief Ministerial Officer",
@@ -333,7 +333,7 @@
       },
       {
         "word": "Station House Officer (SHO)",
-        "gloss": "The officer in charge of a police station; in a s.138 case the person who executes the court's warrant and serves its process — the only point at which the police enter the case.",
+        "gloss": "The officer in charge of a police station; in a s.138 case the person who executes the court's warrant and serves its process - the only point at which the police enter the case.",
         "source": "Kerala Police Act, §4 (functions of the police)",
         "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
         "eId": "sec_4",
@@ -341,7 +341,7 @@
       },
       {
         "word": "Functions of the police",
-        "gloss": "The statutory duties of the Kerala police, including serving court process and executing warrants — a s.138 case is a complaint case, so the police act only on the court's process, never by investigation.",
+        "gloss": "The statutory duties of the Kerala police, including serving court process and executing warrants - a s.138 case is a complaint case, so the police act only on the court's process, never by investigation.",
         "source": "Kerala Police Act, §4",
         "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
         "eId": "sec_4",
@@ -349,7 +349,7 @@
       },
       {
         "word": "Translation of process",
-        "gloss": "Court process issued in Malayalam must carry an authorised English translation — the point where the court-language rule bites on a summons or notice.",
+        "gloss": "Court process issued in Malayalam must carry an authorised English translation - the point where the court-language rule bites on a summons or notice.",
         "source": "Criminal Rules of Practice, Rule 14",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
         "eId": "rule_14",
@@ -373,7 +373,7 @@
       },
       {
         "word": "Electronic service of process",
-        "gloss": "When the Kerala e-filing regime permits service by electronic means — narrower than informal WhatsApp/e-mail service, which the High Court has declined to sanction (Anoop Jacob).",
+        "gloss": "When the Kerala e-filing regime permits service by electronic means - narrower than informal WhatsApp/e-mail service, which the High Court has declined to sanction (Anoop Jacob).",
         "source": "Electronic Filing Rules (Kerala), 2021, Rule 11",
         "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
         "eId": "rule_11",
@@ -404,5 +404,352 @@
         "group": "Filing & language"
       }
     ]
+  },
+  "story": {
+    "summary": "How a §138 cheque-bounce case runs in Kerala, from filing to disposal - built purely from the rules and Acts, with every step citing the provision that governs it. Click any citation to open the exact text. This is the de jure process the black-letter rules prescribe; the lived, local practice is a separate layer.",
+    "process": {
+      "summary": "The procedural spine is the uniform national code (BNSS + the NI Act); Kerala's own rules operationalise each step. Where Kerala adds nothing, the step is pure central law.",
+      "stages": [
+        {
+          "stage": "1 · Filing the complaint",
+          "steps": [
+            {
+              "t": "A cheque-bounce case is a complaint case: the payee or holder in due course files a written complaint, and the Magistrate can take cognizance only on such a complaint (never on a police report).",
+              "c": [
+                {
+                  "l": "NI §142",
+                  "n": "ni:sec_142"
+                },
+                {
+                  "l": "BNSS §223",
+                  "n": "bnss:sec_223"
+                }
+              ]
+            },
+            {
+              "t": "It must be filed within one month of the cause of action - which arises when the drawer fails to pay within 15 days of the demand notice served after dishonour.",
+              "c": [
+                {
+                  "l": "NI §138",
+                  "n": "ni:sec_138"
+                },
+                {
+                  "l": "NI §142",
+                  "n": "ni:sec_142"
+                }
+              ]
+            },
+            {
+              "t": "In Kerala the complaint is e-filed through the DCMS portal under the E-Filing Rules, and the court fee is paid on filing.",
+              "c": [
+                {
+                  "l": "E-Filing Rules r.1",
+                  "s": "kefr",
+                  "e": "rule_1"
+                },
+                {
+                  "l": "Court Fees Act Art.21",
+                  "s": "kcf",
+                  "e": "art_21"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "2 · Cognizance & issue of process",
+          "steps": [
+            {
+              "t": "The Magistrate examines the complainant (and any witnesses) on oath and, if satisfied there is ground to proceed, takes cognizance and issues process to the accused.",
+              "c": [
+                {
+                  "l": "BNSS §223",
+                  "n": "bnss:sec_223"
+                },
+                {
+                  "l": "BNSS §227",
+                  "n": "bnss:sec_227"
+                }
+              ]
+            },
+            {
+              "t": "The summons is signed and issued by the court's ministerial officer 'by order of the Court', in the prescribed form.",
+              "c": [
+                {
+                  "l": "CRP r.7",
+                  "s": "crp",
+                  "e": "rule_7"
+                },
+                {
+                  "l": "CRP r.13",
+                  "s": "crp",
+                  "e": "rule_13"
+                }
+              ]
+            },
+            {
+              "t": "Because the court language is Malayalam, process issued in Malayalam must carry an authorised English translation.",
+              "c": [
+                {
+                  "l": "CRP r.14",
+                  "s": "crp",
+                  "e": "rule_14"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "3 · Service of summons",
+          "steps": [
+            {
+              "t": "The summons is served in the manner the BNSS prescribes, and the NI Act's own mode of service also applies.",
+              "c": [
+                {
+                  "l": "BNSS §63",
+                  "n": "bnss:sec_63"
+                },
+                {
+                  "l": "BNSS §64",
+                  "n": "bnss:sec_64"
+                },
+                {
+                  "l": "NI §144",
+                  "n": "ni:sec_144"
+                }
+              ]
+            },
+            {
+              "t": "Service is effected through the police - the local Station House Officer serves the court's process. This is the only point at which the police enter a §138 case.",
+              "c": [
+                {
+                  "l": "Kerala Police Act §4",
+                  "s": "kpa",
+                  "e": "sec_4"
+                }
+              ]
+            },
+            {
+              "t": "Where the e-filing regime permits, service may be by electronic means.",
+              "c": [
+                {
+                  "l": "E-Filing Rules r.11",
+                  "s": "kefr",
+                  "e": "rule_11"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "4 · If the accused does not appear",
+          "steps": [
+            {
+              "t": "The court escalates up the warrant ladder: a warrant issues, and on continued absconding, proclamation and attachment of property.",
+              "c": [
+                {
+                  "l": "BNSS §72",
+                  "n": "bnss:sec_72"
+                },
+                {
+                  "l": "BNSS §84",
+                  "n": "bnss:sec_84"
+                },
+                {
+                  "l": "BNSS §85",
+                  "n": "bnss:sec_85"
+                }
+              ]
+            },
+            {
+              "t": "Kerala's rules carry the absconding-accused track; the police execute the warrant.",
+              "c": [
+                {
+                  "l": "CRP r.15",
+                  "s": "crp",
+                  "e": "rule_15"
+                },
+                {
+                  "l": "Kerala Police Act §4",
+                  "s": "kpa",
+                  "e": "sec_4"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "5 · Trial (summary)",
+          "steps": [
+            {
+              "t": "The case is tried summarily, and the complainant's evidence may be given on affidavit - the features that make §138 a fast-track offence.",
+              "c": [
+                {
+                  "l": "NI §143",
+                  "n": "ni:sec_143"
+                },
+                {
+                  "l": "NI §145",
+                  "n": "ni:sec_145"
+                }
+              ]
+            },
+            {
+              "t": "A presumption operates in favour of the holder that the cheque was issued for a debt or liability, unless the accused rebuts it.",
+              "c": [
+                {
+                  "l": "NI §139",
+                  "n": "ni:sec_139"
+                }
+              ]
+            },
+            {
+              "t": "Kerala adds nothing procedural here - the summary-trial machinery is uniform central law.",
+              "c": []
+            }
+          ]
+        },
+        {
+          "stage": "6 · Judgment, sentence & compensation",
+          "steps": [
+            {
+              "t": "On conviction the court may impose imprisonment up to two years and/or a fine up to twice the cheque amount, with compensation to the complainant.",
+              "c": [
+                {
+                  "l": "NI §138",
+                  "n": "ni:sec_138"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "7 · Compounding / settlement",
+          "steps": [
+            {
+              "t": "The offence is compoundable: the parties may settle at any stage and the case is compounded, ending the prosecution.",
+              "c": [
+                {
+                  "l": "NI §147",
+                  "n": "ni:sec_147"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "8 · Appeal & revision",
+          "steps": [
+            {
+              "t": "The accused may appeal; the appellate court may require a deposit of a minimum of 20% of the fine/compensation as a condition of the appeal.",
+              "c": [
+                {
+                  "l": "NI §148",
+                  "n": "ni:sec_148"
+                }
+              ]
+            },
+            {
+              "t": "A revision lies to the High Court, whose own rules govern its criminal side.",
+              "c": [
+                {
+                  "l": "BNSS §438",
+                  "n": "bnss:sec_438"
+                },
+                {
+                  "l": "HC Rules r.44",
+                  "s": "khcr",
+                  "e": "rule_44"
+                }
+              ]
+            },
+            {
+              "t": "A complaint may also be challenged by a quashing petition before the High Court.",
+              "c": [
+                {
+                  "l": "BNSS §528",
+                  "n": "bnss:sec_528"
+                },
+                {
+                  "l": "HC Rules r.232",
+                  "s": "khcr",
+                  "e": "rule_232"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "fees": {
+      "summary": "What it costs to bring and contest a §138 case in Kerala - the ad valorem court fee scaled to the dishonoured-cheque amount, set by Article 21 of the Court Fees Act (inserted by the Finance Act 2024).",
+      "cite": {
+        "l": "Court Fees Act, Article 21",
+        "s": "kcf",
+        "e": "art_21"
+      },
+      "items": [
+        {
+          "stage": "Complaint",
+          "fee": "₹250 where the cheque is ≤ ₹10,000; otherwise 5% of the cheque amount, capped at ₹3 lakh."
+        },
+        {
+          "stage": "Appeal - by the accused",
+          "fee": "₹1,000 (appeal to the Sessions Court)."
+        },
+        {
+          "stage": "Appeal - by the complainant",
+          "fee": "One-half of the court fee paid in the trial court (appeal to the High Court)."
+        },
+        {
+          "stage": "Revision - by the complainant",
+          "fee": "One-tenth of the cheque amount (challenging insufficiency of sentence)."
+        },
+        {
+          "stage": "Revision - by the accused",
+          "fee": "₹1,500 (against conviction)."
+        }
+      ],
+      "note": "Figures are the 2024 schedule; the Kerala Finance Act 2025 revised the slabs - verify the current figure before relying on it."
+    },
+    "courts": {
+      "summary": "The rules designate exactly one court specifically for §138 in Kerala - the Kollam 24×7 ON Court. Everywhere else, ordinary Judicial First Class Magistrate courts hear §138 cases under their general criminal jurisdiction; a full statewide list is external court-establishment data, shown as a placeholder below.",
+      "designated": [
+        {
+          "name": "Special §138 Court, Kollam (24×7 ON Court)",
+          "location": "Kollam",
+          "basis": "India's first fully digital, round-the-clock court, dedicated to §138 cases, w.e.f. 20 Nov 2024.",
+          "cite": {
+            "l": "G.O. 241/2024",
+            "s": "go241",
+            "e": "sec_1"
+          }
+        }
+      ]
+    },
+    "caseload": {
+      "summary": "§138 cases pending and disposed, by court. Placeholders only - no case data is loaded yet.",
+      "columns": [
+        "Court",
+        "Location",
+        "Pending §138",
+        "Disposed §138"
+      ],
+      "rows": [
+        {
+          "court": "Special §138 Court, Kollam (24×7 ON Court)",
+          "location": "Kollam",
+          "pending": null,
+          "disposed": null
+        },
+        {
+          "court": "Judicial First Class Magistrate courts",
+          "location": "per district",
+          "pending": null,
+          "disposed": null
+        }
+      ],
+      "note": "Placeholder table - the court list and case counts will be populated later."
+    }
   }
 }

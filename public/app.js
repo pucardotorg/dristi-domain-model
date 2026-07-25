@@ -525,7 +525,113 @@ function stateObjectView(catKey, title, fallbackBlurb){
 }
 V.amendments   = stateTreeView("amendments","Acts & Provisions");   // state Acts, organised like National objects
 V.staterules   = stateTreeView("rules","State rules");             // state rules, same browsable tree
-V.notifications= stateObjectView("notifications","Notifications","Government orders and court notifications that shape how a case runs locally.");
+V.notifications= stateTreeView("notifications","Notifications & orders");   // G.O.s / SOPs, same browsable tree (rich items carry akn+key+edges)
+
+/* ============================================================ STATE STORY
+   A per-state narrative of how a §138 case actually runs - process (filing to
+   disposal), fees, courts, and a caseload placeholder - each step citing the
+   rule/Act that governs it (click a citation to open the verbatim text). */
+function stateAliasMap(){
+  const map={}; const D=STATE_DATA||{};
+  ["amendments","rules","notifications"].forEach(cat=>{
+    ((D[cat]||{}).items||[]).forEach(it=>{ if(it.alias) map[it.alias]={akn:it.akn,title:it.title}; });
+  });
+  return map;
+}
+function citeChip(c, amap){
+  const lbl=esc(c.l||c.n||"");
+  if(c.n && SOURCES[(c.n.split(":")[0])]) return `<a class="cite" data-nat="${esc(c.n)}">${lbl}</a>`;
+  if(c.s){ const m=amap[c.s]; if(m && m.akn) return `<a class="cite" data-akn="${esc(m.akn)}" data-eid="${esc(c.e||'')}" data-title="${esc(m.title||'')}">${lbl}</a>`; }
+  return `<span class="cite cite-plain">${lbl}</span>`;
+}
+function citeRow(list, amap){
+  if(!list || !list.length) return `<span class="cite cite-none">Kerala adds nothing here - uniform central law</span>`;
+  return `<span class="cites">${list.map(c=>citeChip(c,amap)).join("")}</span>`;
+}
+V.story=()=>{
+  if(!isModelled()) return notModelled();
+  const stName=stateById(activeState).name;
+  const S=(STATE_DATA||{}).story;
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title state-title">How a §138 case runs ${stateInlineSelectHTML()}</h1><p class="lede">${S?esc(S.summary):`The ${esc(stName)} story isn't modelled yet.`}</p>`;
+  m.appendChild(head);
+  const sel=m.querySelector(".state-inline"); if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
+  if(!S){ m.appendChild(el("div","empty",`<b>${esc(stName)} - story not modelled yet.</b><br><span class="tiny">The process, fees, courts and caseload for this state are planned - the same shape as ${esc(stName)==='Kerala'?'this':'Kerala'}.</span>`)); return m; }
+  const amap=stateAliasMap();
+  const secH=(t,sub)=>el("div","story-sec-h",`<span>${esc(t)}</span>${sub?`<span class="ssh-sub">${esc(sub)}</span>`:''}`);
+
+  // 1 - PROCESS
+  if(S.process){
+    m.appendChild(secH("The process - filing to disposal", S.process.summary));
+    const wrap=el("div","story-flow");
+    (S.process.stages||[]).forEach(st=>{
+      const card=el("div","stage");
+      card.innerHTML=`<div class="stage-h">${esc(st.stage)}</div>`;
+      const body=el("div","stage-b");
+      (st.steps||[]).forEach(sp=>{
+        const r=el("div","pstep");
+        r.innerHTML=`<div class="pstep-t">${esc(sp.t)}</div>${citeRow(sp.c,amap)}`;
+        body.appendChild(r);
+      });
+      card.appendChild(body); wrap.appendChild(card);
+    });
+    m.appendChild(wrap);
+  }
+  // 2 - FEES
+  if(S.fees){
+    m.appendChild(secH("The fees", S.fees.summary));
+    const fb=el("div","fee-block");
+    if(S.fees.cite) fb.appendChild(el("div","fee-cite",`Source: ${citeChip(S.fees.cite,amap)}`));
+    (S.fees.items||[]).forEach(it=>{
+      fb.appendChild(el("div","fee-row",`<span class="fee-stage">${esc(it.stage)}</span><span class="fee-amt">${esc(it.fee)}</span>`));
+    });
+    if(S.fees.note) fb.appendChild(el("div","story-note",esc(S.fees.note)));
+    m.appendChild(fb);
+  }
+  // 3 - COURTS
+  if(S.courts){
+    m.appendChild(secH("The courts", S.courts.summary));
+    const cb=el("div","court-block");
+    (S.courts.designated||[]).forEach(ct=>{
+      const card=el("div","court-card");
+      card.innerHTML=`<div class="court-name">${esc(ct.name)}</div>
+        <div class="court-loc">${ic('map-pin')} ${esc(ct.location||'')}</div>
+        ${ct.basis?`<div class="court-basis">${esc(ct.basis)}</div>`:''}
+        ${ct.cite?`<div class="court-cite">${citeChip(ct.cite,amap)}</div>`:''}`;
+      cb.appendChild(card);
+    });
+    m.appendChild(cb);
+  }
+  // 4 - CASELOAD (placeholder)
+  if(S.caseload){
+    m.appendChild(secH("Caseload - by court", S.caseload.summary));
+    const cols=S.caseload.columns||["Court","Location","Pending","Disposed"];
+    let html=`<table class="caseload"><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>`;
+    (S.caseload.rows||[]).forEach(r=>{
+      html+=`<tr><td>${esc(r.court||'')}</td><td>${esc(r.location||'')}</td><td class="ph">${r.pending==null?'-':esc(String(r.pending))}</td><td class="ph">${r.disposed==null?'-':esc(String(r.disposed))}</td></tr>`;
+    });
+    html+=`</tbody></table>`;
+    const cw=el("div","caseload-wrap"); cw.innerHTML=html; m.appendChild(cw);
+    if(S.caseload.note) m.appendChild(el("div","story-note",`${esc(S.caseload.note)}`));
+  }
+  return m;
+};
+async function openStateCiteModal(akn,eId,title){
+  const modal=$("#modal"), body=$("#modal-body");
+  body.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the provision…</div>`;
+  modal.classList.add("show"); document.body.style.overflow="hidden";
+  try{
+    const d=await getStateSection(akn,eId);
+    body.innerHTML="";
+    const wrap=el("div");
+    wrap.appendChild(el("div","actdoc-h",`<div class="ad-title">${esc(title||'Provision')}</div><div class="ad-sub">${esc(eId)} · verbatim Akoma Ntoso · ${esc((akn||'').split('/').pop())}</div>`));
+    const bodyEl=el("div","actdoc-body");
+    if(d){ const sec=el("div","ad-sec"); sec.innerHTML=`<div class="ad-sec-h"><span class="ad-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`+renderBody(d.body,"ad"); bodyEl.appendChild(sec); }
+    else bodyEl.appendChild(el("div","callout amber",`Text not found for ${esc(eId)}.`));
+    wrap.appendChild(bodyEl); body.appendChild(wrap); body.scrollTop=0;
+  }catch(e){ body.innerHTML=`<div class="ad-loading">Couldn't load this provision.<br><br>The viewer reads the <code>.akn.xml</code> files live, so it must be served over http.</div>`; }
+}
 
 /* ============================================================ THE 138 MAP (React Flow)
    Build a {nodes, edges} model of what shapes a s138 case: the national core
@@ -979,7 +1085,7 @@ function stateRuleGroup(it){
   if(it.note) body.appendChild(el("div","brief",`<span class="bl">In brief · PUCAR summary</span>${it.note}`));
   if(it.made_under && it.made_under.length){ const mu=el("div","rels"); mu.style.marginTop="10px"; mu.innerHTML=`<div class="rel-lbl">Made under</div>`+it.made_under.map(e=>stEdgeRow(e.rel||"made under",e.to)).join(""); body.appendChild(mu); }
   if(it.key && it.key.length){
-    const kh=el("div"); kh.textContent=`Key rules for §138`; kh.style.cssText="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:700;margin:18px 0 8px";
+    const kh=el("div"); kh.textContent=`Key provisions for §138`; kh.style.cssText="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:700;margin:18px 0 8px";
     body.appendChild(kh);
     it.key.forEach(k=> body.appendChild(stateKeyRow(it,k)));
   }
@@ -1092,6 +1198,8 @@ function stateBadge(cat){
   if(n>0) return `<span class="count">${n}</span>`;
   return `<span class="count" style="opacity:.55">none</span>`;
 }
+/* story nav badge: nothing when modelled, "soon" when this state has no story block */
+function storyBadge(){ return ((STATE_DATA||{}).story) ? '' : `<span class="count soon">soon</span>`; }
 function buildNav(){
   const c=caseById(activeCase);
   const nav=$("#nav");
@@ -1117,6 +1225,7 @@ function buildNav(){
       <div class="state-layer-note">Everything below is specific to ${st.name}.</div>
       <div class="nav-group scoped">State objects</div>
       <div class="nav-scoped">
+        <a data-view="story"><span class="ico">${ic('book-open')}</span> The story ${storyBadge()}</a>
         <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> Acts &amp; Provisions ${stateBadge('amendments')}</a>
         <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules ${stateBadge('rules')}</a>
         <a data-view="notifications"><span class="ico">${ic('bell')}</span> Notifications ${stateBadge('notifications')}</a>
@@ -1194,6 +1303,11 @@ document.addEventListener("click",e=>{
   if(pv && pv.dataset.pdf){ if(window.openPdfModal) openPdfModal(pv.dataset.pdf, pv.dataset.pdftitle||"Original document"); else window.open(pv.dataset.pdf,"_blank"); return; }
   const sd=e.target.closest(".stdoc");
   if(sd && sd.dataset.akn){ openStateDocModal(sd.dataset.akn, sd.dataset.title, sd.dataset.sub, sd.dataset.pdf||"", sd.dataset.eid||""); return; }
+  const ci=e.target.closest(".cite");
+  if(ci){ e.stopPropagation();
+    if(ci.dataset.nat){ const [a,eid]=ci.dataset.nat.split(":"); if(SOURCES[a]) openActModal(a,eid); }
+    else if(ci.dataset.akn){ openStateCiteModal(ci.dataset.akn, ci.dataset.eid, ci.dataset.title); }
+    return; }
   const se=e.target.closest(".stedge");
   if(se && se.dataset.ref){ e.stopPropagation(); const [a,eid]=se.dataset.ref.split(":"); if(SOURCES[a]) openActModal(a,eid); return; }
   const b=e.target.closest(".view-full");
