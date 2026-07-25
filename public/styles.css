@@ -245,6 +245,15 @@
   .chip{font-size:12.5px; padding:6px 12px; border-radius:20px; border:1px solid var(--line); background:var(--panel); color:var(--ink-2); cursor:pointer; user-select:none}
   .chip:hover{border-color:var(--line-2); color:var(--ink)} .chip.on{background:var(--brand-dim); border-color:var(--brand-border); color:var(--brand-hi)}
   .chip .c{opacity:.7; margin-left:4px}
+  /* vocabulary facet bar: scope / part-of-speech / role */
+  .vfacets{margin:2px 0 4px}
+  .vfacet-row{display:flex; align-items:flex-start; gap:12px; margin-bottom:8px}
+  .vfacet-lbl{flex:none; width:46px; padding-top:7px; font-size:10px; letter-spacing:.07em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
+  /* per-word classification tags */
+  .wtags{display:flex; flex-wrap:wrap; gap:6px; margin:3px 0 8px}
+  .wtag{font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; font-weight:700; padding:2px 7px; border-radius:5px; line-height:1.5}
+  .wtag-pos{background:var(--panel-2); color:var(--ink-3); border:1px solid var(--line)}
+  .wtag-role{background:var(--brand-dim); color:var(--brand-hi); border:1px solid var(--brand-border)}
 
   .prov{border:1px solid var(--line); border-radius:11px; background:var(--panel); margin-bottom:9px; overflow:hidden}
   .prov-head{display:flex; align-items:center; gap:13px; padding:14px 16px; cursor:pointer}

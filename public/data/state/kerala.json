@@ -305,7 +305,9 @@
         "source": "Criminal Rules of Practice, Rule 7",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
         "eId": "rule_7",
-        "group": "Court process & records"
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor"
       },
       {
         "word": "By order of the Court",
@@ -313,7 +315,9 @@
         "source": "Criminal Rules of Practice, Rule 7",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
         "eId": "rule_7",
-        "group": "Court process & records"
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure"
       },
       {
         "word": "Court diary",
@@ -321,7 +325,9 @@
         "source": "Criminal Rules of Practice, Rule 72",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
         "eId": "rule_72",
-        "group": "Court process & records"
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document"
       },
       {
         "word": "Proceedings paper",
@@ -329,7 +335,9 @@
         "source": "Criminal Rules of Practice, Rule 73",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
         "eId": "rule_73",
-        "group": "Court process & records"
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document"
       },
       {
         "word": "Station House Officer (SHO)",
@@ -337,7 +345,9 @@
         "source": "Kerala Police Act, §4 (functions of the police)",
         "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
         "eId": "sec_4",
-        "group": "Police & execution"
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "actor"
       },
       {
         "word": "Functions of the police",
@@ -345,7 +355,9 @@
         "source": "Kerala Police Act, §4",
         "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
         "eId": "sec_4",
-        "group": "Police & execution"
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "procedure"
       },
       {
         "word": "Translation of process",
@@ -353,7 +365,9 @@
         "source": "Criminal Rules of Practice, Rule 14",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
         "eId": "rule_14",
-        "group": "Filing & language"
+        "group": "Filing & language",
+        "pos": "verb",
+        "role": "procedure"
       },
       {
         "word": "Court language (Malayalam)",
@@ -361,7 +375,9 @@
         "source": "Criminal Rules of Practice, Rule 14",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
         "eId": "rule_14",
-        "group": "Filing & language"
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "doctrine"
       },
       {
         "word": "DCMS e-filing portal",
@@ -369,7 +385,9 @@
         "source": "Electronic Filing Rules (Kerala), 2021, Rule 1",
         "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
         "eId": "rule_1",
-        "group": "Filing & language"
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "document"
       },
       {
         "word": "Electronic service of process",
@@ -377,7 +395,9 @@
         "source": "Electronic Filing Rules (Kerala), 2021, Rule 11",
         "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
         "eId": "rule_11",
-        "group": "Filing & language"
+        "group": "Filing & language",
+        "pos": "verb",
+        "role": "procedure"
       },
       {
         "word": "24×7 ON Court",
@@ -385,7 +405,9 @@
         "source": "G.O.(Ms) 241/2024/Home",
         "akn": "state/kerala/akn/kerala-ni-act-special-court-kollam-2024.akn.xml",
         "eId": "sec_1",
-        "group": "Court process & records"
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "forum"
       },
       {
         "word": "Special Court (JMFC) for §138",
@@ -393,7 +415,9 @@
         "source": "G.O.(Ms) 241/2024/Home",
         "akn": "state/kerala/akn/kerala-ni-act-special-court-kollam-2024.akn.xml",
         "eId": "sec_1",
-        "group": "Court process & records"
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "forum"
       },
       {
         "word": "Court fee on a §138 complaint",
@@ -401,7 +425,9 @@
         "source": "Kerala Court Fees Act, Article 21",
         "akn": "state/kerala/akn/kerala-court-fees-suits-valuation-act-1959.akn.xml",
         "eId": "art_21",
-        "group": "Filing & language"
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "doctrine"
       }
     ]
   },
