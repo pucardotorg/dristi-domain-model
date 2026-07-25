@@ -143,6 +143,12 @@
   .side-foot b{color:var(--ink-2); font-weight:600}
 
   .page-title{font-size:32px; font-weight:700; margin:0 0 6px; letter-spacing:-.02em; line-height:1.15}
+  .page-title.state-title{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+  .state-inline-wrap{display:inline-flex; align-items:center; gap:6px; background:var(--panel); border:1px solid var(--line-2); border-radius:20px; padding:4px 8px 4px 12px}
+  .state-inline-wrap svg.lu{width:13px; height:13px; color:var(--ink-3)}
+  .state-inline-wrap:hover{border-color:var(--ink-3)}
+  .state-inline{appearance:none; -webkit-appearance:none; background:transparent; border:none; color:var(--ink); font-family:inherit; font-size:14px; font-weight:600; letter-spacing:normal; cursor:pointer; padding:2px 20px 2px 2px; outline:none; background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%); background-position:right 7px center,right 3px center; background-size:4px 4px,4px 4px; background-repeat:no-repeat}
+  .state-inline option{background:var(--panel); color:var(--ink); font-size:14px}
   .lede{color:var(--ink-2); font-size:16px; max-width:770px; margin:0 0 30px}
   .lede strong{color:var(--ink)}
   h2.sec{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin:36px 0 14px; font-weight:700}
@@ -250,6 +256,27 @@
   .rel{font-size:12.5px; color:var(--ink-2); display:flex; gap:8px; align-items:baseline}
   .rel .r{color:var(--purple-txt); font-family:var(--font-mono); font-size:11.5px} .rel .to{font-family:var(--font-mono); color:var(--ink)}
   @media(max-width:760px){.prov-head{flex-wrap:wrap} .prov-body{padding-left:16px} .prov .hbadges{width:100%; justify-content:flex-start}}
+  /* Acts & provisions — collapsible Act group holding its provision rows */
+  .actgrp{border:1px solid var(--line); border-radius:12px; background:var(--panel); margin:0 0 10px; overflow:hidden}
+  .actgrp-head{display:flex; align-items:center; gap:12px; padding:13px 16px; cursor:pointer; user-select:none}
+  .actgrp-head:hover{background:var(--panel-2)}
+  .ag-chev{display:inline-flex; color:var(--ink-3); transition:transform .18s; flex:none}
+  .ag-chev svg.lu{width:15px; height:15px}
+  .actgrp.open .ag-chev{transform:rotate(180deg)}
+  .actgrp-head .dot{flex:none}
+  .ag-title{font-size:15.5px; font-weight:650; color:var(--ink); letter-spacing:-.01em}
+  .ag-year{color:var(--ink-3); font-weight:400; font-size:12.5px; margin-left:3px}
+  .ag-status{font-size:12px; color:var(--ink-3)}
+  .ag-count{margin-left:auto; font-size:11.5px; color:var(--ink-3); background:var(--panel-2); padding:1px 8px; border-radius:20px; flex:none}
+  .actgrp-body{display:none; padding:6px 14px 12px; border-top:1px solid var(--line)}
+  .actgrp.open .actgrp-body{display:block}
+  .ag-openfull{margin:8px 0 10px}
+  /* provision rows sit flat inside the Act group, not as nested cards */
+  .actgrp-body .prov{border:none; border-radius:0; background:transparent; margin:0; border-top:1px solid var(--line-2)}
+  .actgrp-body .prov:first-of-type{border-top:none}
+  .actgrp-body .prov-head{padding:12px 6px}
+  .actgrp-body .prov-body{padding-left:6px; padding-right:6px}
+  @media(min-width:761px){.actgrp-body .prov-body{padding-left:120px}}
 
   /* statute text (loaded live from the .akn.xml file) */
   .statute{margin-top:14px; border:1px solid var(--line); border-radius:9px; background:var(--panel-2); padding:14px 16px}
@@ -715,7 +742,7 @@ V.cases=()=>{
       <p>${c.blurb}</p>
       <div class="stat"><span><b>${active?Object.keys(SOURCES).length:'—'}</b> Acts</span><span><b>${active?PROVISIONS.length:'—'}</b> provisions</span><span><b>${active?Object.keys(TERMS).length:'—'}</b> words</span></div>
       ${active?'<div class="enter">Open this case type →</div>':''}`;
-    if(active) card.onclick=()=>{ activeCase=c.id; buildNav(); go("parts"); };
+    if(active) card.onclick=()=>{ activeCase=c.id; buildNav(); go("law"); };
     g.appendChild(card);
   });
   return m;
@@ -749,69 +776,26 @@ V.overview=()=>{
   m.appendChild(head);
   m.appendChild(el("h2","sec","Explore this case type"));
   const grid=el("div","grid");
-  [["parts","Acts","The "+Object.keys(SOURCES).length+" Acts this case draws on, grouped by what they govern."],
-   ["provisions","Provisions","All "+PROVISIONS.length+" provisions with the real statutory text — filter by domain, role and era."],
+  [["law","Acts & provisions","The "+Object.keys(SOURCES).length+" Acts and the "+PROVISIONS.length+" sections this case leans on — one tree, each opening to the text from the Act."],
+   ["caselaw","Case law","How the Supreme Court has read these provisions — "+(CASES.length||'the')+" judgments, with their holdings."],
    ["words","Vocabulary","The shared language of the case — built on the laws, the rules, and the things people say."]
   ].forEach(([v,t,d])=>{const card=el("div","part"); card.innerHTML=`<div class="pt">${t}</div><div class="role" style="margin-bottom:0">${d}</div>`; card.onclick=()=>go(v); grid.appendChild(card);});
   m.appendChild(grid);
   return m;
 };
 
-V.parts=()=>{
+/* Acts & provisions — one collapsible tree: Domain → Act → § provision → text.
+   Provisions are extracts of the Acts, so they live inside the Act, not apart. */
+V.law=()=>{
   if(!isModelled()) return notModelled();
   const m=el("div"); m.appendChild(scopeBar());
   const head=el("div");
-  head.innerHTML=`<h1 class="page-title">Acts</h1>
-    <p class="lede">The ${Object.keys(SOURCES).length} Acts a ${caseById(activeCase).name.toLowerCase()} case draws on, grouped by what they govern. Every one is <strong>central law — shared by every state</strong>; the procedure, evidence and sentencing Acts are <strong>reused by other case types too</strong>. Tap an Act to see the provisions it contributes, with their text.</p>
+  head.innerHTML=`<h1 class="page-title">Acts &amp; provisions</h1>
+    <p class="lede">The ${Object.keys(SOURCES).length} Acts this case draws on and the ${PROVISIONS.length} sections it leans on — <strong>one tree</strong>. Each Act opens to the provisions it contributes; each provision opens to its <strong>verbatim text, from the Act</strong>. All are <strong>central law — shared by every state</strong>. Filter by era or role, search, or open the whole Act.</p>
     <div class="legend"><span><span class="dot" style="background:var(--blue)"></span> in force</span><span><span class="dot" style="background:var(--amber)"></span> 2023 Sanhita (from 2024-07-01)</span><span><span class="dot" style="background:var(--ink-3)"></span> repealed — pre-2024 cases only</span></div>`;
   m.appendChild(head);
-  const byDomain={}; Object.entries(SOURCES).forEach(([id,s])=>{(byDomain[s.domain]=byDomain[s.domain]||[]).push([id,s]);});
-  Object.entries(DOMAINS).forEach(([dk,d])=>{
-    if(!byDomain[dk])return;
-    m.appendChild(el("h2","sec",`${d.label} <span style="color:var(--ink-3);font-weight:400;text-transform:none;letter-spacing:0">— ${d.blurb}</span>`));
-    const g=el("div","grid");
-    byDomain[dk].forEach(([id,s])=>{
-      const n=PROVISIONS.filter(p=>p.act===id).length;
-      const repealed=/^repealed/i.test(s.status);
-      const c=el("div","part"+(repealed?" repealed":""));
-      const dotc=repealed?"var(--ink-3)":(s.era==="post"?"var(--amber)":"var(--blue)");
-      c.innerHTML=`<div class="pt"><span class="dot" style="background:${dotc}"></span> ${s.title.replace(/, \d{4}$/,'')}</div>
-        <div class="role">${(s.title.match(/\d{4}/)||[''])[0]} · ${s.status}</div>
-        <div class="meta">${scopeBadge()}${s.casescoped?'':' <span class="badge b-crosscase">cross-case</span>'}<span class="badge b-tier">${n} provision${n===1?'':'s'}</span></div>`;
-      c.onclick=()=>openPart(id);
-      g.appendChild(c);
-    });
-    m.appendChild(g);
-  });
-  return m;
-};
-function openPart(id){
-  const s=SOURCES[id], provs=PROVISIONS.filter(p=>p.act===id);
-  const m=el("div"); m.appendChild(scopeBar());
-  const head=el("div");
-  head.innerHTML=`<a class="backlink" id="back">← back to Acts</a>
-    <h1 class="page-title" style="margin-top:12px">${s.title}</h1>
-    <p class="lede">${DOMAINS[s.domain].label} · ${s.status}. ${s.era==="pre"?"Applies to causes of action <b>before 1 July 2024</b>.":s.era==="post"?"Applies to causes of action <b>on or after 1 July 2024</b>.":"Applies at <b>any time</b>."} ${s.note?('<br><span class="tiny">'+s.note+'</span>'):''}</p>
-    <button class="view-full" data-act="${id}">${ic('book-open')}&nbsp; Open the whole Act</button>`;
-  m.appendChild(head);
-  const dropped=((PROFILE.link_integrity&&PROFILE.link_integrity.dropped_unresolved)||[]).filter(r=>r.split(":")[0]===id);
-  if(dropped.length) m.appendChild(el("div","callout amber",`<b>Incomplete in the corpus.</b> ${dropped.length} reference into this Act (<code>${dropped.map(esc).join('</code>, <code>')}</code>) was dropped from the profile because it doesn't resolve in the current Act file — this Act's Akoma Ntoso conversion isn't finished. For §138 cases the relevant hook here is the Article 21 right to a speedy, fair trial.`));
-  m.appendChild(el("h2","sec",`Provisions this Act contributes (${provs.length})`));
-  if(!provs.length) m.appendChild(el("div","empty","No specific sections mapped — background context only."));
-  provs.forEach(p=>m.appendChild(provRow(p)));
-  setMain(m);
-  $("#back",m).onclick=()=>go("parts");
-}
-
-V.provisions=()=>{
-  if(!isModelled()) return notModelled();
-  const m=el("div"); m.appendChild(scopeBar());
-  const head=el("div");
-  head.innerHTML=`<h1 class="page-title">Provisions</h1>
-    <p class="lede">The ${PROVISIONS.length} provisions this case is built on — each opens to its <strong>verbatim text, from the Act</strong>, with the PUCAR summary. All are <strong>shared core</strong>. Filter by what they govern, their role and era.</p>`;
-  m.appendChild(head);
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="p-search" placeholder="Search role, section, note — cognizance, cheque, presumption…"></div>`;
+  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="l-search" placeholder="Search Act, section, role, note — cheque, cognizance, presumption…"></div>`;
   m.appendChild(controls);
   const eraChips=el("div","chips");
   eraChips.innerHTML=`<span class="chip on" data-era="all">All eras</span><span class="chip" data-era="always">Any time</span><span class="chip" data-era="pre">Pre-2024 code</span><span class="chip" data-era="post">2023 Sanhita</span>`;
@@ -820,27 +804,56 @@ V.provisions=()=>{
   const tiers=TIER_ORDER.filter(t=>PROVISIONS.some(p=>p.tier===t));
   tierChips.innerHTML=`<span class="chip on" data-tier="all">All roles</span>`+tiers.map(t=>`<span class="chip" data-tier="${t}">${t[0].toUpperCase()+t.slice(1)} <span class="c">${PROVISIONS.filter(p=>p.tier===t).length}</span></span>`).join("");
   m.appendChild(tierChips);
-  const list=el("div"); list.id="p-list"; list.style.marginTop="16px"; m.appendChild(list);
-  const state={q:"",era:"all",tier:"all"};
+  const list=el("div"); list.id="l-list"; list.style.marginTop="16px"; m.appendChild(list);
+  const st={q:"",era:"all",tier:"all"};
+  const firstDomain=Object.keys(DOMAINS)[0];
+  const match=p=>{
+    if(st.era!=="all"&&eraOf(p.applies)!==st.era)return false;
+    if(st.tier!=="all"&&p.tier!==st.tier)return false;
+    if(st.q){const hay=(p.ref+" "+p.role+" "+(p.note||"")+" "+actOf(p.ref).title).toLowerCase(); if(!hay.includes(st.q))return false;}
+    return true;
+  };
   function draw(){
     list.innerHTML="";
-    let rows=PROVISIONS.filter(p=>{
-      if(state.era!=="all"&&eraOf(p.applies)!==state.era)return false;
-      if(state.tier!=="all"&&p.tier!==state.tier)return false;
-      if(state.q){const hay=(p.ref+" "+p.role+" "+(p.note||"")+" "+actOf(p.ref).title).toLowerCase(); if(!hay.includes(state.q))return false;}
-      return true;
+    const filtering = !!(st.q||st.era!=="all"||st.tier!=="all");
+    let any=false;
+    Object.entries(DOMAINS).forEach(([dk,d])=>{
+      const actsWith=Object.entries(SOURCES).filter(([id,s])=>s.domain===dk)
+        .map(([id,s])=>[id,s,PROVISIONS.filter(p=>p.act===id&&match(p))]).filter(a=>a[2].length);
+      if(!actsWith.length) return;
+      any=true;
+      list.appendChild(el("h2","sec",`${d.label} <span style="color:var(--ink-3);font-weight:400;text-transform:none;letter-spacing:0">— ${d.blurb}</span>`));
+      actsWith.forEach(([id,s,ps])=>{
+        const repealed=/^repealed/i.test(s.status);
+        const dotc=repealed?"var(--ink-3)":(s.era==="post"?"var(--amber)":"var(--blue)");
+        const open = filtering || dk===firstDomain;
+        const grp=el("div","actgrp"+(open?" open":""));
+        grp.innerHTML=`
+          <div class="actgrp-head">
+            <span class="ag-chev">${ic('chevron-down')}</span>
+            <span class="dot" style="background:${dotc}"></span>
+            <span class="ag-title">${s.title.replace(/, \d{4}$/,'')} <span class="ag-year">${(s.title.match(/\d{4}/)||[''])[0]}</span></span>
+            <span class="ag-status">${repealed?'repealed — pre-2024':s.status}${s.casescoped?'':' · cross-case'}</span>
+            <span class="ag-count">${ps.length}</span>
+          </div>
+          <div class="actgrp-body"></div>`;
+        const body=grp.querySelector(".actgrp-body");
+        const openBtn=el("button","view-full ag-openfull"); openBtn.dataset.act=id; openBtn.innerHTML=`${ic('book-open')}&nbsp; Open the whole Act`;
+        body.appendChild(openBtn);
+        ps.forEach(p=>body.appendChild(provRow(p)));
+        grp.querySelector(".actgrp-head").onclick=()=>grp.classList.toggle("open");
+        list.appendChild(grp);
+      });
     });
-    if(!rows.length){list.appendChild(el("div","empty","Nothing matches those filters."));return;}
-    const order=Object.keys(SOURCES); rows.sort((a,b)=>order.indexOf(a.act)-order.indexOf(b.act));
-    let last=null;
-    rows.forEach(p=>{ if(p.act!==last){const s=SOURCES[p.act]; const gh=el("div","grouphead"); gh.innerHTML=`${s.title} <span class="gh-status">${/^repealed/i.test(s.status)?'repealed — pre-2024 cases':s.status}</span>`; list.appendChild(gh); last=p.act;} list.appendChild(provRow(p)); });
+    if(!any) list.appendChild(el("div","empty","Nothing matches those filters."));
   }
-  eraChips.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{eraChips.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");state.era=c.dataset.era;draw();});
-  tierChips.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{tierChips.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");state.tier=c.dataset.tier;draw();});
-  setTimeout(()=>{const inp=$("#p-search"); if(inp)inp.oninput=e=>{state.q=e.target.value.toLowerCase().trim();draw();};},0);
+  eraChips.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{eraChips.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");st.era=c.dataset.era;draw();});
+  tierChips.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{tierChips.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");st.tier=c.dataset.tier;draw();});
+  setTimeout(()=>{const inp=$("#l-search"); if(inp)inp.oninput=e=>{st.q=e.target.value.toLowerCase().trim();draw();};},0);
   draw();
   return m;
 };
+V.parts=V.law; V.provisions=V.law;   // old routes/hashes fold into the unified tree
 function provRow(p){
   const s=actOf(p.ref);
   const row=el("div","prov"); row.id="prov-"+p.ref.replace(/:/g,"_");
@@ -926,16 +939,21 @@ V.practice=()=>{
 
 /* State objects — the state layer on top of the shared national core.
    Not in the corpus yet; each is a planned placeholder that names the state. */
+function stateInlineSelectHTML(){
+  return `<span class="state-inline-wrap">${ic('map-pin')}<select class="state-inline" aria-label="Choose state">${JURISDICTIONS.map(s=>`<option value="${s.id}"${s.id===activeState?' selected':''}>${esc(s.name)}</option>`).join("")}</select></span>`;
+}
 function plannedStateObject(title, blurb){
   return ()=>{
     if(!isModelled()) return notModelled();
     const st=stateById(activeState).name;
     const m=el("div"); m.appendChild(scopeBar());
     const head=el("div");
-    head.innerHTML=`<h1 class="page-title">${esc(title)}</h1>
-      <p class="lede">${blurb} These sit <strong>on top of the shared national core</strong> and change from state to state — right now the selector reads <strong>${esc(st)}</strong>.</p>
+    head.innerHTML=`<h1 class="page-title state-title">${esc(title)} ${stateInlineSelectHTML()}</h1>
+      <p class="lede">${blurb} These sit <strong>on top of the shared national core</strong> and change from state to state — pick the jurisdiction above.</p>
       <div class="empty"><b>${esc(st)} — ${esc(title.toLowerCase())} not modelled yet.</b><br><span class="tiny">This state-layer object is planned. It will carry ${esc(st)}'s own ${esc(title.toLowerCase())} over the same shared core, the way the national objects already do.</span></div>`;
     m.appendChild(head);
+    const sel=m.querySelector(".state-inline");
+    if(sel) sel.onchange=e=>{ activeState=e.target.value; buildNav(); go(currentView); };
     return m;
   };
 }
@@ -984,8 +1002,8 @@ function casesFor(ref){
   return `<div class="interp"><div class="il">Interpreted by ${ids.length} Supreme Court case${ids.length>1?"s":""}</div>${items}</div>`;
 }
 function jumpToProvision(ref){
-  go("provisions");
-  setTimeout(()=>{ const r=document.getElementById("prov-"+ref.replace(/:/g,"_")); if(r){ if(!r.classList.contains("open")){ r.classList.add("open"); const slot=r.querySelector(".statute-slot"); if(slot) fillStatute(slot);} r.scrollIntoView({block:"center"}); r.style.outline="2px solid var(--brand)"; r.style.outlineOffset="-1px"; setTimeout(()=>{r.style.outline="";},1800);} },70);
+  go("law");
+  setTimeout(()=>{ const r=document.getElementById("prov-"+ref.replace(/:/g,"_")); if(r){ const grp=r.closest(".actgrp"); if(grp) grp.classList.add("open"); if(!r.classList.contains("open")){ r.classList.add("open"); const slot=r.querySelector(".statute-slot"); if(slot) fillStatute(slot);} r.scrollIntoView({block:"center"}); r.style.outline="2px solid var(--brand)"; r.style.outlineOffset="-1px"; setTimeout(()=>{r.style.outline="";},1800);} },70);
 }
 function jumpToCase(id){
   go("caselaw");
@@ -1238,8 +1256,7 @@ function buildNav(){
     </div>
     <div class="nav-group">National objects</div>
     <div class="nav-scoped">
-      <a data-view="parts"><span class="ico">${ic('library')}</span> Acts <span class="count">${isModelled()?Object.keys(SOURCES).length:'—'}</span></a>
-      <a data-view="provisions"><span class="ico">${ic('file-text')}</span> Provisions <span class="count">${isModelled()?PROVISIONS.length:'—'}</span></a>
+      <a data-view="law"><span class="ico">${ic('library')}</span> Acts &amp; provisions <span class="count">${isModelled()?PROVISIONS.length:'—'}</span></a>
       <a data-view="caselaw"><span class="ico">${ic('scale')}</span> Case law <span class="count">${isModelled()?(CASES.length||'—'):'—'}</span></a>
     </div>
     <div class="nav-group">State objects</div>
@@ -1290,6 +1307,7 @@ function buildNav(){
 }
 function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
 function go(view){
+  if(view==="parts"||view==="provisions") view="law"; // Acts + Provisions merged
   if(!V[view]) view="overview";
   currentView=view;
   if(OV_SUBVIEWS.includes(view)){
