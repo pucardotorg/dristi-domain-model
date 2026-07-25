@@ -111,7 +111,7 @@ On top of the shared core, **each state layers its own:**
 
 That **state layer is separate from the uniform central core.** It is configured per state, so a state can adopt the shared core wholesale and only supply its own layer.
 
-It lives under **`public/data/state/<state>/`** and the viewer reads it through the **State objects** pages (State amendments, State rules, Notifications). **Kerala** is the first state modelled. For a s.138 case this overlay is *procedural*, not substantive: there is no state amendment to s.138 itself, so Kerala's amendments page says exactly that, while its rules and notifications pages carry the state's **rules of practice, High Court rules, e-filing rules, the police act (warrant execution)** and the **DCMS e-filing SOP**. The Kerala instruments are converted to Akoma Ntoso the same way the central Acts are (see [§8.3](#83-the-rules--state-act-conversion-engineering-note)), and a plain-language write-up lives at [`public/data/state/kerala/kerala-s138-state-layer.md`](public/data/state/kerala/kerala-s138-state-layer.md). Other states show a "not modelled yet" placeholder until their manifest is added.
+It lives under **`public/data/state/<state>/`** and the viewer reads it through the **State objects** pages (Acts & Provisions, State rules, Notifications & orders). **Kerala** is the first state modelled. For a s.138 case this overlay is *procedural*, not substantive: there is no state amendment to s.138 itself, so Kerala's **Acts & Provisions** page carries the State Acts that bear on a cheque case - the **Kerala Police Act** (warrant execution) and the **Court Fees Act** (the Article 21 fee schedule for a §138 complaint/appeal/revision) - its **State rules** page carries the **rules of practice, High Court rules and e-filing rules**, and its **Notifications & orders** page carries the **G.O. establishing the Kollam 24×7 ON Court** (the dedicated §138 special court) and the **DCMS e-filing SOP**. Each Act/rule/order is analysed at section level with `made_under` links to its enabling law and `edges` to the national provisions it operationalises - the same section-level treatment the national objects get. The Kerala instruments are converted to Akoma Ntoso the same way the central Acts are (see [§8.3](#83-the-rules--state-act-conversion-engineering-note)), and a plain-language write-up lives at [`public/data/state/kerala/kerala-s138-state-layer.md`](public/data/state/kerala/kerala-s138-state-layer.md). Other states show a "not modelled yet" placeholder until their manifest is added.
 
 ### 3.4 Point-in-time and the 2024 code switch
 
@@ -198,8 +198,8 @@ dristi-domain-model/
 │           ├── kerala.json               # Kerala manifest (amendments / rules / notifications)
 │           └── kerala/
 │               ├── kerala-s138-state-layer.md   # the Kerala write-up
-│               ├── akn/     #     Kerala rules/Acts as Akoma Ntoso <act> XML
-│               └── sources/ #     original Kerala rule/Act PDFs (+ OCR sidecar)
+│               ├── akn/     #     Kerala Acts / rules / orders as Akoma Ntoso <act> XML
+│               └── sources/ #     original Kerala Act/rule/order PDFs (+ clean-text extract)
 ├── scripts/              # conversion pipeline (PDF -> Akoma Ntoso)
 │   ├── convert_judgments.py     # SC judgments → <judgment>
 │   ├── convert_constitution.py  # Constitution PDF → <act>
@@ -389,24 +389,32 @@ structural modes, one per source shape:
 - **`chapter-rule`** - `CHAPTER <roman> <title>` then `Rule - N. Heading.` (Criminal Rules of Practice, 1982).
 - **`flat-rule`** - flat `N. Heading:- …` (Electronic Filing Rules, 2021).
 - **`chapter-flatrule`** - `CHAPTER <roman>` with the title on the next line, plus continuous `N. Heading.-` numbering, and a leading table of contents that is cut away (Rules of the High Court, 1971).
-- **`flat-section`** - `N Heading -(1)…` where the number may lack a period and carry OCR noise; a gap-tolerant sequencer walks `1 … N` past OCR-missed headings (Kerala Police Act, 2011).
+- **`flat-section`** - `N Heading -(1)…` where the number may lack a period; a gap-tolerant sequencer walks `1 … N` past any missed heading (Kerala Police Act, 2011).
 
-**OCR path.** The Kerala Police Act PDF was a **scanned gazette** whose embedded text
-was garbage, so it was **re-OCR'd at 300 DPI** (`pdftoppm` + `tesseract`); the recovered
-text is kept beside the PDF as `…/sources/kerala-police-act-2011.ocr.txt` for provenance,
-and the converter reads that sidecar. Each output's `<note>` records that it is OCR-derived.
+**Police Act - now on clean text.** The Police Act was originally OCR'd from a scanned
+gazette (~86% of sections). It has since been **re-converted from the official clean-text
+PDF** (`keralapolice.gov.in` / India Code, Act 8 of 2011), reading a `…/sources/kerala-police-act-2011.txt`
+layout extract - **120 of 131 sections**, no OCR noise. The old scan and its `.ocr.txt`
+sidecar are retired.
 
-**Result / coverage** (all four **XSD-valid**):
+**Two hand-authored instruments.** The **Kollam special-court G.O.** and the **s.138
+court-fee schedule** are short, table-shaped documents that don't fit the section parser,
+so their AKN (`<section>` / `<article eId="art_21">` with a nested `<blockList>`) is authored
+directly to the same FRBR/`<meta>` template the converter emits.
+
+**Result / coverage** (all **XSD-valid**):
 
 | Instrument | Units | Coverage | Quality |
 |---|---|---|---|
 | Criminal Rules of Practice, 1982 | 30 chapters, 274 rules | complete | clean |
 | Electronic Filing Rules, 2021 | 17 rules | complete | clean |
 | Rules of the High Court, 1971 | 246 rules / 18 chapters | ~96% | clean |
-| Kerala Police Act, 2011 | 113 of 131 sections | ~86% | OCR-derived |
+| Kerala Police Act, 2011 | 120 of 131 sections | ~92% | clean text |
+| Court Fees Act - Art. 21 (§138 fees) | 1 article | complete | hand-authored |
+| Kollam §138 Special Court G.O. 241/2024 | 2 clauses + schedule | complete | hand-authored |
 
-Best-effort: tables are flattened to text; the 18 Police Act sections not detected had
-OCR-mangled heading lines (their text is absorbed into the preceding section, not lost).
+Best-effort: tables are flattened to text; a handful of Police Act sections with unusual
+heading lines are absorbed into the preceding section rather than lost.
 **Verify against the official text** before authoritative use.
 
 ---
@@ -577,7 +585,7 @@ Key points:
 
 Two things sit outside the modelled shared core:
 
-1. **The state layer** - a state's rules of practice, High Court rules, e-filing rules, practice directions, the police act (warrant execution), local practice, filer mix, and court language. This is **configured per state** under `public/data/state/<state>/`, kept separate from the uniform central core. **Kerala** is modelled (four instruments converted to AKN, plus a notification) and the viewer reads it through the **State objects** pages (see [§3.3](#33-shared-core-vs-state-layer) and [§8.3](#83-the-rules--state-act-conversion-engineering-note)); for s.138 it is *procedural overlay*, not a change to the offence, so there is no state amendment to model.
+1. **The state layer** - a state's rules of practice, High Court rules, e-filing rules, court-fee schedule, special-court and other Government orders, the police act (warrant execution), local practice, filer mix, and court language. This is **configured per state** under `public/data/state/<state>/`, kept separate from the uniform central core. **Kerala** is modelled - **six instruments as AKN** (Police Act, Court Fees Act Art. 21, Criminal Rules of Practice, High Court Rules, E-Filing Rules, and the Kollam §138 Special Court G.O.) plus the DCMS e-filing SOP - each analysed at section level with `made_under`/`edges` links into the national core, and the viewer reads it through the **State objects** pages (see [§3.3](#33-shared-core-vs-state-layer) and [§8.3](#83-the-rules--state-act-conversion-engineering-note)); for s.138 it is *procedural overlay*, not a change to the offence, so there is no state amendment to model.
 
 2. **Case law** - historically outside the corpus, now **modelled** via `public/data/caselaw/` (dataset + 43 AKN judgments). Only Supreme Court precedent for the s.138 case type is captured today; it is not exhaustive.
 
@@ -603,8 +611,9 @@ Everything else the model needs (statutes, the Constitution, vocabulary, the 202
 
 **Add a state-layer instrument (e.g. a new state, or another Kerala rule):**
 1. Drop the source PDF into `public/data/state/<state>/sources/` (lowercase-hyphenated slug).
-2. Add an entry to `DOCS` in `scripts/convert_rules.py`: its title, FRBR work URI, date, and the matching parse mode (`chapter-rule` / `flat-rule` / `chapter-flatrule` / `flat-section`); for a scanned PDF, OCR it first and point `text_file` at the `.ocr.txt` sidecar.
+2. For a section/rule-structured document, add an entry to `DOCS` in `scripts/convert_rules.py`: its title, FRBR work URI, date, and the matching parse mode (`chapter-rule` / `flat-rule` / `chapter-flatrule` / `flat-section`); if the embedded text is poor, extract a clean `.txt` layout dump and point `text_file` at it. Short, table-shaped documents (a G.O., a fee schedule) are hand-authored to the same `<meta>` template instead.
 3. Run `python3 scripts/convert_rules.py` and validate against the XSD.
+4. Add the instrument to `<state>.json` under `amendments` (State Acts), `rules`, or `notifications`, with `made_under` (its enabling law) and per-provision `key[]` entries carrying `edges` to the national provisions it operationalises - that's what gives it the national-style section-level treatment.
 
 Because the app is a pure runtime reader of `data/`, **extending the *app* model is a data task, not a code task** (adding a *new source shape* to the rules converter is the one place code changes).
 
@@ -617,7 +626,7 @@ Because the app is a pure runtime reader of `data/`, **extending the *app* model
 - **AKN judgments** (all 43) were converted from Indian Kanoon / official Supreme Court / SCR-reporter PDFs and validate against the AKN 3.0 XSD; the introduction/reasoning/decision split is heuristic and paragraph text follows the reported version, not the certified record (see §8.2).
 - **3 PDFs were wrong on the first collection pass** - two Delhi Magistrate orders and a High Court judgment that only *cited* the SC cases (Basalingappa, Dashrathbhai, Rajesh Jain). These were **re-collected from the correct source and converted**; the superseded PDFs were moved to `_to_delete/superseded-caselaw-pdfs/`.
 - **Citations** in the case-law dataset are **best-effort**.
-- **State-layer instruments** (Kerala, under `state-layer/`) are **reference material outside the app corpus**. The four converted to AKN validate against the XSD but are **best-effort**: the **Kerala Police Act, 2011** is **OCR-derived from a scanned gazette** (~86% of sections, residual OCR noise), and tables are flattened to text. Verify against the official text.
+- **State-layer instruments** (Kerala) are **reference material outside the app corpus**. All six converted to AKN validate against the XSD but are **best-effort**: the **Kerala Police Act, 2011** is now from **clean official text** (120 of 131 sections; the earlier OCR version is retired), the **court-fee schedule** and **Kollam G.O.** are hand-authored from the gazette, and tables are flattened to text. The court-fee slabs were revised again by the **Finance Act 2025** - verify the current figure. Verify against the official text before authoritative use.
 - The model captures the **shared core** plus the full s.138 Supreme Court case-law layer and the Kerala state-layer reference; it is not a complete legal encyclopaedia for any state.
 
 When accuracy matters, treat this model as a **map**, not the territory - cross-check against the official gazette / India Code / SCC.

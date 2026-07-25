@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-kl/officialGazette/2024/sro-1047/!main"/>
+          <FRBRuri value="/akn/in-kl/officialGazette/2024/sro-1047"/>
+          <FRBRalias value="Special Court under the NI Act at Kollam (24x7 ON Court), 2024" name="shortTitle"/>
+          <FRBRdate date="2024-11-17" name="generation"/>
+          <FRBRauthor href="#kerala-govt"/>
+          <FRBRcountry value="in-kl"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Special Court under the NI Act at Kollam (24x7 ON Court), 2024"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-kl/officialGazette/2024/sro-1047/eng@/!main"/>
+          <FRBRuri value="/akn/in-kl/officialGazette/2024/sro-1047/eng@"/>
+          <FRBRdate date="2024-11-17" name="generation"/>
+          <FRBRauthor href="#kerala-govt"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-kl/officialGazette/2024/sro-1047/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in-kl/officialGazette/2024/sro-1047/eng@.akn"/>
+          <FRBRdate date="2026-07-25" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="kerala-govt" href="/ontology/organization/in/kerala-govt" showAs="Government of Kerala"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Verbatim structural rendering of Government of Kerala Notification G.O.(Ms) No.241/2024/Home (S.R.O. No.1047/2024), dated 17 November 2024, published in the Kerala Gazette Extraordinary No.3669 of 18 November 2024. Establishes, under the proviso to section 9(1) BNSS 2023 and in consultation with the High Court of Kerala, a Special Judicial Magistrate of the First Class at Kollam to try only section 138 NI Act cases as a 24x7 digital 'ON Court', with effect from 20 November 2024.</p></note>
+      </notes>
+    </meta>
+    <preface><longTitle><p>SPECIAL COURT UNDER THE NI ACT AT KOLLAM (24X7 ON COURT), 2024</p></longTitle></preface>
+    <body>
+<section eId="sec_1"><num>1.</num><heading>Establishment of the Special Court for section 138 cases</heading><content><p>In exercise of the powers conferred by the proviso to sub-section (1) of section 9 of the Bharatiya Nagarik Suraksha Sanhita, 2023 (Central Act 46 of 2023), the Government of Kerala in consultation with the High Court of Kerala, hereby establish in the Sessions Division mentioned in Column (1) of the Schedule below, a Special Court of Judicial Magistrate of the First Class mentioned in Column (2), to sit at the place specified in Column (3), to try cases under section 138 of the Negotiable Instruments Act, 1881 (Central Act 26 of 1881) with effect from 20th November 2024.</p><p>Vide G.O.(Ms) No.21/2024/Home dated 19th October 2024, the Government sanctioned the establishment of a Special Court of Judicial Magistrate of the First Class for the trial of cases under section 138 of the Negotiable Instruments Act, 1881 at Kollam. It is now decided to start the functioning of the said Special Court at Kollam District Centre with effect from 20th November 2024, as a Digital Court on pilot basis as the 24x7 ON Court.</p></content></section><section eId="sec_2"><num>2.</num><heading>Schedule</heading><content><blockList eId="sec_2__l1"><item eId="sec_2__i1"><num>(1)</num><p>Sessions Division: Kollam.</p></item><item eId="sec_2__i2"><num>(2)</num><p>Name of the Court: Special Court of Judicial Magistrate of the First Class for the trial of cases under section 138 of the Negotiable Instruments Act, 1881 at Kollam (24x7 ON Court).</p></item><item eId="sec_2__i3"><num>(3)</num><p>Place of Sitting: Kollam.</p></item></blockList></content></section>
+    </body>
+  </act>
+</akomaNtoso>

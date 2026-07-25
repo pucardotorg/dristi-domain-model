@@ -56,8 +56,8 @@ DOCS = {
     "title": "The Kerala Police Act, 2011",
     "work": "/akn/in-kl/act/2011/8",
     "date": "2011-01-01", "mode": "flat-section", "eid": "sec", "author": "kerala-legislature", "author_show": "Kerala Legislative Assembly",
-    "text_file": "kerala-police-act-2011.ocr.txt",
-    "cut_before": r"BE\s+it\s+enacted", "ocr": True,
+    "text_file": "kerala-police-act-2011.txt",
+    "cut_before": r"BE[,]?\s+it\s+enacted",
  },
 }
 

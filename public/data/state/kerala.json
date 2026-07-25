@@ -3,13 +3,13 @@
   "name": "Kerala",
   "as_of": "2025",
   "amendments": {
-    "summary": "Kerala has not amended Section 138 (or ss.139-147) of the Negotiable Instruments Act - the offence, the presumptions, the notice period and limitation, and compounding are uniform central law, and Kerala adds nothing to that statute. What sits here instead are Kerala's own State Acts that bear on a s.138 case - chiefly the Kerala Police Act, 2011, which governs who serves process and executes the court's warrants. The rules of practice and e-filing rules are under State rules.",
+    "summary": "Kerala has not amended Section 138 (or ss.139-147) of the Negotiable Instruments Act - the offence, the presumptions, the notice period and limitation, and compounding are uniform central law, and Kerala adds nothing to that statute. What sits here instead are Kerala's own State Acts that bear on a s.138 case - chiefly the Kerala Police Act, 2011, which governs who serves process and executes the court's warrants. Also here is the Kerala Court Fees and Suits Valuation Act, whose Article 21 fixes the court fee on a §138 complaint, appeal and revision. The rules of practice and e-filing rules are under State rules.",
     "items": [
       {
         "title": "Kerala Police Act, 2011",
         "cite": "State Act · execution of process",
         "alias": "kpa",
-        "note": "A Kerala State Act - the police machinery a s.138 case relies on at the execution stage. A cheque-bounce case is a complaint case with no police investigation and no arrest at the outset; the police enter only when the court issues process, when the local Station House Officer executes a bailable or non-bailable warrant and serves court process. Converted from an OCR source, so verify against the official text before relying on it.",
+        "note": "A Kerala State Act - the police machinery a s.138 case relies on at the execution stage. A cheque-bounce case is a complaint case with no police investigation and no arrest at the outset; the police enter only when the court issues process, when the local Station House Officer executes a bailable or non-bailable warrant and serves court process. Rendered from the official clean text of the Act.",
         "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
         "pdf": "state/kerala/sources/kerala-police-act-2011.pdf",
         "made_under": [
@@ -33,6 +33,43 @@
               {
                 "rel": "serves process issued under",
                 "to": "bnss:sec_227"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Kerala Court Fees and Suits Valuation Act, 1959",
+        "cite": "State Act · court fees on a §138 case",
+        "alias": "kcf",
+        "note": "The State Act that fixes what it costs to bring and contest a cheque case in Kerala. The Kerala Finance Act, 2024 inserted Article 21 into Schedule II, setting the court fee on a §138 complaint (₹250 where the cheque is ≤ ₹10,000; otherwise 5% of the cheque amount, capped at ₹3 lakh), on an appeal (₹1,000 for the accused to the Sessions Court; half the trial-court fee for the complainant to the High Court) and on a revision (one-tenth of the cheque amount, or ₹1,500 for the accused). The slabs were revised again by the Finance Act, 2025 - verify the current figure before relying on it.",
+        "akn": "state/kerala/akn/kerala-court-fees-suits-valuation-act-1959.akn.xml",
+        "pdf": "state/kerala/sources/kerala-court-fees-s138-2024.pdf",
+        "made_under": [
+          {
+            "rel": "enacted under competence",
+            "to": "constitution:art_246"
+          }
+        ],
+        "key": [
+          {
+            "eId": "art_21",
+            "label": "Court fee on a §138 complaint, appeal & revision",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The ad valorem court fee that prices every stage of a Kerala cheque case - complaint, appeal and revision - scaled to the dishonoured-cheque amount. This is the filing economics a complainant meets before the case even begins.",
+            "edges": [
+              {
+                "rel": "sets the fee to file a complaint under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "priced on the complaint taken under",
+                "to": "bnss:sec_223"
+              },
+              {
+                "rel": "sets the revision fee under",
+                "to": "bnss:sec_438"
               }
             ]
           }
@@ -212,8 +249,45 @@
     ]
   },
   "notifications": {
-    "summary": "Circulars, standard operating procedures and practice directions that shape how a Kerala s.138 case runs day to day.",
+    "summary": "Government orders, special-court notifications and standard operating procedures that shape how a §138 case is set up and run in Kerala - including the Kollam pilot court itself.",
     "items": [
+      {
+        "title": "Special §138 Court at Kollam - 24×7 ON Court, 2024",
+        "cite": "G.O.(Ms) 241/2024/Home · SRO 1047/2024",
+        "alias": "go241",
+        "note": "The notification that stood up the Kollam pilot court itself. Issued under the proviso to section 9(1) BNSS and in consultation with the High Court, it establishes a dedicated Special Judicial Magistrate of the First Class at Kollam to try only §138 cheque cases, running as India's first 24×7 digital 'ON Court', with effect from 20 November 2024 (earlier sanctioned by G.O. 21/2024/Home dated 19 October 2024). This is the on-the-ground court the whole Kerala layer describes.",
+        "akn": "state/kerala/akn/kerala-ni-act-special-court-kollam-2024.akn.xml",
+        "pdf": "state/kerala/sources/kerala-ni-act-special-court-kollam-2024.pdf",
+        "made_under": [
+          {
+            "rel": "established under",
+            "to": "bnss:sec_9"
+          }
+        ],
+        "key": [
+          {
+            "eId": "sec_1",
+            "label": "Establishment of the §138 Special Court (24×7 ON Court)",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Creates a dedicated JMFC at Kollam to try only §138 cases as a 24×7 digital court, w.e.f. 20 November 2024. It is the court that hears the cheque case the rest of this layer feeds into - a concrete implementation of the summary-trial and special-court push for expeditious §138 disposal.",
+            "edges": [
+              {
+                "rel": "established under",
+                "to": "bnss:sec_9"
+              },
+              {
+                "rel": "tries the offence under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "runs the summary trial under",
+                "to": "ni:sec_143"
+              }
+            ]
+          }
+        ]
+      },
       {
         "title": "SOP for e-Filing in the District Judiciary through the DCMS portal",
         "cite": "High Court of Kerala, 9 July 2025",
@@ -303,6 +377,30 @@
         "source": "Electronic Filing Rules (Kerala), 2021, Rule 11",
         "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
         "eId": "rule_11",
+        "group": "Filing & language"
+      },
+      {
+        "word": "24×7 ON Court",
+        "gloss": "Kollam's dedicated §138 court, running round-the-clock as India's first fully digital 'ON Court' - the concrete court the Kerala layer describes.",
+        "source": "G.O.(Ms) 241/2024/Home",
+        "akn": "state/kerala/akn/kerala-ni-act-special-court-kollam-2024.akn.xml",
+        "eId": "sec_1",
+        "group": "Court process & records"
+      },
+      {
+        "word": "Special Court (JMFC) for §138",
+        "gloss": "A Judicial Magistrate of the First Class court set up under the proviso to section 9(1) BNSS to try only cheque-bounce cases - Kerala's sits at Kollam.",
+        "source": "G.O.(Ms) 241/2024/Home",
+        "akn": "state/kerala/akn/kerala-ni-act-special-court-kollam-2024.akn.xml",
+        "eId": "sec_1",
+        "group": "Court process & records"
+      },
+      {
+        "word": "Court fee on a §138 complaint",
+        "gloss": "The ad valorem fee to file a cheque complaint in Kerala - ₹250 up to a ₹10,000 cheque, otherwise 5% of the cheque amount capped at ₹3 lakh (Article 21, Court Fees Act; revised by the Finance Act 2025).",
+        "source": "Kerala Court Fees Act, Article 21",
+        "akn": "state/kerala/akn/kerala-court-fees-suits-valuation-act-1959.akn.xml",
+        "eId": "art_21",
         "group": "Filing & language"
       }
     ]

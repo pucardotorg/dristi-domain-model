@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-kl/act/1960/10/!main"/>
+          <FRBRuri value="/akn/in-kl/act/1960/10"/>
+          <FRBRalias value="Kerala Court Fees and Suits Valuation Act, 1959 (section 138 fees, Article 21)" name="shortTitle"/>
+          <FRBRdate date="1960-01-01" name="generation"/>
+          <FRBRauthor href="#kerala-legislature"/>
+          <FRBRcountry value="in-kl"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Kerala Court Fees and Suits Valuation Act, 1959 (section 138 fees, Article 21)"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-kl/act/1960/10/eng@/!main"/>
+          <FRBRuri value="/akn/in-kl/act/1960/10/eng@"/>
+          <FRBRdate date="1960-01-01" name="generation"/>
+          <FRBRauthor href="#kerala-legislature"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-kl/act/1960/10/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in-kl/act/1960/10/eng@.akn"/>
+          <FRBRdate date="2026-07-25" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="kerala-legislature" href="/ontology/organization/in/kerala-legislature" showAs="Kerala Legislative Assembly"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Article 21 of Schedule II to the Kerala Court Fees and Suits Valuation Act, 1959 (Act 10 of 1960), as inserted by the Kerala Finance Act, 2024, with effect from 1 April 2024 (Kerala Finance Bill 2024, Chapter II, para 3). Sets the court fee on a section 138 complaint, appeal and revision. Note: the slabs were subsequently revised by the Kerala Finance Act, 2025 - verify the current schedule before relying on the figures.</p></note>
+      </notes>
+    </meta>
+    <preface><longTitle><p>KERALA COURT FEES AND SUITS VALUATION ACT, 1959 (SECTION 138 FEES, ARTICLE 21)</p></longTitle></preface>
+    <body>
+<article eId="art_21"><num>21.</num><heading>Court fees on complaints, appeals and revisions under section 138 of the Negotiable Instruments Act, 1881</heading><content><blockList eId="art_21__l1"><item eId="art_21__i1"><num>(a)</num><p>Application or petition containing a complaint or charge of an offence under section 138 of the Negotiable Instruments Act, 1881 (Central Act 26 of 1881)-</p><blockList eId="art_21__i1__l"><item eId="art_21__i1__i1"><num>(i)</num><p>if the amount of the dishonoured cheque involved in the complaint does not exceed ten thousand rupees - Two hundred and fifty rupees.</p></item><item eId="art_21__i1__i2"><num>(ii)</num><p>if the amount of the dishonoured cheque involved in the complaint exceeds ten thousand rupees - Five percent of the entire cheque amount, subject to a maximum of three lakh rupees.</p></item></blockList></item><item eId="art_21__i2"><num>(b)</num><p>Memorandum of appeal under section 138 of the Negotiable Instruments Act, 1881-</p><blockList eId="art_21__i2__l"><item eId="art_21__i2__i1"><num>(i)</num><p>where the appeal is filed by the accused before the Sessions Court - One thousand rupees.</p></item><item eId="art_21__i2__i2"><num>(ii)</num><p>where the appeal is filed by the complainant before the High Court - An amount equivalent to one half of the court fees paid in the trial court.</p></item></blockList></item><item eId="art_21__i3"><num>(c)</num><p>Revision petition presented to the High Court-</p><blockList eId="art_21__i3__l"><item eId="art_21__i3__i1"><num>(i)</num><p>filed by the complainant challenging insufficiency of sentence - One tenth of the cheque amount.</p></item><item eId="art_21__i3__i2"><num>(ii)</num><p>filed by the accused against conviction - One thousand and five hundred rupees.</p></item></blockList></item></blockList></content></article>
+    </body>
+  </act>
+</akomaNtoso>
