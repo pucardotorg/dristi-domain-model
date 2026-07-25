@@ -1362,12 +1362,13 @@ function buildNav(){
       <a data-view="law"><span class="ico">${ic('library')}</span> Acts &amp; provisions <span class="count">${isModelled()?PROVISIONS.length:'-'}</span></a>
       <a data-view="caselaw"><span class="ico">${ic('scale')}</span> Case law <span class="count">${isModelled()?(CASES.length||'-'):'-'}</span></a>
     </div>
-    <div class="state-layer">
+    <div class="nav-divider"></div>
+    <div class="state-layer nav-scroll">
       <div class="statedd-wrap">${stateInlineSelectHTML()}</div>
       <div class="state-layer-note">Everything below is specific to ${st.name}.</div>
       <div class="nav-group scoped">State objects</div>
       <div class="nav-scoped">
-        <div class="scoped-wrap ${currentView==='story'?'':'ov-collapsed'}" id="storyWrap">
+        <div class="scoped-wrap ov-collapsed" id="storyWrap">
           <a class="ov-toggle" data-view="story"><span class="ico">${ic('book-open')}</span> The story ${storyBadge()} <span class="nav-chev">${ic('chevron-down')}</span></a>
           <div class="nav-sub"><div class="nav-sub-inner">
             ${storySections().map(s=>`<a class="subnav" data-story-sec="${s.id}"><span class="ico">${ic('chevron-right')}</span> ${esc(s.label)}</a>`).join("")}
@@ -1399,6 +1400,7 @@ function buildNav(){
   const tb=$("#tbCase"); if(tb) tb.textContent=`${c.name} · ${c.act.split('·').pop().trim()}`;
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.onclick=()=>{
     const ovm=$("#ovMenu"); if(ovm) ovm.classList.remove("open");
+    const sw=$("#storyWrap"); if(sw) sw.classList.toggle("ov-collapsed", a.dataset.view!=="story"); // open only when The story itself is clicked
     go(a.dataset.view);
     setDrawer(false);
   });
@@ -1424,7 +1426,6 @@ function go(view){
   if(!V[view]) view="overview";
   currentView=view;
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
-  const sw=$("#storyWrap"); if(sw) sw.classList.toggle("ov-collapsed", view!=="story"); // open the story accordion only on the story page
   setMain(V[view]());
   if(history.replaceState) history.replaceState(null,"","#"+view);
 }
