@@ -317,6 +317,11 @@
   .case .clabel{font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); font-weight:700; margin-right:2px; align-self:center}
   .cchip{font-size:11.5px; font-family:var(--font-mono); padding:3px 9px; border-radius:7px; border:1px solid var(--line-2); background:var(--panel-2); color:var(--link); cursor:pointer}
   .cchip:hover{border-color:var(--brand); color:var(--brand-hi)}
+  /* hover-preview popover: peek a construed section in place, no navigation */
+  .provpop{position:fixed; z-index:80; max-width:430px; max-height:min(60vh,420px); overflow:auto; background:var(--panel); border:1px solid var(--line-2); border-radius:12px; box-shadow:var(--shadow-modal); padding:13px 15px; opacity:0; visibility:hidden; transform:translateY(4px); transition:opacity .12s ease, transform .12s ease; pointer-events:none}
+  .provpop.show{opacity:1; visibility:visible; transform:none; pointer-events:auto}
+  .provpop .statute{margin:0}
+  .provpop .view-full{margin-top:10px}
   .case .rels-c{margin-top:9px; font-size:12px; color:var(--ink-3)}
   .case .cite.neutral{color:var(--brand-hi); border:1px solid var(--line-2); border-radius:6px; padding:1px 7px; background:var(--panel-2)}
   .case .cactions{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:12px; padding-top:11px; border-top:1px solid var(--line)}

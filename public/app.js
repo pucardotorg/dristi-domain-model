@@ -799,12 +799,49 @@ function jumpToCase(id){
   setTimeout(()=>{ const c=document.getElementById("case-"+id); if(c){ c.scrollIntoView({block:"center"}); c.style.outline="2px solid var(--brand)"; c.style.outlineOffset="-1px"; setTimeout(()=>{c.style.outline="";},1800);} },70);
 }
 
+/* ---- provision hover-preview: peek a construed section without leaving the page ---- */
+let _pp=null, _ppTimer=null, _ppRef=null; const _ppCache={};
+function ppEl(){
+  if(!_pp){
+    _pp=document.createElement("div"); _pp.className="provpop";
+    _pp.addEventListener("mouseenter",()=>clearTimeout(_ppTimer));
+    _pp.addEventListener("mouseleave",hideProvPop);
+    document.body.appendChild(_pp);
+  }
+  return _pp;
+}
+function positionProvPop(chip){
+  const pop=_pp, r=chip.getBoundingClientRect();
+  const pw=Math.min(430, window.innerWidth-24); pop.style.width=pw+"px";
+  const ph=pop.offsetHeight;
+  let left=Math.min(r.left, window.innerWidth-12-pw); if(left<12) left=12;
+  let top=r.bottom+8; if(top+ph>window.innerHeight-12){ const up=r.top-8-ph; top=up>12?up:Math.max(12, window.innerHeight-12-ph); }
+  pop.style.left=left+"px"; pop.style.top=top+"px";
+}
+async function showProvPop(chip){
+  const ref=chip.dataset.ref; if(!ref) return;
+  const pop=ppEl(); clearTimeout(_ppTimer); _ppRef=ref;
+  pop.classList.add("show");
+  if(_ppCache[ref]){ pop.innerHTML=_ppCache[ref]; positionProvPop(chip); return; }
+  pop.innerHTML=`<div class="statute statute-mini"><div class="st-src"><span class="spinner" style="width:13px;height:13px;border-width:2px;margin:0"></span> loading the section…</div></div>`;
+  positionProvPop(chip);
+  try{ const d=await sectionByRef(ref); const html=statuteMarkup(ref,d,true); _ppCache[ref]=html; if(_ppRef===ref){ pop.innerHTML=html; positionProvPop(chip); } }
+  catch(e){ if(_ppRef===ref) pop.innerHTML=`<div class="statute statute-mini"><div class="st-src">couldn't load the section</div></div>`; }
+}
+function hideProvPop(){ clearTimeout(_ppTimer); _ppTimer=setTimeout(()=>{ if(_pp) _pp.classList.remove("show"); _ppRef=null; },140); }
+/* only on pointers that actually hover (skips touch, where the tap opens the modal) */
+if(window.matchMedia && window.matchMedia("(hover: hover)").matches){
+  document.addEventListener("mouseover",e=>{ const chip=e.target.closest && e.target.closest(".cchip"); if(chip && chip.dataset.ref){ clearTimeout(_ppTimer); _ppTimer=setTimeout(()=>showProvPop(chip),160); } });
+  document.addEventListener("mouseout",e=>{ const chip=e.target.closest && e.target.closest(".cchip"); if(chip){ hideProvPop(); } });
+  window.addEventListener("scroll",()=>{ if(_pp && _pp.classList.contains("show")) hideProvPop(); }, true);
+}
+
 V.caselaw=()=>{
   if(!isModelled()) return notModelled();
   const m=el("div"); m.appendChild(scopeBar());
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Case law</h1>
-    <p class="lede">The leading <strong>Supreme Court</strong> authority a ${caseById(activeCase).name.toLowerCase()} case is decided on - ${CASES.length} judgments, each pinned to the <strong>provisions it construes</strong> (by <strong>Article&nbsp;141</strong>, these bind every court). Filter by what they settle. Tap a section chip to jump to that provision.</p>`;
+    <p class="lede">The leading <strong>Supreme Court</strong> authority a ${caseById(activeCase).name.toLowerCase()} case is decided on - ${CASES.length} judgments, each pinned to the <strong>provisions it construes</strong> (by <strong>Article&nbsp;141</strong>, these bind every court). Filter by what they settle. Hover a section chip to preview the provision, or click to open its full text.</p>`;
   m.appendChild(head);
   if(!CASES.length){ m.appendChild(el("div","empty","No case-law dataset is linked from this profile.")); return m; }
   const controls=el("div","controls");
@@ -1323,7 +1360,7 @@ document.addEventListener("click",e=>{
   const b=e.target.closest(".view-full");
   if(b){ if(b.dataset.ref){const [a,eid]=b.dataset.ref.split(":"); openActModal(a,eid);} else if(b.dataset.act){ openActModal(b.dataset.act);} return; }
   if(e.target.closest("[data-close]")){ closeModal(); return; }
-  const chip=e.target.closest(".cchip"); if(chip && chip.dataset.ref){ jumpToProvision(chip.dataset.ref); return; }
+  const chip=e.target.closest(".cchip"); if(chip && chip.dataset.ref){ hideProvPop(); const [a,eid]=chip.dataset.ref.split(":"); if(SOURCES[a]) openActModal(a,eid); else jumpToProvision(chip.dataset.ref); return; }
   const ic=e.target.closest(".ic"); if(ic && ic.dataset.caseid){ jumpToCase(ic.dataset.caseid); return; }
   const rj=e.target.closest(".readjmt"); if(rj && rj.dataset.caseid){ openJudgmentModal(rj.dataset.caseid); return; }
   const dd=$("#casedd"); if(dd && !e.target.closest("#casedd")) dd.classList.remove("open");
