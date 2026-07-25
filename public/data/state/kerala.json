@@ -8,9 +8,23 @@
       {
         "title": "Kerala Police Act, 2011",
         "cite": "State Act · execution of process",
+        "alias": "kpa",
         "note": "A Kerala State Act - the police machinery a s.138 case relies on at the execution stage. A cheque-bounce case is a complaint case with no police investigation and no arrest at the outset; the police enter only when the court issues process, when the local Station House Officer executes a bailable or non-bailable warrant and serves court process. Converted from an OCR source, so verify against the official text before relying on it.",
         "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
-        "pdf": "state/kerala/sources/kerala-police-act-2011.pdf"
+        "pdf": "state/kerala/sources/kerala-police-act-2011.pdf",
+        "made_under": [
+          { "rel": "enacted under competence", "to": "constitution:art_246" }
+        ],
+        "key": [
+          {
+            "eId": "sec_4", "label": "Functions of the police", "tier": "procedure", "applies": "always",
+            "note": "The general duty of the police to serve court process and execute warrants - the point at which the police enter a s.138 case. There is no police investigation or arrest at the outset; they act only on the court's process once it issues.",
+            "edges": [
+              { "rel": "executes warrants under", "to": "bnss:sec_72" },
+              { "rel": "serves process issued under", "to": "bnss:sec_227" }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -20,23 +34,89 @@
       {
         "title": "Criminal Rules of Practice, Kerala, 1982",
         "cite": "State rules of practice",
-        "note": "The core state instrument for how a criminal court in Kerala signs, forms and serves process. Rules 7 to 14 cover summons to the accused and witnesses (police officers are summoned through their superior officer); Rule 13 sets the form; Rule 14 requires an English translation of process issued in Malayalam. Rules 72 to 73 define the court diary and proceedings paper, and the Rules carry the forms and mechanics for warrants and for proclamation and attachment.",
+        "alias": "crp",
+        "note": "The core state instrument for how a criminal court in Kerala signs, forms and serves process. Rules 7 to 14 cover summons to the accused and witnesses (police officers are summoned through their superior officer); Rule 13 sets the form; Rule 14 requires an English translation of process issued in Malayalam. Chapter III carries the absconding-accused track, and the Rules carry the forms and mechanics for warrants and for proclamation and attachment.",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
-        "pdf": "state/kerala/sources/criminal-rules-of-practice-kerala-1982.pdf"
+        "pdf": "state/kerala/sources/criminal-rules-of-practice-kerala-1982.pdf",
+        "made_under": [
+          { "rel": "made under", "to": "constitution:art_227" },
+          { "rel": "made under", "to": "crpc:sec_477" }
+        ],
+        "key": [
+          {
+            "eId": "rule_7", "label": "Signing & issue of summons", "tier": "procedure", "applies": "always",
+            "note": "Who signs the summons to the accused and witnesses, and in whose name - the local mechanics behind issuing process on a s.138 complaint.",
+            "edges": [
+              { "rel": "gives effect to", "to": "bnss:sec_227" },
+              { "rel": "operationalises service under", "to": "ni:sec_144" }
+            ]
+          },
+          {
+            "eId": "rule_13", "label": "Form of summons", "tier": "procedure", "applies": "always",
+            "note": "Prescribes the form the summons takes.",
+            "edges": [ { "rel": "gives form to", "to": "bnss:sec_63" } ]
+          },
+          {
+            "eId": "rule_14", "label": "Translation of process", "tier": "procedure", "applies": "always",
+            "note": "Process issued in Malayalam must carry an authorised English translation - the court-language rule biting on every summons and notice a s.138 case generates.",
+            "edges": [ { "rel": "conditions service under", "to": "bnss:sec_64" } ]
+          },
+          {
+            "eId": "rule_15", "label": "Absconding accused - proclamation & attachment", "tier": "procedure", "applies": "always",
+            "note": "The warrant/absconder track: what the court does when the accused does not answer summons, escalating to proclamation and attachment of property - the far end of the summons -> warrant ladder in a s.138 case.",
+            "edges": [
+              { "rel": "gives effect to", "to": "bnss:sec_84" },
+              { "rel": "gives effect to", "to": "bnss:sec_85" }
+            ]
+          }
+        ]
       },
       {
         "title": "Rules of the High Court of Kerala, 1971",
         "cite": "High Court rules",
+        "alias": "khcr",
         "note": "Govern the High Court's own side: appeals, revisions and criminal miscellaneous petitions, including quashing a s.138 complaint under s.482 CrPC / s.528 BNSS or a revision against conviction. A large share of Kerala s.138 litigation is the quashing and revision layer at the High Court.",
         "akn": "state/kerala/akn/rules-of-the-high-court-of-kerala-1971.akn.xml",
-        "pdf": "state/kerala/sources/rules-of-the-high-court-of-kerala-1971.pdf"
+        "pdf": "state/kerala/sources/rules-of-the-high-court-of-kerala-1971.pdf",
+        "made_under": [
+          { "rel": "made under", "to": "constitution:art_225" },
+          { "rel": "made under", "to": "constitution:art_227" }
+        ],
+        "key": [
+          {
+            "eId": "rule_44", "label": "Revision petitions", "tier": "procedure", "applies": "always",
+            "note": "How a revision reaches the High Court - the route for a s.138 conviction or acquittal to be re-examined.",
+            "edges": [ { "rel": "gives effect to", "to": "bnss:sec_438" } ]
+          },
+          {
+            "eId": "rule_232", "label": "Procedure in criminal matters", "tier": "procedure", "applies": "always",
+            "note": "The High Court's criminal-side procedure, including the quashing petitions under which many s.138 complaints are challenged.",
+            "edges": [ { "rel": "invokes", "to": "bnss:sec_528" } ]
+          }
+        ]
       },
       {
         "title": "Electronic Filing Rules for Courts (Kerala), 2021",
         "cite": "E-filing rules",
+        "alias": "kefr",
         "note": "The enabling rules for e-filing a complaint in Kerala courts. These govern how a s.138 complaint is filed, not how summons or warrants are served electronically.",
         "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
-        "pdf": "state/kerala/sources/electronic-filing-rules-for-courts-kerala-2021.pdf"
+        "pdf": "state/kerala/sources/electronic-filing-rules-for-courts-kerala-2021.pdf",
+        "made_under": [
+          { "rel": "made under", "to": "constitution:art_225" },
+          { "rel": "made under", "to": "constitution:art_227" }
+        ],
+        "key": [
+          {
+            "eId": "rule_1", "label": "Scope & applicability", "tier": "procedure", "applies": "always",
+            "note": "Which courts and filings the e-filing regime covers - the gateway a s.138 complaint passes through when filed electronically."
+          },
+          {
+            "eId": "rule_11", "label": "Service through electronic means", "tier": "procedure", "applies": "always",
+            "note": "When service by electronic means is permitted under the e-filing regime - the state's answer sits alongside the statutory modes of serving the demand notice and summons.",
+            "edges": [ { "rel": "sits alongside", "to": "ni:sec_144" } ]
+          }
+        ]
       }
     ]
   },

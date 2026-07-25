@@ -764,6 +764,49 @@ function stateRuleRow(b){
   };
   return row;
 }
+/* one curated s.138-relevant rule/section: role, applies, note, verbatim text,
+   and typed edges that link this state rule into the national core it operationalises. */
+function getStateSection(aknPath, eId){
+  return getStateDoc(aknPath).then(doc=>{ const n=doc.querySelector('[eId="'+eId+'"]'); return n?sectionData(n):null; });
+}
+function stEidNum(eId){ return String(eId||'').replace(/^rule_/,'').replace(/^sec_/,'').replace(/^art_/,'Art. ')+'.'; }
+function stApplies(a){ a=a||'always'; return a==='always'?"at any time":("to causes of action "+a.replace("pre-2024-07-01","before 1 July 2024").replace("post-2024-07-01","on or after 1 July 2024")); }
+function stEdgeRow(rel,to){
+  const lbl=(to && SOURCES[to.split(":")[0]])?refLabel(to):esc(to);
+  return `<div class="rel"><span class="r">${esc(rel)}</span> → <a class="stedge" data-ref="${esc(to)}">${lbl}</a></div>`;
+}
+function stEdgesBlock(list,label){
+  if(!list||!list.length) return "";
+  return `<div class="rels">${label?`<div class="rel-lbl">${esc(label)}</div>`:""}${list.map(e=>stEdgeRow(e.rel||"related",e.to)).join("")}</div>`;
+}
+function stateKeyRow(it,k){
+  const row=el("div","prov");
+  row.innerHTML=`
+    <div class="prov-head">
+      <span class="ref">${esc(stEidNum(k.eId))}</span>
+      <span class="rt">${esc(k.label||'')}</span>
+      <span class="hbadges"><span class="badge b-state">Kerala layer</span> ${eraBadge(k.applies||'always')}</span>
+      <span class="caret">›</span>
+    </div>
+    <div class="prov-body">
+      ${k.note?`<div class="brief"><span class="bl">In brief · PUCAR summary</span>${esc(k.note)}</div>`:''}
+      <div class="ksec"></div>
+      <div class="kv" style="margin-top:12px"><b>Governs</b> ${esc(it.cite||'state procedure')} · role: ${esc(k.tier||'procedure')}</div>
+      <div class="kv"><b>Applies</b> ${stApplies(k.applies)}</div>
+      ${stEdgesBlock(k.edges,"Connects to the national core")}
+    </div>`;
+  const ks=row.querySelector(".ksec"); let filled=false;
+  row.querySelector(".prov-head").onclick=()=>{
+    row.classList.toggle("open");
+    if(row.classList.contains("open") && !filled && it.akn){ filled=true;
+      ks.innerHTML=`<div class="statute"><div class="st-src"><span class="spinner" style="width:13px;height:13px;border-width:2px;margin:0"></span> loading the text…</div></div>`;
+      getStateSection(it.akn,k.eId).then(d=>{
+        ks.innerHTML = d ? `<div class="statute">${(d.num||d.heading)?`<div class="st-h"><span class="st-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`:''}${renderBody(d.body,"st")}</div>` : `<div class="statute"><div class="st-src">text not found for ${esc(k.eId)}</div></div>`;
+      }).catch(()=>{ ks.innerHTML=`<div class="statute"><div class="st-src">couldn't load the text - served over http?</div></div>`; });
+    }
+  };
+  return row;
+}
 function stateRuleGroup(it){
   const grp=el("div","actgrp");
   const yr=(it.title.match(/\d{4}/)||[''])[0];
@@ -779,25 +822,31 @@ function stateRuleGroup(it){
     <div class="actgrp-body"></div>`;
   const body=grp.querySelector(".actgrp-body"), countEl=grp.querySelector(".ag-count");
   if(it.akn) getStateDoc(it.akn).then(doc=>{ countEl.textContent=actBlocks(doc).filter(b=>b.t==="sec").length; }).catch(()=>{ countEl.textContent='?'; });
-  // actions + PUCAR note (visible when the group is open)
   const actions=el("div"); actions.style.cssText="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2px";
   if(it.akn){ const ob=el("button","view-full ag-openfull"); ob.innerHTML=`${ic('book-open')}&nbsp; Open the whole document`; ob.onclick=e=>{ e.stopPropagation(); openStateDocModal(it.akn,it.title,it.cite||'',it.pdf?(DATA_BASE+it.pdf):''); }; actions.appendChild(ob); }
   if(it.pdf){ const pb=el("button","pdf-orig"); pb.dataset.pdf=DATA_BASE+it.pdf; pb.dataset.pdftitle=it.title; pb.innerHTML=`${ic('file')} Original PDF`; actions.appendChild(pb); }
   body.appendChild(actions);
   if(it.note) body.appendChild(el("div","brief",`<span class="bl">In brief · PUCAR summary</span>${it.note}`));
-  const rulesHost=el("div"); rulesHost.style.marginTop="10px"; body.appendChild(rulesHost);
-  let loaded=false;
-  grp.querySelector(".actgrp-head").onclick=()=>{
-    grp.classList.toggle("open");
-    if(grp.classList.contains("open") && !loaded && it.akn){ loaded=true;
-      const slot=el("div","st-src"); slot.style.padding="10px 2px"; slot.innerHTML=`<span class="spinner" style="width:14px;height:14px;border-width:2px;margin:0"></span> loading the ${esc(it.cite||'rules')}…`;
-      rulesHost.appendChild(slot);
-      getStateDoc(it.akn).then(doc=>{
-        slot.remove();
-        actBlocks(doc).forEach(b=>{ rulesHost.appendChild(b.t==="chap"?stateChapHead(b.label):stateRuleRow(b)); });
-      }).catch(()=>{ slot.innerHTML=`<span class="tiny">couldn't load - the files load over http (see the note under the sidebar).</span>`; });
-    }
-  };
+  if(it.made_under && it.made_under.length){ const mu=el("div","rels"); mu.style.marginTop="10px"; mu.innerHTML=`<div class="rel-lbl">Made under</div>`+it.made_under.map(e=>stEdgeRow(e.rel||"made under",e.to)).join(""); body.appendChild(mu); }
+  if(it.key && it.key.length){
+    const kh=el("div"); kh.textContent=`Key rules for §138`; kh.style.cssText="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:700;margin:18px 0 8px";
+    body.appendChild(kh);
+    it.key.forEach(k=> body.appendChild(stateKeyRow(it,k)));
+  }
+  if(it.akn){
+    const bw=el("div"); bw.style.marginTop="14px";
+    const bb=el("button","view-full"); bb.innerHTML=`${ic('library')}&nbsp; Browse the full text`;
+    const tree=el("div"); tree.style.cssText="display:none;margin-top:8px"; let tl=false;
+    bb.onclick=e=>{ e.stopPropagation();
+      const showing=tree.style.display!=="none"; tree.style.display=showing?"none":"block"; bb.classList.toggle("on",!showing);
+      if(!showing && !tl){ tl=true;
+        const slot=el("div","st-src"); slot.style.padding="8px 2px"; slot.innerHTML=`<span class="spinner" style="width:14px;height:14px;border-width:2px;margin:0"></span> loading all rules…`; tree.appendChild(slot);
+        getStateDoc(it.akn).then(doc=>{ slot.remove(); actBlocks(doc).forEach(b=> tree.appendChild(b.t==="chap"?stateChapHead(b.label):stateRuleRow(b))); }).catch(()=>{ slot.innerHTML=`<span class="tiny">couldn't load - served over http?</span>`; });
+      }
+    };
+    bw.appendChild(bb); bw.appendChild(tree); body.appendChild(bw);
+  }
+  grp.querySelector(".actgrp-head").onclick=()=>grp.classList.toggle("open");
   return grp;
 }
 function stateTreeView(catKey, title){ return function(){
@@ -995,6 +1044,8 @@ document.addEventListener("click",e=>{
   if(pv && pv.dataset.pdf){ if(window.openPdfModal) openPdfModal(pv.dataset.pdf, pv.dataset.pdftitle||"Original document"); else window.open(pv.dataset.pdf,"_blank"); return; }
   const sd=e.target.closest(".stdoc");
   if(sd && sd.dataset.akn){ openStateDocModal(sd.dataset.akn, sd.dataset.title, sd.dataset.sub, sd.dataset.pdf||""); return; }
+  const se=e.target.closest(".stedge");
+  if(se && se.dataset.ref){ e.stopPropagation(); const [a,eid]=se.dataset.ref.split(":"); if(SOURCES[a]) openActModal(a,eid); return; }
   const b=e.target.closest(".view-full");
   if(b){ if(b.dataset.ref){const [a,eid]=b.dataset.ref.split(":"); openActModal(a,eid);} else if(b.dataset.act){ openActModal(b.dataset.act);} return; }
   if(e.target.closest("[data-close]")){ closeModal(); return; }
