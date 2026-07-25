@@ -461,10 +461,10 @@
 @media(max-width:880px){ .story-sec-h{scroll-margin-top:64px} }
 /* the roles: who does what, and the provision each is drawn from */
 .role-block{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px}
-.role-card{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 16px}
+.role-card{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 16px; display:flex; flex-direction:column}
 .role-name{font-size:14.5px; font-weight:700; color:var(--ink); letter-spacing:-.01em; margin-bottom:6px}
-.role-who{font-size:13px; color:var(--ink-2); line-height:1.55; margin-bottom:11px}
-.role-src{display:flex; flex-wrap:wrap; align-items:center; gap:7px}
+.role-who{font-size:13px; color:var(--ink-2); line-height:1.55; margin-bottom:14px}
+.role-src{display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:auto}
 .role-src-l{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
 .role-basis{font-size:12px; font-style:italic; color:var(--ink-3); line-height:1.5}
 .story-sec-h>span:first-child{display:block; font-size:18px; font-weight:700; letter-spacing:-.01em; color:var(--ink)}
