@@ -592,11 +592,11 @@ V.story=()=>{
   const sel=m.querySelector(".state-inline"); if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
   if(!S){ m.appendChild(el("div","empty",`<b>${esc(stName)} - story not modelled yet.</b><br><span class="tiny">The process, fees, courts and caseload for this state are planned - the same shape as ${esc(stName)==='Kerala'?'this':'Kerala'}.</span>`)); return m; }
   const amap=stateAliasMap();
-  const secH=(t,sub)=>el("div","story-sec-h",`<span>${esc(t)}</span>${sub?`<span class="ssh-sub">${esc(sub)}</span>`:''}`);
+  const secH=(id,t,sub)=>{ const d=el("div","story-sec-h",`<span>${esc(t)}</span>${sub?`<span class="ssh-sub">${esc(sub)}</span>`:''}`); d.id="story-"+id; return d; };
 
   // 1 - PROCESS (a timeline: one marker per stage, with prescribed vs actual timings)
   if(S.process){
-    m.appendChild(secH("The process - filing to disposal", S.process.summary));
+    m.appendChild(secH("process","The process - filing to disposal", S.process.summary));
     const tl=el("div","timeline");
     (S.process.stages||[]).forEach((st,i)=>{
       const raw=String(st.stage||"");
@@ -622,9 +622,24 @@ V.story=()=>{
     m.appendChild(tl);
     if(S.process.timing_note) m.appendChild(el("div","story-note story-note-loose",esc(S.process.timing_note)));
   }
-  // 2 - FEES
+  // 2 - ROLES (who does what, and where each role is drawn from)
+  if(S.roles){
+    m.appendChild(secH("roles","The roles", S.roles.summary));
+    const rb=el("div","role-block");
+    (S.roles.items||[]).forEach(r=>{
+      const src = (r.cite && r.cite.length) ? citeRow(r.cite,amap)
+                : (r.basis?`<span class="role-basis">${esc(r.basis)}</span>`:"");
+      const card=el("div","role-card");
+      card.innerHTML=`<div class="role-name">${esc(r.role)}</div>
+        <div class="role-who">${esc(r.who)}</div>
+        ${src?`<div class="role-src"><span class="role-src-l">From</span> ${src}</div>`:""}`;
+      rb.appendChild(card);
+    });
+    m.appendChild(rb);
+  }
+  // 3 - FEES
   if(S.fees){
-    m.appendChild(secH("The fees", S.fees.summary));
+    m.appendChild(secH("fees","The fees", S.fees.summary));
     const fb=el("div","fee-block");
     if(S.fees.cite) fb.appendChild(el("div","fee-cite",`Source: ${citeChip(S.fees.cite,amap)}`));
     (S.fees.items||[]).forEach(it=>{
@@ -633,9 +648,9 @@ V.story=()=>{
     if(S.fees.note) fb.appendChild(el("div","story-note",esc(S.fees.note)));
     m.appendChild(fb);
   }
-  // 3 - COURTS
+  // 4 - COURTS
   if(S.courts){
-    m.appendChild(secH("The courts", S.courts.summary));
+    m.appendChild(secH("courts","The courts", S.courts.summary));
     const cb=el("div","court-block");
     (S.courts.designated||[]).forEach(ct=>{
       const card=el("div","court-card");
@@ -647,9 +662,9 @@ V.story=()=>{
     });
     m.appendChild(cb);
   }
-  // 4 - CASELOAD (placeholder)
+  // 5 - CASELOAD (placeholder)
   if(S.caseload){
-    m.appendChild(secH("Caseload - by court", S.caseload.summary));
+    m.appendChild(secH("caseload","Caseload - by court", S.caseload.summary));
     const cols=S.caseload.columns||["Court","Location","Pending","Disposed"];
     let html=`<table class="caseload"><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>`;
     (S.caseload.rows||[]).forEach(r=>{
@@ -1316,6 +1331,17 @@ function stateBadge(cat){
 }
 /* story nav badge: nothing when modelled, "soon" when this state has no story block */
 function storyBadge(){ return ((STATE_DATA||{}).story) ? '' : `<span class="count soon">soon</span>`; }
+/* the section headings the story page renders, in order - drives the nav accordion */
+function storySections(){
+  const S=(STATE_DATA||{}).story; if(!S) return [];
+  return [["process","The process"],["roles","The roles"],["fees","The fees"],["courts","The courts"],["caseload","Caseload"]]
+    .filter(([id])=>S[id]).map(([id,label])=>({id,label}));
+}
+function goStorySection(id){
+  const scroll=()=>{ const t=document.getElementById("story-"+id); if(t){ const y=t.getBoundingClientRect().top+window.scrollY-16; window.scrollTo({top:Math.max(0,y), behavior:"smooth"}); t.classList.add("sec-flash"); setTimeout(()=>t.classList.remove("sec-flash"),1100); } };
+  if(currentView!=="story"){ go("story"); setTimeout(scroll,110); }   // render first, then scroll
+  else { const sw=$("#storyWrap"); if(sw) sw.classList.remove("ov-collapsed"); scroll(); }  // already here: just scroll
+}
 function buildNav(){
   const c=caseById(activeCase);
   const nav=$("#nav");
@@ -1341,7 +1367,12 @@ function buildNav(){
       <div class="state-layer-note">Everything below is specific to ${st.name}.</div>
       <div class="nav-group scoped">State objects</div>
       <div class="nav-scoped">
-        <a data-view="story"><span class="ico">${ic('book-open')}</span> The story ${storyBadge()}</a>
+        <div class="scoped-wrap ${currentView==='story'?'':'ov-collapsed'}" id="storyWrap">
+          <a class="ov-toggle" data-view="story"><span class="ico">${ic('book-open')}</span> The story ${storyBadge()} <span class="nav-chev">${ic('chevron-down')}</span></a>
+          <div class="nav-sub"><div class="nav-sub-inner">
+            ${storySections().map(s=>`<a class="subnav" data-story-sec="${s.id}"><span class="ico">${ic('chevron-right')}</span> ${esc(s.label)}</a>`).join("")}
+          </div></div>
+        </div>
         <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> Acts &amp; Provisions ${stateBadge('amendments')}</a>
         <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules ${stateBadge('rules')}</a>
         <a data-view="notifications"><span class="ico">${ic('bell')}</span> Notifications ${stateBadge('notifications')}</a>
@@ -1371,6 +1402,10 @@ function buildNav(){
     go(a.dataset.view);
     setDrawer(false);
   });
+  // story accordion: the chevron toggles it in place; the section links scroll to a heading
+  const schev=nav.querySelector("#storyWrap .ov-toggle .nav-chev");
+  if(schev) schev.onclick=e=>{ e.stopPropagation(); e.preventDefault(); $("#storyWrap").classList.toggle("ov-collapsed"); };
+  nav.querySelectorAll("#storyWrap .subnav[data-story-sec]").forEach(a=>a.onclick=e=>{ e.stopPropagation(); goStorySection(a.dataset.storySec); setDrawer(false); });
   const dd=$("#casedd",nav), btn=$("#caseddBtn",nav);
   const ovt=$("#ovTrigger");
   if(btn) btn.onclick=e=>{ e.stopPropagation(); dd.classList.toggle("open"); };
@@ -1389,6 +1424,7 @@ function go(view){
   if(!V[view]) view="overview";
   currentView=view;
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
+  const sw=$("#storyWrap"); if(sw) sw.classList.toggle("ov-collapsed", view!=="story"); // open the story accordion only on the story page
   setMain(V[view]());
   if(history.replaceState) history.replaceState(null,"","#"+view);
 }

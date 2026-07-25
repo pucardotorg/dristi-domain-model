@@ -817,6 +817,105 @@
         }
       ],
       "note": "Placeholder table - the court list and case counts will be populated later."
+    },
+    "roles": {
+      "summary": "Who does what in a §138 case - the parties, their lawyers, the magistrate, and the court and police staff - and the provision each role is drawn from. Click a citation to read the source.",
+      "items": [
+        {
+          "role": "Complainant",
+          "who": "The payee or the holder in due course of the dishonoured cheque. Only this person can set a §138 case going, by filing the complaint in their own name.",
+          "cite": [
+            {
+              "l": "NI §142",
+              "n": "ni:sec_142"
+            },
+            {
+              "l": "NI §138",
+              "n": "ni:sec_138"
+            }
+          ]
+        },
+        {
+          "role": "Accused",
+          "who": "The drawer of the cheque, prosecuted for the dishonour. Where the drawer is a company, the company and every person who was in charge of and responsible to it.",
+          "cite": [
+            {
+              "l": "NI §138",
+              "n": "ni:sec_138"
+            },
+            {
+              "l": "NI §141",
+              "n": "ni:sec_141"
+            }
+          ]
+        },
+        {
+          "role": "Advocate",
+          "who": "The legal practitioner who appears for the complainant or the accused. The right to appear flows from enrolment under the Advocates Act.",
+          "cite": [
+            {
+              "l": "Advocates Act, 1961"
+            }
+          ]
+        },
+        {
+          "role": "Advocate's clerk",
+          "who": "Assists the advocate with filing, inspection of records and following the matter through the registry. A recognised court-precinct role rather than a statutory office.",
+          "basis": "Court-precinct and registry practice, governed by the High Court's rules rather than a provision of the substantive law."
+        },
+        {
+          "role": "Magistrate (JMFC)",
+          "who": "The Judicial Magistrate of the First Class who takes cognizance of the complaint, tries it summarily and passes judgment. In Kerala a §138 case may be assigned to the designated Special Court.",
+          "cite": [
+            {
+              "l": "NI §142",
+              "n": "ni:sec_142"
+            },
+            {
+              "l": "BNSS §223",
+              "n": "bnss:sec_223"
+            }
+          ]
+        },
+        {
+          "role": "Chief Ministerial Officer",
+          "who": "The court's senior ministerial officer who signs and issues the summons and other process 'by order of the Court'.",
+          "cite": [
+            {
+              "l": "CRP r.7",
+              "s": "crp",
+              "e": "rule_7"
+            }
+          ]
+        },
+        {
+          "role": "Ministerial / bench staff",
+          "who": "Keep the court diary and the proceedings paper, and maintain the record of each hearing.",
+          "cite": [
+            {
+              "l": "CRP r.72",
+              "s": "crp",
+              "e": "rule_72"
+            },
+            {
+              "l": "CRP r.73",
+              "s": "crp",
+              "e": "rule_73"
+            }
+          ]
+        },
+        {
+          "role": "Station House Officer",
+          "who": "The local police officer who executes warrants and serves the process the court issues, as part of the statutory functions of the police.",
+          "cite": [
+            {
+              "l": "Kerala Police Act §4",
+              "s": "kpa",
+              "e": "sec_4"
+            }
+          ]
+        }
+      ]
     }
   }
 }
