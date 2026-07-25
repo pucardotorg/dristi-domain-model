@@ -573,11 +573,12 @@ V.story=()=>{
       let html=`<div class="tl-marker">${esc(num)}</div><div class="tl-content"><div class="tl-stage-title">${esc(title)}</div>`;
       const t=st.timing;
       if(t){
-        html+=`<div class="tl-timing">
-          <div class="tl-tcell tl-presc"><div class="tl-tlabel">Prescribed</div><div class="tl-tval">${t.prescribed?esc(t.prescribed):"No fixed limit"}</div></div>
-          <div class="tl-tcell tl-reg"><div class="tl-tlabel">Regular court</div><div class="tl-tval">${esc(t.regular||"-")}</div></div>
-          <div class="tl-tcell tl-on"><div class="tl-tlabel">ON Court</div><div class="tl-tval">${esc(t.oncourt||"-")}</div></div>
-        </div>`;
+        const tv=(cls,label,val)=>`<span class="tl-t ${cls}"><span class="tl-tlabel">${label}</span> <span class="tl-tval">${val}</span></span>`;
+        html+=`<div class="tl-timing"><span class="tl-clock">${ic('clock')}</span>`
+          +tv("tl-presc","Prescribed", t.prescribed?esc(t.prescribed):"No fixed limit")
+          +tv("tl-reg","Regular court", esc(t.regular||"-"))
+          +tv("tl-on","ON Court", esc(t.oncourt||"-"))
+          +`</div>`;
       }
       html+=`<div class="tl-steps">`;
       (st.steps||[]).forEach(sp=>{ html+=`<div class="pstep"><div class="pstep-t">${esc(sp.t)}</div>${citeRow(sp.c,amap)}</div>`; });
