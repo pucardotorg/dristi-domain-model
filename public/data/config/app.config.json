@@ -84,6 +84,14 @@
       "label": "Procedure",
       "blurb": "how the case is taken up, tried, appealed"
     },
+    "representation": {
+      "label": "Representation",
+      "blurb": "who may appear and conduct the case"
+    },
+    "policing": {
+      "label": "Policing",
+      "blurb": "execution of the court's process on the ground"
+    },
     "penal": {
       "label": "Penal",
       "blurb": "the general criminal code behind it"

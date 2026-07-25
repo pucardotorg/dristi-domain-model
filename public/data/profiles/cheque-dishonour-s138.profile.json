@@ -124,6 +124,20 @@
       "domain": "constitutional",
       "status": "in force",
       "file": "acts/akn/constitution-of-india.akn.xml"
+    },
+    "advocates": {
+      "uri": "/akn/in/act/1961/25",
+      "title": "Advocates Act, 1961",
+      "domain": "representation",
+      "status": "in force",
+      "file": "acts/akn/advocates-act-1961.akn.xml"
+    },
+    "police1861": {
+      "uri": "/akn/in/act/1861/5",
+      "title": "Police Act, 1861",
+      "domain": "policing",
+      "status": "in force",
+      "file": "acts/akn/police-act-1861.akn.xml"
     }
   },
   "act_alias_map": [
@@ -850,6 +864,86 @@
       "role": "equality before law",
       "applies": "always",
       "note": "Frames challenges to arbitrary procedure and supports the 'regulatory / compensatory offence' characterisation of s.138."
+    },
+    {
+      "ref": "advocates:sec_29",
+      "act": "advocates",
+      "eId": "sec_29",
+      "file": "advocates-act-1961.akn.xml",
+      "tier": "supporting",
+      "role": "who may practise law",
+      "applies": "always",
+      "note": "Only one class of persons may practise the profession of law - advocates. The complainant and the accused in a s.138 case are represented by advocates enrolled under this Act."
+    },
+    {
+      "ref": "advocates:sec_30",
+      "act": "advocates",
+      "eId": "sec_30",
+      "file": "advocates-act-1961.akn.xml",
+      "tier": "supporting",
+      "role": "advocate's right to appear",
+      "applies": "always",
+      "note": "Every enrolled advocate's right, as of right, to practise in all courts - including the Magistrate trying a s.138 complaint. This is the source of the Advocate role."
+    },
+    {
+      "ref": "advocates:sec_32",
+      "act": "advocates",
+      "eId": "sec_32",
+      "file": "advocates-act-1961.akn.xml",
+      "tier": "supporting",
+      "role": "appearance by permission",
+      "applies": "always",
+      "note": "The court may permit a person who is not an advocate to appear in a particular case - the basis on which a party in person, or a duly authorised agent, is heard in a s.138 matter."
+    },
+    {
+      "ref": "advocates:sec_35",
+      "act": "advocates",
+      "eId": "sec_35",
+      "file": "advocates-act-1961.akn.xml",
+      "tier": "supporting",
+      "role": "advocate misconduct",
+      "applies": "always",
+      "note": "Professional-misconduct control over the advocate appearing in the case, exercised by the State Bar Council on a complaint."
+    },
+    {
+      "ref": "police1861:sec_23",
+      "act": "police1861",
+      "eId": "sec_23",
+      "file": "police-act-1861.akn.xml",
+      "tier": "procedure",
+      "role": "execution of warrants & process",
+      "applies": "always",
+      "note": "The police officer's duty to promptly obey and execute all orders and warrants lawfully issued by a competent authority and to apprehend persons - what the police act under when a s.138 court issues summons or warrants for a non-appearing accused. The Kerala Police Act operationalises this at the state level."
+    },
+    {
+      "ref": "police1861:sec_29",
+      "act": "police1861",
+      "eId": "sec_29",
+      "file": "police-act-1861.akn.xml",
+      "tier": "sentencing",
+      "role": "penalty for neglect of duty",
+      "applies": "always",
+      "note": "Penalty on a police officer who neglects or wilfully breaches a lawful order made by a competent authority - the accountability behind executing the court's process."
+    },
+    {
+      "ref": "police1861:sec_43",
+      "act": "police1861",
+      "eId": "sec_43",
+      "file": "police-act-1861.akn.xml",
+      "tier": "procedure",
+      "role": "protection for acts under warrant",
+      "applies": "always",
+      "note": "An officer sued for an act done under a Magistrate's warrant may plead the warrant and is entitled to judgment notwithstanding any defect of jurisdiction - protection for the officer who executes the court's process."
+    },
+    {
+      "ref": "police1861:sec_44",
+      "act": "police1861",
+      "eId": "sec_44",
+      "file": "police-act-1861.akn.xml",
+      "tier": "evidence",
+      "role": "station-house diary",
+      "applies": "always",
+      "note": "The general diary the station-house officer must keep - complaints and charges, persons arrested, complainants, offences and the witnesses examined - open to inspection by the Magistrate of the district."
     }
   ],
   "terms": {

@@ -913,7 +913,12 @@
           "who": "The legal practitioner who appears for the complainant or the accused. The right to appear flows from enrolment under the Advocates Act.",
           "cite": [
             {
-              "l": "Advocates Act, 1961"
+              "l": "Advocates Act §30",
+              "n": "advocates:sec_30"
+            },
+            {
+              "l": "Advocates Act §29",
+              "n": "advocates:sec_29"
             }
           ]
         },
@@ -1008,6 +1013,10 @@
               "l": "Kerala Police Act §4",
               "s": "kpa",
               "e": "sec_4"
+            },
+            {
+              "l": "Police Act §23",
+              "n": "police1861:sec_23"
             }
           ]
         }
