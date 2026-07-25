@@ -1364,9 +1364,7 @@ function buildNav(){
     </div>
     <div class="nav-divider"></div>
     <div class="state-layer nav-scroll">
-      <div class="statedd-wrap">${stateInlineSelectHTML()}</div>
-      <div class="state-layer-note">Everything below is specific to ${st.name}.</div>
-      <div class="nav-group scoped">State objects</div>
+      <div class="statedd-wrap nav-group">${stateInlineSelectHTML()}</div>
       <div class="nav-scoped">
         <div class="scoped-wrap ov-collapsed" id="storyWrap">
           <a class="ov-toggle" data-view="story"><span class="ico">${ic('book-open')}</span> The story ${storyBadge()} <span class="nav-chev">${ic('chevron-down')}</span></a>
