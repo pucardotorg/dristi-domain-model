@@ -14,7 +14,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import ReactFlow, {
   Background, Controls, MiniMap, Handle, Position, MarkerType,
-  getSmoothStepPath, EdgeLabelRenderer
+  getBezierPath, EdgeLabelRenderer
 } from "https://esm.sh/reactflow@11.11.4?external=react,react-dom";
 
 const h = React.createElement;
@@ -41,11 +41,12 @@ const nodeTypes = { card: CardNode };
 
 /* custom edge: a subtle base line, two dots flowing along it, and a pill label */
 function FlowEdge(props){
-  const { id, sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, markerEnd, label } = props;
-  const [path, labelX, labelY] = getSmoothStepPath({
-    sourceX, sourceY, sourcePosition, targetX, targetY, targetPosition, borderRadius: 16
+  const { id, sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, markerEnd, label, data } = props;
+  const [path, labelX, labelY] = getBezierPath({
+    sourceX, sourceY, sourcePosition, targetX, targetY, targetPosition, curvature: 0.32
   });
   const pid = "fp_" + String(id).replace(/[^a-zA-Z0-9]/g, "_");
+  const clickable = data && typeof data.open === "function";
   return h(React.Fragment, null,
     h("path", { id: pid, d: path, className: "rf-edge-line", markerEnd }),
     h("circle", { className: "rf-flow-dot", r: 2.7 },
@@ -56,8 +57,13 @@ function FlowEdge(props){
         h("mpath", { href: "#" + pid }))),
     label ? h(EdgeLabelRenderer, null,
       h("div", {
-        className: "rf-elabel",
-        style: { transform: `translate(-50%,-50%) translate(${labelX}px,${labelY}px)` }
+        className: "rf-elabel" + (clickable ? " rf-elabel-click" : ""),
+        title: clickable ? "Open the linked provision" : "",
+        onClick: clickable ? (ev) => { ev.stopPropagation(); data.open(); } : undefined,
+        style: {
+          transform: `translate(-50%,-50%) translate(${labelX}px,${labelY}px)`,
+          pointerEvents: clickable ? "all" : "none"
+        }
       }, label)
     ) : null
   );
@@ -86,7 +92,9 @@ export function mountFlow(container, model){
       defaultEdges: edges,
       nodeTypes, edgeTypes,
       fitView: true,
-      fitViewOptions: { padding: 0.16 },
+      // clamp the initial fit so it starts zoomed in a little (draggable), while
+      // still letting the user zoom right out to 0.12 by hand.
+      fitViewOptions: { padding: 0.1, minZoom: 0.62, maxZoom: 0.82 },
       minZoom: 0.12, maxZoom: 2,
       nodesDraggable: true,
       nodesConnectable: false,
