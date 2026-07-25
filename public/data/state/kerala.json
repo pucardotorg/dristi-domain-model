@@ -836,6 +836,16 @@
           ]
         },
         {
+          "role": "Power-of-attorney holder",
+          "who": "Where duly authorised and personally aware of the transaction, may file the complaint and depose on the complainant's behalf - a point the Supreme Court has settled for §138 cases. Stands in the payee's place, not as a separate party.",
+          "cite": [
+            {
+              "l": "NI §142",
+              "n": "ni:sec_142"
+            }
+          ]
+        },
+        {
           "role": "Accused",
           "who": "The drawer of the cheque, prosecuted for the dishonour. Where the drawer is a company, the company and every person who was in charge of and responsible to it.",
           "cite": [
@@ -846,6 +856,55 @@
             {
               "l": "NI §141",
               "n": "ni:sec_141"
+            }
+          ]
+        },
+        {
+          "role": "Surety",
+          "who": "Stands surety for the accused's release on bail, undertaking by bond to secure their appearance. The court tests the surety's sufficiency before accepting the bond.",
+          "cite": [
+            {
+              "l": "CRP r.122",
+              "s": "crp",
+              "e": "rule_122"
+            },
+            {
+              "l": "CRP r.124",
+              "s": "crp",
+              "e": "rule_124"
+            }
+          ]
+        },
+        {
+          "role": "Drawee bank",
+          "who": "The bank on which the cheque is drawn. Its return of the cheque unpaid is the event the offence turns on, and its return memo proves both the dishonour and the reason for it.",
+          "cite": [
+            {
+              "l": "NI §146",
+              "n": "ni:sec_146"
+            },
+            {
+              "l": "NI §138",
+              "n": "ni:sec_138"
+            },
+            {
+              "l": "NI §3",
+              "n": "ni:sec_3"
+            }
+          ]
+        },
+        {
+          "role": "Witness",
+          "who": "Gives evidence on the facts. In a §138 case the complainant's evidence may be led on affidavit, and an officer of the drawee bank often proves the dishonour. A witness is sworn before deposing.",
+          "cite": [
+            {
+              "l": "NI §145",
+              "n": "ni:sec_145"
+            },
+            {
+              "l": "CRP r.49",
+              "s": "crp",
+              "e": "rule_49"
             }
           ]
         },
@@ -922,6 +981,22 @@
               "l": "CRP r.57",
               "s": "crp",
               "e": "rule_57"
+            }
+          ]
+        },
+        {
+          "role": "Interpreter",
+          "who": "Interprets the evidence when a witness does not speak the court's language, which matters in Kerala where the court language is Malayalam. The interpreter is put on oath, and a police officer may not interpret the evidence.",
+          "cite": [
+            {
+              "l": "CRP r.52",
+              "s": "crp",
+              "e": "rule_52"
+            },
+            {
+              "l": "CRP r.54",
+              "s": "crp",
+              "e": "rule_54"
             }
           ]
         },
