@@ -889,8 +889,8 @@
           ]
         },
         {
-          "role": "Ministerial / bench staff",
-          "who": "Keep the court diary and the proceedings paper, and maintain the record of each hearing.",
+          "role": "Bench clerk",
+          "who": "The clerk who attends the sitting: calls the cases, marks the exhibits, and keeps the court diary and the proceedings paper - the running record of each hearing.",
           "cite": [
             {
               "l": "CRP r.72",
@@ -901,6 +901,27 @@
               "l": "CRP r.73",
               "s": "crp",
               "e": "rule_73"
+            },
+            {
+              "l": "CRP r.62",
+              "s": "crp",
+              "e": "rule_62"
+            }
+          ]
+        },
+        {
+          "role": "Stenographer",
+          "who": "Takes down the dictation of the depositions, orders and judgment. The depositions they record are headed and signed in the form the rules prescribe.",
+          "cite": [
+            {
+              "l": "CRP r.56",
+              "s": "crp",
+              "e": "rule_56"
+            },
+            {
+              "l": "CRP r.57",
+              "s": "crp",
+              "e": "rule_57"
             }
           ]
         },
