@@ -853,19 +853,281 @@
     }
   ],
   "terms": {
-    "banker": "ni:sec_3",
-    "cheque": "ni:sec_6",
-    "compounding": "ni:sec_147",
-    "dishonour of cheque": "ni:sec_138",
-    "drawer": "ni:sec_7",
-    "electronic signature": "itact:sec_3A",
-    "holder": "ni:sec_8",
-    "holder in due course": "ni:sec_9",
-    "interim compensation": "ni:sec_143A",
-    "negotiable instrument": "ni:sec_13",
-    "payment in due course": "ni:sec_10",
-    "presumption in favour of holder": "ni:sec_139",
-    "service of notice": "genclauses:sec_27"
+    "cheque": {
+      "ref": "ni:sec_6",
+      "gloss": "A bill of exchange drawn on a specified banker and payable on demand; includes the truncated cheque and the electronic-image cheque.",
+      "group": "The cheque & the instrument"
+    },
+    "negotiable instrument": {
+      "ref": "ni:sec_13",
+      "gloss": "A promissory note, bill of exchange or cheque payable to order or to bearer.",
+      "group": "The cheque & the instrument"
+    },
+    "bill of exchange": {
+      "ref": "ni:sec_5",
+      "gloss": "A written order directing a person to pay a certain sum to, or to the order of, a person or the bearer.",
+      "group": "The cheque & the instrument"
+    },
+    "promissory note": {
+      "ref": "ni:sec_4",
+      "gloss": "A written promise to pay a certain sum to, or to the order of, a person or the bearer.",
+      "group": "The cheque & the instrument"
+    },
+    "banker": {
+      "ref": "ni:sec_3",
+      "gloss": "A person carrying on the business of banking; the drawee of a cheque.",
+      "group": "The cheque & the instrument"
+    },
+    "negotiation": {
+      "ref": "ni:sec_14",
+      "gloss": "The transfer of an instrument so as to constitute the transferee its holder.",
+      "group": "The cheque & the instrument"
+    },
+    "indorsement": {
+      "ref": "ni:sec_15",
+      "gloss": "Signing on an instrument (usually the back) for the purpose of negotiating it.",
+      "group": "The cheque & the instrument"
+    },
+    "crossed cheque": {
+      "ref": "ni:sec_123",
+      "gloss": "A cheque marked so that it must be paid through a bank account, not across the counter.",
+      "group": "The cheque & the instrument"
+    },
+    "maturity": {
+      "ref": "ni:sec_22",
+      "gloss": "The date on which an instrument falls due for payment.",
+      "group": "The cheque & the instrument"
+    },
+    "drawer": {
+      "ref": "ni:sec_7",
+      "gloss": "The person who makes (draws) the cheque; the accused in a s.138 case.",
+      "group": "Parties & liability"
+    },
+    "drawee": {
+      "ref": "ni:sec_7",
+      "gloss": "The banker on whom the cheque is drawn and who is directed to pay.",
+      "group": "Parties & liability"
+    },
+    "payee": {
+      "ref": "ni:sec_7",
+      "gloss": "The person named in the instrument as the one to whom payment is to be made.",
+      "group": "Parties & liability"
+    },
+    "holder": {
+      "ref": "ni:sec_8",
+      "gloss": "The person entitled in their own name to possession of the instrument and to receive its amount.",
+      "group": "Parties & liability"
+    },
+    "holder in due course": {
+      "ref": "ni:sec_9",
+      "gloss": "A holder who took the instrument for value, in good faith and before maturity.",
+      "group": "Parties & liability"
+    },
+    "payment in due course": {
+      "ref": "ni:sec_10",
+      "gloss": "Payment made in accordance with the apparent tenor of the instrument, in good faith and without negligence.",
+      "group": "Parties & liability"
+    },
+    "company liability": {
+      "ref": "ni:sec_141",
+      "gloss": "Where the drawer is a company, the persons in charge of and responsible to it for the conduct of its business are also liable.",
+      "group": "Parties & liability"
+    },
+    "person in charge": {
+      "ref": "ni:sec_141",
+      "gloss": "The director or officer who, at the time of the offence, was in charge of and responsible to the company for its business — the test for vicarious liability.",
+      "group": "Parties & liability"
+    },
+    "defence not allowed": {
+      "ref": "ni:sec_140",
+      "gloss": "It is no defence in a s.138 prosecution that the drawer had no reason to believe the cheque would be dishonoured.",
+      "group": "Parties & liability"
+    },
+    "dishonour of cheque": {
+      "ref": "ni:sec_138",
+      "gloss": "The offence: a cheque given for a legally enforceable debt, returned unpaid for insufficiency of funds or because it exceeds the arrangement.",
+      "group": "The offence (§138)"
+    },
+    "insufficiency of funds": {
+      "ref": "ni:sec_138",
+      "gloss": "The account not holding enough to honour the cheque — the trigger for the offence.",
+      "group": "The offence (§138)"
+    },
+    "legally enforceable debt or liability": {
+      "ref": "ni:sec_138",
+      "gloss": "The debt or liability the cheque must discharge; by the Explanation and s.139, presumed to exist unless rebutted (Rangappa).",
+      "group": "The offence (§138)"
+    },
+    "demand notice": {
+      "ref": "ni:sec_138",
+      "gloss": "The written notice the payee must give the drawer within 30 days of learning of dishonour, demanding payment of the cheque amount.",
+      "group": "The offence (§138)"
+    },
+    "stop-payment": {
+      "ref": "ni:sec_138",
+      "gloss": "Instructing the bank not to pay; still a dishonour attracting s.138 where a legally enforceable debt exists.",
+      "group": "The offence (§138)"
+    },
+    "presumption in favour of holder": {
+      "ref": "ni:sec_139",
+      "gloss": "The court shall presume the cheque was received for the discharge of a debt or liability — a reverse onus on the accused.",
+      "group": "Presumptions & evidence"
+    },
+    "presumptions as to negotiable instruments": {
+      "ref": "ni:sec_118",
+      "gloss": "Presumptions of consideration, date, time of acceptance, transfer and the holder being a holder in due course.",
+      "group": "Presumptions & evidence"
+    },
+    "rebuttal of presumption": {
+      "ref": "ni:sec_139",
+      "gloss": "The accused may rebut the s.139 presumption on the preponderance of probabilities, not beyond reasonable doubt.",
+      "group": "Presumptions & evidence"
+    },
+    "evidence on affidavit": {
+      "ref": "ni:sec_145",
+      "gloss": "The complainant's evidence may be given on affidavit and read in any inquiry, trial or other proceeding.",
+      "group": "Presumptions & evidence"
+    },
+    "bank's return memo": {
+      "ref": "ni:sec_146",
+      "gloss": "The banker's slip or memo of dishonour is prima facie evidence of the fact of dishonour.",
+      "group": "Presumptions & evidence"
+    },
+    "bankers' books evidence": {
+      "ref": "bbea:sec_2",
+      "gloss": "Certified copies of entries in a banker's books are admissible without producing the original books.",
+      "group": "Presumptions & evidence"
+    },
+    "electronic record": {
+      "ref": "bsa:sec_63",
+      "gloss": "The conditions for admitting electronic records as evidence — e.g., CTS cheque images and e-statements.",
+      "group": "Presumptions & evidence"
+    },
+    "electronic signature": {
+      "ref": "itact:sec_3A",
+      "gloss": "Authentication of an electronic record by an electronic technique specified in the Second Schedule.",
+      "group": "Presumptions & evidence"
+    },
+    "complaint": {
+      "ref": "bnss:sec_223",
+      "gloss": "A s.138 case begins on the payee's written complaint (not an FIR); the Magistrate examines the complainant on oath.",
+      "group": "Procedure & process"
+    },
+    "cognizance": {
+      "ref": "bnss:sec_210",
+      "gloss": "The Magistrate taking judicial notice of the offence so as to set the case in motion.",
+      "group": "Procedure & process"
+    },
+    "issue of process": {
+      "ref": "bnss:sec_227",
+      "gloss": "The Magistrate issuing summons (or a warrant) to secure the accused's attendance.",
+      "group": "Procedure & process"
+    },
+    "summons": {
+      "ref": "bnss:sec_63",
+      "gloss": "The court's written order to a person to appear — the first step to bring in the accused.",
+      "group": "Procedure & process"
+    },
+    "mode of service of summons": {
+      "ref": "ni:sec_144",
+      "gloss": "In s.138, summons may be served by speed post or an approved courier and is deemed served even if the accused refuses it.",
+      "group": "Procedure & process"
+    },
+    "warrant": {
+      "ref": "bnss:sec_72",
+      "gloss": "The court's written authority to arrest and produce a person who does not answer summons.",
+      "group": "Procedure & process"
+    },
+    "proclamation": {
+      "ref": "bnss:sec_84",
+      "gloss": "A public notice requiring an absconding accused to appear — the step before attachment.",
+      "group": "Procedure & process"
+    },
+    "attachment": {
+      "ref": "bnss:sec_85",
+      "gloss": "Attachment of an absconder's property to compel appearance.",
+      "group": "Procedure & process"
+    },
+    "summary trial": {
+      "ref": "ni:sec_143",
+      "gloss": "s.138 cases are tried summarily, with a simplified and faster procedure.",
+      "group": "Procedure & process"
+    },
+    "cognizance of offences": {
+      "ref": "ni:sec_142",
+      "gloss": "Who may complain, the one-month limitation, and the court that has territorial jurisdiction.",
+      "group": "Procedure & process"
+    },
+    "territorial jurisdiction": {
+      "ref": "ni:sec_142",
+      "gloss": "The case lies where the payee's bank branch (the collecting branch) is situated (post-2015 amendment).",
+      "group": "Procedure & process"
+    },
+    "revision": {
+      "ref": "bnss:sec_438",
+      "gloss": "Calling for the record of a subordinate court to test the legality of an order — the usual route after a s.138 conviction.",
+      "group": "Procedure & process"
+    },
+    "quashing (inherent powers)": {
+      "ref": "bnss:sec_528",
+      "gloss": "The High Court's power to quash a complaint to prevent abuse of process or to secure the ends of justice.",
+      "group": "Procedure & process"
+    },
+    "deemed service of notice": {
+      "ref": "genclauses:sec_27",
+      "gloss": "Notice sent by registered post to the correct address is deemed served, even if returned unclaimed.",
+      "group": "Notice, limitation & disposal"
+    },
+    "one-month limitation": {
+      "ref": "ni:sec_142",
+      "gloss": "The complaint must be filed within one month of the cause of action arising.",
+      "group": "Notice, limitation & disposal"
+    },
+    "condonation of delay": {
+      "ref": "limitation:sec_5",
+      "gloss": "The court may admit a complaint filed after time on sufficient cause being shown.",
+      "group": "Notice, limitation & disposal"
+    },
+    "compounding": {
+      "ref": "ni:sec_147",
+      "gloss": "s.138 offences are compoundable — the parties may settle and bring the case to an end.",
+      "group": "Notice, limitation & disposal"
+    },
+    "interim compensation": {
+      "ref": "ni:sec_143A",
+      "gloss": "The court may order the drawer to pay up to 20% of the cheque amount as interim compensation.",
+      "group": "Notice, limitation & disposal"
+    },
+    "appeal deposit": {
+      "ref": "ni:sec_148",
+      "gloss": "On appeal against conviction, the court may require a deposit of at least 20% of the fine or compensation.",
+      "group": "Notice, limitation & disposal"
+    },
+    "probation": {
+      "ref": "probation:sec_4",
+      "gloss": "Release of an offender on probation of good conduct instead of sentencing them at once.",
+      "group": "Notice, limitation & disposal"
+    },
+    "compensation to complainant": {
+      "ref": "bnss:sec_395",
+      "gloss": "The court's power to order the offender to pay compensation to the person who suffered the loss.",
+      "group": "Notice, limitation & disposal"
+    },
+    "power of superintendence": {
+      "ref": "constitution:art_227",
+      "gloss": "The High Court's power over all courts subordinate to it — the source of its criminal rules of practice.",
+      "group": "Constitutional & powers"
+    },
+    "fair trial": {
+      "ref": "constitution:art_21",
+      "gloss": "The right to life and personal liberty, read to guarantee a fair and reasonably speedy trial.",
+      "group": "Constitutional & powers"
+    },
+    "legislative competence": {
+      "ref": "constitution:art_246",
+      "gloss": "The distribution of law-making power between Parliament and the State legislatures.",
+      "group": "Constitutional & powers"
+    }
   },
   "edges": [
     {

@@ -260,6 +260,7 @@
   .rel-lbl{font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); font-weight:700; margin-bottom:5px}
   .stedge{color:var(--brand); cursor:pointer; text-decoration:none}
   .stedge:hover{text-decoration:underline}
+  .vsub{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); font-weight:700; margin:15px 0 7px 2px}
   .prov-body .kv{font-size:12.5px; color:var(--ink-3); margin:4px 0} .prov-body .kv b{color:var(--ink-2); font-weight:600}
   .rels{margin-top:12px; display:flex; flex-direction:column; gap:6px}
   .rel{font-size:12.5px; color:var(--ink-2); display:flex; gap:8px; align-items:baseline}

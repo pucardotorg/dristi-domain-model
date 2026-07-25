@@ -383,33 +383,74 @@ function provRow(p){
   return row;
 }
 
+async function fillStateStatute(slot, akn, eId){
+  if(!slot || slot.dataset.loaded) return; slot.dataset.loaded="1";
+  slot.innerHTML=`<div class="statute statute-mini"><div class="st-src"><span class="spinner" style="width:13px;height:13px;border-width:2px;margin:0"></span> loading the source…</div></div>`;
+  try{ const d=await getStateSection(akn,eId);
+    slot.innerHTML = d ? `<div class="statute statute-mini"><div class="st-src">${ic('book-open')} from the Kerala instrument</div>${(d.num||d.heading)?`<div class="st-h"><span class="st-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`:''}${renderBody(d.body,"st")}</div>` : `<div class="statute"><div class="st-src">source text not found</div></div>`;
+  }catch(e){ slot.innerHTML=`<div class="statute"><div class="st-src">couldn't load the source - served over http?</div></div>`; }
+}
 V.words=()=>{
   if(!isModelled()) return notModelled();
+  const stName=stateById(activeState).name;
   const m=el("div"); m.appendChild(scopeBar());
+  const nat=Object.entries(TERMS).map(([w,v])=>[w,(typeof v==="string"?{ref:v}:v)]);
+  const stTerms=((STATE_DATA||{}).vocabulary||{}).terms||[];
+  const groupOrder=[]; nat.forEach(([w,v])=>{ const g=v.group||"Other"; if(!groupOrder.includes(g)) groupOrder.push(g); });
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Vocabulary</h1>
-    <p class="lede">The shared vocabulary a ${caseById(activeCase).name.toLowerCase()} case is built on - drawn from the <strong>laws</strong>, the <strong>rules</strong>, and the <strong>things people actually say</strong>. A word that is wrong quietly bends everything built on it. Each term is pinned to where it's defined; tap to read the definition from the Act.</p>`;
+    <p class="lede">The words a ${caseById(activeCase).name.toLowerCase()} case is built on - the <strong>shared vocabulary</strong> from the national Acts, and the <strong>${esc(stName)} words</strong> the state layer adds on top. A word that is wrong quietly bends everything built on it. Each term is pinned to where it comes from; tap to read the source text.</p>`;
   m.appendChild(head);
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="w-search" placeholder="Search a word - cheque, drawer, holder…"></div>`;
+  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="w-search" placeholder="Search a word - cheque, drawer, summons, Chief Ministerial Officer…"></div>`;
   m.appendChild(controls);
-  const list=el("div"); list.id="w-list"; m.appendChild(list);
-  const entries=Object.entries(TERMS).sort((a,b)=>a[0].localeCompare(b[0]));
+  const list=el("div"); list.id="w-list"; list.style.marginTop="8px"; m.appendChild(list);
+  function natCard(w,v){
+    const p=PROVISIONS.find(x=>x.ref===v.ref), s=actOf(v.ref);
+    const def=v.gloss || (p&&p.note) || "The canonical meaning the system uses for this term - fixed by the section below.";
+    const c=el("div","word");
+    c.innerHTML=`
+      <div class="wt">${esc(w[0].toUpperCase()+w.slice(1))} ${scopeBadge()} <span class="caret">›</span></div>
+      <div class="def">${esc(def)}</div>
+      <div class="src">from <code>${esc(secNum(v.ref))}</code> · ${esc(s?s.title.split(",")[0]:v.ref)}</div>
+      <div class="wfull"><div class="statute-slot" data-ref="${esc(v.ref)}"></div></div>`;
+    c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open")) fillStatute(c.querySelector(".statute-slot"),true); };
+    return c;
+  }
+  function stCard(t){
+    const c=el("div","word");
+    c.innerHTML=`
+      <div class="wt">${esc(t.word)} <span class="badge b-state">${esc(stName)}</span> <span class="caret">›</span></div>
+      <div class="def">${esc(t.gloss||'')}</div>
+      <div class="src">from ${esc(t.source||'the state layer')}</div>
+      <div class="wfull"><div class="ksec-slot"></div></div>`;
+    c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && t.akn && t.eId) fillStateStatute(c.querySelector(".ksec-slot"), t.akn, t.eId); };
+    return c;
+  }
   function draw(q=""){
     list.innerHTML="";
-    const rows=entries.filter(([w])=>w.includes(q));
-    if(!rows.length){list.appendChild(el("div","empty","No word matches."));return;}
-    rows.forEach(([w,ref])=>{
-      const p=PROVISIONS.find(x=>x.ref===ref), s=actOf(ref);
-      const c=el("div","word");
-      c.innerHTML=`
-        <div class="wt">${w[0].toUpperCase()+w.slice(1)} ${scopeBadge()} <span class="caret">›</span></div>
-        <div class="def">${p&&p.note?p.note:"The canonical meaning the system uses for this term - fixed by the section below."}</div>
-        <div class="src">defined in <code>${secNum(ref)}</code> · ${s?s.title.split(",")[0]:ref}</div>
-        <div class="wfull"><div class="statute-slot" data-ref="${esc(ref)}"></div></div>`;
-      c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open")) fillStatute(c.querySelector(".statute-slot"),true); };
-      list.appendChild(c);
-    });
+    const nr=nat.filter(([w,v])=>(w+" "+(v.gloss||"")).toLowerCase().includes(q));
+    const sr=stTerms.filter(t=>((t.word||"")+" "+(t.gloss||"")+" "+(t.source||"")).toLowerCase().includes(q));
+    if(nr.length){
+      list.appendChild(el("div","grouphead",`National vocabulary <span class="gh-status">shared core · ${nr.length}</span>`));
+      groupOrder.forEach(g=>{
+        const rows=nr.filter(([w,v])=>(v.group||"Other")===g).sort((a,b)=>a[0].localeCompare(b[0]));
+        if(!rows.length) return;
+        list.appendChild(el("div","vsub",esc(g)));
+        rows.forEach(([w,v])=> list.appendChild(natCard(w,v)));
+      });
+    }
+    if(sr.length){
+      list.appendChild(el("div","grouphead",`${esc(stName)} vocabulary <span class="gh-status">state layer · ${sr.length}</span>`));
+      const sgs=[]; sr.forEach(t=>{ const g=t.group||"Other"; if(!sgs.includes(g)) sgs.push(g); });
+      sgs.forEach(g=>{
+        const rows=sr.filter(t=>(t.group||"Other")===g);
+        if(!rows.length) return;
+        list.appendChild(el("div","vsub",esc(g)));
+        rows.forEach(t=> list.appendChild(stCard(t)));
+      });
+    }
+    if(!nr.length && !sr.length) list.appendChild(el("div","empty","No word matches."));
   }
   setTimeout(()=>{const inp=$("#w-search"); if(inp)inp.oninput=e=>draw(e.target.value.toLowerCase().trim());},0);
   draw();
@@ -974,7 +1015,7 @@ function buildNav(){
       <div class="nav-group scoped">Domain &amp; culture</div>
       <div class="nav-scoped">
         <a data-view="practice"><span class="ico">${ic('messages-square')}</span> Local practice <span class="count">${isModelled()?PRACTICE_NOTES.length:'-'}</span></a>
-        <a data-view="words"><span class="ico">${ic('type')}</span> Vocabulary <span class="count">${isModelled()?Object.keys(TERMS).length:'-'}</span></a>
+        <a data-view="words"><span class="ico">${ic('type')}</span> Vocabulary <span class="count">${isModelled()?(Object.keys(TERMS).length+(((STATE_DATA||{}).vocabulary||{}).terms||[]).length):'-'}</span></a>
       </div>
     </div>`;
   // Overview lives subtly in the sidebar footer, not at the top
