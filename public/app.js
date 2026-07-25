@@ -482,8 +482,8 @@ function stateObjectView(catKey, title, fallbackBlurb){
     return m;
   };
 }
-V.amendments   = stateObjectView("amendments","Acts & Provisions","State-level changes to the central Acts, where a legislature has amended or added to the shared statute for this case type.");
-V.staterules   = stateRulesView;   // organised like National objects (tree, not cards)
+V.amendments   = stateTreeView("amendments","Acts & Provisions");   // state Acts, organised like National objects
+V.staterules   = stateTreeView("rules","State rules");             // state rules, same browsable tree
 V.notifications= stateObjectView("notifications","Notifications","Government orders and court notifications that shape how a case runs locally.");
 
 /* ---- case law helpers ---- */
@@ -800,25 +800,25 @@ function stateRuleGroup(it){
   };
   return grp;
 }
-function stateRulesView(){
+function stateTreeView(catKey, title){ return function(){
   if(!isModelled()) return notModelled();
   const stName=stateById(activeState).name;
   const m=el("div"); m.appendChild(scopeBar());
-  const data=STATE_DATA && STATE_DATA.rules;
-  const lede=(data&&data.summary) || "The rules of practice and procedure a High Court or state makes for its own courts. These sit on top of the shared national core and change from state to state, so pick the jurisdiction above.";
+  const data=STATE_DATA && STATE_DATA[catKey];
+  const lede=(data&&data.summary) || "These sit on top of the shared national core and change from state to state, so pick the jurisdiction above.";
   const head=el("div");
-  head.innerHTML=`<h1 class="page-title state-title">State rules ${stateInlineSelectHTML()}</h1><p class="lede">${lede}</p>`;
+  head.innerHTML=`<h1 class="page-title state-title">${esc(title)} ${stateInlineSelectHTML()}</h1><p class="lede">${lede}</p>`;
   m.appendChild(head);
   const sel=m.querySelector(".state-inline");
   if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
   const items=(data&&data.items)||[];
-  if(!items.length){ m.appendChild(el("div","empty", (data&&data.summary)?`Nothing separate to list here for ${esc(stName)}.`:`<b>${esc(stName)} - state rules not modelled yet.</b><br><span class="tiny">This state-layer object is planned.</span>`)); return m; }
-  m.appendChild(el("div","legend",`<span>Each instrument opens to its rules; each rule opens to the verbatim text - the same shape as <b>Acts &amp; provisions</b>, for the ${esc(stName)} layer.</span>`));
+  if(!items.length){ m.appendChild(el("div","empty", (data&&data.summary)?`Nothing separate to list here for ${esc(stName)} - the summary above is the whole story.`:`<b>${esc(stName)} - ${esc(title.toLowerCase())} not modelled yet.</b><br><span class="tiny">This state-layer object is planned.</span>`)); return m; }
+  m.appendChild(el("div","legend",`<span>Each opens to its sections; each section opens to the verbatim text - the same shape as the national <b>Acts &amp; provisions</b>, for the ${esc(stName)} layer.</span>`));
   const list=el("div"); list.style.marginTop="14px";
   items.forEach(it=>list.appendChild(stateRuleGroup(it)));
   m.appendChild(list);
   return m;
-}
+}; }
 
 /* ============================================================ JUDGMENT MODAL */
 let jmtCache={};

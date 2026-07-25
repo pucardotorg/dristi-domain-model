@@ -339,8 +339,9 @@
   .interp .ic:hover .icn{color:var(--brand-hi)}
   .interp .icn{font-weight:600; color:var(--ink)}
   .interp .icy{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3); flex:none}
-  .view-full{margin-top:12px; display:inline-flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--line-2); color:var(--link); border-radius:8px; padding:8px 13px; font-size:12.5px; font-weight:600; cursor:pointer; font-family:var(--font-sans)}
+  .view-full{margin-top:12px; display:inline-flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--line-2); color:var(--link); border-radius:8px; height:34px; padding:0 14px; line-height:1; font-size:12.5px; font-weight:600; cursor:pointer; font-family:var(--font-sans)}
   .view-full:hover{border-color:var(--brand); background:var(--brand-dim); color:var(--brand-hi)}
+  .view-full svg.lu{width:14px; height:14px}
 
   .word{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 16px; margin-bottom:9px}
   .word .wt{font-size:17px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:9px; cursor:pointer; letter-spacing:-.01em}
@@ -403,7 +404,7 @@
   .modal-body::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--ink-3) 26%,transparent); border-radius:20px; border:3px solid transparent; background-clip:padding-box}
   .modal-body::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--ink-3) 50%,transparent); background-clip:padding-box}
   /* subtle "Original PDF" button in Act / judgment modals */
-  .pdf-orig{margin-top:11px; display:inline-flex; align-items:center; gap:7px; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; padding:6px 12px; cursor:pointer; font-family:var(--font-sans); font-size:12.5px}
+  .pdf-orig{margin-top:11px; display:inline-flex; align-items:center; gap:7px; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; height:34px; padding:0 14px; line-height:1; cursor:pointer; font-family:var(--font-sans); font-size:12.5px; font-weight:600}
   .pdf-orig:hover{border-color:var(--brand-border); color:var(--ink)}
   .pdf-orig svg.lu{width:14px; height:14px; opacity:.85}
   /* state-layer instruments (State rules / amendments / notifications) */
@@ -413,7 +414,7 @@
   .inst-cite{font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); margin-top:3px}
   .inst-note{font-size:13.5px; color:var(--ink-2); line-height:1.55; margin:10px 0 0}
   .inst-actions{display:flex; flex-wrap:wrap; gap:8px; margin-top:13px}
-  .inst-actions .stdoc{display:inline-flex; align-items:center; gap:7px; background:var(--brand-dim); border:1px solid var(--brand-border); color:var(--brand-hi); border-radius:8px; padding:6px 12px; cursor:pointer; font-family:var(--font-sans); font-size:12.5px}
+  .inst-actions .stdoc{display:inline-flex; align-items:center; gap:7px; background:var(--brand-dim); border:1px solid var(--brand-border); color:var(--brand-hi); border-radius:8px; height:34px; padding:0 14px; line-height:1; cursor:pointer; font-family:var(--font-sans); font-size:12.5px; font-weight:600}
   .inst-actions .stdoc:hover{border-color:var(--brand)}
   .inst-actions .stdoc svg.lu{width:14px; height:14px}
   .inst-actions .pdf-orig{margin-top:0}

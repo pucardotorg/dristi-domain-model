@@ -3,11 +3,19 @@
   "name": "Kerala",
   "as_of": "2025",
   "amendments": {
-    "summary": "There is no Kerala amendment to Section 138, or to ss.139-147, of the Negotiable Instruments Act. The offence, the presumptions, the notice period and limitation, and compounding are uniform central law, and Kerala adds nothing to the statute itself. What changes in Kerala is the procedural and administrative layer that decides how a case is filed, tried and executed. See State rules and Notifications.",
-    "items": []
+    "summary": "Kerala has not amended Section 138 (or ss.139-147) of the Negotiable Instruments Act - the offence, the presumptions, the notice period and limitation, and compounding are uniform central law, and Kerala adds nothing to that statute. What sits here instead are Kerala's own State Acts that bear on a s.138 case - chiefly the Kerala Police Act, 2011, which governs who serves process and executes the court's warrants. The rules of practice and e-filing rules are under State rules.",
+    "items": [
+      {
+        "title": "Kerala Police Act, 2011",
+        "cite": "State Act · execution of process",
+        "note": "A Kerala State Act - the police machinery a s.138 case relies on at the execution stage. A cheque-bounce case is a complaint case with no police investigation and no arrest at the outset; the police enter only when the court issues process, when the local Station House Officer executes a bailable or non-bailable warrant and serves court process. Converted from an OCR source, so verify against the official text before relying on it.",
+        "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+        "pdf": "state/kerala/sources/kerala-police-act-2011.pdf"
+      }
+    ]
   },
   "rules": {
-    "summary": "How a Section 138 case is actually filed, tried and executed in Kerala. These state instruments sit on top of the uniform central offence and govern the form of process, service, the warrant ladder and who executes it.",
+    "summary": "How a Section 138 case is actually filed and tried in Kerala - the rules of practice and procedure a High Court or the State makes for its own courts (subsidiary legislation, made under an enabling Act). These sit on top of the uniform central offence and govern the form of process, service and the warrant ladder.",
     "items": [
       {
         "title": "Criminal Rules of Practice, Kerala, 1982",
@@ -29,13 +37,6 @@
         "note": "The enabling rules for e-filing a complaint in Kerala courts. These govern how a s.138 complaint is filed, not how summons or warrants are served electronically.",
         "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
         "pdf": "state/kerala/sources/electronic-filing-rules-for-courts-kerala-2021.pdf"
-      },
-      {
-        "title": "Kerala Police Act, 2011",
-        "cite": "State Act, execution of process",
-        "note": "Who executes warrants and serves court process. A s.138 case is a complaint case with no police investigation and no arrest at the outset; the police enter only at execution, when the local Station House Officer executes a bailable or non-bailable warrant. Converted from an OCR source, so verify against the official text before relying on it.",
-        "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
-        "pdf": "state/kerala/sources/kerala-police-act-2011.pdf"
       }
     ]
   },
