@@ -75,7 +75,20 @@
   .brand p{font-size:12px; color:var(--ink-3); margin:2px 0 0}
 
   .nav-group{margin:18px 0 6px; padding:0 8px; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
+  .nav-group:first-child{margin-top:4px}
   .nav-group.scoped{color:var(--brand)}
+  /* Overview: subtle footer disclosure, de-emphasised vs the main nav */
+  .ov-foot-wrap{margin:0 0 10px}
+  .ov-foot a.ov-toggle{font-size:12.5px; color:var(--ink-3); padding:6px 10px; gap:9px}
+  .ov-foot a.ov-toggle .ico{width:15px; opacity:.6}
+  .ov-foot a.ov-toggle .ico svg.lu{width:14px; height:14px}
+  .ov-foot a.ov-toggle .nav-chev svg.lu{width:11px; height:11px}
+  .ov-foot a.ov-toggle:hover{color:var(--ink); background:var(--panel)}
+  .ov-foot a.ov-toggle.active{background:transparent; color:var(--brand-hi)}
+  .ov-foot .nav-sub{margin:1px 0 2px 15px}
+  .ov-foot .nav-sub a.subnav{font-size:12px; padding:5px 9px; color:var(--ink-3)}
+  .ov-foot .nav-sub a.subnav:hover{color:var(--ink)}
+  .ov-foot .nav-sub a.subnav.active{color:var(--brand-hi)}
   .nav a{display:flex; align-items:center; gap:11px; padding:8px 10px; border-radius:8px; color:var(--ink-2); font-size:14px; margin:1px 0; cursor:pointer}
   .nav a .ico{width:18px; display:inline-flex; align-items:center; justify-content:center; opacity:.85}
   svg.lu{width:1em; height:1em; vertical-align:-.14em; flex:none}
@@ -320,6 +333,15 @@
   .callout b{color:var(--ink)}
   .callout.amber{--acc:var(--amber)} .callout.green{--acc:var(--green)} .callout.teal{--acc:var(--brand)}
   .empty{color:var(--ink-3); font-size:14px; padding:40px 30px; text-align:center; border:1px dashed var(--line); border-radius:12px}
+  /* local practice — conversation snippets */
+  .pnote-flag{display:inline-block; font-size:11.5px; color:var(--amber); background:color-mix(in srgb,var(--amber) 12%,transparent); border:1px solid color-mix(in srgb,var(--amber) 32%,transparent); border-radius:20px; padding:4px 12px; margin:0 0 28px}
+  .pnotes{display:flex; flex-direction:column; gap:12px}
+  .pnote{border:1px solid var(--line); border-radius:12px; background:var(--panel); padding:16px 18px}
+  .pn-q{display:flex; gap:11px; font-size:15.5px; line-height:1.5; color:var(--ink); font-style:italic}
+  .pn-q svg.lu{width:18px; height:18px; flex:none; color:var(--brand); margin-top:3px; opacity:.85}
+  .pn-who{font-size:12.5px; color:var(--ink-3); margin:10px 0 0; padding-left:29px}
+  .pn-est{font-size:13px; color:var(--ink-2); line-height:1.5; margin:13px 0 0; padding:12px 0 0; border-top:1px solid var(--line-2)}
+  .pn-lbl{font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--brand-hi); font-weight:700; margin-right:8px}
   .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:var(--ink-2); margin:10px 0 4px}
   .legend span{display:flex; align-items:center; gap:6px}
   .backlink{cursor:pointer; font-size:12.5px; color:var(--ink-3)}
@@ -372,6 +394,7 @@
     </div>
     <nav class="nav" id="nav"></nav>
     <div class="side-foot">
+      <nav class="nav ov-foot-wrap" id="ovNav"></nav>
       <div class="theme-toggle" id="themeToggle">
         <span class="tt-opt" data-t="light" title="Light" aria-label="Light"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span>
         <span class="tt-opt" data-t="dark" title="Dark" aria-label="Dark"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
@@ -422,7 +445,8 @@ const ICONS = {
   menu:"<line x1='4' y1='6' x2='20' y2='6'/><line x1='4' y1='12' x2='20' y2='12'/><line x1='4' y1='18' x2='20' y2='18'/>",
   sun:"<circle cx='12' cy='12' r='4'/><path d='M12 2v2'/><path d='M12 20v2'/><path d='m4.93 4.93 1.41 1.41'/><path d='m17.66 17.66 1.41 1.41'/><path d='M2 12h2'/><path d='M20 12h2'/><path d='m6.34 17.66-1.41 1.41'/><path d='m19.07 4.93-1.41 1.41'/>",
   moon:"<path d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/>",
-  "map-pin":"<path d='M20 10c0 4.4-5.4 9-8 11-2.6-2-8-6.6-8-11a8 8 0 0 1 16 0Z'/><circle cx='12' cy='10' r='3'/>"
+  "map-pin":"<path d='M20 10c0 4.4-5.4 9-8 11-2.6-2-8-6.6-8-11a8 8 0 0 1 16 0Z'/><circle cx='12' cy='10' r='3'/>",
+  "messages-square":"<path d='M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2Z'/><path d='M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1'/>"
 };
 function ic(name){return `<svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]||""}</svg>`;}
 
@@ -444,6 +468,25 @@ const JURISDICTIONS = [
 ];
 let activeState = "kerala";
 const stateById = id => JURISDICTIONS.find(s=>s.id===id) || JURISDICTIONS[0];
+
+/* ---- local practice: snippets of conversation that establish informal / local
+   practice not written into any Act. Illustrative editorial scaffolding, not a
+   verified transcript record. Each note: what was said, who said it, and the
+   informal practice it evidences. ---------------------------------------------- */
+const PRACTICE_NOTES = [
+  {quote:"For a cheque bounce we always file in the branch's town, not where the drawer lives. The magistrate here knows the bankers, it moves faster.",
+   who:"Advocate, trial court", place:"kerala",
+   establishes:"Forum choice by local convenience — a habit that sits on top of the §142 jurisdiction rules, not in them."},
+  {quote:"The registry won't take the complaint without the original memo of dishonour stapled on top, even though the section only needs the fact of return.",
+   who:"Filing clerk", place:"kerala",
+   establishes:"A documentary norm enforced at the counter that is stricter than the statute's own requirement."},
+  {quote:"Nine out of ten of these settle the day the accused is first summoned. Nobody wants the conviction; they want the money and the compounding.",
+   who:"Retired judicial officer", place:"haryana",
+   establishes:"The real disposal path — compounding under §147 — dwarfs contested trial, though the Act treats trial as the default."},
+  {quote:"Banks here file in bulk — a clerk brings fifty complaints in one folder. We've built our own numbering just to keep the batch together.",
+   who:"Bench clerk", place:"gujarat",
+   establishes:"Institutional-filer reality that shapes court workflow well before any rule of procedure applies."}
+];
 const caseById = id => CASE_TYPES.find(c=>c.id===id);
 
 const DOMAIN_LABELS = {
@@ -849,6 +892,33 @@ V.words=()=>{
   return m;
 };
 
+V.practice=()=>{
+  if(!isModelled()) return notModelled();
+  const stName=stateById(activeState).name;
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title">Local practice</h1>
+    <p class="lede">The part of the domain <strong>no Act writes down</strong> — how a ${caseById(activeCase).name.toLowerCase()} case is actually filed, moved and disposed on the ground. These are snippets from conversations with people who run the process; each one names an <strong>informal or local practice</strong> that the shared central law leaves unsaid. It changes by state; the statute does not.</p>
+    <div class="pnote-flag">Illustrative — the kind of field note this section will hold. Not a verified transcript.</div>`;
+  m.appendChild(head);
+  const here=PRACTICE_NOTES.filter(n=>n.place===activeState);
+  const rest=PRACTICE_NOTES.filter(n=>n.place!==activeState);
+  const render=list=>{
+    const wrap=el("div","pnotes");
+    list.forEach(n=>{
+      const c=el("div","pnote");
+      c.innerHTML=`<div class="pn-q">${ic('messages-square')}<span>${esc(n.quote)}</span></div>
+        <div class="pn-who">${esc(n.who)} · ${esc(stateById(n.place).name)}</div>
+        <div class="pn-est"><span class="pn-lbl">Establishes</span> ${esc(n.establishes)}</div>`;
+      wrap.appendChild(c);
+    });
+    return wrap;
+  };
+  if(here.length){ m.appendChild(el("h2","sec",`In ${esc(stName)}`)); m.appendChild(render(here)); }
+  if(rest.length){ m.appendChild(el("h2","sec",here.length?"Elsewhere":"Notes")); m.appendChild(render(rest)); }
+  return m;
+};
+
 /* ---- case law helpers ---- */
 function provRefShort(ref){
   const [a,eid]=ref.split(":"); const s=SOURCES[a];
@@ -1122,14 +1192,6 @@ function buildNav(){
   const nav=$("#nav");
   const st=stateById(activeState);
   nav.innerHTML=`
-    <div class="scoped-wrap ${overviewOpen?'':'ov-collapsed'}">
-      <a data-view="overview" class="ov-toggle"><span class="ico">${ic('home')}</span> Overview <span class="nav-chev">${ic('chevron-down')}</span></a>
-      <div class="nav-sub"><div class="nav-sub-inner">
-        <a data-view="structure" class="subnav"><span class="ico">${ic('layers')}</span> The structure</a>
-        <a data-view="split" class="subnav"><span class="ico">${ic('arrow-left-right')}</span> Shared vs State</a>
-        <a data-view="time" class="subnav"><span class="ico">${ic('history')}</span> The 2024 code switch <span class="count">${ALIAS_MAP.length}</span></a>
-      </div></div>
-    </div>
     <div class="casedd" id="casedd">
       <button class="casedd-btn" id="caseddBtn">
         <div class="ac-eyebrow">Active case type</div>
@@ -1150,14 +1212,30 @@ function buildNav(){
         ${JURISDICTIONS.map(s=>{const on=s.id===activeState; return `<div class="casedd-item ${on?'on':''}" data-state="${s.id}"><span>${s.name}</span>${on?'<span class="ci-check">✓</span>':''}</div>`;}).join("")}
       </div>
     </div>
+    <div class="nav-group">Central law</div>
     <div class="nav-scoped">
       <a data-view="parts"><span class="ico">${ic('library')}</span> Acts <span class="count">${isModelled()?Object.keys(SOURCES).length:'—'}</span></a>
       <a data-view="provisions"><span class="ico">${ic('file-text')}</span> Provisions <span class="count">${isModelled()?PROVISIONS.length:'—'}</span></a>
-      <a data-view="words"><span class="ico">${ic('type')}</span> Vocabulary <span class="count">${isModelled()?Object.keys(TERMS).length:'—'}</span></a>
       <a data-view="caselaw"><span class="ico">${ic('scale')}</span> Case law <span class="count">${isModelled()?(CASES.length||'—'):'—'}</span></a>
+    </div>
+    <div class="nav-group">Domain &amp; culture</div>
+    <div class="nav-scoped">
+      <a data-view="practice"><span class="ico">${ic('messages-square')}</span> Local practice <span class="count">${isModelled()?PRACTICE_NOTES.length:'—'}</span></a>
+      <a data-view="words"><span class="ico">${ic('type')}</span> Vocabulary <span class="count">${isModelled()?Object.keys(TERMS).length:'—'}</span></a>
+    </div>`;
+  // Overview lives subtly in the sidebar footer, not at the top
+  const ov=$("#ovNav");
+  if(ov) ov.innerHTML=`
+    <div class="scoped-wrap ov-foot ${overviewOpen?'':'ov-collapsed'}">
+      <a data-view="overview" class="ov-toggle"><span class="ico">${ic('home')}</span> Overview <span class="nav-chev">${ic('chevron-down')}</span></a>
+      <div class="nav-sub"><div class="nav-sub-inner">
+        <a data-view="structure" class="subnav">The structure</a>
+        <a data-view="split" class="subnav">Shared vs State</a>
+        <a data-view="time" class="subnav">The 2024 code switch</a>
+      </div></div>
     </div>`;
   const tb=$("#tbCase"); if(tb) tb.textContent=`${c.name} · ${c.act.split('·').pop().trim()}`;
-  nav.querySelectorAll("a").forEach(a=>a.onclick=()=>{
+  document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.onclick=()=>{
     if(a.classList.contains("ov-toggle")){
       const w=a.closest(".scoped-wrap");
       w.classList.toggle("ov-collapsed");
@@ -1177,7 +1255,7 @@ function buildNav(){
   });
   nav.querySelectorAll(".casedd-item[data-state]").forEach(it=>it.onclick=()=>{
     activeState=it.dataset.state; sdd.classList.remove("open"); buildNav();
-    document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active", a.dataset.view===currentView));
+    go(currentView); // re-render: some views (e.g. Local practice) depend on the state
   });
 }
 function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
@@ -1186,9 +1264,9 @@ function go(view){
   currentView=view;
   if(OV_SUBVIEWS.includes(view)){
     overviewOpen=true;
-    const w=document.querySelector("#nav .scoped-wrap"); if(w) w.classList.remove("ov-collapsed");
+    const w=document.querySelector(".sidebar .scoped-wrap"); if(w) w.classList.remove("ov-collapsed");
   }
-  document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
+  document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
   setMain(V[view]());
   if(history.replaceState) history.replaceState(null,"","#"+view);
 }
