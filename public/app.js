@@ -71,7 +71,7 @@ const actOf=ref=>SOURCES[ref.split(":")[0]];
 const eraOf=a=>a==="always"?"always":(a.indexOf("pre")===0?"pre":"post");
 function eraFromStatus(s){ s=s||""; if(/from\s*2024/i.test(s))return"post"; if(/repealed/i.test(s))return"pre"; return"always"; }
 function eraBadge(a){const e=eraOf(a);return e==="always"?`<span class="badge b-always">any time</span>`:e==="pre"?`<span class="badge b-pre">pre-2024 code</span>`:`<span class="badge b-post">2023 Sanhita</span>`;}
-const scopeBadge=()=>`<span class="badge b-shared">shared core</span>`;
+const scopeBadge=()=>`<span class="badge b-shared">national</span>`;
 function refLabel(ref){const a=SOURCES[ref.split(":")[0]];return `${secNum(ref)} · ${a?a.title.split(",")[0]:ref.split(":")[0]}`;}
 
 /* ---- fetch + parse ---- */
@@ -263,7 +263,7 @@ function scopeBar(){
 const isModelled=()=>caseById(activeCase).status==="active";
 function notModelled(){
   const c=caseById(activeCase); const m=el("div"); m.appendChild(scopeBar());
-  m.appendChild(el("div","empty",`<b>${c.name}</b> isn't modelled yet.<br><span class="tiny">This case type is planned. Its domain model will be built over the same shared core.</span><br><br><a class="backlink" onclick="go('cases')">← back to case types</a>`));
+  m.appendChild(el("div","empty",`<b>${c.name}</b> isn't modelled yet.<br><span class="tiny">This case type is planned. Its domain model will be built over the same national core.</span><br><br><a class="backlink" onclick="go('cases')">← back to case types</a>`));
   return m;
 }
 
@@ -276,7 +276,7 @@ V.overview=()=>{
     <p class="lede">Everything here sits under one case type: <strong>${c.act}</strong>. It's the shared understanding this case is built on - the Acts, the vocabulary, the rules of procedure and evidence, read from the corpus. Read every provision with three lenses at once.</p>
     <div class="lenses">
       <div class="lens what"><div class="k">Lens 1 · What</div><h3>The rules</h3><p>The offence, the presumptions, procedure, evidence, limitation, sentencing - ${PROVISIONS.length} provisions across ${Object.keys(SOURCES).length} Acts, each with its verbatim text.</p></div>
-      <div class="lens where"><div class="k">Lens 2 · Where</div><h3>Shared core vs state</h3><p>The central law is the same everywhere in India. Each <em>state</em> layers its own rules, practice and filer reality on top.</p></div>
+      <div class="lens where"><div class="k">Lens 2 · Where</div><h3>National vs state</h3><p>The central law is the same everywhere in India. Each <em>state</em> layers its own rules, practice and filer reality on top.</p></div>
       <div class="lens when"><div class="k">Lens 3 · When</div><h3>Point in time</h3><p>On 1 July 2024 the old codes gave way to the 2023 Sanhitas. Which one is live depends on <em>when the cheque bounced</em>.</p></div>
     </div>`;
   m.appendChild(head);
@@ -301,7 +301,7 @@ V.law=()=>{
     <div class="legend"><span><span class="dot" style="background:var(--blue)"></span> in force</span><span><span class="dot" style="background:var(--amber)"></span> 2023 Sanhita (from 2024-07-01)</span><span><span class="dot" style="background:var(--ink-3)"></span> repealed - pre-2024 cases only</span></div>`;
   m.appendChild(head);
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="l-search" placeholder="Search Act, section, role, note - cheque, cognizance, presumption…"></div>`;
+  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="l-search" placeholder="Search Act, section, role, note - cheque, cognizance, presumption…"></div>`;
   m.appendChild(controls);
   const eraChips=el("div","chips");
   eraChips.innerHTML=`<span class="chip on" data-era="all">All eras</span><span class="chip" data-era="always">Any time</span><span class="chip" data-era="pre">Pre-2024 code</span><span class="chip" data-era="post">2023 Sanhita</span>`;
@@ -369,7 +369,7 @@ function provRow(p){
       <span class="ref">${p.ref.split(":")[0]}:${secNum(p.ref)}</span>
       <span class="rt">${p.role} <span class="act">- ${s.title.split(",")[0]}</span></span>
       <span class="hbadges">${scopeBadge()} ${eraBadge(p.applies)}</span>
-      <span class="caret">›</span>
+      <span class="caret">${ic('chevron-right')}</span>
     </div>
     <div class="prov-body">
       ${p.note?`<div class="brief"><span class="bl">In brief · PUCAR summary</span>${p.note}</div>`:''}
@@ -383,11 +383,11 @@ function provRow(p){
   return row;
 }
 
-async function fillStateStatute(slot, akn, eId){
+async function fillStateStatute(slot, akn, eId, title, sub){
   if(!slot || slot.dataset.loaded) return; slot.dataset.loaded="1";
   slot.innerHTML=`<div class="statute statute-mini"><div class="st-src"><span class="spinner" style="width:13px;height:13px;border-width:2px;margin:0"></span> loading the source…</div></div>`;
   try{ const d=await getStateSection(akn,eId);
-    slot.innerHTML = d ? `<div class="statute statute-mini"><div class="st-src">${ic('book-open')} from the Kerala instrument</div>${(d.num||d.heading)?`<div class="st-h"><span class="st-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`:''}${renderBody(d.body,"st")}</div>` : `<div class="statute"><div class="st-src">source text not found</div></div>`;
+    slot.innerHTML = d ? `<div class="statute statute-mini"><div class="st-src">${ic('book-open')} from ${esc(title||'the Kerala instrument')}</div>${(d.num||d.heading)?`<div class="st-h"><span class="st-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`:''}${renderBody(d.body,"st")}<div class="st-inpar"><button class="stdoc" data-akn="${esc(akn)}" data-title="${esc(title||'')}" data-sub="${esc(sub||'')}" data-eid="${esc(eId)}">${ic('maximize-2')}&nbsp; Read this inside the full document</button></div></div>` : `<div class="statute"><div class="st-src">source text not found</div></div>`;
   }catch(e){ slot.innerHTML=`<div class="statute"><div class="st-src">couldn't load the source - served over http?</div></div>`; }
 }
 V.words=()=>{
@@ -402,7 +402,7 @@ V.words=()=>{
     <p class="lede">The words a ${caseById(activeCase).name.toLowerCase()} case is built on - the <strong>shared vocabulary</strong> from the national Acts, and the <strong>${esc(stName)} words</strong> the state layer adds on top. A word that is wrong quietly bends everything built on it. Each term is pinned to where it comes from; tap to read the source text.</p>`;
   m.appendChild(head);
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="w-search" placeholder="Search a word - cheque, drawer, summons, Chief Ministerial Officer…"></div>`;
+  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="w-search" placeholder="Search a word - cheque, drawer, summons, Chief Ministerial Officer…"></div>`;
   m.appendChild(controls);
   const list=el("div"); list.id="w-list"; list.style.marginTop="8px"; m.appendChild(list);
   function natCard(w,v){
@@ -410,7 +410,7 @@ V.words=()=>{
     const def=v.gloss || (p&&p.note) || "The canonical meaning the system uses for this term - fixed by the section below.";
     const c=el("div","word");
     c.innerHTML=`
-      <div class="wt">${esc(w[0].toUpperCase()+w.slice(1))} ${scopeBadge()} <span class="caret">›</span></div>
+      <div class="wt">${esc(w[0].toUpperCase()+w.slice(1))} ${scopeBadge()} <span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(def)}</div>
       <div class="src">from <code>${esc(secNum(v.ref))}</code> · ${esc(s?s.title.split(",")[0]:v.ref)}</div>
       <div class="wfull"><div class="statute-slot" data-ref="${esc(v.ref)}"></div></div>`;
@@ -420,11 +420,11 @@ V.words=()=>{
   function stCard(t){
     const c=el("div","word");
     c.innerHTML=`
-      <div class="wt">${esc(t.word)} <span class="badge b-state">${esc(stName)}</span> <span class="caret">›</span></div>
+      <div class="wt">${esc(t.word)} <span class="badge b-state">${esc(stName)}</span> <span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(t.gloss||'')}</div>
       <div class="src">from ${esc(t.source||'the state layer')}</div>
       <div class="wfull"><div class="ksec-slot"></div></div>`;
-    c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && t.akn && t.eId) fillStateStatute(c.querySelector(".ksec-slot"), t.akn, t.eId); };
+    c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && t.akn && t.eId) fillStateStatute(c.querySelector(".ksec-slot"), t.akn, t.eId, t.source||'the Kerala instrument', ''); };
     return c;
   }
   function draw(q=""){
@@ -432,7 +432,7 @@ V.words=()=>{
     const nr=nat.filter(([w,v])=>(w+" "+(v.gloss||"")).toLowerCase().includes(q));
     const sr=stTerms.filter(t=>((t.word||"")+" "+(t.gloss||"")+" "+(t.source||"")).toLowerCase().includes(q));
     if(nr.length){
-      list.appendChild(el("div","grouphead",`National vocabulary <span class="gh-status">shared core · ${nr.length}</span>`));
+      list.appendChild(el("div","grouphead",`National vocabulary <span class="gh-status">national · ${nr.length}</span>`));
       groupOrder.forEach(g=>{
         const rows=nr.filter(([w,v])=>(v.group||"Other")===g).sort((a,b)=>a[0].localeCompare(b[0]));
         if(!rows.length) return;
@@ -518,14 +518,121 @@ function stateObjectView(catKey, title, fallbackBlurb){
     } else if(data && data.summary){
       m.appendChild(el("div","empty",`Nothing separate to list here for ${esc(st)} - the point above is the whole story.`));
     } else {
-      m.appendChild(el("div","empty",`<b>${esc(st)} - ${esc(title.toLowerCase())} not modelled yet.</b><br><span class="tiny">This state-layer object is planned. It will carry ${esc(st)}'s own ${esc(title.toLowerCase())} over the same shared core, the way the national objects already do.</span>`));
+      m.appendChild(el("div","empty",`<b>${esc(st)} - ${esc(title.toLowerCase())} not modelled yet.</b><br><span class="tiny">This state-layer object is planned. It will carry ${esc(st)}'s own ${esc(title.toLowerCase())} over the same national core, the way the national objects already do.</span>`));
     }
     return m;
   };
 }
 V.amendments   = stateTreeView("amendments","Acts & Provisions");   // state Acts, organised like National objects
 V.staterules   = stateTreeView("rules","State rules");             // state rules, same browsable tree
-V.notifications= stateTreeView("notifications","Notifications & orders");   // G.O.s / SOPs, same browsable tree (rich items carry akn+key+edges)
+V.notifications= stateObjectView("notifications","Notifications","Government orders and court notifications that shape how a case runs locally.");
+
+/* ============================================================ THE 138 MAP (React Flow)
+   Build a {nodes, edges} model of what shapes a s138 case: the national core
+   provisions, and the active state's Acts / rules / notifications wired to the
+   national provisions they operationalise (using the made_under + edges already
+   in the data). Rendered by flow.js. */
+function gLabelNat(ref){
+  const a=SOURCES[ref.split(":")[0]];
+  if(a) return refLabel(ref);
+  const [al,eid]=ref.split(":");
+  return (eid||"").replace("sec_","§").replace("art_","Art. ").replace(/_/g," ")+" · "+al;
+}
+function openNat(ref){ const [act,eid]=ref.split(":"); if(SOURCES[act]) openActModal(act,eid); }
+function openPdf(url,title){ if(window.openPdfModal) window.openPdfModal(url,title); else window.open(url,"_blank"); }
+function buildGraphModel(){
+  const nodes=[], edges=[]; const nat={};
+  const COLX={inst:0, key:520, nat:1080};
+  const KROW=94, GAP=40;
+  function natNode(ref){
+    if(nat[ref]) return "nat:"+ref;
+    nat[ref]={id:"nat:"+ref, type:"card", position:{x:COLX.nat,y:0},
+      data:{label:gLabelNat(ref), sub:"national", cat:"national", open:SOURCES[ref.split(":")[0]]?()=>openNat(ref):null}};
+    return "nat:"+ref;
+  }
+  // the offence, at the heart
+  natNode("ni:sec_138");
+  nat["ni:sec_138"].data.cat="case";
+  nat["ni:sec_138"].data.sub="the offence";
+  // core national provisions of a s138 case, hung off the offence
+  [["ni:sec_139","presumption"],["ni:sec_142","cognizance & jurisdiction"],["ni:sec_143","summary trial"],
+   ["ni:sec_144","service of summons"],["ni:sec_145","evidence on affidavit"],["ni:sec_147","compounding"]]
+    .forEach(([ref,rel])=>{ if(SOURCES[ref.split(":")[0]] && PROVISIONS.some(p=>p.ref===ref)){ const nid=natNode(ref); edges.push({id:"core:"+nid, source:"nat:ni:sec_138", target:nid, label:rel}); } });
+
+  const D=STATE_DATA||{};
+  const insts=[...(((D.amendments||{}).items)||[]).map(x=>({...x,cat:"law"})),
+               ...(((D.rules||{}).items)||[]).map(x=>({...x,cat:"rule"}))];
+  let ky=20;
+  insts.forEach((it,ii)=>{
+    const keys=it.key||[]; const startY=ky;
+    keys.forEach(k=>{
+      const kid="key:"+ii+":"+k.eId;
+      nodes.push({id:kid, type:"card", position:{x:COLX.key,y:ky},
+        data:{label:stEidNum(k.eId)+" "+(k.label||""), sub:it.cite||"", cat:"rule",
+          open:it.akn?()=>openStateDocModal(it.akn,it.title,it.cite||"",it.pdf?(DATA_BASE+it.pdf):"",k.eId):null}});
+      edges.push({id:"in"+ii+">"+kid, source:"inst:"+ii, target:kid});
+      (k.edges||[]).forEach(e=>{ const nid=natNode(e.to); edges.push({id:kid+">"+nid, source:kid, target:nid, label:e.rel}); });
+      ky+=KROW;
+    });
+    const instY = keys.length ? (startY+(keys.length-1)*KROW/2) : ky;
+    if(!keys.length) ky+=KROW;
+    nodes.push({id:"inst:"+ii, type:"card", position:{x:COLX.inst,y:instY},
+      data:{label:it.title, sub:it.cite||(it.cat==="law"?"state Act":"state rules"), cat:it.cat,
+        open:it.akn?()=>openStateDocModal(it.akn,it.title,it.cite||"",it.pdf?(DATA_BASE+it.pdf):""):(it.pdf?()=>openPdf(DATA_BASE+it.pdf,it.title):null)}});
+    (it.made_under||[]).forEach(e=>{ const nid=natNode(e.to); edges.push({id:"in"+ii+"mu"+nid, source:"inst:"+ii, target:nid, label:e.rel||"made under"}); });
+    ky+=GAP;
+  });
+  // notifications: link to the e-filing rules instrument if present (short edge), else to the offence
+  const efiling = nodes.find(n=>/^inst:/.test(n.id) && /electronic filing/i.test(n.data.label));
+  (((D.notifications||{}).items)||[]).forEach((it,ni)=>{
+    const id="notif:"+ni;
+    const ipos = efiling ? efiling.position.y+52 : ky;
+    nodes.push({id, type:"card", position:{x:COLX.inst,y:ipos},
+      data:{label:it.title, sub:it.cite||"notification", cat:"notification", open:it.pdf?()=>openPdf(DATA_BASE+it.pdf,it.title):null}});
+    edges.push({id:id+">t", source:id, target:efiling?efiling.id:"nat:ni:sec_138", label:efiling?"operates under":"governs filing"});
+    ky+=KROW+GAP;
+  });
+  // lay the national column out to follow the flow: each provision sits at the average
+  // height of the rules that point to it (barycentric ordering), which cuts crossings.
+  const posY={}; nodes.forEach(n=>{ posY[n.id]=n.position.y; });
+  posY["nat:ni:sec_138"]=0; // pin the offence to the top
+  const natList=Object.values(nat);
+  natList.forEach(n=>{
+    if(n.id==="nat:ni:sec_138"){ n._by=-1e9; return; }
+    const ins=edges.filter(e=>e.target===n.id).map(e=>posY[e.source]).filter(y=>y!=null);
+    n._by = ins.length ? ins.reduce((a,b)=>a+b,0)/ins.length : 1e9;
+  });
+  natList.sort((a,b)=>a._by-b._by);
+  const NROW=88;
+  natList.forEach((n,i)=>{ n.position={x:COLX.nat, y:20+i*NROW}; nodes.push(n); });
+  // clicking an edge (its label) opens whatever the edge points at
+  const openById={}; nodes.forEach(n=>{ if(n.data && n.data.open) openById[n.id]=n.data.open; });
+  edges.forEach(e=>{ const open=openById[e.target]; if(open) e.data={...(e.data||{}), open}; });
+  return {nodes, edges};
+}
+function graphLegendInline(){
+  const items=[["case","Offence"],["national","National"],["law","State Act"],["rule","State rule"],["notification","Notification"]];
+  return `<div class="flow-legend">${items.map(([c,l])=>`<span class="fl-item"><span class="fl-dot fl-${c}"></span>${esc(l)}</span>`).join("")}</div>`;
+}
+V.graph=()=>{
+  if(!isModelled()) return notModelled();
+  const m=el("div","view-graph");
+  const bar=el("div","flow-bar");
+  bar.innerHTML=`<div class="flow-bar-l">${stateInlineSelectHTML()}${graphLegendInline()}</div>
+    <div class="flow-bar-hint">Drag to move · scroll to zoom · click a node or a link to open its text</div>`;
+  m.appendChild(bar);
+  const host=el("div","flow-host"); host.id="flow-root"; m.appendChild(host);
+  const sel=m.querySelector(".state-inline");
+  if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
+  setTimeout(()=>{
+    const host2=document.getElementById("flow-root"); if(!host2) return;
+    host2.innerHTML=`<div class="flow-loading"><div class="spinner"></div><p>Loading the interactive map…</p></div>`;
+    import("./flow.js")
+      .then(mod=>{ host2.innerHTML=""; mod.mountFlow(host2, buildGraphModel()); })
+      .catch(err=>{ host2.innerHTML=`<div class="empty">Couldn't load the interactive map.<br><span class="tiny">It renders with the React Flow library loaded over the network, so it needs an internet connection. ${esc(String(err&&err.message||err))}</span></div>`; });
+  },40);
+  return m;
+};
 
 /* ---- case law helpers ---- */
 function provRefShort(ref){
@@ -585,7 +692,7 @@ V.caselaw=()=>{
   m.appendChild(head);
   if(!CASES.length){ m.appendChild(el("div","empty","No case-law dataset is linked from this profile.")); return m; }
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="c-search" placeholder="Search a case, holding or citation - Rangappa, jurisdiction, s.141…"></div>`;
+  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="c-search" placeholder="Search a case, holding or citation - Rangappa, jurisdiction, s.141…"></div>`;
   m.appendChild(controls);
   const chips=el("div","chips");
   const topicsPresent=Object.keys(CASE_TOPICS).filter(t=>CASES.some(c=>(c.topics||[]).includes(t)));
@@ -627,7 +734,7 @@ V.structure=()=>{
   const wrap=el("div","struct-wrap");
   const rules=el("div","stack");
   rules.appendChild(el("div","col-h rules","1 · THE RULES - what you must obey"));
-  rules.appendChild(el("div","divider blue",`<span class="rule"></span> Same everywhere in India - the shared core <span class="rule"></span>`));
+  rules.appendChild(el("div","divider blue",`<span class="rule"></span> Same everywhere in India - the national core <span class="rule"></span>`));
   [["Constitution","the foundation - what powers the courts have"],["The case-type's core Act + shared codes","e.g. NI Act §138 · procedure · evidence · limitation"],["Court judgments (Supreme & High Courts)","can change what a law means - without changing its words"]].forEach(([t,d])=>{const l=el("div","layer core");l.innerHTML=`<div class="lt">${t}</div><div class="ld">${d}</div>`;rules.appendChild(l);});
   rules.appendChild(el("div","divider green",`<span class="rule"></span> Differs by state - each state adds its own <span class="rule"></span>`));
   [["State High Court rules of practice","e-filing rules · rules of practice"],["Practice directions & circulars","a court's written instructions on how to do a thing"],["Local, unwritten practice","how one particular court actually runs, day to day"]].forEach(([t,d])=>{const l=el("div","layer state");l.innerHTML=`<div class="lt">${t}</div><div class="ld">${d}</div>`;rules.appendChild(l);});
@@ -636,7 +743,7 @@ V.structure=()=>{
   sys.appendChild(el("div","col-h sys","2 · THE SYSTEMS - you plug into"));
   SYSTEMS.forEach(s=>{const l=el("div","layer sysrow"+(s.you?" you":""));l.innerHTML=`<div class="lt">${s.name}${s.you?' <span class="badge b-post" style="margin-left:6px">your platform</span>':''}</div><div class="ld">${s.desc}</div>`;sys.appendChild(l);});
   const how=el("div","ctx"); how.style.marginTop="14px";
-  how.innerHTML=`<div class="ct">HOW TO READ THIS</div><p>1 · Obey the <b style="color:var(--blue)">rules</b> - shared core first, then your state's layer.</p><p>2 · Plug into the <b style="color:var(--amber)">systems</b> - DRISTI hosts each state's copy over that core.</p><p>3 · Adapt to the <b style="color:var(--red)">context</b> - language, customs, culture.</p>`;
+  how.innerHTML=`<div class="ct">HOW TO READ THIS</div><p>1 · Obey the <b style="color:var(--blue)">rules</b> - national first, then your state's layer.</p><p>2 · Plug into the <b style="color:var(--amber)">systems</b> - DRISTI hosts each state's copy over that core.</p><p>3 · Adapt to the <b style="color:var(--red)">context</b> - language, customs, culture.</p>`;
   sys.appendChild(how);
   wrap.appendChild(rules); wrap.appendChild(sys); m.appendChild(wrap);
   const ctx=el("div","ctx");
@@ -654,17 +761,17 @@ V.structure=()=>{
 
 V.split=()=>{
   const m=el("div");
-  m.innerHTML=`<h1 class="page-title">Shared core vs State</h1>
-    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;The idea DRISTI 2.0 is organised around. The <strong>shared core</strong> is central law - identical in every state. The <strong>state layer</strong> is everything a state owns, sequences and advances on its own. <strong>Build for the state, over the shared core</strong> - not one all-India instance. (Examples below are drawn from the cheque-bounce case type.)</p>`;
+  m.innerHTML=`<h1 class="page-title">National vs State</h1>
+    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;The idea DRISTI 2.0 is organised around. The <strong>national core</strong> is central law - identical in every state. The <strong>state layer</strong> is everything a state owns, sequences and advances on its own. <strong>Build for the state, over the national core</strong> - not one all-India instance. (Examples below are drawn from the cheque-bounce case type.)</p>`;
   const split=el("div","split");
   const core=el("div","col core");
-  core.innerHTML=`<div class="col-top"><h3>Shared core <span class="badge b-shared">same everywhere</span></h3><p>Central statutes & binding judgments - reused across case types. Modelled here as ${PROVISIONS.length} provisions across ${Object.keys(SOURCES).length} Acts.</p></div>`;
+  core.innerHTML=`<div class="col-top"><h3>National <span class="badge b-shared">same everywhere</span></h3><p>Central statutes & binding judgments - reused across case types. Modelled here as ${PROVISIONS.length} provisions across ${Object.keys(SOURCES).length} Acts.</p></div>`;
   [["The offence & presumptions","NI Act §§138–147 - specific to this case type."],["Criminal procedure","Cognizance, process, summary trial, compounding, appeal - CrPC → BNSS. Shared by all criminal case types."],["Evidence","Burden of proof, electronic records, bankers' books - IEA → BSA + BBEA."],["Limitation, notice, sentencing","One-month bar & condonation, deemed service, probation & compensation."],["Binding case law","Supreme Court precedent (Rangappa, Aneeta Hada, Expeditious Trial…) - modelled under Case law, binding nationally via Art. 141."]].forEach(([b,s])=>{const r=el("div","row");r.innerHTML=`<b>${b}</b><span>${s}</span>`;core.appendChild(r);});
   const st=el("div","col state");
   st.innerHTML=`<div class="col-top"><h3>State layer <span class="badge b-state">a state owns it</span></h3><p>Not in the central corpus. What a DRISTI instance configures and a court advances on its own - the same for every case type.</p></div>`;
   STATE_CATEGORIES.forEach(c=>{const r=el("div","row");r.innerHTML=`<b>${c.name}${c.ill?' <span class="tiny" style="color:var(--amber)">· operational</span>':''}</b><span>${c.desc}</span>`;st.appendChild(r);});
   split.appendChild(core); split.appendChild(st); m.appendChild(split);
-  m.appendChild(el("div","callout green","<b>Same law, different shape.</b> The statute is identical, but who files and at what scale reshapes the whole workflow. That difference lives entirely in the state layer - the shared core never moves."));
+  m.appendChild(el("div","callout green","<b>Same law, different shape.</b> The statute is identical, but who files and at what scale reshapes the whole workflow. That difference lives entirely in the state layer - the national core never moves."));
   m.appendChild(el("h2","sec","States, and what makes each one different"));
   const sc=el("div","statecards");
   STATES.forEach(s=>{const c=el("div","sc");c.innerHTML=`<h4>${s.flag} ${s.name}</h4><div class="st">${s.tag}</div><p>${s.note}</p>`;sc.appendChild(c);});
@@ -736,7 +843,7 @@ async function openActModal(actId, focusEid){
 function closeModal(){ $("#modal").classList.remove("show"); document.body.style.overflow=""; }
 
 /* render + open an arbitrary Akoma Ntoso <act> document (used for state instruments) */
-function renderStateDoc(title, subtitle, blocks, pdfUrl){
+function renderStateDoc(title, subtitle, blocks, pdfUrl, focusEid){
   const nsec=blocks.filter(b=>b.t==="sec").length;
   const unit=blocks.some(b=>b.unit==="article")?"articles":(blocks.some(b=>b.t==="sec"&&/^rule_/.test(b.eId||""))?"rules":"sections");
   const wrap=el("div");
@@ -748,8 +855,9 @@ function renderStateDoc(title, subtitle, blocks, pdfUrl){
   if(!nsec) bodyEl.appendChild(el("div","callout amber",`This document's full text isn't in the corpus yet.`));
   blocks.forEach(b=>{
     if(b.t==="chap"){ bodyEl.appendChild(el("div","ad-chap",esc(b.label))); return; }
-    const secEl=el("div","ad-sec");
-    let h=`<div class="ad-sec-h"><span class="ad-num">${esc(b.num||'')}</span>${esc(b.heading||'')}</div>`;
+    const secEl=el("div","ad-sec"+(b.eId&&b.eId===focusEid?" focus":""));
+    if(b.eId) secEl.id="stsec-"+b.eId;
+    let h=`<div class="ad-sec-h"><span class="ad-num">${esc(b.num||'')}</span>${esc(b.heading||'')}${b.eId===focusEid?'<span class="ad-focus-tag">the rule you came from</span>':''}</div>`;
     h+=renderBody(b.body,"ad");
     secEl.innerHTML=h; bodyEl.appendChild(secEl);
   });
@@ -757,14 +865,15 @@ function renderStateDoc(title, subtitle, blocks, pdfUrl){
   return wrap;
 }
 const stateDocCache={};
-async function openStateDocModal(aknPath, title, subtitle, pdfUrl){
+async function openStateDocModal(aknPath, title, subtitle, pdfUrl, focusEid){
   const modal=$("#modal"), body=$("#modal-body");
   body.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the document...</div>`;
   modal.classList.add("show"); document.body.style.overflow="hidden";
   try{
     let doc=stateDocCache[aknPath];
     if(!doc){ const xml=await fetchText((DATA_BASE||"")+aknPath); doc=new DOMParser().parseFromString(xml,"application/xml"); if(doc.getElementsByTagName("parsererror").length) throw new Error("parse error"); stateDocCache[aknPath]=doc; }
-    body.innerHTML=""; body.appendChild(renderStateDoc(title, subtitle, actBlocks(doc), pdfUrl)); body.scrollTop=0;
+    body.innerHTML=""; body.appendChild(renderStateDoc(title, subtitle, actBlocks(doc), pdfUrl, focusEid));
+    if(focusEid){ const t=document.getElementById("stsec-"+focusEid); if(t) setTimeout(()=>t.scrollIntoView({block:"center"}),60); } else body.scrollTop=0;
   }catch(e){
     body.innerHTML=`<div class="ad-loading">Couldn't load this document.<br><br>The viewer reads the <code>.akn.xml</code> files live, so it must be served over http.</div>`;
   }
@@ -793,7 +902,7 @@ function stateRuleRow(b){
     <div class="prov-head">
       <span class="ref">${esc(b.num||'')}</span>
       <span class="rt">${esc(b.heading||'(untitled)')}</span>
-      <span class="caret">›</span>
+      <span class="caret">${ic('chevron-right')}</span>
     </div>
     <div class="prov-body"></div>`;
   const pbody=row.querySelector(".prov-body"); let filled=false;
@@ -827,7 +936,7 @@ function stateKeyRow(it,k){
       <span class="ref">${esc(stEidNum(k.eId))}</span>
       <span class="rt">${esc(k.label||'')}</span>
       <span class="hbadges"><span class="badge b-state">Kerala layer</span> ${eraBadge(k.applies||'always')}</span>
-      <span class="caret">›</span>
+      <span class="caret">${ic('chevron-right')}</span>
     </div>
     <div class="prov-body">
       ${k.note?`<div class="brief"><span class="bl">In brief · PUCAR summary</span>${esc(k.note)}</div>`:''}
@@ -842,7 +951,7 @@ function stateKeyRow(it,k){
     if(row.classList.contains("open") && !filled && it.akn){ filled=true;
       ks.innerHTML=`<div class="statute"><div class="st-src"><span class="spinner" style="width:13px;height:13px;border-width:2px;margin:0"></span> loading the text…</div></div>`;
       getStateSection(it.akn,k.eId).then(d=>{
-        ks.innerHTML = d ? `<div class="statute">${(d.num||d.heading)?`<div class="st-h"><span class="st-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`:''}${renderBody(d.body,"st")}</div>` : `<div class="statute"><div class="st-src">text not found for ${esc(k.eId)}</div></div>`;
+        ks.innerHTML = d ? `<div class="statute">${(d.num||d.heading)?`<div class="st-h"><span class="st-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`:''}${renderBody(d.body,"st")}<div class="st-inpar"><button class="stdoc" data-akn="${esc(it.akn)}" data-title="${esc(it.title)}" data-sub="${esc(it.cite||'')}" data-eid="${esc(k.eId)}">${ic('maximize-2')}&nbsp; Read this rule inside the full document</button></div></div>` : `<div class="statute"><div class="st-src">text not found for ${esc(k.eId)}</div></div>`;
       }).catch(()=>{ ks.innerHTML=`<div class="statute"><div class="st-src">couldn't load the text - served over http?</div></div>`; });
     }
   };
@@ -870,7 +979,7 @@ function stateRuleGroup(it){
   if(it.note) body.appendChild(el("div","brief",`<span class="bl">In brief · PUCAR summary</span>${it.note}`));
   if(it.made_under && it.made_under.length){ const mu=el("div","rels"); mu.style.marginTop="10px"; mu.innerHTML=`<div class="rel-lbl">Made under</div>`+it.made_under.map(e=>stEdgeRow(e.rel||"made under",e.to)).join(""); body.appendChild(mu); }
   if(it.key && it.key.length){
-    const kh=el("div"); kh.textContent=`Key provisions for §138`; kh.style.cssText="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:700;margin:18px 0 8px";
+    const kh=el("div"); kh.textContent=`Key rules for §138`; kh.style.cssText="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:700;margin:18px 0 8px";
     body.appendChild(kh);
     it.key.forEach(k=> body.appendChild(stateKeyRow(it,k)));
   }
@@ -1026,7 +1135,7 @@ function buildNav(){
         <a data-view="overview" class="ov-pop-item"><span class="ico">${ic('compass')}</span> Overview</a>
         <div class="ov-pop-sep"></div>
         <a data-view="structure" class="ov-pop-item"><span class="ico">${ic('layers')}</span> The structure</a>
-        <a data-view="split" class="ov-pop-item"><span class="ico">${ic('arrow-left-right')}</span> Shared vs State</a>
+        <a data-view="split" class="ov-pop-item"><span class="ico">${ic('arrow-left-right')}</span> National vs State</a>
         <a data-view="time" class="ov-pop-item"><span class="ico">${ic('history')}</span> The 2024 code switch</a>
       </div>
       <button class="ov-trigger" id="ovTrigger"><span class="ico">${ic('compass')}</span> Overview <span class="nav-chev">${ic('chevron-down')}</span></button>
@@ -1043,7 +1152,7 @@ function buildNav(){
   if(ovt) ovt.onclick=e=>{ e.stopPropagation(); $("#ovMenu").classList.toggle("open"); };
   nav.querySelectorAll(".casedd-item[data-id]").forEach(it=>it.onclick=()=>{
     const ct=caseById(it.dataset.id);
-    if(ct && ct.status==="active"){ activeCase=ct.id; buildNav(); go("overview"); }
+    if(ct && ct.status==="active"){ activeCase=ct.id; buildNav(); go("graph"); }
     else dd.classList.remove("open");
   });
   const ssel=nav.querySelector(".state-inline");
@@ -1064,7 +1173,7 @@ window.go=go;
 function setTheme(t){document.documentElement.classList.toggle("dark",t==="dark"); document.querySelectorAll(".tt-opt").forEach(o=>o.classList.toggle("on",o.dataset.t===t));}
 document.querySelectorAll(".tt-opt").forEach(o=>o.onclick=()=>setTheme(o.dataset.t));
 setTheme("dark");
-$("#brand").onclick=()=>go("overview");
+$("#brand").onclick=()=>go("graph");
 
 /* mobile off-canvas sidebar */
 function setDrawer(open){
@@ -1084,7 +1193,7 @@ document.addEventListener("click",e=>{
   const pv=e.target.closest(".pdf-orig");
   if(pv && pv.dataset.pdf){ if(window.openPdfModal) openPdfModal(pv.dataset.pdf, pv.dataset.pdftitle||"Original document"); else window.open(pv.dataset.pdf,"_blank"); return; }
   const sd=e.target.closest(".stdoc");
-  if(sd && sd.dataset.akn){ openStateDocModal(sd.dataset.akn, sd.dataset.title, sd.dataset.sub, sd.dataset.pdf||""); return; }
+  if(sd && sd.dataset.akn){ openStateDocModal(sd.dataset.akn, sd.dataset.title, sd.dataset.sub, sd.dataset.pdf||"", sd.dataset.eid||""); return; }
   const se=e.target.closest(".stedge");
   if(se && se.dataset.ref){ e.stopPropagation(); const [a,eid]=se.dataset.ref.split(":"); if(SOURCES[a]) openActModal(a,eid); return; }
   const b=e.target.closest(".view-full");
@@ -1116,7 +1225,7 @@ function showLoadError(err){
     await loadProfile();
     await loadStateData();
     buildNav();
-    const start=(location.hash||"#overview").slice(1);
-    go(V[start]?start:"overview");
+    const start=(location.hash||"#graph").slice(1);
+    go(V[start]?start:"graph");
   }catch(err){ showLoadError(err); }
 })();
