@@ -213,6 +213,42 @@
       "before": "iea:sec_65B",
       "on_or_after": "bsa:sec_63",
       "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "cheating",
+      "before": "ipc:sec_420",
+      "on_or_after": "bns:sec_318",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "forgery of a valuable security",
+      "before": "ipc:sec_467",
+      "on_or_after": "bns:sec_338",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "using a forged document",
+      "before": "ipc:sec_471",
+      "on_or_after": "bns:sec_340",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "public servant disobeying law",
+      "before": "ipc:sec_166",
+      "on_or_after": "bns:sec_198",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "omission to apprehend by public servant",
+      "before": "ipc:sec_221",
+      "on_or_after": "bns:sec_259",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "public servant disobeying direction",
+      "before": "ipc:sec_217",
+      "on_or_after": "bns:sec_199",
+      "switch_date": "2024-07-01"
     }
   ],
   "provisions": [
@@ -944,6 +980,136 @@
       "role": "station-house diary",
       "applies": "always",
       "note": "The general diary the station-house officer must keep - complaints and charges, persons arrested, complainants, offences and the witnesses examined - open to inspection by the Magistrate of the district."
+    },
+    {
+      "ref": "ipc:sec_420",
+      "act": "ipc",
+      "eId": "sec_420",
+      "file": "indian-penal-code.akn.xml",
+      "tier": "supporting",
+      "role": "cheating (companion offence)",
+      "applies": "pre-2024-07-01",
+      "note": "Cheating and dishonestly inducing delivery of property - the offence commonly filed alongside a s.138 complaint where the cheque was issued with no intention to pay."
+    },
+    {
+      "ref": "bns:sec_318",
+      "act": "bns",
+      "eId": "sec_318",
+      "file": "bharatiya-nyaya-sanhita-2023.akn.xml",
+      "tier": "supporting",
+      "role": "cheating (companion offence)",
+      "applies": "post-2024-07-01",
+      "note": "Cheating (BNS). = IPC s.420. Often co-charged with a s.138 complaint."
+    },
+    {
+      "ref": "ipc:sec_467",
+      "act": "ipc",
+      "eId": "sec_467",
+      "file": "indian-penal-code.akn.xml",
+      "tier": "supporting",
+      "role": "forgery of the cheque",
+      "applies": "pre-2024-07-01",
+      "note": "A cheque is a valuable security; forging or materially altering it is a separate, graver offence than the s.138 dishonour."
+    },
+    {
+      "ref": "bns:sec_338",
+      "act": "bns",
+      "eId": "sec_338",
+      "file": "bharatiya-nyaya-sanhita-2023.akn.xml",
+      "tier": "supporting",
+      "role": "forgery of the cheque",
+      "applies": "post-2024-07-01",
+      "note": "Forgery of a valuable security (BNS). = IPC s.467."
+    },
+    {
+      "ref": "ipc:sec_471",
+      "act": "ipc",
+      "eId": "sec_471",
+      "file": "indian-penal-code.akn.xml",
+      "tier": "supporting",
+      "role": "using a forged cheque",
+      "applies": "pre-2024-07-01",
+      "note": "Using as genuine a forged document - e.g. presenting a forged cheque."
+    },
+    {
+      "ref": "bns:sec_340",
+      "act": "bns",
+      "eId": "sec_340",
+      "file": "bharatiya-nyaya-sanhita-2023.akn.xml",
+      "tier": "supporting",
+      "role": "using a forged cheque",
+      "applies": "post-2024-07-01",
+      "note": "Using a forged document/record as genuine (BNS). = IPC s.471."
+    },
+    {
+      "ref": "pss:sec_25",
+      "act": "pss",
+      "eId": "sec_25",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "supporting",
+      "role": "dishonour of an e-transfer",
+      "applies": "always",
+      "note": "The Payment and Settlement Systems Act analogue of s.138 - dishonour of an electronic funds transfer for insufficiency of funds. Increasingly relevant as clearing moves to CTS / electronic modes."
+    },
+    {
+      "ref": "bns:sec_198",
+      "act": "bns",
+      "eId": "sec_198",
+      "file": "bharatiya-nyaya-sanhita-2023.akn.xml",
+      "tier": "supporting",
+      "role": "public servant disobeying law",
+      "applies": "post-2024-07-01",
+      "note": "Public servant disobeying the law with intent to cause injury. In practice invoked to hold a police officer accountable - and thereby to compel action - where the officer knowingly disregards a lawful direction such as a warrant issued in a s.138 case. = IPC s.166."
+    },
+    {
+      "ref": "ipc:sec_166",
+      "act": "ipc",
+      "eId": "sec_166",
+      "file": "indian-penal-code.akn.xml",
+      "tier": "supporting",
+      "role": "public servant disobeying law",
+      "applies": "pre-2024-07-01",
+      "note": "Public servant disobeying law, with intent to cause injury. Used to force the police to act on warrants where an officer knowingly disregards the court's lawful direction."
+    },
+    {
+      "ref": "bns:sec_259",
+      "act": "bns",
+      "eId": "sec_259",
+      "file": "bharatiya-nyaya-sanhita-2023.akn.xml",
+      "tier": "supporting",
+      "role": "omission to apprehend",
+      "applies": "post-2024-07-01",
+      "note": "Intentional omission to apprehend by a public servant bound to apprehend - the offence where a police officer wilfully fails to execute a warrant or arrest a non-appearing s.138 accused. = IPC s.221."
+    },
+    {
+      "ref": "ipc:sec_221",
+      "act": "ipc",
+      "eId": "sec_221",
+      "file": "indian-penal-code.akn.xml",
+      "tier": "supporting",
+      "role": "omission to apprehend",
+      "applies": "pre-2024-07-01",
+      "note": "Intentional omission to apprehend on the part of a public servant bound to apprehend - police wilfully not executing a warrant."
+    },
+    {
+      "ref": "bns:sec_199",
+      "act": "bns",
+      "eId": "sec_199",
+      "file": "bharatiya-nyaya-sanhita-2023.akn.xml",
+      "tier": "supporting",
+      "role": "disobeying a direction",
+      "applies": "post-2024-07-01",
+      "note": "Public servant disobeying a direction under law, with intent to save a person from punishment - accountability where lawful process is not acted on. = IPC s.217."
+    },
+    {
+      "ref": "ipc:sec_217",
+      "act": "ipc",
+      "eId": "sec_217",
+      "file": "indian-penal-code.akn.xml",
+      "tier": "supporting",
+      "role": "disobeying a direction",
+      "applies": "pre-2024-07-01",
+      "note": "Public servant disobeying direction of law with intent to save a person from punishment."
     }
   ],
   "terms": {
@@ -1499,6 +1665,77 @@
       "rel": "read-with",
       "to": "advocates:sec_30",
       "note": "misconduct control over the advocate"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "companion-offence",
+      "to": "ipc:sec_420",
+      "note": "cheating, often co-charged"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "companion-offence",
+      "to": "bns:sec_318",
+      "note": "cheating (BNS)"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "if-cheque-forged",
+      "to": "ipc:sec_467",
+      "note": "the cheque is a valuable security"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "if-cheque-forged",
+      "to": "bns:sec_338"
+    },
+    {
+      "from": "ipc:sec_471",
+      "rel": "read-with",
+      "to": "ipc:sec_467"
+    },
+    {
+      "from": "bns:sec_340",
+      "rel": "read-with",
+      "to": "bns:sec_338"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "electronic-analogue",
+      "to": "pss:sec_25",
+      "note": "dishonour of an electronic funds transfer"
+    },
+    {
+      "from": "police1861:sec_23",
+      "rel": "non-execution-punishable-under",
+      "to": "bns:sec_198",
+      "note": "public servant disobeying law - used to force action on warrants"
+    },
+    {
+      "from": "police1861:sec_23",
+      "rel": "non-execution-punishable-under",
+      "to": "ipc:sec_166"
+    },
+    {
+      "from": "police1861:sec_23",
+      "rel": "non-apprehension-punishable-under",
+      "to": "bns:sec_259",
+      "note": "omission to apprehend"
+    },
+    {
+      "from": "police1861:sec_23",
+      "rel": "non-apprehension-punishable-under",
+      "to": "ipc:sec_221"
+    },
+    {
+      "from": "bns:sec_199",
+      "rel": "read-with",
+      "to": "bns:sec_198"
+    },
+    {
+      "from": "ipc:sec_217",
+      "rel": "read-with",
+      "to": "ipc:sec_166"
     }
   ],
   "caselaw": "caselaw/cheque-dishonour-s138.caselaw.json"
