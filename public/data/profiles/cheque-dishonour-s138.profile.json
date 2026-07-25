@@ -1,0 +1,985 @@
+{
+  "profile": "cheque-dishonour-s138",
+  "title": "Relevance profile — Section 138 NI Act (cheque dishonour)",
+  "description": "Cross-act index of the provisions, definitions, procedure, evidence and disposal rules relevant to a Section 138 cheque-bounce case. References point into the canonical Akoma Ntoso files in this corpus; nothing is copied. Point-in-time aware: procedure/penal/evidence references resolve to the pre-2024 codes or the 2023 Sanhitas depending on the cause-of-action date.",
+  "as_of": "2026-07-24",
+  "maintained_by": "PUCAR",
+  "transition_date": "2024-07-01",
+  "ref_format": "'<alias>:<eId>'. Resolve to the file at sources[alias].file, element eId; the logical AKN id is sources[alias].uri + '/eng@#' + eId (which equals the <FRBRuri> inside that file).",
+  "caveats": [
+    "Section numbers were extracted from India Code reprint PDFs; verify against the official source before authoritative use.",
+    "'applies' indicates the cause-of-action window: 'always' (substantive/interpretive), 'pre-2024-07-01' (old codes), 'post-2024-07-01' (Sanhitas). Use act_alias_map to switch by date.",
+    "Landmark case law (e.g. Rangappa, Dashrath Rupsingh + 2015 amendment, Damodar S. Prabhu, Expeditious Trial 2021, Sanjabij Tari 2025) is not in this corpus and should be layered separately.",
+    "Constitution of India was re-converted from the India Code reprint PDF (Articles 1-395, best-effort). A few lettered articles and deep clause nesting are approximate; verify against the official source."
+  ],
+  "link_integrity": {
+    "checked": "2026-07-25",
+    "method": "every ref '<alias>:<eId>' was verified to exist as an eId in sources[alias].file; unresolved refs were dropped, not shipped.",
+    "all_refs_resolve": true,
+    "dropped_unresolved": [],
+    "note": "Constitution of India re-converted from the India Code PDF (Articles 1-395); constitution:art_21 and the other constitutional references now resolve."
+  },
+  "sources": {
+    "ni": {
+      "uri": "/akn/in/act/1881/26",
+      "title": "Negotiable Instruments Act, 1881",
+      "domain": "substantive",
+      "status": "in force",
+      "file": "acts/akn/negotiable-instruments-act-1881.akn.xml"
+    },
+    "bnss": {
+      "uri": "/akn/in/act/2023/46",
+      "title": "Bharatiya Nagarik Suraksha Sanhita, 2023",
+      "domain": "procedure",
+      "status": "in force from 2024-07-01",
+      "replaces": "crpc",
+      "file": "acts/akn/bharatiya-nagarik-suraksha-sanhita-2023.akn.xml"
+    },
+    "crpc": {
+      "uri": "/akn/in/act/1974/2",
+      "title": "Code of Criminal Procedure, 1973",
+      "domain": "procedure",
+      "status": "repealed 2024-07-01; applies to causes of action before that date",
+      "replaced_by": "bnss",
+      "file": "acts/akn/code-of-criminal-procedure-1973.akn.xml"
+    },
+    "bns": {
+      "uri": "/akn/in/act/2023/45",
+      "title": "Bharatiya Nyaya Sanhita, 2023",
+      "domain": "penal",
+      "status": "in force from 2024-07-01",
+      "replaces": "ipc",
+      "file": "acts/akn/bharatiya-nyaya-sanhita-2023.akn.xml"
+    },
+    "ipc": {
+      "uri": "/akn/in/act/1860/45",
+      "title": "Indian Penal Code, 1860",
+      "domain": "penal",
+      "status": "repealed 2024-07-01",
+      "replaced_by": "bns",
+      "file": "acts/akn/indian-penal-code.akn.xml"
+    },
+    "bsa": {
+      "uri": "/akn/in/act/2023/47",
+      "title": "Bharatiya Sakshya Adhiniyam, 2023",
+      "domain": "evidence",
+      "status": "in force from 2024-07-01",
+      "replaces": "iea",
+      "file": "acts/akn/bharatiya-sakshya-adhiniyam-2023.akn.xml"
+    },
+    "iea": {
+      "uri": "/akn/in/act/1872/1",
+      "title": "Indian Evidence Act, 1872",
+      "domain": "evidence",
+      "status": "repealed 2024-07-01",
+      "replaced_by": "bsa",
+      "file": "acts/akn/indian-evidence-act-1872.akn.xml"
+    },
+    "bbea": {
+      "uri": "/akn/in/act/1891/18",
+      "title": "Bankers' Books Evidence Act, 1891",
+      "domain": "evidence",
+      "status": "in force",
+      "file": "acts/akn/bankers-books-evidence-act-1891.akn.xml"
+    },
+    "genclauses": {
+      "uri": "/akn/in/act/1897/10",
+      "title": "General Clauses Act, 1897",
+      "domain": "interpretation",
+      "status": "in force",
+      "file": "acts/akn/general-clauses-act-1897.akn.xml"
+    },
+    "limitation": {
+      "uri": "/akn/in/act/1963/36",
+      "title": "Limitation Act, 1963",
+      "domain": "limitation",
+      "status": "in force",
+      "file": "acts/akn/limitation-act-1963.akn.xml"
+    },
+    "probation": {
+      "uri": "/akn/in/act/1958/20",
+      "title": "Probation of Offenders Act, 1958",
+      "domain": "sentencing",
+      "status": "in force",
+      "file": "acts/akn/probation-of-offenders-act-1958.akn.xml"
+    },
+    "itact": {
+      "uri": "/akn/in/act/2000/21",
+      "title": "Information Technology Act, 2000",
+      "domain": "electronic",
+      "status": "in force",
+      "file": "acts/akn/it-act-2000.akn.xml"
+    },
+    "pss": {
+      "uri": "/akn/in/act/2007/51",
+      "title": "Payment and Settlement Systems Act, 2007",
+      "domain": "banking",
+      "status": "in force",
+      "note": "context for cheque clearing / CTS; no specific section mapped",
+      "file": "acts/akn/payment-and-settlement-systems-act-2007.akn.xml"
+    },
+    "constitution": {
+      "uri": "/akn/in/constitution/1950",
+      "title": "Constitution of India",
+      "domain": "constitutional",
+      "status": "in force",
+      "file": "acts/akn/constitution-of-india.akn.xml"
+    }
+  },
+  "act_alias_map": [
+    {
+      "topic": "criminal procedure (code)",
+      "before": "crpc",
+      "on_or_after": "bnss",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "penal law (code)",
+      "before": "ipc",
+      "on_or_after": "bns",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "evidence law",
+      "before": "iea",
+      "on_or_after": "bsa",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "cognizance by magistrate",
+      "before": "crpc:sec_190",
+      "on_or_after": "bnss:sec_210",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "examination of complainant",
+      "before": "crpc:sec_200",
+      "on_or_after": "bnss:sec_223",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "issue of process",
+      "before": "crpc:sec_204",
+      "on_or_after": "bnss:sec_227",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "summary trial",
+      "before": "crpc:sec_262",
+      "on_or_after": "bnss:sec_285",
+      "switch_date": "2024-07-01",
+      "note": "NI Act s.143 expressly invokes CrPC ss.262-265; BNSS equivalent ss.283-288"
+    },
+    {
+      "topic": "compounding of offences",
+      "before": "crpc:sec_320",
+      "on_or_after": "bnss:sec_359",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "order to pay compensation",
+      "before": "crpc:sec_357",
+      "on_or_after": "bnss:sec_395",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "appeal from conviction",
+      "before": "crpc:sec_374",
+      "on_or_after": "bnss:sec_415",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "burden of proof",
+      "before": "iea:sec_101",
+      "on_or_after": "bsa:sec_104",
+      "switch_date": "2024-07-01"
+    },
+    {
+      "topic": "admissibility of electronic records",
+      "before": "iea:sec_65B",
+      "on_or_after": "bsa:sec_63",
+      "switch_date": "2024-07-01"
+    }
+  ],
+  "provisions": [
+    {
+      "ref": "ni:sec_138",
+      "act": "ni",
+      "eId": "sec_138",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "the offence",
+      "applies": "always",
+      "note": "Dishonour of cheque for insufficiency of funds; Explanation defines 'debt or other liability' as a legally enforceable debt."
+    },
+    {
+      "ref": "ni:sec_139",
+      "act": "ni",
+      "eId": "sec_139",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "presumption",
+      "applies": "always",
+      "note": "Presumption in favour of the holder that the cheque was for discharge of a debt/liability."
+    },
+    {
+      "ref": "ni:sec_140",
+      "act": "ni",
+      "eId": "sec_140",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "defence bar",
+      "applies": "always",
+      "note": "Absence of reason to believe the cheque would be dishonoured is no defence."
+    },
+    {
+      "ref": "ni:sec_141",
+      "act": "ni",
+      "eId": "sec_141",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "company liability",
+      "applies": "always",
+      "note": "Offences by companies; who is vicariously liable and the director's defence."
+    },
+    {
+      "ref": "ni:sec_142",
+      "act": "ni",
+      "eId": "sec_142",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "cognizance / limitation / jurisdiction",
+      "applies": "always",
+      "note": "Cognizance only on complaint by the payee/HDC, within one month of cause of action (condonable); s.142(2) fixes territorial jurisdiction at the payee's bank branch."
+    },
+    {
+      "ref": "ni:sec_142A",
+      "act": "ni",
+      "eId": "sec_142A",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "transfer validation",
+      "applies": "always",
+      "note": "Validation of transfer of pending cases after the 2015 jurisdiction amendment."
+    },
+    {
+      "ref": "ni:sec_143",
+      "act": "ni",
+      "eId": "sec_143",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "summary trial",
+      "applies": "always",
+      "note": "Power of court to try s.138 cases summarily (invokes the summary-trial provisions of the criminal procedure code)."
+    },
+    {
+      "ref": "ni:sec_143A",
+      "act": "ni",
+      "eId": "sec_143A",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "interim compensation",
+      "applies": "always",
+      "note": "Interim compensation up to 20% of the cheque amount."
+    },
+    {
+      "ref": "ni:sec_144",
+      "act": "ni",
+      "eId": "sec_144",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "service of summons",
+      "applies": "always",
+      "note": "Mode of service of summons on the accused."
+    },
+    {
+      "ref": "ni:sec_145",
+      "act": "ni",
+      "eId": "sec_145",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "evidence on affidavit",
+      "applies": "always",
+      "note": "Complainant's evidence may be given on affidavit."
+    },
+    {
+      "ref": "ni:sec_146",
+      "act": "ni",
+      "eId": "sec_146",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "proof of dishonour",
+      "applies": "always",
+      "note": "Bank's slip/memo is prima facie evidence of dishonour."
+    },
+    {
+      "ref": "ni:sec_147",
+      "act": "ni",
+      "eId": "sec_147",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "compoundable",
+      "applies": "always",
+      "note": "Every offence under the Act is compoundable."
+    },
+    {
+      "ref": "ni:sec_148",
+      "act": "ni",
+      "eId": "sec_148",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "appeal deposit",
+      "applies": "always",
+      "note": "Appellate court may order deposit of min 20% of the fine/compensation pending appeal."
+    },
+    {
+      "ref": "ni:sec_3",
+      "act": "ni",
+      "eId": "sec_3",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines 'banker'",
+      "applies": "always"
+    },
+    {
+      "ref": "ni:sec_6",
+      "act": "ni",
+      "eId": "sec_6",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines 'cheque'",
+      "applies": "always",
+      "note": "Includes a cheque in the electronic form and a truncated cheque (Explanation)."
+    },
+    {
+      "ref": "ni:sec_7",
+      "act": "ni",
+      "eId": "sec_7",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines drawer / drawee / payee",
+      "applies": "always"
+    },
+    {
+      "ref": "ni:sec_8",
+      "act": "ni",
+      "eId": "sec_8",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines 'holder'",
+      "applies": "always"
+    },
+    {
+      "ref": "ni:sec_9",
+      "act": "ni",
+      "eId": "sec_9",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines 'holder in due course'",
+      "applies": "always",
+      "note": "The complainant under s.138 must be the payee or the holder in due course."
+    },
+    {
+      "ref": "ni:sec_10",
+      "act": "ni",
+      "eId": "sec_10",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines 'payment in due course'",
+      "applies": "always"
+    },
+    {
+      "ref": "ni:sec_13",
+      "act": "ni",
+      "eId": "sec_13",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines 'negotiable instrument'",
+      "applies": "always"
+    },
+    {
+      "ref": "ni:sec_20",
+      "act": "ni",
+      "eId": "sec_20",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "supporting",
+      "role": "inchoate instruments",
+      "applies": "always",
+      "note": "Blank/incomplete cheques later filled in — a common s.138 defence issue."
+    },
+    {
+      "ref": "ni:sec_87",
+      "act": "ni",
+      "eId": "sec_87",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "supporting",
+      "role": "material alteration",
+      "applies": "always",
+      "note": "Effect of material alteration of the instrument — a defence issue."
+    },
+    {
+      "ref": "ni:sec_118",
+      "act": "ni",
+      "eId": "sec_118",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "supporting",
+      "role": "presumptions as to NI",
+      "applies": "always",
+      "note": "General presumptions (consideration, date, etc.) read with s.139."
+    },
+    {
+      "ref": "ni:sec_72",
+      "act": "ni",
+      "eId": "sec_72",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "supporting",
+      "role": "presentment of cheque",
+      "applies": "always",
+      "note": "Presentment of cheque to charge the drawer."
+    },
+    {
+      "ref": "ni:sec_84",
+      "act": "ni",
+      "eId": "sec_84",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "supporting",
+      "role": "non-presentment",
+      "applies": "always",
+      "note": "When a cheque is not duly presented and the drawer is damaged thereby."
+    },
+    {
+      "ref": "bnss:sec_210",
+      "act": "bnss",
+      "eId": "sec_210",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "cognizance by magistrate",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.190"
+    },
+    {
+      "ref": "bnss:sec_223",
+      "act": "bnss",
+      "eId": "sec_223",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "examination of complainant",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.200"
+    },
+    {
+      "ref": "bnss:sec_227",
+      "act": "bnss",
+      "eId": "sec_227",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "issue of process",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.204"
+    },
+    {
+      "ref": "bnss:sec_285",
+      "act": "bnss",
+      "eId": "sec_285",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "procedure for summary trials",
+      "applies": "post-2024-07-01",
+      "note": "Chapter on summary trials (ss.283-288) = CrPC ss.262-265"
+    },
+    {
+      "ref": "bnss:sec_63",
+      "act": "bnss",
+      "eId": "sec_63",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "form of summons",
+      "applies": "post-2024-07-01"
+    },
+    {
+      "ref": "bnss:sec_64",
+      "act": "bnss",
+      "eId": "sec_64",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "summons how served",
+      "applies": "post-2024-07-01"
+    },
+    {
+      "ref": "bnss:sec_359",
+      "act": "bnss",
+      "eId": "sec_359",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "compounding of offences",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.320"
+    },
+    {
+      "ref": "bnss:sec_395",
+      "act": "bnss",
+      "eId": "sec_395",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "order to pay compensation",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.357"
+    },
+    {
+      "ref": "bnss:sec_415",
+      "act": "bnss",
+      "eId": "sec_415",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "appeals from convictions",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.374 (relevant to s.148 appeals)"
+    },
+    {
+      "ref": "bnss:sec_514",
+      "act": "bnss",
+      "eId": "sec_514",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "limitation bar on cognizance",
+      "applies": "post-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_190",
+      "act": "crpc",
+      "eId": "sec_190",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "cognizance by magistrate",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_200",
+      "act": "crpc",
+      "eId": "sec_200",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "examination of complainant",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_204",
+      "act": "crpc",
+      "eId": "sec_204",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "issue of process",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_262",
+      "act": "crpc",
+      "eId": "sec_262",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "procedure for summary trials",
+      "applies": "pre-2024-07-01",
+      "note": "Expressly invoked by NI Act s.143 (ss.262-265)."
+    },
+    {
+      "ref": "crpc:sec_320",
+      "act": "crpc",
+      "eId": "sec_320",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "compounding of offences",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_357",
+      "act": "crpc",
+      "eId": "sec_357",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "order to pay compensation",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_374",
+      "act": "crpc",
+      "eId": "sec_374",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "appeals from convictions",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "bsa:sec_104",
+      "act": "bsa",
+      "eId": "sec_104",
+      "file": "bharatiya-sakshya-adhiniyam-2023.akn.xml",
+      "tier": "evidence",
+      "role": "burden of proof",
+      "applies": "post-2024-07-01",
+      "note": "= IEA s.101"
+    },
+    {
+      "ref": "bsa:sec_63",
+      "act": "bsa",
+      "eId": "sec_63",
+      "file": "bharatiya-sakshya-adhiniyam-2023.akn.xml",
+      "tier": "evidence",
+      "role": "admissibility of electronic records",
+      "applies": "post-2024-07-01",
+      "note": "= IEA s.65B (proof of CTS / e-cheque records)"
+    },
+    {
+      "ref": "bsa:sec_86",
+      "act": "bsa",
+      "eId": "sec_86",
+      "file": "bharatiya-sakshya-adhiniyam-2023.akn.xml",
+      "tier": "evidence",
+      "role": "presumption as to electronic records/signatures",
+      "applies": "post-2024-07-01"
+    },
+    {
+      "ref": "iea:sec_101",
+      "act": "iea",
+      "eId": "sec_101",
+      "file": "indian-evidence-act-1872.akn.xml",
+      "tier": "evidence",
+      "role": "burden of proof",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "iea:sec_65B",
+      "act": "iea",
+      "eId": "sec_65B",
+      "file": "indian-evidence-act-1872.akn.xml",
+      "tier": "evidence",
+      "role": "admissibility of electronic records",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "bbea:sec_2",
+      "act": "bbea",
+      "eId": "sec_2",
+      "file": "bankers-books-evidence-act-1891.akn.xml",
+      "tier": "evidence",
+      "role": "definitions (bankers' books)",
+      "applies": "always"
+    },
+    {
+      "ref": "bbea:sec_4",
+      "act": "bbea",
+      "eId": "sec_4",
+      "file": "bankers-books-evidence-act-1891.akn.xml",
+      "tier": "evidence",
+      "role": "mode of proof of entries",
+      "applies": "always",
+      "note": "Proving the account/dishonour through certified bank-book entries."
+    },
+    {
+      "ref": "genclauses:sec_27",
+      "act": "genclauses",
+      "eId": "sec_27",
+      "file": "general-clauses-act-1897.akn.xml",
+      "tier": "notice",
+      "role": "deemed service by post",
+      "applies": "always",
+      "note": "The basis for deemed service of the s.138 demand notice (C.C. Alavi Haji)."
+    },
+    {
+      "ref": "limitation:sec_5",
+      "act": "limitation",
+      "eId": "sec_5",
+      "file": "limitation-act-1963.akn.xml",
+      "tier": "limitation",
+      "role": "condonation of delay",
+      "applies": "always",
+      "note": "Extension of the prescribed period for sufficient cause — read with the s.142 proviso."
+    },
+    {
+      "ref": "probation:sec_3",
+      "act": "probation",
+      "eId": "sec_3",
+      "file": "probation-of-offenders-act-1958.akn.xml",
+      "tier": "sentencing",
+      "role": "release after admonition",
+      "applies": "always"
+    },
+    {
+      "ref": "probation:sec_4",
+      "act": "probation",
+      "eId": "sec_4",
+      "file": "probation-of-offenders-act-1958.akn.xml",
+      "tier": "sentencing",
+      "role": "release on probation of good conduct",
+      "applies": "always",
+      "note": "Directed to be considered in s.138 cases (Sanjabij Tari, 2025)."
+    },
+    {
+      "ref": "probation:sec_5",
+      "act": "probation",
+      "eId": "sec_5",
+      "file": "probation-of-offenders-act-1958.akn.xml",
+      "tier": "sentencing",
+      "role": "compensation on release",
+      "applies": "always"
+    },
+    {
+      "ref": "itact:sec_2",
+      "act": "itact",
+      "eId": "sec_2",
+      "file": "it-act-2000.akn.xml",
+      "tier": "definition",
+      "role": "IT definitions",
+      "applies": "always",
+      "note": "'electronic form', 'electronic record', etc., referenced by NI Act s.6 Explanation."
+    },
+    {
+      "ref": "itact:sec_3",
+      "act": "itact",
+      "eId": "sec_3",
+      "file": "it-act-2000.akn.xml",
+      "tier": "supporting",
+      "role": "authentication (digital signature)",
+      "applies": "always"
+    },
+    {
+      "ref": "itact:sec_3A",
+      "act": "itact",
+      "eId": "sec_3A",
+      "file": "it-act-2000.akn.xml",
+      "tier": "supporting",
+      "role": "electronic signature",
+      "applies": "always",
+      "note": "Relevant to cheques in electronic form."
+    },
+    {
+      "ref": "constitution:art_21",
+      "act": "constitution",
+      "eId": "art_21",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "right to life & personal liberty — fair & speedy trial",
+      "applies": "always",
+      "note": "The constitutional anchor for expeditious disposal of s.138 complaints (In re Expeditious Trial of Cases under s.138 NI Act, 2021) and for scrutiny of default/sentence of imprisonment; guarantees a fair procedure established by law."
+    },
+    {
+      "ref": "constitution:art_142",
+      "act": "constitution",
+      "eId": "art_142",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "Supreme Court's power to do complete justice",
+      "applies": "always",
+      "note": "Source of the compounding-cost guidelines (Damodar S. Prabhu v. Sayed Babalal, 2010) and of directions to settle/close s.138 cases (Meters and Instruments v. Kanchan Mehta, 2018; In re Expeditious Trial, 2021)."
+    },
+    {
+      "ref": "constitution:art_226",
+      "act": "constitution",
+      "eId": "art_226",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "High Court writ jurisdiction",
+      "applies": "always",
+      "note": "Together with s.482 CrPC / s.528 BNSS, the route to quash a s.138 complaint or challenge the proceedings; the writ power is independent of the inherent power."
+    },
+    {
+      "ref": "constitution:art_227",
+      "act": "constitution",
+      "eId": "art_227",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "High Court power of superintendence",
+      "applies": "always",
+      "note": "Supervisory jurisdiction over the trial magistrate hearing the s.138 case; used to test interlocutory orders, transfers and delay."
+    },
+    {
+      "ref": "constitution:art_141",
+      "act": "constitution",
+      "eId": "art_141",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "law declared by Supreme Court is binding",
+      "applies": "always",
+      "note": "Makes the s.138 case law (Rangappa, Dashrath Rupsingh, Damodar Prabhu, Expeditious Trial, etc.) binding on every court trying these cases."
+    },
+    {
+      "ref": "constitution:art_136",
+      "act": "constitution",
+      "eId": "art_136",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "special leave to appeal to the Supreme Court",
+      "applies": "always",
+      "note": "The discretionary route by which s.138 matters reach the Supreme Court after the High Court."
+    },
+    {
+      "ref": "constitution:art_246",
+      "act": "constitution",
+      "eId": "art_246",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "distribution of legislative powers (Seventh Schedule)",
+      "applies": "always",
+      "note": "Legislative competence for the NI Act: Entry 46 of List III (Concurrent) — 'bills of exchange, cheques, promissory notes and other like instruments'."
+    },
+    {
+      "ref": "constitution:art_39A",
+      "act": "constitution",
+      "eId": "art_39A",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "equal justice & free legal aid (Directive Principle)",
+      "applies": "always",
+      "note": "Underlies referral of s.138 disputes to Lok Adalat / mediation and other access-to-justice measures; a Directive Principle, not directly enforceable."
+    },
+    {
+      "ref": "constitution:art_20",
+      "act": "constitution",
+      "eId": "art_20",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "protection in respect of conviction — ex-post-facto & self-incrimination",
+      "applies": "always",
+      "note": "Art. 20(1)'s bar on retrospective penal/pecuniary liability informs the prospective-only application of the s.143A interim-compensation power (G.J. Raja v. Tejraj Surana, 2019); Art. 20(3) is raised where specimen signatures/handwriting are compelled."
+    },
+    {
+      "ref": "constitution:art_14",
+      "act": "constitution",
+      "eId": "art_14",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "equality before law",
+      "applies": "always",
+      "note": "Frames challenges to arbitrary procedure and supports the 'regulatory / compensatory offence' characterisation of s.138."
+    }
+  ],
+  "terms": {
+    "banker": "ni:sec_3",
+    "cheque": "ni:sec_6",
+    "compounding": "ni:sec_147",
+    "dishonour of cheque": "ni:sec_138",
+    "drawer": "ni:sec_7",
+    "electronic signature": "itact:sec_3A",
+    "holder": "ni:sec_8",
+    "holder in due course": "ni:sec_9",
+    "interim compensation": "ni:sec_143A",
+    "negotiable instrument": "ni:sec_13",
+    "payment in due course": "ni:sec_10",
+    "presumption in favour of holder": "ni:sec_139",
+    "service of notice": "genclauses:sec_27"
+  },
+  "edges": [
+    {
+      "from": "ni:sec_138",
+      "rel": "uses-definition",
+      "to": "ni:sec_6",
+      "note": "'cheque'"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "uses-definition",
+      "to": "ni:sec_3",
+      "note": "'banker'"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "complainant-must-be",
+      "to": "ni:sec_9",
+      "note": "payee / holder in due course"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "raises-presumption",
+      "to": "ni:sec_139"
+    },
+    {
+      "from": "ni:sec_139",
+      "rel": "read-with",
+      "to": "ni:sec_118"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "notice-served-under",
+      "to": "genclauses:sec_27"
+    },
+    {
+      "from": "ni:sec_142",
+      "rel": "delay-condoned-under",
+      "to": "limitation:sec_5"
+    },
+    {
+      "from": "ni:sec_142",
+      "rel": "cognizance-taken-under",
+      "to": "bnss:sec_210",
+      "note": "CrPC s.190 before 2024-07-01"
+    },
+    {
+      "from": "ni:sec_143",
+      "rel": "tried-summarily-under",
+      "to": "bnss:sec_285",
+      "note": "CrPC ss.262-265 before 2024-07-01"
+    },
+    {
+      "from": "ni:sec_145",
+      "rel": "electronic-evidence-under",
+      "to": "bsa:sec_63",
+      "note": "IEA s.65B before 2024-07-01"
+    },
+    {
+      "from": "ni:sec_146",
+      "rel": "dishonour-proved-under",
+      "to": "bbea:sec_4"
+    },
+    {
+      "from": "ni:sec_147",
+      "rel": "compounded-under",
+      "to": "bnss:sec_359",
+      "note": "CrPC s.320 before 2024-07-01"
+    },
+    {
+      "from": "ni:sec_148",
+      "rel": "appeal-lies-under",
+      "to": "bnss:sec_415",
+      "note": "CrPC s.374 before 2024-07-01"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "disposal-alternative",
+      "to": "probation:sec_4"
+    },
+    {
+      "from": "ni:sec_6",
+      "rel": "electronic-cheque-defined-with",
+      "to": "itact:sec_2"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "fair-trial-guaranteed-by",
+      "to": "constitution:art_21"
+    },
+    {
+      "from": "ni:sec_143",
+      "rel": "expeditious-trial-directed-under",
+      "to": "constitution:art_21",
+      "note": "In re Expeditious Trial, 2021"
+    },
+    {
+      "from": "ni:sec_147",
+      "rel": "compounding-guidelines-laid-under",
+      "to": "constitution:art_142",
+      "note": "Damodar S. Prabhu, 2010"
+    },
+    {
+      "from": "ni:sec_143A",
+      "rel": "held-prospective-under",
+      "to": "constitution:art_20",
+      "note": "G.J. Raja v. Tejraj Surana, 2019 (Art. 20(1))"
+    },
+    {
+      "from": "ni:sec_138",
+      "rel": "enacted-under-competence",
+      "to": "constitution:art_246",
+      "note": "Entry 46, List III (Concurrent)"
+    }
+  ],
+  "caselaw": "caselaw/cheque-dishonour-s138.caselaw.json"
+}

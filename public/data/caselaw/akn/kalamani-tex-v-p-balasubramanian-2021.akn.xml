@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/judgment/2021/kalamani-tex-2021/!main"/>
+          <FRBRuri value="/akn/in/judgment/2021/kalamani-tex-2021"/>
+          <FRBRalias value="Kalamani Tex v. P. Balasubramanian" name="caseName"/>
+          <FRBRdate date="2021-02-10" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Kalamani Tex v. P. Balasubramanian"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/judgment/2021/kalamani-tex-2021/eng@/!main"/>
+          <FRBRuri value="/akn/in/judgment/2021/kalamani-tex-2021/eng@"/>
+          <FRBRdate date="2021-02-10" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/judgment/2021/kalamani-tex-2021/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/judgment/2021/kalamani-tex-2021/eng@.akn"/>
+          <FRBRdate date="2026-07-25" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="sc-india" href="/ontology/organization/in/supreme-court" showAs="Supreme Court of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the text export of Kalamani Tex v. P. Balasubramanian (indiankanoon.org/doc/19349803). Running headers, page furniture and reporter apparatus were stripped during extraction. Numbered paragraphs follow the reported judgment. The introduction/motivation/decision split is a best-effort structural segmentation. Verify against the official record before authoritative use.</p></note>
+      </notes>
+      <proprietary source="#pucar" xmlns:pucar="https://pucar.org/ns">
+        <pucar:caseId>kalamani-tex-2021</pucar:caseId>
+        <pucar:status>good-law</pucar:status>
+        <pucar:benchSize>2</pucar:benchSize>
+        <pucar:reportable>true</pucar:reportable>
+      </proprietary>
+    </meta>
+    <header>
+      <p class="court"><courtType refersTo="#sc-india">Supreme Court of India</courtType></p>
+      <p class="docketNumber"><docketNumber>CRIMINAL APPEAL NO. 123 of 2021</docketNumber></p>
+      <p class="parties">Kalamani Tex v. P. Balasubramanian</p>
+      <p class="reportCitation">(2021) 10 SCC 549</p>
+      <p class="judgmentDate"><date date="2021-02-10" refersTo="#judgmentDate">2021-02-10</date></p>
+      <p class="author">Author: Surya Kant</p>
+      <p class="bench">Bench: Aniruddha Bose, Surya Kant, N.V. Ramana</p>
+    </header>
+    <judgmentBody>
+      <introduction eId="intro_1">
+        <p>Equivalent citations: AIRONLINE 2021 SC 82 Author: Surya Kant Bench: Aniruddha Bose, Surya Kant, N.V. Ramana REPORTABLE IN THE SUPREME COURT OF INDIA CRIMINAL APPELLATE JURISDICTION CRIMINAL APPEAL NO. 123 of 2021 [Arising out of Special Leave Petition (Crl.) No. 1876 of 2018] M/s. Kalamani Tex &amp; Anr ..... Appellant(s) VERSUS P. Balasubramanian ..... Respondent JUDGEMENT Surya Kant, J: Leave Granted.</p>
+      </introduction>
+      <motivation eId="motiv_1">
+          <paragraph eId="para_2">
+            <num>2.</num>
+            <content><p>M/s. Kalamani Tex (Appellant No.1) and its managing partner– B. Subramanian (Appellant No.2) are in appeal challenging the judgment dated 09.11.2017 passed by the High Court of Judicature at Madras, whereby the order of acquittal of the Judicial Magistrate, Tiruppur was reversed and the appellants have been convicted under Section 138 of the Negotiable Instruments Act, 1881 (in short, ‘NIA’). Consequently, Appellant No.2 has been sentenced to undergo three months Simple Imprisonment and a fine of Rs. 5,000/−. Page | 1 Facts</p></content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num>3.</num>
+            <content><p>The instant proceedings have originated out of a complaint preferred by P. Balasubramanian (Complainant−Respondent) against the appellants. The respondent is the proprietor of a garment company named and styled as ‘Growell International’, which along with Appellant No.1 was engaged in a business arrangement, whereby they agreed to jointly export garments to France. Certain issues arose regarding delays in shipment and payment from the buyer, due to which, the appellants had to pay the respondent a sum of Rs 11.20 lakhs. To that end, Appellant No.2 issued a cheque on behalf of Appellant No. 1 bearing no.897993 dated 07.11.2000 in favour of the respondent and also executed a Deed of Undertaking on the same day wherein Appellant No.2 personally undertook to pay the respondent in lieu of the initial expenditure incurred by the latter. The respondent presented the said cheque to the bank on 29.12.2000 for collection but it was returned with an endorsement that there were insufficient funds in the account of appellants. In wake of the cheque being dishonoured, the respondent issued a notice dated 08.01.2001 asking the appellants to pay the amount within 15 days. The appellants in their reply dated 27.01.2001 denied their liability and claimed that blank cheques and signed blank stamp papers were issued to help the respondent in some debt recovery proceedings, and not because of any Page | 2 legally enforceable debt.</p></content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num>4.</num>
+            <content><p>The respondent then lodged a private complaint under section 138 and 142 of the NIA read with Section 200 of the Code of Criminal Procedure, 1973 (in short ‘CrPC’) before the Judicial Magistrate, Tiruppur. In order to substantiate his claim, the respondent himself entered the witness box and produced documentary evidence such as the cheque issued by Appellant No.2. The respondent in his chief− examination initially contended that the subject amount had been received by the appellants from the foreign buyer. However, when recalled on a later date, the respondent produced the Deed of Undertaking dated 07.11.2000, whereunder, the 2nd Appellant had acknowledged the liability towards respondent. One PS Shanmugham (PW−2) who was working as Manager in State Bank of India, Tiruppur Overseas Branch, was also examined by the respondent.</p></content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num>5.</num>
+            <content><p>Appellant No.2 in his statement under Section 313 CrPC plainly denied the allegations and disputed the existence of any liability towards the respondent. The appellants also examined one V. Rajagopal (DW−1) who at the relevant time was working as Assistant Manager in State Bank of India, Tiruppur Overseas Branch. DW−1 mainly deposed on the inability of the respondent to pay back the credit that was advanced to him, and the subsequent debt recovery proceedings initiated against him. The appellants did not lead any documentary evidence in their defence. Page | 3</p></content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num>6.</num>
+            <content><p>The trial Court disbelieved the respondent’s claim and observed that he had failed to establish a legally enforceable liability on the date of issue of cheque. The Court held that since the basic ingredients of an offence under Section 138 of the NIA were not satisfied, the complaint was liable to be dismissed.</p></content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num>7.</num>
+            <content><p>Discontented with the order of the trial Court, the respondent preferred a criminal appeal before the High Court, wherein, the Court noted that Appellant No.2 had admitted his signatures on both the Cheque and the Deed of Undertaking and had thus acknowledged the appellants’ liability. The High Court therefore vide impugned judgment allowed the criminal appeal and convicted both the appellants under Section 138 of NIA. Appellant No. 2 was awarded a sentence of three months simple imprisonment with a fine of Rs. 5,000/− (or 20 days simple imprisonment in lieu thereof). Additionally, Appellant No.1 was directed to pay a fine of Rs. 5,000/−, in default of which, Appellant No. 2 would undergo another one−month simple imprisonment.</p></content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num>8.</num>
+            <content><p>The aggrieved appellants are now before this Court. It may be mentioned at the outset that when the SLP came up for hearing on 12.03.2018, their learned Counsel agreed to deposit the entire amount in dispute and in deference thereto, the appellants have on 11.04.2018 deposited a sum of Rs. 11.20 lakhs with the Registry of this Court. Page | 4 CONTENTIONS</p></content>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num>9.</num>
+            <content><p>Learned Senior Counsel for the appellants, nonetheless, desired to argue the case on merits and contended that there was no legally enforceable liability on the date of issuance of the cheque and that blank stamp papers signed by Appellant No.2 were misused by the respondent to forge the Deed of Undertaking dated 07.11.2000. Placing reliance on Murugesan v. State Through Inspector of Police1, he urged that the view taken by the trial Court was a possible view, and the High Court committed patent illegality and exceeded its jurisdiction in reversing the acquittal. Learned Senior Counsel also cited Reena Hazarika v. State of Assam2 to argue that the High Court did not take notice of the defence raised by the appellants which has caused serious prejudice to them. He passionately put forth the principles laid down in Basalingappa v. Mudibasapp3 and Kumar Exports v. Sharma Carpets4, and submitted that the presumption drawn against an accused under Section 118 and Section 139 of the NIA is rebuttable through a standard of “preponderance of probability”, which has been successfully met by the appellants in the present case.</p></content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num>10.</num>
+            <content><p>On the other hand, learned Counsel for the respondent (2012) 10 SCC 383, ¶ 32. (2019) 13 SCC 289, ¶ 20. (2019) 5 SCC 418. (2009) 2 SCC 513. Page | 5 maintained that the decision of the High Court is well reasoned and founded upon due consideration of all relevant factors of the case. Laying stress on the undisputed signatures on the cheque and the Deed of Undertaking dated 07.11.2000, he asserted that the appellants have admitted their existing liability of Rs.11.20 lakhs. Lastly, while pointing out the financial loss suffered by the respondent and the adverse impact on his business, learned Counsel prayed for suitable compensation. ANALYSIS</p></content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num>11.</num>
+            <content><p>The short question which falls for our consideration is whether the High Court erred in reversing the findings of the trial Court in exercise of its powers under Section 378 of CrPC?</p></content>
+          </paragraph>
+          <paragraph eId="para_12">
+            <num>12.</num>
+            <content><p>Having given our thoughtful consideration to the rival submissions, we do not find any valid ground to interfere with the impugned judgment. It is true that the High Court would not reverse an order of acquittal merely on formation of an opinion different than that of the trial Court. It is also trite in law that the High Court ought to have compelling reasons to tinker with an order of acquittal and no such interference would be warranted when there were to be two possible conclusions.5 Nonetheless, there are numerous decisions of this Court, justifying the invocation of powers by the High Court under Section 378 CrPC, if the trial Court had, inter alia, committed a patent CK Dasegowda and Others v. State of Karnatak, (2014) 13 SCC 119 ¶14. Page | 6 error of law or grave miscarriage of justice or it arrived at a perverse finding of fact.6</p></content>
+          </paragraph>
+          <paragraph eId="para_13">
+            <num>13.</num>
+            <content><p>On a similar analogy, the powers of this Court under Article 136 of the Constitution also do not encompass the re−appreciation of entirety of record merely on the premise that the High Court has convicted the appellants for the first time in exercise of its appellate jurisdiction. This Court in Ram Jag v. State of UP7, Rohtas v. State of Haryana8 and Raveen Kumar v. State of Himachal Pradesh 9, evolved its own limitations on the exercise of powers under Article 136 of the Constitution and has reiterated that while entertaining an appeal by way of special leave, there shall not ordinarily be an attempt to re−appreciate the evidence on record unless the decision(s) under challenge are shown to have committed a manifest error of law or procedure or the conclusion reached is ex−facie perverse.</p></content>
+          </paragraph>
+          <paragraph eId="para_14">
+            <num>14.</num>
+            <content><p>Adverting to the case in hand, we find on a plain reading of its judgment that the trial Court completely overlooked the provisions and failed to appreciate the statutory presumption drawn under Section 118 and Section 139 of NIA. The Statute mandates that once the signature(s) of an accused on the cheque/negotiable instrument are established, then these ‘reverse onus’ clauses become operative. In State of UP v. Banne, (2009) 4 SCC 271,¶ 27; Ghurey Lal v. State of U.P., (2008) 10 SCC 450, ¶70. (1974) 4 SCC 201, ¶ 14. (2019) 10 SCC 554, ¶ 12. 2020 SCC Online SC 869, ¶ 14. Page | 7 such a situation, the obligation shifts upon the accused to discharge the presumption imposed upon him. This point of law has been crystalized by this Court in Rohitbhai Jivanlal Patel v. State of Gujarat10 in the following words: “In the case at hand, even after purportedly drawing the presumption under Section 139 of the NI Act, the trial court proceeded to question the want of evidence on the part of the complainant as regards the source of funds for advancing loan to the accused and want of examination of relevant witnesses who allegedly extended him money for advancing it to the accused. This approach of the trial court had been at variance with the principles of presumption in law. After such presumption, the onus shifted to the accused and unless the accused had discharged the onus by bringing on record such facts and circumstances as to show the preponderance of probabilities tilting in his favour, any doubt on the complainant's case could not have been raised for want of evidence regarding the source of funds for advancing loan to the appellant−accused…..”</p></content>
+          </paragraph>
+          <paragraph eId="para_15">
+            <num>15.</num>
+            <content><p>Once the 2nd Appellant had admitted his signatures on the cheque and the Deed, the trial Court ought to have presumed that the cheque was issued as consideration for a legally enforceable debt. The trial Court fell in error when it called upon the Complainant− Respondent to explain the circumstances under which the appellants were liable to pay. Such approach of the trial Court was directly in the (2019) 18 SCC 106, ¶ 18. Page | 8 teeth of the established legal position as discussed above, and amounts to a patent error of law.</p></content>
+          </paragraph>
+          <paragraph eId="para_16">
+            <num>16.</num>
+            <content><p>No doubt, and as correctly argued by senior counsel for the appellants, the presumptions raised under Section 118 and Section 139 are rebuttable in nature. As held in MS Narayana Menon v. State of Kerela11, which was relied upon in Basalingappa (supra), a probable defence needs to be raised, which must meet the standard of “preponderance of probability”, and not mere possibility. These principles were also affirmed in the case of Kumar Exports (supra), wherein it was further held that a bare denial of passing of consideration would not aid the case of accused.</p></content>
+          </paragraph>
+          <paragraph eId="para_17">
+            <num>17.</num>
+            <content><p>The appellants have banked upon the evidence of DW−1 to dispute the existence of any recoverable debt. However, his deposition merely highlights that the respondent had an over− extended credit facility with the bank and his failure to update his account led to debt recovery proceedings. Such evidence does not disprove the appellants’ liability and has a little bearing on the merits of the respondent’s complaint. Similarly, the appellants’ mere bald denial regarding genuineness of the Deed of Undertaking dated 07.11.2000, despite admitting the signatures of Appellant No. 2 thereupon, does not cast any doubt on the genuineness of the said document.</p></content>
+          </paragraph>
+          <paragraph eId="para_18">
+            <num>18.</num>
+            <content><p>Even if we take the arguments raised by the appellants at face (2006) 6 SCC 39, ¶ 32. Page | 9 value that only a blank cheque and signed blank stamp papers were given to the respondent, yet the statutory presumption cannot be obliterated. It is useful to cite Bir Singh v. Mukesh Kumar12, where this court held that: “Even a blank cheque leaf, voluntarily signed and handed over by the accused, which is towards some payment, would attract presumption under Section 139 of the Negotiable Instruments Act, in the absence of any cogent evidence to show that the cheque was not issued in discharge of a debt.”</p></content>
+          </paragraph>
+          <paragraph eId="para_19">
+            <num>19.</num>
+            <content><p>Considering the fact that there has been an admitted business relationship between the parties, we are of the opinion that the defence raised by the appellants does not inspire confidence or meet the standard of ‘preponderance of probability’. In the absence of any other relevant material, it appears to us that the High Court did not err in discarding the appellants’ defence and upholding the onus imposed upon them in terms of Section 118 and Section 139 of the NIA.</p></content>
+          </paragraph>
+          <paragraph eId="para_20">
+            <num>20.</num>
+            <content><p>As regard to the claim of compensation raised on behalf of the respondent, we are conscious of the settled principles that the object of Chapter XVII of the NIA is not only punitive but also compensatory and restitutive. The provisions of NIA envision a single window for criminal liability for dishonour of cheque as well as civil liability for realisation of the cheque amount. It is also well settled that there (2019) 4 SCC 197, ¶ 36. Page | 10 needs to be a consistent approach towards awarding compensation and unless there exist special circumstances, the Courts should uniformly levy fine up to twice the cheque amount along with simple interest at the rate of 9% per annum.13</p></content>
+          </paragraph>
+          <paragraph eId="para_21">
+            <num>21.</num>
+            <content><p>The respondent, nevertheless, cannot take advantage of the above cited principles so as to seek compensation. The record indicates that neither did the respondent ask for compensation before the High Court nor has he chosen to challenge the High Court’s judgment. Since, he has accepted the High Court’s verdict, his claim for compensation stands impliedly overturned. The respondent, in any case, is entitled to receive the cheque amount of Rs.11.20 lakhs which the appellant has already deposited with the Registry of this Court. CONCLUSION:</p></content>
+          </paragraph>
+      </motivation>
+      <decision eId="decision_1">
+          <paragraph eId="para_22">
+            <num>22.</num>
+            <content><p>For the reasons stated above, the present appeal is liable to be dismissed. We order accordingly. Ordinarily and as a necessary sequel thereto, Appellant No.2 would be liable to undergo the sentence of simple imprisonment as awarded by the High Court. However, given the peculiar facts and circumstances of the case, namely, that the appellants volunteered and thereafter have deposited the cheque amount with the Registry of this Court in the year 2018, we are inclined to take a lenient view. The impugned judgment of the High Court dated 09−11−2017 is thus modified, and it is directed that R. Vijian v. Baby, (2012) 1 SCC 260 ¶20. Page | 11 Appellant No.2 shall not be required to undergo the awarded sentence. The registry of this Court is directed to transfer the amount of Rs.11.20 lakhs along with interest accrued thereupon to the respondent within two weeks. ………………………….. J. (N.V. RAMANA) ………..………………… J. (SURYA KANT) …………………………...J. (ANIRUDDHA BOSE) NEW DELHI DATED :10.02.2021 Page | 12</p></content>
+          </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

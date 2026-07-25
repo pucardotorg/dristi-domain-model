@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/judgment/2021/expeditious-trial-2021/!main"/>
+          <FRBRuri value="/akn/in/judgment/2021/expeditious-trial-2021"/>
+          <FRBRalias value="In re Expeditious Trial of Cases under Section 138 of NI Act, 1881" name="caseName"/>
+          <FRBRdate date="2022-05-19" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="In re Expeditious Trial of Cases under Section 138 of NI Act, 1881"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/judgment/2021/expeditious-trial-2021/eng@/!main"/>
+          <FRBRuri value="/akn/in/judgment/2021/expeditious-trial-2021/eng@"/>
+          <FRBRdate date="2022-05-19" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/judgment/2021/expeditious-trial-2021/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/judgment/2021/expeditious-trial-2021/eng@.akn"/>
+          <FRBRdate date="2026-07-25" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="sc-india" href="/ontology/organization/in/supreme-court" showAs="Supreme Court of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the text export of In re Expeditious Trial of Cases under Section 138 of NI Act, 1881 (indiankanoon.org/doc/135889693). Running headers, page furniture and reporter apparatus were stripped during extraction. Numbered paragraphs follow the reported judgment. The introduction/motivation/decision split is a best-effort structural segmentation. Verify against the official record before authoritative use.</p></note>
+      </notes>
+      <proprietary source="#pucar" xmlns:pucar="https://pucar.org/ns">
+        <pucar:caseId>expeditious-trial-2021</pucar:caseId>
+        <pucar:status>good-law</pucar:status>
+        <pucar:benchSize>5</pucar:benchSize>
+        <pucar:reportable>true</pucar:reportable>
+      </proprietary>
+    </meta>
+    <header>
+      <p class="court"><courtType refersTo="#sc-india">Supreme Court of India</courtType></p>
+      <p class="parties">In re Expeditious Trial of Cases under Section 138 of NI Act, 1881</p>
+      <p class="reportCitation">(2021) 16 SCC 116</p>
+      <p class="judgmentDate"><date date="2022-05-19" refersTo="#judgmentDate">2022-05-19</date></p>
+      <p class="author">Author: S. Ravindra Bhat</p>
+      <p class="bench">Bench: S. Ravindra Bhat, B.R. Gavai, L. Nageswara Rao</p>
+    </header>
+    <judgmentBody>
+      <motivation eId="motiv_1">
+          <paragraph eId="para_1">
+            <num>1.</num>
+            <content><p>By a judgment of the Constitution Bench of this Court in Re: Expeditious Trial of Cases under Section 138 of N.I. Act, 18811 various directions were issued with respect to the conduct of trials of complaints under Section 138 of the Negotiable Instruments Act.</p></content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num>2.</num>
+            <content><p>This court by its subsequent order dated 31.03.2021 had required High Courts to file status reports indicating compliance with the directions contained in the judgment and as to whether rules were framed appropriately in line with the judgment. Similarly, the necessary amendments to the Police Manuals etc. had to be carried out. As on date, all High Courts except the Patna High Court have complied with the directions and proposed the amended Rules. In many states, amended rules have even been notified.</p></content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num>3.</num>
+            <content><p>On 16.04.2021, by the said judgment of the Larger Bench, an expert Committee was constituted to consider various suggestions with respect to streamlining the procedure of arresting the judicial docket, in regard to complaints and trials for offences under the Negotiable Instruments Act. The Expert Committee, by its report has suggested the creation of de novo Special NI Courts (2021) SCCOnline SC 325 by the Central Government vide its powers under Article 247 to tackle the problem of docket explosion. The Expert Committee proposed a scheme with two grades of judges at the trial court level and two at the appellate/revision stage. According to the Expert Committee’s calculations, the establishment of these special NI Courts would require recruitment of 1,826 special judicial officers and a total cost of Rs 126.59 crores.</p></content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num>4.</num>
+            <content><p>The amici curiae urged, in the hearing that the suggestion of creation of special courts with the proposed staffing pattern may not be feasible or practical, as it would not be possible to immediately establish de novo courts and recruit fresh candidates and support staff. It was urged that the option of appointing retired judicial/administrative officers who have worked and discharged quasi-judicial functions such as retired Tehsildars, Special executive Magistrates, Registrars of Tribunals and statutory authorities and High Courts etc officers as Special Judicial/Metropolitan Magistrates for a fixed pay be explored.</p></content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num>5.</num>
+            <content><p>Special Magistrate’s Courts for conducting trial of cases under the NI Act can be constituted under Section 18 of Cr.P.C, 1973 (along with S.13, Cr.P.C). There is authority for this course of action – (ref. Kadra Pahadiya v. State of Bihar,[(1997) 4 SCC 287]. Retired public servants, such as tehsildars and magistrates can be considered for appointment as Special Judicial/Metropolitan magistrates. Retired government personnel and retired court staff could be appointed for operationalising these courts.</p></content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num>6.</num>
+            <content><p>The report of the Expert Committee disclosed that as on 08.11.2021, 26,07,166 complaints were pending at various stages before the Courts seized of trial of offences under the NI Act. As on 13.04.2022, this pendency has increased to 33,44,290. This is an increase in pendency of 7,37,124 cases in a period of just over 5 months. As per the data available on 08.11.2021, NI Act cases contribute to 8.81% of the total criminal cases pending in the courts. Further, 11.82% of the total criminal cases that are stagnating due to appearance/service related issues are NI Act cases.</p></content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num>7.</num>
+            <content><p>The amici curiae suggest a pilot study to test the scheme of employing retired judicial officers and retired court staff to operationalise the Special Courts under the NI Act. It was suggested that this scheme could be tested on a pilot basis in 5 judicial districts with the highest pendency in the 5 states with the highest pendency (namely, Maharashtra, Rajasthan, Gujarat, Delhi and Uttar Pradesh) and the viability of utilising services of retired judicial officers can be examined based on the results of the pilot study.</p></content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num>8.</num>
+            <content><p>This High Court has by its order dated 27.04.2022 directed the High Courts in the states of Maharashtra, Rajasthan, Gujarat, Delhi and Uttar Pradesh to respond to the suggestions of the amici curiae. Their responses are as under: a. High Court of Bombay – The High Court has identified Nagpur, Nashik, Thane, Pune and CMM, Mumbai as the 5 districts with highest pendency. b. High Court of Rajasthan – The High Court has identified Jaipur Metro-I, Jaipur Metro-II, Jodhpur Metro, Udaipur and Ajmer as the 5 districts with highest pendency. c. High Court Allahabad – The High Court has identified Lucknow, Agra, Kanpur, Gautambudh Nagar and Ghaziabad as the 5 districts with the highest pendency. d. High Court of Gujarat – The High Court has given concurrence for establishing one additional court to try cases under S. 138 of the N.I. Act as per the pilot project. e. High Court of Delhi: Delhi already has 72 Special Courts for cases under the NI Act.</p></content>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num>9.</num>
+            <content><p>This Court had on 12.05.2022 indicated that the amici curiae may place a detailed proposal for the pilot study, which has since been filed.</p></content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num>10.</num>
+            <content><p>Having considered the suggestions made by the amici the Court hereby directs that the pilot study shall be conducted in the manner hereafter indicated. The guidelines covering the pilot study shall be as under: • Duration of Study: The pilot study shall be conducted for a duration of 1 year from 01.09.2022 to 31.08.2023. • Number of Courts: The pilot study shall be conducted in 25 Special Courts in total. One Special Court shall be established in each of the 5 judicial districts which have been identified as having the highest pendency by each of the five High Courts of the states (mentioned above) with the highest pendency of NI Act cases. • Presiding Officers and Staff: For operationalising the Special Courts under this pilot study, retired judicial officers and retired court staff, preferably those who have retired within the past 5 years, may be employed. The concerned High Court shall ensure that no vacancy arises, during this period. • Timeline for Identification of Requirements: The infrastructural requirements, including information technology support for video conferencing facilities, should be identified and secured by July 2022. Similarly, the presiding officers, support staff and human resources required for operationalising these Special Courts and their contractual terms should be finalised by the end of July 2022. • Training: The identified judicial officers, who are to preside over the Special Courts, be imparted specialised training. A four-week training programme by the State Judicial Academies on topics of substantive, procedure and evidence law related to the offences under the NI Act shall be conducted for them. Further, a detailed ready reckoner with governing case law and practice directions may be prepared and circulated to assist them in the adjudicatory exercise. • Pay and Service duration: The High Court concerned should ensure that the presiding officers and court staff for operationalising the Special Courts can be hired on contractual basis for one year for the duration of the pilot study. It is further proposed that they be paid a fixed honorarium in accordance with their standing prior to retirement. • Type of Cases: The Special Courts shall adjudicate upon only those cases in which summons have been duly served and the accused has entered appearance through a lawyer or in person. The oldest pending cases in which service of summons is complete must be identified in a chronological manner (oldest first). It must be ensured that no case where service of summons is incomplete is sent to the Special Courts. • Timeline for Identification of Cases: All such cases should be identified by July and a comprehensive list of these cases should be posted before the regular Magistrates expeditiously so that cases which can be settled are referred to mediation immediately and are hence, not part of the cases to be sent to the Special Courts. The final comprehensive list of cases, where service is complete and the matters are not referred to mediation, must be identified by the end of July. • Advance List and Weekly List: An advance list of all matters to be taken up by the Special Courts should be circulated by the end of July to give adequate notice to all counsel that such matters shall be taken up on priority basis by the respective Special Courts. Further, weekly lists shall also be published notifying all the matters listed for final disposal. • Functioning of Courts: The working days and working hours of the Special Courts should be notified by the end of July along with the circulation of the Advance List. • Procedure: The Special Courts set up for the pilot study shall follow the same procedure with respect to trial as mandated by the Criminal Procedure Code, 1973. In order to ensure speedy disposal of cases, adjournments should not be routinely given, especially on the ground of lack of notice. Further examination of outstation witnesses may be conducted online by following appropriate protocol so that the delay in trial due to commute of the witnesses is avoided. • Mediation: A list or panel of mediators must be identified by the end of July and circulated to all the presiding officers of the Special Court. In the event that the accused indicates willingness to settle at stage of trial before the Special Court, the presiding officer must refer the case to time-bound, online mediation before one of the identified mediators to prevent further delays. • Data Collection: A weekly statement of disposal shall be sent to the Registrar General of the concerned High Courts who shall actively monitor the progress of the pilot study. Quarterly statements of disposal must be sent to the SC. A Facilitation Officer may be appointed for the Special Courts to assist in collection of the data, in curating the cause lists and in conducting weekly review meetings with Presiding Officers to identify any additional bottlenecks or issues which need to be assessed for future planning purposes.</p></content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num>11.</num>
+            <content><p>The Secretary General of this Court shall ensure that a copy of the present order is directly communicated to the Registrar Generals of the said five High Courts, who shall place it before the Hon’ble Chief Justice for immediate action. To report progress and compliance, each of the said five High Courts shall file an affidavit on or before 21.07.2022. List on 26.07.2022 to review the further proceeding. ...........................................................................J. [L. NAGESWARA RAO] …......................................................................J. [B.R. GAVAI] ..........................................................................J. [S. RAVINDRA BHAT] New Delhi, May 19, 2022.</p></content>
+          </paragraph>
+      </motivation>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

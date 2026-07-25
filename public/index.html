@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRISTI 2.0 — Domain Model</title>
+<style>
+  :root{
+    /* PUCAR design system — shape + type (theme-independent) */
+    --radius:10px; font-synthesis:none;
+    --font-sans:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    /* ---------- LIGHT (Radix scales, PUCAR mapping) ---------- */
+    --bg:#fcfcfd; --sidebar-bg:#f9f9fb; --panel:#ffffff; --panel-2:#f4f4f7; --line:#e8e8ec; --line-2:#cdced6;
+    --ink:#1c2024; --ink-2:#60646c; --ink-3:#8b8d98;
+    --brand:#007e7e; --brand-accent:#12a594; --brand-hi:#008573; --brand-dim:#e0f8f3; --brand-border:#a1ded2; --link:#007e7e;
+    --blue:#0d74ce; --blue-txt:#0d74ce; --blue-dim:#e6f4fe; --blue-border:#acd8fc;
+    --green:#217a3a; --green-txt:#2a7e3b; --green-dim:#e9f6e9; --green-border:#b2ddb5;
+    --amber:#e2a336; --amber-txt:#ab6400; --amber-dim:#fff7c2; --amber-border:#e9c162;
+    --purple:#6e56cf; --purple-txt:#6e56cf; --purple-dim:#f1eefe; --purple-border:#d3c9f5;
+    --teal:#007e7e; --teal-dim:#e0f8f3;
+    --red:#c1232a; --red-dim:#feebec; --red-border:#f4a9aa;
+    --shadow-raised:0 1px 2px 0 rgb(0 0 0/.04),0 1px 3px 0 rgb(0 0 0/.07);
+    --shadow-modal:0 24px 60px -12px rgb(0 0 0/.25),0 8px 20px -8px rgb(0 0 0/.14);
+  }
+  html.dark{
+    /* ---------- DARK (Radix scales, PUCAR mapping) ---------- */
+    --bg:#111113; --sidebar-bg:#18191b; --panel:#18191b; --panel-2:#1d1e21; --line:#282b2f; --line-2:#43484e;
+    --ink:#edeef0; --ink-2:#b0b4ba; --ink-3:#777b84;
+    --brand:#0eb39e; --brand-accent:#12a594; --brand-hi:#0bd8b6; --brand-dim:#0d2d2a; --brand-border:#1c6961; --link:#0bd8b6;
+    --blue:#3b9eff; --blue-txt:#70b8ff; --blue-dim:#0d2847; --blue-border:#205d9e;
+    --green:#46a758; --green-txt:#71d083; --green-dim:#1b2a1e; --green-border:#2d5736;
+    --amber:#ffc53d; --amber-txt:#ffca16; --amber-dim:#302008; --amber-border:#5c3d05;
+    --purple:#9e8cff; --purple-txt:#c4b8ff; --purple-dim:#231d3d; --purple-border:#4a3d7a;
+    --teal:#0bd8b6; --teal-dim:#0d2d2a;
+    --red:#ec5d5e; --red-dim:#3b1219; --red-border:#72232d;
+    --shadow-raised:0 1px 2px 0 rgb(0 0 0/.25),0 1px 3px 0 rgb(0 0 0/.4);
+    --shadow-modal:0 24px 70px -10px rgb(0 0 0/.7),0 8px 24px -8px rgb(0 0 0/.5);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg); color:var(--ink); font-family:var(--font-sans);
+    font-size:15px; line-height:1.55; letter-spacing:.01em; -webkit-font-smoothing:antialiased;}
+  a{color:var(--link); text-decoration:none} a:hover{text-decoration:underline}
+  .theme-toggle{display:inline-flex; gap:2px; margin:0 0 14px; background:var(--panel-2); border:1px solid var(--line); border-radius:20px; padding:3px}
+  .tt-opt{font-size:12px; padding:4px 12px; border-radius:16px; cursor:pointer; color:var(--ink-3); user-select:none}
+  .tt-opt.on{background:var(--brand-dim); color:var(--brand-hi)}
+
+  .app{display:grid; grid-template-columns:280px 1fr; min-height:100vh}
+  .sidebar{background:var(--sidebar-bg); border-right:1px solid var(--line); padding:22px 16px; position:sticky; top:0; height:100vh; overflow-y:auto}
+  .main{padding:40px 48px 120px; max-width:1180px}
+  @media(max-width:880px){.app{grid-template-columns:1fr}
+    .sidebar{position:relative; height:auto; border-right:none; border-bottom:1px solid var(--line)}
+    .main{padding:28px 20px 90px}}
+
+  .brand{display:flex; gap:11px; align-items:flex-start; margin-bottom:22px; padding:0 6px; cursor:pointer}
+  .brand .mark{width:34px; height:34px; border-radius:9px; flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--blue)); display:grid; place-items:center; font-weight:800; color:#fff; font-size:15px}
+  .brand h1{font-size:15.5px; margin:0; letter-spacing:.2px}
+  .brand p{font-size:12px; color:var(--ink-3); margin:2px 0 0}
+
+  .nav-group{margin:18px 0 6px; padding:0 8px; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
+  .nav-group.scoped{color:var(--brand)}
+  .nav a{display:flex; align-items:center; gap:11px; padding:8px 10px; border-radius:8px; color:var(--ink-2); font-size:14px; margin:1px 0; cursor:pointer}
+  .nav a .ico{width:17px; text-align:center; opacity:.85; font-size:14px}
+  .nav a .count{margin-left:auto; font-size:11.5px; color:var(--ink-3); background:var(--panel-2); padding:1px 7px; border-radius:20px}
+  .nav a:hover{background:var(--panel); color:var(--ink); text-decoration:none}
+  .nav a.active{background:var(--brand-dim); color:var(--brand-hi)}
+  .nav a.active .count{background:var(--brand-border); color:#fff}
+  .nav .scoped-wrap{margin:2px 0 0}
+  .nav .nav-sub{margin:1px 0 3px 19px; padding-left:11px; border-left:1px solid var(--line-2); display:flex; flex-direction:column}
+  .nav .nav-sub a.subnav{font-size:13px; color:var(--ink-3); padding:6px 9px}
+  .nav .nav-sub a.subnav .ico{font-size:12.5px; opacity:.7}
+  .nav .nav-sub a.subnav:hover{color:var(--ink)}
+  .nav .nav-sub a.subnav.active{color:var(--brand-hi)}
+  .casedd{position:relative; margin:6px 4px 10px}
+  .casedd-btn{display:block; width:100%; text-align:left; background:color-mix(in srgb,var(--brand) 10%,var(--panel)); border:1px solid var(--brand-border); border-radius:10px; padding:10px 30px 10px 12px; cursor:pointer; color:inherit; font-family:inherit; position:relative; transition:border-color .12s}
+  .casedd-btn:hover{border-color:var(--brand)}
+  .casedd-chev{position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--brand-hi); font-size:10px; transition:transform .15s}
+  .casedd.open .casedd-chev{transform:translateY(-50%) rotate(180deg)}
+  .ac-eyebrow{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--brand-hi); font-weight:700; display:flex; align-items:center; gap:7px}
+  .ac-eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 22%,transparent)}
+  .ac-name{font-size:14.5px; font-weight:700; color:var(--ink); margin-top:4px}
+  .ac-name span{color:var(--ink-3); font-weight:400; font-size:12px}
+  .casedd-menu{display:none; position:absolute; left:0; right:0; top:calc(100% + 5px); background:var(--panel); border:1px solid var(--line-2); border-radius:10px; box-shadow:var(--shadow-modal); padding:5px; z-index:30}
+  .casedd.open .casedd-menu{display:block}
+  .casedd-item{padding:9px 11px; border-radius:7px; cursor:pointer; font-size:13.5px; color:var(--ink); display:flex; align-items:center; gap:8px}
+  .casedd-item:hover{background:var(--panel-2)}
+  .casedd-item.on{color:var(--brand-hi)}
+  .casedd-item .ci-sub{color:var(--ink-3); font-size:12px}
+  .casedd-item .ci-check{margin-left:auto; color:var(--brand); font-size:12px}
+  .casedd-item.planned{color:var(--ink-3); cursor:default}
+  .casedd-item.planned:hover{background:none}
+
+  .side-foot{margin-top:26px; padding:14px 10px 0; border-top:1px solid var(--line); font-size:12px; color:var(--ink-3); line-height:1.5}
+  .side-foot b{color:var(--ink-2); font-weight:600}
+
+  .page-title{font-size:32px; font-weight:700; margin:0 0 6px; letter-spacing:-.02em; line-height:1.15}
+  .lede{color:var(--ink-2); font-size:16px; max-width:770px; margin:0 0 30px}
+  .lede strong{color:var(--ink)}
+  h2.sec{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin:36px 0 14px; font-weight:700}
+  /* prominent act-group header inside lists */
+  .grouphead{font-size:19px; font-weight:700; color:var(--ink); letter-spacing:-.01em; margin:30px 0 12px; padding-bottom:9px; border-bottom:1px solid var(--line); display:flex; align-items:baseline; gap:10px}
+  .grouphead .gh-status{font-size:11.5px; font-weight:500; color:var(--ink-3); letter-spacing:0}
+
+  .scopebar{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:0 0 20px; padding:9px 14px; background:var(--panel); border:1px solid var(--line); border-radius:10px; font-size:13px}
+  .scopebar .lab{color:var(--ink-3); font-size:12px; letter-spacing:.03em; text-transform:uppercase}
+  .scopebar .ct{color:var(--ink); font-weight:600}
+  .scopebar .sw{margin-left:auto; color:var(--brand); cursor:pointer; font-size:12.5px}
+
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; margin-bottom:14px}
+  .muted{color:var(--ink-2)} .tiny{font-size:12.5px; color:var(--ink-3)}
+
+  .badge{display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; padding:2px 9px; border-radius:20px; border:1px solid transparent; white-space:nowrap}
+  .b-shared{color:var(--blue-txt); background:var(--blue-dim); border-color:var(--blue-border)}
+  .b-state{color:var(--green-txt); background:var(--green-dim); border-color:var(--green-border)}
+  .b-always{color:var(--ink-2); background:var(--panel-2); border-color:var(--line-2)}
+  .b-pre{color:var(--ink-2); background:var(--panel-2); border-color:var(--line-2)}
+  .b-post{color:var(--amber-txt); background:var(--amber-dim); border-color:var(--amber-border)}
+  .b-tier{color:var(--purple-txt); background:var(--purple-dim); border-color:var(--purple-border)}
+  .b-active{color:var(--green-txt); background:var(--green-dim); border-color:var(--green-border)}
+  .b-planned{color:var(--ink-3); background:var(--panel-2); border-color:var(--line)}
+  .b-crosscase{color:var(--brand-hi); background:var(--brand-dim); border-color:var(--brand-border)}
+  .dot{width:8px; height:8px; border-radius:50%; display:inline-block}
+
+  .lenses{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 8px}
+  @media(max-width:760px){.lenses{grid-template-columns:1fr}}
+  .lens{--acc:var(--blue); --acctx:var(--blue-txt); border-radius:var(--radius); padding:18px; border:1px solid color-mix(in srgb,var(--acc) 22%,var(--line)); background:color-mix(in srgb,var(--acc) 5%,var(--panel))}
+  .lens.what{--acc:var(--blue); --acctx:var(--blue-txt)} .lens.where{--acc:var(--green); --acctx:var(--green-txt)} .lens.when{--acc:var(--amber); --acctx:var(--amber-txt)}
+  .lens .k{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--acctx); font-weight:700; display:flex; align-items:center; gap:7px}
+  .lens .k::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--acc)}
+  .lens h3{margin:6px 0 7px; font-size:18px} .lens p{margin:0; font-size:13.5px; color:var(--ink-2)}
+
+  .ctgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px}
+  .ctcard{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); padding:18px 20px; position:relative}
+  .ctcard.active{border-color:var(--green-border); cursor:pointer; transition:transform .12s, border-color .12s}
+  .ctcard.active:hover{transform:translateY(-2px); border-color:var(--green)}
+  .ctcard.planned{opacity:.72}
+  .ctcard .cth{display:flex; align-items:center; justify-content:space-between; gap:10px}
+  .ctcard h3{margin:0; font-size:18px}
+  .ctcard .act{font-family:var(--font-mono); font-size:12.5px; color:var(--ink-3); margin:3px 0 10px}
+  .ctcard p{margin:0 0 12px; font-size:13.5px; color:var(--ink-2)}
+  .ctcard .stat{display:flex; gap:16px; font-size:12px; color:var(--ink-3); border-top:1px solid var(--line); padding-top:11px}
+  .ctcard .stat b{color:var(--ink); font-weight:650; font-size:15px; display:block}
+  .ctcard .enter{margin-top:12px; font-size:13px; color:var(--green)}
+
+  .struct-wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:22px; margin-top:8px}
+  @media(max-width:860px){.struct-wrap{grid-template-columns:1fr}}
+  .stack{display:flex; flex-direction:column; gap:8px}
+  .col-h{font-size:13px; font-weight:700; letter-spacing:.04em; margin:0 0 4px}
+  .col-h.rules{color:var(--blue)} .col-h.sys{color:var(--amber)}
+  .layer{border-radius:10px; padding:12px 14px; border:1px solid var(--line); background:var(--panel)}
+  .layer .lt{font-size:14.5px; font-weight:600} .layer .ld{font-size:12.5px; color:var(--ink-3); margin-top:2px}
+  .layer.core{background:color-mix(in srgb,var(--blue) 9%,var(--panel)); border-color:var(--blue-border)}
+  .layer.state{background:color-mix(in srgb,var(--green) 9%,var(--panel)); border-color:var(--green-border)}
+  .layer.sysrow{background:color-mix(in srgb,var(--amber) 9%,var(--panel)); border-color:var(--amber-border)}
+  .layer.you{outline:1.5px solid var(--brand); outline-offset:-1px}
+  .divider{display:flex; align-items:center; gap:10px; margin:6px 2px; font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase}
+  .divider.blue{color:var(--blue)} .divider.green{color:var(--green)} .divider .rule{flex:1; height:1px; background:var(--line)}
+  .ctx{margin-top:14px; border:1px solid var(--red-border); background:color-mix(in srgb,var(--red) 7%,var(--panel)); border-radius:10px; padding:14px 16px}
+  .ctx .ct{color:var(--red); font-weight:700; font-size:13px; letter-spacing:.03em; margin-bottom:6px}
+  .ctx p{margin:3px 0; font-size:13px; color:var(--ink-2)}
+
+  .timeline{margin-top:20px; padding:18px 20px 30px; border:1px solid var(--line); border-radius:12px; background:var(--panel)}
+  .tl-track{position:relative; height:2px; background:var(--line); margin:34px 8px 72px}
+  .tl-node{position:absolute; top:-6px; transform:translateX(-50%); text-align:center}
+  .tl-node .pt{width:11px; height:11px; border-radius:50%; background:var(--amber); margin:0 auto; border:2px solid var(--bg)}
+  .tl-node .yr{font-size:12px; font-weight:700; margin-top:8px; color:var(--ink)}
+  .tl-node .lb{font-size:11px; color:var(--ink-3); white-space:nowrap; max-width:130px}
+  .tl-node.hot .pt{background:var(--red); box-shadow:0 0 0 4px color-mix(in srgb,var(--red) 25%,transparent)}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px}
+  .part{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:15px 16px; cursor:pointer; transition:border-color .12s, transform .12s}
+  .part:hover{border-color:var(--brand-border); transform:translateY(-1px)}
+  .part .pt{font-size:15px; font-weight:650; display:flex; align-items:center; gap:8px}
+  .part .role{font-size:12.5px; color:var(--ink-3); margin:3px 0 10px}
+  .part .meta{display:flex; flex-wrap:wrap; gap:6px}
+  .part.repealed{opacity:.62} .part.repealed .pt{text-decoration:line-through; text-decoration-color:var(--ink-3)}
+
+  .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:16px}
+  .search{flex:1; min-width:220px; position:relative}
+  .search input{width:100%; background:var(--panel); border:1px solid var(--line); color:var(--ink); padding:11px 14px 11px 38px; border-radius:10px; font-size:14px; outline:none}
+  .search input:focus{border-color:var(--brand)} .search .mag{position:absolute; left:13px; top:11px; color:var(--ink-3)}
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  .chip{font-size:12.5px; padding:6px 12px; border-radius:20px; border:1px solid var(--line); background:var(--panel); color:var(--ink-2); cursor:pointer; user-select:none}
+  .chip:hover{border-color:var(--line-2); color:var(--ink)} .chip.on{background:var(--brand-dim); border-color:var(--brand-border); color:var(--brand-hi)}
+  .chip .c{opacity:.7; margin-left:4px}
+
+  .prov{border:1px solid var(--line); border-radius:11px; background:var(--panel); margin-bottom:9px; overflow:hidden}
+  .prov-head{display:flex; align-items:center; gap:13px; padding:14px 16px; cursor:pointer}
+  .prov-head:hover{background:var(--panel-2)}
+  .prov .ref{font-family:var(--font-mono); font-size:12.5px; color:var(--ink-2); background:var(--panel-2); padding:3px 8px; border-radius:6px; white-space:nowrap; flex:none; min-width:104px; text-align:center}
+  .prov .rt{font-weight:700; font-size:16.5px; flex:1; color:var(--ink); letter-spacing:-.01em}
+  .prov .rt .act{color:var(--ink-3); font-weight:400; font-size:13px; letter-spacing:0}
+  .prov .hbadges{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end}
+  .prov .caret{color:var(--ink-3); transition:transform .15s; flex:none} .prov.open .caret{transform:rotate(90deg)}
+  .prov-body{display:none; padding:2px 16px 18px 133px; border-top:1px solid var(--line)}
+  .prov.open .prov-body{display:block}
+  .prov-body .brief{color:var(--ink-2); font-size:13.5px; margin:13px 0 4px; padding:11px 14px; background:color-mix(in srgb,var(--purple) 6%,var(--panel-2)); border:1px solid color-mix(in srgb,var(--purple) 18%,var(--line)); border-radius:9px}
+  .prov-body .brief .bl{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--purple-txt); font-weight:700; display:block; margin-bottom:4px}
+  .prov-body .kv{font-size:12.5px; color:var(--ink-3); margin:4px 0} .prov-body .kv b{color:var(--ink-2); font-weight:600}
+  .rels{margin-top:12px; display:flex; flex-direction:column; gap:6px}
+  .rel{font-size:12.5px; color:var(--ink-2); display:flex; gap:8px; align-items:baseline}
+  .rel .r{color:var(--purple-txt); font-family:var(--font-mono); font-size:11.5px} .rel .to{font-family:var(--font-mono); color:var(--ink)}
+  @media(max-width:760px){.prov-head{flex-wrap:wrap} .prov-body{padding-left:16px} .prov .hbadges{width:100%; justify-content:flex-start}}
+
+  /* statute text (loaded live from the .akn.xml file) */
+  .statute{margin-top:14px; border:1px solid var(--line); border-radius:9px; background:var(--panel-2); padding:14px 16px}
+  .statute .st-src{font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); margin-bottom:9px; display:flex; align-items:center; gap:7px; flex-wrap:wrap}
+  .statute .st-h{font-size:14px; font-weight:650; color:var(--ink); margin-bottom:9px; line-height:1.4}
+  .statute .st-h .st-num{color:var(--brand); font-family:var(--font-mono); margin-right:6px}
+  .statute .st-p{margin:7px 0; font-size:13px; color:var(--ink-2); line-height:1.6}
+  .statute-mini .st-p{font-size:12.5px}
+  /* nested clause lists — one continuous rail per level, hanging markers */
+  .lgroup{margin:2px 0; padding-left:22px}
+  .litem{display:flex; gap:12px; margin:7px 0; font-size:13px; line-height:1.6; color:var(--ink-2)}
+  .lmark{flex:none; min-width:26px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+  .ltext{flex:1; min-width:0}
+  .statute-mini .litem{font-size:12.5px}
+  /* statutory annotations — Explanation / Proviso / Illustration, set apart from enacting text */
+  .legnote{margin:9px 0; padding:9px 13px; border-radius:8px; background:color-mix(in srgb,var(--ink-3) 8%,var(--panel-2)); border:1px solid var(--line)}
+  .legnote .lnl{display:block; font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; font-weight:700; color:var(--ink-3); margin-bottom:3px}
+  .legnote .lnt{display:block; font-size:12.5px; color:var(--ink-2); line-height:1.6; font-style:italic}
+  /* case law */
+  .case{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:15px 17px; margin-bottom:10px; box-shadow:var(--shadow-raised)}
+  .case .cn{font-size:16px; font-weight:700; color:var(--ink); letter-spacing:-.01em}
+  .case .cmeta{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:5px 0 9px}
+  .case .cite{font-family:var(--font-mono); font-size:12px; color:var(--ink-3)}
+  .case .hold{font-size:13.5px; color:var(--ink-2); line-height:1.55}
+  .case .construes{display:flex; flex-wrap:wrap; gap:6px; margin-top:11px}
+  .case .clabel{font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); font-weight:700; margin-right:2px; align-self:center}
+  .cchip{font-size:11.5px; font-family:var(--font-mono); padding:3px 9px; border-radius:7px; border:1px solid var(--line-2); background:var(--panel-2); color:var(--link); cursor:pointer}
+  .cchip:hover{border-color:var(--brand); color:var(--brand-hi)}
+  .case .rels-c{margin-top:9px; font-size:12px; color:var(--ink-3)}
+  .case .cite.neutral{color:var(--brand-hi); border:1px solid var(--line-2); border-radius:6px; padding:1px 7px; background:var(--panel-2)}
+  .case .cactions{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:12px; padding-top:11px; border-top:1px solid var(--line)}
+  .readjmt{font-size:12.5px; font-weight:600; color:var(--brand-hi); cursor:pointer; display:inline-flex; align-items:center; gap:5px}
+  .readjmt:before{content:"§"; font-family:var(--font-mono); opacity:.7}
+  .readjmt:hover{text-decoration:underline}
+  .jdec{font-size:11.5px; color:var(--ink-3); font-family:var(--font-mono)}
+  .jwarn{font-size:12px; color:var(--amber-txt)}
+  /* judgment modal */
+  .jcap{padding:2px 0 14px; margin-bottom:8px; border-bottom:1px solid var(--line)}
+  .jcap .jrow{font-size:12.5px; color:var(--ink-2); font-family:var(--font-mono); line-height:1.7}
+  .jcap .jrow.strong{color:var(--ink); font-weight:600}
+  .jpara{margin:12px 0}
+  .jpara .jp{font-size:14px; line-height:1.68; color:var(--ink-2)}
+  .jpara .jnum{display:inline-block; min-width:26px; color:var(--brand-hi); font-family:var(--font-mono); font-weight:600; font-size:12.5px; vertical-align:top}
+  .b-bench{color:var(--purple-txt); background:var(--purple-dim); border-color:var(--purple-border)}
+  .b-good{color:var(--green-txt); background:var(--green-dim); border-color:var(--green-border)}
+  .b-partly{color:var(--amber-txt); background:var(--amber-dim); border-color:var(--amber-border)}
+  .b-overruled{color:#ff9592; background:var(--red-dim); border-color:var(--red-border)}
+  .b-super{color:var(--ink-2); background:var(--panel-2); border-color:var(--line-2)}
+  .b-topic{color:var(--ink-2); background:var(--panel-2); border-color:var(--line-2)}
+  /* interpreted-by block on a provision */
+  .interp{margin-top:14px; padding:11px 14px; background:color-mix(in srgb,var(--brand) 5%,var(--panel-2)); border:1px solid color-mix(in srgb,var(--brand) 18%,var(--line)); border-radius:9px}
+  .interp .il{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand-hi); font-weight:700; margin-bottom:6px}
+  .interp .ic{font-size:13px; color:var(--ink-2); margin:5px 0; cursor:pointer; display:flex; gap:8px; align-items:baseline}
+  .interp .ic:hover .icn{color:var(--brand-hi)}
+  .interp .icn{font-weight:600; color:var(--ink)}
+  .interp .icy{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3); flex:none}
+  .view-full{margin-top:12px; display:inline-flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--line-2); color:var(--link); border-radius:8px; padding:8px 13px; font-size:12.5px; font-weight:600; cursor:pointer; font-family:var(--font-sans)}
+  .view-full:hover{border-color:var(--brand); background:var(--brand-dim); color:var(--brand-hi)}
+
+  .word{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 16px; margin-bottom:9px}
+  .word .wt{font-size:17px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:9px; cursor:pointer; letter-spacing:-.01em}
+  .word .caret{color:var(--ink-3); margin-left:auto; transition:transform .15s} .word.open .caret{transform:rotate(90deg)}
+  .word .def{color:var(--ink-2); font-size:13.5px; margin:6px 0 8px}
+  .word .src{font-size:12px; color:var(--ink-3)} .word .src code{color:var(--brand); font-family:var(--font-mono)}
+  .word .wfull{display:none; margin-top:10px} .word.open .wfull{display:block}
+
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media(max-width:820px){.split{grid-template-columns:1fr}}
+  .split .col{border:1px solid var(--line); border-radius:12px; overflow:hidden}
+  .split .col.core{border-color:var(--blue-border)} .split .col.state{border-color:var(--green-border)}
+  .split .col-top{padding:14px 18px; border-bottom:1px solid var(--line)}
+  .split .col.core .col-top{background:color-mix(in srgb,var(--blue) 8%,var(--panel))} .split .col.state .col-top{background:color-mix(in srgb,var(--green) 8%,var(--panel))}
+  .split .col-top h3{margin:0; font-size:16px} .split .col-top p{margin:4px 0 0; font-size:12.5px; color:var(--ink-2)}
+  .split .row{padding:12px 18px; border-bottom:1px solid var(--line); font-size:13.5px} .split .row:last-child{border-bottom:none}
+  .split .row b{display:block; font-size:13.5px; margin-bottom:2px} .split .row span{color:var(--ink-3); font-size:12.5px}
+
+  .statecards{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; margin-top:6px}
+  .sc{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:15px 16px}
+  .sc h4{margin:0 0 2px; font-size:15px; display:flex; align-items:center; gap:8px}
+  .sc .st{font-size:12px; color:var(--ink-3); margin-bottom:8px} .sc p{font-size:13px; color:var(--ink-2); margin:0}
+
+  .callout{--acc:var(--blue); background:color-mix(in srgb,var(--acc) 6%,var(--panel)); border:1px solid color-mix(in srgb,var(--acc) 26%,var(--line)); padding:13px 16px; border-radius:10px; margin:14px 0; font-size:13.5px; color:var(--ink-2)}
+  .callout b{color:var(--ink)}
+  .callout.amber{--acc:var(--amber)} .callout.green{--acc:var(--green)} .callout.teal{--acc:var(--brand)}
+  .empty{color:var(--ink-3); font-size:14px; padding:40px 30px; text-align:center; border:1px dashed var(--line); border-radius:12px}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:var(--ink-2); margin:10px 0 4px}
+  .legend span{display:flex; align-items:center; gap:6px}
+  .backlink{cursor:pointer; font-size:12.5px; color:var(--ink-3)}
+  .card,.prov,.ctcard,.part,.word,.sc,.lens,.scopebar,.timeline,.split .col{box-shadow:var(--shadow-raised)}
+
+  /* load / error panel */
+  .loadbox{max-width:640px; margin:60px auto; text-align:center; color:var(--ink-2)}
+  .loadbox h2{color:var(--ink); font-size:20px; margin:0 0 10px}
+  .loadbox code{font-family:var(--font-mono); background:var(--panel-2); border:1px solid var(--line); padding:2px 7px; border-radius:6px; color:var(--brand)}
+  .loadbox .cmd{margin:16px auto; text-align:left; background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:14px 16px; font-family:var(--font-mono); font-size:13px; color:var(--ink)}
+  .spinner{width:26px;height:26px;border:3px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* full-act modal */
+  .modal{position:fixed; inset:0; z-index:100; display:none}
+  .modal.show{display:block}
+  .modal-back{position:absolute; inset:0; background:rgba(0,0,0,.55)}
+  .modal-panel{position:absolute; top:4vh; bottom:4vh; left:50%; transform:translateX(-50%); width:min(880px,94vw); background:var(--panel); border:1px solid var(--line-2); border-radius:14px; box-shadow:var(--shadow-modal); display:flex; flex-direction:column; overflow:hidden}
+  .modal-x{position:absolute; top:14px; right:16px; z-index:3; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:12.5px; font-family:var(--font-sans)}
+  .modal-x:hover{color:var(--ink)}
+  .modal-body{overflow-y:auto; overflow-x:hidden}
+  .ad-loading{padding:80px 30px; text-align:center; color:var(--ink-3)}
+  .actdoc-h{position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--line); padding:20px 30px 15px; z-index:2}
+  .ad-title{font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.01em; padding-right:70px}
+  .ad-sub{font-size:12.5px; color:var(--ink-3); margin-top:4px}
+  .actdoc-body{padding:8px 30px 50px}
+  .ad-chap{font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--brand); font-weight:700; margin:26px 0 10px; padding-bottom:7px; border-bottom:1px solid var(--line)}
+  .ad-sec{padding:12px 14px; margin:6px -14px; border-radius:9px; scroll-margin-top:16px}
+  .ad-sec.focus{background:var(--brand-dim); outline:1px solid var(--brand-border)}
+  .ad-sec-h{font-size:14.5px; font-weight:650; color:var(--ink); margin-bottom:5px; line-height:1.4}
+  .ad-num{color:var(--brand); font-family:var(--font-mono); margin-right:6px}
+  .ad-p{font-size:13px; color:var(--ink-2); line-height:1.6; margin:6px 0}
+  .ad-li{font-size:13px; color:var(--ink-2); line-height:1.55; margin:4px 0; padding-left:14px; border-left:1px solid var(--line-2)}
+  .ad-focus-tag{font-size:10.5px; font-weight:600; color:var(--brand-hi); background:var(--brand-dim); border:1px solid var(--brand-border); border-radius:5px; padding:1px 6px; margin-left:8px; vertical-align:middle}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand" id="brand">
+      <div class="mark">D</div>
+      <div><h1>DRISTI 2.0</h1><p>Domain model. Making sense of the field.</p></div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <div class="theme-toggle" id="themeToggle"><span class="tt-opt" data-t="light">☀ Light</span><span class="tt-opt" data-t="dark">☾ Dark</span></div>
+    </div>
+  </aside>
+  <main class="main" id="main"></main>
+</div>
+
+<!-- full-act modal -->
+<div class="modal" id="modal">
+  <div class="modal-back" data-close></div>
+  <div class="modal-panel">
+    <button class="modal-x" data-close>✕ Close</button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================================
+   DRISTI 2.0 domain-model viewer — DYNAMIC.
+   Nothing legal is hardcoded. On load it fetches:
+     • the relevance profile   (…/cheque-dishonour-s138.profile.json)
+     • each Act's Akoma Ntoso   (…/<file>.akn.xml)  — lazily, on demand
+   and builds the whole UI from them. Editing those files updates the app.
+   Requires being served over http(s) (fetch is blocked on file://).
+   ============================================================================ */
+
+/* ---- resolve where the corpus lives (overridable via ?base= / ?profile=) ---- */
+const qs = new URLSearchParams(location.search);
+const PROFILE_NAME = qs.get('profile') || 'profiles/cheque-dishonour-s138.profile.json';
+const BASE_CANDIDATES = qs.get('base') ? [qs.get('base')] : ['data/','','../data/'];
+let DATA_BASE = null;
+
+/* ---- editorial scaffolding (NOT in the corpus; has no source file) ---------- */
+const CASE_TYPES = [
+  {id:"active", name:"Cheque bounce", act:"NI Act, 1881 · §138", status:"active",
+   blurb:"Dishonour of a cheque for insufficiency of funds — a criminal complaint. Around 15% of a typical court's caseload; high volume, relatively standard."}
+];
+let activeCase = "active";
+const caseById = id => CASE_TYPES.find(c=>c.id===id);
+
+const DOMAIN_LABELS = {
+  substantive:{label:"Substantive", blurb:"the offence itself and the presumptions"},
+  procedure:{label:"Procedure", blurb:"how the case is taken up, tried, appealed"},
+  penal:{label:"Penal", blurb:"the general criminal code behind it"},
+  evidence:{label:"Evidence", blurb:"what proves dishonour, debt, records"},
+  interpretation:{label:"Interpretation", blurb:"how statutory words are read"},
+  limitation:{label:"Limitation", blurb:"time bars and condonation of delay"},
+  sentencing:{label:"Sentencing", blurb:"disposal, probation, compensation"},
+  electronic:{label:"Electronic", blurb:"e-cheques, digital signatures, CTS"},
+  banking:{label:"Banking", blurb:"clearing & settlement context"},
+  constitutional:{label:"Constitutional", blurb:"the powers courts draw on"}
+};
+const DOMAIN_ORDER = Object.keys(DOMAIN_LABELS);
+const TIER_ORDER = ["operative","definition","supporting","procedure","evidence","notice","limitation","sentencing","constitutional"];
+
+const STATE_CATEGORIES = [
+  {name:"High Court rules of practice", desc:"Each High Court's own criminal & civil rules of practice govern how a matter is actually filed, listed and moved.", ill:false},
+  {name:"E-filing rules & portals", desc:"State e-filing rules, formats and the local e-Courts / CIS configuration a filer must satisfy.", ill:false},
+  {name:"Practice directions & circulars", desc:"A court's written instructions on how to do a specific thing — bulk cause-lists, service, adjournment norms.", ill:false},
+  {name:"Local, unwritten practice", desc:"How one particular court actually runs day to day — registry habits, how adjournments and filing really happen.", ill:false},
+  {name:"Filer profile & case volume", desc:"Who files and at what scale — this reshapes the whole workflow even though the law is identical.", ill:true},
+  {name:"Court language & UI", desc:"The court's working language for notices, forms, orders and the interface (Malayalam, Gujarati…). Partly a formal rule.", ill:true}
+];
+const STATES = [
+  {name:"Kerala", tag:"pilot · Kollam, ~2 yrs", flag:"🟢", note:"Mostly individuals and small companies filing. The original clean-sheet pilot — ~2,000 cases/yr in Kollam. Court language: Malayalam."},
+  {name:"Gujarat", tag:"expanding", flag:"🔵", note:"High share of institutional filers — banks and NBFCs — sometimes a thousand cases in a day. Needs bulk filing and case management at scale. Court language: Gujarati."},
+  {name:"Punjab", tag:"requirements gathered", flag:"🟣", note:"Requirements captured; own sequencing of the same shared-core process."},
+  {name:"Sikkim", tag:"early contact", flag:"🟠", note:"Early engagement — a small jurisdiction with its own local practice."}
+];
+const SYSTEMS = [
+  {name:"eCourts", desc:"the national court programme"},
+  {name:"CIS", desc:"the court's case-management software"},
+  {name:"NJDG", desc:"the national judicial data grid — a database"},
+  {name:"NSTEP · code masters", desc:"summons delivery · CNR & case-type codes"},
+  {name:"DRISTI", desc:"your platform — hosts each state's copy over the shared core", you:true}
+];
+
+/* ---- data built from the profile at runtime -------------------------------- */
+let PROFILE=null, SOURCES={}, DOMAINS={}, PROVISIONS=[], TERMS={}, EDGES=[], ALIAS_MAP=[];
+let CASES=[], CASE_TOPICS={}, CASES_BY_REF={};   // Supreme Court case law + reverse index (provRef -> [caseId])
+const caseById2 = id => CASES.find(c=>c.id===id);
+const docCache = {};   // actId -> parsed XML Document
+
+/* ============================================================ HELPERS */
+const $=(s,el=document)=>el.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
+const esc=s=>(s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const secNum=ref=>ref.split(":")[1].replace("sec_","§").replace(/_/g," ");
+const actOf=ref=>SOURCES[ref.split(":")[0]];
+const eraOf=a=>a==="always"?"always":(a.indexOf("pre")===0?"pre":"post");
+function eraFromStatus(s){ s=s||""; if(/from\s*2024/i.test(s))return"post"; if(/repealed/i.test(s))return"pre"; return"always"; }
+function eraBadge(a){const e=eraOf(a);return e==="always"?`<span class="badge b-always">any time</span>`:e==="pre"?`<span class="badge b-pre">pre-2024 code</span>`:`<span class="badge b-post">2023 Sanhita</span>`;}
+const scopeBadge=()=>`<span class="badge b-shared">shared core</span>`;
+function refLabel(ref){const a=SOURCES[ref.split(":")[0]];return `${secNum(ref)} · ${a?a.title.split(",")[0]:ref.split(":")[0]}`;}
+
+/* ---- fetch + parse ---- */
+async function fetchText(url){ const r=await fetch(url,{cache:"no-cache"}); if(!r.ok) throw new Error(r.status+" "+url); return r.text(); }
+async function loadProfile(){
+  let txt=null, err=null;
+  for(const b of BASE_CANDIDATES){
+    try{ txt=await fetchText(b+PROFILE_NAME); DATA_BASE=b; break; }catch(e){ err=e; }
+  }
+  if(txt==null) throw err||new Error("profile not found");
+  const p=JSON.parse(txt); PROFILE=p;
+  SOURCES={}; DOMAINS={};
+  for(const [id,s] of Object.entries(p.sources)){
+    SOURCES[id]={...s, era:eraFromStatus(s.status), casescoped:s.domain==="substantive"};
+  }
+  // domains present, in preferred order then any extras
+  const present=new Set(Object.values(SOURCES).map(s=>s.domain));
+  const ordered=[...DOMAIN_ORDER.filter(d=>present.has(d)), ...[...present].filter(d=>!DOMAIN_ORDER.includes(d))];
+  ordered.forEach(d=>{ DOMAINS[d]=DOMAIN_LABELS[d]||{label:d.charAt(0).toUpperCase()+d.slice(1),blurb:""}; });
+  PROVISIONS=p.provisions.map(x=>({ref:x.ref, act:x.act, eId:x.eId, tier:x.tier, role:x.role, applies:x.applies, note:x.note||""}));
+  TERMS=p.terms||{};
+  EDGES=p.edges||[];
+  ALIAS_MAP=(p.act_alias_map||[]).map(a=>({topic:a.topic, before:a.before, after:a.on_or_after, note:a.note}));
+  const note=$("#src-note"); if(note) note.textContent=`profile: ${p.profile} · as of ${p.as_of||''} · maintained by ${p.maintained_by||'PUCAR'}`;
+  await loadCaselaw(p);
+}
+async function loadCaselaw(p){
+  CASES=[]; CASE_TOPICS={}; CASES_BY_REF={};
+  if(!p.caselaw) return;
+  try{
+    const cl=JSON.parse(await fetchText(DATA_BASE+p.caselaw));
+    CASE_TOPICS=cl.topics||{};
+    CASES=(cl.cases||[]).slice();
+    CASES.forEach(c=>{ (c.construes||[]).forEach(ref=>{ (CASES_BY_REF[ref]=CASES_BY_REF[ref]||[]).push(c.id); }); });
+  }catch(e){ /* case law optional */ }
+}
+async function getDoc(actId){
+  if(docCache[actId]) return docCache[actId];
+  const src=SOURCES[actId]; if(!src||!src.file) throw new Error("no file for "+actId);
+  const xml=await fetchText(DATA_BASE+src.file);
+  const doc=new DOMParser().parseFromString(xml,"application/xml");
+  if(doc.getElementsByTagName("parsererror").length) throw new Error("XML parse error: "+src.file);
+  docCache[actId]=doc; return doc;
+}
+
+/* ---- Akoma Ntoso element -> structured text ---- */
+function childByLocal(node,ln){ for(const c of node.children) if(c.localName===ln) return c; return null; }
+function cleanText(node){ return (node.textContent||"").replace(/\s+/g," ").trim(); }
+function sectionData(sec){
+  const numEl=childByLocal(sec,"num"), headEl=childByLocal(sec,"heading");
+  const body=[];
+  const STRUCT=["item","point","clause","subsection","paragraph","subparagraph"];
+  function walk(node,depth){
+    for(const c of node.children){
+      const ln=c.localName;
+      if(ln==="p"){ const t=cleanText(c); if(t) body.push(["p",depth,t]); }
+      else if(ln==="blockList"||ln==="list"){ walk(c,depth); }
+      else if(STRUCT.includes(ln)){
+        const cn=childByLocal(c,"num"); const cnt=cn?cleanText(cn):"";
+        const content=childByLocal(c,"content"); const target=content||c;
+        let first=true;
+        for(const cc of target.children){
+          const l2=cc.localName;
+          if(l2==="p"){ const t=cleanText(cc); if(t){ body.push(["li",depth, first?((cnt?cnt+" ":"")+t):t]); first=false; } }
+          else if(l2==="blockList"||l2==="list"){ walk(cc,depth+1); }
+          else if(STRUCT.includes(l2)){ walk(c,depth+1); break; }
+        }
+        if(first && cnt) body.push(["li",depth,cnt]);
+      }
+      else if(ln==="content"){ walk(c,depth); }
+      else if(ln==="num"||ln==="heading"||ln==="authorialNote"){ /* skip */ }
+      else { walk(c,depth); }
+    }
+  }
+  walk(sec,0);
+  return {num:numEl?cleanText(numEl):"", heading:headEl?cleanText(headEl):"", body};
+}
+async function sectionByRef(ref){
+  const [a,eid]=ref.split(":");
+  const doc=await getDoc(a);
+  const node=doc.querySelector(`[eId="${eid}"]`);
+  return node?sectionData(node):null;
+}
+function actBlocks(doc){
+  const blocks=[]; const SEP=["chapter","part","title"];
+  (function walk(node){
+    for(const c of node.children){
+      const ln=c.localName;
+      if((ln==="section"||ln==="article") && c.getAttribute("eId")){
+        const d=sectionData(c); blocks.push({t:"sec", unit:ln, eId:c.getAttribute("eId"), ...d});
+      } else if(SEP.includes(ln)){
+        const n=childByLocal(c,"num"), h=childByLocal(c,"heading");
+        const label=[n?cleanText(n):"", h?cleanText(h):""].filter(Boolean).join(" ");
+        if(label) blocks.push({t:"chap", label});
+        walk(c);
+      } else walk(c);
+    }
+  })(doc.documentElement);
+  return blocks;
+}
+
+/* ---- render a flat [type,depth,text] body as nested clause lists ---- */
+function liRow(txt){
+  const m=txt.match(/^(\([^)]{1,6}\))\s*([\s\S]*)$/);
+  if(m) return `<div class="litem"><span class="lmark">${esc(m[1])}</span><span class="ltext">${esc(m[2])}</span></div>`;
+  return `<div class="litem"><span class="lmark"></span><span class="ltext">${esc(txt)}</span></div>`;
+}
+/* detect statutory annotations (Explanation / Proviso / Illustration / Exception)
+   so they don't read like the bare enacting text */
+function legNote(txt){
+  let m;
+  if(m=txt.match(/^(Explanations?(?:\s+[IVXLC]+)?)\s*\.?\s*[—–-]+\s*([\s\S]*)$/i)) return {label:m[1],text:m[2]};
+  if(m=txt.match(/^(Illustrations?)\s*\.?\s*[—–:-]+\s*([\s\S]*)$/i)) return {label:m[1],text:m[2]};
+  if(m=txt.match(/^(Exception(?:\s+\d+)?)\s*\.?\s*[—–-]+\s*([\s\S]*)$/i)) return {label:m[1],text:m[2]};
+  if(/^Provided\b/i.test(txt)) return {label:"Proviso",text:txt};
+  return null;
+}
+function noteHTML(n){ return `<div class="legnote"><span class="lnl">${esc(n.label)}</span><span class="lnt">${esc(n.text)}</span></div>`; }
+function renderBody(body,pfx){
+  let html=""; const stack=[];
+  const openTo=n=>{ while(stack.length<n){html+='<div class="lgroup">';stack.push(1);} while(stack.length>n){html+='</div>';stack.pop();} };
+  (body||[]).forEach(([t,d,txt])=>{
+    const n=legNote(txt);
+    if(n){ openTo(t==="p"?0:d+1); html+=noteHTML(n); }
+    else if(t==="p"){ openTo(0); html+=`<p class="${pfx}-p">${esc(txt)}</p>`; }
+    else { openTo(d+1); html+=liRow(txt); }
+  });
+  openTo(0);
+  return html;
+}
+
+/* ---- statute markup (from parsed data) ---- */
+function statuteMarkup(ref,d,mini){
+  if(!d) return `<div class="statute"><div class="st-src">section not found in the Act file</div></div>`;
+  let h=`<div class="statute${mini?' statute-mini':''}"><div class="st-src">▤ from ${esc(actOf(ref).title)} &middot; ${esc(actOf(ref).file)}</div>`;
+  if(d.num||d.heading) h+=`<div class="st-h"><span class="st-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`;
+  h+=renderBody(d.body,"st");
+  h+=`<button class="view-full" data-ref="${esc(ref)}">↔&nbsp; Read this section inside the whole Act</button>`;
+  return h+"</div>";
+}
+async function fillStatute(slot,mini){
+  if(slot.dataset.loaded) return; slot.dataset.loaded="1";
+  const ref=slot.dataset.ref;
+  slot.innerHTML=`<div class="statute"><div class="st-src"><span class="spinner" style="width:14px;height:14px;border-width:2px;margin:0"></span> loading the section from the Act…</div></div>`;
+  try{ const d=await sectionByRef(ref); slot.innerHTML=statuteMarkup(ref,d,mini); }
+  catch(e){ slot.innerHTML=`<div class="statute"><div class="st-src">couldn't load — the Act files load over http (see the note under the sidebar)</div></div>`; }
+}
+
+/* ============================================================ VIEWS */
+const V={};
+
+V.cases=()=>{
+  const m=el("div");
+  m.innerHTML=`
+    <h1 class="page-title">Case types</h1>
+    <p class="lede">DRISTI is one platform that hosts <strong>many kinds of case</strong>, each modelled as its own domain — but all sitting over the <strong>same shared legal core</strong> and the <strong>same state layer</strong>. Pick a case type to explore its model. The cross-cutting views at the bottom of the sidebar apply to every case type.</p>
+    <div class="ctgrid" id="ctgrid"></div>
+    <div class="callout teal" style="margin-top:22px"><b>Why structure it this way?</b> The substantive law changes with the case type — cheque bounce leans on the NI Act, a motor claim on the Motor Vehicles Act. But the procedure, evidence, limitation and sentencing machinery underneath is largely shared, and the state layer works the same way for all of them. Model each case type once; reuse the core.</div>`;
+  const g=$("#ctgrid",m);
+  CASE_TYPES.forEach(c=>{
+    const active=c.status==="active";
+    const card=el("div","ctcard "+(active?"active":"planned"));
+    card.innerHTML=`
+      <div class="cth"><h3>${c.name}</h3>${active?'<span class="badge b-active">● modelled</span>':'<span class="badge b-planned">planned</span>'}</div>
+      <div class="act">${c.act}</div>
+      <p>${c.blurb}</p>
+      <div class="stat"><span><b>${active?Object.keys(SOURCES).length:'—'}</b> Acts</span><span><b>${active?PROVISIONS.length:'—'}</b> provisions</span><span><b>${active?Object.keys(TERMS).length:'—'}</b> words</span></div>
+      ${active?'<div class="enter">Open this case type →</div>':''}`;
+    if(active) card.onclick=()=>{ activeCase=c.id; buildNav(); go("parts"); };
+    g.appendChild(card);
+  });
+  return m;
+};
+
+function scopeBar(){
+  const c=caseById(activeCase);
+  const b=el("div","scopebar");
+  b.innerHTML=`<span class="lab">Case type</span> <span class="ct">${c.name}</span> <span class="tiny">${c.act}</span>`;
+  return b;
+}
+const isModelled=()=>caseById(activeCase).status==="active";
+function notModelled(){
+  const c=caseById(activeCase); const m=el("div"); m.appendChild(scopeBar());
+  m.appendChild(el("div","empty",`<b>${c.name}</b> isn't modelled yet.<br><span class="tiny">This case type is planned. Its domain model will be built over the same shared core.</span><br><br><a class="backlink" onclick="go('cases')">← back to case types</a>`));
+  return m;
+}
+
+V.overview=()=>{
+  if(!isModelled()) return notModelled();
+  const c=caseById(activeCase); const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`
+    <h1 class="page-title">${c.name} — the domain, one screen at a time</h1>
+    <p class="lede">Everything here sits under one case type: <strong>${c.act}</strong>. It's the shared understanding this case is built on — the Acts, the vocabulary, the rules of procedure and evidence, read from the corpus. Read every provision with three lenses at once.</p>
+    <div class="lenses">
+      <div class="lens what"><div class="k">Lens 1 · What</div><h3>The rules</h3><p>The offence, the presumptions, procedure, evidence, limitation, sentencing — ${PROVISIONS.length} provisions across ${Object.keys(SOURCES).length} Acts, each with its verbatim text.</p></div>
+      <div class="lens where"><div class="k">Lens 2 · Where</div><h3>Shared core vs state</h3><p>The central law is the same everywhere in India. Each <em>state</em> layers its own rules, practice and filer reality on top.</p></div>
+      <div class="lens when"><div class="k">Lens 3 · When</div><h3>Point in time</h3><p>On 1 July 2024 the old codes gave way to the 2023 Sanhitas. Which one is live depends on <em>when the cheque bounced</em>.</p></div>
+    </div>`;
+  m.appendChild(head);
+  m.appendChild(el("h2","sec","Explore this case type"));
+  const grid=el("div","grid");
+  [["parts","Acts","The "+Object.keys(SOURCES).length+" Acts this case draws on, grouped by what they govern."],
+   ["provisions","Provisions","All "+PROVISIONS.length+" provisions with the real statutory text — filter by domain, role and era."],
+   ["words","Vocabulary","The shared language of the case — built on the laws, the rules, and the things people say."]
+  ].forEach(([v,t,d])=>{const card=el("div","part"); card.innerHTML=`<div class="pt">${t}</div><div class="role" style="margin-bottom:0">${d}</div>`; card.onclick=()=>go(v); grid.appendChild(card);});
+  m.appendChild(grid);
+  return m;
+};
+
+V.parts=()=>{
+  if(!isModelled()) return notModelled();
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title">Acts</h1>
+    <p class="lede">The ${Object.keys(SOURCES).length} Acts a ${caseById(activeCase).name.toLowerCase()} case draws on, grouped by what they govern. Every one is <strong>central law — shared by every state</strong>; the procedure, evidence and sentencing Acts are <strong>reused by other case types too</strong>. Tap an Act to see the provisions it contributes, with their text.</p>
+    <div class="legend"><span><span class="dot" style="background:var(--blue)"></span> in force</span><span><span class="dot" style="background:var(--amber)"></span> 2023 Sanhita (from 2024-07-01)</span><span><span class="dot" style="background:var(--ink-3)"></span> repealed — pre-2024 cases only</span></div>`;
+  m.appendChild(head);
+  const byDomain={}; Object.entries(SOURCES).forEach(([id,s])=>{(byDomain[s.domain]=byDomain[s.domain]||[]).push([id,s]);});
+  Object.entries(DOMAINS).forEach(([dk,d])=>{
+    if(!byDomain[dk])return;
+    m.appendChild(el("h2","sec",`${d.label} <span style="color:var(--ink-3);font-weight:400;text-transform:none;letter-spacing:0">— ${d.blurb}</span>`));
+    const g=el("div","grid");
+    byDomain[dk].forEach(([id,s])=>{
+      const n=PROVISIONS.filter(p=>p.act===id).length;
+      const repealed=/^repealed/i.test(s.status);
+      const c=el("div","part"+(repealed?" repealed":""));
+      const dotc=repealed?"var(--ink-3)":(s.era==="post"?"var(--amber)":"var(--blue)");
+      c.innerHTML=`<div class="pt"><span class="dot" style="background:${dotc}"></span> ${s.title.replace(/, \d{4}$/,'')}</div>
+        <div class="role">${(s.title.match(/\d{4}/)||[''])[0]} · ${s.status}</div>
+        <div class="meta">${scopeBadge()}${s.casescoped?'':' <span class="badge b-crosscase">cross-case</span>'}<span class="badge b-tier">${n} provision${n===1?'':'s'}</span></div>`;
+      c.onclick=()=>openPart(id);
+      g.appendChild(c);
+    });
+    m.appendChild(g);
+  });
+  return m;
+};
+function openPart(id){
+  const s=SOURCES[id], provs=PROVISIONS.filter(p=>p.act===id);
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<a class="backlink" id="back">← back to Acts</a>
+    <h1 class="page-title" style="margin-top:12px">${s.title}</h1>
+    <p class="lede">${DOMAINS[s.domain].label} · ${s.status}. ${s.era==="pre"?"Applies to causes of action <b>before 1 July 2024</b>.":s.era==="post"?"Applies to causes of action <b>on or after 1 July 2024</b>.":"Applies at <b>any time</b>."} ${s.note?('<br><span class="tiny">'+s.note+'</span>'):''}</p>
+    <button class="view-full" data-act="${id}">▤&nbsp; Open the whole Act</button>`;
+  m.appendChild(head);
+  const dropped=((PROFILE.link_integrity&&PROFILE.link_integrity.dropped_unresolved)||[]).filter(r=>r.split(":")[0]===id);
+  if(dropped.length) m.appendChild(el("div","callout amber",`<b>Incomplete in the corpus.</b> ${dropped.length} reference into this Act (<code>${dropped.map(esc).join('</code>, <code>')}</code>) was dropped from the profile because it doesn't resolve in the current Act file — this Act's Akoma Ntoso conversion isn't finished. For §138 cases the relevant hook here is the Article 21 right to a speedy, fair trial.`));
+  m.appendChild(el("h2","sec",`Provisions this Act contributes (${provs.length})`));
+  if(!provs.length) m.appendChild(el("div","empty","No specific sections mapped — background context only."));
+  provs.forEach(p=>m.appendChild(provRow(p)));
+  setMain(m);
+  $("#back",m).onclick=()=>go("parts");
+}
+
+V.provisions=()=>{
+  if(!isModelled()) return notModelled();
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title">Provisions</h1>
+    <p class="lede">The ${PROVISIONS.length} provisions this case is built on — each opens to its <strong>verbatim text, from the Act</strong>, with the PUCAR summary. All are <strong>shared core</strong>. Filter by what they govern, their role and era.</p>`;
+  m.appendChild(head);
+  const controls=el("div","controls");
+  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="p-search" placeholder="Search role, section, note — cognizance, cheque, presumption…"></div>`;
+  m.appendChild(controls);
+  const eraChips=el("div","chips");
+  eraChips.innerHTML=`<span class="chip on" data-era="all">All eras</span><span class="chip" data-era="always">Any time</span><span class="chip" data-era="pre">Pre-2024 code</span><span class="chip" data-era="post">2023 Sanhita</span>`;
+  m.appendChild(eraChips);
+  const tierChips=el("div","chips"); tierChips.style.marginTop="8px";
+  const tiers=TIER_ORDER.filter(t=>PROVISIONS.some(p=>p.tier===t));
+  tierChips.innerHTML=`<span class="chip on" data-tier="all">All roles</span>`+tiers.map(t=>`<span class="chip" data-tier="${t}">${t[0].toUpperCase()+t.slice(1)} <span class="c">${PROVISIONS.filter(p=>p.tier===t).length}</span></span>`).join("");
+  m.appendChild(tierChips);
+  const list=el("div"); list.id="p-list"; list.style.marginTop="16px"; m.appendChild(list);
+  const state={q:"",era:"all",tier:"all"};
+  function draw(){
+    list.innerHTML="";
+    let rows=PROVISIONS.filter(p=>{
+      if(state.era!=="all"&&eraOf(p.applies)!==state.era)return false;
+      if(state.tier!=="all"&&p.tier!==state.tier)return false;
+      if(state.q){const hay=(p.ref+" "+p.role+" "+(p.note||"")+" "+actOf(p.ref).title).toLowerCase(); if(!hay.includes(state.q))return false;}
+      return true;
+    });
+    if(!rows.length){list.appendChild(el("div","empty","Nothing matches those filters."));return;}
+    const order=Object.keys(SOURCES); rows.sort((a,b)=>order.indexOf(a.act)-order.indexOf(b.act));
+    let last=null;
+    rows.forEach(p=>{ if(p.act!==last){const s=SOURCES[p.act]; const gh=el("div","grouphead"); gh.innerHTML=`${s.title} <span class="gh-status">${/^repealed/i.test(s.status)?'repealed — pre-2024 cases':s.status}</span>`; list.appendChild(gh); last=p.act;} list.appendChild(provRow(p)); });
+  }
+  eraChips.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{eraChips.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");state.era=c.dataset.era;draw();});
+  tierChips.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{tierChips.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");state.tier=c.dataset.tier;draw();});
+  setTimeout(()=>{const inp=$("#p-search"); if(inp)inp.oninput=e=>{state.q=e.target.value.toLowerCase().trim();draw();};},0);
+  draw();
+  return m;
+};
+function provRow(p){
+  const s=actOf(p.ref);
+  const row=el("div","prov"); row.id="prov-"+p.ref.replace(/:/g,"_");
+  const eo=EDGES.filter(e=>e.from===p.ref), ei=EDGES.filter(e=>e.to===p.ref);
+  row.innerHTML=`
+    <div class="prov-head">
+      <span class="ref">${p.ref.split(":")[0]}:${secNum(p.ref)}</span>
+      <span class="rt">${p.role} <span class="act">— ${s.title.split(",")[0]}</span></span>
+      <span class="hbadges">${scopeBadge()} ${eraBadge(p.applies)}</span>
+      <span class="caret">›</span>
+    </div>
+    <div class="prov-body">
+      ${p.note?`<div class="brief"><span class="bl">In brief · PUCAR summary</span>${p.note}</div>`:''}
+      <div class="statute-slot" data-ref="${esc(p.ref)}"></div>
+      <div class="kv" style="margin-top:12px"><b>Governs</b> ${DOMAINS[s.domain].label.toLowerCase()} · role: ${p.tier}</div>
+      <div class="kv"><b>Applies</b> ${p.applies==="always"?"at any time":("to causes of action "+p.applies.replace("pre-2024-07-01","before 1 July 2024").replace("post-2024-07-01","on or after 1 July 2024"))}</div>
+      ${(eo.length||ei.length)?`<div class="rels">${eo.map(e=>`<div class="rel"><span class="r">${e.rel}</span> → <span class="to">${refLabel(e.to)}</span>${e.note?` <span class="tiny">(${e.note})</span>`:''}</div>`).join("")+ei.map(e=>`<div class="rel"><span class="to">${refLabel(e.from)}</span> <span class="r">${e.rel}</span> → this</div>`).join("")}</div>`:''}
+      ${casesFor(p.ref)}
+    </div>`;
+  row.querySelector(".prov-head").onclick=()=>{ row.classList.toggle("open"); if(row.classList.contains("open")) fillStatute(row.querySelector(".statute-slot")); };
+  return row;
+}
+
+V.words=()=>{
+  if(!isModelled()) return notModelled();
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title">Vocabulary</h1>
+    <p class="lede">The shared vocabulary a ${caseById(activeCase).name.toLowerCase()} case is built on — drawn from the <strong>laws</strong>, the <strong>rules</strong>, and the <strong>things people actually say</strong>. A word that is wrong quietly bends everything built on it. Each term is pinned to where it's defined; tap to read the definition from the Act.</p>`;
+  m.appendChild(head);
+  const controls=el("div","controls");
+  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="w-search" placeholder="Search a word — cheque, drawer, holder…"></div>`;
+  m.appendChild(controls);
+  const list=el("div"); list.id="w-list"; m.appendChild(list);
+  const entries=Object.entries(TERMS).sort((a,b)=>a[0].localeCompare(b[0]));
+  function draw(q=""){
+    list.innerHTML="";
+    const rows=entries.filter(([w])=>w.includes(q));
+    if(!rows.length){list.appendChild(el("div","empty","No word matches."));return;}
+    rows.forEach(([w,ref])=>{
+      const p=PROVISIONS.find(x=>x.ref===ref), s=actOf(ref);
+      const c=el("div","word");
+      c.innerHTML=`
+        <div class="wt">${w[0].toUpperCase()+w.slice(1)} ${scopeBadge()} <span class="caret">›</span></div>
+        <div class="def">${p&&p.note?p.note:"The canonical meaning the system uses for this term — fixed by the section below."}</div>
+        <div class="src">defined in <code>${secNum(ref)}</code> · ${s?s.title.split(",")[0]:ref}</div>
+        <div class="wfull"><div class="statute-slot" data-ref="${esc(ref)}"></div></div>`;
+      c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open")) fillStatute(c.querySelector(".statute-slot"),true); };
+      list.appendChild(c);
+    });
+  }
+  setTimeout(()=>{const inp=$("#w-search"); if(inp)inp.oninput=e=>draw(e.target.value.toLowerCase().trim());},0);
+  draw();
+  return m;
+};
+
+/* ---- case law helpers ---- */
+function provRefShort(ref){
+  const [a,eid]=ref.split(":"); const s=SOURCES[a];
+  const n=eid.indexOf("art_")===0 ? ("Art. "+eid.slice(4)) : ("§"+eid.replace("sec_",""));
+  const t=s?s.title.split(",")[0].replace(/^Bharatiya /,"").replace(/^The /,""):a;
+  return n+" · "+t;
+}
+function benchShort(b){ return b>=5?("Constitution Bench · "+b):(b+"-judge"); }
+function caseStatusBadge(st){
+  if(st==="good-law") return `<span class="badge b-good">good law</span>`;
+  if(st==="partly-overruled") return `<span class="badge b-partly">partly overruled</span>`;
+  if(st==="overruled") return `<span class="badge b-overruled">overruled</span>`;
+  if(st==="legislatively-superseded") return `<span class="badge b-super">superseded by statute</span>`;
+  return "";
+}
+function caseCard(c){
+  const rels=(c.relations||[]).map(r=>{
+    const tgt=caseById2(r.to); const nm=tgt?tgt.name:r.to;
+    return `<div class="rels-c">↳ <b>${r.rel.replace(/-/g," ")}</b> ${esc(nm)}${r.note?` — ${esc(r.note)}`:""}</div>`;
+  }).join("");
+  const chips=(c.construes||[]).map(ref=>`<span class="cchip" data-ref="${esc(ref)}">${esc(provRefShort(ref))}</span>`).join("");
+  const topics=(c.topics||[]).map(t=>`<span class="badge b-topic">${esc(CASE_TOPICS[t]||t)}</span>`).join("");
+  const neutral=c.neutral_citation?`<span class="cite neutral">${esc(c.neutral_citation)}</span>`:"";
+  const actions = c.akn
+    ? `<a class="readjmt" data-caseid="${esc(c.id)}">Read judgment</a>${c.decided?`<span class="jdec">decided ${esc(c.decided)}</span>`:""}`
+    : `<span class="jwarn" title="${esc(c.source_issue||'source document is not the Supreme Court judgment')}">⚠ SC judgment not yet linked${c.source_issue?` — ${esc(c.source_issue)}`:""}</span>`;
+  return `<div class="case" id="case-${esc(c.id)}">
+    <div class="cn">${esc(c.name)}</div>
+    <div class="cmeta"><span class="cite">${esc(c.citation)}</span>${neutral}<span class="badge b-bench">${esc(benchShort(c.bench))}</span>${caseStatusBadge(c.status)}${topics}</div>
+    <div class="hold">${esc(c.holding)}</div>
+    ${chips?`<div class="construes"><span class="clabel">Construes</span>${chips}</div>`:""}
+    ${rels}
+    <div class="cactions">${actions}</div>
+  </div>`;
+}
+function casesFor(ref){
+  const ids=CASES_BY_REF[ref]||[]; if(!ids.length) return "";
+  const items=ids.map(id=>{const c=caseById2(id); if(!c)return ""; return `<div class="ic" data-caseid="${esc(id)}"><span class="icn">${esc(c.name)}</span> <span class="icy">${esc(c.citation)} · ${esc(benchShort(c.bench))}</span></div>`;}).join("");
+  return `<div class="interp"><div class="il">Interpreted by ${ids.length} Supreme Court case${ids.length>1?"s":""}</div>${items}</div>`;
+}
+function jumpToProvision(ref){
+  go("provisions");
+  setTimeout(()=>{ const r=document.getElementById("prov-"+ref.replace(/:/g,"_")); if(r){ if(!r.classList.contains("open")){ r.classList.add("open"); const slot=r.querySelector(".statute-slot"); if(slot) fillStatute(slot);} r.scrollIntoView({block:"center"}); r.style.outline="2px solid var(--brand)"; r.style.outlineOffset="-1px"; setTimeout(()=>{r.style.outline="";},1800);} },70);
+}
+function jumpToCase(id){
+  go("caselaw");
+  setTimeout(()=>{ const c=document.getElementById("case-"+id); if(c){ c.scrollIntoView({block:"center"}); c.style.outline="2px solid var(--brand)"; c.style.outlineOffset="-1px"; setTimeout(()=>{c.style.outline="";},1800);} },70);
+}
+
+V.caselaw=()=>{
+  if(!isModelled()) return notModelled();
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title">Case law</h1>
+    <p class="lede">The leading <strong>Supreme Court</strong> authority a ${caseById(activeCase).name.toLowerCase()} case is decided on — ${CASES.length} judgments, each pinned to the <strong>provisions it construes</strong> (by <strong>Article&nbsp;141</strong>, these bind every court). Filter by what they settle. Tap a section chip to jump to that provision.</p>`;
+  m.appendChild(head);
+  if(!CASES.length){ m.appendChild(el("div","empty","No case-law dataset is linked from this profile.")); return m; }
+  const controls=el("div","controls");
+  controls.innerHTML=`<div class="search"><span class="mag">⌕</span><input id="c-search" placeholder="Search a case, holding or citation — Rangappa, jurisdiction, s.141…"></div>`;
+  m.appendChild(controls);
+  const chips=el("div","chips");
+  const topicsPresent=Object.keys(CASE_TOPICS).filter(t=>CASES.some(c=>(c.topics||[]).includes(t)));
+  chips.innerHTML=`<span class="chip on" data-topic="all">All topics</span>`+topicsPresent.map(t=>`<span class="chip" data-topic="${t}">${esc((CASE_TOPICS[t]||t).replace(/\s*\(.*\)/,''))} <span class="c">${CASES.filter(c=>(c.topics||[]).includes(t)).length}</span></span>`).join("");
+  m.appendChild(chips);
+  const list=el("div"); list.id="c-list"; list.style.marginTop="16px"; m.appendChild(list);
+  const state={q:"",topic:"all"};
+  function draw(){
+    list.innerHTML="";
+    let rows=CASES.filter(c=>{
+      if(state.topic!=="all" && !(c.topics||[]).includes(state.topic)) return false;
+      if(state.q){const hay=(c.name+" "+c.holding+" "+c.citation+" "+(c.construes||[]).join(" ")).toLowerCase(); if(!hay.includes(state.q))return false;}
+      return true;
+    });
+    rows.sort((a,b)=>(a.year||0)-(b.year||0));
+    if(!rows.length){list.appendChild(el("div","empty","No case matches."));return;}
+    if(state.topic==="all" && !state.q){
+      // group by topic in taxonomy order
+      topicsPresent.forEach(t=>{
+        const g=rows.filter(c=>(c.topics||[])[0]===t);
+        if(!g.length) return;
+        list.appendChild(el("div","grouphead",`${esc(CASE_TOPICS[t]||t)} <span class="gh-status">${g.length} case${g.length>1?'s':''}</span>`));
+        g.forEach(c=>{const d=el("div");d.innerHTML=caseCard(c);list.appendChild(d.firstElementChild);});
+      });
+    } else {
+      rows.forEach(c=>{const d=el("div");d.innerHTML=caseCard(c);list.appendChild(d.firstElementChild);});
+    }
+  }
+  chips.querySelectorAll(".chip").forEach(ch=>ch.onclick=()=>{chips.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));ch.classList.add("on");state.topic=ch.dataset.topic;draw();});
+  setTimeout(()=>{const inp=$("#c-search"); if(inp)inp.oninput=e=>{state.q=e.target.value.toLowerCase().trim();draw();};},0);
+  draw();
+  return m;
+};
+
+V.structure=()=>{
+  const m=el("div");
+  m.innerHTML=`<h1 class="page-title">The structure</h1>
+    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;Keep three things apart — the <strong>rules</strong> you must obey, the <strong>systems</strong> you plug into, and the <strong>context</strong> you adapt to — and remember they all move through <strong>time</strong>. This shape holds for any case type; only the top substantive Act swaps out.</p>`;
+  const wrap=el("div","struct-wrap");
+  const rules=el("div","stack");
+  rules.appendChild(el("div","col-h rules","1 · THE RULES — what you must obey"));
+  rules.appendChild(el("div","divider blue",`<span class="rule"></span> Same everywhere in India — the shared core <span class="rule"></span>`));
+  [["Constitution","the foundation — what powers the courts have"],["The case-type's core Act + shared codes","e.g. NI Act §138 · procedure · evidence · limitation"],["Court judgments (Supreme & High Courts)","can change what a law means — without changing its words"]].forEach(([t,d])=>{const l=el("div","layer core");l.innerHTML=`<div class="lt">${t}</div><div class="ld">${d}</div>`;rules.appendChild(l);});
+  rules.appendChild(el("div","divider green",`<span class="rule"></span> Differs by state — each state adds its own <span class="rule"></span>`));
+  [["State High Court rules of practice","e-filing rules · rules of practice"],["Practice directions & circulars","a court's written instructions on how to do a thing"],["Local, unwritten practice","how one particular court actually runs, day to day"]].forEach(([t,d])=>{const l=el("div","layer state");l.innerHTML=`<div class="lt">${t}</div><div class="ld">${d}</div>`;rules.appendChild(l);});
+  rules.appendChild(el("div","tiny","Top = broad authority, rarely changes. Bottom = very specific, changes most often."));
+  const sys=el("div","stack");
+  sys.appendChild(el("div","col-h sys","2 · THE SYSTEMS — you plug into"));
+  SYSTEMS.forEach(s=>{const l=el("div","layer sysrow"+(s.you?" you":""));l.innerHTML=`<div class="lt">${s.name}${s.you?' <span class="badge b-post" style="margin-left:6px">your platform</span>':''}</div><div class="ld">${s.desc}</div>`;sys.appendChild(l);});
+  const how=el("div","ctx"); how.style.marginTop="14px";
+  how.innerHTML=`<div class="ct">HOW TO READ THIS</div><p>1 · Obey the <b style="color:var(--blue)">rules</b> — shared core first, then your state's layer.</p><p>2 · Plug into the <b style="color:var(--amber)">systems</b> — DRISTI hosts each state's copy over that core.</p><p>3 · Adapt to the <b style="color:var(--red)">context</b> — language, customs, culture.</p>`;
+  sys.appendChild(how);
+  wrap.appendChild(rules); wrap.appendChild(sys); m.appendChild(wrap);
+  const ctx=el("div","ctx");
+  ctx.innerHTML=`<div class="ct">3 · THE CONTEXT — shapes how the rules are applied where you are</div><p><b>Language</b> — the court's language (Malayalam, Gujarati…): notices, forms, orders, UI. <span class="tiny">(also partly a formal rule)</span></p><p><b>Customs</b> — local habits: how adjournments, registry work and filing actually happen.</p><p><b>Culture</b> — digital literacy, trust, access needs.</p>`;
+  m.appendChild(ctx);
+  const tl=el("div","timeline");
+  tl.innerHTML=`<div class="col-h" style="color:var(--purple)">TIME — which rule was live depends on WHEN the cause of action arose</div>`;
+  const track=el("div","tl-track");
+  [{p:2,yr:"1881",lb:"NI Act"},{p:34,yr:"2015",lb:"jurisdiction rule changed"},{p:70,yr:"2024",lb:"new criminal & evidence codes",hot:true},{p:96,yr:"2026",lb:"today"}].forEach(n=>{const nd=el("div","tl-node"+(n.hot?" hot":""));nd.style.left=n.p+"%";nd.innerHTML=`<div class="pt"></div><div class="yr">${n.yr}</div><div class="lb">${n.lb}</div>`;track.appendChild(nd);});
+  tl.appendChild(track);
+  tl.appendChild(el("div","tiny","On 1 July 2024 the CrPC, IPC and Evidence Act were replaced by the BNSS, BNS and BSA. A case whose cause of action predates that date still runs on the old codes — true for every criminal case type."));
+  m.appendChild(tl);
+  return m;
+};
+
+V.split=()=>{
+  const m=el("div");
+  m.innerHTML=`<h1 class="page-title">Shared core vs State</h1>
+    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;The idea DRISTI 2.0 is organised around. The <strong>shared core</strong> is central law — identical in every state. The <strong>state layer</strong> is everything a state owns, sequences and advances on its own. <strong>Build for the state, over the shared core</strong> — not one all-India instance. (Examples below are drawn from the cheque-bounce case type.)</p>`;
+  const split=el("div","split");
+  const core=el("div","col core");
+  core.innerHTML=`<div class="col-top"><h3>Shared core <span class="badge b-shared">same everywhere</span></h3><p>Central statutes & binding judgments — reused across case types. Modelled here as ${PROVISIONS.length} provisions across ${Object.keys(SOURCES).length} Acts.</p></div>`;
+  [["The offence & presumptions","NI Act §§138–147 — specific to this case type."],["Criminal procedure","Cognizance, process, summary trial, compounding, appeal — CrPC → BNSS. Shared by all criminal case types."],["Evidence","Burden of proof, electronic records, bankers' books — IEA → BSA + BBEA."],["Limitation, notice, sentencing","One-month bar & condonation, deemed service, probation & compensation."],["Binding case law","Supreme Court precedent (Rangappa, Aneeta Hada, Expeditious Trial…) — modelled under Case law, binding nationally via Art. 141."]].forEach(([b,s])=>{const r=el("div","row");r.innerHTML=`<b>${b}</b><span>${s}</span>`;core.appendChild(r);});
+  const st=el("div","col state");
+  st.innerHTML=`<div class="col-top"><h3>State layer <span class="badge b-state">a state owns it</span></h3><p>Not in the central corpus. What a DRISTI instance configures and a court advances on its own — the same for every case type.</p></div>`;
+  STATE_CATEGORIES.forEach(c=>{const r=el("div","row");r.innerHTML=`<b>${c.name}${c.ill?' <span class="tiny" style="color:var(--amber)">· operational</span>':''}</b><span>${c.desc}</span>`;st.appendChild(r);});
+  split.appendChild(core); split.appendChild(st); m.appendChild(split);
+  m.appendChild(el("div","callout green","<b>Same law, different shape.</b> The statute is identical, but who files and at what scale reshapes the whole workflow. That difference lives entirely in the state layer — the shared core never moves."));
+  m.appendChild(el("h2","sec","States, and what makes each one different"));
+  const sc=el("div","statecards");
+  STATES.forEach(s=>{const c=el("div","sc");c.innerHTML=`<h4>${s.flag} ${s.name}</h4><div class="st">${s.tag}</div><p>${s.note}</p>`;sc.appendChild(c);});
+  m.appendChild(sc);
+  m.appendChild(el("div","callout amber","<span class='tiny'>State-layer details are seeded from DRISTI 2.0 field context (Kerala, Gujarat, Punjab, Sikkim), not from the central statute corpus — illustrative, and meant to be filled in per state and per case type.</span>"));
+  return m;
+};
+
+V.time=()=>{
+  const m=el("div");
+  m.innerHTML=`<h1 class="page-title">The 2024 code switch</h1>
+    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;On <strong>1 July 2024</strong>, three foundational codes were replaced. They sit under every criminal case type, so this switch is platform-wide. Which set is live depends on <strong>when the cause of action arose</strong>.</p>
+    <div class="callout amber"><b>The rule of thumb.</b> Cause of action <b>before</b> 1 July 2024 → the old codes (CrPC / IPC / Evidence Act). <b>On or after</b> → the 2023 Sanhitas (BNSS / BNS / BSA).</div>`;
+  const table=el("div"); table.style.marginTop="8px";
+  ALIAS_MAP.forEach(a=>{
+    const label=ref=>ref.indexOf(":")<0?(SOURCES[ref]?SOURCES[ref].title.split(",")[0]:ref):refLabel(ref);
+    const c=el("div","prov"); c.style.marginBottom="8px";
+    c.innerHTML=`<div class="prov-head" style="cursor:default">
+      <span class="rt" style="flex:1.1; font-size:15px">${a.topic[0].toUpperCase()+a.topic.slice(1)}</span>
+      <span style="flex:2; display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end">
+        <span class="badge b-pre">${label(a.before)}</span><span style="color:var(--ink-3)">→</span><span class="badge b-post">${label(a.after)}</span>
+      </span></div>
+      ${a.note?`<div class="prov-body" style="display:block; padding:0 16px 12px 16px; border-top:1px solid var(--line)"><div class="tiny" style="margin:10px 0 0">${a.note}</div></div>`:''}`;
+    table.appendChild(c);
+  });
+  m.appendChild(table);
+  return m;
+};
+
+/* ============================================================ FULL-ACT MODAL */
+function renderFullAct(actId, blocks, focusEid){
+  const src=SOURCES[actId];
+  const nsec=blocks.filter(b=>b.t==="sec").length;
+  const unit=blocks.some(b=>b.unit==="article")?"articles":"sections";
+  const wrap=el("div");
+  const focusLabel = focusEid ? secNum(actId+":"+focusEid) : "";
+  wrap.appendChild(el("div","actdoc-h",
+    `<div class="ad-title">${esc(src.title)}</div>
+     <div class="ad-sub">${nsec} ${unit} · verbatim Akoma Ntoso (${esc(src.file)})${focusEid?` · jumped to ${esc(focusLabel)}`:''}</div>`));
+  const body=el("div","actdoc-body");
+  if(!nsec) body.appendChild(el("div","callout amber",`This Act's full text isn't in the corpus yet — its Akoma&nbsp;Ntoso conversion is incomplete, so only structural headings are present.`));
+  blocks.forEach(b=>{
+    if(b.t==="chap"){ body.appendChild(el("div","ad-chap",esc(b.label))); return; }
+    const secEl=el("div","ad-sec"+(b.eId===focusEid?" focus":""));
+    if(b.eId) secEl.id="adsec-"+b.eId;
+    let h=`<div class="ad-sec-h"><span class="ad-num">${esc(b.num||'')}</span>${esc(b.heading||'')}${b.eId===focusEid?'<span class="ad-focus-tag">the section you came from</span>':''}</div>`;
+    h+=renderBody(b.body,"ad");
+    secEl.innerHTML=h; body.appendChild(secEl);
+  });
+  wrap.appendChild(body);
+  return wrap;
+}
+async function openActModal(actId, focusEid){
+  const modal=$("#modal"), body=$("#modal-body");
+  body.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the full Act…</div>`;
+  modal.classList.add("show"); document.body.style.overflow="hidden";
+  try{
+    const doc=await getDoc(actId);
+    const blocks=actBlocks(doc);
+    body.innerHTML=""; body.appendChild(renderFullAct(actId,blocks,focusEid));
+    if(focusEid){ const t=document.getElementById("adsec-"+focusEid); if(t) setTimeout(()=>t.scrollIntoView({block:"center"}),60); }
+    else body.scrollTop=0;
+  }catch(e){
+    body.innerHTML=`<div class="ad-loading">Couldn't load this Act.<br><br>The viewer reads the <code>.akn.xml</code> files live, so it must be served over http — see the note under the sidebar.</div>`;
+  }
+}
+function closeModal(){ $("#modal").classList.remove("show"); document.body.style.overflow=""; }
+
+/* ============================================================ JUDGMENT MODAL */
+let jmtCache={};
+async function getJudgment(caseId, aknPath){
+  if(jmtCache[caseId]) return jmtCache[caseId];
+  const xml=await fetchText(DATA_BASE+aknPath);
+  const doc=new DOMParser().parseFromString(xml,"application/xml");
+  if(doc.getElementsByTagName("parsererror").length) throw new Error("XML parse error: "+aknPath);
+  jmtCache[caseId]=doc; return doc;
+}
+function judgmentHeader(doc){
+  const h=doc.getElementsByTagName("header")[0]; const out={};
+  if(h) for(const p of h.children){ const cl=p.getAttribute("class"); if(cl) out[cl]=cleanText(p); }
+  return out;
+}
+function renderJudgment(c, doc){
+  const H=judgmentHeader(doc);
+  const wrap=el("div");
+  const sub=[H.court||"Supreme Court of India"];
+  if(H.judgmentDate) sub.push(H.judgmentDate);
+  if(c.neutral_citation||H.neutralCitation) sub.push(c.neutral_citation||H.neutralCitation);
+  wrap.appendChild(el("div","actdoc-h",
+    `<div class="ad-title">${esc(c.name)}</div>
+     <div class="ad-sub">${esc(sub.join(" · "))} · verbatim Akoma Ntoso (${esc((c.akn||"").split("/").pop())})</div>`));
+  const body=el("div","actdoc-body");
+  const cap=el("div","jcap");
+  cap.innerHTML=`${H.docketNumber?`<div class="jrow strong">${esc(H.docketNumber)}</div>`:''}
+    <div class="jrow">${esc(H.reportCitation||c.citation||'')}${H.neutralCitation?` &nbsp;·&nbsp; ${esc(H.neutralCitation)}`:''}</div>
+    ${H.bench?`<div class="jrow">${esc(H.bench)}</div>`:''}
+    ${H.author?`<div class="jrow">${esc(H.author)}</div>`:''}`;
+  body.appendChild(cap);
+  const jb=doc.getElementsByTagName("judgmentBody")[0];
+  const LAB={introduction:"Introduction",background:"Background",arguments:"Arguments",motivation:"The Court's reasoning",remedies:"Remedies",decision:"Decision"};
+  if(jb) for(const sec of jb.children){
+    const ln=sec.localName;
+    body.appendChild(el("div","ad-chap",LAB[ln]||ln));
+    for(const ch of sec.children){
+      if(ch.localName==="p"){ body.appendChild(el("div","jpara",`<div class="jp">${esc(cleanText(ch))}</div>`)); }
+      else if(ch.localName==="paragraph"){
+        const num=childByLocal(ch,"num"), content=childByLocal(ch,"content");
+        const pn=num?cleanText(num):"";
+        let txt=""; if(content) for(const cc of content.children){ if(cc.localName==="p"){ const t=cleanText(cc); if(t) txt+=(txt?" ":"")+t; } }
+        body.appendChild(el("div","jpara",`<div class="jp"><span class="jnum">${esc(pn)}</span>${esc(txt)}</div>`));
+      }
+    }
+  }
+  wrap.appendChild(body);
+  return wrap;
+}
+async function openJudgmentModal(caseId){
+  const c=caseById2(caseId); if(!c||!c.akn) return;
+  const modal=$("#modal"), body=$("#modal-body");
+  body.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the judgment…</div>`;
+  modal.classList.add("show"); document.body.style.overflow="hidden";
+  try{
+    const doc=await getJudgment(caseId,c.akn);
+    body.innerHTML=""; body.appendChild(renderJudgment(c,doc)); body.scrollTop=0;
+  }catch(e){
+    body.innerHTML=`<div class="ad-loading">Couldn't load this judgment.<br><br>The viewer reads the <code>.akn.xml</code> files live, so it must be served over http — see the note under the sidebar.</div>`;
+  }
+}
+
+/* ============================================================ ROUTER + BOOT */
+function buildNav(){
+  const c=caseById(activeCase);
+  const nav=$("#nav");
+  nav.innerHTML=`
+    <div class="casedd" id="casedd">
+      <button class="casedd-btn" id="caseddBtn">
+        <div class="ac-eyebrow">Active case type</div>
+        <div class="ac-name">${c.name} <span>· ${c.act.split('·').pop().trim()}</span></div>
+        <span class="casedd-chev">▼</span>
+      </button>
+      <div class="casedd-menu" id="caseddMenu">
+        ${CASE_TYPES.map(ct=>{const on=ct.id===activeCase, planned=ct.status!=="active"; return `<div class="casedd-item ${on?'on':''} ${planned?'planned':''}" data-id="${ct.id}"><span>${ct.name} <span class="ci-sub">· ${ct.act.split('·').pop().trim()}</span></span>${on?'<span class="ci-check">✓ active</span>':(planned?'<span class="ci-check" style="color:var(--ink-3)">soon</span>':'')}</div>`;}).join("")}
+      </div>
+    </div>
+    <div class="scoped-wrap">
+      <a data-view="overview"><span class="ico">◆</span> Overview</a>
+      <div class="nav-sub">
+        <a data-view="structure" class="subnav"><span class="ico">▚</span> The structure</a>
+        <a data-view="split" class="subnav"><span class="ico">⇆</span> Shared vs State</a>
+        <a data-view="time" class="subnav"><span class="ico">◷</span> The 2024 code switch <span class="count">${ALIAS_MAP.length}</span></a>
+      </div>
+      <a data-view="parts"><span class="ico">▦</span> Acts <span class="count">${isModelled()?Object.keys(SOURCES).length:'—'}</span></a>
+      <a data-view="provisions"><span class="ico">§</span> Provisions <span class="count">${isModelled()?PROVISIONS.length:'—'}</span></a>
+      <a data-view="words"><span class="ico">A</span> Vocabulary <span class="count">${isModelled()?Object.keys(TERMS).length:'—'}</span></a>
+      <a data-view="caselaw"><span class="ico">⚖</span> Case law <span class="count">${isModelled()?(CASES.length||'—'):'—'}</span></a>
+    </div>`;
+  nav.querySelectorAll("a").forEach(a=>a.onclick=()=>go(a.dataset.view));
+  const dd=$("#casedd",nav), btn=$("#caseddBtn",nav);
+  if(btn) btn.onclick=e=>{ e.stopPropagation(); dd.classList.toggle("open"); };
+  nav.querySelectorAll(".casedd-item").forEach(it=>it.onclick=()=>{
+    const ct=caseById(it.dataset.id);
+    if(ct && ct.status==="active"){ activeCase=ct.id; buildNav(); go("overview"); }
+    else dd.classList.remove("open");
+  });
+}
+function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
+function go(view){
+  if(!V[view]) view="overview";
+  document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
+  setMain(V[view]());
+  if(history.replaceState) history.replaceState(null,"","#"+view);
+}
+window.go=go;
+
+/* theme toggle */
+function setTheme(t){document.documentElement.classList.toggle("dark",t==="dark"); document.querySelectorAll(".tt-opt").forEach(o=>o.classList.toggle("on",o.dataset.t===t));}
+document.querySelectorAll(".tt-opt").forEach(o=>o.onclick=()=>setTheme(o.dataset.t));
+setTheme("dark");
+$("#brand").onclick=()=>go("overview");
+
+/* delegated: open the full-Act modal from any "view-full" button */
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".view-full");
+  if(b){ if(b.dataset.ref){const [a,eid]=b.dataset.ref.split(":"); openActModal(a,eid);} else if(b.dataset.act){ openActModal(b.dataset.act);} return; }
+  if(e.target.closest("[data-close]")){ closeModal(); return; }
+  const chip=e.target.closest(".cchip"); if(chip && chip.dataset.ref){ jumpToProvision(chip.dataset.ref); return; }
+  const ic=e.target.closest(".ic"); if(ic && ic.dataset.caseid){ jumpToCase(ic.dataset.caseid); return; }
+  const rj=e.target.closest(".readjmt"); if(rj && rj.dataset.caseid){ openJudgmentModal(rj.dataset.caseid); return; }
+  const dd=$("#casedd"); if(dd && !e.target.closest("#casedd")) dd.classList.remove("open");
+});
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+
+/* boot: load the profile, then render */
+function showLoadError(err){
+  const served = location.protocol!=="file:";
+  $("#main").innerHTML=`<div class="loadbox">
+    <h2>${served?"Couldn't load the corpus":"Open this over a local server"}</h2>
+    <p>This viewer reads the profile and the Akoma&nbsp;Ntoso Act files <b>live from disk</b> — nothing is baked in. Browsers block that when a page is opened straight from a file, so it needs to be served over http.</p>
+    <div class="cmd"># from the dristi-domain-model folder:<br>python3 -m http.server 8000<br><br># then open:<br>http://localhost:8000/</div>
+    <p class="tiny">Looked for <code>${esc(PROFILE_NAME)}</code> under: ${BASE_CANDIDATES.map(b=>`<code>${esc(b||'./')}</code>`).join(" ")}${served?`<br>Last error: ${esc(String(err&&err.message||err))}`:""}</p>
+  </div>`;
+}
+(async()=>{
+  $("#main").innerHTML=`<div class="loadbox"><div class="spinner"></div><p>Loading the domain model from the corpus…</p></div>`;
+  try{
+    await loadProfile();
+    buildNav();
+    const start=(location.hash||"#overview").slice(1);
+    go(V[start]?start:"overview");
+  }catch(err){ showLoadError(err); }
+})();
+</script>
+</body>
+</html>

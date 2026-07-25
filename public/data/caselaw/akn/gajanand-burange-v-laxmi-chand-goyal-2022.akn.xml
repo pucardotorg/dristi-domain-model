@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/judgment/2022/gajanand-burange-2022/!main"/>
+          <FRBRuri value="/akn/in/judgment/2022/gajanand-burange-2022"/>
+          <FRBRalias value="Gajanand Burange v. Laxmi Chand Goyal" name="caseName"/>
+          <FRBRdate date="2022-08-12" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Gajanand Burange v. Laxmi Chand Goyal"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/judgment/2022/gajanand-burange-2022/eng@/!main"/>
+          <FRBRuri value="/akn/in/judgment/2022/gajanand-burange-2022/eng@"/>
+          <FRBRdate date="2022-08-12" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/judgment/2022/gajanand-burange-2022/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/judgment/2022/gajanand-burange-2022/eng@.akn"/>
+          <FRBRdate date="2026-07-25" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="sc-india" href="/ontology/organization/in/supreme-court" showAs="Supreme Court of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the text export of Gajanand Burange v. Laxmi Chand Goyal (indiankanoon.org/doc/51502144). Running headers, page furniture and reporter apparatus were stripped during extraction. Numbered paragraphs follow the reported judgment. The introduction/motivation/decision split is a best-effort structural segmentation. Verify against the official record before authoritative use.</p></note>
+      </notes>
+      <proprietary source="#pucar" xmlns:pucar="https://pucar.org/ns">
+        <pucar:caseId>gajanand-burange-2022</pucar:caseId>
+        <pucar:status>good-law</pucar:status>
+        <pucar:benchSize>2</pucar:benchSize>
+        <pucar:reportable>false</pucar:reportable>
+      </proprietary>
+    </meta>
+    <header>
+      <p class="court"><courtType refersTo="#sc-india">Supreme Court of India</courtType></p>
+      <p class="docketNumber"><docketNumber>Criminal Appeal No 1229 of 2022</docketNumber></p>
+      <p class="parties">Gajanand Burange v. Laxmi Chand Goyal</p>
+      <p class="reportCitation">2022 SCC OnLine SC 1711</p>
+      <p class="judgmentDate"><date date="2022-08-12" refersTo="#judgmentDate">2022-08-12</date></p>
+      <p class="bench">Bench: D.Y. Chandrachud, A.S. Bopanna</p>
+    </header>
+    <judgmentBody>
+      <motivation eId="motiv_1">
+          <paragraph eId="para_1">
+            <num>1.</num>
+            <content><p>Leave granted.</p></content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num>2.</num>
+            <content><p>The appeal arises from a judgment dated 28 November 2018 of a Single Judge of the High Court of Chhattisgarh reversing the acquittal of the appellant for an offence punishable under Section 138 of the Negotiable Instruments Act 1881 1. 3 The facts lie on a narrow compass. On</p></content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num>7.</num>
+            <content><p>November 2005, a notice was addressed by the respondent to the appellant alleging that the appellant had taken a cash loan of Rs 2.5 lakhs and had furnished a cheque dated 28 October 2005 towards repayment. The notice alleged that the cheque was returned by the bank to the respondent due to insufficiency of funds in the account of the appellant. The notice dated 7 November 2005 was received by the appellant on 1 “NI Act” 8 November 2005. The respondent instituted a complaint against the appellant under Section 138 of the NI Act on 22 November 2005. On 1 February 2011, the trial court acquitted the appellant. The order of acquittal was questioned before the High Court in appeal. By a judgment dated 28 November 2018, the High Court has allowed the appeal and convicted the appellant for an offence punishable under Section 138 of the NI Act awarding a sentence of a fine in the amount of Rs 3 lakhs. 4 After notice was issued on 15 February 2019, the respondent had communicated to the Registry indicating that he was seventy nine years of age and did not have the resources to defend his rights before this Court by engaging counsel. In the circumstances, by an order dated 15 July 2020, the Registry was requested to appoint counsel from the panel of legal aid advocates. 5 The issue which is raised in this appeal is no longer res integra and is covered by a three-Judge bench decision of this Court in Yogendra Pratap Singh v Savitri Pandey and Another2. Two issues were formulated for decision before the three-Judge Bench, which were: “1.1. (i) Can cognizance of an offence punishable under Section 138 of the Negotiable Instruments Act, 1881 be taken on the basis of a complaint filed before the expiry of the period of 15 days stipulated in the notice required to be served upon the drawer of the cheque in terms of Section 138(c) of the Act aforementioned? And, 1.2. (ii) If answer to Question 1 is in the negative, can the complainant be permitted to present the complaint again notwithstanding the fact that the period of one month stipulated under Section 142(b) for the filing of such a complaint has expired?” 2 (2014) 10 SCC 6 The first issue was resolved by paragraph 35 of the judgment, which is extracted below: “35. Can an offence under Section 138 of the NI Act be said to have been committed when the period provided in clause (c) of the proviso has not expired? Section 2(d) of the Code defines “complaint”. According to this definition, complaint means any allegation made orally or in writing to a Magistrate with a view to taking his action against a person who has committed an offence. Commission of an offence is a sine qua non for filing a complaint and for taking cognizance of such offence. A bare reading of the provision contained in clause (c) of the proviso makes it clear that no complaint can be filed for an offence under Section 138 of the NI Act unless the period of 15 days has elapsed. Any complaint filed before the expiry of 15 days from the date on which the notice has been served on the drawer/accused is no complaint at all in the eye of the law. It is not the question of prematurity of the complaint where it is filed before the expiry of 15 days from the date on which notice has been served on him, it is no complaint at all under law. As a matter of fact, Section 142 of the NI Act, inter alia, creates a legal bar on the court from taking cognizance of an offence under Section 138 except upon a written complaint. Since a complaint filed under Section 138 of the NI Act before the expiry of 15 days from the date on which the notice has been served on the drawer/accused is no complaint in the eye of the law, obviously, no cognizance of an offence can be taken on the basis of such complaint. Merely because at the time of taking cognizance by the court, the period of 15 days has expired from the date on which notice has been served on the drawer/accused, the court is not clothed with the jurisdiction to take cognizance of an offence under Section 138 on a complaint filed before the expiry of 15 days from the date of receipt of notice by the drawer of the cheque.” 7 In the present case, while the notice was received by the appellant on 8 November 2005, the complaint was filed before the period of fifteen days was complete. The complaint could have been filed only after 23 November 2005, but was filed on 22 November 2005. In view of the legal bar which is created by Section 142 of the NI Act, as explained in the three-Judge Bench decision of this Court, taking of cognizance by the Court was contrary to the law and the complaint was not maintainable before the expiry of the period of fifteen days from the date of its receipt by the appellant. 8 However, on behalf of the respondent, it has been urged that the second issue which was raised before the three-Judge Bench has been dealt with in the following terms: “41… Now, since our answer to Question (i) is in the negative, we observe that the payee or the holder in due course of the cheque may file a fresh complaint within one month from the date of decision in the criminal case and, in that event, delay in filing the complaint will be treated as having been condoned under the proviso to clause (b) of Section 142 of the NI Act. This direction shall be deemed to be applicable to all such pending cases where the complaint does not proceed further in view of our answer to Question (i). As we have already held that a complaint filed before the expiry of 15 days from the date of receipt of notice issued under clause (c) of the proviso to Section 138 is not maintainable, the complainant cannot be permitted to present the very same complaint at any later stage. His remedy is only to file a fresh complaint; and if the same could not be filed within the time prescribed under Section 142(b), his recourse is to seek the benefit of the proviso, satisfying the court of sufficient cause. Question (ii) is answered accordingly.” 9 We are of the view that the respondent would be entitled to the benefit of the determination on the second issue, as extracted above. 10 Hence, the following order: (i) The impugned judgment and order of the Single Judge of the High Court of Chhattisgarh dated 28 November 2018 shall stand set aside; and (ii) The respondent would be at liberty to institute a fresh complaint and since the earlier complaint could not be presented within the time prescribed by Section 142(b) of the NI Act, the respondent would be at liberty to seek the benefit of the proviso by satisfying the trial court of sufficient cause for the delay in instituting the complaint.</p></content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num>11.</num>
+            <content><p>In the event that the second complaint is filed within a period of two months from the date of this order, we request the trial court to dispose of the complaint within a period of six months.</p></content>
+          </paragraph>
+      </motivation>
+      <decision eId="decision_1">
+          <paragraph eId="para_12">
+            <num>12.</num>
+            <content><p>The appeal shall stand allowed in the above terms. 13 Pending application, if any, stands disposed of. …..…..…....…........……………….…........J. [Dr Dhananjaya Y Chandrachud] …..…..…....…........……………….…........J. [A S Bopanna] New Delhi; August 12, 2022 -S- ITEM NO.17 COURT NO.3 SECTION II-C S U P R E M E C O U R T O F I N D I A RECORD OF PROCEEDINGS Petition(s) for Special Leave to Appeal (Crl.) No(s).1415/2019 (Arising out of impugned final judgment and order dated 28-11-2018 in ACQA No. 154/2012 passed by the High Court of Chhatisgarh at Bilaspur) GAJANAND BURANGE Petitioner(s) VERSUS LAXMI CHAND GOYAL Respondent(s) (WITH IA No. 197530/2019 - STAY APPLICATION) Date : 12-08-2022 This petition was called on for hearing today. CORAM : HON'BLE DR. JUSTICE D.Y. CHANDRACHUD HON'BLE MR. JUSTICE A.S. BOPANNA For Petitioner(s) Mr. Parth Shekhar, Adv. Mr. Sanchit Guru, Adv. Mr. Himanshu Shekhar, AOR For Respondent(s) Mr. Mishra Saurabh, AOR UPON hearing the counsel the Court made the following O R D E R 1 Leave granted. 2 The appeal is allowed in terms of the signed order. 3 Pending application, if any, stands disposed of. (SANJAY KUMAR-I) (SAROJ KUMARI GAUR) DEPUTY REGISTRAR COURT MASTER (Signed order is placed on the file)</p></content>
+          </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

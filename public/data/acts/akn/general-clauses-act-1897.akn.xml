@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/act/1897/10/!main"/>
+          <FRBRuri value="/akn/in/act/1897/10"/>
+          <FRBRalias value="The General Clauses Act, 1897" name="shortTitle"/>
+          <FRBRdate date="1897-03-11" name="enactment"/>
+          <FRBRauthor href="#in-parliament"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value="10"/>
+          <FRBRname value="The General Clauses Act, 1897"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/act/1897/10/eng@/!main"/>
+          <FRBRuri value="/akn/in/act/1897/10/eng@"/>
+          <FRBRdate date="1897-03-11" name="consolidation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/act/1897/10/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/act/1897/10/eng@.akn"/>
+          <FRBRdate date="2026-07-24" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="in-parliament" href="/ontology/organization/in/parliament" showAs="Parliament of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the India Code reprint PDF of The General Clauses Act, 1897. Page furniture and footnote/amendment apparatus were stripped during extraction; amended text retains its square-bracket markers. Best-effort structural conversion &#8212; verify against the official source before authoritative use.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <longTitle><p>THE GENERAL CLAUSES ACT, 1897</p></longTitle>
+    </preface>
+    <body>
+      <chapter eId="chp_PRE">
+        <num>CHAPTER PRE</num>
+        <heading>PRELIMINARY</heading>
+        <section eId="sec_1">
+          <num>1.</num>
+          <heading>Short title</heading>
+          <subsection eId="sec_1__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>This Act may be called the General Clauses Act, 1897; 2***</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_2">
+          <num>2.</num>
+          <heading>[Repeal.] Rep by the Repealing and Amending Act, 1903 (1 of 1903), s. 4 and the Third Schedule</heading>
+          <content>
+            <p>GENERAL DEFINITIONS</p>
+          </content>
+        </section>
+        <section eId="sec_3">
+          <num>3.</num>
+          <heading>Definitions</heading>
+          <intro>
+            <p>In this Act, and in all Central Acts and Regulations made after the commencement of this Act, unless there is anything repugnant in the subject or context,—</p>
+          </intro>
+          <subsection eId="sec_3__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>“abet”, with its grammatical variations and cognate expressions, shall have the same meaning as in the Indian Penal Code (45 of 1860);</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_3__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>“act”, used with reference to an offence or a civil wrong, shall include a series of acts, and words which refer to acts done extend also to illegal omissions;</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_3__subsec_3">
+            <num>(3)</num>
+            <content>
+              <p>“affidavit” shall include affirmation and declaration in the case of persons by law allowed to affirm or declare instead of swearing;</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_3__subsec_4">
+            <num>(4)</num>
+            <content>
+              <p>“barrister” shall mean a barrister of England or Ireland, or a member of the Faculty of Advocates in Scotland;</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_3__subsec_5">
+            <num>(5)</num>
+            <content>
+              <p>“British India” shall mean, as respects the period before the commencement of Part III of the Government of India Act, 1935, all territories and places within His Majesty’s dominions which were for the time being governed by His Majesty through the Governor General of India or through any Governor or Officer subordinate to the Governor General of India, and as respects any period after that date and before the date of the establishment of the Dominion of India means all territories for the time being comprised within the Governors’ Provinces and the Chief Commissioners’ Provinces, except that a reference to British India in an Indian law passed or made before the commencement of</p>
+            </content>
+          </subsection>
+        </section>
+      </chapter>
+      <part eId="part_III">
+        <num>PART III</num>
+        <heading>of the Government of India Act, 1935, shall not include a reference to Berar;</heading>
+        <section eId="sec_4">
+          <num>4.</num>
+          <heading>Application of foregoing definitions to previous enactments</heading>
+          <subsection eId="sec_4__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>The definitions in section 3 of the following words and expressions, that is to say, “affidavit”, “barrister”, 4*** “District Judge”, “father”, 5***, 6***, 7*** “immovable property”, “imprisonment”, 8*** “Magistrate”, “month”, “movable “movable property”, “oath”, “person”, “section”, “son”, “swear”, “will”, and “year” apply also, unless there is anything repugnant in the subject or context, to all 9[Central Acts] made after the third day of January, 1868, and to all Regulations made on or after the fourteenth day of January, 1887.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_4__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>The definitions in the said section of the following words and expressions, that is to say, “abet”, “Chapter”, “commencement”, “financial year”, “local authority”, “master”, “offence”, “part”, “public nuisance”, “registered”, “schedule”, “ship”, “sign”, “sub-section” and “writing” apply also, unless there is anything repugnant in the subject or context, to all 9[Central Acts] and Regulations made on or after the fourteenth day of January, 1887.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_4A">
+          <num>4A.</num>
+          <heading>Application of certain definitions to Indian Laws</heading>
+          <subsection eId="sec_4A__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>The definitions in section 3 of the expressions “British India”, “Central Act”, “Central Government”, “Chief Controlling Revenue Authority”, “Chief Revenue Authority”, “Constitution”, “Gazette”, “Government”, “Government securities”, “High Court”, “India”, “Indian Law”, “Indian State”, “merged territories”, “Official Gazette”, “Part A State”, “Part B State”, “Part C State”, Provincial Government”, “State” and “State Government” shall apply, unless there is anything repugnant in the subject or context, to all Indian laws.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_4A__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>In any Indian law, references, by whatever form of words, to revenues of the Central Government or of any State Government shall, on and from the first day of April, 1950, be construed as references to the Consolidated Fund of India or the Consolidated Fund of the State, as the case may be.] GENERAL RULES OF CONSTRUCTION</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_5">
+          <num>5.</num>
+          <heading>Coming into operation of enactments</heading>
+          <subsection eId="sec_5__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>Where any Central Act is not expressed to come into operation on a particular day, then it shall come into operation on the day on which it receives the assent,—</p>
+              <blockList eId="sec_5__subsec_1__list_1">
+                <item eId="sec_5__subsec_1__list_1__item_a"><num>(a)</num><p>in the case of a Central Act made before the commencement of the Constitution, of the Governor-General, and</p></item>
+                <item eId="sec_5__subsec_1__list_1__item_b"><num>(b)</num><p>in the case of an Act of Parliament, of the President.]</p></item>
+              </blockList>
+            </content>
+          </subsection>
+          <subsection eId="sec_5__subsec_3">
+            <num>(3)</num>
+            <content>
+              <p>Unless the contrary is expressed, a [Central Act] or Regulation shall be construed as coming into operation immediately on the expiration of the day preceding its commencement.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_5A">
+          <num>5A.</num>
+          <heading>[Coming into operation of Governor-General’s Act.] Rep. by the A.O. 1947. Earlier it was</heading>
+          <content>
+            <p>inserted by A.O. 1937.</p>
+          </content>
+        </section>
+        <section eId="sec_6">
+          <num>6.</num>
+          <heading>Effect of repeal</heading>
+          <content>
+            <p>Where this Act, or any 4[Central Act] or Regulation made after the commencement of this Act, repeals any enactment hitherto made or hereafter to be made, then, unless a different intention appears, the repeal shall not--</p>
+            <blockList eId="sec_6__list_1">
+              <item eId="sec_6__list_1__item_a"><num>(a)</num><p>revive anything not in force or existing at the time at which the repeal takes effect; or</p></item>
+              <item eId="sec_6__list_1__item_b"><num>(b)</num><p>affect the previous operation of any enactment so repealed or anything duly done or suffered thereunder; or</p></item>
+              <item eId="sec_6__list_1__item_c"><num>(c)</num><p>affect any right, privilege, obligation or liability acquired, accrued or incurred under any enactment so repealed; or</p></item>
+              <item eId="sec_6__list_1__item_d"><num>(d)</num><p>affect any penalty, forfeiture or punishment incurred in respect of any offence committed against any enactment so repealed; or</p></item>
+              <item eId="sec_6__list_1__item_e"><num>(e)</num><p>affect any investigation, legal proceeding or remedy in respect of any such right, privilege, obligation, liability, penalty, forfeiture or punishment as aforesaid; and any such investigation, legal proceeding or remedy may be instituted, continued or enforced, and any such penalty, forfeiture or punishment may be imposed as if the repealing Act or Regulation had not been passed.</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="sec_6A">
+          <num>6A.</num>
+          <heading>Repeal of Act making textual amendment in Act or Regulation</heading>
+          <content>
+            <p>Where any 4[Central Act] or Regulation made after the commencement of this Act repeals any enactment by which the text of any [Central Act] or Regulation was amended by the express omission, insertion or substitution of any matter, then, unless a different intention appears, the repeal shall not affect the continuance of any such amendment made by the enactment so repealed and in operation at the time of such repeal.]</p>
+          </content>
+        </section>
+        <section eId="sec_7">
+          <num>7.</num>
+          <heading>Revival of repealed enactments</heading>
+          <subsection eId="sec_7__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>In any 1[Central Act] or Regulation made after the commencement of this Act, it shall be necessary, for the purpose of reviving, either wholly or partially, any enactment wholly or partially repealed, expressly to state that purpose.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_7__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>This section applies also to all 2[Central Acts] made after the third day of January, 1868, and to all Regulations made on or after the fourteenth day of January, 1887.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_8">
+          <num>8.</num>
+          <heading>Construction of references to repealed enactments</heading>
+          <subsection eId="sec_8__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>Where this Act, or any 1[Central Act] or Regulation made after the commencement of this Act, repeals and re-enacts, with or without modification, any provision of a former enactment, then references in any other enactment or in any instrument to the provision so repealed shall, unless a different intention appears, be construed as references to the provision so re-enacted.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_8__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>5[Where before the fifteenth day of August, 1947, any Act of Parliament of the United Kingdom repealed and re-enacted], with or without modification, any provision of a former enactment, then reference in any 1[Central Act] or in any Regulation or instrument to the provision so repealed shall, unless a different intention appears, be construed as references to the provision so re-enacted.]</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_9">
+          <num>9.</num>
+          <heading>Commencement and termination of time</heading>
+          <subsection eId="sec_9__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>In any 1[Central Act] or Regulation made after the commencement of this Act, it shall be sufficient, for the purpose of excluding the first in a series of days or any other period of time, to use the word “from”, and, for the purpose of including the last in a series of days or any other period of time, to use the word “to”.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_9__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>This section applies also to all 2[Central Acts] made after the third day of January, 1868, and to all Regulations made on or after the fourteenth day of January, 1887.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_10">
+          <num>10.</num>
+          <heading>Computation of time</heading>
+          <subsection eId="sec_10__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>Where, by any 1[Central Act] or Regulation made after the commencement of this Act, any act or proceeding is directed or allowed to be done or taken in any Court or office on a certain day or within a prescribed period, then, if the Court or office is closed on that day or the last day of the prescribed period, the act or proceeding shall be considered as done or taken in due time if it is done or taken on the next day afterwards on which the Court or office is open:</p>
+              <p>Provided that nothing in this section shall apply to any act or proceeding to which the 6Indian Limitation Act, 1877 (15 of 1877), applies.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_10__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>This section applies also to all 2[Central Acts] and Regulations made on or after the fourteenth day of January, 1887.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_11">
+          <num>11.</num>
+          <heading>Measurement of distances</heading>
+          <content>
+            <p>In the measurement of any distance, for the purposes of any [Central Act] or Regulation made after the commencement of this Act, that distance shall, unless a different intention appears, be measured in a straight line on a horizontal plane.</p>
+          </content>
+        </section>
+        <section eId="sec_12">
+          <num>12.</num>
+          <heading>Duty to be taken pro rata in enactments</heading>
+          <content>
+            <p>Where, by any enactment now in force or hereafter to be in force, any duty of customs or excise, or in the nature thereof, is leviable on any given quantity, by weight, measure or value of any goods or merchandise, then a like duty is leviable according to the same rate on any greater or less quantity.</p>
+          </content>
+        </section>
+        <section eId="sec_13">
+          <num>13.</num>
+          <heading>Gender and number</heading>
+          <intro>
+            <p>In all 2[Central Acts] and Regulations, unless there is anything repugnant in the subject or context,—</p>
+          </intro>
+          <subsection eId="sec_13__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>words importing the masculine gender shall be taken to include females; and</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_13__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>words in the singular shall include the plural, and vice versa.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_13A">
+          <num>13A.</num>
+          <heading>[References to the Sovereign.] Rep. by the A.O. 1950</heading>
+          <content>
+            <p>POWERS AND FUNCTIONARIES</p>
+          </content>
+        </section>
+        <section eId="sec_14">
+          <num>14.</num>
+          <heading>Powers conferred to be exercisable from time to time</heading>
+          <subsection eId="sec_14__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>Where, by any 1[Central Act] or Regulation made after the commencement of this Act, any power is conferred 2***, then 3[unless a different intention appears] that power may be exercised from time to time as occasion requires.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_14__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>This section applies also to all 4[Central Acts] and Regulations made on or after the fourteenth day day of January, 1887.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_15">
+          <num>15.</num>
+          <heading>Power to appoint to include power to appoint ex officio</heading>
+          <content>
+            <p>Where, by any 1[Central Act] or Regulation, a power to appoint any person to fill any office or execute any function is conferred, then, unless it is otherwise expressly provided, any such appointment, if it is made after the commencement of this Act, may be made either by name or by virtue of office.</p>
+          </content>
+        </section>
+        <section eId="sec_16">
+          <num>16.</num>
+          <heading>Power to appoint to include power to suspend or dismiss</heading>
+          <content>
+            <p>Where, by any 1[Central Act] or Regulation, a power to make any appointment is conferred, then, unless a different intention appears, the authority having 5[for the time being] power to make the appointment shall also have power to suspend or or dismiss any person appointed 6[whether by itself or any other authority] in exercise of that power.</p>
+          </content>
+        </section>
+        <section eId="sec_17">
+          <num>17.</num>
+          <heading>Substitution of functionaries</heading>
+          <subsection eId="sec_17__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>In any 1[Central Act] or Regulation made after the commencement of this Act, it shall be sufficient, for the purpose of indicating the application of a law to every person or number of persons for the time being executing the functions of an office, to mention the official title of the officer at present executing the functions, or that of the officer by whom the functions are commonly executed.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_17__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>This section applies also to all 4[Central Acts] made after the third day of January, 1868, and to all Regulations made on or after the fourteenth day of January, 1887.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_18">
+          <num>18.</num>
+          <heading>Successors</heading>
+          <subsection eId="sec_18__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>In any 1[Central Act] or Regulation made after the commencement of this Act, it shall be sufficient, for the purpose of indicating the relation of a law to the successors of any functionaries or of corporations having perpetual succession, to express its relation to the functionaries or corporations.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_18__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>This section applies also to all 4[Central Acts] made after the third day of January, 1868, and to all Regulations made on or after the fourteenth day of January, 1887.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_19">
+          <num>19.</num>
+          <heading>Official chiefs and subordinates</heading>
+          <subsection eId="sec_19__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>In any 1[Central Act] or Regulation made after the commencement of this Act, it shall be sufficient, for the purpose of expressing that a law relative to the chief or superior of an office shall apply to the deputies or subordinates lawfully performing the duties of that office in the place of their superior, to prescribe the duty of the superior.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_19__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>This section applies also to all 4[Central Acts] made after the third day of January, 1868, and to all Regulations made on or after the fourteenth day of January, 1887. PROVISIONS AS TO ORDERS, RULES, ETC., MADE UNDER ENACTMENTS</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_20">
+          <num>20.</num>
+          <heading>Construction of orders, etc., issued under enactments</heading>
+          <content>
+            <p>Where, by any 1[Central Act] or Regulation, a power to issue any 7[notification], order, scheme, rule, form, or bye-law is conferred, then expressions used in the 7[notification], order, scheme, rule, form or bye-law, if it is made after the commencement of this Act, shall, unless there is anything repugnant in the subject or context, have the same respective meanings as in the Act or Regulation conferring the power.</p>
+          </content>
+        </section>
+        <section eId="sec_21">
+          <num>21.</num>
+          <heading>Power to issue, to include power to add to, amend, vary or rescind notifications, orders,</heading>
+          <content>
+            <p>rules or bye-laws.—Where, by any 1[Central Act] or Regulations a power to 2[issue notifications,] orders, rules or bye-laws is conferred, then that power includes a power, exercisable in the like manner and subject to the like sanction and conditions (if any), to add to, amend, vary or rescind any [notifications,] orders, rules or bye-laws so 4[issued].</p>
+          </content>
+        </section>
+        <section eId="sec_22">
+          <num>22.</num>
+          <heading>Making of rules or bye-laws and issuing of orders between passing and commencement of</heading>
+          <content>
+            <p>enactment.—Where, by any 1[Central Act] or Regulation which is not to come into force immediately, on the passing thereof, a power is conferred to make rules or bye-laws, or to issue orders with respect to the application of the Act or Regulation, or with respect to the establishment of any Court or office or the appointment of any Judge or officer thereunder, of with respect to the person by whom, or the time when, or the place where, or the manner in which, or the fees for which, anything is to be done under the Act or Regulation, then that power may be exercised at any time after the passing of the Act or Regulation; but rules, bye-laws or orders so made or issued shall not take effect till the commencement of the Act or Regulation.</p>
+          </content>
+        </section>
+        <section eId="sec_23">
+          <num>23.</num>
+          <heading>Provisions applicable to making of rules or bye-laws after previous publication</heading>
+          <intro>
+            <p>Where, by any 1[Central Act] or Regulation, a power to make rules or bye-laws is expressed to be given subject to the condition of the rules or bye-laws being made after previous publication, then the following provisions shall apply, namely:—</p>
+          </intro>
+          <subsection eId="sec_23__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>the authority having power to make the rules or bye-laws shall, before making them, publish a draft of the proposed rules or bye-laws for the information of persons likely to be affected thereby;</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_23__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>the publication shall be made in such manner as that authority deems to be sufficient, or, if the condition with respect to previous publication so requires, in such manner as the 5[Government concerned] prescribes;</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_23__subsec_3">
+            <num>(3)</num>
+            <content>
+              <p>there shall be published with the draft a notice specifying a date on or after which the draft will be taken into consideration;</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_23__subsec_4">
+            <num>(4)</num>
+            <content>
+              <p>the authority having power to make the rules or bye-laws, and, where the rules or bye-laws are to be made with the sanction, approval or concurrence of another authority, that authority also, shall consider any objection or suggestion which may be received by the authority having power to make the rules or bye-laws from any person with respect to the draft before the date so specified;</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_23__subsec_5">
+            <num>(5)</num>
+            <content>
+              <p>the publication in the 6[Official Gazette] of a rule or bye-law purporting to have been made in exercise of a power to make rules or bye-laws after previous publication shall be conclusive proof that the rule or bye-law has been duly made.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_24">
+          <num>24.</num>
+          <heading>Continuation of orders, etc., issued under enactments repealed and re-enacted</heading>
+          <content>
+            <p>Where any 1[Central Act] or Regulation, is, after the commencement of this Act, repealed and re-enacted with or without modification, then, unless it is otherwise expressly provided any 3[appointment notification,] order, scheme, rule, form or bye-law, 3[made or] issued under the repealed Act or Regulation, shall, so far as it is not inconsistent with the provisions re-enacted, continue in force, and be deemed to have been 3[made or] issued under the provisions so re-enacted, unless and until it is superseded by any 3[appointment notification,] order, scheme, rule, form or bye-law, 3[made or] issued under the provisions so re-enacted 7[and when any 1[Central Act] or Regulation, which, by a notification under section 5 or 5A of the 8Scheduled Districts Act, 1874, (14 of 1874) or any like law, has been extended to any local area, has, by a subsequent notification, been withdrawn from the re-extended to such area or any part thereof, the provisions of such Act or Regulation shall be deemed to have been repealed and re-enacted in such area or part within the meaning of this section]. MISCELLANEOUS</p>
+          </content>
+        </section>
+        <section eId="sec_25">
+          <num>25.</num>
+          <heading>Recovery of fines</heading>
+          <content>
+            <p>Sections 63 to 70 of the Indian Penal Code (45 of 1860) and the provisions of the 1Code of Criminal Procedure for the time being in force in relation to the issue and the execution of warrants for the levy of fines shall apply to all fines imposed under any Act, Regulation, rule or bye-law, unless the Act, Regulation, rule or bye-law contains an express provision to the contrary.</p>
+          </content>
+        </section>
+        <section eId="sec_26">
+          <num>26.</num>
+          <heading>Provision as to offences punishable under two or more enactments</heading>
+          <content>
+            <p>Where an act or omission constitutes an offence under two or more enactments, then the offender shall be liable to be prosecuted and punished under either or any of those enactments, but shall not be liable to be punished twice for the same offence.</p>
+          </content>
+        </section>
+        <section eId="sec_27">
+          <num>27.</num>
+          <heading>Meaning of service by post</heading>
+          <content>
+            <p>Where any 2[Central Act] or Regulation made after the commencement of this Act authorizes or requires any document to be served by post, whether the expression “serve” or either of the expressions “give” or “send” or any other expression is used, then, unless a different intention appears, the service shall be deemed to be effected by properly addressing, pre-paying and posting by registered post, a letter containing the document, and, unless the contrary is proved, to have been effected at the time at which the letter would be delivered in the ordinary course of post.</p>
+          </content>
+        </section>
+        <section eId="sec_28">
+          <num>28.</num>
+          <heading>Citation of enactments</heading>
+          <subsection eId="sec_28__subsec_1">
+            <num>(1)</num>
+            <content>
+              <p>In any 2[Central Act] or Regulation, and in any rule, bye-law, instrument or document, made under, or with reference to any such Act or Regulation, any enactment may be cited by reference to the title or short title (if any) conferred thereon or by reference to the number and year thereof, and any provision in an enactment may be cited by reference to the section or sub- section of the enactment in which the provision is contained.</p>
+            </content>
+          </subsection>
+          <subsection eId="sec_28__subsec_2">
+            <num>(2)</num>
+            <content>
+              <p>In this Act and in any 2[Central Act] or Regulation made after the commencement of this Act, a description or citation of a portion of another enactment shall, unless a different intention appears, be construed as including the word, section or other part mentioned or referred to as forming the beginning and as forming the end of the portion comprised in the description or citation.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="sec_29">
+          <num>29.</num>
+          <heading>Saving for previous enactments, rules and bye-laws</heading>
+          <content>
+            <p>The provisions of this Act respecting the construction of Acts, Regulations, rules or bye-laws made after the commencement of this Act shall not affect the construction of any Act, Regulation, rule or bye-law made before the commencement of this Act, although the Act, Regulation, rule or bye-law is continued or amended by an Act, Regulation, rule or bye-law made after the commencement of this Act.</p>
+          </content>
+        </section>
+        <section eId="sec_30">
+          <num>30.</num>
+          <heading>Application of Act to Ordinances</heading>
+          <content>
+            <p>In this Act the expression 2[Central Act], wherever it occurs, except in section 5 and the word “Act” in 4[clauses (9), (13), (25), (40), (43), (52) and (54)] of section 3 and in section 25 shall be deemed to include an Ordinance made and promulgated by the Governor General under section 23 of the Indian Councils Act, 1861 5[or section 72 of the Government of of India Act, 1915,] 6[or section 42 7*** of the Government of India Act, 1935] 8[and an Ordinance promulgated by the President under article 123 of the Constitution].]</p>
+          </content>
+        </section>
+        <section eId="sec_30A">
+          <num>30A.</num>
+          <heading>[Application of Act to Acts made by the Governor-General.] Rep. by the A.O. 1937. Earlier</heading>
+          <content>
+            <p>Inserted by Act 11 of 1923, s. 2 and the First Schedule.</p>
+          </content>
+        </section>
+        <section eId="sec_31">
+          <num>31.</num>
+          <heading>[Construction of references to Local Government of a Province.] Rep. by the A.O. 1937. Earlier</heading>
+          <content>
+            <p>Inserted by Act 31 of 1920, s. 2 and the First Schedule. THE SCHEDULE.—[Enactments repealed.] Rep. by the Repealing and Amending Act, 1903 (1 of 1903), s. 4 and the Third Schedule.</p>
+          </content>
+        </section>
+      </part>
+    </body>
+  </act>
+</akomaNtoso>

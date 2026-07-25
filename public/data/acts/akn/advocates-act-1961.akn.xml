@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/act/1961/25/!main"/>
+          <FRBRuri value="/akn/in/act/1961/25"/>
+          <FRBRalias value="The Advocates Act, 1961" name="shortTitle"/>
+          <FRBRdate date="1961-05-19" name="enactment"/>
+          <FRBRauthor href="#in-parliament"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value="25"/>
+          <FRBRname value="The Advocates Act, 1961"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/act/1961/25/eng@/!main"/>
+          <FRBRuri value="/akn/in/act/1961/25/eng@"/>
+          <FRBRdate date="1961-05-19" name="consolidation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/act/1961/25/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/act/1961/25/eng@.akn"/>
+          <FRBRdate date="2026-07-24" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="in-parliament" href="/ontology/organization/in/parliament" showAs="Parliament of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the India Code reprint PDF of The Advocates Act, 1961. Page furniture and footnote/amendment apparatus were stripped during extraction; amended text retains its square-bracket markers. Best-effort structural conversion &#8212; verify against the official source before authoritative use.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <longTitle><p>THE ADVOCATES ACT, 1961</p></longTitle>
+    </preface>
+    <body>
+      <chapter eId="chp_I">
+        <num>CHAPTER I</num>
+        <heading>PRELIMINARY</heading>
+        <section eId="sec_1">
+          <num>1.</num>
+          <heading>Short title, extent and commencement.―(1) This Act may be called the Advocates Act, 1961</heading>
+          <content>
+            <p>(2) It extends to the whole of India.]</p>
+            <p>(3) It 2[shall, in relation to the territories other than those referred to in sub-section (4), come into force] on such date3 as the Central Government may, by notification in the Official Gazette, appoint, and different dates3 may be appointed for different provisions of this Act.</p>
+            <p>(4) This Act shall, in relation to the State of Jammu and Kashmir5 and the Union territory of Goa, Daman and Diu, come into force on such date as the Central Government may, by notification in the Official Gazette, appoint in this behalf, and different dates may be appointed for different provisions of this Act.]</p>
+          </content>
+        </section>
+        <section eId="sec_2">
+          <num>2.</num>
+          <heading>Definitions.―6[(1)] In this Act, unless the context otherwise requires,―</heading>
+          <content>
+          </content>
+        </section>
+      </chapter>
+      <part eId="part_II">
+        <num>PART II</num>
+        <heading>, sec. (ii)</heading>
+      </part>
+      <chapter eId="chp_II">
+        <num>CHAPTER II</num>
+        <heading>BAR COUNCILS</heading>
+        <section eId="sec_3">
+          <num>3.</num>
+          <heading>State Bar Councils.―(1) There shall be a Bar Council</heading>
+          <content>
+            <blockList eId="sec_3__list_1">
+              <item eId="sec_3__list_1__item_a"><num>(a)</num><p>for each of the States of Andhra Pradesh, Bihar, Gujarat, 6[Jammu and Kashmir,] 7[Jharkhand], 8[Madhya Pradesh and Chhattisgarh], 9***, 10***, 11[Karnataka], Orissa, Rajasthan 12[Uttar Pradesh, 13[Uttaranchal, Meghalya, Manipur and Tripura], to be known as the Bar Council of that State; [(b) for the States of Arunachal Pradesh, Assam, Mizoram and Nagaland to be known as the Bar Council of Arunachal Pradesh, Assam, Mizoram and Nagaland;]</p></item>
+              <item eId="sec_3__list_1__item_c"><num>(c)</num><p>for the State of Kerala and the Union territory of 2[Lakshadweep] to be known as the Bar Council of Kerala; [(cc) for the 4[State of Tamil Nadu] and the Union territory of Pondicherry to be known as the Bar Council of Madras;] [(ccc) for the States of Maharashtra and Goa and the Union territories of Dadra and Nagar Haveli and and Daman and Diu, to be known as the Bar Council of Maharashtra and Goa;] [(d) for the States of Punjab and Haryana and the Union territory of Chandigarh, to be known as the Bar Council of Punjab and Haryana;</p></item>
+              <item eId="sec_3__list_1__item_dd"><num>(dd)</num><p>for the State of Himachal Pradesh, to be known as the Bar Council of Himachal Pradesh;]</p></item>
+              <item eId="sec_3__list_1__item_e"><num>(e)</num><p>for the State of West Bengal and the 7[Union territory of Andaman and Nicobar Islands], to be known as the Bar Council of West Bengal; and</p></item>
+              <item eId="sec_3__list_1__item_f"><num>(f)</num><p>for the Union territory of Delhi, to be known as the Bar Council of Delhi.</p></item>
+            </blockList>
+            <p>(2) A State Bar Council shall consist of the following members, namely:―</p>
+            <blockList eId="sec_3__list_2">
+              <item eId="sec_3__list_2__item_a"><num>(a)</num><p>in the case of the State Bar Council of Delhi, the Additional Solicitor-General of India, ex officio; 8 9 [ [in the case of the State Bar Councils of Assam, Arunachal Pradesh, Mizoram and Nagaland, the Advocate-General of each of the States of Assam, Arunachal Pradesh , Mizoram and Nagaland] ex officio; in the case of the State Bar Council of Punjab and Haryana, the Advocate-General of each of the States of Punjab and Haryana, ex officio;] and in the case of any other State Bar Council, the Advocate-General of the State, ex officio; [(b) in the case of a State Bar Council with an electorate not exceeding five thousand, fifteen members, in the case of a State Bar Council with an electorate exceeding five thousand but not exceeding ten thousand, twenty members, and in the case of a State Bar Council with an electorate exceeding ten thousand, twenty-five members, elected in accordance with the system of proportional representation by means of the single transferable vote from amongst advocates on the electoral roll of the State Bar Council:] [Provided that as nearly as possible one-half of such elected members shall, subject to any rules that may be made in this behalf by the Bar Council of India, be persons who have for at least ten years been advocates on a State roll, and in computing the said period of ten years in relation to any such person, there shall be included any period during which the person has been an advocate enrolled under the Indian Bar Councils Act, 1926 (38 of 1926).]</p></item>
+            </blockList>
+            <p>(3) There shall be a Chairman and a Vice-Chairman of each State Bar Council elected by the Council in such manner as may be prescribed. (3A) Every person holding office as Chairman or as Vice-Chairman of any State Bar Council immediately before the commencement of the Advocates (Amendment) Act, 1977 (38 of 1977), shall, on such commencement, cease to hold office as Chairman or Vice-Chairman, as the case may be:</p>
+            <p>Provided that every such person shall continue to carry on the duties of his office until the Chairman or the Vice-Chairman, as the case may be, of each State Bar Council, elected after the commencement of the Advocates (Amendment) Act, 1977 (38 of 1977), assumes charges of the office.]</p>
+            <p>(4) An advocate shall be disqualified from voting at an election under sub-section (2) or for being chosen as, and for being, a member of a State Bar Council, unless he possesses such qualifications or satisfies such conditions as may be prescribed in this behalf by the Bar Council of India, and subject to any such rules that may be made, an electoral roll shall be prepared and revised from time to time by each State Bar Council.</p>
+            <p>(5) Nothing in the proviso to sub-section (2) shall affect the term of office of any member elected before the commencement of the Advocates (Amendment) Act, 1964 (21 of 1964), but every election after such commencement shall be held in accordance with the provisions of the rules made by the Bar Council of India to give effect to the said proviso.]</p>
+            <p>(6) Nothing in clause (b) of sub-section (2) shall affect the representation of elected members in any State Bar Council as constituted immediately before the commencement of the Advocates (Amendment) Act, 1973 (60 of 1973), until that State Bar Council is reconstituted in accordance with the provisions of this Act.]</p>
+          </content>
+        </section>
+        <section eId="sec_4">
+          <num>4.</num>
+          <heading>Bar Council of India.―(1) There shall be a Bar Council for the territories to which this Act extends to</heading>
+          <content>
+            <p>be known as the Bar Council of India which shall consist of the following members, namely:―</p>
+            <blockList eId="sec_4__list_1">
+              <item eId="sec_4__list_1__item_a"><num>(a)</num><p>the Attorney-General of India, ex officio;</p></item>
+              <item eId="sec_4__list_1__item_b"><num>(b)</num><p>the Solicitor-General of India, ex officio;</p></item>
+              <item eId="sec_4__list_1__item_c"><num>(c)</num><p>one member elected by each State Bar Council from amongst its members. [(1A) No person shall be eligible for being elected as a member of the Bar Council of India unless he possesses the qualifications specified in the proviso to sub-section (2) of section 3.]</p></item>
+            </blockList>
+            <p>(2) There shall be a Chairman and a Vice-Chairman of the Bar Council of India elected by the Council in such manner as may be prescribed. (2A) A person holding office as Chairman or as Vice-Chairman of the Bar Council of India immediately before the commencement of the Advocates (Amendment) Act, 1977 (38 of 1977), shall, on such commencement, cease to hold office as Chairman or Vice-Chairman, as the case may be:</p>
+            <p>Provided that such person shall continue to carry on the duties of his office until the Chairman or the Vice-Chairman, as the case may be, of the Council, elected after the commencement of the Advocates (Amendment) Act, 1977 (38 of 1977), assumes charge of the office.]</p>
+            <p>(3) The term of office of a member of the Bar Council of India elected by the State Bar Council shall,—</p>
+            <blockList eId="sec_4__list_2">
+              <item eId="sec_4__list_2__item_i"><num>(i)</num><p>in the case of a member of a State Bar Council who holds office ex officio, be two years from the date of his election 2[or till he ceases to be a member of the State Bar Council, whichever is earlier]; and</p></item>
+              <item eId="sec_4__list_2__item_ii"><num>(ii)</num><p>in any other case, be for the period for which he holds office as a member of the State Bar Council:</p></item>
+            </blockList>
+            <p>Provided that every such member shall continue to hold office as a member of the Bar Council of India until his successor is elected.]</p>
+          </content>
+        </section>
+        <section eId="sec_5">
+          <num>5.</num>
+          <heading>Bar Council to be body corporate.―Every Bar Council shall be a body corporate having perpetual</heading>
+          <content>
+            <p>succession and a common seal, with power to acquire and hold property, both movable and immovable, and to contract, and may be the name by which it is known sue and be sued.</p>
+          </content>
+        </section>
+        <section eId="sec_6">
+          <num>6.</num>
+          <heading>Functions of State Bar Councils.―(1) The functions of a State Bar Council shall be―</heading>
+          <content>
+            <blockList eId="sec_6__list_1">
+              <item eId="sec_6__list_1__item_a"><num>(a)</num><p>to admit persons as advocates on its roll;</p></item>
+              <item eId="sec_6__list_1__item_b"><num>(b)</num><p>to prepare and maintain such roll;</p></item>
+              <item eId="sec_6__list_1__item_c"><num>(c)</num><p>to entertain and determine cases of misconduct against advocates on its roll;</p></item>
+              <item eId="sec_6__list_1__item_d"><num>(d)</num><p>to safeguard the rights, privileges and interests of advocates on its roll; [(dd) to promote the growth of Bar Associations for the purposes of effective implementation of the welfare schemes referred to in clause (a) of sub-section (2) of this section and clause (a) of sub-section (2) of section 7;]</p></item>
+              <item eId="sec_6__list_1__item_e"><num>(e)</num><p>to promote and support law reform; [(ee) to conduct seminars and organise talks on legal topics by eminent jurists and publish journals and papers of legal interest; (eee) to organise legal aid to the poor in the prescribed manner;]</p></item>
+              <item eId="sec_6__list_1__item_f"><num>(f)</num><p>to manage and invest the funds of the Bar Council;</p></item>
+              <item eId="sec_6__list_1__item_g"><num>(g)</num><p>to provide for the election of its members; [(gg) to visit and inspect Universities in accordance with the directions given under clause (i) of sub-section (1) of section 7;]</p></item>
+              <item eId="sec_6__list_1__item_h"><num>(h)</num><p>to perform all other functions conferred on it by or under this Act;</p></item>
+              <item eId="sec_6__list_1__item_i"><num>(i)</num><p>to do all other things necessary for discharging the aforesaid functions.</p></item>
+            </blockList>
+            <p>(2) A State Bar Council may constitute one or more funds in the prescribed manner for the purpose of— of—</p>
+            <blockList eId="sec_6__list_2">
+              <item eId="sec_6__list_2__item_a"><num>(a)</num><p>giving financial assistance to organise welfare schemes for the indigent, disabled or other advocates;</p></item>
+              <item eId="sec_6__list_2__item_b"><num>(b)</num><p>giving legal aid or advice in accordance with the rules made in this behalf; [(c) establishing law libraries.]</p></item>
+            </blockList>
+            <p>(3) A State Bar Council may receive any grants, donations, gifts or benefactions for all or any of the purposes specified in sub-section (2) which shall be credited to the appropriate fund or funds constituted under that sub-section.]</p>
+          </content>
+        </section>
+        <section eId="sec_7">
+          <num>7.</num>
+          <heading>Functions of Bar Council of India.― 1[(1)] The functions of the Bar Council of India shall be―</heading>
+          <content>
+            <blockList eId="sec_7__list_1">
+              <item eId="sec_7__list_1__item_b"><num>(b)</num><p>to lay down standards of professional conduct and etiquette for advocates;</p></item>
+              <item eId="sec_7__list_1__item_c"><num>(c)</num><p>to lay down the procedure to be followed by its disciplinary committee and the disciplinary committee of each State Bar Council;</p></item>
+              <item eId="sec_7__list_1__item_d"><num>(d)</num><p>to safeguard the rights, privileges and interests of advocates;</p></item>
+              <item eId="sec_7__list_1__item_e"><num>(e)</num><p>to promote and support law reform;</p></item>
+              <item eId="sec_7__list_1__item_f"><num>(f)</num><p>to deal with and dispose of any matter arising under this Act, which may be referred to it by a State Bar Council;</p></item>
+              <item eId="sec_7__list_1__item_g"><num>(g)</num><p>to exercise general supervision and control over State Bar Councils;</p></item>
+              <item eId="sec_7__list_1__item_h"><num>(h)</num><p>to promote legal education and to lay down standards of such education in consultation with the Universities in India imparting such education and the State Bar Councils;</p></item>
+              <item eId="sec_7__list_1__item_i"><num>(i)</num><p>to recognise Universities whose degree in law shall be a qualification for enrolment as an advocate and for that purpose to visit and inspect Universities 3[or cause the State Bar Councils to visit and inspect Universities in accordance with such directions as it may give in this behalf]; [(ia) to conduct seminars and organise talks on legal topics by eminent jurists and publish journals and papers of legal interest;</p></item>
+              <item eId="sec_7__list_1__item_ib"><num>(ib)</num><p>to organise legal aid to the poor in the prescribed manner;</p></item>
+              <item eId="sec_7__list_1__item_ic"><num>(ic)</num><p>to recognise on a reciprocal basis foreign qualifications in law obtained outside India for the purpose of admission as an advocate under this Act;]</p></item>
+              <item eId="sec_7__list_1__item_j"><num>(j)</num><p>to manage and invest the funds of the Bar Council;</p></item>
+              <item eId="sec_7__list_1__item_k"><num>(k)</num><p>to provide for the election of its members;</p></item>
+              <item eId="sec_7__list_1__item_l"><num>(l)</num><p>to perform all other functions conferred on it by or under this Act;</p></item>
+              <item eId="sec_7__list_1__item_m"><num>(m)</num><p>to do all other things necessary for discharging the aforesaid functions.</p></item>
+            </blockList>
+            <p>(2) The Bar Council of India may constitute one or more funds in the prescribed manner for the purpose of—</p>
+            <blockList eId="sec_7__list_2">
+              <item eId="sec_7__list_2__item_a"><num>(a)</num><p>giving financial assistance to organise welfare schemes for indigent, disabled or other advocates;</p></item>
+              <item eId="sec_7__list_2__item_b"><num>(b)</num><p>giving legal aid or advice in accordance with the rules made in this behalf. [(c) establishing law libraries.]</p></item>
+            </blockList>
+            <p>(3) The Bar Council of India may receive any grants, donations, gifts or benefactions for all or any of the purposes specified in sub-section (2) which shall be credited to the appropriate fund or funds constituted under that sub-section.]</p>
+          </content>
+        </section>
+        <section eId="sec_7A">
+          <num>7A.</num>
+          <heading>Membership in international bodies.―The Bar Council of India may become a member of</heading>
+          <content>
+            <p>international legal bodies such as the International Bar Association or the International Legal Aid Association, contribute such sums as it thinks fit to such bodies by way of subscription or otherwise and authorise expenditure on the participation of its representatives in any international legal conference or seminar.]</p>
+          </content>
+        </section>
+        <section eId="sec_8">
+          <num>8.</num>
+          <heading>Term of office of members of State Bar Council.―The term of office of an elected member of a</heading>
+          <content>
+            <p>State Bar Council (other than an elected member thereof referred to in section 54) shall be five years from the date of publication of the result of his election:</p>
+            <p>Provided that where a State Bar Council fails to provide for the election of its members before the expiry of the said term, the Bar Council of India may, by order, for reasons to be recorded in writing, extend the said term for a period not exceeding six months.</p>
+          </content>
+        </section>
+        <section eId="sec_8A">
+          <num>8A.</num>
+          <heading>Constitution of Special Committee in the absence of election.―(1) Where a State Bar Council fails</heading>
+          <content>
+            <p>to provide for the election of its members before the expiry of the term of five years or the extended term, as the case may be, referred to in section 8, the Bar Council of India shall, on and from the date immediately following the day of such expiry, constitute a Special Committee consisting of―</p>
+            <blockList eId="sec_8A__list_1">
+              <item eId="sec_8A__list_1__item_i"><num>(i)</num><p>the ex officio member of the State Bar Council referred to in clause (a) of sub-section (2) of section 3 to be the Chairman:</p></item>
+            </blockList>
+            <p>Provided that where there are more than one ex officio members, the senior most amongst them shall be the Chairman; and</p>
+            <blockList eId="sec_8A__list_2">
+              <item eId="sec_8A__list_2__item_ii"><num>(ii)</num><p>two members to be nominated by the Bar Council of India from amongst advocates on the electoral roll of the State Bar Council, to discharge the functions of the State Bar Council until the Bar Council is constituted under this Act.</p></item>
+            </blockList>
+            <p>(2) On the constitution of the Special Committee and until the State Bar Council is constituted—</p>
+            <blockList eId="sec_8A__list_3">
+              <item eId="sec_8A__list_3__item_a"><num>(a)</num><p>all properties and assets vesting in the State Bar Council shall vest in the Special Committee;</p></item>
+              <item eId="sec_8A__list_3__item_b"><num>(b)</num><p>all rights, liabilities and obligations of the State Bar Council, whether arising out of any contract or otherwise, shall be the rights, liabilities and obligations of the Special Committee;</p></item>
+              <item eId="sec_8A__list_3__item_c"><num>(c)</num><p>all proceedings pending before the State Bar Council in respect of any disciplinary matter or otherwise shall stand transferred to the Special Committee.</p></item>
+            </blockList>
+            <p>(3) The Special Committee constituted under sub-section (1) shall, in accordance with such directions as the Bar Council of India may give to it in this behalf, hold elections to the State Bar Council within a period of six months from the date of its constitution under sub-section (1), and where, for any reason the Special Committee is not in a position to conduct election within the said period of six months, the Bar Council of India may, for reasons to be recorded by it in writing, extend the said period.]</p>
+          </content>
+        </section>
+        <section eId="sec_9">
+          <num>9.</num>
+          <heading>Disciplinary committees.―(1) A Bar Council shall constitute one or more disciplinary committees,</heading>
+          <content>
+            <p>each of which shall consist of three persons of whom two shall be persons elected by the Council from amongst its members and the other shall be a person co-opted by the Council from amongst advocates who possess the qualifications specified in the proviso to sub-section (2) of section 3 and who are not members of the Council, and the senior-most advocate amongst the members of a disciplinary committee shall be the Chairman thereof.</p>
+            <p>(2) Notwithstanding anything contained in sub-section (1), any disciplinary committee constituted prior to the commencement of the Advocates (Amendment) Act, 1964 (21 of 1964) may dispose of the proceedings pending before it as if this section had not been amended by the said Act.]</p>
+          </content>
+        </section>
+        <section eId="sec_9A">
+          <num>9A.</num>
+          <heading>Constitution of legal aid committees.―(1) A Bar Council may constitute one or more legal aid</heading>
+          <content>
+            <p>committees each of which shall consist of such number of members, not exceeding nine but not less than five, as may be prescribed.</p>
+            <p>(2) The qualifications, the method of selection and the term of office of the members of a legal aid committee shall be such as may be prescribed.]</p>
+          </content>
+        </section>
+        <section eId="sec_10">
+          <num>10.</num>
+          <heading>Constitution of committees other than disciplinary committees.―(1) A State Bar Council shall</heading>
+          <content>
+            <p>constitute the following standing committees, namely:―</p>
+            <blockList eId="sec_10__list_1">
+              <item eId="sec_10__list_1__item_a"><num>(a)</num><p>an executive committee consisting of five members elected by the Council from amongst its members;</p></item>
+              <item eId="sec_10__list_1__item_b"><num>(b)</num><p>an enrolment committee consisting of three members elected by the Council from amongst its members.</p></item>
+            </blockList>
+            <p>(2) The Bar Council of India shall constitute the following standing committees, namely:―</p>
+            <blockList eId="sec_10__list_2">
+              <item eId="sec_10__list_2__item_a"><num>(a)</num><p>an executive committee consisting of nine members elected by the Council from amongst its members;</p></item>
+              <item eId="sec_10__list_2__item_b"><num>(b)</num><p>a legal education committee consisting of ten members, of whom five shall be persons elected by the Council from amongst its members and five shall be persons co- opted by the Council who are not members thereof.</p></item>
+            </blockList>
+            <p>(3) A State Bar Council and the Bar Council of India may constitute from amongst its members such other committees as it may deem necessary for the purpose of carrying out the provisions of this Act.</p>
+          </content>
+        </section>
+        <section eId="sec_10A">
+          <num>10A.</num>
+          <heading>Transaction of business by Bar Councils and committees thereof.―3[(1) The Bar Council of</heading>
+          <content>
+            <p>India shall meet at New Delhi or at such other place as it may, for reasons to be recorded in writing, determine.</p>
+            <p>(2) A State Bar Council shall meet at its headquarters or at such other place as it may, for reasons to be recorded in writing, determine.]</p>
+            <p>(3) The committees other than disciplinary committees constituted by the Bar Councils shall meet at the headquarters of the respective Bar Councils.</p>
+            <p>(4) Every Bar Council and every committee thereof except the disciplinary committees shall observe such rules of procedure in regard to the transaction of business at their meetings as may be prescribed.</p>
+            <p>(5) The disciplinary committees constituted under section 9 shall meet at such times and places and shall observe such rules of procedure in regard to the transaction of business at their meetings as may be prescribed.] 4 5 [ [10B.] Disqualification of members of Bar Council.―An elected member of a Bar Council shall be deemed to have vacated his office if he is declared by the Bar Council of which he is a member to have been absent without sufficient excuse from three consecutive meetings of such Council, or if his name is, for any cause, removed from the roll of advocates or if he is otherwise disqualified under any rule made by the Bar Council of India.]</p>
+          </content>
+        </section>
+        <section eId="sec_11">
+          <num>11.</num>
+          <heading>Staff of Bar Council.―(1) Every Bar Council shall appoint a secretary and may appoint an</heading>
+          <content>
+            <p>accountant and such number of other persons on its staff as it may deem necessary.</p>
+            <p>(2) The secretary and the accountant, if any, shall possess such qualifications as may be prescribed.</p>
+          </content>
+        </section>
+        <section eId="sec_12">
+          <num>12.</num>
+          <heading>Accounts and Audit.―(1) Every Bar Council shall cause to be maintained such books of accounts</heading>
+          <content>
+            <p>and other books in such form and in such manner as may be prescribed.</p>
+            <p>(2) The accounts of a Bar Council shall be audited by auditors duly qualified to act as auditors of companies under the Companies Act, 1956 (1 of 1956), at such times and in such manner as may be prescribed.</p>
+            <p>(3) As soon as may be practicable at the end of each financial year, but not later than the 31st day of December of the year next following, a State Bar Council shall send a copy of its accounts together with a copy of the report of the auditors thereon to the Bar Council of India and shall cause the same to be published in the official Gazette.</p>
+            <p>(4) As soon as may be practicable at the end of each financial year, but not later than the 31st day of December of the year next following, the Bar Council of India shall send a copy of its accounts together with a copy of the report of the auditors thereon to the Central Government and shall cause the same to be published in the Gazette of India.]</p>
+          </content>
+        </section>
+        <section eId="sec_13">
+          <num>13.</num>
+          <heading>Vacancies in Bar Council and committees thereof not to invalidate action taken.―No act done by</heading>
+          <content>
+            <p>a Bar Council or any committee thereof shall be called in question on the ground merely of the existence of any vacancy in, or any defect in the constitution of, the Council or committee, as the case may be.</p>
+          </content>
+        </section>
+        <section eId="sec_14">
+          <num>14.</num>
+          <heading>Election to Bar Councils not to be questioned on certain grounds.― No election of a member to a</heading>
+          <content>
+            <p>Bar Council shall be called in question on the ground merely that due notice thereof has not been given to any person entitled to vote thereat, if notice of the date has, not less than thirty days before that date, been published in the Official Gazette.</p>
+          </content>
+        </section>
+        <section eId="sec_15">
+          <num>15.</num>
+          <heading>Power to make rules.―(1) A Bar Council may make rules to carry out the purposes of this Chapter</heading>
+          <content>
+            <p>(2) In particular, and without prejudice to the generality of the foregoing power, such rules may provide for― [(a) the election of members of the Bar Council by secret ballot including the conditions subject to which persons can exercise the right to vote by postal ballot, the preparation and revision of electoral rolls and the manner in which the results of election shall be published;] [(c) the manner of election of the Chairman and the Vice-Chairman of the Bar Council;]</p>
+            <blockList eId="sec_15__list_1">
+              <item eId="sec_15__list_1__item_d"><num>(d)</num><p>the manner in which and the authority by which doubts and disputes as to the validity of an election to the Bar Council 4[or to the office of the Chairman or Vice-Chairman] shall be finally decided;</p></item>
+              <item eId="sec_15__list_1__item_f"><num>(f)</num><p>the filling of casual vacancies in the Bar Council;</p></item>
+              <item eId="sec_15__list_1__item_g"><num>(g)</num><p>the powers and duties of the Chairman and the Vice-Chairman of the Bar Council; [(ga) the constitution of one or more funds by a Bar Council for the purpose of giving financial assistance or giving legal aid or advice referred to in sub-section (2) of section 6 and sub-section (2) of section 7;</p></item>
+              <item eId="sec_15__list_1__item_gb"><num>(gb)</num><p>organisation of legal aid and advice to the poor, constitution and functions of committees and sub-committees for that purpose and description of proceedings in connection with which legal aid or advice may be given;]</p></item>
+              <item eId="sec_15__list_1__item_h"><num>(h)</num><p>the summoning and holding of meetings of the Bar Council, 2*** the conduct of business thereat, and the number of members necessary to constitute a quorum;</p></item>
+              <item eId="sec_15__list_1__item_i"><num>(i)</num><p>the constitution and functions of any committee of the Bar Council and the term of office of members of any such committee;</p></item>
+              <item eId="sec_15__list_1__item_j"><num>(j)</num><p>the summoning and holding of meetings, the conduct of business of any such committee, and the number of members necessary to constitute a quorum;</p></item>
+              <item eId="sec_15__list_1__item_k"><num>(k)</num><p>the qualifications and the conditions of service of the secretary, the accountant and other employees of the Bar Council;</p></item>
+              <item eId="sec_15__list_1__item_l"><num>(l)</num><p>the maintenance of books of accounts and other books by the Bar Council;</p></item>
+              <item eId="sec_15__list_1__item_m"><num>(m)</num><p>the appointment of auditors and the audit of the accounts of the Bar Council;</p></item>
+              <item eId="sec_15__list_1__item_n"><num>(n)</num><p>the management and investment of the funds of the Bar Council.</p></item>
+            </blockList>
+            <p>(3) No rules made under this section by a State Bar Council shall have effect unless they have been approved by the Bar Council of India.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_III">
+        <num>CHAPTER III</num>
+        <heading>ADMISSION AND ENROLMENT OF ADVOCATES</heading>
+        <section eId="sec_16">
+          <num>16.</num>
+          <heading>Senior and other advocates.―(1) There shall be two classes of advocates, namely, senior advocates</heading>
+          <content>
+            <p>and other advocates.</p>
+            <p>(2) An advocate may, with his consent, be designated as senior advocate if the Supreme Court or a High Court is of opinion that by virtue of his ability, 3[standing at the Bar or special knowledge or experience in law] he is deserving of such distinction.</p>
+            <p>(3) Senior advocates shall, in the matter of their practice, be subject to such restrictions as the Bar Council of India may, in the interests of the legal profession, prescribe.</p>
+            <p>(4) An advocate of the Supreme Court who was a senior advocate of that Court immediately before the appointed day shall, for the purposes of this section, be deemed to be a senior advocate: [Provided that where any such senior advocate makes an application before the 31st December, 1965 to the Bar Council maintaining the roll in which his name has been entered that he does not desire to continue as a senior advocate, the Bar Council may grant the application and the roll shall be altered accordingly.]</p>
+          </content>
+        </section>
+        <section eId="sec_17">
+          <num>17.</num>
+          <heading>State Bar Councils to maintain roll of advocates.―(1) Every State Bar Council shall prepare and</heading>
+          <content>
+            <p>maintain a roll of advocates in which shall be entered the names and addresses of—</p>
+            <blockList eId="sec_17__list_1">
+              <item eId="sec_17__list_1__item_a"><num>(a)</num><p>all persons who were entered as advocates on the roll of any High Court under the Indian Bar Councils Act, 1926 (38 of 1926), immediately before the appointed day 5[including persons, being citizens citizens of India, who before the 15th day of August, 1947, were enrolled as advocates under the said Act in any area which before the said date was comprised within India as defined in the Government of India Act, 1935 and who at any time] express an intention in the prescribed manner to practise within the jurisdiction of the Bar Council;</p></item>
+              <item eId="sec_17__list_1__item_b"><num>(b)</num><p>all other persons who are admitted to be advocates on the roll of the State Bar Council under this Act on or after the appointed day.</p></item>
+            </blockList>
+            <p>(2) Each such roll of advocates shall consist of two parts, the first part containing the names of senior advocates and the second part, the names of other advocates.</p>
+            <p>(3) Entries in each part of the roll of advocates prepared and maintained by a State Bar Council under this section shall be in the order of seniority, 1[and, subject to any rule that may be made by the Bar Council of India in this behalf, such seniority shall be determined] as follows:―</p>
+            <blockList eId="sec_17__list_2">
+              <item eId="sec_17__list_2__item_a"><num>(a)</num><p>the seniority of an advocate referred to in clause (a) of sub-section (1) shall be determined in accordance with his date of enrolment under the Indian Bar Councils Act, 1926 (38 of 1926);</p></item>
+              <item eId="sec_17__list_2__item_b"><num>(b)</num><p>the seniority of any person who was a senior advocate of the Supreme Court immediately before the appointed day shall, for the purposes of the first part of the State roll, be determined in accordance with such principles as the Bar Council of India may specify;</p></item>
+              <item eId="sec_17__list_2__item_d"><num>(d)</num><p>the seniority of any other person who, on or after the appointed day, is enrolled as a senior advocate or is admitted as an advocate shall be determined by the date of such enrolment or admission, as the case may be. [(e) notwithstanding anything contained in clause (a), the seniority of an attorney enrolled [whether before or after the commencement of the Advocates (Amendment) Act, 1980 (47 of 1980)] as an advocate shall be determined in accordance with the date of his enrolment as an attorney.]</p></item>
+            </blockList>
+            <p>(4) No person shall be enrolled as an advocate on the roll of more than one State Bar Council.</p>
+          </content>
+        </section>
+        <section eId="sec_18">
+          <num>18.</num>
+          <heading>Transfer of name from one State roll to another.―(1) Notwithstanding anything contained in</heading>
+          <content>
+            <p>section 17, any person whose name is entered as an advocate on the roll of any State Bar Council may make an application in the prescribed form to the Bar Council of India for the transfer of his name from the roll of that State Bar Council to the roll of any other State Bar Council and, on receipt of any such application the Bar Council of India shall direct that the name of such person shall, without the payment of any fee, be removed from the roll of the first mentioned State Bar Council and entered in the roll of the other State Bar Council and the State Bar Councils concerned shall comply with such direction: [Provided that where any such application for transfer is made by a person against whom any disciplinary proceeding is pending or where for any other reason it appears to the Bar Council of India that the application for transfer has not been made bona fide and that the transfer should not be made, the Bar Council of India may, after giving the person making the application an opportunity of making a representation in this behalf, reject the application.]</p>
+            <p>(2) For the removal of doubts it is hereby declared that where on an application made by an advocate under sub-section (1), his name is transferred from the roll of one State Bar Council to that of another, he shall retain the same seniority in the latter roll to which he was entitled in the former roll.</p>
+          </content>
+        </section>
+        <section eId="sec_19">
+          <num>19.</num>
+          <heading>State Bar Councils to send copies of rolls of advocates to the Bar Council of India.―Every State</heading>
+          <content>
+            <p>Bar Council shall send to the Bar Council of India an authenticated copy of the roll of advocates prepared by it for the first time under this Act and shall thereafter communicate to the Bar Council of India all alterations in and additions to any such roll, as soon as the same have been made.</p>
+          </content>
+        </section>
+        <section eId="sec_20">
+          <num>20.</num>
+          <heading>Special provision for enrolment of certain Supreme Court advocates.―(1) Notwithstanding</heading>
+          <content>
+            <p>anything contained in this Chapter, every advocate who was entitled as of right to practise in the Supreme Court immediately before the appointed day and whose name is not entered in any State roll may, within the prescribed time, express his intention in the prescribed form to the Bar Council of India for the entry of his name in the roll of a State Bar Council and on receipt thereof the Bar Council of India shall direct that the name of such advocate shall, without payment of any fee, be entered in the roll of that State Bar Council, and the State Bar Council concerned shall comply with such direction.</p>
+            <p>(2) Any entry in the State roll made in compliance with the direction of the Bar Council of India under sub-section (1) shall be made in the order of seniority determined in accordance with the provisions of sub- section (3) of section 17.</p>
+            <p>(3) Where an advocate referred to in sub-section (1) omits or fails to express his intention within the prescribed time, his name shall be entered in the roll of the State Bar Council of Delhi.]</p>
+          </content>
+        </section>
+        <section eId="sec_21">
+          <num>21.</num>
+          <heading>Disputes regarding seniority.―(1) Where the date of seniority of two or more persons is the same,</heading>
+          <content>
+            <p>the one senior in age shall be reckoned as senior to the other.</p>
+            <p>(2) Subject as aforesaid, if any dispute arises with respect to the seniority of any person, it shall be referred to the State Bar Council concerned for decision.]</p>
+          </content>
+        </section>
+        <section eId="sec_22">
+          <num>22.</num>
+          <heading>Certificate of enrolment.―(1) There shall be issued a certificate of enrolment in the prescribed</heading>
+          <content>
+            <p>form by the State Bar Council to every person whose name is entered in the roll of advocates maintained by it under this Act.</p>
+            <p>(2) Every person whose name is so entered in the State roll shall notify any change in the place of his permanent residence to the State Bar Council concerned within ninety days of such change.]</p>
+          </content>
+        </section>
+        <section eId="sec_23">
+          <num>23.</num>
+          <heading>Right of pre-audience.―(1) The Attorney-General of India shall have pre-audience over all other</heading>
+          <content>
+            <p>advocates.</p>
+            <p>(2) Subject to the provisions of sub-section (1), the Solicitor-General of India shall have pre-audience over all other advocates.</p>
+            <p>(3) Subject to the provisions of sub-sections (1) and (2), the Additional Solicitor-General of India shall have pre-audience over all other advocates. [(3A) Subject to the provisions of sub-sections (1), (2) and (3), the second Additional Solicitor-General of India shall have pre-audience over all other advocates.]</p>
+            <p>(4) Subject to the provisions of sub-sections (1), 5[(2), (3) and (3A)], the Advocate-General of any State shall have pre-audience over all other advocates, and the right of pre-audience among Advocates-General inter se shall be determined by their respective seniority.</p>
+            <p>(5) Subject as aforesaid—</p>
+            <blockList eId="sec_23__list_1">
+              <item eId="sec_23__list_1__item_i"><num>(i)</num><p>senior advocates shall have pre-audience over other advocates, and</p></item>
+              <item eId="sec_23__list_1__item_ii"><num>(ii)</num><p>the right of pre-audience of senior advocates inter se and other advocates inter se shall be determined by their respective seniority.</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="sec_24">
+          <num>24.</num>
+          <heading>Persons who may be admitted as advocates on a State roll.―(1) Subject to the provisions of this</heading>
+          <content>
+            <p>Act, and the rules made thereunder, a person shall be qualified to be admitted as an advocate on a State roll, if he fulfils the following conditions, namely:―</p>
+            <blockList eId="sec_24__list_1">
+              <item eId="sec_24__list_1__item_a"><num>(a)</num><p>he is a citizen of India:</p></item>
+            </blockList>
+            <p>Provided that subject to the other provisions contained in this Act, a national of any other country may be admitted as an advocate on a State roll, if citizens of India, duly qualified, are permitted to practise law in that other country;</p>
+            <blockList eId="sec_24__list_2">
+              <item eId="sec_24__list_2__item_b"><num>(b)</num><p>he has completed the age of twenty-one years;</p></item>
+              <item eId="sec_24__list_2__item_c"><num>(c)</num><p>he has obtained a degree in law—</p></item>
+              <item eId="sec_24__list_2__item_i"><num>(i)</num><p>before the 1[12th day of March, 1967], from any University in the territory of India; or</p></item>
+              <item eId="sec_24__list_2__item_ii"><num>(ii)</num><p>before the 15th day of August, 1947, from any University in any area which was comprised before that date within India as defined by the Government of India Act, 1935; or [(iii) after the 12th day of March, 1967, save as provided in sub-clause (iiia), after undergoing a three-year course of study in law from any University in India which is recognised for the purposes of this Act by the Bar Council of India; or (iiia) after undergoing a course of study in law, the duration of which is not less than two academic years commencing from the academic year 1967-68 or any earlier academic year from any University in India which is recognised for the purposes of this Act by the Bar Council of India; or] [(iv) in any other case, from any University outside the territory of India, if the degree is recognised for the purposes of this Act by the Bar Council of India; or] [he is a barrister and is called to the Bar on or before the 31st day of December, 1976; 5[or has passed passed the article clerk's examination or any other examination specified by the High Court at Bombay or Calcutta for enrolment as an attorney of that High Court;] or has obtained such other foreign qualification in law as is recognised by the Bar Council of India for the purpose of admission as an advocate under this Act];</p></item>
+              <item eId="sec_24__list_2__item_e"><num>(e)</num><p>he fulfils such other conditions as may be specified in the rules made by the State Bar Council under this Chapter; [(f) he has paid, in respect of the enrolment, stamp duty, if any, chargeable under the Indian Stamp Act, 1899 (2 of 1899), and an enrolment fee payable to the State Bar Council of 8[six hundred rupees and to the Bar Council of India, one hundred and fifty rupees by way of a bank draft drawn in favour of that Council:]</p></item>
+            </blockList>
+            <p>Provided that where such person is a member of the Scheduled Castes or the Scheduled Tribes and produces a certificate to that effect from such authority as may be prescribed, the enrolment fee payable by him to the State Bar Council shall be 1[one hundred rupees and to the Bar Council of India, twenty-five rupees.] [Explanation.―For the purposes of this sub-section, a person shall be deemed to have obtained a degree in law from a University in India on the date on which the results of the examination for that degree are published by the University on its notice board or otherwise declaring him to have passed that examination.]</p>
+            <p>(2) Notwithstanding anything contained in sub-section (1), 3[a vakil or a pleader who is a law graduate] may be admitted as an advocate on a State roll if he—</p>
+            <blockList eId="sec_24__list_3">
+              <item eId="sec_24__list_3__item_a"><num>(a)</num><p>makes an application for such enrolment in accordance with the provisions of this Act, not later than two years from the appointed day; and</p></item>
+              <item eId="sec_24__list_3__item_b"><num>(b)</num><p>fulfils the conditions specified in clauses (a), (b), (e) and (f) of sub-section (1).</p></item>
+            </blockList>
+            <p>(3) Notwithstanding anything contained in sub-section (1) a person who—</p>
+            <blockList eId="sec_24__list_4">
+              <item eId="sec_24__list_4__item_a"><num>(a)</num><p>5*** has, for at least three years, been a vakil or a pleader or a mukhtar, or was entitled at any time time to be enrolled under any law 6*** as an advocate of a High Court (including a High Court of a former Part B State) or of a Court of Judicial Commissioner in any Union territory; or [(aa) before the 1st day of December, 1961, was entitled otherwise than as an advocate to practise the the profession of law (whether by way of pleading or acting or both) by virtue of the provisions of any law, or who would have been so entitled had he not been in public service on the said date; or]</p></item>
+              <item eId="sec_24__list_4__item_c"><num>(c)</num><p>before the 1st day of April, 1937, has been an advocate of any High Court in any area which was comprised within Burma as defined in the Government of India Act, 1935 (25 &amp; 26 Geo. 5 C 42); or</p></item>
+              <item eId="sec_24__list_4__item_d"><num>(d)</num><p>is entitled to be enrolled as an advocate under any rule made by the Bar Council of India in this behalf, may be admitted as an advocate on a State roll if he—</p></item>
+              <item eId="sec_24__list_4__item_i"><num>(i)</num><p>makes an application for such enrolment in accordance with the provisions of this Act; and</p></item>
+              <item eId="sec_24__list_4__item_ii"><num>(ii)</num><p>fulfils the conditions specified in clauses (a), (b), (e) and (f) of sub-section (1).]</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="sec_24A">
+          <num>24A.</num>
+          <heading>Disqualification for enrolment.―(1) No person shall be admitted as an advocate on a State</heading>
+          <content>
+            <p>roll―</p>
+            <blockList eId="sec_24A__list_1">
+              <item eId="sec_24A__list_1__item_a"><num>(a)</num><p>if he is convicted of an offence involving moral turpitude;</p></item>
+              <item eId="sec_24A__list_1__item_b"><num>(b)</num><p>if he is convicted of an offence under the provisions of the Untouchability (Offences) Act, 1955 (22 of 1955); [(c) if he is dismissed or removed from employment or office under the State on any charge involving moral turpitude.</p></item>
+            </blockList>
+            <p>Explanation.―In this clause, the expression “State” shall have the meaning assigned to it under article 12 of the Constitution:]</p>
+            <p>Provided that the disqualification for enrolment as aforesaid shall cease to have effect after a period of two years has elapsed since his 2[released or dismissal or, as the case may be, removal.]</p>
+            <p>(2) Nothing contained in sub-section (1) shall apply to a person who having been found guilty is dealt with under the provisions of the Probation of Offenders Act, 1958 (20 of 1958).]</p>
+          </content>
+        </section>
+        <section eId="sec_25">
+          <num>25.</num>
+          <heading>Authority to whom applications for enrolment may be made.―An application for admission as an</heading>
+          <content>
+            <p>advocate shall be made in the prescribed form to the State Bar Council within whose jurisdiction the applicant proposes to practise.</p>
+          </content>
+        </section>
+        <section eId="sec_26">
+          <num>26.</num>
+          <heading>Disposal of applications for admission as an advocate.―(1) A State Bar Council shall refer every</heading>
+          <content>
+            <p>application for admission as an advocate to its enrolment committee, and subject to the provisions of sub-sections (2) and (3) 3[and to any direction that may be given in writing by the State Bar Council in this behalf], such committee shall dispose of the application in the prescribed manner: [Provided that the Bar Council of India may, if satisfied, either on a reference made to it in this behalf or otherwise, that any person has got his name entered on the roll of advocates by misrepresentation as to an essential fact or by fraud or undue influence, remove the name of such person from the roll of advocates after giving him an opportunity of being heard.]</p>
+            <p>(2) Where the enrolment committee of a State Bar Council proposes to refuse any such application, it shall refer the application for opinion to the Bar Council of India and every such reference shall be accompanied by a statement of the grounds in support of the refusal of the application.</p>
+            <p>(3) The enrolment committee of a State Bar Council shall dispose of any application referred to the Bar Council of India under sub-section (2) in conformity with the opinion of the Bar Council of India.</p>
+            <p>(4) Where the enrolment committee of a State Bar Council has refused any application for admission as an advocate on its roll, the State Bar Council shall, as soon as may be, send intimation to all other State Bar Councils about such refusal stating the name, address and qualifications of the person whose application was refused and the grounds for the refusal.]</p>
+          </content>
+        </section>
+        <section eId="sec_26A">
+          <num>26A.</num>
+          <heading>Power to remove names from roll.―A State Bar Council may remove from the State roll the</heading>
+          <content>
+            <p>name of any advocate who is dead or from whom a request has been received to that effect.]</p>
+          </content>
+        </section>
+        <section eId="sec_27">
+          <num>27.</num>
+          <heading>Application once refused not to be entertained by another Bar Council except in certain</heading>
+          <content>
+            <p>circumstances.―Where a State Bar Council has refused the application of any person for admission as an advocate on its roll, no other State Bar Council shall entertain an application for admission of such person as an advocate on its roll, except with the previous consent in writing of the State Bar Council which refused the application and of the Bar Council of India.</p>
+          </content>
+        </section>
+        <section eId="sec_28">
+          <num>28.</num>
+          <heading>Power to make rules.―(1) A State Bar Council may make rules to carry out the purposes of this</heading>
+          <content>
+            <p>Chapter.</p>
+            <p>(2) In particular, and without prejudice to the generality of the foregoing power, such rules may provide for— [(a) the time within which and form in which an advocate shall express his intention for the entry of his name in the roll of a State Bar Council under section 20;]</p>
+            <blockList eId="sec_28__list_1">
+              <item eId="sec_28__list_1__item_c"><num>(c)</num><p>the form in which an application shall be made to the Bar Council for admission as an advocate on its roll and the manner in which such application shall be disposed of by the enrolment committee of the Bar Council;</p></item>
+              <item eId="sec_28__list_1__item_d"><num>(d)</num><p>the conditions subject to which a person may be admitted as an advocate on any such roll;</p></item>
+              <item eId="sec_28__list_1__item_e"><num>(e)</num><p>the instalments in which the enrolment fee may be paid.</p></item>
+            </blockList>
+            <p>(3) No rules made under this Chapter shall have effect unless they have been approved by the Bar Council of India.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_IV">
+        <num>CHAPTER IV</num>
+        <heading>RIGHT TO PRACTISE</heading>
+        <section eId="sec_29">
+          <num>29.</num>
+          <heading>Advocates to be the only recognised class of persons entitled to practise law.―Subject to the</heading>
+          <content>
+            <p>provisions of this Act and any rules made thereunder, there shall, as from the appointed day, be only one class of persons entitled to practise the profession of law, namely, advocates.</p>
+          </content>
+        </section>
+        <section eId="sec_30">
+          <num>30.</num>
+          <heading>Right of advocates to practise.―Subject to the provisions of this Act, every advocate whose name is</heading>
+          <content>
+            <p>entered in the 3[State roll] shall be entitled as of right to practise throughout the territories to which this Act extends,―</p>
+            <blockList eId="sec_30__list_1">
+              <item eId="sec_30__list_1__item_i"><num>(i)</num><p>in all courts including the Supreme Court;</p></item>
+              <item eId="sec_30__list_1__item_ii"><num>(ii)</num><p>before any tribunal or person legally authorised to take evidence; and (iii) before any other authority or person before whom such advocate is by or under any law for the time being in force entitled to practise.</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="sec_31">
+          <num>31.</num>
+          <heading>[Special provision for attorneys.].―Omitted by the Advocates (Amendment) Act, 1976 (107 of 976),</heading>
+          <content>
+            <p>s. 7 (w.e.f. 1-1-1977).</p>
+          </content>
+        </section>
+        <section eId="sec_32">
+          <num>32.</num>
+          <heading>Power of court to permit appearances in particular cases.―Notwithstanding anything contained in</heading>
+          <content>
+            <p>this Chapter, any court, authority, or person may permit any person, not enrolled as an advocate under this Act, to appear before it or him in any particular case.</p>
+          </content>
+        </section>
+        <section eId="sec_33">
+          <num>33.</num>
+          <heading>Advocates alone entitled to practise.―Except as otherwise provided in this Act or in any other law</heading>
+          <content>
+            <p>for the time being in force, no person shall, on or after the appointed day, be entitled to practise in any court or before any authority or person unless he is enrolled as an advocate under this Act.</p>
+          </content>
+        </section>
+        <section eId="sec_34">
+          <num>34.</num>
+          <heading>Power of High Courts to make rules.―(1) The High Court may make rules laying down the</heading>
+          <content>
+            <p>conditions subject to which an advocate shall be permitted to practise in the High Court and the courts subordinate thereto. [(1A) The High Court shall make rules for fixing and regulating by taxation or otherwise the fees payable as costs by any party in respect of the fees of his adversary's advocate upon all proceedings in the High Court or in any Court subordinate thereto.]</p>
+            <p>(2) Without prejudice to the provisions contained in sub-section (1), the High Court at Calcutta may make rules providing for the holding of the Intermediate and the Final examinations for articled clerks to be passed by the persons referred to in section 58AG for the purpose of being admitted as advocates on the State roll and any other matter connected therewith.]</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_V">
+        <num>CHAPTER V</num>
+        <heading>CONDUCT OF ADVOCATES</heading>
+        <section eId="sec_35">
+          <num>35.</num>
+          <heading>Punishment of advocates for misconduct.―(1) Where on receipt of a complaint or otherwise a State</heading>
+          <content>
+            <p>Bar Council has reason to believe that any advocate on its roll has been guilty of professional or other misconduct, it shall refer the case for disposal to its disciplinary committee. [(1A) The State Bar Council may, either of its own motion or on application made to it by any person interested, withdraw a proceeding pending before its disciplinary committee and direct the inquiry to be made by any other disciplinary committee of that State Bar Council.]</p>
+            <p>(2) The disciplinary committee of a State Bar Council 4*** shall fix a date for the hearing of the case and shall cause a notice thereof to be given to the advocate concerned and to the Advocate-General of the State.</p>
+            <p>(3) The disciplinary committee of a State Bar Council after giving the advocate concerned and the Advocate-General an opportunity of being heard, may make any of the following orders, namely:―</p>
+            <blockList eId="sec_35__list_1">
+              <item eId="sec_35__list_1__item_a"><num>(a)</num><p>dismiss the complaint or, where the proceedings were initiated at the instance of the State Bar Council, direct that the proceedings be filed;</p></item>
+              <item eId="sec_35__list_1__item_b"><num>(b)</num><p>reprimand the advocate;</p></item>
+              <item eId="sec_35__list_1__item_c"><num>(c)</num><p>suspend the advocate from practice for such period as it may deem fit;</p></item>
+              <item eId="sec_35__list_1__item_d"><num>(d)</num><p>remove the name of the advocate from the State roll of advocates.</p></item>
+            </blockList>
+            <p>(4) Where an advocate is suspended from practice under clause (c) of sub-section (3), he shall, during the period of suspension, be debarred from practising in any court or before any authority or person in India.</p>
+            <p>(5) Where any notice is issued to the Advocate-General under sub-section (2), the Advocate-General may appear before the disciplinary committee of the State Bar Council either in person or through any advocate appearing on his behalf. [Explanation.―In this section, 3[section 37 and section 38], the expressions “Advocate-General” and “Advocate-General of the State” shall, in relation to the Union territory of Delhi, mean the Additional Solicitor General of India.]</p>
+          </content>
+        </section>
+        <section eId="sec_36">
+          <num>36.</num>
+          <heading>Disciplinary powers of Bar Council of India.―(1) Where on receipt of a complaint or otherwise the</heading>
+          <content>
+            <p>Bar Council of India has reason to believe that any advocate 6*** whose name is not entered on any State roll has been guilty of professional or other misconduct, it shall refer the case for disposal to its disciplinary committee.</p>
+            <p>(2) Notwithstanding anything contained in this Chapter, the disciplinary committee of the Bar Council of India may, 7[either of its own motion or on a report by any State Bar Council or on an application made to it by any person interested], withdraw for inquiry before itself any proceedings for disciplinary action against any advocate pending before the disciplinary committee of any State Bar Council and dispose of the same.</p>
+            <p>(3) The disciplinary committee of the Bar Council of India, in disposing of any case under this section, shall observe, so far as may be, the procedure laid down in section 35, the references to the Advocate-General in that section being construed as references to the Attorney-General of India.</p>
+            <p>(4) In disposing of any proceedings under this section the disciplinary committee of the Bar Council of India may make any order which the disciplinary committee of a State Bar Council can make under sub-section (3) of section 35, and where any proceedings have been withdrawn for inquiry 1[before the disciplinary committee of the Bar Council of India], the State Bar Council concerned shall give effect to any such order.</p>
+          </content>
+        </section>
+        <section eId="sec_36A">
+          <num>36A.</num>
+          <heading>Changes in constitution of disciplinary committees.―Whenever in respect of any proceedings</heading>
+          <content>
+            <p>under section 35 or section 36, a disciplinary committee of the State Bar Council or a disciplinary committee of the Bar Council of India ceases to exercise jurisdiction and is succeeded by another committee which has and exercises jurisdiction, the disciplinary committee of the State Bar Council or the disciplinary committee of the Bar Council of India, as the case may be, so succeeding may continue the proceedings from the stage at which the proceedings were so left by its predecessor committee.</p>
+          </content>
+        </section>
+        <section eId="sec_36B">
+          <num>36B.</num>
+          <heading>Disposal of disciplinary proceedings.―(1) The disciplinary committee of a State Bar Council shall</heading>
+          <content>
+            <p>dispose of the complaint received by it under section 35 expeditiously and in each case the proceedings shall be concluded within a period of one year from the date of the receipt of the complaint or the date of initiation of the proceedings at the instance of the State Bar Council, as the case may be, failing which such proceedings shall stand transferred to the Bar Council of India which may dispose of the same as if it were a proceeding withdrawn for inquiry under sub-section (2) of section 36.</p>
+            <p>(2) Notwithstanding anything contained in sub-section (1), where on the commencement of the Advocates (Amendment) Act, 1973 (60 of 1973), any proceedings in respect of any disciplinary matter against an advocate is pending before the disciplinary committee of a State Bar Council, that disciplinary committee of the State Bar Council shall dispose of the same within a period of six months from the date of such commencement or within a period of one year from the date of the receipt of the complaint or, as the case may be, the date of initiation of the proceedings at the instance of the State Bar Council, whichever is later, failing which such proceedings shall stand transferred to the Bar Council of India for disposal under sub-section (1).]</p>
+          </content>
+        </section>
+        <section eId="sec_37">
+          <num>37.</num>
+          <heading>Appeal to the Bar Council of India.―(1) Any person aggrieved by an order of the disciplinary</heading>
+          <content>
+            <p>committee of a State Bar Council made 3[under section 35] 4[or the Advocate-General of the State] may, within sixty days of the date of the communication of the order to him, prefer an appeal to the Bar Council of India.</p>
+            <p>(2) Every such appeal shall be heard by the disciplinary committee of the Bar Council of India which may pass such order 4[(including an order varying the punishment awarded by the disciplinary committee of the State Bar Council)] thereon as it deems fit: [Provided that no order of the disciplinary committee of the State Bar Council shall be varied by the disciplinary committee of the Bar Council of India so as to prejudicially affect the person aggrieved without giving him reasonable opportunity of being heard.]</p>
+          </content>
+        </section>
+        <section eId="sec_38">
+          <num>38.</num>
+          <heading>Appeal to the Supreme Court.―Any person aggrieved by an order made by the disciplinary</heading>
+          <content>
+            <p>committee of the Bar Council of India under section 36 or section 37 1[or the Attorney-General of India or the Advocate-General of the State concerned, as the case may be,] may, within sixty days of the date on which the order is communicated to him, prefer an appeal to the Supreme Court and the Supreme Court may pass such order 1[(including an order varying the punishment awarded by the disciplinary committee of the Bar Council of India)] thereon as it deems fit: [Provided that no order of the disciplinary committee of the Bar Council of India shall be varied by the Supreme Court so as to prejudicially affect the person aggrieved without giving him a reasonable opportunity of being heard.]</p>
+          </content>
+        </section>
+        <section eId="sec_39">
+          <num>39.</num>
+          <heading>Application of sections 5 and 12 of Limitation Act, 1963.―The provisions of sections 5 and 12 of</heading>
+          <content>
+            <p>the Limitation Act, 1963 (36 of 1963), shall, so far as may be, apply to appeals under section 37 and section 38.]</p>
+          </content>
+        </section>
+        <section eId="sec_40">
+          <num>40.</num>
+          <heading>Stay of order.―3[(1)] An appeal, made under section 37 or section 38, shall not operate as a stay of</heading>
+          <content>
+            <p>the order appealed against, but the disciplinary committee of the Bar Council of India, or the Supreme Court, as the case may be, may, for sufficient cause, direct the stay of such order on such terms and conditions as it may deem fit.</p>
+            <p>(2) Where an application is made for stay of the order before the expiration of the time allowed for appealing therefrom under section 37 or section 38, the disciplinary committee of the State Bar Council, or the disciplinary committee of the Bar Council of India, as the case may be, may, for sufficient cause, direct the stay of such order on such terms and conditions as it may deem fit.]</p>
+          </content>
+        </section>
+        <section eId="sec_41">
+          <num>41.</num>
+          <heading>Alteration in roll of advocates.―(1) Where an order is made under this Chapter reprimanding or</heading>
+          <content>
+            <p>suspending an advocate, a record of the punishment shall be entered against his name—</p>
+            <blockList eId="sec_41__list_1">
+              <item eId="sec_41__list_1__item_a"><num>(a)</num><p>in the case of an advocate whose name is entered in a State roll, in that roll; and where any order is made removing an advocate from practice, his name shall be struck off the State roll ***.</p></item>
+            </blockList>
+            <p>(3) Where any advocate is suspended or removed from practice, the certificate granted to him under section 22, in respect of his enrolment shall be recalled.</p>
+          </content>
+        </section>
+        <section eId="sec_42">
+          <num>42.</num>
+          <heading>Powers of disciplinary committee.―(1) The disciplinary committee of a Bar Council shall have the</heading>
+          <content>
+            <p>same powers as are vested in a civil court under the Code of Civil Procedure, 1908 (5 of 1908), in respect of the following matters, namely:―</p>
+            <blockList eId="sec_42__list_1">
+              <item eId="sec_42__list_1__item_a"><num>(a)</num><p>summoning and enforcing the attendance of any person and examining him on oath;</p></item>
+              <item eId="sec_42__list_1__item_b"><num>(b)</num><p>requiring discovery and production of any documents;</p></item>
+              <item eId="sec_42__list_1__item_c"><num>(c)</num><p>receiving evidence on affidavits;</p></item>
+              <item eId="sec_42__list_1__item_d"><num>(d)</num><p>requisitioning any public record or copies thereof from any court or office;</p></item>
+              <item eId="sec_42__list_1__item_e"><num>(e)</num><p>issuing commissions for the examination of witnesses or documents;</p></item>
+              <item eId="sec_42__list_1__item_f"><num>(f)</num><p>any other matter which may be prescribed:</p></item>
+            </blockList>
+            <p>Provided that no such disciplinary committee shall have the right to require the attendance of—</p>
+            <blockList eId="sec_42__list_2">
+              <item eId="sec_42__list_2__item_a"><num>(a)</num><p>any presiding officer of a court except with the previous sanction of the High Court to which such court is subordinate;</p></item>
+              <item eId="sec_42__list_2__item_b"><num>(b)</num><p>any officer of a revenue court except with the previous sanction of the State Government.</p></item>
+            </blockList>
+            <p>(2) All proceedings before a disciplinary committee of a Bar Council shall be deemed to be judicial proceedings within the meaning of sections 193 and 228 of the Indian Penal Code (45 of 1860), and every such disciplinary committee shall be deemed to be a civil court for the purposes of sections 480, 482 and 485 of the Code of Criminal Procedure, 18981 (5 of 1898).</p>
+            <p>(3) For the purposes of exercising any of the powers conferred by sub-section (1), a disciplinary committee may send to any civil court in the territories to which this Act extends, any summons or other process, for the attendance of a witness or the production of a document required by the committee or any commission which it desires to issue, and the civil court shall cause such process to be served or such commission to be issued, as the case may be, and may enforce any such process as if it were a process for attendance or production before itself.</p>
+            <p>(4) Notwithstanding the absence of the Chairman or any member of a disciplinary committee on a date fixed for the hearing of a case before it, the disciplinary committee may, if it so thinks fit, hold or continue the proceedings on the date so fixed and no such proceedings and no order made by the disciplinary committee in any such proceedings shall be invalid merely by reason of the absence of the Chairman or member thereof on any such date:</p>
+            <p>Provided that no final orders of the nature referred to in sub- section (3) of section 35 shall be made in any proceeding unless the Chairman and other members of the disciplinary committee are present.</p>
+            <p>(5) Where no final orders of the nature referred to in sub- section (3) of section 35 can be made in any proceedings in accordance with the opinion of the Chairman and the members of a disciplinary committee either for want of majority opinion amongst themselves or otherwise, the case, with their opinion thereon, shall be laid before the Chairman of the Bar Council concerned or if the Chairman of the Bar Council is acting as the Chairman or a member of the disciplinary committee, before the Vice-Chairman of the Bar Council, and the said Chairman or the Vice-Chairman of the Bar Council, as the case may be, after such hearing as he thinks fit, shall deliver his opinion and the final order of the disciplinary committee shall follow such opinion.]</p>
+          </content>
+        </section>
+        <section eId="sec_42A">
+          <num>42A.</num>
+          <heading>Powers of Bar Council of India and other committees.― The provisions of section 42 shall, so</heading>
+          <content>
+            <p>far as may be, apply in relation to the Bar Council of India, the enrolment committee, the election committee, the legal aid committee, or any other committee of a Bar Council as they apply in relation to the disciplinary commitee of a Bar Council.]</p>
+          </content>
+        </section>
+        <section eId="sec_43">
+          <num>43.</num>
+          <heading>Cost of proceedings before a disciplinary committees.― The disciplinary committee of a Bar</heading>
+          <content>
+            <p>Council may make such order as to the costs of any proceedings before it as it may deem fit and any such order shall be executable as if it were an order―</p>
+            <blockList eId="sec_43__list_1">
+              <item eId="sec_43__list_1__item_a"><num>(a)</num><p>in the case of an order of the disciplinary committee of the Bar Council of India, of the Supreme Court;</p></item>
+              <item eId="sec_43__list_1__item_b"><num>(b)</num><p>in the case of an order of the disciplinary committee of a State Bar Council, of the High Court.</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="sec_44">
+          <num>44.</num>
+          <heading>Review of orders by disciplinary committee.― The disciplinary committee of a Bar Council may of</heading>
+          <content>
+            <p>its own motion or otherwise review any order 4[within sixty days of the date of that order,] passed by it under this Chapter:</p>
+            <p>Provided that no such order of review of the disciplinary committee of a State Bar Council shall have effect unless it has been approved by the Bar Council of India.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_VI">
+        <num>CHAPTER VI</num>
+        <heading>MISCELLANEOUS</heading>
+        <section eId="sec_45">
+          <num>45.</num>
+          <heading>Penalty for persons illegally practising in courts and before other authorities.―Any person who</heading>
+          <content>
+            <p>practises in any court or before any authority or person, in or before whom he is not entitled to practise under the provisions of this Act, shall be punishable with imprisonment for a term which may extend to six months.</p>
+          </content>
+        </section>
+        <section eId="sec_46">
+          <num>46.</num>
+          <heading>Payment of part of enrolment fees to the Bar Council of India].―Omitted by Act 70 of 1993, s. 8</heading>
+          <content>
+            <p>(w.e.f. 26-12-1993).</p>
+          </content>
+        </section>
+        <section eId="sec_46A">
+          <num>46A.</num>
+          <heading>Financial assistance to State Bar Council.―The Bar Council of India may, if it is satisfied that</heading>
+          <content>
+            <p>any State Bar Council is in need of funds for the purpose of performing its functions under this Act, give such financial assistance as it deems fit to that Bar Council by way of grant or otherwise.]</p>
+          </content>
+        </section>
+        <section eId="sec_47">
+          <num>47.</num>
+          <heading>Reciprocity.―(1) Where any country, specified by the Central Government in this behalf by</heading>
+          <content>
+            <p>notification in the Official Gazette, prevents citizens of India from practising the profession of law or subjects them to unfair discrimination in that country, no subject of any such country shall be entitled to practise the profession of law in India.</p>
+            <p>(2) Subject to the provisions of sub-section (1), the Bar Council of India may prescribe the conditions, if any, subject to which foreign qualifications in law obtained by persons other than citizens of India shall be recognised for the purpose of admission as an advocate under this Act.</p>
+          </content>
+        </section>
+        <section eId="sec_48">
+          <num>48.</num>
+          <heading>Indemnity against legal proceedings.―No suit or other legal proceeding shall lie against any Bar</heading>
+          <content>
+            <p>Council or any committee thereof or a member of a Bar Council 2[or any committee thereof] for any act in good faith done or intended to be done in pursuance of the provisions of this Act or of any rules made thereunder.</p>
+          </content>
+        </section>
+        <section eId="sec_48A">
+          <num>48A.</num>
+          <heading>Power of revision.―(1) The Bar Council of India may, at any time, call for the record of any</heading>
+          <content>
+            <p>proceeding under this Act which has been disposed of by a State Bar Council or a committee thereof, and from which no appeal lies, for the purpose of satisfying itself as to the legality or propriety of such disposal and may pass such orders in relation thereto as it may think fit.</p>
+            <p>(2) No order which prejudicially affects any person shall be passed under this section without giving him a reasonable opportunity of being heard. [48AA. Review.―The Bar Council of India or any of its committees, other than its disciplinary committee, may of its own motion or otherwise review any order, within sixty days of the date of that order, passed by it under this Act.]</p>
+          </content>
+        </section>
+        <section eId="sec_48B">
+          <num>48B.</num>
+          <heading>Power to give directions.―(1) For the proper and efficient discharge of the functions of a State Bar</heading>
+          <content>
+            <p>Council or any committee thereof, the Bar Council of India may, in the exercise of its powers of general supervision and control, give such directions to the State Bar Council or any committee thereof as may appear to it to be necessary, and the State Bar Council or the committee shall comply with such directions.</p>
+            <p>(2) Where a State Bar Council is unable to perform its functions for any reason whatsoever, the Bar Council of India may, without prejudice to the generality of the foregoing power, give such directions to the ex officio member thereof as may appear to it to be necessary, and such directions shall have effect, notwithstanding anything contained in the rules made by the State Bar Council.]</p>
+          </content>
+        </section>
+        <section eId="sec_49">
+          <num>49.</num>
+          <heading>General power of the Bar Council of India to make rules.― 1[(1)] The Bar Council of India may</heading>
+          <content>
+            <p>make rules for discharging its functions under this Act, and, in particular, such rules may prescribe— [(a) the conditions subject to which an advocate may be entitled to vote at an election to the State Bar Council including the qualifications or disqualifications of voters, and the manner in which an electoral roll of voters may be prepared and revised by a State Bar Council;</p>
+            <blockList eId="sec_49__list_1">
+              <item eId="sec_49__list_1__item_ab"><num>(ab)</num><p>qualifications for membership of a Bar Council and the disqualifications for such membership;</p></item>
+              <item eId="sec_49__list_1__item_ac"><num>(ac)</num><p>the time within which and the manner in which effect may be given to the proviso to sub-section</p></item>
+            </blockList>
+            <p>(2) of section 3;</p>
+            <blockList eId="sec_49__list_2">
+              <item eId="sec_49__list_2__item_ad"><num>(ad)</num><p>the manner in which the name of any advocate may be prevented from being entered in more than one State roll;</p></item>
+              <item eId="sec_49__list_2__item_ae"><num>(ae)</num><p>the manner in which the seniority among advocates may be determined; [(af) the minimum qualifications required for admission to a course of degree in law in any recognised University;]</p></item>
+              <item eId="sec_49__list_2__item_ag"><num>(ag)</num><p>the class or category of persons entitled to be enrolled as advocates;</p></item>
+              <item eId="sec_49__list_2__item_ah"><num>(ah)</num><p>the conditions subject to which an advocate shall have the right to practise and the circumstances under which a person shall be deemed to practise as an advocate in a court;]</p></item>
+              <item eId="sec_49__list_2__item_b"><num>(b)</num><p>the form in which an application shall be made for the transfer of the name of an advocate from one State roll to another;</p></item>
+              <item eId="sec_49__list_2__item_c"><num>(c)</num><p>the standards of professional conduct and etiquette to be observed by advocates;</p></item>
+              <item eId="sec_49__list_2__item_d"><num>(d)</num><p>the standards of legal education to be observed by Universities in India and the inspection of Universities for that purpose;</p></item>
+              <item eId="sec_49__list_2__item_e"><num>(e)</num><p>the foreign qualifications in law obtained by persons other than citizens of India which shall be recognised for the purpose of admission as an advocate under this Act;</p></item>
+              <item eId="sec_49__list_2__item_f"><num>(f)</num><p>the procedure to be followed by the disciplinary committee of a State Bar Council and by its own disciplinary committee;</p></item>
+              <item eId="sec_49__list_2__item_g"><num>(g)</num><p>the restrictions in the matter of practice to which senior advocates shall be subject; [(gg) the form of dresses or robes to be worn by advocates, having regard to the climatic conditions, appearing before any court or tribunal;]</p></item>
+              <item eId="sec_49__list_2__item_h"><num>(h)</num><p>the fees which may be levied in respect of any matter under this Act; [(i) general principles for guidance of State Bar Councils and the manner in which directions issued or orders made by the Bar Council of India may be enforced;</p></item>
+              <item eId="sec_49__list_2__item_j"><num>(j)</num><p>any other matter which may be prescribed:] [Provided that no rules made with reference to clause (c) or clause (gg) shall have effect unless they have been approved by the Chief Justice of India:] [Provided further that] no rules made with reference to clause (e) shall have effect unless they have been approved by the Central Government.</p></item>
+            </blockList>
+            <p>(2) Notwithstanding anything contained in the first proviso to sub-section (1), any rules made with reference to clause (c) or clause (gg) of the said sub-section and in force immediately before the commencement of the Advocates (Amendment) Act, 1973 (60 of 1973), shall continue in force until altered or repealed or amended in accordance with the provisions of this Act.]</p>
+          </content>
+        </section>
+        <section eId="sec_49A">
+          <num>49A.</num>
+          <heading>Power of Central Government to make rules.―(1) The Central Government may, by</heading>
+          <content>
+            <p>notification in the Official Gazette, make rules for carrying out the purposes of this Act including rules with respect to any matter for which the Bar Council of India or a State Bar Council has power to make rules.</p>
+            <p>(2) In particular and without prejudice to the generality of the foregoing power, such rules may provide for—</p>
+            <blockList eId="sec_49A__list_1">
+              <item eId="sec_49A__list_1__item_a"><num>(a)</num><p>qualifications for membership of a Bar Council and disqualifications for such membership;</p></item>
+              <item eId="sec_49A__list_1__item_b"><num>(b)</num><p>the manner in which the Bar Council of India may exercise supervision and control over State Bar Councils and the manner in which the directions issued or orders made by the Bar Council of India may be enforced;</p></item>
+              <item eId="sec_49A__list_1__item_c"><num>(c)</num><p>the class or category of persons entitled to be enrolled as advocates under this Act;</p></item>
+              <item eId="sec_49A__list_1__item_d"><num>(d)</num><p>the category of persons who may be exempted from undergoing a course of training and passing an examination prescribed under clause (d) of sub-section (1) of section 24;</p></item>
+              <item eId="sec_49A__list_1__item_e"><num>(e)</num><p>the manner in which seniority among advocates may be determined;</p></item>
+              <item eId="sec_49A__list_1__item_f"><num>(f)</num><p>the procedure to be followed by a disciplinary committee of a Bar Council in hearing cases and the procedure to be followed by a disciplinary committee of the Bar Council of India in hearing appeals;</p></item>
+              <item eId="sec_49A__list_1__item_g"><num>(g)</num><p>any other matter which may be prescribed.</p></item>
+            </blockList>
+            <p>(3) Rules under this section may be made either for the whole of India or for all or any of the Bar Councils.</p>
+            <p>(4) If any provision of a rule made by a Bar Council is repugnant to any provision of a rule made by the Central Government under this section, then, the rule under this section, whether made before or after the rule made by the Bar Council, shall prevail and the rule made by the Bar Council shall, to the extent of the repugnancy, be void.</p>
+            <p>(5) Every rule made under this section shall be laid, as soon as may be after it is made, before each House of Parliament, while it is in session, for a total period of thirty days which may be comprised in one session or in two or more successive sessions, and if, before the expiry of the session immediately following the session or the successive sessions aforesaid, both Houses agree in making any modification in the rule or both Houses agree that the rule should not be made, the rule shall thereafter have effect only in such modified form or be of no effect, as the case may be; so, however, that any such modification or annulment shall be without prejudice to the validity of anything previously done under that rule.]</p>
+          </content>
+        </section>
+        <section eId="sec_50">
+          <num>50.</num>
+          <heading>Repeal of certain enactments.―(1) On the date on which a State Bar Council is constituted under</heading>
+          <content>
+            <p>this Act, the provisions of sections 3 to 7 (inclusive), sub-sections (1), (2) and (3) of section 9, section 15 and section 20 of the Indian Bar Councils Act, 1926 (38 of 1926), shall stand repealed in the territory for which the State Bar Council is constituted.</p>
+            <p>(2) On the date on which Chapter III comes into force, the following shall stand repealed, namely:―</p>
+            <blockList eId="sec_50__list_1">
+              <item eId="sec_50__list_1__item_a"><num>(a)</num><p>sections 6, 7, 18 and 37 of the Legal Practitioners Act, 1879 (18 of 1879), and so much of sections 8, 9, 16, 17, 19 and 41 of that Act as relate to the admission and enrolment of legal practitioners;</p></item>
+              <item eId="sec_50__list_1__item_b"><num>(b)</num><p>sections 3, 4 and 6 of the Bombay Pleaders Act, 1920 (Bombay Act 17 of 1920);</p></item>
+              <item eId="sec_50__list_1__item_c"><num>(c)</num><p>so much of section 8 of the Indian Bar Councils Act, 1926 (38 of 1926), as relates to the admission and enrolment of legal practitioners;</p></item>
+              <item eId="sec_50__list_1__item_d"><num>(d)</num><p>the provisions of the Letters Patent of any High Court and of any other law in so far as they relate to the admission and enrolment of legal practitioners.</p></item>
+            </blockList>
+            <p>(3) On the date on which Chapter IV comes into force, the following shall stand repealed, namely:―</p>
+            <blockList eId="sec_50__list_2">
+              <item eId="sec_50__list_2__item_a"><num>(a)</num><p>sections 4, 5, 10 and 20 of the Legal Practitioners Act, 1879 (18 of 1879), and so much of sections 8, 9, 19 and 41 of that Act as confer on legal practitioners the right to practise in any court or before any authority or person;</p></item>
+              <item eId="sec_50__list_2__item_b"><num>(b)</num><p>sections 5, 7, 8 and 9 of the Bombay Pleaders Act, 1920 (Bombay Act 17 of 1920);</p></item>
+              <item eId="sec_50__list_2__item_c"><num>(c)</num><p>section 14 of the Indian Bar Councils Act, 1926 (38 of 1926) and, so much of sections 8 and 15 of that Act as confer on legal practitioners the right to practise in any court or before any authority or person;</p></item>
+              <item eId="sec_50__list_2__item_d"><num>(d)</num><p>the Supreme Court Advocates (Practice in High Courts) Act, 1951 (18 of 1951);</p></item>
+              <item eId="sec_50__list_2__item_e"><num>(e)</num><p>the provisions of the Letters Patent of any High Court and of any other law conferring on legal practitioners the right to practise in any court or before any authority or person.</p></item>
+            </blockList>
+            <p>(4) On the date on which Chapter V comes into force, the following shall stand repealed, namely:―</p>
+            <blockList eId="sec_50__list_3">
+              <item eId="sec_50__list_3__item_a"><num>(a)</num><p>sections 12 to 15 (inclusive), sections 21 to 24 (inclusive) and sections 39 and 40 of the Legal Practitioners Act, 1879 (18 of 1879), and so 82 much of sections 16, 17 and 41 of that Act as relate to the suspension, removal or dismissal of legal practitioners;</p></item>
+              <item eId="sec_50__list_3__item_b"><num>(b)</num><p>sections 24 to 27 (inclusive) of the Bombay Pleaders Act, 1920 (Bombay Act 17 of 1920);</p></item>
+              <item eId="sec_50__list_3__item_c"><num>(c)</num><p>sections 10 to 13 (inclusive) of the Indian Bar Councils Act, 1926 (38 of 1926);</p></item>
+              <item eId="sec_50__list_3__item_d"><num>(d)</num><p>the provisions of the Letters Patent of any High Court and of any other law in so far as they relate to the suspension, removal or dismissal of legal practitioners.</p></item>
+            </blockList>
+            <p>(5) When the whole of this Act has come into force—</p>
+            <blockList eId="sec_50__list_4">
+              <item eId="sec_50__list_4__item_a"><num>(a)</num><p>the remaining provisions of the Acts referred to in this section which do not stand repealed by virtue of any of the foregoing provisions of this section (except sections 1, 3 and 36 of the Legal Practitioners Act, 1879) (18 of 1879) shall stand repealed;</p></item>
+              <item eId="sec_50__list_4__item_b"><num>(b)</num><p>the enactment specified in the Schedule shall stand repealed to the extent mentioned therein.</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="sec_51">
+          <num>51.</num>
+          <heading>Rule of construction.―On and from the appointed day, references in any enactment to an advocate</heading>
+          <content>
+            <p>enrolled by a High Court in any form of words shall be construed as references to an advocate enrolled under this Act.</p>
+          </content>
+        </section>
+        <section eId="sec_52">
+          <num>52.</num>
+          <heading>Saving.―Nothing in this Act shall be deemed to affect the power of the Supreme Court to make rules</heading>
+          <content>
+            <p>under article 145 of the Constitution―</p>
+            <blockList eId="sec_52__list_1">
+              <item eId="sec_52__list_1__item_a"><num>(a)</num><p>for laying down the conditions subject to which a senior advocate shall be entitled to practise in that Court;</p></item>
+              <item eId="sec_52__list_1__item_b"><num>(b)</num><p>for determining the persons who shall be entitled to 1[act or plead] in that Court.</p></item>
+            </blockList>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_VII">
+        <num>CHAPTER VII</num>
+        <heading>TEMPORARY AND TRANSITIONAL PROVISIONS</heading>
+        <section eId="sec_53">
+          <num>53.</num>
+          <heading>Elections to first State Bar Council.―Notwithstanding anything contained in this Act, the elected</heading>
+          <content>
+            <p>members of a State Bar Council, constituted for the first time under this Act, shall be elected by and from amongst advocates, vakils, pleaders and attorneys who, on the date of the election, are entitled as of right to practise in the High Court and are ordinarily practising within the territory for which the Bar Council is to be constituted.</p>
+            <p>Explanation.―Where the territory for which the Bar Council is to be constituted includes a Union territory, the expression “High Court” shall include the court of the Judicial Commissioner of that Union territory.</p>
+          </content>
+        </section>
+        <section eId="sec_54">
+          <num>54.</num>
+          <heading>Term of office of members of first State Bar Councils.―Notwithstanding anything contained in</heading>
+          <content>
+            <p>this Act, the term of office of the 2*** elected members of 3*** a State Bar Council constituted for the first time, shall be two years from the date of the first meeting of the Council: [Provided that such members shall continue to hold office until the State Bar Council is reconstituted in accordance with the provisions of this Act.]</p>
+          </content>
+        </section>
+        <section eId="sec_55">
+          <num>55.</num>
+          <heading>Rights of certain existing legal practitioners not affected.―Notwithstanding anything contained in</heading>
+          <content>
+            <p>this Act.—</p>
+            <blockList eId="sec_55__list_1">
+              <item eId="sec_55__list_1__item_a"><num>(a)</num><p>every pleader or vakil practising as such immediately before the date on which Chapter IV comes into force (hereinafter in this section referred to as the said date) by virtue of the provisions of the Legal Practitioners Act, 1879 (18 of 1879), the Bombay Pleaders Act, 1920 (Bombay Act 17 of 1920), or any other law who does not elect to be, or is not qualified to be, enrolled as an advocate under this Act; [(c) every mukhtar practising as such immediately before the said date by virtue of the provisions of the Legal Practitioners Act, 1879 (18 of 1879), or any other law, who does not elect to be, or is not qualified to be, enrolled as an advocate under this Act;</p></item>
+              <item eId="sec_55__list_1__item_d"><num>(d)</num><p>every revenue agent practising as such immediately before the said date by virtue of the provisions of the Legal Practitioners Act, 1879 (18 of 1879), or any other law;] shall, notwithstanding the repeal by this Act of the relevant provisions of the Legal Practitioners Act, 1879 (18 of 1879), the Bombay Pleaders Act, 1920 (Bombay Act 17 of 1920), or other law, continue to enjoy the same rights as respects practice in any court or revenue office or before any authority or person and be subject to the disciplinary jurisdiction of the same authority which he enjoyed or, as the case may be, to which he was subject immediately before the said date and accordingly the relevant provisions of the Acts or law aforesaid shall have effect in relation to such persons as if they had not been repealed.</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="sec_56">
+          <num>56.</num>
+          <heading>Dissolution of existing Bar Councils.―(1) On the constitution under this Act of a State Bar Council,</heading>
+          <content>
+            <p>other than the Bar Council of Delhi (hereinafter referred to as the new Bar Council)—</p>
+            <blockList eId="sec_56__list_1">
+              <item eId="sec_56__list_1__item_a"><num>(a)</num><p>all properties and assets vesting in the corresponding Bar Council shall vest in the new Bar Council;</p></item>
+              <item eId="sec_56__list_1__item_b"><num>(b)</num><p>all rights, liabilities, and obligations of the corresponding Bar Council, whether arising out of any contract or otherwise, shall be the rights, liabilities and obligations respectively of the new Bar Council;</p></item>
+              <item eId="sec_56__list_1__item_c"><num>(c)</num><p>all proceedings pending before the corresponding Bar Council in respect of any disciplinary matter or otherwise shall stand transferred to the new Bar Council.</p></item>
+            </blockList>
+            <p>(2) In this section, “corresponding Bar Council” in relation to a State Bar Council, other than the Bar Council of Delhi, means the Bar council for the High Court in the territory for which the State Bar Council is constituted under this Act.</p>
+          </content>
+        </section>
+        <section eId="sec_57">
+          <num>57.</num>
+          <heading>Power to make rules pending the constitution of a Bar Council.―Until a Bar Council is</heading>
+          <content>
+            <p>constituted under this Act, the power of that Bar Council to make rules under this Act shall be exercised—</p>
+            <blockList eId="sec_57__list_1">
+              <item eId="sec_57__list_1__item_a"><num>(a)</num><p>in the case of the Bar Council of India, by the Supreme Court;</p></item>
+              <item eId="sec_57__list_1__item_b"><num>(b)</num><p>in the case of a State Bar Council, by the High Court.</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="sec_58">
+          <num>58.</num>
+          <heading>Special provisions during the transitional period.―(1) Where a State Bar Council has not been</heading>
+          <content>
+            <p>constituted under this Act or where a State Bar Council so constituted is unable to perform its functions by reason of any order of a court or otherwise, the functions of that Bar Council or of any committee thereof, in so far as they relate to the admission and enrolment of advocates, shall be performed by the High Court in accordance with the provisions of this Act.</p>
+            <p>(2) Until Chapter IV comes into force, a State Bar Council or a High Court performing the functions of a State Bar Council may enrol any person to be an advocate on a State roll, if he is qualified to be so enrolled under this Act, notwithstanding that no rules have been made under section 28 or that the rules so made have not been approved by the Bar Council of India, and every person so enrolled shall, until that Chapter comes into force, be entitled to all the rights of practice conferred on an advocate under section 14 of the Indian Bar Councils Act, 1926 (38 of 1926).</p>
+            <p>(3) Notwithstanding anything contained in this Act, every person who, immediately before the 1st day of December, 1961, was an advocate on the roll of any High Court under the Indian Bar Councils Act, 1926 (38 of 1926) or who has been enrolled as an advocate under this Act shall, until Chapter IV comes into force, be entitled as of right to practise in the Supreme Court, subject to the rules made by the Supreme Court in this behalf.</p>
+            <p>(4) Notwithstanding the repeal by sub-section (2) of section 50 of the provisions of the Legal Practitioners Act, 1879 (18 of 1879) or of the Bombay Pleaders Act, 1920 (Bombay Act 17 of 1920) 2[or of any other law relating to the admission and enrolment of legal practitioners, the provisions of the Acts and law aforesaid] and any rules made thereunder in so far as they relate to 3[the renewal or the issue by way of renewal] of a certificate to a legal practitioner authorising him to practise shall have effect until Chapter IV comes into force and, accordingly, every certificate issued or renewed to a legal practitioner (who is not enrolled as an advocate under this Act) which is or purports to be issued or renewed under the provisions of either of the aforesaid Acts 4[or of the other law] during the period beginning with the 1st day of December, 1961 and ending with the date on which Chapter IV comes into force, shall be deemed to have been validly issued or renewed.</p>
+          </content>
+        </section>
+        <section eId="sec_58A">
+          <num>58A.</num>
+          <heading>Special provisions with respect to certain advocates.―(1) Notwithstanding anything contained</heading>
+          <content>
+            <p>in this Act, all advocates who, immediately before the 26th day of July, 1948, were entitled to practise in the High Court in Allahabad or the Chief Court in Oudh and who under the provisions of the United Provinces High Courts (Amalgamation) Order, 1948 were recognised as advocates entitled to practise in the new High Court of Judicature at Allahabad but whose names were not formally entered on the roll of advocates of that High Court merely by reason of the non-payment of the fee payable to the Bar Council of the said High Court, and all advocates who were enrolled as such between the said date and the 26th day of May, 1952, shall, for the purposes of clause (a) of sub-section (1) of section 17 be deemed to be persons who were entered as advocates on the roll of the said High Court under the Indian Bar Councils Act, 1926 (38 of 1926) and every such person may, on an application being made in this behalf, be admitted as an advocate on the State roll of Uttar Pradesh.</p>
+            <p>(2) Notwithstanding anything contained in this Act, all advocates who, immediately before the 10th day of October, 1952, were entitled to practise in the High Court of Hyderabad but whose names were not formally entered on the roll of advocates of that High Court merely by reason of the non-payment of the fee payable to the Bar Council of the said High Court shall, for the purposes of clause (a) of sub-section (1) of section 17, be deemed to be persons who were entered as advocates on the roll of the said High Court under the Indian Bar Councils Act, 1926 (38 of 1926) and every such person may, on an application being made in this behalf, be admitted as an advocate on the State roll of Andhra Pradesh or of Maharashtra.</p>
+            <p>(3) Notwithstanding anything contained in this Act, all advocates who, immediately before the 1st day of May, 1960, were entitled to practise in the High Court of Bombay and who applied to get their names entered on the roll of advocates of the High Court of Gujarat under the provisions of section 8 of the Indian Bar Councils Act, 1926 (38 of 1926) but whose names were not so entered by reason of the repeal of the said provision shall, for the purposes of clause (a) of sub-section (1) of section 17, be deemed to be persons who were entered as advocates on the roll of the High Court of Gujarat under the said Act and every such person may, on an application being made in this behalf, be admitted as an advocate on the State roll of Gujarat.</p>
+            <p>(4) Notwithstanding anything contained in this Act, all persons who, immediately before the 1st day of December, 1961, were advocates on the roll of the court of Judicial Commissioner in any Union territory under any law in force in that territory shall, for the purposes of clause (a) of sub-section (1) of section 17, be deemed to be persons who were entered as advocates on the roll of a High Court under the Indian Bar Councils Act, 1926 (38 of 1926) and every such person may, on an application made in this behalf, be admitted as an advocate on the State roll maintained in respect of that Union territory. [58AA. Special provisions in relation to the Union territory of Pondicherry.―(1) Notwithstanding anything contained in this Act, all persons who, immediately before the date on which the provisions of</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_III_2">
+        <num>CHAPTER III</num>
+        <heading>are brought into force in the Union territory of Pondicherry, were entitled to practise the</heading>
+        <section eId="sec_58B">
+          <num>58B.</num>
+          <heading>Special provision relating to certain disciplinary proceedings.―(1) As from the 1st day of</heading>
+          <content>
+            <p>September, 1963, every proceeding in respect of any disciplinary matter in relation to an existing advocate of a High Court shall, save as provided in the first proviso to sub-section (2), be disposed of by the State Bar Council in relation to that High Court, as if the existing advocate had been enrolled as an advocate on its roll.</p>
+            <p>(2) If immediately before the said date, there is any proceeding in respect of any disciplinary matter in relation to an existing advocate pending before any High Court under the Indian Bar Councils Act, 1926 (38 of 1926), such proceeding shall stand transferred to the State Bar Council in relation to that High Court, as if it were a proceeding pending before the corresponding Bar Council under clause (c) of sub-section (1) of section 56:</p>
+            <p>Provided that where in respect of any such proceeding the High Court has received the finding of a Tribunal constituted under section 11 of the Indian Bar Councils Act, 1926 (38 of 1926), the High Court shall dispose of the case and it shall be lawful for the High Court to exercise for the purpose all powers conferred on it under section 12 of the said Act as if that section had not been repealed:</p>
+            <p>Provided further that where the High Court has referred back any case for further inquiry under sub- section (4) of section 12 of the said Act, the proceeding shall stand transferred to the State Bar Council in relation to the High Court as if it were a proceeding pending before the corresponding Bar Council under clause (c) of sub- section (1) of section 56.</p>
+            <p>(3) If immediately before the said date there is any proceeding in respect of any disciplinary matter pending in relation to any pleader, vakil, mukhtar or attorney, who has been enrolled as an advocate on any State roll under the Act, such proceeding shall stand transferred to the State Bar Council on the roll of which he has been enrolled and be dealt with under this Act as if it were a proceeding arising against him thereunder.</p>
+            <p>(4) In this section “existing advocate” means a person who was enrolled as an advocate on the roll of any High Court under the Indian Bar Councils Act, 1926 (38 of 1926) and who, at the time when any proceeding in respect of any disciplinary matter is initiated against him, is not enrolled as an advocate on a State roll under this Act.</p>
+            <p>(5) The provisions of this section shall have effect, notwithstanding anything contained in this Act.]</p>
+          </content>
+        </section>
+        <section eId="sec_59">
+          <num>59.</num>
+          <heading>Removal of difficulties.―(1) If any difficulty arises in giving effect to the provisions of this Act,</heading>
+          <content>
+            <p>particularly in relation to the transition from the enactments repealed by this Act to the provisions of this Act, the Central Government may, by order published in the Official Gazette, make such provisions not inconsistent with the purposes of this Act, as appear to it to be necessary or expedient for removing the difficulty.</p>
+            <p>(2) An order under sub-section (1) may be made so as to have retrospective effect from a date not earlier than the 1st day of December, 1961.]</p>
+          </content>
+        </section>
+        <section eId="sec_60">
+          <num>60.</num>
+          <heading>Power of Central Government to make rules.―(1) Until rules in respect of any matter under this</heading>
+          <content>
+            <p>Act are made by a State Bar Council and approved by the Bar Council of India, the power to make rules in respect of that matter shall be exercisable by the Central Government.</p>
+            <p>(2) The Central Government after consultation with the Bar Council of India may, by notification in the Official Gazette, make rules under sub-section (1) either for any State Bar Council or generally for all State Bar Councils and the rules so made shall have effect, notwithstanding anything contained in this Act.</p>
+            <p>(3) Where in respect of any matter any rules are made by the Central Government under this section for any State Bar Council, and in respect of the same matter, rules are made by the State Bar Council and approved by the Bar Council of India, the Central Government may, by notification in the Official Gazette, direct that the rules made by it in respect of such matter shall cease to be in force in relation to that Bar Council with effect from such date as may be specified in the notification and on the issue of such notification, the rules made by the Central Government shall, accordingly, cease to be in force except as respects things done or omitted to be done before the said date.] THE SCHEDULE [See section 50(5)] REPEAL OF CERTAIN ENACTMENTS Short title Extent of repeal</p>
+          </content>
+        </section>
+      </chapter>
+    </body>
+  </act>
+</akomaNtoso>

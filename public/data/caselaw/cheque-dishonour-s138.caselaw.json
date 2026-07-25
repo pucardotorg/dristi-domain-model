@@ -1,0 +1,973 @@
+{
+  "profile": "cheque-dishonour-s138",
+  "title": "Supreme Court case law — Section 138 NI Act (cheque dishonour)",
+  "court": "Supreme Court of India",
+  "as_of": "2026-07-25",
+  "maintained_by": "PUCAR",
+  "caveats": [
+    "Citations are best-effort (case name + year + reporter where known); verify against the official record before authoritative use.",
+    "This is the leading/working canon of Supreme Court authority, not every s.138 judgment ever decided.",
+    "'construes' links point into the cheque-dishonour-s138 relevance profile using its '<alias>:<eId>' ref format.",
+    "Case law is live: the 2021 Constitution Bench and the 2022–2025 line keep refining the position.",
+    "AKN judgment files are a best-effort structural conversion of the Indian Kanoon text export (running headers/page furniture stripped; introduction/motivation/decision split heuristic). Verify against the official record before authoritative use."
+  ],
+  "topics": {
+    "presumption": "Presumption & burden of proof (ss.118/139)",
+    "debt-liability": "Legally enforceable debt & liability",
+    "cheque": "The cheque instrument (blank / altered / presentment)",
+    "notice": "Demand notice & cause of action",
+    "jurisdiction": "Territorial jurisdiction",
+    "complainant": "Who may complain (payee / POA / company)",
+    "company-liability": "Company & director/partner liability (s.141)",
+    "procedure": "Summary trial, evidence & speedy-trial directions",
+    "compounding": "Compounding, settlement & quashing (s.147)",
+    "interim-compensation": "Interim compensation (s.143A)",
+    "appeal-deposit": "Appeal deposit (s.148)",
+    "sentencing": "Nature of offence, sentencing, compensation & probation"
+  },
+  "cases": [
+    {
+      "id": "rangappa-2010",
+      "name": "Rangappa v. Sri Mohan",
+      "citation": "(2010) 11 SCC 441",
+      "year": 2010,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "presumption"
+      ],
+      "construes": [
+        "ni:sec_139",
+        "ni:sec_118",
+        "ni:sec_138"
+      ],
+      "holding": "The s.139 presumption extends to the existence of a legally enforceable debt or liability; it places a reverse onus on the accused, rebuttable on the preponderance of probabilities.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/rangappa-v-sri-mohan-2010.pdf",
+      "akn": "caselaw/akn/rangappa-v-sri-mohan-2010.akn.xml",
+      "decided": "2010-05-07",
+      "source_status": "ok"
+    },
+    {
+      "id": "kumar-exports-2009",
+      "name": "Kumar Exports v. Sharma Carpets",
+      "citation": "(2009) 2 SCC 513",
+      "year": 2009,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "presumption"
+      ],
+      "construes": [
+        "ni:sec_118",
+        "ni:sec_139"
+      ],
+      "holding": "Explains how the ss.118 and 139 presumptions operate and the evidentiary standard for rebutting them.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/kumar-exports-v-sharma-carpets-2009.pdf",
+      "akn": "caselaw/akn/kumar-exports-v-sharma-carpets-2009.akn.xml",
+      "decided": "2008-12-16",
+      "source_status": "ok"
+    },
+    {
+      "id": "basalingappa-2019",
+      "name": "Basalingappa v. Mudibasappa",
+      "citation": "(2019) 5 SCC 418",
+      "year": 2019,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "presumption"
+      ],
+      "construes": [
+        "ni:sec_139",
+        "ni:sec_118"
+      ],
+      "holding": "Consolidated the principles on the s.139 presumption and the accused's 'probable defence' standard of rebuttal.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/basalingappa-v-mudibasappa-2019.pdf",
+      "akn": "caselaw/akn/basalingappa-v-mudibasappa-2019.akn.xml",
+      "source_status": "ok",
+      "decided": "2019-04-09"
+    },
+    {
+      "id": "bir-singh-2019",
+      "name": "Bir Singh v. Mukesh Kumar",
+      "citation": "(2019) 4 SCC 197",
+      "year": 2019,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "presumption",
+        "cheque"
+      ],
+      "construes": [
+        "ni:sec_139",
+        "ni:sec_20",
+        "ni:sec_138"
+      ],
+      "holding": "A signed but blank/incomplete cheque voluntarily handed over still attracts the s.139 presumption, even if it was filled in by another person.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/bir-singh-v-mukesh-kumar-2019.pdf",
+      "akn": "caselaw/akn/bir-singh-v-mukesh-kumar-2019.akn.xml",
+      "decided": "2019-02-06",
+      "source_status": "ok"
+    },
+    {
+      "id": "kalamani-tex-2021",
+      "name": "Kalamani Tex v. P. Balasubramanian",
+      "citation": "(2021) 10 SCC 549",
+      "year": 2021,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "presumption"
+      ],
+      "construes": [
+        "ni:sec_139",
+        "ni:sec_118"
+      ],
+      "holding": "Reaffirmed that the presumption is rebuttable only by a probable defence, not by bare denial.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/kalamani-tex-v-p-balasubramanian-2021.pdf",
+      "akn": "caselaw/akn/kalamani-tex-v-p-balasubramanian-2021.akn.xml",
+      "decided": "2021-02-10",
+      "source_status": "ok"
+    },
+    {
+      "id": "oriental-bank-2022",
+      "name": "Oriental Bank of Commerce v. Prabodh Kumar Tewari",
+      "citation": "2022 SCC OnLine SC 1089",
+      "year": 2022,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "presumption"
+      ],
+      "construes": [
+        "ni:sec_139"
+      ],
+      "holding": "The s.139 presumption is rebuttable; the accused need only raise a probable defence on preponderance of probabilities.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/oriental-bank-of-commerce-v-prabodh-kumar-tewari-2022.pdf",
+      "akn": "caselaw/akn/oriental-bank-of-commerce-v-prabodh-kumar-tewari-2022.akn.xml",
+      "decided": "2022-08-16",
+      "source_status": "ok"
+    },
+    {
+      "id": "rajesh-jain-2023",
+      "name": "Rajesh Jain v. Ajay Singh",
+      "citation": "2023",
+      "year": 2023,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "presumption"
+      ],
+      "construes": [
+        "ni:sec_118",
+        "ni:sec_139"
+      ],
+      "holding": "Restated in detail the burden-shifting sequence between complainant and accused under ss.118/139.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/rajesh-jain-v-ajay-singh-2023.pdf",
+      "akn": "caselaw/akn/rajesh-jain-v-ajay-singh-2023.akn.xml",
+      "source_status": "ok",
+      "decided": "2023-10-09",
+      "neutral_citation": "2023 INSC 888"
+    },
+    {
+      "id": "sunil-todi-2021",
+      "name": "Sunil Todi v. State of Gujarat",
+      "citation": "(2021) 16 SCC 762",
+      "year": 2021,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "debt-liability"
+      ],
+      "construes": [
+        "ni:sec_138"
+      ],
+      "holding": "'Debt or other liability' is read broadly; a cheque given for a liability that crystallises later can attract s.138.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/sunil-todi-v-state-of-gujarat-2021.pdf",
+      "akn": "caselaw/akn/sunil-todi-v-state-of-gujarat-2021.akn.xml",
+      "decided": "2021-12-03",
+      "source_status": "ok"
+    },
+    {
+      "id": "dashrathbhai-2022",
+      "name": "Dashrathbhai Trikambhai Patel v. Hitesh Mahendrabhai Patel",
+      "citation": "2022 SCC OnLine SC 1376",
+      "year": 2022,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "debt-liability"
+      ],
+      "construes": [
+        "ni:sec_138"
+      ],
+      "holding": "Part-payments made after issuance but before encashment must be endorsed (s.56); dishonour of the unendorsed cheque does not attract s.138 unless the sum is a legally enforceable debt at maturity.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/dashrathbhai-trikambhai-patel-v-hitesh-mahendrabhai-patel-2022.pdf",
+      "akn": "caselaw/akn/dashrathbhai-trikambhai-patel-v-hitesh-mahendrabhai-patel-2022.akn.xml",
+      "source_status": "ok",
+      "decided": "2022-10-11"
+    },
+    {
+      "id": "sampelly-2016",
+      "name": "Sampelly Satyanarayana Rao v. Indian Renewable Energy Development Agency",
+      "citation": "(2016) 10 SCC 458",
+      "year": 2016,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "debt-liability"
+      ],
+      "construes": [
+        "ni:sec_138"
+      ],
+      "holding": "Cheques issued towards future instalments/security can still represent a subsisting debt or liability for s.138.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/sampelly-satyanarayana-rao-v-indian-renewable-energy-development-agency-2016.pdf",
+      "akn": "caselaw/akn/sampelly-satyanarayana-rao-v-indian-renewable-energy-development-agency-2016.akn.xml",
+      "decided": "2016-09-19",
+      "source_status": "ok"
+    },
+    {
+      "id": "k-bhaskaran-1999",
+      "name": "K. Bhaskaran v. Sankaran Vaidhyan Balan",
+      "citation": "(1999) 7 SCC 510",
+      "year": 1999,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "notice",
+        "jurisdiction"
+      ],
+      "construes": [
+        "ni:sec_138",
+        "ni:sec_142"
+      ],
+      "holding": "Identified the five component acts making up the cause of action under s.138 (drawing, presentment, dishonour, notice, failure to pay).",
+      "status": "good-law",
+      "note": "The jurisdictional 'any of five places' aspect was later narrowed by Dashrath Rupsingh and then reset by the 2015 amendment.",
+      "source_pdf": "caselaw/sources/k-bhaskaran-v-sankaran-vaidhyan-balan-1999.pdf",
+      "akn": "caselaw/akn/k-bhaskaran-v-sankaran-vaidhyan-balan-1999.akn.xml",
+      "decided": "1999-09-29",
+      "source_status": "ok"
+    },
+    {
+      "id": "cc-alavi-haji-2007",
+      "name": "C.C. Alavi Haji v. Palapetty Muhammed",
+      "citation": "(2007) 6 SCC 555",
+      "year": 2007,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "notice"
+      ],
+      "construes": [
+        "genclauses:sec_27",
+        "ni:sec_138"
+      ],
+      "holding": "Deemed service of the s.138 demand notice under s.27 General Clauses Act — a notice returned 'unclaimed' is deemed served; the drawer may still avoid liability by paying within 15 days of receiving the summons.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/cc-alavi-haji-v-palapetty-muhammed-2007.pdf",
+      "akn": "caselaw/akn/cc-alavi-haji-v-palapetty-muhammed-2007.akn.xml",
+      "decided": "2007-05-18",
+      "source_status": "ok"
+    },
+    {
+      "id": "msr-leathers-2013",
+      "name": "MSR Leathers v. S. Palaniappan",
+      "citation": "(2013) 1 SCC 177",
+      "year": 2013,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "notice"
+      ],
+      "construes": [
+        "ni:sec_138",
+        "ni:sec_142"
+      ],
+      "holding": "A payee may present the cheque repeatedly and issue successive notices; a prosecution can be based on any subsequent dishonour.",
+      "status": "good-law",
+      "relations": [
+        {
+          "rel": "overrules",
+          "to": "sadanandan-bhadran-1998"
+        }
+      ],
+      "source_pdf": "caselaw/sources/msr-leathers-v-s-palaniappan-2013.pdf",
+      "akn": "caselaw/akn/msr-leathers-v-s-palaniappan-2013.akn.xml",
+      "decided": "2013-09-10",
+      "source_status": "ok"
+    },
+    {
+      "id": "sadanandan-bhadran-1998",
+      "name": "Sadanandan Bhadran v. Madhavan Sunil Kumar",
+      "citation": "(1998) 6 SCC 514",
+      "year": 1998,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "notice"
+      ],
+      "construes": [
+        "ni:sec_138"
+      ],
+      "holding": "Had held that only one cause of action arises per cheque.",
+      "status": "overruled",
+      "relations": [
+        {
+          "rel": "superseded-by",
+          "to": "msr-leathers-2013",
+          "note": "overruled by MSR Leathers (2013)"
+        }
+      ],
+      "source_pdf": "caselaw/sources/sadanandan-bhadran-v-madhavan-sunil-kumar-1998.pdf",
+      "akn": "caselaw/akn/sadanandan-bhadran-v-madhavan-sunil-kumar-1998.akn.xml",
+      "decided": "1998-08-28",
+      "source_status": "ok"
+    },
+    {
+      "id": "yogendra-pratap-2014",
+      "name": "Yogendra Pratap Singh v. Savitri Pandey",
+      "citation": "(2014) 10 SCC 713",
+      "year": 2014,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "notice",
+        "procedure"
+      ],
+      "construes": [
+        "ni:sec_138",
+        "ni:sec_142"
+      ],
+      "holding": "No cognizance can be taken before the 15-day notice period expires; a complaint filed prematurely is not maintainable.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/yogendra-pratap-singh-v-savitri-pandey-2014.pdf",
+      "akn": "caselaw/akn/yogendra-pratap-singh-v-savitri-pandey-2014.akn.xml",
+      "decided": "2014-09-19",
+      "source_status": "ok"
+    },
+    {
+      "id": "gajanand-burange-2022",
+      "name": "Gajanand Burange v. Laxmi Chand Goyal",
+      "citation": "2022 SCC OnLine SC 1711",
+      "year": 2022,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "notice"
+      ],
+      "construes": [
+        "ni:sec_138",
+        "ni:sec_142"
+      ],
+      "holding": "A complaint filed before expiry of the 15-day notice period is non-maintainable; a fresh complaint may be filed within the s.142(b) window with delay condoned for sufficient cause.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/gajanand-burange-v-laxmi-chand-goyal-2022.pdf",
+      "akn": "caselaw/akn/gajanand-burange-v-laxmi-chand-goyal-2022.akn.xml",
+      "decided": "2022-08-12",
+      "source_status": "ok"
+    },
+    {
+      "id": "dashrath-rupsingh-2014",
+      "name": "Dashrath Rupsingh Rathod v. State of Maharashtra",
+      "citation": "(2014) 9 SCC 129",
+      "year": 2014,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "jurisdiction"
+      ],
+      "construes": [
+        "ni:sec_142"
+      ],
+      "holding": "Fixed territorial jurisdiction at the place where the drawee bank (on which the cheque was drawn) is located.",
+      "status": "legislatively-superseded",
+      "relations": [
+        {
+          "rel": "superseded-by",
+          "to": "2015 NI (Amendment) Act",
+          "note": "jurisdiction reset to payee's bank branch (s.142(2)/s.142A)"
+        }
+      ],
+      "source_pdf": "caselaw/sources/dashrath-rupsingh-rathod-v-state-of-maharashtra-2014.pdf",
+      "akn": "caselaw/akn/dashrath-rupsingh-rathod-v-state-of-maharashtra-2014.akn.xml",
+      "decided": "2014-08-01",
+      "source_status": "ok"
+    },
+    {
+      "id": "bridgestone-2016",
+      "name": "Bridgestone India Pvt Ltd v. Inderpal Singh",
+      "citation": "(2016) 2 SCC 521",
+      "year": 2016,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "jurisdiction"
+      ],
+      "construes": [
+        "ni:sec_142",
+        "ni:sec_142A"
+      ],
+      "holding": "Upheld the 2015 amendment; jurisdiction lies where the payee's/holder's bank branch is situated, and s.142A validates transfer of pending cases.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/bridgestone-india-v-inderpal-singh-2016.pdf",
+      "akn": "caselaw/akn/bridgestone-india-v-inderpal-singh-2016.akn.xml",
+      "decided": "2015-11-24",
+      "source_status": "ok"
+    },
+    {
+      "id": "ac-narayanan-2014",
+      "name": "A.C. Narayanan v. State of Maharashtra",
+      "citation": "(2014) 11 SCC 790",
+      "year": 2014,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "complainant"
+      ],
+      "construes": [
+        "ni:sec_142",
+        "ni:sec_145"
+      ],
+      "holding": "A power-of-attorney holder can file the complaint and depose, provided he has personal knowledge of the transaction and is duly authorised.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/ac-narayanan-v-state-of-maharashtra-2014.pdf",
+      "akn": "caselaw/akn/ac-narayanan-v-state-of-maharashtra-2014.akn.xml",
+      "decided": "2013-09-13",
+      "source_status": "ok"
+    },
+    {
+      "id": "trl-krosaki-2022",
+      "name": "TRL Krosaki Refractories Ltd v. SMS Asia Pvt Ltd",
+      "citation": "(2022) 7 SCC 612",
+      "year": 2022,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "complainant"
+      ],
+      "construes": [
+        "ni:sec_142"
+      ],
+      "holding": "A company's complaint may be filed and deposed to by an authorised employee; authorisation is presumed unless specifically disputed.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/trl-krosaki-refractories-v-sms-asia-2022.pdf",
+      "akn": "caselaw/akn/trl-krosaki-refractories-v-sms-asia-2022.akn.xml",
+      "decided": "2022-02-22",
+      "source_status": "ok"
+    },
+    {
+      "id": "sms-pharma-2005",
+      "name": "S.M.S. Pharmaceuticals Ltd v. Neeta Bhalla",
+      "citation": "(2005) 8 SCC 89",
+      "year": 2005,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "company-liability"
+      ],
+      "construes": [
+        "ni:sec_141"
+      ],
+      "holding": "A complaint must specifically aver that the director was in charge of, and responsible to the company for, the conduct of its business at the relevant time.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/sms-pharmaceuticals-v-neeta-bhalla-2005.pdf",
+      "akn": "caselaw/akn/sms-pharmaceuticals-v-neeta-bhalla-2005.akn.xml",
+      "decided": "2005-09-20",
+      "source_status": "ok"
+    },
+    {
+      "id": "nsic-harmeet-2010",
+      "name": "National Small Industries Corp Ltd v. Harmeet Singh Paintal",
+      "citation": "(2010) 3 SCC 330",
+      "year": 2010,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "company-liability"
+      ],
+      "construes": [
+        "ni:sec_141"
+      ],
+      "holding": "Reiterated the specific-averment requirement; the position of a managing director/signatory differs from that of an ordinary director.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/national-small-industries-corp-v-harmeet-singh-paintal-2010.pdf",
+      "akn": "caselaw/akn/national-small-industries-corp-v-harmeet-singh-paintal-2010.akn.xml",
+      "decided": "2010-02-15",
+      "source_status": "ok"
+    },
+    {
+      "id": "aneeta-hada-2012",
+      "name": "Aneeta Hada v. Godfather Travels & Tours Pvt Ltd",
+      "citation": "(2012) 5 SCC 661",
+      "year": 2012,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "company-liability"
+      ],
+      "construes": [
+        "ni:sec_141"
+      ],
+      "holding": "For vicarious liability under s.141 the company must be arraigned as an accused; a director cannot be convicted without the company being prosecuted.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/aneeta-hada-v-godfather-travels-tours-2012.pdf",
+      "akn": "caselaw/akn/aneeta-hada-v-godfather-travels-tours-2012.akn.xml",
+      "decided": "2012-04-27",
+      "source_status": "ok"
+    },
+    {
+      "id": "gunmala-sales-2015",
+      "name": "Gunmala Sales Pvt Ltd v. Anu Mehta",
+      "citation": "(2015) 1 SCC 103",
+      "year": 2015,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "company-liability",
+        "compounding"
+      ],
+      "construes": [
+        "ni:sec_141"
+      ],
+      "holding": "Laid down guidelines on when a High Court may quash s.141 proceedings against a director.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/gunmala-sales-v-anu-mehta-2015.pdf",
+      "akn": "caselaw/akn/gunmala-sales-v-anu-mehta-2015.akn.xml",
+      "decided": "2014-10-17",
+      "source_status": "ok"
+    },
+    {
+      "id": "sunita-palita-2022",
+      "name": "Sunita Palita v. Panchami Stone Quarry",
+      "citation": "(2022) 10 SCC 152",
+      "year": 2022,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "company-liability"
+      ],
+      "construes": [
+        "ni:sec_141"
+      ],
+      "holding": "Non-executive and independent directors cannot be roped in without specific averments and material showing their role in the conduct of business.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/sunita-palita-v-panchami-stone-quarry-2022.pdf",
+      "akn": "caselaw/akn/sunita-palita-v-panchami-stone-quarry-2022.akn.xml",
+      "decided": "2022-08-01",
+      "source_status": "ok"
+    },
+    {
+      "id": "sp-mani-2022",
+      "name": "S.P. Mani & Mohan Dairy v. Snehalatha Elangovan",
+      "citation": "2022 SCC OnLine SC 1238",
+      "year": 2022,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "company-liability"
+      ],
+      "construes": [
+        "ni:sec_141"
+      ],
+      "holding": "A partner's vicarious liability requires an averment/showing that the partner was in charge of and responsible for the firm's business at the relevant time.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/sp-mani-mohan-dairy-v-snehalatha-elangovan-2022.pdf",
+      "akn": "caselaw/akn/sp-mani-mohan-dairy-v-snehalatha-elangovan-2022.akn.xml",
+      "decided": "2022-09-16",
+      "source_status": "ok"
+    },
+    {
+      "id": "dilip-hariramani-2022",
+      "name": "Dilip Hariramani v. Bank of Baroda",
+      "citation": "2022 SCC OnLine SC 579",
+      "year": 2022,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "company-liability"
+      ],
+      "construes": [
+        "ni:sec_141"
+      ],
+      "holding": "The firm/company must itself be prosecuted; a partner cannot be convicted merely as a signatory or guarantor without the firm being an accused.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/dilip-hariramani-v-bank-of-baroda-2022.pdf",
+      "akn": "caselaw/akn/dilip-hariramani-v-bank-of-baroda-2022.akn.xml",
+      "decided": "2022-05-09",
+      "source_status": "ok"
+    },
+    {
+      "id": "siby-thomas-2023",
+      "name": "Siby Thomas v. M/s Somany Ceramics Ltd",
+      "citation": "2023 SCC OnLine SC 1299",
+      "year": 2023,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "company-liability"
+      ],
+      "construes": [
+        "ni:sec_141"
+      ],
+      "holding": "A bare reproduction of the statutory words is not enough; the complaint must contain a clear averment of the accused's role in the conduct of business.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/siby-thomas-v-somany-ceramics-2023.pdf",
+      "akn": "caselaw/akn/siby-thomas-v-somany-ceramics-2023.akn.xml",
+      "neutral_citation": "2023 INSC 890",
+      "decided": "2023-10-10",
+      "source_status": "ok"
+    },
+    {
+      "id": "mandvi-coop-2010",
+      "name": "Mandvi Cooperative Bank Ltd v. Nimesh B. Thakore",
+      "citation": "(2010) 3 SCC 83",
+      "year": 2010,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "procedure"
+      ],
+      "construes": [
+        "ni:sec_145"
+      ],
+      "holding": "Explains the scope of s.145 (evidence on affidavit); the accused cannot insist on the complainant being examined-in-chief in court as of right.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/mandvi-cooperative-bank-v-nimesh-b-thakore-2010.pdf",
+      "akn": "caselaw/akn/mandvi-cooperative-bank-v-nimesh-b-thakore-2010.akn.xml",
+      "decided": "2010-01-11",
+      "source_status": "ok"
+    },
+    {
+      "id": "indian-bank-assn-2014",
+      "name": "Indian Bank Association v. Union of India",
+      "citation": "(2014) 5 SCC 590",
+      "year": 2014,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "procedure"
+      ],
+      "construes": [
+        "ni:sec_143",
+        "ni:sec_144"
+      ],
+      "holding": "Issued omnibus directions for speedy disposal of s.138 cases (form and service of summons, one-day evidence, use of technology).",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/indian-bank-association-v-union-of-india-2014.pdf",
+      "akn": "caselaw/akn/indian-bank-association-v-union-of-india-2014.akn.xml",
+      "decided": "2014-01-21",
+      "source_status": "ok"
+    },
+    {
+      "id": "meters-instruments-2018",
+      "name": "Meters and Instruments Pvt Ltd v. Kanchan Mehta",
+      "citation": "(2018) 1 SCC 560",
+      "year": 2018,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "procedure",
+        "compounding",
+        "sentencing"
+      ],
+      "construes": [
+        "ni:sec_143",
+        "ni:sec_147",
+        "constitution:art_142"
+      ],
+      "holding": "Treated the offence as primarily compensatory and suggested a court could close proceedings on payment even without the complainant's consent.",
+      "status": "partly-overruled",
+      "relations": [
+        {
+          "rel": "partly-overruled-by",
+          "to": "expeditious-trial-2021",
+          "note": "suo-motu closure / s.258 point held not good law"
+        }
+      ],
+      "source_pdf": "caselaw/sources/meters-and-instruments-v-kanchan-mehta-2018.pdf",
+      "akn": "caselaw/akn/meters-and-instruments-v-kanchan-mehta-2018.akn.xml",
+      "decided": "2017-10-05",
+      "source_status": "ok"
+    },
+    {
+      "id": "expeditious-trial-2021",
+      "name": "In re Expeditious Trial of Cases under Section 138 of NI Act, 1881",
+      "citation": "(2021) 16 SCC 116",
+      "year": 2021,
+      "court": "SC",
+      "bench": 5,
+      "topics": [
+        "procedure"
+      ],
+      "construes": [
+        "ni:sec_143",
+        "ni:sec_142",
+        "constitution:art_21",
+        "constitution:art_142"
+      ],
+      "holding": "Constitution Bench: clarified that s.258 CrPC closure is not available in s.138 complaint cases (disapproving Meters & Instruments on that point), addressed service of summons and a single inquiry for multiple complaints, and directed High Courts to frame rules for expeditious trial.",
+      "status": "good-law",
+      "relations": [
+        {
+          "rel": "overrules",
+          "to": "meters-instruments-2018",
+          "note": "on the s.258 suo-motu closure point only"
+        }
+      ],
+      "source_pdf": "caselaw/sources/in-re-expeditious-trial-s138-2021.pdf",
+      "akn": "caselaw/akn/in-re-expeditious-trial-s138-2021.akn.xml",
+      "decided": "2022-05-19",
+      "source_status": "ok"
+    },
+    {
+      "id": "damodar-prabhu-2010",
+      "name": "Damodar S. Prabhu v. Sayed Babalal H",
+      "citation": "(2010) 5 SCC 663",
+      "year": 2010,
+      "court": "SC",
+      "bench": 3,
+      "topics": [
+        "compounding"
+      ],
+      "construes": [
+        "ni:sec_147",
+        "bnss:sec_359",
+        "constitution:art_142"
+      ],
+      "holding": "Laid down graded-cost guidelines to encourage early compounding of s.138 offences, invoking Article 142.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/damodar-s-prabhu-v-sayed-babalal-h-2010.pdf",
+      "akn": "caselaw/akn/damodar-s-prabhu-v-sayed-babalal-h-2010.akn.xml",
+      "decided": "2010-05-03",
+      "source_status": "ok"
+    },
+    {
+      "id": "jik-industries-2012",
+      "name": "JIK Industries Ltd v. Amarlal V. Jumani",
+      "citation": "(2012) 3 SCC 255",
+      "year": 2012,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "compounding"
+      ],
+      "construes": [
+        "ni:sec_147"
+      ],
+      "holding": "Compounding under s.147 read with s.320 CrPC ordinarily requires the consent of the complainant.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/jik-industries-v-amarlal-jumani-2012.pdf",
+      "akn": "caselaw/akn/jik-industries-v-amarlal-jumani-2012.akn.xml",
+      "decided": "2012-02-01",
+      "source_status": "ok"
+    },
+    {
+      "id": "raj-reddy-kallem-2024",
+      "name": "Raj Reddy Kallem v. State of Haryana",
+      "citation": "2024 SCC OnLine SC 3223",
+      "year": 2024,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "compounding"
+      ],
+      "construes": [
+        "ni:sec_147",
+        "constitution:art_142"
+      ],
+      "holding": "The Supreme Court may quash a s.138 conviction on the accused compensating the complainant even without the complainant's consent, using Article 142 — distinguishing 'quashing' from statutory 'compounding'.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/raj-reddy-kallem-v-state-of-haryana-2024.pdf",
+      "akn": "caselaw/akn/raj-reddy-kallem-v-state-of-haryana-2024.akn.xml",
+      "decided": "2024-04-08",
+      "source_status": "ok"
+    },
+    {
+      "id": "new-win-export-2024",
+      "name": "New Win Export v. A. Subramaniam",
+      "citation": "2024 SCC OnLine SC 535",
+      "year": 2024,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "compounding",
+        "sentencing"
+      ],
+      "construes": [
+        "ni:sec_147"
+      ],
+      "holding": "Reiterated that dishonour is a regulatory offence and that courts should encourage compounding.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/new-win-export-v-a-subramaniam-2024.pdf",
+      "akn": "caselaw/akn/new-win-export-v-a-subramaniam-2024.akn.xml",
+      "neutral_citation": "2024 INSC 535",
+      "decided": "2024-07-11",
+      "source_status": "ok"
+    },
+    {
+      "id": "gj-raja-2019",
+      "name": "G.J. Raja v. Tejraj Surana",
+      "citation": "(2019) 21 SCC 41",
+      "year": 2019,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "interim-compensation"
+      ],
+      "construes": [
+        "ni:sec_143A",
+        "constitution:art_20"
+      ],
+      "holding": "Section 143A (interim compensation up to 20%) is prospective only and does not apply to offences committed before its insertion.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/gj-raja-v-tejraj-surana-2019.pdf",
+      "akn": "caselaw/akn/gj-raja-v-tejraj-surana-2019.akn.xml",
+      "decided": "2019-07-30",
+      "source_status": "ok"
+    },
+    {
+      "id": "surinder-deswal-2019",
+      "name": "Surinder Singh Deswal v. Virender Gandhi",
+      "citation": "(2019) 11 SCC 341",
+      "year": 2019,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "appeal-deposit"
+      ],
+      "construes": [
+        "ni:sec_148"
+      ],
+      "holding": "Section 148 (deposit of minimum 20% to maintain an appeal) applies to appeals even where the cheque pre-dates the amendment; the appellate 'may' is ordinarily to be read as 'shall'.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/surinder-singh-deswal-v-virender-gandhi-2019.pdf",
+      "akn": "caselaw/akn/surinder-singh-deswal-v-virender-gandhi-2019.akn.xml",
+      "decided": "2020-01-08",
+      "source_status": "ok"
+    },
+    {
+      "id": "jamboo-bhandari-2023",
+      "name": "Jamboo Bhandari v. M.P. State Industrial Development Corp Ltd",
+      "citation": "2023 SCC OnLine SC 1229",
+      "year": 2023,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "appeal-deposit"
+      ],
+      "construes": [
+        "ni:sec_148"
+      ],
+      "holding": "The s.148 deposit is not automatic; the appellate court must apply its mind and record reasons, and may waive the deposit in appropriate/exceptional cases.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/jamboo-bhandari-v-mp-state-industrial-development-corp-2023.pdf",
+      "akn": "caselaw/akn/jamboo-bhandari-v-mp-state-industrial-development-corp-2023.akn.xml",
+      "decided": "2023-09-04",
+      "source_status": "ok",
+      "neutral_citation": "2023 INSC 822"
+    },
+    {
+      "id": "kaushalya-devi-2011",
+      "name": "Kaushalya Devi Massand v. Roopkishore Khore",
+      "citation": "(2011) 4 SCC 593",
+      "year": 2011,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "sentencing"
+      ],
+      "construes": [
+        "ni:sec_138",
+        "ni:sec_147"
+      ],
+      "holding": "The s.138 offence is quasi-criminal and primarily compensatory in character.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/kaushalya-devi-massand-v-roopkishore-khore-2011.pdf",
+      "akn": "caselaw/akn/kaushalya-devi-massand-v-roopkishore-khore-2011.akn.xml",
+      "decided": "2011-03-15",
+      "source_status": "ok"
+    },
+    {
+      "id": "r-vijayan-2012",
+      "name": "R. Vijayan v. Baby",
+      "citation": "(2012) 1 SCC 260",
+      "year": 2012,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "sentencing"
+      ],
+      "construes": [
+        "ni:sec_138",
+        "crpc:sec_357",
+        "bnss:sec_395"
+      ],
+      "holding": "Compensation should ordinarily be awarded in s.138 cases, generally keyed to the cheque amount with interest and costs.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/r-vijayan-v-baby-2012.pdf",
+      "akn": "caselaw/akn/r-vijayan-v-baby-2012.akn.xml",
+      "decided": "2011-10-11",
+      "source_status": "ok"
+    },
+    {
+      "id": "suganthi-2002",
+      "name": "Suganthi Suresh Kumar v. Jagdeeshan",
+      "citation": "(2002) 2 SCC 420",
+      "year": 2002,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "sentencing"
+      ],
+      "construes": [
+        "ni:sec_138"
+      ],
+      "holding": "Courts should not lightly reduce sentence or compensation below the norm in cheque-dishonour cases.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/suganthi-suresh-kumar-v-jagdeeshan-2002.pdf",
+      "akn": "caselaw/akn/suganthi-suresh-kumar-v-jagdeeshan-2002.akn.xml",
+      "decided": "2002-01-15",
+      "source_status": "ok"
+    },
+    {
+      "id": "sanjabij-tari-2025",
+      "name": "Sanjabij Tari v. State (and connected matters)",
+      "citation": "2025",
+      "year": 2025,
+      "court": "SC",
+      "bench": 2,
+      "topics": [
+        "sentencing"
+      ],
+      "construes": [
+        "probation:sec_4",
+        "ni:sec_138"
+      ],
+      "holding": "Directs courts to consider the Probation of Offenders Act, 1958 in appropriate s.138 cases when sentencing.",
+      "status": "good-law",
+      "source_pdf": "caselaw/sources/sanjabij-tari-v-kishore-s-borcar-2025.pdf",
+      "akn": "caselaw/akn/sanjabij-tari-v-kishore-s-borcar-2025.akn.xml",
+      "neutral_citation": "2025 INSC 1158",
+      "decided": "2025-09-25",
+      "source_status": "ok"
+    }
+  ],
+  "corpus": {
+    "akn_dir": "caselaw/akn/",
+    "sources_dir": "caselaw/sources/",
+    "akn_count": 43,
+    "note": "Each case with source_status 'ok' has an Akoma Ntoso judgment at 'akn' (paths are relative to the data/ root) converted from the Indian Kanoon / Supreme Court text export in 'source_pdf'. All cases are linked.",
+    "needs_recollection": []
+  }
+}

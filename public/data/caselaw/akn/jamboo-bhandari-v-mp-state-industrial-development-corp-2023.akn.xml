@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/judgment/2023/jamboo-bhandari-2023/!main"/>
+          <FRBRuri value="/akn/in/judgment/2023/jamboo-bhandari-2023"/>
+          <FRBRalias value="Jamboo Bhandari v. M.P. State Industrial Development Corp Ltd" name="caseName"/>
+          <FRBRdate date="2023-09-04" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value="2023 INSC 822"/>
+          <FRBRname value="Jamboo Bhandari v. M.P. State Industrial Development Corp Ltd"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/judgment/2023/jamboo-bhandari-2023/eng@/!main"/>
+          <FRBRuri value="/akn/in/judgment/2023/jamboo-bhandari-2023/eng@"/>
+          <FRBRdate date="2023-09-04" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/judgment/2023/jamboo-bhandari-2023/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/judgment/2023/jamboo-bhandari-2023/eng@.akn"/>
+          <FRBRdate date="2026-07-25" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="sc-india" href="/ontology/organization/in/supreme-court" showAs="Supreme Court of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the text export of Jamboo Bhandari v. M.P. State Industrial Development Corp Ltd (indiankanoon.org/doc/102931853). Running headers, page furniture and reporter apparatus were stripped during extraction. Numbered paragraphs follow the reported judgment. The introduction/motivation/decision split is a best-effort structural segmentation. Verify against the official record before authoritative use.</p></note>
+      </notes>
+      <proprietary source="#pucar" xmlns:pucar="https://pucar.org/ns">
+        <pucar:caseId>jamboo-bhandari-2023</pucar:caseId>
+        <pucar:status>good-law</pucar:status>
+        <pucar:benchSize>2</pucar:benchSize>
+        <pucar:reportable>false</pucar:reportable>
+      </proprietary>
+    </meta>
+    <header>
+      <p class="court"><courtType refersTo="#sc-india">Supreme Court of India</courtType></p>
+      <p class="docketNumber"><docketNumber>CRIMINAL APPEAL NO(S). 2741 OF 2023</docketNumber></p>
+      <p class="parties">Jamboo Bhandari v. M.P. State Industrial Development Corp Ltd</p>
+      <p class="neutralCitation"><neutralCitation>2023 INSC 822</neutralCitation></p>
+      <p class="reportCitation">2023 SCC OnLine SC 1229</p>
+      <p class="judgmentDate"><date date="2023-09-04" refersTo="#judgmentDate">2023-09-04</date></p>
+      <p class="author">Author: Abhay S. Oka</p>
+      <p class="bench">Bench: Pankaj Mithal, Abhay S. Oka</p>
+    </header>
+    <judgmentBody>
+      <introduction eId="intro_1">
+        <p>Leave granted.</p>
+      </introduction>
+      <motivation eId="motiv_1">
+          <paragraph eId="para_2">
+            <num>2.</num>
+            <content><p>Heard learned counsel appearing for the parties.</p></content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num>3.</num>
+            <content><p>The appellants in these two appeals were the accused before the learned Judicial Magistrate who tried them on a complaint filed by the respondent No. 1 under Section 138 of the Negotiable Instruments Act, 1881 (for short “N.I. Act”). The learned Magistrate convicted the appellants and directed them to pay the cheque amount of Rs. 2,52,36,985/- with interest thereon @ 9% per annum. An appeal was preferred by the appellants before the Sessions Court. Relying upon Section 148 of the N.I. Act, the Sessions Court granted relief under Section 389 of the Code of Criminal Procedure, 1973 (for short “Cr.P.C.”) subject to condition of appellants depositing 20% of the amount of compensation. Vide the impugned judgment, the High Court has confirmed the order of the Sessions Court.</p></content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num>4.</num>
+            <content><p>The High Court relied upon the decision of this Court in the case of Surinder Singh Deswal Alias Colonel S.S. Deswal and Others v. Virender Gandhi1. The High Court proceeded on the footing that, as this Court has interpreted the word “may” appearing in Section 148 as “shall”, the relief of suspension of sentence under Section 389 of the Cr.P.C. can be granted only by directing the accused to deposit minimum of 20% of the compensation/fine amount.</p></content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num>5.</num>
+            <content><p>The paragraph ‘8’ of the decision of this Court in the case of Surinder Singh Deswal Alias Colonel S.S. Deswal and Others1 reads thus: - “8. Now so far as the submission on behalf of the appellants that even considering the language used in Section 148 of the NI Act as amended, the appellate court “may” order the appellant to deposit such sum which shall be a minimum of 20% of the fine or compensation awarded by the trial court and the word used is not “shall” and therefore the discretion is vested with the first appellate court has construed it as mandatory, which according to the learned Senior Advocate for the appellants would be contrary to the provisions of Section 148 of the NI Act as amended is concerned, considering the amended Section 148 of the NI Act as a whole to be read with the Statement of Objects and Reasons of the amending Section 148 of the NI Act, the word used is “may”, it is generally to be construed as a “rule” or “shall” and not to direct to deposit by the appellate court is an exception for which special reasons are to be assigned. Therefore amended Section 148 of the NI Act confers power upon the appellate court to pass an order pending appeal to direct the appellant-accused to deposit the sum which shall not be less than 20% of the fine or compensation either on an application filed by the original complainant or even on the application file by the appellant-accused under Section 389 CrPC to suspend the sentence. The aforesaid is required to be construed considering the fact that as per the amended Section 148 of the NI Act, a minimum of 20% of the fine or compensation awarded by the trial court is directed to be deposited and that such amount is to be deposited within a period of 60 days from 1 (2019) 11 SCC 341 the date of the order, or within such further period not exceeding 30 days as may be directed by the appellate court for sufficient cause shown by the appellant. Therefore, if amended Section 148 of the NI Act is purposively interpreted in Section 148 of the NI Act, but also Section 138 of the NI Act. The Negotiable Instruments Act has been amended from time to time so as to provide, inter alia, speedy disposal of cases relating to the offence of the dishonour of cheques. So as to see that due to delay tactics by the unscrupulous drawers of the dishonoured cheques due to easy filing of the appeals and obtaining stay in the proceedings, an injustice was caused to the payee of a dishonoured cheque, who has to spend considerable time and resources in the court proceedings to realise the value of the cheque and having observed that such delay has compromised the sanctity of the cheque transactions. Parliament has thought it fit to amend Section 148 of the NI Act. Therefore, such a purposive interpretation would be in furtherance of the Objects and Reasons of the amendment in Section 148 of the NI Act and also Section 138 of the NI Act. (underline supplied)”</p></content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num>6.</num>
+            <content><p>What is held by this Court is that a purposive interpretation should be made of Section 148 of the N.I. Act. Hence, normally, Appellate Court will be justified in imposing the condition of deposit as provided in Section 148. However, in a case where the Appellate Court is satisfied that the condition of deposit of 20% will be unjust or imposing such a condition will amount to deprivation of the right of appeal of the appellant, exception can be made for the reasons specifically recorded.</p></content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num>7.</num>
+            <content><p>Therefore, when Appellate Court considers the prayer under Section 389 of the Cr.P.C. of an accused who has been convicted for offence under Section 138 of the N.I. Act, it is always open for the Appellate Court to consider whether it is an exceptional case which warrants grant of suspension of sentence without imposing the condition of deposit of 20% of the fine/compensation amount. As stated earlier, if the Appellate Court comes to the conclusion that it is an exceptional case, the reasons for coming to the said conclusion must be recorded.</p></content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num>8.</num>
+            <content><p>The submission of the learned counsel appearing for the original complainant is that neither before the Sessions Court nor before the High Court, there was a plea made by the appellants that an exception may be made in these cases and the requirement of deposit or minimum 20% of the amount be dispensed with. He submits that if such a prayer was not made by the appellants, there were no reasons for the Courts to consider the said plea.</p></content>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num>9.</num>
+            <content><p>We disagree with the above submission. When an accused applies under Section 389 of the Cr.P.C. for suspension of sentence, he normally applies for grant of relief of suspension of sentence without any condition. Therefore, when a blanket order is sought by the appellants, the Court has to consider whether the case falls in exception or not.</p></content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num>10.</num>
+            <content><p>In these cases, both the Sessions Courts and the High Court have proceeded on the erroneous premise that deposit of minimum 20% amount is an absolute rule which does not accommodate any exception.</p></content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num>11.</num>
+            <content><p>The learned counsel appearing for the appellants, at this stage, states that the appellants have deposited 20% of the compensation amount. However, this is the matter to be examined by the High Court.</p></content>
+          </paragraph>
+      </motivation>
+      <decision eId="decision_1">
+          <paragraph eId="para_12">
+            <num>12.</num>
+            <content><p>In these circumstances, we set aside the impugned orders of the High Court and restore the revision petitions filed by the appellants before the High Court. We direct the parties to appear before the roster Bench of the High Court on 09.10.2023 in the morning to enable the High Court to fix a date for hearing of the revision petitions. As the contesting parties are before the Court, it will not be necessary for the High Court to issue a notice of the date fixed for hearing. The High Court, after hearing the parties, will consider whether 20% of the amount is already deposited or not. If the Court comes to the conclusion that 20% of the amount is not deposited, the Court will re-examine the Revision Petitions in the light of what we have observed in this judgment. Till the disposal of the restored Revision Petitions, the interim order passed by this Court ordering suspension of sentence will continue to operate.</p></content>
+          </paragraph>
+          <paragraph eId="para_13">
+            <num>13.</num>
+            <content><p>The appeals are allowed in above terms.</p></content>
+          </paragraph>
+          <paragraph eId="para_14">
+            <num>14.</num>
+            <content><p>Pending application(s), if any, shall stand disposed of. ..……………………………………..J. [ABHAY S. OKA] ………………………………………..J. [PANKAJ MITHAL] NEW DELHI; SEPTEMBER 04, 2023. ITEM NO.40 COURT NO.7 SECTION II-A S U P R E M E C O U R T O F I N D I A RECORD OF PROCEEDINGS Petition(s) for Special Leave to Appeal (Crl.) No(s). 4927/2023 (Arising out of impugned final judgment and order dated 30-08-2022 in CRLR No. 2764/2022 passed by the High Court Of M.P. Principal Seat At Jabalpur) JAMBOO BHANDARI Petitioner(s) VERSUS M.P. STATE INDUSTRIAL DEVELOPMENT CORPORATION LTD. &amp; ORS. Respondent(s) WITH SLP(Crl) No. 6336/2023 (II-A) (IA FOR EXEMPTION FROM FILING C/C OF THE IMPUGNED JUDGMENT ON IA 93499/2023 FOR EXEMPTION FROM FILING O.T. ON IA 93502/2023) Date : 04-09-2023 These matters were called on for hearing today. CORAM : HON'BLE MR. JUSTICE ABHAY S. OKA HON'BLE MR. JUSTICE PANKAJ MITHAL For Petitioner(s )Mr. Vinayak Bhandari, Adv. Ms. Nidhi Khanna, AOR For Respondent(s) Mr. Sushil Dutt Salwan, Sr. Adv. Mr. Pramod Dayal, AOR Mr. Arjun Garg, Adv. Mr. Nikunj Dayal, Adv. UPON hearing the counsel the Court made the following O R D E R Leave granted. The appeals are allowed in terms of the signed non-reportable judgment. Pending application(s), if any, shall stand disposed of. (POOJA SHARMA) (AVGV RAMU) COURT MASTER (SH) COURT MASTER (NSH) (Signed non-reportable judgment is placed on the file)</p></content>
+          </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

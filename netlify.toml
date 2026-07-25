@@ -1,0 +1,12 @@
+# Netlify config — static site, no build step.
+# The deployable site is the public/ folder (index.html + data/).
+
+[build]
+  publish = "public"
+  command = ""
+
+# Long-cache the immutable legal source files; the HTML stays revalidated.
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

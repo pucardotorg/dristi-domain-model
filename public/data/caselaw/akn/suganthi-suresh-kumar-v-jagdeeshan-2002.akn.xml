@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment name="judgment" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/judgment/2002/suganthi-2002/!main"/>
+          <FRBRuri value="/akn/in/judgment/2002/suganthi-2002"/>
+          <FRBRalias value="Suganthi Suresh Kumar v. Jagdeeshan" name="caseName"/>
+          <FRBRdate date="2002-01-15" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Suganthi Suresh Kumar v. Jagdeeshan"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/judgment/2002/suganthi-2002/eng@/!main"/>
+          <FRBRuri value="/akn/in/judgment/2002/suganthi-2002/eng@"/>
+          <FRBRdate date="2002-01-15" name="judgment"/>
+          <FRBRauthor href="#sc-india"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/judgment/2002/suganthi-2002/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/judgment/2002/suganthi-2002/eng@.akn"/>
+          <FRBRdate date="2026-07-25" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="sc-india" href="/ontology/organization/in/supreme-court" showAs="Supreme Court of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the text export of Suganthi Suresh Kumar v. Jagdeeshan (indiankanoon.org/doc/1651003). Running headers, page furniture and reporter apparatus were stripped during extraction. The source has no paragraph numbers; text was reflowed into paragraphs. The introduction/motivation/decision split is a best-effort structural segmentation. Verify against the official record before authoritative use.</p></note>
+      </notes>
+      <proprietary source="#pucar" xmlns:pucar="https://pucar.org/ns">
+        <pucar:caseId>suganthi-2002</pucar:caseId>
+        <pucar:status>good-law</pucar:status>
+        <pucar:benchSize>2</pucar:benchSize>
+        <pucar:reportable>false</pucar:reportable>
+      </proprietary>
+    </meta>
+    <header>
+      <p class="court"><courtType refersTo="#sc-india">Supreme Court of India</courtType></p>
+      <p class="docketNumber"><docketNumber>Appeal (crl.) 65-66 of 2002</docketNumber></p>
+      <p class="parties">Suganthi Suresh Kumar v. Jagdeeshan</p>
+      <p class="reportCitation">(2002) 2 SCC 420</p>
+      <p class="judgmentDate"><date date="2002-01-15" refersTo="#judgmentDate">2002-01-15</date></p>
+      <p class="bench">Bench: K.T. Thomas, S.N. Phukan</p>
+    </header>
+    <judgmentBody>
+      <motivation eId="motiv_1">
+          <paragraph eId="para_1">
+            <num>1.</num>
+            <content><p>granted.</p></content>
+          </paragraph>
+          <paragraph eId="para_2">
+            <num>2.</num>
+            <content><p>Appellant in this case is the complainant before the court of 9th Metropolitan Magistrate, Saidapet, Chennai. The offence pitted against the respondent was under Section 138 of the Negotiable Instruments Act. In fact there were two complaints arising out of two sets of cheques which were dishonoured by the drawee bank. The trial Magistrate after holding the respondent guilty of the offence convicted him of the aforesaid offence but sentenced him only to undergo imprisonment till rising of the court and pay a fine of Rs. 5000 in both cases. Apparently the respondent was happy and, therefore, he did not prefer any appeal. But the complainant/appellant was unhappy and, therefore, he preferred two revisions before the High Court on the premise that the sentence was grossly inadequate. He contended before the High Court that the trial Magistrate should atleast have invoked the provision under Section 357 (3) of the Code of Criminal Procedure (for short the Code). However the learned single Judge of the High Court of Madras was not inclined to interfere with the sentence passed on the respondent and, therefore, he dismissed both the revisions. Nonetheless learned single judge has chosen this opportunity to send a message to the trial Magistrates "to Keep in mind the object of providing stringent punishment and the guidelines given by the Apex Court in Pankaj Bhai Nagjibhai Patel v. State of Gujarat and Anr., [2001] 2 SCC 595"; nor did the High Court invoke Section 357(3) of the Code.</p></content>
+          </paragraph>
+          <paragraph eId="para_3">
+            <num>3.</num>
+            <content><p>Mr. KV Viswanathan, learned counsel for the petitioner invited our attention to the following observations made by this Court in K. Bhaskaran v. Sankarna Vaidhyan Balan, [1999] 7 SCC 510: "If a Judicial Magistrate of the First Class were to order compensation to the paid to the complainant from out of the fine realised the complainant will be the loser when the cheque amount exceeded the said limit. In such a case a complainant would get only the maximum amount of rupees five thousand. But the Magistrate in such cases can alleviate the grievance of the complainant by making resort to Section 357(3)</p></content>
+          </paragraph>
+          <paragraph eId="para_4">
+            <num>4.</num>
+            <content><p>Cr.PC. The Supreme Court has emphasised the need for making liberal use of the provision. No limit is mentioned in the sub-section and therefore, a Magistrate can award any sum as compensation. Of Course while fixing the quantum of such compensation the Magistrate has to consider what would be the reasonable amount of compensation payable to the complainant. Thus, even if the trial was before a Court of a Magistrate of the first Class in respect of a cheque which covers an amount of Rs. 5000 the Court has power to award compensation to be paid to the complainant."</p></content>
+          </paragraph>
+          <paragraph eId="para_5">
+            <num>5.</num>
+            <content><p>In the said decision this Court reminded all concerned that it is well to remember the emphasis laid on the need for making liberal use of Section 357(3) of the Code. This was observed by reference to a decision of this Court in [1988] 4 SCC 551 Hari Singh v. Sukbir Singh. In the said decision this Court held as follows:</p></content>
+          </paragraph>
+          <paragraph eId="para_6">
+            <num>6.</num>
+            <content><p>"The quantum of compensation may be determined by taking into account the nature of crime, the justness of the claim by the victim and the ability of accused to pay. If there are more than one accused they may be asked to pay in equal terms unless their capacity to pay varies considerably. The payment may also vary depending upon the acts of each accused. Reasonable period for payment of compensation, if necessary by instalments, may also be given. The court may enforce the order by imposing sentence in default. (emphasis supplied) Our attention has been brought to a decision rendered by a single judge of the High Court of Kerala vide Rajendran v. Jose, (2001)</p></content>
+          </paragraph>
+          <paragraph eId="para_7">
+            <num>7.</num>
+            <content><p>3 Kerala Law Times 431, Learned Judge has directed that the decision of this Court in Hari Singh v. Sukhbir Singh is not to be followed as this Court laid down the said legal proposition without adverting to Section 431 of the Code. The Single judge of the High Court of Kerala by-passed the legal proposition made by the apex Court in the following manner:</p></content>
+          </paragraph>
+          <paragraph eId="para_8">
+            <num>8.</num>
+            <content><p>"The learned Sessions judge imposed sentence in default on the basis of the observation made by the apex Court in Hari Kishan &amp; State of Haryana v. Sukhbir Singh, AIR (1988) SC 2127, that court may enforce the order by imposing sentence in default. It appears that while disposing of that appeal attention of apex Court was not drawn specifically to the provisions of S.431 Cr.P.C. providing for recovery of money (other than fine) payable by virtue of any order made under the Criminal Procedure Code."</p></content>
+          </paragraph>
+          <paragraph eId="para_9">
+            <num>9.</num>
+            <content><p>Saying so, learned single judge set aside "that part of the order passed by the sessions court directing an accused to undergo simple imprisonment for a period of six months in case of his committing default in payment of the compensation awarded." Thereafter learned single judge cited another decision of this Court in Balraj v. State of U.P., AIR (1995) SC 1935. It related to a murder case. Apart from the sentence of imprisonment this Court awarded compensation and directed the amount to be collected under Section 431 of the Code. But there is not even a remote hint in the said decision doubting the correctness of the legal proposition adopted in Hari Singh v. Sukhbir Singh. In other words, the said legal position remains in force as no other Bench of this Court has even chosen to depart from it.</p></content>
+          </paragraph>
+          <paragraph eId="para_10">
+            <num>10.</num>
+            <content><p>It is impermissible for the High Court to overrule the decision of the apex Court on the ground that Supreme Court laid down the legal position without considering any other point. It is not only a matter of discipline for the High Courts in India, it is the mandate of the Constitution as provided in Article 141 that the law declared by the Supreme Court shall be binding on all courts within the territory of India. It was pointed out by this Court in Anil Kumar Neotia v. Union of India, AIR 1988 SC 1353 that the High Court cannot question the correctness of the decision of the Supreme Court even though the point sought before the High Court was not considered by the Supreme Court. That a part, Section 431 of the Code has only prescribed that any money (other than fine) payable by virtue of an order made under the Code shall be recoverable "as if it were a fine". Two modes of the recovery of the fine have been indicated in Section 421 (1) of the Code. The proviso to the sub-section says that if the sentence directs that in default of payment of the fine, the offender shall be imprisoned, and if such offender has undergone the whole of such imprisonment in default, no court shall issue such warrant for levy of the amount.</p></content>
+          </paragraph>
+          <paragraph eId="para_11">
+            <num>11.</num>
+            <content><p>When this Court pronounced in Hari Singh v. Sukhbir Singh, (supra) that a court may enforce an order to pay compensation "by imposing a sentence in default" it is open to all courts in India to follow the said course. The said legal position would continue to hold good until it is overruled by larger Bench of this court. Hence learned single judge of High Court of Kerala has committed an impropriety by expressing that the said legal direction of this Court should not be followed by the subordinate courts in Kerala. We express our disapproval of the course adopted by the said judge in Rajendran v. Jose, (2001) 3 Kerala Law Times 431. It is unfortunate that when the Sessions judge has correctly done a course in accordance with the discipline the Single judge of the High Court has incorrectly reversed it.</p></content>
+          </paragraph>
+          <paragraph eId="para_12">
+            <num>12.</num>
+            <content><p>The total amount covered by the cheques involved in the present two cases was Rs. 4,50,000. There is no case for the respondent that the said amount had been paid either during the pendency of the cases before the trial court or revision before the High Court or this Court. If the amounts had been paid to the complainant there perhaps would have been justification for imposing a flee-bite sentence as had been chosen by the trial court. But in a case where the amount covered by the cheque remained unpaid it should be the look out of the trial Magistrates that the sentence for the offence under Section 138 should be of such a nature as to give proper effect to the object of the legislation. No drawer of the cheque can be allowed to take dishonour of the cheque issued by him light heartedly. The very object of enactment of provisions like Section 138 of the Act would stand defeated if the sentence is of the nature passed by the trial Magistrate. It is a different matter if the accused paid the amount atleast during the pendency of the case.</p></content>
+          </paragraph>
+          <paragraph eId="para_13">
+            <num>13.</num>
+            <content><p>Learned counsel for the respondent contended that the complainant has subsequently filed a civil suit and attached all the properties of the respondent. That is not a ground for lessening the gravity of the offence or to impose a minor sentence chosen by the trial court.</p></content>
+          </paragraph>
+          <paragraph eId="para_14">
+            <num>14.</num>
+            <content><p>As we propose to remit the case back to the trial court, we do not wish to indicate what exactly should be the limit of proper sentence to be passed. The trial Magistrate shall hear both sides once again in the matter of sentence and pass a sentence which is condign. We, therefore, set aside the sentence passed on the respondent and remit the case back to the trial Magistrate for passing appropriate sentence on the respondent after hearing both sides.</p></content>
+          </paragraph>
+          <paragraph eId="para_15">
+            <num>15.</num>
+            <content><p>Learned counsel for the respondent made a plea that if the respondent is able to make payment of the amount covered by the cheques he shall not be debarred from taking up the plea for mitigation of the sentence. The respondent will be entitled to make such a plea in the event of his succeeding in paying the amount covered by the cheques.</p></content>
+          </paragraph>
+      </motivation>
+      <decision eId="decision_1">
+          <paragraph eId="para_16">
+            <num>16.</num>
+            <content><p>Appeals are disposed of in the above terms.</p></content>
+          </paragraph>
+      </decision>
+    </judgmentBody>
+  </judgment>
+</akomaNtoso>

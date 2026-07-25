@@ -1,0 +1,19 @@
+# Project research / working notes — never published or tracked
+context/
+
+# Scratch & cleanup staging
+_to_delete/
+
+# OS / editor cruft
+.DS_Store
+**/.DS_Store
+Thumbs.db
+*~
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
