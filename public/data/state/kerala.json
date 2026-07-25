@@ -33,6 +33,10 @@
               {
                 "rel": "serves process issued under",
                 "to": "bnss:sec_227"
+              },
+              {
+                "rel": "operationalises the duty under",
+                "to": "police1861:sec_23"
               }
             ]
           }
@@ -155,6 +159,10 @@
               {
                 "rel": "gives effect to",
                 "to": "bnss:sec_85"
+              },
+              {
+                "rel": "executed by the police under",
+                "to": "police1861:sec_23"
               }
             ]
           }
