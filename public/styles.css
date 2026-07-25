@@ -494,6 +494,7 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .fl-case{background:#ec5d5e} .fl-national{background:#3b9eff} .fl-law{background:#ffc53d} .fl-rule{background:#0bd8b6} .fl-notification{background:#9e8cff}
 
   .flow-host{flex:1; min-height:420px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--bg); position:relative}
+  .flow-host:fullscreen{border:none; border-radius:0}
   .flow-loading{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:var(--ink-3)}
   .flow-host .empty{position:absolute; inset:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:none; text-align:center}
 

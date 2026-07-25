@@ -13,7 +13,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import ReactFlow, {
-  Background, Controls, MiniMap, Handle, Position, MarkerType,
+  Background, Controls, ControlButton, Handle, Position, MarkerType,
   getBezierPath, EdgeLabelRenderer
 } from "https://esm.sh/reactflow@11.11.4?external=react,react-dom";
 
@@ -22,10 +22,20 @@ const h = React.createElement;
 export const NODE_W = 236;
 export const NODE_H = 60;
 
-const CAT_COLOR = { case:"#ec5d5e", national:"#3b9eff", rule:"#0bd8b6", law:"#ffc53d", notification:"#9e8cff" };
 const CAT_LABEL = { case:"The offence", national:"National", rule:"State rule", law:"State Act", notification:"Notification" };
 
 let root = null;
+
+/* lucide "maximize" glyph for the fullscreen control button */
+function fullscreenIcon(){
+  return h("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor",
+    strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" },
+    h("path", { d: "M8 3H5a2 2 0 0 0-2 2v3" }),
+    h("path", { d: "M21 8V5a2 2 0 0 0-2-2h-3" }),
+    h("path", { d: "M3 16v3a2 2 0 0 0 2 2h3" }),
+    h("path", { d: "M16 21h3a2 2 0 0 0 2-2v-3" })
+  );
+}
 
 /* boxed node: a category chip (coloured dot + label) over a bold, clamped title */
 function CardNode({ data }){
@@ -103,13 +113,17 @@ export function mountFlow(container, model){
       onNodeClick: (_e, node) => { if(node.data && typeof node.data.open === "function") node.data.open(); }
     },
       h(Background, { gap: 24, size: 1, color: "rgba(130,130,140,0.24)" }),
-      h(Controls, { showInteractive: false }),
-      h(MiniMap, {
-        pannable: true, zoomable: true,
-        nodeColor: (n) => CAT_COLOR[n.data && n.data.cat] || "#777",
-        nodeStrokeWidth: 0,
-        maskColor: "rgba(0,0,0,0.4)"
-      })
+      // zoom in/out are the defaults; the fit-view button is replaced by a
+      // fullscreen toggle that expands the map to fill the whole screen.
+      h(Controls, { showInteractive: false, showFitView: false },
+        h(ControlButton, {
+          title: "Full screen",
+          onClick: () => {
+            if (document.fullscreenElement) { document.exitFullscreen(); }
+            else if (container.requestFullscreen) { container.requestFullscreen(); }
+          }
+        }, fullscreenIcon())
+      )
     )
   );
 }
