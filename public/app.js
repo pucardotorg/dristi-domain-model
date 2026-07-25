@@ -697,7 +697,7 @@ function closeModal(){ $("#modal").classList.remove("show"); document.body.style
 /* render + open an arbitrary Akoma Ntoso <act> document (used for state instruments) */
 function renderStateDoc(title, subtitle, blocks, pdfUrl){
   const nsec=blocks.filter(b=>b.t==="sec").length;
-  const unit=blocks.some(b=>b.unit==="article")?"articles":(blocks.some(b=>b.unit==="rule")?"rules":"sections");
+  const unit=blocks.some(b=>b.unit==="article")?"articles":(blocks.some(b=>b.t==="sec"&&/^rule_/.test(b.eId||""))?"rules":"sections");
   const wrap=el("div");
   wrap.appendChild(el("div","actdoc-h",
     `<div class="ad-title">${esc(title)}</div>
@@ -793,6 +793,15 @@ async function openJudgmentModal(caseId){
 }
 
 /* ============================================================ ROUTER + BOOT */
+/* nav badge for a state-object category: a count when items exist, "none" when the
+   state is modelled but has no discrete items (e.g. no amendments), else "soon". */
+function stateBadge(cat){
+  const d = STATE_DATA && STATE_DATA[cat];
+  if(!d) return `<span class="count soon">soon</span>`;
+  const n = (d.items||[]).length;
+  if(n>0) return `<span class="count">${n}</span>`;
+  return `<span class="count" style="opacity:.55">none</span>`;
+}
 function buildNav(){
   const c=caseById(activeCase);
   const nav=$("#nav");
@@ -818,9 +827,9 @@ function buildNav(){
       <div class="state-layer-note">Everything below is specific to ${st.name}.</div>
       <div class="nav-group scoped">State objects</div>
       <div class="nav-scoped">
-        <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> State amendments <span class="count soon">soon</span></a>
-        <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules <span class="count soon">soon</span></a>
-        <a data-view="notifications"><span class="ico">${ic('bell')}</span> Notifications <span class="count soon">soon</span></a>
+        <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> State amendments ${stateBadge('amendments')}</a>
+        <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules ${stateBadge('rules')}</a>
+        <a data-view="notifications"><span class="ico">${ic('bell')}</span> Notifications ${stateBadge('notifications')}</a>
       </div>
       <div class="nav-group scoped">Domain &amp; culture</div>
       <div class="nav-scoped">
