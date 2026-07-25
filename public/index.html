@@ -42,16 +42,31 @@
   body{background:var(--bg); color:var(--ink); font-family:var(--font-sans);
     font-size:15px; line-height:1.55; letter-spacing:.01em; -webkit-font-smoothing:antialiased;}
   a{color:var(--link); text-decoration:none} a:hover{text-decoration:underline}
-  .theme-toggle{display:inline-flex; gap:2px; margin:0 0 14px; background:var(--panel-2); border:1px solid var(--line); border-radius:20px; padding:3px}
-  .tt-opt{font-size:12px; padding:4px 12px; border-radius:16px; cursor:pointer; color:var(--ink-3); user-select:none}
+  .theme-toggle{display:inline-flex; gap:3px; background:var(--panel-2); border:1px solid var(--line); border-radius:20px; padding:3px}
+  .tt-opt{display:inline-flex; align-items:center; justify-content:center; width:32px; height:28px; border-radius:16px; cursor:pointer; color:var(--ink-3); user-select:none}
+  .tt-opt svg.lu{width:15px; height:15px}
   .tt-opt.on{background:var(--brand-dim); color:var(--brand-hi)}
 
   .app{display:grid; grid-template-columns:280px 1fr; min-height:100vh}
-  .sidebar{background:var(--sidebar-bg); border-right:1px solid var(--line); padding:22px 16px; position:sticky; top:0; height:100vh; overflow-y:auto}
+  .sidebar{background:var(--sidebar-bg); border-right:1px solid var(--line); padding:22px 16px; position:sticky; top:0; height:100vh; overflow-y:auto; display:flex; flex-direction:column}
+  .nav-scoped{margin-top:6px}
   .main{padding:40px 48px 120px; max-width:1180px}
-  @media(max-width:880px){.app{grid-template-columns:1fr}
-    .sidebar{position:relative; height:auto; border-right:none; border-bottom:1px solid var(--line)}
-    .main{padding:28px 20px 90px}}
+
+  /* mobile: off-canvas drawer behind a hamburger; active case type stays in the top bar */
+  .topbar{display:none}
+  .backdrop{display:none}
+  .hamburger{display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid var(--line); border-radius:9px; background:var(--panel); color:var(--ink); cursor:pointer; flex:none; padding:0}
+  .hamburger svg.lu{width:20px; height:20px}
+  @media(max-width:880px){
+    .topbar{display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:50; background:var(--sidebar-bg); border-bottom:1px solid var(--line); padding:10px 14px}
+    .tb-brand{font-weight:700; font-size:15px; letter-spacing:-.01em}
+    .tb-case{margin-left:auto; font-size:12.5px; color:var(--ink-2); background:color-mix(in srgb,var(--brand) 10%,var(--panel)); border:1px solid var(--brand-border); border-radius:20px; padding:5px 12px; max-width:52vw; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+    .app{grid-template-columns:1fr}
+    .sidebar{position:fixed; top:0; left:0; height:100dvh; width:280px; max-width:86vw; transform:translateX(-100%); transition:transform .25s ease; z-index:70; border-right:1px solid var(--line); box-shadow:var(--shadow-modal)}
+    .sidebar.open{transform:none}
+    .backdrop.show{display:block; position:fixed; inset:0; background:rgb(0 0 0/.5); z-index:65}
+    .main{padding:24px 18px 90px}
+  }
 
   .brand{display:flex; gap:11px; align-items:flex-start; margin-bottom:22px; padding:0 6px; cursor:pointer}
   .brand .mark{width:34px; height:34px; border-radius:9px; flex:none;
@@ -91,6 +106,14 @@
   .ac-eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 22%,transparent)}
   .ac-name{font-size:14.5px; font-weight:700; color:var(--ink); margin-top:4px}
   .ac-name span{color:var(--ink-3); font-weight:400; font-size:12px}
+  /* state selector — neutral styling to sit below (and distinct from) the case type */
+  .statedd{margin-top:-4px}
+  .statedd .casedd-btn{background:var(--panel); border-color:var(--line-2)}
+  .statedd .casedd-btn:hover{border-color:var(--ink-3)}
+  .statedd .ac-eyebrow{color:var(--ink-3)}
+  .statedd .ac-eyebrow::before{display:none}
+  .statedd .ac-eyebrow svg.lu{width:11px; height:11px}
+  .statedd .casedd-chev{color:var(--ink-3)}
   .casedd-menu{display:none; position:absolute; left:0; right:0; top:calc(100% + 5px); background:var(--panel); border:1px solid var(--line-2); border-radius:10px; box-shadow:var(--shadow-modal); padding:5px; z-index:30}
   .casedd.open .casedd-menu{display:block}
   .casedd-item{padding:9px 11px; border-radius:7px; cursor:pointer; font-size:13.5px; color:var(--ink); display:flex; align-items:center; gap:8px}
@@ -101,7 +124,7 @@
   .casedd-item.planned{color:var(--ink-3); cursor:default}
   .casedd-item.planned:hover{background:none}
 
-  .side-foot{margin-top:26px; padding:14px 10px 0; border-top:1px solid var(--line); font-size:12px; color:var(--ink-3); line-height:1.5}
+  .side-foot{margin-top:auto; padding:16px 10px 0; border-top:1px solid var(--line); font-size:12px; color:var(--ink-3); line-height:1.5}
   .side-foot b{color:var(--ink-2); font-weight:600}
 
   .page-title{font-size:32px; font-weight:700; margin:0 0 6px; letter-spacing:-.02em; line-height:1.15}
@@ -335,15 +358,24 @@
 </style>
 </head>
 <body>
+<div class="topbar" id="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Open menu"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+  <div class="tb-brand">DRISTI 2.0</div>
+  <div class="tb-case" id="tbCase"></div>
+</div>
+<div class="backdrop" id="backdrop"></div>
 <div class="app">
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="brand" id="brand">
       <div class="mark">D</div>
       <div><h1>DRISTI 2.0</h1><p>Domain model. Making sense of the field.</p></div>
     </div>
     <nav class="nav" id="nav"></nav>
     <div class="side-foot">
-      <div class="theme-toggle" id="themeToggle"><span class="tt-opt" data-t="light">☀ Light</span><span class="tt-opt" data-t="dark">☾ Dark</span></div>
+      <div class="theme-toggle" id="themeToggle">
+        <span class="tt-opt" data-t="light" title="Light" aria-label="Light"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span>
+        <span class="tt-opt" data-t="dark" title="Dark" aria-label="Dark"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+      </div>
     </div>
   </aside>
   <main class="main" id="main"></main>
@@ -386,7 +418,11 @@ const ICONS = {
   scale:"<path d='m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z'/><path d='m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z'/><path d='M7 21h10'/><path d='M12 3v18'/><path d='M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2'/>",
   "chevron-down":"<polyline points='6 9 12 15 18 9'/>",
   "book-open":"<path d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/><path d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 0 3-3h7z'/>",
-  "maximize-2":"<polyline points='15 3 21 3 21 9'/><polyline points='9 21 3 21 3 15'/><line x1='21' y1='3' x2='14' y2='10'/><line x1='3' y1='21' x2='10' y2='14'/>"
+  "maximize-2":"<polyline points='15 3 21 3 21 9'/><polyline points='9 21 3 21 3 15'/><line x1='21' y1='3' x2='14' y2='10'/><line x1='3' y1='21' x2='10' y2='14'/>",
+  menu:"<line x1='4' y1='6' x2='20' y2='6'/><line x1='4' y1='12' x2='20' y2='12'/><line x1='4' y1='18' x2='20' y2='18'/>",
+  sun:"<circle cx='12' cy='12' r='4'/><path d='M12 2v2'/><path d='M12 20v2'/><path d='m4.93 4.93 1.41 1.41'/><path d='m17.66 17.66 1.41 1.41'/><path d='M2 12h2'/><path d='M20 12h2'/><path d='m6.34 17.66-1.41 1.41'/><path d='m19.07 4.93-1.41 1.41'/>",
+  moon:"<path d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/>",
+  "map-pin":"<path d='M20 10c0 4.4-5.4 9-8 11-2.6-2-8-6.6-8-11a8 8 0 0 1 16 0Z'/><circle cx='12' cy='10' r='3'/>"
 };
 function ic(name){return `<svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]||""}</svg>`;}
 
@@ -397,7 +433,17 @@ const CASE_TYPES = [
 ];
 let activeCase = "active";
 let overviewOpen = false;
+let currentView = "overview";
 const OV_SUBVIEWS = ["structure","split","time"];
+
+/* ---- state / jurisdiction selector (Punjab & Haryana differ → Haryana only) -- */
+const JURISDICTIONS = [
+  {id:"kerala",  name:"Kerala"},
+  {id:"haryana", name:"Haryana"},
+  {id:"gujarat", name:"Gujarat"}
+];
+let activeState = "kerala";
+const stateById = id => JURISDICTIONS.find(s=>s.id===id) || JURISDICTIONS[0];
 const caseById = id => CASE_TYPES.find(c=>c.id===id);
 
 const DOMAIN_LABELS = {
@@ -1074,7 +1120,16 @@ async function openJudgmentModal(caseId){
 function buildNav(){
   const c=caseById(activeCase);
   const nav=$("#nav");
+  const st=stateById(activeState);
   nav.innerHTML=`
+    <div class="scoped-wrap ${overviewOpen?'':'ov-collapsed'}">
+      <a data-view="overview" class="ov-toggle"><span class="ico">${ic('home')}</span> Overview <span class="nav-chev">${ic('chevron-down')}</span></a>
+      <div class="nav-sub"><div class="nav-sub-inner">
+        <a data-view="structure" class="subnav"><span class="ico">${ic('layers')}</span> The structure</a>
+        <a data-view="split" class="subnav"><span class="ico">${ic('arrow-left-right')}</span> Shared vs State</a>
+        <a data-view="time" class="subnav"><span class="ico">${ic('history')}</span> The 2024 code switch <span class="count">${ALIAS_MAP.length}</span></a>
+      </div></div>
+    </div>
     <div class="casedd" id="casedd">
       <button class="casedd-btn" id="caseddBtn">
         <div class="ac-eyebrow">Active case type</div>
@@ -1085,18 +1140,23 @@ function buildNav(){
         ${CASE_TYPES.map(ct=>{const on=ct.id===activeCase, planned=ct.status!=="active"; return `<div class="casedd-item ${on?'on':''} ${planned?'planned':''}" data-id="${ct.id}"><span>${ct.name} <span class="ci-sub">· ${ct.act.split('·').pop().trim()}</span></span>${on?'<span class="ci-check">✓ active</span>':(planned?'<span class="ci-check" style="color:var(--ink-3)">soon</span>':'')}</div>`;}).join("")}
       </div>
     </div>
-    <div class="scoped-wrap ${overviewOpen?'':'ov-collapsed'}">
-      <a data-view="overview" class="ov-toggle"><span class="ico">${ic('home')}</span> Overview <span class="nav-chev">${ic('chevron-down')}</span></a>
-      <div class="nav-sub"><div class="nav-sub-inner">
-        <a data-view="structure" class="subnav"><span class="ico">${ic('layers')}</span> The structure</a>
-        <a data-view="split" class="subnav"><span class="ico">${ic('arrow-left-right')}</span> Shared vs State</a>
-        <a data-view="time" class="subnav"><span class="ico">${ic('history')}</span> The 2024 code switch <span class="count">${ALIAS_MAP.length}</span></a>
-      </div></div>
+    <div class="casedd statedd" id="statedd">
+      <button class="casedd-btn" id="stateBtn">
+        <div class="ac-eyebrow">${ic('map-pin')} State</div>
+        <div class="ac-name">${st.name}</div>
+        <span class="casedd-chev">${ic('chevron-down')}</span>
+      </button>
+      <div class="casedd-menu" id="stateMenu">
+        ${JURISDICTIONS.map(s=>{const on=s.id===activeState; return `<div class="casedd-item ${on?'on':''}" data-state="${s.id}"><span>${s.name}</span>${on?'<span class="ci-check">✓</span>':''}</div>`;}).join("")}
+      </div>
+    </div>
+    <div class="nav-scoped">
       <a data-view="parts"><span class="ico">${ic('library')}</span> Acts <span class="count">${isModelled()?Object.keys(SOURCES).length:'—'}</span></a>
       <a data-view="provisions"><span class="ico">${ic('file-text')}</span> Provisions <span class="count">${isModelled()?PROVISIONS.length:'—'}</span></a>
       <a data-view="words"><span class="ico">${ic('type')}</span> Vocabulary <span class="count">${isModelled()?Object.keys(TERMS).length:'—'}</span></a>
       <a data-view="caselaw"><span class="ico">${ic('scale')}</span> Case law <span class="count">${isModelled()?(CASES.length||'—'):'—'}</span></a>
     </div>`;
+  const tb=$("#tbCase"); if(tb) tb.textContent=`${c.name} · ${c.act.split('·').pop().trim()}`;
   nav.querySelectorAll("a").forEach(a=>a.onclick=()=>{
     if(a.classList.contains("ov-toggle")){
       const w=a.closest(".scoped-wrap");
@@ -1104,18 +1164,26 @@ function buildNav(){
       overviewOpen=!w.classList.contains("ov-collapsed");
     }
     go(a.dataset.view);
+    setDrawer(false);
   });
   const dd=$("#casedd",nav), btn=$("#caseddBtn",nav);
-  if(btn) btn.onclick=e=>{ e.stopPropagation(); dd.classList.toggle("open"); };
-  nav.querySelectorAll(".casedd-item").forEach(it=>it.onclick=()=>{
+  const sdd=$("#statedd",nav), sbtn=$("#stateBtn",nav);
+  if(btn) btn.onclick=e=>{ e.stopPropagation(); sdd.classList.remove("open"); dd.classList.toggle("open"); };
+  if(sbtn) sbtn.onclick=e=>{ e.stopPropagation(); dd.classList.remove("open"); sdd.classList.toggle("open"); };
+  nav.querySelectorAll(".casedd-item[data-id]").forEach(it=>it.onclick=()=>{
     const ct=caseById(it.dataset.id);
     if(ct && ct.status==="active"){ activeCase=ct.id; buildNav(); go("overview"); }
     else dd.classList.remove("open");
+  });
+  nav.querySelectorAll(".casedd-item[data-state]").forEach(it=>it.onclick=()=>{
+    activeState=it.dataset.state; sdd.classList.remove("open"); buildNav();
+    document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active", a.dataset.view===currentView));
   });
 }
 function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
 function go(view){
   if(!V[view]) view="overview";
+  currentView=view;
   if(OV_SUBVIEWS.includes(view)){
     overviewOpen=true;
     const w=document.querySelector("#nav .scoped-wrap"); if(w) w.classList.remove("ov-collapsed");
@@ -1132,6 +1200,19 @@ document.querySelectorAll(".tt-opt").forEach(o=>o.onclick=()=>setTheme(o.dataset
 setTheme("dark");
 $("#brand").onclick=()=>go("overview");
 
+/* mobile off-canvas sidebar */
+function setDrawer(open){
+  const sb=$("#sidebar"), bd=$("#backdrop");
+  if(sb) sb.classList.toggle("open",open);
+  if(bd) bd.classList.toggle("show",open);
+}
+(function(){
+  const hb=$("#hamburger"), bd=$("#backdrop");
+  if(hb) hb.onclick=()=>setDrawer(!$("#sidebar").classList.contains("open"));
+  if(bd) bd.onclick=()=>setDrawer(false);
+  const tbCase=$("#tbCase"); if(tbCase) tbCase.onclick=()=>setDrawer(true);
+})();
+
 /* delegated: open the full-Act modal from any "view-full" button */
 document.addEventListener("click",e=>{
   const b=e.target.closest(".view-full");
@@ -1141,6 +1222,7 @@ document.addEventListener("click",e=>{
   const ic=e.target.closest(".ic"); if(ic && ic.dataset.caseid){ jumpToCase(ic.dataset.caseid); return; }
   const rj=e.target.closest(".readjmt"); if(rj && rj.dataset.caseid){ openJudgmentModal(rj.dataset.caseid); return; }
   const dd=$("#casedd"); if(dd && !e.target.closest("#casedd")) dd.classList.remove("open");
+  const sdd=$("#statedd"); if(sdd && !e.target.closest("#statedd")) sdd.classList.remove("open");
 });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
 
