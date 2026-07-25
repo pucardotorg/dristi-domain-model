@@ -1445,6 +1445,60 @@
       "rel": "enacted-under-competence",
       "to": "constitution:art_246",
       "note": "Entry 46, List III (Concurrent)"
+    },
+    {
+      "from": "bnss:sec_64",
+      "rel": "served-by-police-under",
+      "to": "police1861:sec_23",
+      "note": "summons served / warrants executed by the police"
+    },
+    {
+      "from": "ni:sec_144",
+      "rel": "served-by-police-under",
+      "to": "police1861:sec_23",
+      "note": "mode of service, effected by the police"
+    },
+    {
+      "from": "police1861:sec_29",
+      "rel": "read-with",
+      "to": "police1861:sec_23",
+      "note": "penalty for neglecting the duty"
+    },
+    {
+      "from": "police1861:sec_43",
+      "rel": "read-with",
+      "to": "police1861:sec_23",
+      "note": "protection for executing the warrant"
+    },
+    {
+      "from": "police1861:sec_44",
+      "rel": "read-with",
+      "to": "police1861:sec_23",
+      "note": "the station-house record of process"
+    },
+    {
+      "from": "ni:sec_143",
+      "rel": "parties-represented-under",
+      "to": "advocates:sec_30",
+      "note": "advocates appear for the parties at the summary trial"
+    },
+    {
+      "from": "advocates:sec_29",
+      "rel": "read-with",
+      "to": "advocates:sec_30",
+      "note": "only advocates may practise"
+    },
+    {
+      "from": "advocates:sec_32",
+      "rel": "read-with",
+      "to": "advocates:sec_29",
+      "note": "court may permit a non-advocate to appear"
+    },
+    {
+      "from": "advocates:sec_35",
+      "rel": "read-with",
+      "to": "advocates:sec_30",
+      "note": "misconduct control over the advocate"
     }
   ],
   "caselaw": "caselaw/cheque-dishonour-s138.caselaw.json"
