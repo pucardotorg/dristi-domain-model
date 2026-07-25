@@ -58,7 +58,19 @@ export function mountGraph(container, model){
     canvas.width = Math.max(1,W*DPR); canvas.height = Math.max(1,H*DPR);
     canvas.style.width = W+"px"; canvas.style.height = H+"px";
     ctx.setTransform(DPR,0,0,DPR,0,0);
-    if(!userMoved){ tx = W/2; ty = H/2; reheat(0.4); }   // keep the world centred until the user pans/zooms
+    if(!userMoved){ fitView(); reheat(0.4); }            // frame all nodes until the user pans/zooms
+  }
+  // frame the whole node cloud into the viewport (with padding)
+  function fitView(){
+    if(!nodes.length || W<=0 || H<=0) return;
+    let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+    for(const n of nodes){ if(n.x<minX)minX=n.x; if(n.y<minY)minY=n.y; if(n.x>maxX)maxX=n.x; if(n.y>maxY)maxY=n.y; }
+    if(!isFinite(minX)) return;
+    const gw=(maxX-minX)||1, gh=(maxY-minY)||1;
+    const pad=Math.min(50, W*0.12, H*0.12);        // never exceed the container
+    scale = Math.max(0.05, Math.min((W-pad*2)/gw, (H-pad*2)/gh, 1.5));
+    tx = W/2 - (minX+maxX)/2*scale;
+    ty = H/2 - (minY+maxY)/2*scale;
   }
   const ro = new ResizeObserver(resize); ro.observe(container);
   resize();
@@ -67,23 +79,24 @@ export function mountGraph(container, model){
   const _t1=setTimeout(resize,250), _t2=setTimeout(resize,700);
 
   // ---- physics ----
-  const K_REPEL = 5200, K_SPRING = 0.02, SPRING_LEN = 74, GRAVITY = 0.015, DAMP = 0.86;
+  const K_REPEL = 1900, K_SPRING = 0.03, SPRING_LEN = 62, GRAVITY = 0.03, DAMP = 0.9;
   function tick(){
     if(alpha < 0.02){ return; }           // settled - stop integrating (still render on interaction)
-    // repulsion (O(n^2); fine for a few hundred nodes)
+    // repulsion (O(n^2); fine for a few hundred nodes). Force is capped (max(dist^2,36))
+    // so overlapping nodes can never produce an exploding force.
     for(let i=0;i<nodes.length;i++){
       const a=nodes[i];
       for(let j=i+1;j<nodes.length;j++){
         const b=nodes[j];
-        let dx=a.x-b.x, dy=a.y-b.y; let d2=dx*dx+dy*dy || 0.01;
-        const f = K_REPEL/d2; const d=Math.sqrt(d2);
-        const fx=dx/d*f, fy=dy/d*f;
+        let dx=a.x-b.x, dy=a.y-b.y; const dist=Math.sqrt(dx*dx+dy*dy)||0.5;
+        const f = K_REPEL/Math.max(dist*dist,36);
+        const fx=dx/dist*f, fy=dy/dist*f;
         a.vx+=fx; a.vy+=fy; b.vx-=fx; b.vy-=fy;
       }
     }
     // springs
     for(const l of links){
-      let dx=l.t.x-l.s.x, dy=l.t.y-l.s.y; const d=Math.sqrt(dx*dx+dy*dy)||0.01;
+      let dx=l.t.x-l.s.x, dy=l.t.y-l.s.y; const d=Math.sqrt(dx*dx+dy*dy)||0.5;
       const f=(d-SPRING_LEN)*K_SPRING;
       const fx=dx/d*f, fy=dy/d*f;
       l.s.vx+=fx; l.s.vy+=fy; l.t.vx-=fx; l.t.vy-=fy;
@@ -92,6 +105,7 @@ export function mountGraph(container, model){
     for(const n of nodes){
       n.vx += -n.x*GRAVITY; n.vy += -n.y*GRAVITY;
       n.vx*=DAMP; n.vy*=DAMP;
+      const sp=Math.hypot(n.vx,n.vy); if(sp>140){ n.vx=n.vx/sp*140; n.vy=n.vy/sp*140; }  // clamp: never explode
       if(n.fx!=null){ n.x=n.fx; n.y=n.fy; n.vx=n.vy=0; }
       else { n.x+=n.vx*alpha*1.6; n.y+=n.vy*alpha*1.6; }
     }
@@ -148,9 +162,12 @@ export function mountGraph(container, model){
     ctx.restore();
   }
 
-  function frame(){ tick(); draw(); _raf=requestAnimationFrame(frame); }
-  frame();
   function reheat(a=0.6){ alpha=Math.max(alpha,a); }
+  // warm up synchronously so the graph opens already laid-out (robust even if rAF is slow/throttled)
+  for(let i=0;i<80;i++) tick();
+  fitView();
+  function frame(){ tick(); if(!userMoved) fitView(); draw(); _raf=requestAnimationFrame(frame); }
+  frame();
 
   // ---- interactions ----
   let dragNode=null, panning=false, lastX=0, lastY=0, moved=false;
