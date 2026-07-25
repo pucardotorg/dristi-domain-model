@@ -527,6 +527,114 @@ V.amendments   = stateTreeView("amendments","Acts & Provisions");   // state Act
 V.staterules   = stateTreeView("rules","State rules");             // state rules, same browsable tree
 V.notifications= stateObjectView("notifications","Notifications","Government orders and court notifications that shape how a case runs locally.");
 
+/* ============================================================ THE 138 MAP (React Flow)
+   Build a {nodes, edges} model of what shapes a s138 case: the national core
+   provisions, and the active state's Acts / rules / notifications wired to the
+   national provisions they operationalise (using the made_under + edges already
+   in the data). Rendered by flow.js. */
+function gLabelNat(ref){
+  const a=SOURCES[ref.split(":")[0]];
+  if(a) return refLabel(ref);
+  const [al,eid]=ref.split(":");
+  return (eid||"").replace("sec_","§").replace("art_","Art. ").replace(/_/g," ")+" · "+al;
+}
+function openNat(ref){ const [act,eid]=ref.split(":"); if(SOURCES[act]) openActModal(act,eid); }
+function openPdf(url,title){ if(window.openPdfModal) window.openPdfModal(url,title); else window.open(url,"_blank"); }
+function buildGraphModel(){
+  const nodes=[], edges=[]; const nat={};
+  const COLX={inst:0, key:520, nat:1080};
+  const KROW=94, GAP=40;
+  function natNode(ref){
+    if(nat[ref]) return "nat:"+ref;
+    nat[ref]={id:"nat:"+ref, type:"card", position:{x:COLX.nat,y:0},
+      data:{label:gLabelNat(ref), sub:"national", cat:"national", open:SOURCES[ref.split(":")[0]]?()=>openNat(ref):null}};
+    return "nat:"+ref;
+  }
+  // the offence, at the heart
+  natNode("ni:sec_138");
+  nat["ni:sec_138"].data.cat="case";
+  nat["ni:sec_138"].data.sub="the offence";
+  // core national provisions of a s138 case, hung off the offence
+  [["ni:sec_139","presumption"],["ni:sec_142","cognizance & jurisdiction"],["ni:sec_143","summary trial"],
+   ["ni:sec_144","service of summons"],["ni:sec_145","evidence on affidavit"],["ni:sec_147","compounding"]]
+    .forEach(([ref,rel])=>{ if(SOURCES[ref.split(":")[0]] && PROVISIONS.some(p=>p.ref===ref)){ const nid=natNode(ref); edges.push({id:"core:"+nid, source:"nat:ni:sec_138", target:nid, label:rel}); } });
+
+  const D=STATE_DATA||{};
+  const insts=[...(((D.amendments||{}).items)||[]).map(x=>({...x,cat:"law"})),
+               ...(((D.rules||{}).items)||[]).map(x=>({...x,cat:"rule"}))];
+  let ky=20;
+  insts.forEach((it,ii)=>{
+    const keys=it.key||[]; const startY=ky;
+    keys.forEach(k=>{
+      const kid="key:"+ii+":"+k.eId;
+      nodes.push({id:kid, type:"card", position:{x:COLX.key,y:ky},
+        data:{label:stEidNum(k.eId)+" "+(k.label||""), sub:it.cite||"", cat:"rule",
+          open:it.akn?()=>openStateDocModal(it.akn,it.title,it.cite||"",it.pdf?(DATA_BASE+it.pdf):"",k.eId):null}});
+      edges.push({id:"in"+ii+">"+kid, source:"inst:"+ii, target:kid});
+      (k.edges||[]).forEach(e=>{ const nid=natNode(e.to); edges.push({id:kid+">"+nid, source:kid, target:nid, label:e.rel}); });
+      ky+=KROW;
+    });
+    const instY = keys.length ? (startY+(keys.length-1)*KROW/2) : ky;
+    if(!keys.length) ky+=KROW;
+    nodes.push({id:"inst:"+ii, type:"card", position:{x:COLX.inst,y:instY},
+      data:{label:it.title, sub:it.cite||(it.cat==="law"?"state Act":"state rules"), cat:it.cat,
+        open:it.akn?()=>openStateDocModal(it.akn,it.title,it.cite||"",it.pdf?(DATA_BASE+it.pdf):""):(it.pdf?()=>openPdf(DATA_BASE+it.pdf,it.title):null)}});
+    (it.made_under||[]).forEach(e=>{ const nid=natNode(e.to); edges.push({id:"in"+ii+"mu"+nid, source:"inst:"+ii, target:nid, label:e.rel||"made under"}); });
+    ky+=GAP;
+  });
+  // notifications: link to the e-filing rules instrument if present (short edge), else to the offence
+  const efiling = nodes.find(n=>/^inst:/.test(n.id) && /electronic filing/i.test(n.data.label));
+  (((D.notifications||{}).items)||[]).forEach((it,ni)=>{
+    const id="notif:"+ni;
+    const ipos = efiling ? efiling.position.y+52 : ky;
+    nodes.push({id, type:"card", position:{x:COLX.inst,y:ipos},
+      data:{label:it.title, sub:it.cite||"notification", cat:"notification", open:it.pdf?()=>openPdf(DATA_BASE+it.pdf,it.title):null}});
+    edges.push({id:id+">t", source:id, target:efiling?efiling.id:"nat:ni:sec_138", label:efiling?"operates under":"governs filing"});
+    ky+=KROW+GAP;
+  });
+  // lay the national column out to follow the flow: each provision sits at the average
+  // height of the rules that point to it (barycentric ordering), which cuts crossings.
+  const posY={}; nodes.forEach(n=>{ posY[n.id]=n.position.y; });
+  posY["nat:ni:sec_138"]=0; // pin the offence to the top
+  const natList=Object.values(nat);
+  natList.forEach(n=>{
+    if(n.id==="nat:ni:sec_138"){ n._by=-1e9; return; }
+    const ins=edges.filter(e=>e.target===n.id).map(e=>posY[e.source]).filter(y=>y!=null);
+    n._by = ins.length ? ins.reduce((a,b)=>a+b,0)/ins.length : 1e9;
+  });
+  natList.sort((a,b)=>a._by-b._by);
+  const NROW=88;
+  natList.forEach((n,i)=>{ n.position={x:COLX.nat, y:20+i*NROW}; nodes.push(n); });
+  return {nodes, edges};
+}
+function graphLegend(){
+  const items=[["case","The offence (§138)"],["national","National provision"],["law","State Act"],["rule","State rule"],["notification","Notification"]];
+  const d=el("div","flow-legend");
+  d.innerHTML=items.map(([c,l])=>`<span class="fl-item"><span class="fl-dot fl-${c}"></span>${esc(l)}</span>`).join("");
+  return d;
+}
+V.graph=()=>{
+  if(!isModelled()) return notModelled();
+  const stName=stateById(activeState).name;
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title state-title">Map of §138 ${stateInlineSelectHTML()}</h1>
+    <p class="lede">One picture of what shapes a §138 case: the <strong>national provisions</strong> at the core, and the <strong>${esc(stName)} layer</strong> - its State Acts, rules and notifications - wired to the provisions they operationalise. Drag nodes to rearrange, scroll to zoom, and click any node to open its text.</p>`;
+  m.appendChild(head);
+  m.appendChild(graphLegend());
+  const host=el("div","flow-host"); host.id="flow-root"; m.appendChild(host);
+  const sel=m.querySelector(".state-inline");
+  if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
+  setTimeout(()=>{
+    const host2=document.getElementById("flow-root"); if(!host2) return;
+    host2.innerHTML=`<div class="flow-loading"><div class="spinner"></div><p>Loading the interactive map…</p></div>`;
+    import("./flow.js")
+      .then(mod=>{ host2.innerHTML=""; mod.mountFlow(host2, buildGraphModel()); })
+      .catch(err=>{ host2.innerHTML=`<div class="empty">Couldn't load the interactive map.<br><span class="tiny">It renders with the React Flow library loaded over the network, so it needs an internet connection. ${esc(String(err&&err.message||err))}</span></div>`; });
+  },40);
+  return m;
+};
+
 /* ---- case law helpers ---- */
 function provRefShort(ref){
   const [a,eid]=ref.split(":"); const s=SOURCES[a];
@@ -999,6 +1107,9 @@ function buildNav(){
       <div class="casedd-menu" id="caseddMenu">
         ${CASE_TYPES.map(ct=>{const on=ct.id===activeCase, planned=ct.status!=="active"; return `<div class="casedd-item ${on?'on':''} ${planned?'planned':''}" data-id="${ct.id}"><span>${ct.name} <span class="ci-sub">· ${ct.act.split('·').pop().trim()}</span></span>${on?'<span class="ci-check">✓ active</span>':(planned?'<span class="ci-check" style="color:var(--ink-3)">soon</span>':'')}</div>`;}).join("")}
       </div>
+    </div>
+    <div class="nav-scoped nav-map-wrap">
+      <a data-view="graph" class="nav-map"><span class="ico">${ic('share-2')}</span> Map of §138</a>
     </div>
     <div class="nav-group">National objects</div>
     <div class="nav-scoped">

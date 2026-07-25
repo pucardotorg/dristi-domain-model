@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DRISTI 2.0 - Domain Model</title>
+<!-- React Flow (the Map tab) loads React from esm.sh; the import map pins one shared React instance -->
+<script type="importmap">
+{ "imports": {
+  "react": "https://esm.sh/react@18.3.1",
+  "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+  "react-dom": "https://esm.sh/react-dom@18.3.1",
+  "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
+}}
+</script>
+<link rel="stylesheet" href="vendor/reactflow.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pdf-viewer.css">
 </head>
