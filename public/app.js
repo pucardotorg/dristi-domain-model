@@ -1730,6 +1730,9 @@ function storySections(){
   const out=[];
   if(proc) out.push({id:"process",label:"The process"});
   if(S&&S.roles) out.push({id:"roles",label:"The roles"});
+  // Police & Courts are their own pages, but linked as nested items under The roles
+  if(INST&&INST.police) out.push({id:"page-police",label:"Police",view:"police",sub:true});
+  if(INST&&INST.judiciary) out.push({id:"page-courts",label:"Courts",view:"courts",sub:true});
   ["fees","courts","caseload"].forEach(id=>{ if(S&&S[id]) out.push({id,label:id==="fees"?"The fees":id==="courts"?"The courts":"Caseload"}); });
   return out;
 }
@@ -1780,11 +1783,11 @@ function buildNav(){
         <div class="scoped-wrap ov-collapsed" id="storyWrap">
           <a class="ov-toggle" data-view="story"><span class="ico">${ic('book-open')}</span> The story ${storyBadge()} <span class="nav-chev">${ic('chevron-down')}</span></a>
           <div class="nav-sub"><div class="nav-sub-inner">
-            ${storySections().map(s=>`<a class="subnav${s.sub?' subnav-nested':''}" data-story-sec="${s.id}"><span class="ico">${ic('chevron-right')}</span> ${esc(s.label)}</a>`).join("")}
+            ${storySections().map(s=> s.view
+              ? `<a class="subnav subnav-nested" data-view="${s.view}"><span class="ico">${ic('chevron-right')}</span> ${esc(s.label)}</a>`
+              : `<a class="subnav${s.sub?' subnav-nested':''}" data-story-sec="${s.id}"><span class="ico">${ic('chevron-right')}</span> ${esc(s.label)}</a>`).join("")}
           </div></div>
         </div>
-        <a data-view="police"><span class="ico">${ic('shield')}</span> Police</a>
-        <a data-view="courts"><span class="ico">${ic('gavel')}</span> Courts</a>
         <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> Acts &amp; Provisions ${stateBadge('amendments')}</a>
         <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules ${stateBadge('rules')}</a>
         <a data-view="notifications"><span class="ico">${ic('bell')}</span> Notifications ${stateBadge('notifications')}</a>
