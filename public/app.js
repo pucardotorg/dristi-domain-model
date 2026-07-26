@@ -764,142 +764,44 @@ function instListInner(kind, data, amap){
   if(kind==="police") return sub("Ranks - senior to junior",data.ranks,true)+sub("How the force is organised",data.units,false)+sub("Oversight bodies",data.oversight,false);
   return sub("The court hierarchy - apex to trial court",data.tiers,true)+sub("The people in the courts",data.roles,false);
 }
-/* one institution section: List (grounded detail) + Diagram (at-a-glance hierarchy) tabs */
-function renderInstitutionSection(kind, data, amap){
-  const wrap=el("div","inst");
-  const tabs=el("div","inst-tabs");
-  tabs.innerHTML=`<button class="inst-tab on" data-t="list">List</button><button class="inst-tab" data-t="diagram">Diagram</button>`;
-  wrap.appendChild(tabs);
-  const body=el("div","inst-tabbody"); wrap.appendChild(body);
-  const listNode=el("div","inst-list"); listNode.innerHTML=instListInner(kind,data,amap);
-  let diagNode=null;
-  function show(t){
-    body.innerHTML="";
-    if(t==="diagram"){
-      if(!diagNode){ try{ diagNode=(kind==="police"?renderPoliceDiagram(data,amap):renderCourtsDiagram(data,amap)); }
-                     catch(e){ diagNode=el("div","empty","Diagram unavailable."); } }
-      body.appendChild(diagNode);
-    } else body.appendChild(listNode);
-    tabs.querySelectorAll(".inst-tab").forEach(b=>b.classList.toggle("on", b.dataset.t===t));
-  }
-  tabs.querySelectorAll(".inst-tab").forEach(b=>b.onclick=()=>show(b.dataset.t));
-  show("list");
-  return wrap;
+/* a card on the story page that links out to a Police / Courts page */
+function instLinkCard(view, title, icon, summary){
+  const c=el("a","inst-link");
+  c.innerHTML=`<div class="inst-link-hd"><span class="inst-link-ico">${ic(icon)}</span><span class="inst-link-t">${esc(title)}</span><span class="inst-link-arrow">${ic('chevron-right')}</span></div>
+    <div class="inst-link-sub">${esc((summary||"").replace(/\s+/g," ").slice(0,140))}${(summary||"").length>140?"…":""}</div>`;
+  c.onclick=()=>{ _extra={}; go(view, true); };
+  return c;
 }
+/* Police / Courts are their own pages. Each renders the interactive React Flow
+   hierarchy (loaded on demand from flow.js) plus the full cited detail below, so
+   there is always content even if the diagram library fails to load (offline). */
+function institutionPage(kind, title){
+  if(!isModelled()) return notModelled();
+  const stName=stateById(activeState).name;
+  const INST=((STATE_DATA||{}).institutions) || NATIONAL_INSTITUTIONS;
+  const data = kind==="police" ? (INST&&INST.police) : (INST&&INST.judiciary);
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<a class="backlink">&larr; Back to the story</a>
+    <h1 class="page-title state-title">${esc(title)} ${stateInlineSelectHTML()}</h1>
+    <p class="lede">${data?esc(data.summary):`Not modelled for ${esc(stName)} yet.`}</p>`;
+  m.appendChild(head);
+  const sel=head.querySelector(".state-inline"); if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
+  const bl=head.querySelector(".backlink"); if(bl) bl.onclick=()=>{ _extra={sec:"story-roles"}; go("story", true); };
+  if(!data){ m.appendChild(el("div","empty",`Not modelled for ${esc(stName)} yet.`)); return m; }
+  const dcard=el("div","flowcard");
+  dcard.appendChild(el("div","flow-hint","Drag to pan, scroll to zoom, click any node for its detail and source."));
+  const canvas=el("div","flowcanvas"); dcard.appendChild(canvas); m.appendChild(dcard);
+  import("./flow.js").then(mod=> mod.mountInstitution(canvas, kind, data))
+    .catch(()=>{ canvas.innerHTML=`<div class="empty">The interactive diagram needs internet to load. The full detail is below.</div>`; });
+  const det=el("div","inst"); det.style.marginTop="26px";
+  det.innerHTML=`<div class="inst-sub-label" style="margin-bottom:12px">Full detail - every role and unit, with its source</div>`+instListInner(kind,data,stateAliasMap());
+  m.appendChild(det);
+  return m;
+}
+V.police=()=>institutionPage("police","Police");
+V.courts=()=>institutionPage("courts","The courts");
 
-/* ---- hierarchy diagrams (self-contained; built by dedicated design agents) ---- */
-function renderPoliceDiagram(police, amap) {
-  const NS = 'http://www.w3.org/2000/svg';
-  police = police || {};
-  const ranks = Array.isArray(police.ranks) ? police.ranks : [];
-  const units = Array.isArray(police.units) ? police.units : [];
-  const oversight = Array.isArray(police.oversight) ? police.oversight : [];
-  const ROW_H = 60, STEP = 72;
-  const RANK_X = 20, RANK_W = 246;
-  const UNIT_X = 430, UNIT_W = 212, INDENT = 12;
-  const rankH = ranks.length ? (ranks.length - 1) * STEP + ROW_H : 0;
-  const unitH = units.length ? (units.length - 1) * STEP + ROW_H : 0;
-  const canvasH = Math.max(rankH, unitH, ROW_H);
-  const U_TOP = Math.max(0, (canvasH - unitH) / 2);
-  const unitX = j => UNIT_X + j * INDENT;
-  const canvasW = Math.max(RANK_X + RANK_W, UNIT_X + Math.max(0, units.length - 1) * INDENT + UNIT_W) + 4;
-  const rankCY = i => i * STEP + ROW_H / 2;
-  const unitCY = j => U_TOP + j * STEP + ROW_H / 2;
-  const el2 = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
-  const svg = (tag, attrs) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); return n; };
-  const norm = s => String(s == null ? '' : s).toLowerCase().replace(/[.–—-]/g, ' ').replace(/\s+/g, ' ').trim();
-  const rankForHead = head => {
-    const parts = String(head || '').split('/').map(norm).filter(Boolean);
-    const names = r => [r.name].concat(r.aka || []).map(norm);
-    for (const p of parts) for (const r of ranks) if (names(r).includes(p)) return r;
-    for (const p of parts) for (const r of ranks) if (names(r).some(n => n && (n === p || n.split(' ').includes(p)))) return r;
-    return null;
-  };
-  const rankIndex = {}; ranks.forEach((r, i) => { rankIndex[r.id] = i; });
-  const root = el2('div', 'pdiag');
-  if (oversight.length) {
-    const ov = el2('section', 'pdiag-oversight'); ov.appendChild(el2('span', 'pdiag-eyebrow', 'Oversight bodies'));
-    const row = el2('div', 'pdiag-ov-row');
-    oversight.forEach(o => { const node = el2('div', 'pdiag-node pdiag-ov'); if (o.who) node.title = o.who; node.appendChild(el2('div', 'pdiag-name', o.name || '')); if (o.who) node.appendChild(el2('div', 'pdiag-sub', o.who)); row.appendChild(node); });
-    ov.appendChild(row); root.appendChild(ov);
-  }
-  const head = el2('div', 'pdiag-colhead'); head.style.width = canvasW + 'px';
-  const eyR = el2('span', 'pdiag-eyebrow', 'Rank ladder (senior to junior)'); eyR.style.left = RANK_X + 'px';
-  const eyU = el2('span', 'pdiag-eyebrow', 'Units commanded'); eyU.style.left = UNIT_X + 'px';
-  head.appendChild(eyR); head.appendChild(eyU); root.appendChild(head);
-  const canvas = el2('div', 'pdiag-canvas'); canvas.style.width = canvasW + 'px'; canvas.style.height = canvasH + 'px';
-  const layer = svg('svg', { class: 'pdiag-svg', width: canvasW, height: canvasH });
-  units.forEach((u, j) => {
-    const r = rankForHead(u.head); if (!r || !(r.id in rankIndex)) return;
-    const x1 = RANK_X + RANK_W, y1 = rankCY(rankIndex[r.id]); const x2 = unitX(j), y2 = unitCY(j); const dx = (x2 - x1) * 0.45;
-    layer.appendChild(svg('path', { class: 'pdiag-link', d: `M${x1},${y1} C${x1 + dx},${y1} ${x2 - dx},${y2} ${x2},${y2}` }));
-  });
-  canvas.appendChild(layer);
-  ranks.forEach((r, i) => {
-    const node = el2('div', 'pdiag-node pdiag-rank'); node.style.left = RANK_X + 'px'; node.style.top = (rankCY(i) - ROW_H / 2) + 'px'; node.style.width = RANK_W + 'px'; node.style.height = ROW_H + 'px'; if (r.who) node.title = r.who;
-    const h = el2('div', 'pdiag-rank-head'); h.appendChild(el2('span', 'pdiag-ord', String(i + 1))); if (r.service) h.appendChild(el2('span', 'pdiag-svc', r.service)); node.appendChild(h);
-    node.appendChild(el2('div', 'pdiag-name', r.name || '')); canvas.appendChild(node);
-  });
-  units.forEach((u, j) => {
-    const matched = !!rankForHead(u.head); const node = el2('div', 'pdiag-node pdiag-unit' + (matched ? '' : ' pdiag-unit-off'));
-    node.style.left = unitX(j) + 'px'; node.style.top = (unitCY(j) - ROW_H / 2) + 'px'; node.style.width = UNIT_W + 'px'; node.style.height = ROW_H + 'px'; if (u.who) node.title = u.who;
-    node.appendChild(el2('div', 'pdiag-name', u.name || '')); if (u.head) node.appendChild(el2('div', 'pdiag-sub', 'Headed by ' + u.head)); canvas.appendChild(node);
-  });
-  root.appendChild(canvas);
-  root.appendChild(el2('div', 'pdiag-legend', 'Each line links a unit to the rank that heads it. Dashed unit sits outside the rank ladder.'));
-  return root;
-}
-function renderCourtsDiagram(judiciary, amap){
-  const SVGNS = "http://www.w3.org/2000/svg";
-  const mk = (tag, cls, text) => { const e = document.createElement(tag); if(cls) e.className = cls; if(text != null) e.textContent = text; return e; };
-  const svg = (tag, attrs) => { const e = document.createElementNS(SVGNS, tag); for(const k in attrs) e.setAttribute(k, attrs[k]); return e; };
-  const tiers  = (judiciary && judiciary.tiers) || [];
-  const roles  = (judiciary && judiciary.roles) || [];
-  const judges = roles.filter(r => r && r.cat === "judge");
-  const staff  = roles.filter(r => r && r.cat === "staff");
-  const cjm    = tiers.find(t => t.id === "cjm") || null;
-  const chain  = tiers.filter(t => t.id !== "cjm");
-  const words = s => (((s && s.name) || "") + " " + (((s && s.aka) || []).join(" "))).toLowerCase();
-  const benchFor = tier => { const t = words(tier); return judges.find(j => { const s = words(j); return ["session", "magistrate"].some(k => t.indexOf(k) >= 0 && s.indexOf(k) >= 0); }) || null; };
-  const connector = () => { const s = svg("svg", { class: "cdiag-conn", viewBox: "0 0 24 44", width: "24", height: "44", "aria-hidden": "true" }); s.appendChild(svg("line", { x1: "12", y1: "2", x2: "12", y2: "42" })); s.appendChild(svg("path", { class: "cdiag-chev", d: "M7 13 L12 6 L17 13" })); return s; };
-  const courtNode = (t, trial) => {
-    const node = mk("div", "cdiag-node" + (trial ? " cdiag-node--trial" : ""));
-    const hd = mk("div", "cdiag-node-hd"); hd.appendChild(mk("span", "cdiag-node-name", t.name || "")); if(trial) hd.appendChild(mk("span", "cdiag-node-tag", "s.138 trial court")); node.appendChild(hd);
-    if(t.aka && t.aka.length) node.appendChild(mk("div", "cdiag-node-aka", t.aka.join("   ·   ")));
-    if(t.role) node.appendChild(mk("div", "cdiag-node-role", t.role));
-    const b = benchFor(t); if(b){ const bl = mk("div", "cdiag-node-bench"); bl.appendChild(mk("span", "cdiag-k", "Bench")); bl.appendChild(document.createTextNode(" " + (b.name || ""))); node.appendChild(bl); }
-    if(trial) node.appendChild(mk("div", "cdiag-node-entry", "A s.138 complaint is filed and tried here - the entry point."));
-    return node;
-  };
-  const trialRow = t => {
-    const row = mk("div", "cdiag-trial-row"); row.appendChild(mk("div", "cdiag-spacer")); row.appendChild(courtNode(t, true));
-    if(cjm){
-      const branch = mk("div", "cdiag-branch"); const link = mk("div", "cdiag-hlink"); link.appendChild(mk("div", "cdiag-hlink-lbl", "administers"));
-      const hs = svg("svg", { class: "cdiag-hconn", viewBox: "0 0 44 12", width: "44", height: "12", "aria-hidden": "true" }); hs.appendChild(svg("line", { x1: "0", y1: "6", x2: "44", y2: "6" })); link.appendChild(hs); branch.appendChild(link);
-      const aside = mk("div", "cdiag-aside"); aside.appendChild(mk("div", "cdiag-aside-name", cjm.name || "")); if(cjm.aka && cjm.aka.length) aside.appendChild(mk("div", "cdiag-node-aka", cjm.aka.join("   ·   "))); if(cjm.role) aside.appendChild(mk("div", "cdiag-aside-role", cjm.role)); aside.appendChild(mk("div", "cdiag-aside-note", "Administrative, not an appeal court.")); branch.appendChild(aside);
-      row.appendChild(branch);
-    } else row.appendChild(mk("div", "cdiag-spacer"));
-    return row;
-  };
-  const key = mk("div", "cdiag-key");
-  const kAppeal = () => { const s = svg("svg", { class: "cdiag-key-svg", viewBox: "0 0 16 16", width: "16", height: "16", "aria-hidden": "true" }); s.appendChild(svg("line", { x1: "8", y1: "15", x2: "8", y2: "3" })); s.appendChild(svg("path", { class: "cdiag-chev", d: "M4 8 L8 3 L12 8" })); return s; };
-  const kAdmin  = () => { const s = svg("svg", { class: "cdiag-key-svg cdiag-key-dash", viewBox: "0 0 26 16", width: "26", height: "16", "aria-hidden": "true" }); s.appendChild(svg("line", { x1: "1", y1: "8", x2: "25", y2: "8" })); return s; };
-  const keyItem = (mkSvg, label) => { const it = mk("div", "cdiag-key-item"); it.appendChild(mkSvg()); it.appendChild(mk("span", "cdiag-key-t", label)); return it; };
-  key.appendChild(keyItem(kAppeal, "Appeal rises up the ladder")); if(cjm) key.appendChild(keyItem(kAdmin, "Administrative control"));
-  const root = mk("div", "cdiag");
-  root.appendChild(mk("p", "cdiag-cap", "A s.138 case begins at the trial court at the foot of the ladder and can rise on appeal to the apex. Each court hears a challenge to the court below it."));
-  root.appendChild(key);
-  const scroll = mk("div", "cdiag-scroll"); const spine = mk("div", "cdiag-spine");
-  chain.forEach((t, i) => { if(i > 0) spine.appendChild(connector()); const isTrial = /trial court/i.test(t.role || "") || i === chain.length - 1; spine.appendChild(isTrial ? trialRow(t) : courtNode(t, false)); });
-  scroll.appendChild(spine); root.appendChild(scroll);
-  if(staff.length){
-    const sec = mk("div", "cdiag-roles"); const lbl = mk("div", "cdiag-roles-lbl", "The ministerial establishment"); lbl.appendChild(mk("span", "cdiag-roles-sub", "court staff, not judges - attached across the tiers")); sec.appendChild(lbl);
-    const grid = mk("div", "cdiag-staff-grid");
-    staff.forEach(s => { const it = mk("div", "cdiag-staff-item"); it.appendChild(mk("div", "cdiag-staff-name", s.name || "")); if(s.who) it.appendChild(mk("div", "cdiag-staff-who", s.who)); grid.appendChild(it); });
-    sec.appendChild(grid); root.appendChild(sec);
-  }
-  return root;
-}
 V.story=()=>{
   if(!isModelled()) return notModelled();
   const stName=stateById(activeState).name;
@@ -978,37 +880,37 @@ V.story=()=>{
     }
     }
   }
-  // 2 - ROLES (who does what, and where each role is drawn from)
+  // 2 - ROLES (a collapsible accordion) + links out to the Police and Courts pages
   if(S && S.roles){
-    m.appendChild(secH("roles","The roles", S.roles.summary));
-    const rb=el("div","role-block");
-    (S.roles.items||[]).forEach(r=>{
+    const items=S.roles.items||[];
+    const accH=el("div","story-sec-h story-acc open"); accH.id="story-roles";
+    accH.innerHTML=`<span>The roles <span class="story-acc-n">${items.length}</span></span>${S.roles.summary?`<span class="ssh-sub">${esc(S.roles.summary)}</span>`:""}<span class="story-acc-chev">${ic('chevron-down')}</span>`;
+    const body=el("div","story-acc-body open");
+    const rb=el("div","role-block"); body.appendChild(rb);
+    items.forEach(r=>{
       const src = (r.cite && r.cite.length) ? citeRow(r.cite,amap)
                 : (r.basis?`<span class="role-basis">${esc(r.basis)}</span>`:"");
       const cat=ROLE_CATS[r.cat]||ROLE_CATS.litigant;
-      // generic markers from the data: an "informal aspects" flag and a link to the source field note
       const flag = r.informal ? `<span class="role-flag" title="Some aspects are informal - see the field note">informal aspects</span>` : "";
       const prov = (r.sourceNotes&&r.sourceNotes.length) ? `<a class="role-prov src-note" data-note="${esc(r.sourceNotes[0])}">${ic('messages-square')} field note</a>` : "";
       const card=el("div","role-card role-"+(r.cat||"litigant"));
-      if(r.id) card.id="role-"+r.id;   // target for "what it changed" links from field notes
+      if(r.id) card.id="role-"+r.id;
       card.innerHTML=`<div class="role-top"><span class="role-ico">${ic(cat.icon)}</span>
         <div class="role-id"><div class="role-name">${esc(r.role)}</div><div class="role-cat">${esc(cat.label)}</div></div></div>
         <div class="role-who">${esc(r.who)}</div>
         ${(src||flag||prov)?`<div class="role-src">${src?`<span class="role-src-l">From</span> ${src}`:""}${flag}${prov}</div>`:""}`;
       rb.appendChild(card);
     });
-    m.appendChild(rb);
+    accH.onclick=()=>{ const open=accH.classList.toggle("open"); body.classList.toggle("open",open); };
+    m.appendChild(accH); m.appendChild(body);
   }
-  // 2b - INSTITUTIONS - Police and Courts as two separate sections nested under the roles,
-  // each with a List (grounded detail) and a Diagram (at-a-glance hierarchy) tab.
+  // 2b - Police & the Courts now live on their own pages; link out from the story
   const INST=((STATE_DATA||{}).institutions) || NATIONAL_INSTITUTIONS;
-  if(INST && INST.police){
-    m.appendChild(secH("institutions-police","Police", INST.police.summary));
-    m.appendChild(renderInstitutionSection("police", INST.police, amap));
-  }
-  if(INST && INST.judiciary){
-    m.appendChild(secH("institutions-courts","Courts", INST.judiciary.summary));
-    m.appendChild(renderInstitutionSection("courts", INST.judiciary, amap));
+  if(INST && (INST.police || INST.judiciary)){
+    const links=el("div","inst-links");
+    if(INST.police) links.appendChild(instLinkCard("police","Police","shield", INST.police.summary));
+    if(INST.judiciary) links.appendChild(instLinkCard("courts","The courts","gavel", INST.judiciary.summary));
+    m.appendChild(links);
   }
   // 3 - FEES
   if(S && S.fees){
@@ -1828,8 +1730,6 @@ function storySections(){
   const out=[];
   if(proc) out.push({id:"process",label:"The process"});
   if(S&&S.roles) out.push({id:"roles",label:"The roles"});
-  if(INST&&INST.police) out.push({id:"institutions-police",label:"Police",sub:true});
-  if(INST&&INST.judiciary) out.push({id:"institutions-courts",label:"Courts",sub:true});
   ["fees","courts","caseload"].forEach(id=>{ if(S&&S[id]) out.push({id,label:id==="fees"?"The fees":id==="courts"?"The courts":"Caseload"}); });
   return out;
 }
@@ -1883,6 +1783,8 @@ function buildNav(){
             ${storySections().map(s=>`<a class="subnav${s.sub?' subnav-nested':''}" data-story-sec="${s.id}"><span class="ico">${ic('chevron-right')}</span> ${esc(s.label)}</a>`).join("")}
           </div></div>
         </div>
+        <a data-view="police"><span class="ico">${ic('shield')}</span> Police</a>
+        <a data-view="courts"><span class="ico">${ic('gavel')}</span> Courts</a>
         <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> Acts &amp; Provisions ${stateBadge('amendments')}</a>
         <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules ${stateBadge('rules')}</a>
         <a data-view="notifications"><span class="ico">${ic('bell')}</span> Notifications ${stateBadge('notifications')}</a>

@@ -596,83 +596,49 @@
 .inst-line{font-size:12px; color:var(--ink-2); line-height:1.5; margin-top:3px}
 .inst-line .inst-l{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:var(--ink-3); margin-right:5px}
 .inst-cite{margin-top:7px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-/* institution section: List / Diagram tabs */
-.inst-tabs{display:inline-flex; gap:2px; background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:2px; margin-bottom:14px}
-.inst-tab{font-family:inherit; font-size:12px; font-weight:600; color:var(--ink-3); background:transparent; border:0; border-radius:8px; padding:5px 14px; cursor:pointer}
-.inst-tab.on{background:var(--panel); color:var(--ink); box-shadow:0 1px 2px rgba(0,0,0,.15)}
-.inst-tab:hover:not(.on){color:var(--ink-2)}
-.inst-list .inst-group:first-child{margin-top:0}
-/* nested Police / Courts under The roles in the story sub-nav */
-.nav .nav-sub a.subnav.subnav-nested{padding-left:26px}
-.nav .nav-sub a.subnav.subnav-nested .ico{opacity:.5}
-
-/* ===== Police diagram (renderPoliceDiagram) ===== */
-.pdiag { overflow-x: auto; padding: 4px 2px 10px; -webkit-overflow-scrolling: touch; }
-.pdiag-eyebrow { font-size: 10px; letter-spacing: .09em; font-weight: 700; text-transform: uppercase; color: var(--ink-3); }
-.pdiag-oversight { margin-bottom: 24px; }
-.pdiag-oversight .pdiag-eyebrow { display: block; margin-bottom: 10px; }
-.pdiag-ov-row { display: flex; gap: 12px; flex-wrap: wrap; }
-.pdiag-ov-row .pdiag-node { position: static; flex: 1 1 160px; min-width: 150px; height: auto; }
-.pdiag-colhead { position: relative; height: 18px; margin-bottom: 8px; }
-.pdiag-colhead .pdiag-eyebrow { position: absolute; top: 0; }
-.pdiag-canvas { position: relative; }
-.pdiag-svg { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
-.pdiag-link { fill: none; stroke: var(--line-2); stroke-width: 1; }
-.pdiag-node { box-sizing: border-box; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; overflow: hidden; transition: border-color .15s ease; }
-.pdiag-canvas .pdiag-node { position: absolute; display: flex; flex-direction: column; justify-content: center; }
-.pdiag-node:hover { border-color: var(--line-2); }
-.pdiag-rank-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px; }
-.pdiag-ord { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); }
-.pdiag-svc { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .06em; color: var(--brand-hi); white-space: nowrap; }
-.pdiag-name { font-size: 12.5px; line-height: 1.15; font-weight: 600; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.pdiag-sub { font-size: 10.5px; line-height: 1.2; color: var(--ink-3); margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.pdiag-unit-off { border-style: dashed; }
-.pdiag-legend { margin-top: 16px; font-size: 10.5px; line-height: 1.4; color: var(--ink-3); }
-@media (prefers-reduced-motion: reduce) { .pdiag-node { transition: none; } }
-
-/* ===== Courts diagram (renderCourtsDiagram) ===== */
-.cdiag{margin:6px 0 2px}
-.cdiag *{box-sizing:border-box}
-.cdiag-cap{font-size:13px;line-height:1.55;color:var(--ink-2);margin:0 0 14px;max-width:66ch}
-.cdiag-key{display:flex;flex-wrap:wrap;gap:14px 22px;margin:0 0 20px}
-.cdiag-key-item{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
-.cdiag-key-svg{flex:none}
-.cdiag-key-svg line{stroke:var(--line-2);stroke-width:1.5;stroke-linecap:round}
-.cdiag-key-dash line{stroke-dasharray:3 3}
-.cdiag-chev{fill:none;stroke:var(--line-2);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.cdiag-scroll{overflow-x:auto;padding:2px 0 4px}
-.cdiag-spine{display:flex;flex-direction:column;align-items:center;min-width:360px;max-width:900px;margin:0 auto}
-.cdiag-conn{flex:none;display:block}
-.cdiag-conn line{stroke:var(--line-2);stroke-width:1.5;stroke-linecap:round}
-.cdiag-node{width:380px;max-width:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 15px}
-.cdiag-node-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.cdiag-node-name{font-size:14.5px;font-weight:650;color:var(--ink);line-height:1.3}
-.cdiag-node-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-hi);white-space:nowrap}
-.cdiag-node-aka{font-size:11.5px;color:var(--ink-3);margin-top:3px}
-.cdiag-node-role{font-size:12.5px;color:var(--ink-2);margin-top:7px;line-height:1.45}
-.cdiag-node-bench{font-size:12px;color:var(--ink-2);margin-top:6px}
-.cdiag-k{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-right:2px}
-.cdiag-node-entry{font-size:11.5px;color:var(--brand-hi);margin-top:8px;line-height:1.45}
-.cdiag-node--trial{background:var(--panel-2);border-color:var(--brand-border)}
-.cdiag-trial-row{display:grid;grid-template-columns:minmax(260px,1fr) auto minmax(260px,1fr);align-items:center;width:100%}
-.cdiag-spacer{min-width:0}
-.cdiag-branch{display:flex;align-items:center;justify-self:start;min-width:0}
-.cdiag-hlink{display:flex;flex-direction:column;align-items:center;flex:none}
-.cdiag-hlink-lbl{font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
-.cdiag-hconn{display:block}
-.cdiag-hconn line{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:4 4;stroke-linecap:round}
-.cdiag-aside{flex:none;width:212px;background:var(--panel);border:1px dashed var(--line-2);border-radius:11px;padding:10px 13px}
-.cdiag-aside-name{font-size:13px;font-weight:600;color:var(--ink);line-height:1.3}
-.cdiag-aside-role{font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.45}
-.cdiag-aside-note{font-size:11px;color:var(--ink-3);margin-top:6px}
-.cdiag-roles{margin-top:26px;border-top:1px solid var(--line);padding-top:16px}
-.cdiag-roles-lbl{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
-.cdiag-roles-sub{margin-left:8px;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--ink-3)}
-.cdiag-staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
-.cdiag-staff-item{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-.cdiag-staff-name{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.35}
-.cdiag-staff-who{font-size:11.5px;color:var(--ink-2);margin-top:4px;line-height:1.45}
-@media (max-width:560px){ .cdiag-aside{width:186px} }
+/* Police / Courts pages + React Flow diagrams */
+.backlink{display:inline-block; font-size:12.5px; color:var(--ink-3); cursor:pointer; margin-bottom:8px; text-decoration:none}
+.backlink:hover{color:var(--brand-hi)}
+.flowcard{border:1px solid var(--line); border-radius:14px; background:var(--panel); overflow:hidden; margin-top:14px}
+.flow-hint{font-size:11.5px; color:var(--ink-3); padding:10px 14px; border-bottom:1px solid var(--line-2)}
+.flowcanvas{height:min(72vh,640px); position:relative; background:var(--bg)}
+.react-flow__node-inst{background:none; border:0; padding:0; box-shadow:none; width:auto; font-family:inherit; color:var(--ink)}
+.rfn{width:232px; background:var(--panel-2); border:1px solid var(--line); border-radius:11px; padding:9px 12px; cursor:pointer; transition:border-color .15s, box-shadow .15s}
+.rfn:hover{border-color:var(--brand-border); box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.rfn-badge{font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--brand-hi); margin-bottom:3px}
+.rfn-name{font-size:12.5px; font-weight:650; color:var(--ink); line-height:1.2}
+.rfn-sub{font-size:10.5px; color:var(--ink-3); margin-top:3px; line-height:1.3}
+.rfn-oversight,.rfn-staff{background:var(--panel)}
+.rfn-tier-admin{border-style:dashed}
+.rfn-trial{border-color:var(--brand-border); box-shadow:0 0 0 1px var(--brand-border)}
+.rfn-h{opacity:0; width:1px; height:1px; min-width:0; border:0}
+.rfn-collabel{font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
+.rfp{width:272px; max-width:78vw; background:var(--panel); border:1px solid var(--line-2); border-radius:12px; padding:14px 15px 15px; box-shadow:var(--shadow-modal); position:relative}
+.rfp-x{position:absolute; top:7px; right:9px; background:none; border:0; color:var(--ink-3); font-size:19px; line-height:1; cursor:pointer}
+.rfp-x:hover{color:var(--ink)}
+.rfp-name{font-size:14px; font-weight:650; color:var(--ink); padding-right:18px; line-height:1.25}
+.rfp-aka{font-size:11.5px; color:var(--ink-3); margin-top:3px}
+.rfp-who{font-size:12.5px; color:var(--ink-2); line-height:1.5; margin-top:9px}
+.rfp-line{font-size:12px; color:var(--ink-2); margin-top:7px; line-height:1.45}
+.rfp-k{font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); margin-right:4px}
+/* roles accordion + police/courts link cards on the story page */
+.story-acc{cursor:pointer; user-select:none; display:flex; align-items:center}
+.story-acc .story-acc-chev{margin-left:auto; color:var(--ink-3); transition:transform .2s}
+.story-acc.open .story-acc-chev{transform:rotate(180deg)}
+.story-acc-chev svg.lu{width:15px; height:15px}
+.story-acc-n{font-size:11px; font-weight:600; color:var(--ink-3); background:var(--panel-2); border-radius:20px; padding:1px 8px; margin-left:4px}
+.story-acc-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .28s ease}
+.story-acc-body>.role-block{overflow:hidden; min-height:0}
+.story-acc-body.open{grid-template-rows:1fr; margin-top:14px}
+.inst-links{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px}
+.inst-link{display:block; border:1px solid var(--line); border-radius:12px; background:var(--panel); padding:13px 15px; cursor:pointer; text-decoration:none; transition:border-color .15s}
+.inst-link:hover{border-color:var(--brand-border)}
+.inst-link-hd{display:flex; align-items:center; gap:9px}
+.inst-link-ico svg.lu{width:16px; height:16px; color:var(--brand-hi)}
+.inst-link-t{font-size:14px; font-weight:650; color:var(--ink)}
+.inst-link-arrow{margin-left:auto; color:var(--ink-3)} .inst-link-arrow svg.lu{width:15px; height:15px}
+.inst-link-sub{font-size:11.5px; color:var(--ink-3); line-height:1.45; margin-top:6px}
+@media (max-width:640px){ .inst-links{grid-template-columns:1fr} }
 .role-flag{font-size:9.5px; letter-spacing:.04em; text-transform:uppercase; font-weight:700; color:var(--amber); background:color-mix(in srgb,var(--amber) 12%,transparent); border:1px solid color-mix(in srgb,var(--amber) 30%,transparent); border-radius:5px; padding:1px 7px}
 .role-prov{font-size:11px; color:var(--ink-3); cursor:pointer; display:inline-flex; align-items:center; gap:4px} .role-prov:hover{color:var(--brand-hi)} .role-prov svg.lu{width:12px; height:12px}
 .story-sec-h>span:first-child{display:block; font-size:18px; font-weight:700; letter-spacing:-.01em; color:var(--ink)}
