@@ -72,14 +72,14 @@
     .main{padding:24px 18px 90px}
   }
 
-  .brand{display:flex; gap:10px; align-items:center; margin-bottom:10px; padding:0 6px; cursor:pointer}
-  .brand .mark{width:30px; height:30px; border-radius:8px; flex:none;
-    background:linear-gradient(135deg,var(--brand),var(--blue)); display:grid; place-items:center; font-weight:800; color:#fff; font-size:14px}
-  .brand h1{font-size:15px; margin:0; letter-spacing:.2px; line-height:1.2}
-  .brand p{font-size:11.5px; color:var(--ink-3); margin:1px 0 0; line-height:1.2}
+  .brand{display:flex; gap:8px; align-items:center; margin:0 0 7px; padding:0 6px; cursor:pointer}
+  .brand .mark{width:22px; height:22px; border-radius:6px; flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--blue)); display:grid; place-items:center; font-weight:800; color:#fff; font-size:11px}
+  .brand h1{font-size:14.5px; margin:0; letter-spacing:.2px; line-height:1.25}
 
   .nav-group{margin:12px 0 4px; padding:0 8px; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
   .nav-group:first-child{margin-top:2px}
+  .casedd + .nav-group{margin-top:8px}
   .nav-group.scoped{color:var(--brand)}
   /* Overview: subtle footer disclosure, de-emphasised vs the main nav */
   /* Overview: a popover menu that floats above its trigger (not an accordion) */
@@ -126,14 +126,27 @@
   .nav .nav-sub a.subnav .ico{font-size:12.5px; opacity:.7}
   .nav .nav-sub a.subnav:hover{color:var(--ink)}
   .nav .nav-sub a.subnav.active{color:var(--brand-hi)}
-  .casedd{position:relative; margin:5px 4px 6px}
-  .casedd-btn{display:block; width:100%; text-align:left; background:color-mix(in srgb,var(--brand) 10%,var(--panel)); border:1px solid var(--brand-border); border-radius:9px; padding:7px 28px 8px 11px; cursor:pointer; color:inherit; font-family:inherit; position:relative; transition:border-color .12s}
+  /* a sub-nav section that owns its own children (The roles -> Police / Courts):
+     same disclosure behaviour as The story, one indent level further in */
+  .nav .subnav-wrap{display:flex; flex-direction:column}
+  .nav a.subnav-toggle .nav-chev{margin-left:auto; display:inline-flex; color:var(--ink-3); transition:transform .28s ease}
+  .nav a.subnav-toggle .nav-chev svg.lu{width:12px; height:12px; vertical-align:0}
+  .nav a.subnav-toggle:hover .nav-chev{color:var(--ink-2)}
+  .nav .subnav-wrap:not(.ov-collapsed) a.subnav-toggle .nav-chev{transform:rotate(180deg)}
+  /* the parent of the page you are on: marked, but quieter than the active page itself */
+  .nav .nav-sub a.subnav.parent-active{color:var(--brand-hi); background:transparent}
+  .nav .nav-sub2{margin:0 0 2px 15px; display:grid; grid-template-rows:1fr; opacity:1; transition:grid-template-rows .28s ease, opacity .22s ease, margin .28s ease}
+  .nav .subnav-wrap.ov-collapsed .nav-sub2{grid-template-rows:0fr; opacity:0; margin-top:0; margin-bottom:0}
+  .nav .nav-sub2 a.subnav{font-size:12.5px}
+  .nav .nav-sub2 a.subnav .ico{opacity:.55}
+  /* active case type: one compact row - small inline label, name, chevron */
+  .casedd{position:relative; margin:0 4px 5px}
+  .casedd-btn{display:flex; align-items:center; gap:8px; width:100%; text-align:left; background:color-mix(in srgb,var(--brand) 10%,var(--panel)); border:1px solid var(--brand-border); border-radius:8px; padding:5px 26px 5px 10px; cursor:pointer; color:inherit; font-family:inherit; position:relative; transition:border-color .12s}
   .casedd-btn:hover{border-color:var(--brand)}
-  .casedd-chev{position:absolute; right:11px; top:50%; transform:translateY(-50%); color:var(--brand-hi); font-size:10px; transition:transform .15s}
+  .casedd-chev{position:absolute; right:9px; top:50%; transform:translateY(-50%); color:var(--brand-hi); font-size:10px; transition:transform .15s; display:inline-flex}
   .casedd.open .casedd-chev{transform:translateY(-50%) rotate(180deg)}
-  .ac-eyebrow{font-size:9px; letter-spacing:.09em; text-transform:uppercase; color:var(--brand-hi); font-weight:700; display:flex; align-items:center; gap:6px}
-  .ac-eyebrow::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 2px color-mix(in srgb,var(--brand) 22%,transparent)}
-  .ac-name{font-size:14px; font-weight:700; color:var(--ink); margin-top:1px}
+  .ac-label{flex:none; font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; font-weight:700; color:var(--brand-hi); opacity:.85}
+  .ac-name{min-width:0; flex:1 1 auto; font-size:13px; font-weight:600; color:var(--ink); line-height:1.45; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
   .ac-name span{color:var(--ink-3); font-weight:400; font-size:12px}
   /* the state layer: state selector + everything scoped to it, bracketed together */
   .state-layer{position:relative; margin:2px 0 2px; padding:0 0 6px}
@@ -149,9 +162,6 @@
   .statedd{margin-top:-2px}
   .statedd .casedd-btn{background:var(--panel); border-color:var(--line-2)}
   .statedd .casedd-btn:hover{border-color:var(--ink-3)}
-  .statedd .ac-eyebrow{color:var(--ink-3)}
-  .statedd .ac-eyebrow::before{display:none}
-  .statedd .ac-eyebrow svg.lu{width:11px; height:11px}
   .statedd .casedd-chev{color:var(--ink-3)}
   .casedd-menu{display:none; position:absolute; left:0; right:0; top:calc(100% + 5px); background:var(--panel); border:1px solid var(--line-2); border-radius:10px; box-shadow:var(--shadow-modal); padding:5px; z-index:30}
   .casedd.open .casedd-menu{display:block}

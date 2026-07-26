@@ -704,8 +704,10 @@ V.notifications= stateTreeView("notifications","Notifications & orders");   // G
 
 /* ============================================================ STATE STORY
    A per-state narrative of how a §138 case actually runs - process (filing to
-   disposal), fees, courts, and a caseload placeholder - each step citing the
-   rule/Act that governs it (click a citation to open the verbatim text). */
+   disposal), the roles and the fees - each step citing the rule/Act that governs
+   it (click a citation to open the verbatim text). The court-specific blocks
+   (the designated s138 courts and the per-court caseload) live on the Courts
+   page, which the story links out to. */
 function stateAliasMap(){
   const map={}; const D=STATE_DATA||{};
   ["amendments","rules","notifications"].forEach(cat=>{
@@ -764,6 +766,44 @@ function instListInner(kind, data, amap){
   if(kind==="police") return sub("Ranks - senior to junior",data.ranks,true)+sub("How the force is organised",data.units,false)+sub("Oversight bodies",data.oversight,false);
   return sub("The court hierarchy - apex to trial court",data.tiers,true)+sub("The people in the courts",data.roles,false);
 }
+/* a section heading, shared by the story page and the institution pages. The id
+   stays "story-<id>" so existing deep links and goStorySection() still resolve. */
+function secHead(id,t,sub){
+  const d=el("div","story-sec-h",`<span>${esc(t)}</span>${sub?`<span class="ssh-sub">${esc(sub)}</span>`:''}`);
+  d.id="story-"+id; return d;
+}
+/* the state's designated §138 courts and its per-court caseload table. Both are
+   court content, so they render on the Courts page. Returns [] for a state that
+   models neither (e.g. Haryana), so the page simply ends after the detail list. */
+function courtsStoryBlocks(amap){
+  const S=(STATE_DATA||{}).story || {};
+  const out=[];
+  if(S.courts){
+    out.push(secHead("courts","The designated courts", S.courts.summary));
+    const cb=el("div","court-block");
+    (S.courts.designated||[]).forEach(ct=>{
+      const card=el("div","court-card");
+      card.innerHTML=`<div class="court-name">${esc(ct.name)}</div>
+        <div class="court-loc">${ic('map-pin')} ${esc(ct.location||'')}</div>
+        ${ct.basis?`<div class="court-basis">${esc(ct.basis)}</div>`:''}
+        ${ct.cite?`<div class="court-cite">${citeChip(ct.cite,amap)}</div>`:''}`;
+      cb.appendChild(card);
+    });
+    out.push(cb);
+  }
+  if(S.caseload){
+    out.push(secHead("caseload","Caseload - by court", S.caseload.summary));
+    const cols=S.caseload.columns||["Court","Location","Pending","Disposed"];
+    let html=`<table class="caseload"><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>`;
+    (S.caseload.rows||[]).forEach(r=>{
+      html+=`<tr><td>${esc(r.court||'')}</td><td>${esc(r.location||'')}</td><td class="ph">${r.pending==null?'-':esc(String(r.pending))}</td><td class="ph">${r.disposed==null?'-':esc(String(r.disposed))}</td></tr>`;
+    });
+    html+=`</tbody></table>`;
+    const cw=el("div","caseload-wrap"); cw.innerHTML=html; out.push(cw);
+    if(S.caseload.note) out.push(el("div","story-note",`${esc(S.caseload.note)}`));
+  }
+  return out;
+}
 /* a card on the story page that links out to a Police / Courts page */
 function instLinkCard(view, title, icon, summary){
   const c=el("a","inst-link");
@@ -794,9 +834,13 @@ function institutionPage(kind, title){
   const canvas=el("div","flowcanvas"); dcard.appendChild(canvas); m.appendChild(dcard);
   import("./flow.js").then(mod=> mod.mountInstitution(canvas, kind, data))
     .catch(()=>{ canvas.innerHTML=`<div class="empty">The interactive diagram needs internet to load. The full detail is below.</div>`; });
+  const amap=stateAliasMap();
   const det=el("div","inst"); det.style.marginTop="26px";
-  det.innerHTML=`<div class="inst-sub-label" style="margin-bottom:12px">Full detail - every role and unit, with its source</div>`+instListInner(kind,data,stateAliasMap());
+  det.innerHTML=`<div class="inst-sub-label" style="margin-bottom:12px">Full detail - every role and unit, with its source</div>`+instListInner(kind,data,amap);
   m.appendChild(det);
+  // the court-specific story blocks (designated §138 courts, caseload) belong here,
+  // after the hierarchy and its diagram fallback. Empty for a state that has neither.
+  if(kind==="courts") courtsStoryBlocks(amap).forEach(n=>m.appendChild(n));
   return m;
 }
 V.police=()=>institutionPage("police","Police");
@@ -818,7 +862,7 @@ V.story=()=>{
   const sel=m.querySelector(".state-inline"); if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
   if(!S && !proc){ m.appendChild(el("div","empty",`<b>${esc(stName)} - story not modelled yet.</b><br><span class="tiny">The process, fees, courts and caseload for this state are planned - the same shape as Kerala.</span>`)); return m; }
   const amap=stateAliasMap();
-  const secH=(id,t,sub)=>{ const d=el("div","story-sec-h",`<span>${esc(t)}</span>${sub?`<span class="ssh-sub">${esc(sub)}</span>`:''}`); d.id="story-"+id; return d; };
+  const secH=secHead;
 
   // 1 - PROCESS (a timeline, viewed through one of three lenses via tabs)
   if(proc){
@@ -880,7 +924,20 @@ V.story=()=>{
     }
     }
   }
-  // 2 - ROLES (a collapsible accordion) + links out to the Police and Courts pages
+  // 2 - FEES
+  if(S && S.fees){
+    m.appendChild(secH("fees","The fees", S.fees.summary));
+    const fb=el("div","fee-block");
+    if(S.fees.cite) fb.appendChild(el("div","fee-cite",`Source: ${citeChip(S.fees.cite,amap)}`));
+    (S.fees.items||[]).forEach(it=>{
+      fb.appendChild(el("div","fee-row",`<span class="fee-stage">${esc(it.stage)}</span><span class="fee-amt">${esc(it.fee)}</span>`));
+    });
+    if(S.fees.note) fb.appendChild(el("div","story-note",esc(S.fees.note)));
+    m.appendChild(fb);
+  }
+  // 3 - ROLES (a collapsible accordion) + links out to the Police and Courts pages.
+  // Last on the page, so the order matches the sidebar sub-nav, where Police and
+  // Courts hang off The roles.
   if(S && S.roles){
     const items=S.roles.items||[];
     const accH=el("div","story-sec-h story-acc open"); accH.id="story-roles";
@@ -912,43 +969,8 @@ V.story=()=>{
     if(INST.judiciary) links.appendChild(instLinkCard("courts","The courts","gavel", INST.judiciary.summary));
     m.appendChild(links);
   }
-  // 3 - FEES
-  if(S && S.fees){
-    m.appendChild(secH("fees","The fees", S.fees.summary));
-    const fb=el("div","fee-block");
-    if(S.fees.cite) fb.appendChild(el("div","fee-cite",`Source: ${citeChip(S.fees.cite,amap)}`));
-    (S.fees.items||[]).forEach(it=>{
-      fb.appendChild(el("div","fee-row",`<span class="fee-stage">${esc(it.stage)}</span><span class="fee-amt">${esc(it.fee)}</span>`));
-    });
-    if(S.fees.note) fb.appendChild(el("div","story-note",esc(S.fees.note)));
-    m.appendChild(fb);
-  }
-  // 4 - COURTS
-  if(S && S.courts){
-    m.appendChild(secH("courts","The courts", S.courts.summary));
-    const cb=el("div","court-block");
-    (S.courts.designated||[]).forEach(ct=>{
-      const card=el("div","court-card");
-      card.innerHTML=`<div class="court-name">${esc(ct.name)}</div>
-        <div class="court-loc">${ic('map-pin')} ${esc(ct.location||'')}</div>
-        ${ct.basis?`<div class="court-basis">${esc(ct.basis)}</div>`:''}
-        ${ct.cite?`<div class="court-cite">${citeChip(ct.cite,amap)}</div>`:''}`;
-      cb.appendChild(card);
-    });
-    m.appendChild(cb);
-  }
-  // 5 - CASELOAD (placeholder)
-  if(S && S.caseload){
-    m.appendChild(secH("caseload","Caseload - by court", S.caseload.summary));
-    const cols=S.caseload.columns||["Court","Location","Pending","Disposed"];
-    let html=`<table class="caseload"><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>`;
-    (S.caseload.rows||[]).forEach(r=>{
-      html+=`<tr><td>${esc(r.court||'')}</td><td>${esc(r.location||'')}</td><td class="ph">${r.pending==null?'-':esc(String(r.pending))}</td><td class="ph">${r.disposed==null?'-':esc(String(r.disposed))}</td></tr>`;
-    });
-    html+=`</tbody></table>`;
-    const cw=el("div","caseload-wrap"); cw.innerHTML=html; m.appendChild(cw);
-    if(S.caseload.note) m.appendChild(el("div","story-note",`${esc(S.caseload.note)}`));
-  }
+  // the designated courts and the caseload table now live on the Courts page,
+  // reached from the link card above.
   return m;
 };
 async function openStateCiteModal(akn,eId,title){
@@ -1722,19 +1744,55 @@ function storyBadge(){
   if(NATIONAL_PROCESS) return `<span class="count soon">central</span>`; // only the shared central baseline so far
   return `<span class="count soon">soon</span>`;
 }
-/* the section headings the story page renders, in order - drives the nav accordion */
+/* the section headings the story page renders, in the order it renders them -
+   drives the nav accordion. The roles comes last and owns the two institution
+   pages as children, so Police and Courts sit a level in under it. */
+const STORY_SEC_LABELS={process:"The process", fees:"The fees"};
 function storySections(){
   const S=(STATE_DATA||{}).story;
   const proc=(S&&S.process)||NATIONAL_PROCESS;
   const INST=((STATE_DATA||{}).institutions)||NATIONAL_INSTITUTIONS;
   const out=[];
-  if(proc) out.push({id:"process",label:"The process"});
-  if(S&&S.roles) out.push({id:"roles",label:"The roles"});
-  // Police & Courts are their own pages, but linked as nested items under The roles
-  if(INST&&INST.police) out.push({id:"page-police",label:"Police",view:"police",sub:true});
-  if(INST&&INST.judiciary) out.push({id:"page-courts",label:"Courts",view:"courts",sub:true});
-  ["fees","courts","caseload"].forEach(id=>{ if(S&&S[id]) out.push({id,label:id==="fees"?"The fees":id==="courts"?"The courts":"Caseload"}); });
+  if(proc) out.push({id:"process",label:STORY_SEC_LABELS.process});
+  Object.keys(STORY_SEC_LABELS).forEach(id=>{ if(id!=="process" && S && S[id]) out.push({id,label:STORY_SEC_LABELS[id]}); });
+  // Police & the Courts are their own pages, nested under The roles
+  const kids=[];
+  if(INST&&INST.police) kids.push({id:"page-police",label:"Police",view:"police"});
+  if(INST&&INST.judiciary) kids.push({id:"page-courts",label:"Courts",view:"courts"});
+  if(S&&S.roles) out.push({id:"roles",label:"The roles",children:kids});
+  else out.push(...kids);   // no roles section for this state: the pages stand on their own
   return out;
+}
+/* the sub-nav markup for one story section, and its children if it has any */
+function storyNavHTML(){
+  const lead=`<span class="ico">${ic('chevron-right')}</span>`;
+  const link=s=> s.view
+    ? `<a class="subnav" data-view="${s.view}">${lead} ${esc(s.label)}</a>`
+    : `<a class="subnav" data-story-sec="${s.id}">${lead} ${esc(s.label)}</a>`;
+  return storySections().map(s=>{
+    if(!(s.children&&s.children.length)) return link(s);
+    return `<div class="subnav-wrap ov-collapsed">
+        <a class="subnav subnav-toggle" data-story-sec="${s.id}">${lead} ${esc(s.label)} <span class="nav-chev">${ic('chevron-down')}</span></a>
+        <div class="nav-sub2"><div class="nav-sub-inner">
+          ${s.children.map(k=>`<a class="subnav subnav-nested" data-view="${k.view}">${lead} ${esc(k.label)}</a>`).join("")}
+        </div></div>
+      </div>`;
+  }).join("");
+}
+/* keep the sidebar disclosure in step with the view: the Police and Courts pages
+   live under The roles inside The story, so landing on one (in-app or by deep
+   link) opens both groups and marks the parent. Only ever opens, never collapses. */
+function syncNavGroups(){
+  const nav=$("#nav"); if(!nav) return;
+  let inGroup=false;
+  nav.querySelectorAll(".subnav-wrap").forEach(w=>{
+    const on=!!w.querySelector("a.subnav[data-view].active");
+    const tog=w.querySelector("a.subnav-toggle");
+    if(on){ w.classList.remove("ov-collapsed"); inGroup=true; }
+    if(tog) tog.classList.toggle("parent-active", on);
+  });
+  const sw=$("#storyWrap");
+  if(sw && (inGroup || currentView==="story" || sw.querySelector("a[data-view].active"))) sw.classList.remove("ov-collapsed");
 }
 function goStorySection(id){
   _extra={sec:"story-"+id};
@@ -1762,9 +1820,9 @@ function buildNav(){
   const st=stateById(activeState);
   nav.innerHTML=`
     <div class="casedd" id="casedd">
-      <button class="casedd-btn" id="caseddBtn">
-        <div class="ac-eyebrow">Active case type</div>
-        <div class="ac-name">${c.name} <span>· ${c.act.split('·').pop().trim()}</span></div>
+      <button class="casedd-btn" id="caseddBtn" title="Change the active case type">
+        <span class="ac-label">Case</span>
+        <span class="ac-name">${c.name} <span>· ${c.act.split('·').pop().trim()}</span></span>
         <span class="casedd-chev">${ic('chevron-down')}</span>
       </button>
       <div class="casedd-menu" id="caseddMenu">
@@ -1782,11 +1840,7 @@ function buildNav(){
       <div class="nav-scoped">
         <div class="scoped-wrap ov-collapsed" id="storyWrap">
           <a class="ov-toggle" data-view="story"><span class="ico">${ic('book-open')}</span> The story ${storyBadge()} <span class="nav-chev">${ic('chevron-down')}</span></a>
-          <div class="nav-sub"><div class="nav-sub-inner">
-            ${storySections().map(s=> s.view
-              ? `<a class="subnav subnav-nested" data-view="${s.view}"><span class="ico">${ic('chevron-right')}</span> ${esc(s.label)}</a>`
-              : `<a class="subnav${s.sub?' subnav-nested':''}" data-story-sec="${s.id}"><span class="ico">${ic('chevron-right')}</span> ${esc(s.label)}</a>`).join("")}
-          </div></div>
+          <div class="nav-sub"><div class="nav-sub-inner">${storyNavHTML()}</div></div>
         </div>
         <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> Acts &amp; Provisions ${stateBadge('amendments')}</a>
         <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules ${stateBadge('rules')}</a>
@@ -1814,14 +1868,24 @@ function buildNav(){
   const tb=$("#tbCase"); if(tb) tb.textContent=`${c.name} · ${c.act.split('·').pop().trim()}`;
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.onclick=()=>{
     const ovm=$("#ovMenu"); if(ovm) ovm.classList.remove("open");
-    const sw=$("#storyWrap"); if(sw) sw.classList.toggle("ov-collapsed", a.dataset.view!=="story"); // open only when The story itself is clicked
+    // keep The story open when it, or anything under it (Police / Courts), is clicked
+    const sw=$("#storyWrap"); if(sw) sw.classList.toggle("ov-collapsed", !(a.dataset.view==="story" || sw.contains(a)));
     _extra={}; go(a.dataset.view, true);   // fresh top-level nav: clear any deep anchor, new history entry
     setDrawer(false);
   });
   // story accordion: the chevron toggles it in place; the section links scroll to a heading
   const schev=nav.querySelector("#storyWrap .ov-toggle .nav-chev");
   if(schev) schev.onclick=e=>{ e.stopPropagation(); e.preventDefault(); $("#storyWrap").classList.toggle("ov-collapsed"); };
-  nav.querySelectorAll("#storyWrap .subnav[data-story-sec]").forEach(a=>a.onclick=e=>{ e.stopPropagation(); goStorySection(a.dataset.storySec); setDrawer(false); });
+  nav.querySelectorAll("#storyWrap .subnav[data-story-sec]").forEach(a=>a.onclick=e=>{
+    e.stopPropagation();
+    const w=a.closest(".subnav-wrap"); if(w) w.classList.remove("ov-collapsed");   // the label also opens its children
+    goStorySection(a.dataset.storySec); setDrawer(false);
+  });
+  // a nested group (The roles): its own chevron only toggles, it does not navigate
+  nav.querySelectorAll("#storyWrap .subnav-wrap").forEach(w=>{
+    const ch=w.querySelector("a.subnav-toggle .nav-chev");
+    if(ch) ch.onclick=e=>{ e.stopPropagation(); e.preventDefault(); w.classList.toggle("ov-collapsed"); };
+  });
   const dd=$("#casedd",nav), btn=$("#caseddBtn",nav);
   const ovt=$("#ovTrigger");
   if(btn) btn.onclick=e=>{ e.stopPropagation(); dd.classList.toggle("open"); };
@@ -1840,6 +1904,7 @@ function go(view, push){
   if(!V[view]) view="overview";
   currentView=view;
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
+  syncNavGroups();   // open the groups that contain the active page, mark the parent
   setMain(V[view]());
   if(view!=="words") try{ linkifyVocab($("#main")); }catch(e){}   // turn vocabulary words in the prose into links
   writeHash(!!push);
