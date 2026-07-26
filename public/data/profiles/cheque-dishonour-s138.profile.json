@@ -1983,6 +1983,40 @@
         "judicial oath",
         "solemn affirmation"
       ]
+    },
+    "perjury": {
+      "ref": "bns:sec_227",
+      "gloss": "Giving or fabricating false evidence - lying on oath or in an affidavit before a court, or making a false document to be used as evidence. It matters here because a s.138 case is largely run on affidavit evidence (NI Act s.145): a complainant or witness who swears a false affidavit commits this offence. Defined and punished by BNS ss.227-229 (formerly IPC ss.191-193); 'perjury' is the everyday name, the statute calls it giving false evidence.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": [
+        "giving false evidence",
+        "false evidence"
+      ]
+    },
+    "legal aid": {
+      "ref": "lsa:sec_12",
+      "gloss": "Free legal services - a lawyer and court costs at the State's expense - for a party who cannot afford them. A s.138 accused or complainant qualifies if they fall in a category listed in LSA s.12: a woman or a child, a member of a Scheduled Caste or Scheduled Tribe (Constitution arts 341-342), a person with disability (as defined in the disability-rights Act, which is not modelled here), a victim of trafficking or begar (Constitution art 23), or a person below the prescribed income limit (the indigent). Entitlement follows on a prima facie case, with an affidavit of income accepted as proof of means (s.13).",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "remedy",
+      "aka": [
+        "free legal aid",
+        "legal services",
+        "legal-aid advocate"
+      ]
+    },
+    "notarial seal": {
+      "ref": "notaries:sec_7",
+      "gloss": "The seal every notary must have and use (Notaries Act s.7). Its legal weight: the courts take judicial notice of notarial seals, and a power-of-attorney authenticated under a notary's seal is presumed genuine (BSA s.84 / Evidence Act s.85) - which is how a POA holder's authority to file and depose in a s.138 case is proved without leading further evidence.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "document",
+      "aka": [
+        "notary's seal",
+        "seal of the notary"
+      ]
     }
   },
   "edges": [
