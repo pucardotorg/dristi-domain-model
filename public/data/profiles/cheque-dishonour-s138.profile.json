@@ -1211,6 +1211,76 @@
       "role": "award of Lok Adalat",
       "applies": "always",
       "note": "Every award of a Lok Adalat is deemed a decree of a civil court, is final and binding on the parties, and no appeal lies - which is what lets a Lok Adalat settlement close a s.138 case cleanly."
+    },
+    {
+      "ref": "oaths:sec_6",
+      "act": "oaths",
+      "eId": "sec_6",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "forms of oath & affirmation",
+      "applies": "always",
+      "note": "The prescribed forms in which a s.138 witness's oath or affirmation is administered; a witness may use a form binding on their own community if it is not repugnant to justice or decency."
+    },
+    {
+      "ref": "oaths:sec_7",
+      "act": "oaths",
+      "eId": "sec_7",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "irregularity does not invalidate",
+      "applies": "always",
+      "note": "An omission to administer the oath, or any irregularity in it, does not invalidate the proceeding or make the evidence inadmissible - it forecloses a purely technical attack on a s.138 complainant's or witness's evidence on that ground."
+    },
+    {
+      "ref": "oaths:sec_8",
+      "act": "oaths",
+      "eId": "sec_8",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "duty to state the truth",
+      "applies": "always",
+      "note": "Everyone who gives evidence before the court is bound to state the truth - the duty behind a s.138 complainant's affidavit and the foundation for prosecuting false evidence."
+    },
+    {
+      "ref": "notaries:sec_7",
+      "act": "notaries",
+      "eId": "sec_7",
+      "file": "notaries-act-1952.akn.xml",
+      "tier": "evidence",
+      "role": "the notary's seal",
+      "applies": "always",
+      "note": "Every notary uses a prescribed seal; it is that seal the courts take judicial notice of and on which the presumption of a genuine notarised power-of-attorney (BSA s.84 / Evidence Act s.85) rests."
+    },
+    {
+      "ref": "notaries:sec_11",
+      "act": "notaries",
+      "eId": "sec_11",
+      "file": "notaries-act-1952.akn.xml",
+      "tier": "supporting",
+      "role": "references to notaries in other laws",
+      "applies": "always",
+      "note": "A reference to a 'notary public' in any other law - the NI Act's noting and protest of a dishonoured instrument, or the Evidence Act / BSA power-of-attorney presumption - is read as a notary entitled to practise under this Act."
+    },
+    {
+      "ref": "lsa:sec_12",
+      "act": "lsa",
+      "eId": "sec_12",
+      "file": "legal-services-authorities-act-1987.akn.xml",
+      "tier": "supporting",
+      "role": "criteria for legal aid",
+      "applies": "always",
+      "note": "Who is entitled to free legal services: a s.138 party who is a woman or child, a member of a Scheduled Caste or Tribe, a person with disability, or below the income limit qualifies for legal aid to prosecute or defend."
+    },
+    {
+      "ref": "lsa:sec_13",
+      "act": "lsa",
+      "eId": "sec_13",
+      "file": "legal-services-authorities-act-1987.akn.xml",
+      "tier": "supporting",
+      "role": "entitlement to legal aid",
+      "applies": "always",
+      "note": "Entitlement to legal services on a prima facie case, with an affidavit of income accepted as proof of means - the route by which an indigent s.138 accused or complainant gets a legal-aid advocate."
     }
   ],
   "terms": {

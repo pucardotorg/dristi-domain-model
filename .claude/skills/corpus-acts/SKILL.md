@@ -144,15 +144,47 @@ An AKN file on disk is invisible until the profile points at it. Two edits in
    "notaries": {"uri":"/akn/in/act/1952/53","title":"Notaries Act, 1952",
                 "domain":"authentication","status":"in force","file":"acts/akn/notaries-act-1952.akn.xml"}
    ```
-2. **`provisions`** - add at least one entry, or the Act will **not** appear in the
-   Acts & provisions tree (the view filters to acts that have a matching provision):
+2. **`provisions`** - one entry per relevant section (also required for the Act to
+   appear at all: the Acts & provisions tree filters to acts that have a matching
+   provision):
    ```json
    {"ref":"notaries:sec_8","act":"notaries","eId":"sec_8","file":"notaries-act-1952.akn.xml",
     "tier":"supporting","role":"functions of a notary","applies":"always","note":"…why it matters to this case…"}
    ```
    `tier` in {operative, definition, supporting, procedure, evidence, notice,
-   limitation, sentencing, constitutional}. Pick the sections that actually bear on
-   the case type, with a one-line `note` on the connection.
+   limitation, sentencing, constitutional}.
+
+   **Do a provision-by-provision relevance pass - do not stop at the two or three
+   obvious sections.** Enumerate every section of the new Act and decide, for each,
+   whether it bears on this case type; pin the relevant ones with a `tier` and a
+   one-line `note` naming the connection. A section is usually *not* relevant if it
+   is housekeeping (short title, extent, savings, repeal), pure institutional
+   machinery (constituting bodies, funds, registers, rule-making), or discipline of
+   the profession itself. It usually *is* relevant if it defines a term the case
+   uses, empowers or binds an actor in the case, governs evidence or procedure the
+   case runs on, or creates a right/relief a party can invoke.
+
+   ```bash
+   # enumerate every section, mark which are already pinned - work down the list
+   python3 - <<'PY'
+   import json,re
+   d=json.load(open('public/data/profiles/cheque-dishonour-s138.profile.json'))
+   pinned={p['ref'] for p in d['provisions']}
+   alias,f="notaries","notaries-act-1952.akn.xml"
+   for m in re.finditer(r'<section eId="(sec_[0-9A-Za-z]+)">\s*<num>([^<]*)</num>\s*<heading>([^<]*)</heading>',
+                        open("public/data/acts/akn/"+f).read()):
+       eid,num,head=m.groups()
+       print(("PINNED " if f"{alias}:{eid}" in pinned else "       ")+f"{num:6s} {head.strip()}")
+   PY
+   ```
+
+   Read the body of any borderline section before deciding - a heading undersells
+   it (e.g. Oaths s.7 "irregularity does not invalidate" forecloses a technical
+   attack on a s.138 deponent). **Record considered exclusions**, so the review is
+   auditable: note *why* whole blocks are left out (e.g. the Permanent Lok Adalat
+   sections are excluded because a private cheque dispute is not a "public utility
+   service", so a s.138 matter never goes there). State a non-obvious exclusion in
+   the commit message.
 
 If the Act introduces a new `domain`, add its label in
 `public/data/config/app.config.json` under `domain_labels`
@@ -177,5 +209,7 @@ the commit message ends with the `Co-Authored-By` trailer. Push only when asked.
 - [ ] OCR done only if scanned; text density checked.
 - [ ] Document type identified; correct AKN root + converter used.
 - [ ] `xmllint` clean; section count matches TOC; zero em-dashes; content spot-checked.
-- [ ] `sources` + at least one `provision` added; new `domain` labelled if needed.
+- [ ] `sources` added; **provision-by-provision relevance pass done** (every section
+      judged, relevant ones pinned with tier + note, considered exclusions recorded)
+      - not just the obvious two or three; new `domain` labelled if needed.
 - [ ] Verified in the app (law tree + `sectionByRef`); PDF and AKN both committed.
