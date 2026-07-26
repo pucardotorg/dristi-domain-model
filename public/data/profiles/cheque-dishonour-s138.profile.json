@@ -1497,6 +1497,48 @@
       "group": "Constitutional & powers",
       "pos": "noun",
       "role": "doctrine"
+    },
+    "complainant": {
+      "ref": "ni:sec_142",
+      "gloss": "The payee or holder in due course of the dishonoured cheque - the only person who can set a s.138 case going, by filing the complaint.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "accused": {
+      "ref": "ni:sec_138",
+      "gloss": "The drawer of the cheque, prosecuted for the dishonour; where the drawer is a company, the company and every person in charge of and responsible to it.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "power-of-attorney holder": {
+      "ref": "ni:sec_142",
+      "gloss": "A duly authorised agent who, being personally aware of the transaction, may file the complaint and depose for the complainant - a point settled for s.138 by the Supreme Court.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "advocate": {
+      "ref": "advocates:sec_30",
+      "gloss": "The enrolled legal practitioner who appears for the complainant or the accused; the right to appear flows from the Advocates Act.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "magistrate": {
+      "ref": "ni:sec_142",
+      "gloss": "The Judicial Magistrate of the First Class who takes cognizance of the complaint, tries it summarily and passes judgment.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "witness": {
+      "ref": "ni:sec_145",
+      "gloss": "A person who gives evidence on the facts; in a s.138 case the complainant's evidence may be led on affidavit.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "actor"
     }
   },
   "edges": [

@@ -436,6 +436,54 @@
         "group": "Filing & language",
         "pos": "noun",
         "role": "doctrine"
+      },
+      {
+        "word": "Bench clerk",
+        "gloss": "The clerk who attends the sitting - calls the cases, marks the exhibits, and keeps the court diary and the proceedings paper.",
+        "source": "Criminal Rules of Practice, Rules 72, 73 & 62",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_72",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor"
+      },
+      {
+        "word": "Stenographer",
+        "gloss": "Takes down the dictation of the depositions, orders and judgment; the depositions are headed and signed as the rules prescribe.",
+        "source": "Criminal Rules of Practice, Rules 56 & 57",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_56",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor"
+      },
+      {
+        "word": "Interpreter",
+        "gloss": "Interprets the evidence when a witness does not speak the court's language, which in Kerala is Malayalam; put on oath, and a police officer may not interpret.",
+        "source": "Criminal Rules of Practice, Rules 52 & 54",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_52",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "actor"
+      },
+      {
+        "word": "Surety",
+        "gloss": "A person who stands surety for the accused's release on bail, undertaking by bond to secure their appearance; the court tests the surety's sufficiency.",
+        "source": "Criminal Rules of Practice, Rules 122 & 124",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_122",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor"
+      },
+      {
+        "word": "Advocate's clerk",
+        "gloss": "Assists the advocate with filing, inspection of records and following the matter through the registry - a recognised court-precinct role rather than a statutory office.",
+        "source": "Court-precinct and registry practice (not a statutory office)",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor"
       }
     ]
   },
