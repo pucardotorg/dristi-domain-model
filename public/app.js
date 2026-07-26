@@ -259,7 +259,8 @@ V.cases=()=>{
 function scopeBar(){
   const c=caseById(activeCase);
   const b=el("div","scopebar");
-  b.innerHTML=`<span class="lab">Case type</span> <span class="ct">${c.name}</span> <span class="tiny">${c.act}</span>`;
+  b.innerHTML=`<span class="lab">Case type</span> <span class="ct">${c.name}</span> <span class="tiny">${c.act}</span>`
+    +`<span class="sb-state" title="Active state">${ic('map-pin')}<span class="sb-state-name">${esc(stateById(activeState).name)}</span></span>`;
   return b;
 }
 const isModelled=()=>caseById(activeCase).status==="active";
