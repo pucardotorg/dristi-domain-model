@@ -11,6 +11,11 @@ one spoken input into structured data that also **enriches the model**: a remark
 can add a role, a vocabulary word, a process step, or nothing at all - and whatever
 it touches must be linked back to the note it came from, in the data.
 
+**If the input is a recorded interview** (a YouTube/video/audio link or a raw
+transcript), or the first note from a state that is not modelled yet, start with the
+**`field-interview`** skill - it pulls the transcript and stands up a new state
+layer, then hands back here for the note itself.
+
 Guiding rules (from the user):
 - **Attribute everything to the person.** Note who said it; if it may be secondhand,
   say so (said by X, but the ultimate source may be court staff or observation).
@@ -87,8 +92,11 @@ clickable, hoverable source links, so use them for every piece of evidence.
 
 - `verification.claims[].status` is a free slug; the UI colours the chip from it
   (`.verif-<status>`), so new statuses need no code. Established set:
-  `corroborated` · `contradicted` · `reported-allegation` · `needs-check` ·
-  `unverified` (and `similar`/`diverges` for `compare`).
+  `corroborated` · `contradicted` · `reported-allegation` · `reported-practice` ·
+  `needs-check` · `unverified` (and `similar`/`diverges` for `compare`).
+  `reported-practice` = a firsthand informal practice that is real but governed by
+  no rule (distinct from `reported-allegation`, an unproven accusation, and
+  `needs-check`, a factual claim still to reconcile with the corpus).
 - If the note changes nothing: `"impact": { "changed": false, "reason": "already covered by crp:rule_68" }`.
 
 ## The other half of the link (units point back)
