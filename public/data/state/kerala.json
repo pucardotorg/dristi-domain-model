@@ -527,7 +527,7 @@
       },
       {
         "word": "Oath",
-        "gloss": "The declaration by which a witness, interpreter or deponent binds themselves to tell the truth before giving evidence. In Kerala the Criminal Rules of Practice name the officer who administers it (Rule 50) and prescribe its form (Rule 51); a person who objects to being sworn makes a solemn affirmation instead, which has the same effect.",
+        "gloss": "How the national Oaths Act, 1969 requirement is run on the ground in Kerala: the Criminal Rules of Practice name the officer who administers the oath (Rule 50) and prescribe its form (Rule 51). A witness, interpreter or deponent is bound by it before giving evidence; one who objects to being sworn makes a solemn affirmation instead.",
         "source": "Criminal Rules of Practice, Rules 50 & 51",
         "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
         "eId": "rule_50",
@@ -536,9 +536,7 @@
         "role": "procedure",
         "aka": [
           "oath-taking",
-          "on oath",
-          "solemn affirmation",
-          "affirmation"
+          "on oath"
         ]
       },
       {

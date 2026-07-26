@@ -130,6 +130,14 @@
     "constitutional": {
       "label": "Constitutional",
       "blurb": "the powers courts draw on"
+    },
+    "authentication": {
+      "label": "Attestation & oaths",
+      "blurb": "swearing, affirming, notarising and authenticating documents"
+    },
+    "settlement": {
+      "label": "Settlement",
+      "blurb": "compromise and legal-aid disposal, including Lok Adalat"
     }
   },
   "tier_order": [

@@ -138,6 +138,27 @@
       "domain": "policing",
       "status": "in force",
       "file": "acts/akn/police-act-1861.akn.xml"
+    },
+    "oaths": {
+      "uri": "/akn/in/act/1969/44",
+      "title": "Oaths Act, 1969",
+      "domain": "authentication",
+      "status": "in force",
+      "file": "acts/akn/oaths-act-1969.akn.xml"
+    },
+    "notaries": {
+      "uri": "/akn/in/act/1952/53",
+      "title": "Notaries Act, 1952",
+      "domain": "authentication",
+      "status": "in force",
+      "file": "acts/akn/notaries-act-1952.akn.xml"
+    },
+    "lsa": {
+      "uri": "/akn/in/act/1987/39",
+      "title": "Legal Services Authorities Act, 1987",
+      "domain": "settlement",
+      "status": "in force",
+      "file": "acts/akn/legal-services-authorities-act-1987.akn.xml"
     }
   },
   "act_alias_map": [
@@ -1110,6 +1131,86 @@
       "role": "disobeying a direction",
       "applies": "pre-2024-07-01",
       "note": "Public servant disobeying direction of law with intent to save a person from punishment."
+    },
+    {
+      "ref": "oaths:sec_3",
+      "act": "oaths",
+      "eId": "sec_3",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "power to administer oaths",
+      "applies": "always",
+      "note": "The courts and persons who may administer oaths and affirmations - the authority behind swearing a s.138 complainant's affidavit and every witness who deposes."
+    },
+    {
+      "ref": "oaths:sec_4",
+      "act": "oaths",
+      "eId": "sec_4",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "oath to witnesses & interpreters",
+      "applies": "always",
+      "note": "Oaths or affirmations must be made by every witness, and by the interpreter of a witness's evidence, before they testify - the rule that puts a s.138 witness and the court interpreter on oath."
+    },
+    {
+      "ref": "oaths:sec_5",
+      "act": "oaths",
+      "eId": "sec_5",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "affirmation instead of oath",
+      "applies": "always",
+      "note": "A person who objects to being sworn may instead make a solemn affirmation, which has the same force and effect as an oath."
+    },
+    {
+      "ref": "notaries:sec_8",
+      "act": "notaries",
+      "eId": "sec_8",
+      "file": "notaries-act-1952.akn.xml",
+      "tier": "supporting",
+      "role": "functions of a notary",
+      "applies": "always",
+      "note": "What a notary may do: verify, authenticate, certify or attest instruments, and note or protest the dishonour of a promissory note, hundi or bill of exchange. This is also how the power-of-attorney a s.138 complainant's agent files is authenticated."
+    },
+    {
+      "ref": "notaries:sec_2",
+      "act": "notaries",
+      "eId": "sec_2",
+      "file": "notaries-act-1952.akn.xml",
+      "tier": "definition",
+      "role": "definition of notary",
+      "applies": "always",
+      "note": "Defines a notary as a person appointed under this Act - the office that the Evidence Act / BSA POA-presumption then relies on."
+    },
+    {
+      "ref": "lsa:sec_19",
+      "act": "lsa",
+      "eId": "sec_19",
+      "file": "legal-services-authorities-act-1987.akn.xml",
+      "tier": "supporting",
+      "role": "organisation of Lok Adalats",
+      "applies": "always",
+      "note": "Legal-services authorities organise Lok Adalats; a pending s.138 complaint can be referred to one for settlement by consent."
+    },
+    {
+      "ref": "lsa:sec_20",
+      "act": "lsa",
+      "eId": "sec_20",
+      "file": "legal-services-authorities-act-1987.akn.xml",
+      "tier": "supporting",
+      "role": "cognizance of cases by Lok Adalats",
+      "applies": "always",
+      "note": "How a case reaches a Lok Adalat - on the parties' agreement or on reference by the court - and the Lok Adalat's mandate to arrive at a compromise or settlement."
+    },
+    {
+      "ref": "lsa:sec_21",
+      "act": "lsa",
+      "eId": "sec_21",
+      "file": "legal-services-authorities-act-1987.akn.xml",
+      "tier": "supporting",
+      "role": "award of Lok Adalat",
+      "applies": "always",
+      "note": "Every award of a Lok Adalat is deemed a decree of a civil court, is final and binding on the parties, and no appeal lies - which is what lets a Lok Adalat settlement close a s.138 case cleanly."
     }
   ],
   "terms": {
@@ -1769,8 +1870,8 @@
       ]
     },
     "lok adalat": {
-      "ref": "constitution:art_39A",
-      "gloss": "A settlement forum under the Legal Services Authorities Act, 1987 where a §138 case can be compromised and disposed by consent; its award is final and binds the parties. Referral of cheque disputes to Lok Adalat and mediation is underpinned by Article 39A (access to justice).",
+      "ref": "lsa:sec_19",
+      "gloss": "A settlement forum under the Legal Services Authorities Act, 1987 where a s.138 case can be compromised and disposed by consent (ss.19-20); its award is deemed a civil-court decree, is final and binds the parties with no appeal (s.21). Referral of cheque disputes to Lok Adalat and mediation is underpinned by Article 39A of the Constitution.",
       "group": "Procedure & process",
       "pos": "noun",
       "role": "forum",
@@ -1791,8 +1892,8 @@
       ]
     },
     "notary": {
-      "ref": "bsa:sec_84",
-      "gloss": "A public officer appointed under the Notaries Act, 1952 who administers oaths and attests, authenticates and certifies documents. The notary matters to a §138 case because a power-of-attorney authenticated before a notary is presumed genuine: the court shall presume due execution under BSA s.84 (formerly Evidence Act s.85), which is how a POA holder proves authority to file and depose.",
+      "ref": "notaries:sec_8",
+      "gloss": "A public officer appointed under the Notaries Act, 1952 who administers oaths and attests, authenticates and certifies documents, and notes or protests the dishonour of a bill or note (s.8). The notary matters to a s.138 case in two ways: the demand and dishonour of a negotiable instrument can be noted before one, and a power-of-attorney authenticated before a notary is presumed genuine (BSA s.84 / Evidence Act s.85), which is how a POA holder proves authority to file and depose.",
       "group": "Presumptions & evidence",
       "pos": "noun",
       "role": "actor",
@@ -1800,6 +1901,17 @@
         "notary public",
         "notarised",
         "notarisation"
+      ]
+    },
+    "oath": {
+      "ref": "oaths:sec_4",
+      "gloss": "The declaration, required by the Oaths Act, 1969, by which a witness or interpreter binds themselves to tell the truth before giving evidence (s.4); the court or an authorised officer administers it (s.3). A person who objects to being sworn makes a solemn affirmation instead, with the same effect (s.5).",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "procedure",
+      "aka": [
+        "judicial oath",
+        "solemn affirmation"
       ]
     }
   },

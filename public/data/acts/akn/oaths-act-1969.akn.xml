@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/act/1969/44/!main"/>
+          <FRBRuri value="/akn/in/act/1969/44"/>
+          <FRBRalias value="Oaths Act, 1969" name="shortTitle"/>
+          <FRBRdate date="1969-12-26" name="enactment"/>
+          <FRBRauthor href="#in-parliament"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value="44"/>
+          <FRBRname value="Oaths Act, 1969"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/act/1969/44/eng@/!main"/>
+          <FRBRuri value="/akn/in/act/1969/44/eng@"/>
+          <FRBRdate date="1969-12-26" name="consolidation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/act/1969/44/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/act/1969/44/eng@.akn"/>
+          <FRBRdate date="2026-07-26" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="in-parliament" href="/ontology/organization/in/parliament" showAs="Parliament of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the India Code consolidated PDF of Oaths Act, 1969 (44 of 1969). Page furniture, the arrangement-of-sections table and footnote/amendment apparatus were stripped during extraction; residual OCR noise may remain. Best-effort structural conversion - verify against the official source before authoritative use.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <longTitle><p>OATHS ACT, 1969</p></longTitle>
+      <p>An Act to consolidate and amend the law relating to judicial oaths and for certain other purposes.</p>
+    </preface>
+    <body>
+        <section eId="sec_1">
+          <num>1.</num>
+          <heading>Short title and extent.</heading>
+          <content><blockList eId="sec_1__list_1"><item><num>(1)</num><p>This Act may be called the Oaths Act, 1969.</p></item><item><num>(2)</num><p>It extends to the whole of India .</p></item></blockList></content>
+        </section>
+        <section eId="sec_2">
+          <num>2.</num>
+          <heading>Saving of certain oaths and affirmations.</heading>
+          <content><p>Nothing in this Act shall apply to proceedings before courts martial or to oaths, affirmations or declarations prescribed by the Central Government with respect to members of the Armed Forces of the Union.</p></content>
+        </section>
+        <section eId="sec_3">
+          <num>3.</num>
+          <heading>Power to administer oaths.</heading>
+          <content><blockList eId="sec_3__list_1"><item><num>(1)</num><p>The following courts and persons shall have power to administer, by themselves or, subject to the provisions of sub-section</p></item><item><num>(2)</num><p>of section 6, by an officer empowered by them in this behalf, oaths and affirmations in discharge of the duties imposed or in exercise of the powers conferred upon them by law, namely: -</p></item><item><num>(a)</num><p>all courts and persons having by law or consent of parties authority to receive evidence;</p></item><item><num>(b)</num><p>the commanding officer of any military, naval, or air force station or ship occupied by the Armed Forces of the Union, provided that the oath or affirmation is administered within the limits of the station.</p></item><item><num>(2)</num><p>Without prejudice to the powers conferred by sub-section</p></item><item><num>(1)</num><p>or by or under any other law for the time being in force, any court, Judge, Magistrate or person may administer oaths and affirmations for the purpose of affidavits, if empowered in this behalf -</p></item><item><num>(a)</num><p>by the High Court, in respect of affidavits for the purpose of judicial proceedings; or</p></item><item><num>(b)</num><p>by the State Government, in respect of other affidavits.</p></item></blockList></content>
+        </section>
+        <section eId="sec_4">
+          <num>4.</num>
+          <heading>Oaths or affirmations to be made by witnesses, interpreters and jurors.</heading>
+          <content><blockList eId="sec_4__list_1"><item><num>(1)</num><p>Oaths or affirmations shall be made by the following persons, namely: -</p></item><item><num>(a)</num><p>all witnesses, that is to say, all persons who may lawfully be examined, or give, or be required to give, evidence by or before any court or person having by law or consent of parties authority to examine such persons or to receive evidence;</p></item><item><num>(b)</num><p>interpreters of questions put to, and evidence given by, witnesses; and</p></item><item><num>(c)</num><p>jurors: Provided that where the witness is a child under twelve years of age, and the court or person having authority to examine such witness is of opinion that, though the witness understands the duty of speaking the truth, he does not understand the nature of an oath or affirmation, the foregoing provisions of this section and the provisions of section 5 shall not apply to such witness; but in any such case the absence of an oath or affirmation shall not render inadmissible any evidence given by such witness nor affect the obligation of the witness to state the truth.</p></item><item><num>(2)</num><p>Nothing in this section shall render it lawful to administer, in a criminal proceeding, an oath or affirmation to the accused person, unless he is examined as a witness for the defence, or necessary to administer to the official interpreter of any court, after he has entered on the execution of the duties of his office, an oath or affirmation that he will faithfully discharge those duties.</p></item></blockList></content>
+        </section>
+        <section eId="sec_5">
+          <num>5.</num>
+          <heading>Affirmation by persons desiring to affirm.</heading>
+          <content><p>A witness, interpreter or juror may, instead of making an oath, make an affirmation.</p></content>
+        </section>
+        <section eId="sec_6">
+          <num>6.</num>
+          <heading>Forms of oaths and affirmations.</heading>
+          <content><blockList eId="sec_6__list_1"><item><num>(1)</num><p>All oaths and affirmations made under section 4 shall be administered according to such one of the forms given in the Schedule as may be appropriate to the circumstances of the case: Provided that if a witness in any judicial proceeding desires to give evidence on oath or solemn affirmation in any form common amongst, or held binding by, persons of the class to which he belongs, and not repugnant to justice or decency, and not purporting to affect any third person, the court may, if it thinks fit, notwithstanding anything hereinbefore contained, allow him to give evidence on such oath or affirmation.</p></item><item><num>(2)</num><p>All such oaths and affirmations shall, in the case of all courts other than the Supreme Court and the High Courts, be administered by the presiding officer of the court himself, or, in the case of a Bench of Judges or Magistrates, by any one of the Judges or Magistrates, as the case may be.</p></item></blockList></content>
+        </section>
+        <section eId="sec_7">
+          <num>7.</num>
+          <heading>Proceedings and evidence not invalidated by omission of oath or irregularity.</heading>
+          <content><p>No omission to take any oath or make any affirmation, no substitution of any one for any other of them, and no irregularity whatever in the administration of any oath or affirmation or in the form in which it is administered, shall invalidate any proceeding or render inadmissible any evidence whatever, in or in respect of which such omission, substitution or irregularity took place, or shall affect the obligation of a witness to state the truth.</p></content>
+        </section>
+        <section eId="sec_8">
+          <num>8.</num>
+          <heading>Persons giving evidence bound to state the truth.</heading>
+          <content><p>Every person giving evidence on any subject before any court or person hereby authorised to administer oaths and affirmations shall be bound to state the truth on such subject.</p></content>
+        </section>
+        <section eId="sec_9">
+          <num>9.</num>
+          <heading>Repeal and saving.</heading>
+          <content><blockList eId="sec_9__list_1"><item><num>(1)</num><p>The Indian Oaths Act, 1873 (10 of 1873), is hereby repealed.</p></item><item><num>(2)</num><p>Where, in any proceeding pending at the commencement of this Act, the parties have agreed to be bound by any such oath or affirmation as is specified in section 8 of the said Act, then, notwithstanding the repeal of the said Act, the provisions of sections 9 to 12 of the said Act shall continue to apply in relation to such agreement as if this Act had not been passed. THE SCHEDULE (See section 6) FORMS OF OATHS OR AFFIRMATIONS Form No. 1 (Witnesses): - I do swear in the name of God that what I shall state shall be the truth, the whole truth and nothing solemnly affirm but the truth. Form No. 2 (Jurors): - I do swear in the name of God that I will well and truly try and true deliverance make between the solemnly affirm State and the prisoner</p></item><item><num>(s)</num><p>at the bar, whom I shall have in charge, and a true verdict give according to the evidence. Form No. 3 (Interpreters): - I do swear in the name of God that I will well and truly interpret and explain all questions put to and solemnly affirm evidence given by witnesses and translate correctly and accurately all documents given to me for translation. Form No. 4 (Affidavits): - I do swear in the name of God that this is my name and signature (or mark) and that the content of this solemnly affirm my affidavit are true. STATEMENT OF OBJECTS AND REASONS The Law Commission, in its 28th Report on the Indian Oaths Act, 1873, has recommended the re-enactment of the Act with certain modifications. The main recommendations relate to sections 6, 7 and 9 to 12 of the Act. Section 6 is proposed to be modified to the effect that a witness, interpreter or juror may, instead of making an oath make an affirmation, so as to give every such person the liberty of making an affirmation irrespective of its religious persuasions or whether or not he raises any objection to make an oath. In order that there may be uniformity in the form to be adopted in the matter of any oath or affirmation, affidavit, etc., in the Courts throughout the country, the forms prescribed by the High Courts in this behalf are being adopted and are proposed to be set out in a Schedule to the Bill. Where a witness desires to make an oath or affirmation in any other form which is regarded as common amongst, or held binding by, persons of the class to which he belongs, he should, it is proposed, be allowed to do so. It is also considered necessary that oaths and affirmations should be administered by the presiding officer of the Court himself except in the case of the Supreme Court and the High Courts. Section 7 is proposed to be amended for these purposes. 2. The Commission has strongly opposed the retention of the provisions, namely, Ss 9 to 12, relating to the conclusive or binding character of special oaths as in their opinion, it is opposed to juristic principles and. public policy. In support of their view they have relied upon certain judicial pronouncements including the decision in the Privy Council case: Inder persad v. Mohan Das (1927) 54 IA 301. These sections are, therefore, proposed to be omitted. 3. On the basis of the aforesaid recommendations it is also proposed to amend S. 4 of the Act to provide for the omission of the second condition to the exercise, by the commanding officer, of the power to administer oath or affirmation, namely, the condition that the oath or affirmation should be such as a Justice of the Peace is competent to administer; also to provide that the State Government or High Court may empower any court, magistrate or other person at administer oaths or affirmations for the purpose of affidavits. 4. The Bill is intended to give effect to the aforesaid recommendations of the Law Commission" - Gazette of India, 27-11-1967, Pt. II, Section 2, Extra, p. 1161. NEW DELHI P. GOVINDA MENON The 15th November, 1967.</p></item></blockList></content>
+        </section>
+    </body>
+  </act>
+</akomaNtoso>
