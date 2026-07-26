@@ -24,6 +24,9 @@ let currentView = "overview";
 let processLens = "prescribed";   // which lens the story "process" is viewed through
 let vocabScrollTo = null;         // a vocab word to scroll to when the Vocabulary view next renders
 let practiceScrollTo = null;      // a field-note id to scroll to when the Local practice view next renders
+let _extra = {};                  // deep-link query params for the current position (sec/term/note/act/eid)
+let pendingAnchor = null;         // a DOM id to scroll to after the next view renders (from a deep link)
+let _lastHash = null;             // the hash we last wrote, so our own writes don't re-trigger the router
 const OV_SUBVIEWS = ["structure","split","time"];
 
 let JURISDICTIONS = [];
@@ -533,7 +536,7 @@ V.words=()=>{
       const card=[...m.querySelectorAll(".word")].find(c=>c.dataset.word===wanted.toLowerCase());
       if(card){
         const y=card.getBoundingClientRect().top+window.scrollY-16;
-        window.scrollTo({top:Math.max(0,y), behavior:"smooth"});
+        window.scrollTo({top:Math.max(0,y), behavior:"auto"});
         const wt=card.querySelector(".wt"); if(wt && !card.classList.contains("open")) wt.click();
         card.classList.add("word-flash"); setTimeout(()=>card.classList.remove("word-flash"),1500);
       }
@@ -645,12 +648,11 @@ V.practice=()=>{
     setTimeout(()=>{
       const card=document.getElementById("pnote-"+wanted);
       if(card){
-        const y=card.getBoundingClientRect().top+window.scrollY-16;
-        window.scrollTo({top:Math.max(0,y), behavior:"smooth"});
         card.querySelectorAll(".pn-acc-head").forEach(h=>{ if(h.getAttribute("aria-expanded")!=="true") h.click(); });
         card.classList.add("word-flash"); setTimeout(()=>card.classList.remove("word-flash"),1600);
+        scrollToId("pnote-"+wanted, 16, false);
       }
-    },70);
+    },40);
   }
   return m;
 };
@@ -788,6 +790,7 @@ V.story=()=>{
       processLens=b.dataset.lens;
       tabs.querySelectorAll(".proc-tab").forEach(x=>x.classList.toggle("on", x.dataset.lens===processLens));
       tl.className="timeline lens-"+processLens;
+      writeHash(false);   // reflect the lens in the URL
     });
     // pin the lens tabs while scrolling the process, slide them to the right when stuck, release at the section end
     if("IntersectionObserver" in window){
@@ -1186,15 +1189,15 @@ function showVocabPop(el){
 function hideVocabPop(){ clearTimeout(_vpTimer); _vpTimer=setTimeout(()=>{ if(!_vpHover && _vp) _vp.classList.remove("show"); _vpAnchor=null; },140); }
 function goVocabWord(word){
   if(_vp) _vp.classList.remove("show");
-  vocabScrollTo=word;
-  go("words");
+  vocabScrollTo=word; _extra={term:word};
+  go("words", true);
 }
 /* a unit (vocab term, role, process step) carries sourceNotes back to the field note
    it came from - open the Local practice view and scroll to that note. */
 function goPracticeNote(id){
   if(_vp) _vp.classList.remove("show");
-  practiceScrollTo=id;
-  go("practice");
+  practiceScrollTo=id; _extra={note:id};
+  go("practice", true);
 }
 /* hover + scroll wiring for vocab terms (hover-capable pointers only) */
 if(window.matchMedia && window.matchMedia("(hover: hover)").matches){
@@ -1635,16 +1638,18 @@ function storySections(){
     .filter(([id])=>S[id]).map(([id,label])=>({id,label}));
 }
 function goStorySection(id){
+  _extra={sec:"story-"+id};
   const scroll=()=>{ const t=document.getElementById("story-"+id); if(t){ const y=t.getBoundingClientRect().top+window.scrollY-16; window.scrollTo({top:Math.max(0,y), behavior:"smooth"}); t.classList.add("sec-flash"); setTimeout(()=>t.classList.remove("sec-flash"),1100); } };
-  if(currentView!=="story"){ go("story"); setTimeout(scroll,110); }   // render first, then scroll
-  else { const sw=$("#storyWrap"); if(sw) sw.classList.remove("ov-collapsed"); scroll(); }  // already here: just scroll
+  if(currentView!=="story"){ go("story", true); setTimeout(scroll,110); }   // render first, then scroll
+  else { const sw=$("#storyWrap"); if(sw) sw.classList.remove("ov-collapsed"); writeHash(true); scroll(); }  // already here: just scroll
 }
 /* jump to a specific role or process stage on the story page (target of a field-note "what it changed" link) */
 function goStoryUnit(unit, id){
   const domId = unit==="role" ? "role-"+id : unit==="process" ? "procstage-"+id : null;
   if(!domId) return;
+  _extra={sec:domId};
   const scroll=()=>{ const t=document.getElementById(domId); if(t){ const y=t.getBoundingClientRect().top+window.scrollY-70; window.scrollTo({top:Math.max(0,y), behavior:"smooth"}); t.classList.add("sec-flash"); setTimeout(()=>t.classList.remove("sec-flash"),1300); } };
-  if(currentView!=="story"){ go("story"); setTimeout(scroll,140); } else scroll();
+  if(currentView!=="story"){ go("story", true); setTimeout(scroll,140); } else { writeHash(true); scroll(); }
 }
 /* resolve a note's impact ref ("<state>:<unit>:<id>") to the right navigation */
 function goPracticeChange(unit, ref, label){
@@ -1709,7 +1714,7 @@ function buildNav(){
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.onclick=()=>{
     const ovm=$("#ovMenu"); if(ovm) ovm.classList.remove("open");
     const sw=$("#storyWrap"); if(sw) sw.classList.toggle("ov-collapsed", a.dataset.view!=="story"); // open only when The story itself is clicked
-    go(a.dataset.view);
+    _extra={}; go(a.dataset.view, true);   // fresh top-level nav: clear any deep anchor, new history entry
     setDrawer(false);
   });
   // story accordion: the chevron toggles it in place; the section links scroll to a heading
@@ -1729,16 +1734,71 @@ function buildNav(){
   if(ssel) ssel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
 }
 function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
-function go(view){
+function go(view, push){
   if(view==="parts"||view==="provisions") view="law"; // Acts + Provisions merged
   if(!V[view]) view="overview";
   currentView=view;
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
   setMain(V[view]());
   if(view!=="words") try{ linkifyVocab($("#main")); }catch(e){}   // turn vocabulary words in the prose into links
-  if(history.replaceState) history.replaceState(null,"","#"+view);
+  writeHash(!!push);
+  // a deep link may name a section/role/stage to scroll to once the view is on screen
+  if(pendingAnchor){ const id=pendingAnchor; pendingAnchor=null; scrollToId(id, 70, true); }
 }
 window.go=go;
+
+/* robustly scroll a just-rendered element into view - two passes, because a
+   state switch or async fill can shift layout after the first scroll. Accepts a
+   DOM id (or the "story-"+id fallback). */
+function scrollToId(id, offset, flash){
+  const doit=()=>{ const t=document.getElementById(id)||document.getElementById("story-"+id);
+    if(!t) return false;
+    const y=t.getBoundingClientRect().top+window.scrollY-(offset||70);
+    window.scrollTo({top:Math.max(0,y), behavior:"auto"});
+    if(flash){ t.classList.add("sec-flash"); setTimeout(()=>t.classList.remove("sec-flash"),1400); }
+    return true; };
+  setTimeout(()=>{ if(doit()) setTimeout(()=>{ const t=document.getElementById(id)||document.getElementById("story-"+id); if(t){ const y=t.getBoundingClientRect().top+window.scrollY-(offset||70); window.scrollTo({top:Math.max(0,y),behavior:"auto"}); } },320); },120);
+}
+
+/* ---- deep-link router: the URL hash carries view + state + position ----
+   #<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&act=<a>&eid=<e> */
+function buildHash(){
+  const p=new URLSearchParams();
+  if(activeState) p.set("state",activeState);
+  if(currentView==="story" && processLens && processLens!=="prescribed") p.set("lens",processLens);
+  Object.entries(_extra||{}).forEach(([k,v])=>{ if(v) p.set(k,v); });
+  const q=p.toString();
+  return currentView+(q?"?"+q:"");
+}
+function writeHash(push){
+  const h=buildHash(); if(h===_lastHash) return; _lastHash=h;
+  try{ history[push?"pushState":"replaceState"](null,"","#"+h); }catch(e){}
+}
+function applyHash(raw, push){
+  const [view0,qs]=String(raw||"law").split("?");
+  const view=view0||"law";
+  const p=new URLSearchParams(qs||"");
+  const st=p.get("state");
+  const run=()=>{
+    if(p.get("lens")) processLens=p.get("lens");
+    _extra={}; pendingAnchor=null;
+    const term=p.get("term"), note=p.get("note"), sec=p.get("sec"), act=p.get("act"), eid=p.get("eid");
+    if(term){ vocabScrollTo=term; _extra.term=term; }
+    if(note){ practiceScrollTo=note; _extra.note=note; }
+    if(sec){ pendingAnchor=sec; _extra.sec=sec; }
+    if(act){ _extra.act=act; if(eid) _extra.eid=eid; }
+    go(view, !!push);
+    if(act && typeof SOURCES!=="undefined" && SOURCES[act]) setTimeout(()=>{ try{ openActModal(act, eid||undefined); }catch(e){} },120);
+  };
+  if(st && st!==activeState && (JURISDICTIONS||[]).some(j=>j.id===st)){
+    activeState=st; loadStateData().then(()=>{ buildNav(); run(); }).catch(run);
+  } else run();
+}
+window.addEventListener("hashchange",()=>{
+  const h=(location.hash||"").slice(1);
+  if(h===_lastHash) return;   // our own write
+  _lastHash=h; applyHash(h, false);
+});
 
 /* theme toggle */
 function setTheme(t){document.documentElement.classList.toggle("dark",t==="dark"); document.querySelectorAll(".tt-opt").forEach(o=>o.classList.toggle("on",o.dataset.t===t));}
@@ -1808,7 +1868,8 @@ function showLoadError(err){
     await loadStateData();
     buildNav();
     // the Map ("graph") is hidden for now; keep V.graph defined but never land on it
-    const start=(location.hash||"#law").slice(1);
-    go(V[start] && start!=="graph" ? start : "law");
+    const raw=(location.hash||"").slice(1);
+    const startView=(raw.split("?")[0])||"law";
+    applyHash((V[startView] && startView!=="graph") ? raw : "law", false);
   }catch(err){ showLoadError(err); }
 })();
