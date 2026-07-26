@@ -50,15 +50,19 @@ export function mountGraph(container, model){
     n.x=Math.cos(a)*R; n.y=Math.sin(a)*R; });
 
   // ---- view transform ----
-  let scale=1, tx=0, ty=0, W=0, H=0, DPR=1, userMoved=false, alpha=1;
+  let scale=1, tx=0, ty=0, W=0, H=0, DPR=1, userMoved=false, alpha=1, hover=null;
   function resize(){
     DPR = window.devicePixelRatio||1;
     const rect = container.getBoundingClientRect();
     W = rect.width; H = rect.height;
-    canvas.width = Math.max(1,W*DPR); canvas.height = Math.max(1,H*DPR);
-    canvas.style.width = W+"px"; canvas.style.height = H+"px";
+    const nw = Math.max(1, Math.round(W*DPR)), nh = Math.max(1, Math.round(H*DPR));
+    if(canvas.width!==nw || canvas.height!==nh){       // reallocating the backing store clears it - only when it truly changed
+      canvas.width = nw; canvas.height = nh;
+      canvas.style.width = W+"px"; canvas.style.height = H+"px";
+    }
     ctx.setTransform(DPR,0,0,DPR,0,0);
-    if(!userMoved){ fitView(); reheat(0.4); }            // frame all nodes until the user pans/zooms
+    if(!userMoved) fitView();                            // reframe on container resize (not while settling)
+    if(typeof draw==="function") draw();                 // repaint immediately (don't wait for the next rAF)
   }
   // frame the whole node cloud into the viewport (with padding)
   function fitView(){
@@ -113,7 +117,6 @@ export function mountGraph(container, model){
   }
 
   // ---- render ----
-  let hover=null;
   function toWorld(px,py){ return { x:(px-tx)/scale, y:(py-ty)/scale }; }
   function draw(){
     ctx.clearRect(0,0,W,H);
@@ -163,10 +166,11 @@ export function mountGraph(container, model){
   }
 
   function reheat(a=0.6){ alpha=Math.max(alpha,a); }
-  // warm up synchronously so the graph opens already laid-out (robust even if rAF is slow/throttled)
-  for(let i=0;i<80;i++) tick();
+  // settle the layout fully & synchronously, then fit once, so it opens laid-out and STAYS put.
+  // (physics is inert afterwards - tick() early-returns when alpha is low - and only wakes on drag.)
+  for(let i=0;i<350;i++) tick();
   fitView();
-  function frame(){ tick(); if(!userMoved) fitView(); draw(); _raf=requestAnimationFrame(frame); }
+  function frame(){ tick(); draw(); _raf=requestAnimationFrame(frame); }
   frame();
 
   // ---- interactions ----
