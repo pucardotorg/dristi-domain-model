@@ -226,10 +226,12 @@ def main():
     ap.add_argument("--title"); ap.add_argument("--number", type=int)
     ap.add_argument("--year", type=int); ap.add_argument("--date")
     ap.add_argument("--longtitle")
+    ap.add_argument("--pdf", help="override input PDF path (e.g. a state instrument)")
+    ap.add_argument("--out", help="override output AKN path (e.g. state/<state>/akn/...)")
     args = ap.parse_args()
 
-    pdf = REPO / "public/data/acts/sources" / f"{args.slug}.pdf"
-    out = REPO / "public/data/acts/akn" / f"{args.slug}.akn.xml"
+    pdf = Path(args.pdf) if args.pdf else REPO / "public/data/acts/sources" / f"{args.slug}.pdf"
+    out = Path(args.out) if args.out else REPO / "public/data/acts/akn" / f"{args.slug}.akn.xml"
     if not pdf.exists():
         sys.exit(f"ERROR: {pdf} not found")
 

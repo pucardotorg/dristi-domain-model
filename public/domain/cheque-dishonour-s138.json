@@ -4085,7 +4085,609 @@
           ],
           "deep_link": "#words?state=haryana&term=filing window"
         }
-      ]
+      ],
+      "institutions": {
+        "summary": "The police and the courts a s.138 case runs through in Haryana - the police grounded in the Haryana Police Act, 2007, the courts in the Constitution and the BNSS. The Punjab & Haryana High Court rules of practice are not yet in the corpus.",
+        "police": {
+          "summary": "The Haryana Police, constituted under the Haryana Police Act, 2007. The force is organised into ranges, police districts and stations; the senior ranks are Indian Police Service (IPS) officers, the rest the Haryana Police Service. A s.138 case rarely involves the police (it is a complaint, not an FIR case).",
+          "sources": [
+            {
+              "l": "Haryana Police Act, 2007",
+              "s": "hpa",
+              "e": "sec_3"
+            },
+            {
+              "l": "Police Act, 1861",
+              "n": "police1861:sec_2"
+            }
+          ],
+          "ranks": [
+            {
+              "id": "dgp",
+              "name": "Director General of Police",
+              "aka": [
+                "DGP",
+                "Head of Police Force"
+              ],
+              "cite": [
+                {
+                  "l": "HR Police Act §5",
+                  "s": "hpa",
+                  "e": "sec_5"
+                },
+                {
+                  "l": "Police Act 1861 §4",
+                  "n": "police1861:sec_4"
+                }
+              ],
+              "service": "IPS",
+              "who": "Heads the Haryana Police; appointed by the State Government and exercises statewide command.",
+              "entry": "IPS, via the UPSC Civil Services Examination, promoted to DGP."
+            },
+            {
+              "id": "adgp",
+              "name": "Additional Director General of Police",
+              "aka": [
+                "ADGP"
+              ],
+              "cite": [
+                {
+                  "l": "§22 (rank structure)",
+                  "s": "hpa",
+                  "e": "sec_22"
+                }
+              ],
+              "service": "IPS",
+              "who": "Heads a zone or a major functional wing.",
+              "entry": "IPS, by promotion."
+            },
+            {
+              "id": "igp",
+              "name": "Inspector General of Police",
+              "aka": [
+                "IGP",
+                "IG"
+              ],
+              "cite": [
+                {
+                  "l": "§22",
+                  "s": "hpa",
+                  "e": "sec_22"
+                },
+                {
+                  "l": "Police Act 1861 §4",
+                  "n": "police1861:sec_4"
+                }
+              ],
+              "service": "IPS",
+              "who": "Heads a range or wing.",
+              "entry": "IPS, by promotion."
+            },
+            {
+              "id": "dig",
+              "name": "Deputy Inspector General of Police",
+              "aka": [
+                "DIG"
+              ],
+              "cite": [
+                {
+                  "l": "§9 (police range)",
+                  "s": "hpa",
+                  "e": "sec_9"
+                }
+              ],
+              "service": "IPS",
+              "who": "Heads a police range - a group of districts.",
+              "entry": "IPS, by promotion."
+            },
+            {
+              "id": "sp",
+              "name": "Superintendent of Police",
+              "aka": [
+                "SP",
+                "District Police Chief"
+              ],
+              "cite": [
+                {
+                  "l": "§10 (police districts)",
+                  "s": "hpa",
+                  "e": "sec_10"
+                },
+                {
+                  "l": "Police Act 1861 §47",
+                  "n": "police1861:sec_47"
+                }
+              ],
+              "service": "IPS / HPS",
+              "who": "District Police chief - commands the police of a district.",
+              "entry": "IPS (direct), or a promoted Haryana Police Service officer."
+            },
+            {
+              "id": "dysp",
+              "name": "Deputy Superintendent of Police",
+              "aka": [
+                "Dy.SP",
+                "ASP"
+              ],
+              "cite": [
+                {
+                  "l": "§22",
+                  "s": "hpa",
+                  "e": "sec_22"
+                }
+              ],
+              "service": "HPS",
+              "who": "Sub-divisional police officer.",
+              "entry": "Haryana Police Service via the Haryana PSC, or promotion."
+            },
+            {
+              "id": "inspector",
+              "name": "Inspector of Police",
+              "aka": [
+                "Station House Officer (larger stations)"
+              ],
+              "cite": [
+                {
+                  "l": "§12 (police stations)",
+                  "s": "hpa",
+                  "e": "sec_12"
+                }
+              ],
+              "service": "HPS",
+              "who": "Heads a police station or a group of stations.",
+              "entry": "Promotion or direct recruitment."
+            },
+            {
+              "id": "si",
+              "name": "Sub-Inspector of Police",
+              "aka": [
+                "SI",
+                "SHO"
+              ],
+              "cite": [
+                {
+                  "l": "§12 (police stations)",
+                  "s": "hpa",
+                  "e": "sec_12"
+                }
+              ],
+              "service": "HPS",
+              "who": "Station House Officer of most stations - registers the FIR, investigates.",
+              "entry": "Direct recruitment via the Haryana PSC, or promotion."
+            },
+            {
+              "id": "asi",
+              "name": "Assistant Sub-Inspector",
+              "aka": [
+                "ASI"
+              ],
+              "cite": [
+                {
+                  "l": "§20 (certificate of appointment)",
+                  "s": "hpa",
+                  "e": "sec_20"
+                }
+              ],
+              "service": "HPS",
+              "who": "Assists the SHO.",
+              "entry": "Promotion / recruitment."
+            },
+            {
+              "id": "hc",
+              "name": "Head Constable",
+              "aka": [
+                "HC"
+              ],
+              "cite": [
+                {
+                  "l": "§22",
+                  "s": "hpa",
+                  "e": "sec_22"
+                }
+              ],
+              "service": "HPS",
+              "who": "Senior constable; supervises beat duty.",
+              "entry": "Promotion from Constable."
+            },
+            {
+              "id": "pc",
+              "name": "Constable",
+              "aka": [
+                "PC"
+              ],
+              "cite": [
+                {
+                  "l": "§20 (certificate of appointment)",
+                  "s": "hpa",
+                  "e": "sec_20"
+                },
+                {
+                  "l": "§22",
+                  "s": "hpa",
+                  "e": "sec_22"
+                }
+              ],
+              "service": "HPS",
+              "who": "The basic rank - patrol, guard, first response.",
+              "entry": "Direct recruitment via the Haryana PSC / police recruitment."
+            }
+          ],
+          "units": [
+            {
+              "id": "state",
+              "name": "Haryana Police (State)",
+              "head": "Director General of Police",
+              "cite": [
+                {
+                  "l": "§3 (constitution)",
+                  "s": "hpa",
+                  "e": "sec_3"
+                },
+                {
+                  "l": "§5",
+                  "s": "hpa",
+                  "e": "sec_5"
+                }
+              ],
+              "who": "The unified State force constituted under the Haryana Police Act."
+            },
+            {
+              "id": "range",
+              "name": "Police Range",
+              "head": "DIG / IG",
+              "cite": [
+                {
+                  "l": "§9",
+                  "s": "hpa",
+                  "e": "sec_9"
+                }
+              ],
+              "who": "A group of police districts."
+            },
+            {
+              "id": "district",
+              "name": "Police District",
+              "head": "Superintendent of Police",
+              "cite": [
+                {
+                  "l": "§10",
+                  "s": "hpa",
+                  "e": "sec_10"
+                }
+              ],
+              "who": "The basic territorial command (distinct from a revenue district)."
+            },
+            {
+              "id": "commissionerate",
+              "name": "Commissionerate (municipal areas)",
+              "head": "Commissioner of Police",
+              "cite": [
+                {
+                  "l": "§8",
+                  "s": "hpa",
+                  "e": "sec_8"
+                }
+              ],
+              "who": "Metropolitan policing in notified municipal areas (e.g. Gurugram, Faridabad)."
+            },
+            {
+              "id": "station",
+              "name": "Police Station",
+              "head": "Station House Officer",
+              "cite": [
+                {
+                  "l": "§12",
+                  "s": "hpa",
+                  "e": "sec_12"
+                }
+              ],
+              "who": "The primary unit; created by notification with its outposts."
+            },
+            {
+              "id": "outpost",
+              "name": "Outpost / Beat",
+              "head": "ASI / Head Constable",
+              "cite": [
+                {
+                  "l": "§12",
+                  "s": "hpa",
+                  "e": "sec_12"
+                }
+              ],
+              "who": "Sub-units of a station."
+            }
+          ],
+          "oversight": [
+            {
+              "id": "ssc",
+              "name": "State Police Board / Security Commission",
+              "cite": [
+                {
+                  "l": "§24 (superintendence)",
+                  "s": "hpa",
+                  "e": "sec_24"
+                }
+              ],
+              "who": "Superintendence of the police vests in the State Government, advised by the Board."
+            },
+            {
+              "id": "dpca",
+              "name": "District Police Complaints Authority",
+              "cite": [
+                {
+                  "l": "§68",
+                  "s": "hpa",
+                  "e": "sec_68"
+                }
+              ],
+              "who": "Inquires into complaints of police misconduct at the district level."
+            }
+          ]
+        },
+        "judiciary": {
+          "summary": "The court hierarchy a s.138 case moves through in Haryana - the trial court is the Judicial Magistrate of the First Class; appeal to the Court of Session; revision and quashing to the Punjab & Haryana High Court; and, by special leave, to the Supreme Court. (The Punjab & Haryana High Court Rules, which govern the ministerial establishment, are not yet in the corpus.)",
+          "sources": [
+            {
+              "l": "Constitution, Part VI Ch.V-VI",
+              "n": "constitution:art_214"
+            },
+            {
+              "l": "BNSS §6",
+              "n": "bnss:sec_6"
+            }
+          ],
+          "tiers": [
+            {
+              "id": "sc",
+              "name": "Supreme Court of India",
+              "aka": [
+                "SC",
+                "Apex Court"
+              ],
+              "cite": [
+                {
+                  "l": "Constitution art.124",
+                  "n": "constitution:art_124"
+                },
+                {
+                  "l": "art.136 (SLP)",
+                  "n": "constitution:art_136"
+                },
+                {
+                  "l": "art.141 (binding)",
+                  "n": "constitution:art_141"
+                }
+              ],
+              "who": "The highest court. A s.138 matter reaches it only by special leave (art.136); its law binds every court in India (art.141).",
+              "role": "Final appeal, by special leave"
+            },
+            {
+              "id": "hc",
+              "name": "Punjab & Haryana High Court",
+              "aka": [
+                "High Court",
+                "P&H HC"
+              ],
+              "cite": [
+                {
+                  "l": "Constitution art.214",
+                  "n": "constitution:art_214"
+                },
+                {
+                  "l": "art.226/227",
+                  "n": "constitution:art_226"
+                }
+              ],
+              "who": "The State's highest court. In a s.138 case it hears criminal revisions and petitions to quash the complaint (s.482 CrPC / s.528 BNSS) and superintends the subordinate courts.",
+              "role": "Revision, quashing, writ, superintendence"
+            },
+            {
+              "id": "sessions",
+              "name": "Court of Session (District & Sessions Court)",
+              "aka": [
+                "Sessions Court",
+                "District Court"
+              ],
+              "cite": [
+                {
+                  "l": "BNSS §6",
+                  "n": "bnss:sec_6"
+                },
+                {
+                  "l": "BNSS §415 (appeal)",
+                  "n": "bnss:sec_415"
+                },
+                {
+                  "l": "BNSS §22 (sentences)",
+                  "n": "bnss:sec_22"
+                }
+              ],
+              "who": "Headed by the District & Sessions Judge. It hears the first appeal from a s.138 conviction.",
+              "role": "First appeal from conviction"
+            },
+            {
+              "id": "cjm",
+              "name": "Chief Judicial Magistrate",
+              "aka": [
+                "CJM"
+              ],
+              "cite": [
+                {
+                  "l": "BNSS §10",
+                  "n": "bnss:sec_10"
+                }
+              ],
+              "who": "Heads the magistracy of a district and has administrative control over the Judicial Magistrates.",
+              "role": "Administrative head of the magistracy"
+            },
+            {
+              "id": "jmfc",
+              "name": "Judicial Magistrate of the First Class",
+              "aka": [
+                "JMFC",
+                "Magistrate",
+                "trial court"
+              ],
+              "cite": [
+                {
+                  "l": "BNSS §6/§9",
+                  "n": "bnss:sec_9"
+                },
+                {
+                  "l": "NI Act §142 (cognizance)",
+                  "n": "ni:sec_142"
+                },
+                {
+                  "l": "NI Act §143 (summary trial)",
+                  "n": "ni:sec_143"
+                }
+              ],
+              "who": "The trial court for a s.138 case: it takes cognizance of the complaint, tries it summarily, and on conviction sentences the accused.",
+              "role": "The s.138 trial court"
+            }
+          ],
+          "roles": [
+            {
+              "id": "sessions-judge",
+              "name": "District & Sessions Judge",
+              "cat": "judge",
+              "aka": [
+                "Sessions Judge",
+                "District Judge"
+              ],
+              "cite": [
+                {
+                  "l": "Constitution art.233 (appointment)",
+                  "n": "constitution:art_233"
+                },
+                {
+                  "l": "art.235 (control)",
+                  "n": "constitution:art_235"
+                }
+              ],
+              "who": "Heads the district judiciary; hears sessions trials and s.138 appeals.",
+              "entry": "The Higher Judicial Service - direct recruitment of advocates with 7+ years' practice (art.233), or promotion from the subordinate judiciary."
+            },
+            {
+              "id": "magistrate",
+              "name": "Judicial Magistrate (First Class)",
+              "cat": "judge",
+              "aka": [
+                "Magistrate",
+                "JMFC"
+              ],
+              "cite": [
+                {
+                  "l": "BNSS §9",
+                  "n": "bnss:sec_9"
+                },
+                {
+                  "l": "Constitution art.234 (recruitment)",
+                  "n": "constitution:art_234"
+                },
+                {
+                  "l": "NI Act §143",
+                  "n": "ni:sec_143"
+                }
+              ],
+              "who": "Tries the s.138 complaint - takes cognizance, records evidence, delivers judgment and sentence.",
+              "entry": "The Kerala Judicial Service - the Munsiff-Magistrate examination conducted by the Kerala PSC with the High Court (art.234)."
+            },
+            {
+              "id": "ahlmad",
+              "name": "Ahlmad",
+              "cat": "staff",
+              "aka": [
+                "ahlmad",
+                "reader",
+                "record keeper"
+              ],
+              "basis": "Court establishment (the ahlmad / reader)",
+              "who": "The court's reader and record-keeper who receives the filed case, does registration and keeps the record.",
+              "entry": "Ministerial cadre via the Haryana staff selection process.",
+              "sourceNotes": [
+                "hr-filing-assistant-2026-06"
+              ]
+            },
+            {
+              "id": "sheristadar",
+              "name": "Sheristadar / Chief Ministerial Officer",
+              "cat": "staff",
+              "aka": [
+                "Sheristadar",
+                "Chief Ministerial Officer",
+                "head ministerial officer"
+              ],
+              "cite": [],
+              "who": "Head of the court's ministerial establishment; signs and issues the summons 'by order of the Court'.",
+              "entry": "Kerala ministerial (judicial) establishment, via the Kerala PSC and promotion."
+            },
+            {
+              "id": "bench-clerk",
+              "name": "Bench Clerk",
+              "cat": "staff",
+              "aka": [
+                "Bench clerk"
+              ],
+              "cite": [],
+              "who": "Maintains the court's daily records, exhibits and order sheet during hearings.",
+              "entry": "Ministerial cadre, via the Kerala PSC."
+            },
+            {
+              "id": "registry",
+              "name": "Registry / Scrutiny officer",
+              "cat": "staff",
+              "aka": [
+                "Registry",
+                "scrutiny officer"
+              ],
+              "cite": [],
+              "who": "The court office that receives and scrutinises the filed complaint for defects before it goes for cognizance.",
+              "entry": "Ministerial cadre.",
+              "sourceNotes": [
+                "ke-scrutiny-officer-2026-07"
+              ]
+            },
+            {
+              "id": "hc-registrar",
+              "name": "Registrar (High Court)",
+              "cat": "staff",
+              "aka": [
+                "Registrar"
+              ],
+              "cite": [],
+              "who": "Heads the High Court registry - scrutiny, listing, custody of records.",
+              "entry": "A senior District Judge or a promoted officer of the establishment."
+            },
+            {
+              "id": "process-server",
+              "name": "Process server / Summons bailiff",
+              "cat": "staff",
+              "aka": [
+                "process server",
+                "bailiff",
+                "peon"
+              ],
+              "basis": "Court ministerial establishment",
+              "who": "Serves the summons and warrants the court issues.",
+              "entry": "Ministerial cadre, via the Kerala PSC.",
+              "cite": []
+            },
+            {
+              "id": "stenographer",
+              "name": "Stenographer / Interpreter",
+              "cat": "staff",
+              "aka": [
+                "stenographer",
+                "interpreter"
+              ],
+              "cite": [],
+              "who": "Records dictation and interprets a deposition into the court language (Malayalam in Kerala).",
+              "entry": "Ministerial cadre, via the Kerala PSC."
+            }
+          ]
+        }
+      }
     },
     "kerala": {
       "name": "Kerala",
