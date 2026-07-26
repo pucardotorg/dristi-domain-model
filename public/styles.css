@@ -117,9 +117,6 @@
   .nav a.active .count{background:var(--brand-border); color:#fff}
   .nav .scoped-wrap{margin:2px 0 0}
   .nav a.ov-toggle .nav-chev{margin-left:auto; font-size:10px; color:var(--ink-3); transition:transform .28s ease}
-  /* when a "soon" badge precedes the chevron, the badge takes margin-left:auto and the
-     chevron just follows it - otherwise both auto-margins split the gap and the badge floats */
-  .nav a.ov-toggle .count.soon ~ .nav-chev{margin-left:8px}
   .nav .scoped-wrap:not(.ov-collapsed) a.ov-toggle .nav-chev{transform:rotate(180deg)}
   .nav .nav-sub{margin:1px 0 3px 19px; display:grid; grid-template-rows:1fr; opacity:1; transition:grid-template-rows .28s ease, opacity .22s ease, margin .28s ease}
   .nav .scoped-wrap.ov-collapsed .nav-sub{grid-template-rows:0fr; opacity:0; margin-top:0; margin-bottom:0}

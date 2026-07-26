@@ -1737,13 +1737,6 @@ function stateBadge(cat){
   if(n>0) return `<span class="count">${n}</span>`;
   return `<span class="count" style="opacity:.55">none</span>`;
 }
-/* story nav badge: nothing when modelled, "soon" when this state has no story block */
-function storyBadge(){
-  const S=(STATE_DATA||{}).story;
-  if(S && (S.process||S.roles)) return '';                             // the state has its own modelled story
-  if(NATIONAL_PROCESS) return `<span class="count soon">central</span>`; // only the shared central baseline so far
-  return `<span class="count soon">soon</span>`;
-}
 /* the section headings the story page renders, in the order it renders them -
    drives the nav accordion. The roles comes last and owns the two institution
    pages as children, so Police and Courts sit a level in under it. */
@@ -1839,7 +1832,7 @@ function buildNav(){
       <div class="statedd-wrap nav-group">${stateInlineSelectHTML()}</div>
       <div class="nav-scoped">
         <div class="scoped-wrap ov-collapsed" id="storyWrap">
-          <a class="ov-toggle" data-view="story"><span class="ico">${ic('book-open')}</span> The story ${storyBadge()} <span class="nav-chev">${ic('chevron-down')}</span></a>
+          <a class="ov-toggle" data-view="story"><span class="ico">${ic('book-open')}</span> The story <span class="nav-chev">${ic('chevron-down')}</span></a>
           <div class="nav-sub"><div class="nav-sub-inner">${storyNavHTML()}</div></div>
         </div>
         <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> Acts &amp; Provisions ${stateBadge('amendments')}</a>
