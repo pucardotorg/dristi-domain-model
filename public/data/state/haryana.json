@@ -2,6 +2,631 @@
   "state": "haryana",
   "name": "Haryana",
   "as_of": "2026",
+  "amendments": {
+    "summary": "Haryana has not amended Section 138 (or ss.139 to 147) of the Negotiable Instruments Act - the offence, the presumptions, the notice period, limitation and compounding are uniform central law. What sits here is Haryana's own State Act that bears on a cheque case: the Haryana Police Act, 2007, which constitutes the force that serves the court's process and executes its warrants. Court fees are not a separate Haryana Act - Haryana still levies them under the central Court-Fees Act, 1870 as amended in its application to the State (Haryana Acts 11 and 22 of 1974, 27 of 1976 and 3 of 1990), whose Schedule II Article 1(b) fixes ten rupees on a complaint presented to a criminal court. That is the Rs.10 court-fee ticket the Panchkula filing assistants describe. No official consolidated Haryana text of that Act is published (India Code carries no Haryana entry for it), so it is not converted here; the operative fee tables are under Notifications. The rules of practice, e-filing and video conferencing are under State rules.",
+    "items": [
+      {
+        "title": "Haryana Police Act, 2007",
+        "cite": "Haryana Act 25 of 2008 · State police law",
+        "alias": "hpa",
+        "note": "The State police law for Haryana - it constitutes the force, the ranks and units, the appointment of the Director General, the police districts and the police stations. A cheque-bounce case is a complaint case with no FIR, no investigation and no arrest at the outset, so the police enter only once the court issues process: the Station House Officer serves the summons and executes a bailable or non-bailable warrant. The Haryana counterpart of the Kerala Police Act, 2011.",
+        "akn": "state/haryana/akn/haryana-police-act-2007.akn.xml",
+        "pdf": "state/haryana/sources/haryana-police-act-2007.pdf",
+        "made_under": [
+          {
+            "rel": "enacted under competence",
+            "to": "constitution:art_246"
+          }
+        ],
+        "key": [
+          {
+            "eId": "sec_47",
+            "label": "Role and functions of the police",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The general duties of the Haryana Police, closing with the residual duty to enforce any other duty assigned by law. That residual duty is the hook through which a s.138 case reaches the police at all: there is no investigation to do, but the court's summons and warrants have to be served and executed by someone.",
+            "edges": [
+              {
+                "rel": "serves process issued under",
+                "to": "bnss:sec_227"
+              },
+              {
+                "rel": "executes warrants issued under",
+                "to": "bnss:sec_90"
+              },
+              {
+                "rel": "operationalises the duty under",
+                "to": "police1861:sec_23"
+              }
+            ]
+          },
+          {
+            "eId": "sec_12",
+            "label": "Police stations and the Station House Officer",
+            "tier": "supporting",
+            "applies": "always",
+            "note": "Creates the police stations and their outposts by notification and puts a Station House Officer not below the rank of Sub-Inspector in charge of each. This is the station that receives and serves the court's process in a cheque case, and the station the Panchkula filing branch records against the file - derived from the bank where the cheque was presented - even though a s.138 case never generates an FIR.",
+            "edges": [
+              {
+                "rel": "serves summons under",
+                "to": "bnss:sec_64"
+              },
+              {
+                "rel": "police station as defined in",
+                "to": "bnss:sec_2"
+              }
+            ]
+          },
+          {
+            "eId": "sec_5",
+            "label": "Appointment of the Director General of Police",
+            "tier": "supporting",
+            "applies": "always",
+            "note": "Puts the overall direction and supervision of the police service in a Director General appointed by the State Government. It touches a cheque case only at one remove - it is the command chain above the officer who ends up serving the summons or executing the warrant the magistrate issues.",
+            "edges": [
+              {
+                "rel": "corresponds to",
+                "to": "police1861:sec_4"
+              }
+            ]
+          },
+          {
+            "eId": "sec_84",
+            "label": "Sums paid for the service of processes by police officers",
+            "tier": "supporting",
+            "applies": "always",
+            "note": "Directs the sums paid for the service of processes by police officers to the State account. It is the fee side of the same act the court relies on when it sends a s.138 summons or warrant out through the police, and the State law's own acknowledgement that serving court process is police work.",
+            "edges": [
+              {
+                "rel": "prices the service of process under",
+                "to": "bnss:sec_64"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "rules": {
+    "summary": "How a s.138 case is actually filed and tried in Haryana. The subordinate criminal courts of Haryana run on the Rules and Orders of the Punjab and Haryana High Court, a multi-volume compendium the High Court makes under Articles 225 and 227 of the Constitution. Volume III, Instructions to Criminal Courts, is the Haryana counterpart of Kerala's Criminal Rules of Practice: it governs cognizance on a complaint, the issue of process, the conduct of the trial, the judgment, sentence and appeal. Written on top of it are two newer High Court rule sets that a cheque case now meets first - the Electronic Filing (E-Filing) Rules and the Rules for Video Conferencing for Courts, both of which reach the district judiciary through the High Court's supervisory jurisdiction.",
+    "items": [
+      {
+        "title": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts)",
+        "cite": "High Court rules of practice · criminal courts",
+        "alias": "phhc3",
+        "note": "The core Haryana instrument for how a criminal court runs a case. Volume III is the High Court's standing instructions to the subordinate criminal courts of Punjab, Haryana and U.T. Chandigarh, and it covers the whole spine of a cheque case: initiation of proceedings and cognizance on a complaint (Chapter 1 Part B), the attendance of the accused and the summons or warrant choice (Part C), the procedure in trials by magistrates (Part D), the record of evidence (Part E), dismissal of cases in default (Part F), the judgment and compounding (Part H), video conferencing (Part BB), summary trials (Chapter 2), bail (Chapter 10), proceedings against absconders (Chapter 15), sentences and fine (Chapter 19), the Probation of Offenders Act (Chapter 21) and appeal and revision (Chapter 25). The High Court publishes Volume III as about a hundred separate chapter and part PDFs; all 31 chapters are stitched here in publication order, and the stored PDF is that stitched copy. The source uses a marginal-note layout - the paragraph heading is printed in a side column - so the side notes have been lifted into the rule headings; a few headings in the older small-capitals chapters come out of the publisher's text layer scrambled, and the rule text itself carries the occasional typographic error of the original. Verify a rule against the official copy at highcourtchd.gov.in before relying on its exact words. The Volume still cites the Code of Criminal Procedure, 1898 and 1973 by their old section numbers; read those through the 2024 Sanhita mapping.",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "pdf": "state/haryana/sources/punjab-haryana-hc-rules-orders-vol-iii.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_225"
+          },
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          },
+          {
+            "rel": "made under",
+            "to": "crpc:sec_477"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_1-B.4",
+            "label": "Examination of the complainant on taking cognizance",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The first duty of a magistrate taking cognizance of an offence on a complaint is to examine the complainant. This is the moment a cheque complaint becomes a case: the complainant's sworn statement, with the cheque, the bank return memo and the demand notice, is what the magistrate weighs before deciding to issue process.",
+            "edges": [
+              {
+                "rel": "gives effect to",
+                "to": "bnss:sec_223"
+              },
+              {
+                "rel": "conditions cognizance under",
+                "to": "ni:sec_142"
+              },
+              {
+                "rel": "read with the affidavit route in",
+                "to": "ni:sec_145"
+              }
+            ]
+          },
+          {
+            "eId": "rule_1-B.9",
+            "label": "Place of inquiry or trial",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Jurisdiction turns on the place where the offence was committed, with the exceptions that follow for offences uncertain in place, committed partly in one area, or continuing. For a cheque case s.142(2) of the NI Act displaces the general rule with its own test - the branch of the bank where the payee maintains the account - so this is where the local practice and the special statute meet.",
+            "edges": [
+              {
+                "rel": "gives effect to",
+                "to": "bnss:sec_197"
+              },
+              {
+                "rel": "displaced for cheque cases by",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "rule_1-Ci.2",
+            "label": "Summons or e-summons, and dismissal for unpaid process fee",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "As amended in November 2018, a magistrate may issue a summons or an e-summons in his discretion, and must record reasons before issuing a warrant where the law provides for a summons. It also carries the rule that bites hardest on a cheque complainant: where process fees are payable no process issues until they are paid, and on default within a reasonable time the magistrate may dismiss the complaint.",
+            "edges": [
+              {
+                "rel": "gives effect to",
+                "to": "bnss:sec_227"
+              },
+              {
+                "rel": "warrant in lieu of summons under",
+                "to": "bnss:sec_90"
+              },
+              {
+                "rel": "dismissal of complaint under",
+                "to": "bnss:sec_226"
+              }
+            ]
+          },
+          {
+            "eId": "rule_1-Ci.5",
+            "label": "When the attendance of the accused may be dispensed with",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "A criminal trial is conducted in the presence of the accused, but the court has a discretion to dispense with personal attendance and permit an advocate to appear. This is the everyday relief in a cheque case, where the accused is often out of station and the trial is meant to be summary.",
+            "edges": [
+              {
+                "rel": "gives effect to",
+                "to": "bnss:sec_228"
+              },
+              {
+                "rel": "read with",
+                "to": "crpc:sec_205"
+              },
+              {
+                "rel": "inquiry in absence under",
+                "to": "bnss:sec_355"
+              }
+            ]
+          },
+          {
+            "eId": "rule_1-BB.1",
+            "label": "Video conferencing in criminal matters",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Inserted in December 2021 following the Supreme Court's Model Rules: the procedure for video conferencing in criminal matters in the subordinate courts is the Rules for Video Conferencing for Courts in Volume V, Chapter 1, Part H. This single line is the hook by which a cheque case before a Haryana magistrate can take evidence, or the appearance of a party, over a live link.",
+            "edges": [
+              {
+                "rel": "applies the rules made under",
+                "to": "constitution:art_227"
+              },
+              {
+                "rel": "supports the electronic mode under",
+                "to": "bnss:sec_530"
+              }
+            ]
+          },
+          {
+            "eId": "rule_1-D.5",
+            "label": "Summons case: the complainant's non-attendance",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "In a summons case instituted on a complaint, if the complainant fails to attend on a day fixed for hearing the magistrate may acquit the accused. A s.138 case is tried as a summons case, so this is the sharpest procedural risk the complainant carries at every single date.",
+            "edges": [
+              {
+                "rel": "gives effect to",
+                "to": "bnss:sec_272"
+              },
+              {
+                "rel": "read with",
+                "to": "crpc:sec_256"
+              }
+            ]
+          },
+          {
+            "eId": "rule_1-F.2",
+            "label": "Dismissal in default - reasons must be recorded",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Before dismissing a case because the complainant is absent the magistrate must consider whether such an order is legal and whether it is justified, and record his reasons. Part F opens by warning that magistrates are inclined to dismiss in default too hastily. It is the check on the risk in rule 1-D.5, and the ground on which a dismissed cheque complaint is revived in revision.",
+            "edges": [
+              {
+                "rel": "controls the power under",
+                "to": "bnss:sec_272"
+              },
+              {
+                "rel": "reviewable in revision under",
+                "to": "bnss:sec_438"
+              }
+            ]
+          },
+          {
+            "eId": "rule_2.1",
+            "label": "Who may hold a summary trial, and how",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Summary trials may be held only by a magistrate of the first class specially empowered, or a Bench so empowered, and Chapter 2 sets out the procedure and its limits. Section 143 of the NI Act directs that a cheque case be tried summarily, so this chapter is the local manual for the trial a s.138 complaint actually gets.",
+            "edges": [
+              {
+                "rel": "operationalises the summary trial directed by",
+                "to": "ni:sec_143"
+              },
+              {
+                "rel": "gives effect to",
+                "to": "bnss:sec_285"
+              }
+            ]
+          },
+          {
+            "eId": "rule_1-H.10",
+            "label": "Acquittal when the offence is compounded",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Compounding an offence has the effect of an acquittal, and the court must record it that way rather than as a withdrawal or a dismissal. Section 147 of the NI Act makes every offence under the Act compoundable and most cheque cases end in a settlement, so this is how a Haryana magistrate writes up the end of the case.",
+            "edges": [
+              {
+                "rel": "gives effect to",
+                "to": "ni:sec_147"
+              },
+              {
+                "rel": "compounding under",
+                "to": "bnss:sec_359"
+              }
+            ]
+          },
+          {
+            "eId": "rule_19-B.1",
+            "label": "Fine to be proportionate to the offender's means",
+            "tier": "sentencing",
+            "applies": "always",
+            "note": "A fine is the lightest punishment a criminal court can impose, but it must not be excessive with reference to the means of the offender. On a s.138 conviction the fine may run to twice the amount of the cheque, so this is the state-level counterweight a magistrate applies when fixing it, and the reason default imprisonment has its own limits.",
+            "edges": [
+              {
+                "rel": "sentence for the offence under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "default imprisonment under",
+                "to": "bnss:sec_24"
+              },
+              {
+                "rel": "levy of fine under",
+                "to": "bnss:sec_461"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Electronic Filing (E-Filing) Rules, High Court of Punjab and Haryana",
+        "cite": "High Court rules · e-filing (R&O Vol.V Ch.1 Part J)",
+        "alias": "phef",
+        "note": "The rules that govern filing a case electronically in Haryana. They were inserted into the Rules and Orders as Volume V, Chapter 1, Part J by Correction Slip No. 190 dated 7 February 2023, and they apply not only to the High Court but to every court and tribunal over which it has supervisory jurisdiction - which is how they reach the district courts where a cheque complaint is filed. They amend and consolidate the earlier e-filing rules and practice directions, and the definition of an Action expressly includes criminal complaints, so a s.138 complaint is inside the regime. Twenty rules plus six appendices of screenshots; the appendices are in the source PDF but are not converted.",
+        "akn": "state/haryana/akn/punjab-haryana-hc-electronic-filing-rules.akn.xml",
+        "pdf": "state/haryana/sources/punjab-haryana-hc-electronic-filing-rules.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_225"
+          },
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_2",
+            "label": "Applicability and commencement",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The rules bind the High Court and every court and tribunal under its supervisory jurisdiction, cover both online e-filing and filing at a designated counter or e-Sewa Kendra, and amend and consolidate the earlier rules and practice directions. This is the clause that carries the e-filing regime down to the Haryana district court where a cheque complaint is filed.",
+            "edges": [
+              {
+                "rel": "made under",
+                "to": "constitution:art_227"
+              }
+            ]
+          },
+          {
+            "eId": "rule_3",
+            "label": "Definitions - an Action includes a criminal complaint",
+            "tier": "definition",
+            "applies": "always",
+            "note": "An Action expressly includes criminal complaints, so a s.138 complaint is within the e-filing rules and not merely a civil-side facility. The same rule defines the Administrator - for a district court, the officer appointed by the District and Sessions Judge - which is the formal name for the office the Panchkula filing assistants call the computer room and must telephone before an e-filed case can be released into their queue.",
+            "edges": [
+              {
+                "rel": "covers the complaint taken under",
+                "to": "bnss:sec_223"
+              },
+              {
+                "rel": "covers the complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "rule_7",
+            "label": "Formatting and the OCR-searchable PDF",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "All original typed material must be prepared as the Rules and Orders require, converted into an optical-character-recognition searchable PDF, and non-text documents scanned to a stated standard. This is the bar the cheque, the bank return memo and the legal notice have to clear before the filing branch will take the file.",
+            "edges": [
+              {
+                "rel": "produces the electronic record under",
+                "to": "bsa:sec_61"
+              }
+            ]
+          },
+          {
+            "eId": "rule_8",
+            "label": "Digital signatures",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The PDF must be digitally signed by the party or the advocate, from a recognised provider, with a fallback where the filer holds no digital signature. It is the electronic form of the page-by-page attestation the Panchkula window checks on a physical NACT file.",
+            "edges": [
+              {
+                "rel": "authentication under",
+                "to": "itact:sec_3"
+              },
+              {
+                "rel": "electronic signature recognised by",
+                "to": "itact:sec_5"
+              },
+              {
+                "rel": "admissibility of the record under",
+                "to": "bsa:sec_63"
+              }
+            ]
+          },
+          {
+            "eId": "rule_10",
+            "label": "Payment of court fees and other charges",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Court fee may be paid electronically through the authorised agency, at a designated counter, or from an authorised court-fee vendor, and the transaction ID must be entered at the time of e-filing. This is where the ten rupee complaint fee actually changes hands when a cheque case is filed online instead of over the counter.",
+            "edges": [
+              {
+                "rel": "prices the complaint taken under",
+                "to": "bnss:sec_223"
+              }
+            ]
+          },
+          {
+            "eId": "rule_11",
+            "label": "Retention of originals",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "Originals of the scanned documents must be preserved for production or inspection, signed vakalatnamas and attested affidavits for at least two years after final disposal including appeal, and the burden of producing the originals and proving their genuineness falls on the party that filed the scans. Rule 11.3 keeps negotiable instruments permanently but expressly excepts a cheque, so the cheque - the whole case - sits under the general rule and has to be produced when the court calls for it.",
+            "edges": [
+              {
+                "rel": "proves the instrument dishonoured under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "electronic record under",
+                "to": "bsa:sec_61"
+              },
+              {
+                "rel": "bank entries proved under",
+                "to": "bbea:sec_4"
+              }
+            ]
+          },
+          {
+            "eId": "rule_13",
+            "label": "Exemption from e-filing",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The Bench may exempt a pleading or a document from e-filing where it is not feasible, where confidentiality is in issue, where the document cannot be scanned because of its size, shape or condition, or where the portal is unavailable. The escape hatch a complainant needs when the physical cheque or a damaged document will not scan.",
+            "edges": [
+              {
+                "rel": "exempts filing of the complaint under",
+                "to": "bnss:sec_223"
+              }
+            ]
+          },
+          {
+            "eId": "rule_15",
+            "label": "Computation of time",
+            "tier": "limitation",
+            "applies": "always",
+            "note": "The date of e-filing is the date the Action is electronically received in the Registry within the prescribed time on a working day, reckoned in Indian Standard Time; a filing made after midnight counts as the next day, and one made on a holiday as the next working day. Limitation is the same regime as physical filing. Decisive for the one month window in s.142(1)(b) of the NI Act, which is exactly the point the Panchkula assistants scrutinise before accepting a NACT file.",
+            "edges": [
+              {
+                "rel": "governs the limitation in",
+                "to": "ni:sec_142"
+              },
+              {
+                "rel": "bar on cognizance under",
+                "to": "bnss:sec_514"
+              }
+            ]
+          },
+          {
+            "eId": "rule_19",
+            "label": "Rejection and objections",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "An e-filing that does not follow the protocol is rejected; the Registry communicates objections by e-mail or SMS and the case is processed for listing only once they are cleared. The digital form of the defect loop the filing branch runs at the counter, and the reason an advocate is still told verbally to attach a delay-condonation application.",
+            "edges": [
+              {
+                "rel": "precedes cognizance under",
+                "to": "bnss:sec_223"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Rules for Video Conferencing for Courts, High Court of Punjab and Haryana",
+        "cite": "High Court rules · video conferencing (R&O Vol.V Ch.1 Part H)",
+        "alias": "phvc",
+        "note": "The High Court's video conferencing rules, made under Articles 225 and 227 on the Supreme Court's Model Rules and inserted as Volume V, Chapter 1, Part H by Correction Slip No. 188 dated 10 December 2021. Volume III, Chapter 1, Part BB makes them the procedure for criminal matters in the subordinate courts, so they are the rules a Haryana magistrate applies when a cheque case is heard, or evidence taken, over a live link. Nineteen rules in five chapters: general principles, facilities, preparatory arrangements and coordinators, the procedure for appearance and examination, costs and conduct.",
+        "akn": "state/haryana/akn/punjab-haryana-hc-video-conferencing-rules.akn.xml",
+        "pdf": "state/haryana/sources/punjab-haryana-hc-video-conferencing-rules.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_225"
+          },
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_3",
+            "label": "General principles governing video conferencing",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Video conferencing may be used at all stages of judicial proceedings, and proceedings conducted that way are judicial proceedings for every purpose. That equivalence is what lets a cheque case run a hearing, or take a deposition, remotely without losing its character as a trial.",
+            "edges": [
+              {
+                "rel": "electronic mode of proceedings under",
+                "to": "bnss:sec_530"
+              }
+            ]
+          },
+          {
+            "eId": "rule_6",
+            "label": "Application for appearance, evidence and submission by video conferencing",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "How a party or a witness asks to appear, depose or make submissions over a live link, how the court decides after hearing everyone concerned, and how it fixes the date and the costs. For a cheque case this is the route by which an out-of-station complainant, or a bank official, is spared the journey to the trial court.",
+            "edges": [
+              {
+                "rel": "personal attendance dispensed under",
+                "to": "bnss:sec_228"
+              },
+              {
+                "rel": "evidence on affidavit under",
+                "to": "ni:sec_145"
+              }
+            ]
+          },
+          {
+            "eId": "rule_7",
+            "label": "Service of summons for a video conferencing hearing",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "A summons to a witness who is to be examined by video conferencing must state the date, time and venue of the remote point and direct the witness to attend there in person with proof of identity. It is the summons a s.138 trial court issues to the bank witness who will prove the return memo remotely.",
+            "edges": [
+              {
+                "rel": "form of summons under",
+                "to": "bnss:sec_63"
+              },
+              {
+                "rel": "service under",
+                "to": "bnss:sec_64"
+              },
+              {
+                "rel": "summons to witness under",
+                "to": "bnss:sec_71"
+              }
+            ]
+          },
+          {
+            "eId": "rule_8",
+            "label": "Examination of persons over the link",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "Identity proof before examination, the oath, working-hours scheduling, the court's power to record demeanour and note objections, the audio-visual recording, and the signature of the person examined on the transcript with a printout route where digital signatures are not available at both ends. These are the mechanics by which the complainant or a bank official proves the cheque and the return memo without attending court.",
+            "edges": [
+              {
+                "rel": "evidence on affidavit under",
+                "to": "ni:sec_145"
+              },
+              {
+                "rel": "evidence in the presence of the accused under",
+                "to": "bnss:sec_308"
+              },
+              {
+                "rel": "bank entries proved under",
+                "to": "bbea:sec_4"
+              }
+            ]
+          },
+          {
+            "eId": "rule_9",
+            "label": "Exhibiting documents to a witness at a remote point",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "How a document is shown to a person being examined at a remote point when it becomes necessary in the course of the examination. In a cheque case the documents are the whole case - the cheque, the return memo, the demand notice - so this rule decides whether a remote deposition can do the work of an in-person one.",
+            "edges": [
+              {
+                "rel": "proves the instrument dishonoured under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "electronic record under",
+                "to": "bsa:sec_61"
+              }
+            ]
+          },
+          {
+            "eId": "rule_11",
+            "label": "Framing of charge and examination of the accused by video conferencing",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The court may, in its discretion, authorise detention, frame charges and examine the accused over a video link. In a summary cheque trial the equivalent steps are the notice of accusation and the examination of the accused, so this rule is what lets the whole middle of a s.138 trial happen without the accused travelling.",
+            "edges": [
+              {
+                "rel": "examination of the accused under",
+                "to": "bnss:sec_351"
+              },
+              {
+                "rel": "summary trial under",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "rule_15",
+            "label": "Access to legal aid clinics, camps, Lok Adalats and Jail Adalats",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Persons may take part in legal aid clinics, camps, Lok Adalats and Jail Adalats over a live link, in conformity with the Legal Services Authorities Act. A large share of cheque cases are settled in Lok Adalat, so this is the digital route into the settlement track that ends most s.138 matters.",
+            "edges": [
+              {
+                "rel": "Lok Adalat organised under",
+                "to": "lsa:sec_19"
+              },
+              {
+                "rel": "award under",
+                "to": "lsa:sec_21"
+              },
+              {
+                "rel": "compounding under",
+                "to": "ni:sec_147"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "notifications": {
+    "summary": "High Court circulars and fee tables that set up how a cheque case is filed and priced in Haryana. Source PDFs only; not converted to structured text.",
+    "items": [
+      {
+        "title": "Implementation of e-filing 3.0 in the District Courts of Punjab, Haryana and U.T. Chandigarh",
+        "cite": "Registrar General, Punjab and Haryana High Court, 13 February 2024",
+        "note": "The circular by which the district judiciary migrated from e-filing 1.0 to the national e-filing 3.0 software, addressed to every District and Sessions Judge in Punjab, Haryana and Chandigarh on the directions of the High Court's Computer Committee. It is the system the Panchkula filing branch works in when an advocate e-files a NACT case, and the reason an e-filed case has to be released by the computer room before the branch can edit and submit it. Source PDF only; not converted to structured text.",
+        "pdf": "state/haryana/sources/efiling-3-0-district-courts-punjab-haryana-2024.pdf"
+      },
+      {
+        "title": "Court Fee Table, Punjab and Haryana High Court",
+        "cite": "High Court of Punjab and Haryana · court fee schedule",
+        "note": "The fee payable on each case type at the High Court, including a criminal revision (CRR) and a criminal miscellaneous petition (CRM) at Rs.2.65 - the price of taking a s.138 conviction up in revision, or asking the High Court to quash the complaint. The trial court side is governed by the Court-Fees Act, 1870 as amended in its application to Haryana, whose Schedule II Article 1(b) fixes ten rupees on a complaint presented to a criminal court. Source PDF only; not converted to structured text.",
+        "pdf": "state/haryana/sources/punjab-haryana-hc-court-fee-table.pdf"
+      }
+    ]
+  },
   "vocabulary": {
     "summary": "The words the Haryana layer adds on top of the shared national vocabulary - the filing-branch roles, the e-Courts CIS mechanics and the local workarounds that a s.138 ('NACT') filing actually runs on in the Panchkula district courts. Drawn from a June 2026 field interview with the filing assistants.",
     "terms": [
@@ -303,34 +928,8 @@
       ]
     }
   },
-  "amendments": {
-    "summary": "Haryana's own State Acts that shape how the police and the courts operate for a s.138 case. Brought into the corpus from the official text.",
-    "items": [
-      {
-        "title": "Haryana Police Act, 2007",
-        "cite": "Haryana Act 25 of 2008 · State police law",
-        "alias": "hpa",
-        "note": "The State police law for Haryana - constitutes the force, the ranks and units, the appointment of the Director General, police districts and stations. The counterpart of the Kerala Police Act, 2011.",
-        "akn": "state/haryana/akn/haryana-police-act-2007.akn.xml",
-        "pdf": "state/haryana/sources/haryana-police-act-2007.pdf",
-        "made_under": [],
-        "key": [
-          {
-            "l": "§5 Director General",
-            "s": "hpa",
-            "e": "sec_5"
-          },
-          {
-            "l": "§12 Police Stations",
-            "s": "hpa",
-            "e": "sec_12"
-          }
-        ]
-      }
-    ]
-  },
   "institutions": {
-    "summary": "The police and the courts a s.138 case runs through in Haryana - the police grounded in the Haryana Police Act, 2007, the courts in the Constitution and the BNSS. The Punjab & Haryana High Court rules of practice are not yet in the corpus.",
+    "summary": "The police and the courts a s.138 case runs through in Haryana - the police grounded in the Haryana Police Act, 2007, the courts in the Constitution and the BNSS. The Punjab and Haryana High Court's rules of practice for the criminal courts are now in the corpus under State rules, as Volume III of its Rules and Orders.",
     "police": {
       "summary": "The Haryana Police, constituted under the Haryana Police Act, 2007. The force is organised into ranges, police districts and stations; the senior ranks are Indian Police Service (IPS) officers, the rest the Haryana Police Service. A s.138 case rarely involves the police (it is a complaint, not an FIR case).",
       "sources": [
@@ -668,7 +1267,7 @@
       ]
     },
     "judiciary": {
-      "summary": "The court hierarchy a s.138 case moves through in Haryana - the trial court is the Judicial Magistrate of the First Class; appeal to the Court of Session; revision and quashing to the Punjab & Haryana High Court; and, by special leave, to the Supreme Court. (The Punjab & Haryana High Court Rules, which govern the ministerial establishment, are not yet in the corpus.)",
+      "summary": "The court hierarchy a s.138 case moves through in Haryana - the trial court is the Judicial Magistrate of the First Class; appeal to the Court of Session; revision and quashing to the Punjab and Haryana High Court; and, by special leave, to the Supreme Court. How each of those courts must run the case is set by the High Court's Rules and Orders, Volume III, under State rules.",
       "sources": [
         {
           "l": "Constitution, Part VI Ch.V-VI",
@@ -834,7 +1433,7 @@
             }
           ],
           "who": "Tries the s.138 complaint - takes cognizance, records evidence, delivers judgment and sentence.",
-          "entry": "The Kerala Judicial Service - the Munsiff-Magistrate examination conducted by the Kerala PSC with the High Court (art.234)."
+          "entry": "The Haryana Civil Service (Judicial Branch) - the Haryana Civil Services (Judicial) Examination conducted by the Punjab & Haryana High Court (Constitution art.234)."
         },
         {
           "id": "ahlmad",
@@ -863,7 +1462,7 @@
           ],
           "cite": [],
           "who": "Head of the court's ministerial establishment; signs and issues the summons 'by order of the Court'.",
-          "entry": "Kerala ministerial (judicial) establishment, via the Kerala PSC and promotion."
+          "entry": "The Haryana district-judiciary ministerial establishment, recruited under the Punjab & Haryana High Court's supervision and by promotion."
         },
         {
           "id": "bench-clerk",
@@ -874,7 +1473,7 @@
           ],
           "cite": [],
           "who": "Maintains the court's daily records, exhibits and order sheet during hearings.",
-          "entry": "Ministerial cadre, via the Kerala PSC."
+          "entry": "Ministerial cadre of the Haryana district judiciary."
         },
         {
           "id": "registry",
@@ -913,7 +1512,7 @@
           ],
           "basis": "Court ministerial establishment",
           "who": "Serves the summons and warrants the court issues.",
-          "entry": "Ministerial cadre, via the Kerala PSC.",
+          "entry": "Ministerial cadre of the Haryana district judiciary.",
           "cite": []
         },
         {
@@ -925,8 +1524,8 @@
             "interpreter"
           ],
           "cite": [],
-          "who": "Records dictation and interprets a deposition into the court language (Malayalam in Kerala).",
-          "entry": "Ministerial cadre, via the Kerala PSC."
+          "who": "Records dictation and interprets a deposition into Hindi, the court language in Haryana.",
+          "entry": "Ministerial cadre of the Haryana district judiciary."
         }
       ]
     }

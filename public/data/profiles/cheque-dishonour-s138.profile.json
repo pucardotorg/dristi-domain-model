@@ -2861,7 +2861,7 @@
           ],
           "cite": [],
           "who": "Sub-divisional officer; supervises a group of circles and stations.",
-          "entry": "Kerala Police Service, via the Kerala PSC, or promotion from Inspector.",
+          "entry": "The State Police Service, via the State Public Service Commission, or promotion from Inspector.",
           "service": "KPS"
         },
         {
@@ -2873,7 +2873,7 @@
           ],
           "cite": [],
           "who": "Heads a circle; Station House Officer of larger stations; supervises the Sub-Inspectors under him.",
-          "entry": "Promotion, or direct recruitment via the Kerala PSC.",
+          "entry": "Promotion, or direct recruitment through the State Public Service Commission.",
           "service": "KPS"
         },
         {
@@ -2885,7 +2885,7 @@
           ],
           "cite": [],
           "who": "Station House Officer of most police stations - registers the FIR, investigates, files the charge-sheet.",
-          "entry": "Direct recruitment via the Kerala PSC, or promotion.",
+          "entry": "Direct recruitment through the State Public Service Commission, or promotion.",
           "service": "KPS"
         },
         {
@@ -2896,7 +2896,7 @@
           ],
           "cite": [],
           "who": "Assists the SHO; may hold charge of an outpost.",
-          "entry": "Promotion, or Kerala PSC.",
+          "entry": "Promotion, or the State Public Service Commission.",
           "service": "KPS"
         },
         {
@@ -2920,14 +2920,14 @@
           ],
           "cite": [],
           "who": "The basic rank - patrol, guard, beat and first response.",
-          "entry": "Direct recruitment via the Kerala PSC / police recruitment; must meet the s.86 eligibility and take the s.87 oath.",
+          "entry": "Direct recruitment through the State's police recruitment process; the entrant must meet the statutory eligibility and take the prescribed oath.",
           "service": "KPS"
         }
       ],
       "units": [
         {
           "id": "state",
-          "name": "Kerala Police (State)",
+          "name": "State Police Force",
           "head": "State Police Chief / DGP",
           "cite": [],
           "who": "One unified State force, divided into wings, units and branches by the Government."
@@ -3054,7 +3054,7 @@
         },
         {
           "id": "hc",
-          "name": "High Court of Kerala",
+          "name": "High Court of the State",
           "aka": [
             "High Court",
             "HC"
@@ -3182,7 +3182,7 @@
             }
           ],
           "who": "Tries the s.138 complaint - takes cognizance, records evidence, delivers judgment and sentence.",
-          "entry": "The Kerala Judicial Service - the Munsiff-Magistrate examination conducted by the Kerala PSC with the High Court (art.234)."
+          "entry": "The State Judicial Service - a competitive examination for the civil-judge/magistrate cadre conducted by the High Court with the State Public Service Commission (Constitution art.234)."
         },
         {
           "id": "sheristadar",
@@ -3195,7 +3195,7 @@
           ],
           "cite": [],
           "who": "Head of the court's ministerial establishment; signs and issues the summons 'by order of the Court'.",
-          "entry": "Kerala ministerial (judicial) establishment, via the Kerala PSC and promotion."
+          "entry": "The district judiciary's ministerial establishment, recruited under the High Court's supervision and by promotion."
         },
         {
           "id": "bench-clerk",
@@ -3206,7 +3206,7 @@
           ],
           "cite": [],
           "who": "Maintains the court's daily records, exhibits and order sheet during hearings.",
-          "entry": "Ministerial cadre, via the Kerala PSC."
+          "entry": "Ministerial cadre of the district judiciary."
         },
         {
           "id": "registry",
@@ -3245,7 +3245,7 @@
           ],
           "basis": "Court ministerial establishment",
           "who": "Serves the summons and warrants the court issues.",
-          "entry": "Ministerial cadre, via the Kerala PSC.",
+          "entry": "Ministerial cadre of the district judiciary.",
           "cite": []
         },
         {
@@ -3257,8 +3257,8 @@
             "interpreter"
           ],
           "cite": [],
-          "who": "Records dictation and interprets a deposition into the court language (Malayalam in Kerala).",
-          "entry": "Ministerial cadre, via the Kerala PSC."
+          "who": "Records dictation and interprets a deposition into the language the State has notified as the court language.",
+          "entry": "Ministerial cadre of the district judiciary."
         }
       ]
     }
