@@ -125,10 +125,17 @@ adapt the nearest converter rather than hand-writing XML.
 ```bash
 xmllint --noout public/data/acts/akn/<slug>.akn.xml && echo well-formed   # 1. XML valid
 grep -c '<section eId' public/data/acts/akn/<slug>.akn.xml                 # 2. count vs the TOC
-grep -Pc '\x{2014}' public/data/acts/akn/<slug>.akn.xml                    # 3. must be 0 (house rule)
-# 4. spot-check the sections you will actually cite - read heading + body,
+# 3. spot-check the sections you will actually cite - read heading + body,
 #    confirm no OCR noise, dropped clauses, or a footnote merged into the text
 ```
+
+**Leave the statutory text verbatim.** The AKN is the bare Act - keep its
+em-dashes, smart punctuation and archaic spelling exactly as enacted. Do NOT
+"correct" em-dashes here: the no-em-dash house rule applies only to app-authored
+copy (vocabulary glosses, provision `note`s, UI strings), never to original text.
+So there is deliberately no em-dash check on the AKN. (The converter reflects
+this - `clean()` strips the India Code footnote/OCR apparatus but leaves dashes
+intact.)
 
 Repealed/spent sections with no operative text may be dropped; note it. If a count
 is well short of the TOC, the section regex missed a format variant - fix the
@@ -208,7 +215,8 @@ the commit message ends with the `Co-Authored-By` trailer. Push only when asked.
 - [ ] Official source, bare consolidated version, saved as `<slug>.pdf` in the right `sources/`.
 - [ ] OCR done only if scanned; text density checked.
 - [ ] Document type identified; correct AKN root + converter used.
-- [ ] `xmllint` clean; section count matches TOC; zero em-dashes; content spot-checked.
+- [ ] `xmllint` clean; section count matches TOC; content spot-checked. AKN keeps
+      verbatim em-dashes - do NOT strip them; only app-authored `note`s/glosses avoid them.
 - [ ] `sources` added; **provision-by-provision relevance pass done** (every section
       judged, relevant ones pinned with tier + note, considered exclusions recorded)
       - not just the obvious two or three; new `domain` labelled if needed.

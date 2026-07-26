@@ -159,6 +159,13 @@
       "domain": "settlement",
       "status": "in force",
       "file": "acts/akn/legal-services-authorities-act-1987.akn.xml"
+    },
+    "rpwd": {
+      "uri": "/akn/in/act/2016/49",
+      "title": "Rights of Persons with Disabilities Act, 2016",
+      "domain": "access",
+      "status": "in force",
+      "file": "acts/akn/rights-of-persons-with-disabilities-act-2016.akn.xml"
     }
   },
   "act_alias_map": [
@@ -1281,6 +1288,36 @@
       "role": "entitlement to legal aid",
       "applies": "always",
       "note": "Entitlement to legal services on a prima facie case, with an affidavit of income accepted as proof of means - the route by which an indigent s.138 accused or complainant gets a legal-aid advocate."
+    },
+    {
+      "ref": "rpwd:sec_2",
+      "act": "rpwd",
+      "eId": "sec_2",
+      "file": "rights-of-persons-with-disabilities-act-2016.akn.xml",
+      "tier": "definition",
+      "role": "defines person with disability",
+      "applies": "always",
+      "note": "Defines 'person with disability' (s.2(s)) - a person with a long-term physical, mental, intellectual or sensory impairment that, in interaction with barriers, hinders full participation. This is the category LSA s.12 borrows to grant free legal aid to a disabled s.138 party."
+    },
+    {
+      "ref": "rpwd:sec_12",
+      "act": "rpwd",
+      "eId": "sec_12",
+      "file": "rights-of-persons-with-disabilities-act-2016.akn.xml",
+      "tier": "supporting",
+      "role": "access to justice",
+      "applies": "always",
+      "note": "Guarantees a person with disability the right to access any court or tribunal without discrimination, with accessible documents and support - the access-to-justice floor for a disabled complainant or accused in a s.138 case."
+    },
+    {
+      "ref": "rpwd:sec_13",
+      "act": "rpwd",
+      "eId": "sec_13",
+      "file": "rights-of-persons-with-disabilities-act-2016.akn.xml",
+      "tier": "supporting",
+      "role": "legal capacity",
+      "applies": "always",
+      "note": "Recognises the equal legal capacity of a person with disability to own and inherit property and control their financial affairs - the capacity behind a disabled party being drawer, payee or holder of the cheque and litigating over it."
     }
   ],
   "terms": {
@@ -1997,7 +2034,7 @@
     },
     "legal aid": {
       "ref": "lsa:sec_12",
-      "gloss": "Free legal services - a lawyer and court costs at the State's expense - for a party who cannot afford them. A s.138 accused or complainant qualifies if they fall in a category listed in LSA s.12: a woman or a child, a member of a Scheduled Caste or Scheduled Tribe (Constitution arts 341-342), a person with disability (as defined in the disability-rights Act, which is not modelled here), a victim of trafficking or begar (Constitution art 23), or a person below the prescribed income limit (the indigent). Entitlement follows on a prima facie case, with an affidavit of income accepted as proof of means (s.13).",
+      "gloss": "Free legal services - a lawyer and court costs at the State's expense - for a party who cannot afford them. A s.138 accused or complainant qualifies if they fall in a category listed in LSA s.12: a woman or a child, a member of a Scheduled Caste or Scheduled Tribe (Constitution arts 341-342), a person with disability (as defined in the Rights of Persons with Disabilities Act, 2016), a victim of trafficking or begar (Constitution art 23), or a person below the prescribed income limit (the indigent). Entitlement follows on a prima facie case, with an affidavit of income accepted as proof of means (s.13).",
       "group": "Procedure & process",
       "pos": "noun",
       "role": "remedy",
@@ -2016,6 +2053,27 @@
       "aka": [
         "notary's seal",
         "seal of the notary"
+      ]
+    },
+    "person with disability": {
+      "ref": "rpwd:sec_2",
+      "gloss": "A person with a long-term physical, mental, intellectual or sensory impairment which, interacting with barriers, hinders their full and effective participation in society (Rights of Persons with Disabilities Act, 2016, s.2). The category matters to a s.138 case two ways: such a party is entitled to free legal aid under LSA s.12, and the Act guarantees them access to the court without discrimination (s.12) and equal legal capacity to hold property and run their financial affairs (s.13).",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor",
+      "aka": [
+        "disabled person",
+        "persons with disabilities"
+      ]
+    },
+    "prima facie case": {
+      "ref": "ni:sec_139",
+      "gloss": "Enough evidence to establish a fact unless it is disproved. Once the complainant proves the cheque bears the accused's signature and was dishonoured, NI Act s.139 presumes it was issued to discharge a debt or liability; that presumption makes out a prima facie case, and the burden shifts to the accused to rebut it on a preponderance of probabilities.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": [
+        "prima facie"
       ]
     }
   },

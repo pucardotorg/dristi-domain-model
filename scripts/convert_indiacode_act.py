@@ -49,9 +49,10 @@ MONTHS = {m:i for i,m in enumerate(
 
 # ------------------------------------------------------------------ helpers ---
 def clean(t):
-    """Normalise a run of body text: drop OCR/footnote noise, unify quotes."""
+    """Normalise a run of body text: drop OCR/footnote noise, unify quotes.
+    NOTE: em/en dashes are LEFT INTACT - this is verbatim statutory text, and the
+    no-em-dash house rule applies only to app-authored copy, never the bare Act."""
     t = t.replace("“",'"').replace("”",'"').replace("‘","'").replace("’","'")
-    t = t.replace(EM," - ").replace(EN,"-")             # em/en dash -> house style
     t = re.sub(r'\s*\d+\s*\*(\s*\*)*', ' ', t)                   # "1***" repealed markers
     t = re.sub(r'\d+(?=\[)', '', t)                             # footnote digit before "["
     t = re.sub(r'(?<=[a-z])\d+(?=[ \.,;:])', '', t)            # superscript digit after a word

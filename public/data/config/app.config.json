@@ -138,6 +138,10 @@
     "settlement": {
       "label": "Settlement",
       "blurb": "compromise and legal-aid disposal, including Lok Adalat"
+    },
+    "access": {
+      "label": "Access to justice",
+      "blurb": "reaching the court and getting legal help - legal aid and disability access"
     }
   },
   "tier_order": [
