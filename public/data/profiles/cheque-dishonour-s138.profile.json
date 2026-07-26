@@ -2153,8 +2153,57 @@
       "role": "remedy",
       "aka": [
         "prayer clause",
-        "relief clause"
+        "relief clause",
+        "relief sought"
       ]
+    },
+    "plaint": {
+      "ref": "cpc:ord_7_r_1",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "document",
+      "gloss": "The written statement that starts a civil suit, setting out the parties, the facts and the relief claimed (Code of Civil Procedure, Order VII rule 1). A s.138 case is not a suit, so it does not begin with a plaint - the equivalent initiating document is the criminal complaint filed before the Magistrate. Listed here because filing and drafting practice borrows the vocabulary of the plaint."
+    },
+    "plaintiff": {
+      "ref": "cpc:ord_7_r_1",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "actor",
+      "gloss": "The person who brings a civil suit by filing a plaint. In a s.138 prosecution there is no plaintiff; the party who sets the case in motion is the complainant - the payee or holder of the dishonoured cheque. The word is included to map the civil term onto its criminal counterpart."
+    },
+    "framing of issues": {
+      "ref": "cpc:ord_14_r_1",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "procedure",
+      "gloss": "In a civil suit the court settles the disputed points - the 'issues' - that it must decide, drawn from the parties' pleadings (Code of Civil Procedure, Order XIV). A s.138 case is a summary criminal trial and does not frame issues in this way; instead the Magistrate states the substance of the accusation to the accused and records the plea. Included to explain a term litigants carry over from civil practice."
+    },
+    "facts of the case": {
+      "ref": "cpc:ord_6_r_2",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "doctrine",
+      "gloss": "The material facts a party must set out in its pleading - the events that give rise to the claim, stated concisely and without the evidence that proves them (Code of Civil Procedure, Order VI rule 2). In a s.138 complaint the facts of the case are the issuing of the cheque, its presentation and dishonour, the statutory demand notice, and the failure to pay within fifteen days."
+    },
+    "first information report": {
+      "ref": "bnss:sec_173",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "document",
+      "aka": [
+        "FIR"
+      ],
+      "gloss": "The first record the police make of information about a cognizable offence, which sets an investigation in motion (BNSS s.173; earlier CrPC s.154). A cheque bounce under s.138 is not investigated by the police - it is a complaint offence, so no FIR is registered. The case begins instead with the payee's written complaint to the Magistrate, who takes cognizance directly."
+    },
+    "code of civil procedure": {
+      "ref": "cpc:sec_1",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": [
+        "CPC"
+      ],
+      "gloss": "The 1908 code that governs the procedure of civil suits and appeals. A s.138 case is criminal, run under the Bharatiya Nagarik Suraksha Sanhita (earlier the CrPC), so the CPC does not govern it. It appears in this model only as the source of the drafting vocabulary the courts and filing rules borrow - pleading, plaint, and the relief or prayer clause."
     }
   },
   "edges": [
