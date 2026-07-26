@@ -144,10 +144,12 @@ def resolve_state(sid, s):
               "pos": t.get("pos"), "role": t.get("role"), "aka": t.get("aka", []),
               "sourceNotes": t.get("sourceNotes", []), "deep_link": dl_term(sid, t.get("word",""))}
              for t in s.get("vocabulary", {}).get("terms", [])]
-    return {"name": s.get("name", jur_name.get(sid, sid)), "as_of": s.get("as_of"),
-            "process_source": "own" if stages else "national (inherited)",
-            "story": {"summary": story.get("summary"), "roles": roles, "process": stages},
-            "vocabulary": vocab}
+    out = {"name": s.get("name", jur_name.get(sid, sid)), "as_of": s.get("as_of"),
+           "process_source": "own" if stages else "national (inherited)",
+           "story": {"summary": story.get("summary"), "roles": roles, "process": stages},
+           "vocabulary": vocab}
+    if s.get("institutions"): out["institutions"] = s["institutions"]   # police + courts (grounded)
+    return out
 
 def relationships():
     t2p = [{"term": w, "provision": v.get("ref")} for w, v in prof["terms"].items() if v.get("ref")]
@@ -166,7 +168,7 @@ bundle = {
   "as_of": prof.get("as_of"), "maintained_by": prof.get("maintained_by"),
   "transition_date": prof.get("transition_date"), "ref_format": prof.get("ref_format"),
   "national": {"acts": resolve_provisions(), "vocabulary": resolve_national_vocab(),
-               "process": national_process()},
+               "process": national_process(), "institutions": prof.get("national_institutions")},
   "jurisdictions": [{"id": j["id"], "name": j["name"],
                      "has_state_layer": j["id"] in states,
                      "process_source": "own" if (states.get(j["id"], {}).get("story", {}).get("process")) else "national (inherited)"}
@@ -230,6 +232,20 @@ def md_digest():
         for stg in npr["stages"]:
             w(""); w("**%s**%s" % (stg["stage"], (" - _prescribed: %s_" % stg["prescribed"]) if stg.get("prescribed") else ""))
             for step in stg["steps"]: w("- %s" % step)
+    inst = bundle["national"].get("institutions")
+    if inst:
+        w(""); w("## Institutions - police & courts (central baseline; states add their own)")
+        P = inst.get("police") or {}
+        if P.get("ranks"):
+            w(""); w("**Police ranks (senior to junior):** " + " > ".join(r["name"] for r in P["ranks"]))
+        if P.get("units"):
+            w("**Police units:** " + " > ".join(u["name"] for u in P["units"]))
+        J = inst.get("judiciary") or {}
+        if J.get("tiers"):
+            w("**Court hierarchy (apex to trial):** " + " > ".join(t["name"] for t in J["tiers"]))
+        if J.get("roles"):
+            w("**Court roles:** " + ", ".join(r["name"] for r in J["roles"]))
+        w(""); w("_Each rank/tier/role carries its provision cite, alternate names, responsibility and entry route in the JSON bundle (national.institutions) and, fully grounded with state cites, in each state layer's `institutions`._")
     for sid, st in bundle["states"].items():
         w("")
         w("## State layer - %s (process: %s)" % (st["name"], st.get("process_source")))

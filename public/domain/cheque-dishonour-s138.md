@@ -634,6 +634,15 @@ The prescribed procedure for a Section 138 case under central law - the Negotiab
 **10 · Appeal**
 - An appeal against conviction lies to the Court of Session. Where compensation or a fine was awarded, the appellate court may require the appellant to deposit a minimum of 20% of it.
 
+## Institutions - police & courts (central baseline; states add their own)
+
+**Police ranks (senior to junior):** Director General of Police & State Police Chief > Director General of Police > Additional Director General of Police > Inspector General of Police > Deputy Inspector General of Police > Superintendent of Police > Deputy Superintendent of Police > Inspector of Police > Sub-Inspector of Police > Assistant Sub-Inspector of Police > Police Head Constable > Police Constable
+**Police units:** Kerala Police (State) > Zone > Range > District > Commissionerate (metropolitan) > Sub-division > Circle > Police Station > Outpost / Beat
+**Court hierarchy (apex to trial):** Supreme Court of India > High Court of Kerala > Court of Session (District & Sessions Court) > Chief Judicial Magistrate > Judicial Magistrate of the First Class
+**Court roles:** District & Sessions Judge, Judicial Magistrate (First Class), Sheristadar / Chief Ministerial Officer, Bench Clerk, Registry / Scrutiny officer, Registrar (High Court), Process server / Summons bailiff, Stenographer / Interpreter
+
+_Each rank/tier/role carries its provision cite, alternate names, responsibility and entry route in the JSON bundle (national.institutions) and, fully grounded with state cites, in each state layer's `institutions`._
+
 ## State layer - Haryana (process: own)
 
 How a s.138 (cheque bounce, 'NACT') case is filed in Haryana - from the advocate's submission at the Panchkula lower-court filing window through scrutiny, CIS entry and same-day dispatch to the trial court. Based on a June 2026 field interview with the filing assistants; it covers the filing and scrutiny stage, not yet the full trial journey.

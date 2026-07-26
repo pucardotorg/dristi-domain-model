@@ -2720,5 +2720,506 @@
       }
     ],
     "timing_note": "Prescribed shows the statutory deadline where the NI Act or the code sets one; Regular court and ON Court timings are state-specific and are filled in as each state's rules and practice are processed."
+  },
+  "national_institutions": {
+    "summary": "The police and the courts a s.138 case runs through, from central law - the Police Act, 1861 and the Constitution read with the BNSS. Each state's own Police Act and court rules fix the local ranks, units and establishment; those are layered on as each state is processed.",
+    "police": {
+      "summary": "The police hierarchy. The Police Act, 1861 constitutes the force under an Inspector-General with a Superintendent in each district; the modern rank ladder (Constable up to Director General) and the units are fixed by each State's Police Act. Senior ranks are Indian Police Service (IPS) officers recruited through the UPSC Civil Services Examination; the rest are the State Police Service.",
+      "sources": [
+        {
+          "l": "Police Act, 1861",
+          "n": "police1861:sec_2"
+        }
+      ],
+      "ranks": [
+        {
+          "id": "spc",
+          "name": "Director General of Police & State Police Chief",
+          "aka": [
+            "State Police Chief",
+            "DGP (State Police Chief)"
+          ],
+          "cite": [],
+          "who": "The administration, supervision, direction and control of the entire State police, subject to the Government.",
+          "entry": "An IPS officer of the State cadre already promoted to DGP, selected by Government (KL Police Act s.18).",
+          "service": "IPS"
+        },
+        {
+          "id": "dgp",
+          "name": "Director General of Police",
+          "aka": [
+            "DGP"
+          ],
+          "cite": [],
+          "who": "Apex rank; heads statewide wings and branches (crime, intelligence, armed police, etc.).",
+          "entry": "IPS, via the UPSC Civil Services Examination, promoted over a career.",
+          "service": "IPS"
+        },
+        {
+          "id": "adgp",
+          "name": "Additional Director General of Police",
+          "aka": [
+            "ADGP"
+          ],
+          "cite": [],
+          "who": "Heads a zone or a major functional wing.",
+          "entry": "IPS, by promotion.",
+          "service": "IPS"
+        },
+        {
+          "id": "igp",
+          "name": "Inspector General of Police",
+          "aka": [
+            "IGP",
+            "IG"
+          ],
+          "cite": [
+            {
+              "l": "Police Act 1861 §4",
+              "n": "police1861:sec_4"
+            }
+          ],
+          "who": "Heads a zone or range or wing. The 1861 Act's Inspector-General was the historical head of the force.",
+          "entry": "IPS, by promotion.",
+          "service": "IPS"
+        },
+        {
+          "id": "dig",
+          "name": "Deputy Inspector General of Police",
+          "aka": [
+            "DIG"
+          ],
+          "cite": [],
+          "who": "Heads a police range - a group of districts.",
+          "entry": "IPS, by promotion.",
+          "service": "IPS"
+        },
+        {
+          "id": "sp",
+          "name": "Superintendent of Police",
+          "aka": [
+            "SP",
+            "District Police Chief"
+          ],
+          "cite": [
+            {
+              "l": "Police Act 1861 §47",
+              "n": "police1861:sec_47"
+            }
+          ],
+          "who": "District Police Chief - commands the whole police of a district. Registers and supervises serious cases.",
+          "entry": "IPS (direct recruit, after serving as Assistant SP), or a promoted State Police Service officer.",
+          "service": "IPS / KPS"
+        },
+        {
+          "id": "dysp",
+          "name": "Deputy Superintendent of Police",
+          "aka": [
+            "Dy.SP",
+            "Sub-Divisional Police Officer"
+          ],
+          "cite": [],
+          "who": "Sub-divisional officer; supervises a group of circles and stations.",
+          "entry": "Kerala Police Service, via the Kerala PSC, or promotion from Inspector.",
+          "service": "KPS"
+        },
+        {
+          "id": "ci",
+          "name": "Inspector of Police",
+          "aka": [
+            "Circle Inspector",
+            "CI"
+          ],
+          "cite": [],
+          "who": "Heads a circle; Station House Officer of larger stations; supervises the Sub-Inspectors under him.",
+          "entry": "Promotion, or direct recruitment via the Kerala PSC.",
+          "service": "KPS"
+        },
+        {
+          "id": "si",
+          "name": "Sub-Inspector of Police",
+          "aka": [
+            "SI",
+            "Station House Officer"
+          ],
+          "cite": [],
+          "who": "Station House Officer of most police stations - registers the FIR, investigates, files the charge-sheet.",
+          "entry": "Direct recruitment via the Kerala PSC, or promotion.",
+          "service": "KPS"
+        },
+        {
+          "id": "asi",
+          "name": "Assistant Sub-Inspector of Police",
+          "aka": [
+            "ASI"
+          ],
+          "cite": [],
+          "who": "Assists the SHO; may hold charge of an outpost.",
+          "entry": "Promotion, or Kerala PSC.",
+          "service": "KPS"
+        },
+        {
+          "id": "hc",
+          "name": "Police Head Constable",
+          "aka": [
+            "Head Constable",
+            "HC"
+          ],
+          "cite": [],
+          "who": "Senior constable; supervises constables and beat duty.",
+          "entry": "Promotion from Constable.",
+          "service": "KPS"
+        },
+        {
+          "id": "pc",
+          "name": "Police Constable",
+          "aka": [
+            "Constable",
+            "PC"
+          ],
+          "cite": [],
+          "who": "The basic rank - patrol, guard, beat and first response.",
+          "entry": "Direct recruitment via the Kerala PSC / police recruitment; must meet the s.86 eligibility and take the s.87 oath.",
+          "service": "KPS"
+        }
+      ],
+      "units": [
+        {
+          "id": "state",
+          "name": "Kerala Police (State)",
+          "head": "State Police Chief / DGP",
+          "cite": [],
+          "who": "One unified State force, divided into wings, units and branches by the Government."
+        },
+        {
+          "id": "zone",
+          "name": "Zone",
+          "head": "ADGP / IGP",
+          "cite": [],
+          "who": "A cluster of ranges."
+        },
+        {
+          "id": "range",
+          "name": "Range",
+          "head": "DIG",
+          "cite": [],
+          "who": "A group of districts."
+        },
+        {
+          "id": "district",
+          "name": "District",
+          "head": "Superintendent of Police",
+          "cite": [
+            {
+              "l": "Police Act 1861 §47",
+              "n": "police1861:sec_47"
+            }
+          ],
+          "who": "The basic territorial police command."
+        },
+        {
+          "id": "commissionerate",
+          "name": "Commissionerate (metropolitan)",
+          "head": "Commissioner of Police",
+          "cite": [],
+          "who": "Unitary metropolitan policing for larger cities (e.g. Thiruvananthapuram, Kochi)."
+        },
+        {
+          "id": "subdiv",
+          "name": "Sub-division",
+          "head": "Dy.SP",
+          "cite": [],
+          "who": "A group of circles within a district."
+        },
+        {
+          "id": "circle",
+          "name": "Circle",
+          "head": "Circle Inspector",
+          "cite": [],
+          "who": "A group of police stations."
+        },
+        {
+          "id": "station",
+          "name": "Police Station",
+          "head": "Station House Officer",
+          "cite": [],
+          "who": "The primary unit; its jurisdiction is notified and it must be functional at all hours."
+        },
+        {
+          "id": "outpost",
+          "name": "Outpost / Beat",
+          "head": "ASI / Head Constable",
+          "cite": [],
+          "who": "The smallest sub-units of a station for local coverage."
+        }
+      ],
+      "oversight": [
+        {
+          "id": "ssc",
+          "name": "State Security Commission",
+          "cite": [],
+          "who": "Lays down policy and insulates the force from illegitimate pressure."
+        },
+        {
+          "id": "peb",
+          "name": "Police Establishment Board",
+          "cite": [],
+          "who": "Decides postings, transfers and promotions of officers up to a rank."
+        },
+        {
+          "id": "pca",
+          "name": "Police Complaints Authority",
+          "cite": [],
+          "who": "Inquires into serious complaints of misconduct against the police."
+        }
+      ]
+    },
+    "judiciary": {
+      "summary": "The court hierarchy a s.138 case moves through: the trial court is the Judicial Magistrate of the First Class; appeal lies to the Court of Session; revision and quashing to the High Court; and, by special leave, to the Supreme Court. Alongside the judges sits the court's ministerial establishment.",
+      "sources": [
+        {
+          "l": "Constitution, Part VI Ch.V-VI",
+          "n": "constitution:art_214"
+        },
+        {
+          "l": "BNSS §6",
+          "n": "bnss:sec_6"
+        }
+      ],
+      "tiers": [
+        {
+          "id": "sc",
+          "name": "Supreme Court of India",
+          "aka": [
+            "SC",
+            "Apex Court"
+          ],
+          "cite": [
+            {
+              "l": "Constitution art.124",
+              "n": "constitution:art_124"
+            },
+            {
+              "l": "art.136 (SLP)",
+              "n": "constitution:art_136"
+            },
+            {
+              "l": "art.141 (binding)",
+              "n": "constitution:art_141"
+            }
+          ],
+          "who": "The highest court. A s.138 matter reaches it only by special leave (art.136); its law binds every court in India (art.141).",
+          "role": "Final appeal, by special leave"
+        },
+        {
+          "id": "hc",
+          "name": "High Court of Kerala",
+          "aka": [
+            "High Court",
+            "HC"
+          ],
+          "cite": [
+            {
+              "l": "Constitution art.214",
+              "n": "constitution:art_214"
+            },
+            {
+              "l": "art.226/227",
+              "n": "constitution:art_226"
+            }
+          ],
+          "who": "The State's highest court. In a s.138 case it hears criminal revisions and petitions to quash the complaint (s.482 CrPC / s.528 BNSS) and superintends the subordinate courts.",
+          "role": "Revision, quashing, writ, superintendence"
+        },
+        {
+          "id": "sessions",
+          "name": "Court of Session (District & Sessions Court)",
+          "aka": [
+            "Sessions Court",
+            "District Court"
+          ],
+          "cite": [
+            {
+              "l": "BNSS §6",
+              "n": "bnss:sec_6"
+            },
+            {
+              "l": "BNSS §415 (appeal)",
+              "n": "bnss:sec_415"
+            },
+            {
+              "l": "BNSS §22 (sentences)",
+              "n": "bnss:sec_22"
+            }
+          ],
+          "who": "Headed by the District & Sessions Judge. It hears the first appeal from a s.138 conviction.",
+          "role": "First appeal from conviction"
+        },
+        {
+          "id": "cjm",
+          "name": "Chief Judicial Magistrate",
+          "aka": [
+            "CJM"
+          ],
+          "cite": [
+            {
+              "l": "BNSS §10",
+              "n": "bnss:sec_10"
+            }
+          ],
+          "who": "Heads the magistracy of a district and has administrative control over the Judicial Magistrates.",
+          "role": "Administrative head of the magistracy"
+        },
+        {
+          "id": "jmfc",
+          "name": "Judicial Magistrate of the First Class",
+          "aka": [
+            "JMFC",
+            "Magistrate",
+            "trial court"
+          ],
+          "cite": [
+            {
+              "l": "BNSS §6/§9",
+              "n": "bnss:sec_9"
+            },
+            {
+              "l": "NI Act §142 (cognizance)",
+              "n": "ni:sec_142"
+            },
+            {
+              "l": "NI Act §143 (summary trial)",
+              "n": "ni:sec_143"
+            }
+          ],
+          "who": "The trial court for a s.138 case: it takes cognizance of the complaint, tries it summarily, and on conviction sentences the accused.",
+          "role": "The s.138 trial court"
+        }
+      ],
+      "roles": [
+        {
+          "id": "sessions-judge",
+          "name": "District & Sessions Judge",
+          "cat": "judge",
+          "aka": [
+            "Sessions Judge",
+            "District Judge"
+          ],
+          "cite": [
+            {
+              "l": "Constitution art.233 (appointment)",
+              "n": "constitution:art_233"
+            },
+            {
+              "l": "art.235 (control)",
+              "n": "constitution:art_235"
+            }
+          ],
+          "who": "Heads the district judiciary; hears sessions trials and s.138 appeals.",
+          "entry": "The Higher Judicial Service - direct recruitment of advocates with 7+ years' practice (art.233), or promotion from the subordinate judiciary."
+        },
+        {
+          "id": "magistrate",
+          "name": "Judicial Magistrate (First Class)",
+          "cat": "judge",
+          "aka": [
+            "Magistrate",
+            "JMFC"
+          ],
+          "cite": [
+            {
+              "l": "BNSS §9",
+              "n": "bnss:sec_9"
+            },
+            {
+              "l": "Constitution art.234 (recruitment)",
+              "n": "constitution:art_234"
+            },
+            {
+              "l": "NI Act §143",
+              "n": "ni:sec_143"
+            }
+          ],
+          "who": "Tries the s.138 complaint - takes cognizance, records evidence, delivers judgment and sentence.",
+          "entry": "The Kerala Judicial Service - the Munsiff-Magistrate examination conducted by the Kerala PSC with the High Court (art.234)."
+        },
+        {
+          "id": "sheristadar",
+          "name": "Sheristadar / Chief Ministerial Officer",
+          "cat": "staff",
+          "aka": [
+            "Sheristadar",
+            "Chief Ministerial Officer",
+            "head ministerial officer"
+          ],
+          "cite": [],
+          "who": "Head of the court's ministerial establishment; signs and issues the summons 'by order of the Court'.",
+          "entry": "Kerala ministerial (judicial) establishment, via the Kerala PSC and promotion."
+        },
+        {
+          "id": "bench-clerk",
+          "name": "Bench Clerk",
+          "cat": "staff",
+          "aka": [
+            "Bench clerk"
+          ],
+          "cite": [],
+          "who": "Maintains the court's daily records, exhibits and order sheet during hearings.",
+          "entry": "Ministerial cadre, via the Kerala PSC."
+        },
+        {
+          "id": "registry",
+          "name": "Registry / Scrutiny officer",
+          "cat": "staff",
+          "aka": [
+            "Registry",
+            "scrutiny officer"
+          ],
+          "cite": [],
+          "who": "The court office that receives and scrutinises the filed complaint for defects before it goes for cognizance.",
+          "entry": "Ministerial cadre.",
+          "sourceNotes": [
+            "ke-scrutiny-officer-2026-07"
+          ]
+        },
+        {
+          "id": "hc-registrar",
+          "name": "Registrar (High Court)",
+          "cat": "staff",
+          "aka": [
+            "Registrar"
+          ],
+          "cite": [],
+          "who": "Heads the High Court registry - scrutiny, listing, custody of records.",
+          "entry": "A senior District Judge or a promoted officer of the establishment."
+        },
+        {
+          "id": "process-server",
+          "name": "Process server / Summons bailiff",
+          "cat": "staff",
+          "aka": [
+            "process server",
+            "bailiff",
+            "peon"
+          ],
+          "basis": "Court ministerial establishment",
+          "who": "Serves the summons and warrants the court issues.",
+          "entry": "Ministerial cadre, via the Kerala PSC.",
+          "cite": []
+        },
+        {
+          "id": "stenographer",
+          "name": "Stenographer / Interpreter",
+          "cat": "staff",
+          "aka": [
+            "stenographer",
+            "interpreter"
+          ],
+          "cite": [],
+          "who": "Records dictation and interprets a deposition into the court language (Malayalam in Kerala).",
+          "entry": "Ministerial cadre, via the Kerala PSC."
+        }
+      ]
+    }
   }
 }

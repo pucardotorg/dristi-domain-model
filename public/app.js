@@ -63,7 +63,7 @@ async function loadConfig(){
 }
 
 /* ---- data built from the profile at runtime -------------------------------- */
-let PROFILE=null, SOURCES={}, DOMAINS={}, PROVISIONS=[], TERMS={}, EDGES=[], ALIAS_MAP=[], NATIONAL_PROCESS=null;
+let PROFILE=null, SOURCES={}, DOMAINS={}, PROVISIONS=[], TERMS={}, EDGES=[], ALIAS_MAP=[], NATIONAL_PROCESS=null, NATIONAL_INSTITUTIONS=null;
 let CASES=[], CASE_TOPICS={}, CASES_BY_REF={};   // Supreme Court case law + reverse index (provRef -> [caseId])
 const caseById2 = id => CASES.find(c=>c.id===id);
 const docCache = {};   // actId -> parsed XML Document
@@ -107,6 +107,7 @@ async function loadProfile(){
   PROVISIONS=p.provisions.map(x=>({ref:x.ref, act:x.act, eId:x.eId, tier:x.tier, role:x.role, applies:x.applies, note:x.note||""}));
   TERMS=p.terms||{};
   NATIONAL_PROCESS=p.national_process||null;   // prescribed central-law process, shared by every state's story
+  NATIONAL_INSTITUTIONS=p.national_institutions||null;   // police + courts baseline, shared by every state
   EDGES=p.edges||[];
   ALIAS_MAP=(p.act_alias_map||[]).map(a=>({topic:a.topic, before:a.before, after:a.on_or_after, note:a.note}));
   const note=$("#src-note"); if(note) note.textContent=`profile: ${p.profile} · as of ${p.as_of||''} · maintained by ${p.maintained_by||'PUCAR'}`;
@@ -734,6 +735,42 @@ const ROLE_CATS={
   bank:{label:"Bank", icon:"landmark"},
   witness:{label:"Witness", icon:"user-check"},
 };
+/* Institutions (police & courts): hierarchy ladders + role cards, each grounded in a
+   provision. Data-driven from INST.police / INST.judiciary; state's own or the national
+   baseline. Design: clean rows, a seniority index instead of a left accent, cite chips. */
+function instRow(it, amap, idx){
+  const aka=(it.aka&&it.aka.length)?`<span class="inst-aka">also ${it.aka.map(esc).join(" · ")}</span>`:"";
+  const svc=it.service?`<span class="inst-svc">${esc(it.service)}</span>`:"";
+  const cites=(it.cite&&it.cite.length)?`<span class="cites">${it.cite.map(c=>citeChip(c,amap)).join("")}</span>`
+             :(it.basis?`<span class="role-basis">${esc(it.basis)}</span>`:"");
+  const prov=(it.sourceNotes&&it.sourceNotes.length)?`<a class="src-note" data-note="${esc(it.sourceNotes[0])}">${ic('messages-square')} field note</a>`:"";
+  const lines=[];
+  if(it.head) lines.push(`<div class="inst-line"><span class="inst-l">Head</span> ${esc(it.head)}</div>`);
+  if(it.who) lines.push(`<div class="inst-who">${esc(it.who)}</div>`);
+  if(it.entry) lines.push(`<div class="inst-line"><span class="inst-l">Entry</span> ${esc(it.entry)}</div>`);
+  if(it.role) lines.push(`<div class="inst-line"><span class="inst-l">In §138</span> ${esc(it.role)}</div>`);
+  return `<div class="inst-row"${it.id?` id="inst-${esc(it.id)}"`:""}>
+    ${idx!=null?`<span class="inst-idx">${idx}</span>`:`<span class="inst-dot"></span>`}
+    <div class="inst-body">
+      <div class="inst-hd"><span class="inst-name">${esc(it.name)}</span>${svc}${aka}</div>
+      ${lines.join("")}
+      ${(cites||prov)?`<div class="inst-cite">${cites}${prov}</div>`:""}
+    </div></div>`;
+}
+function renderInstitutions(INST, amap){
+  const wrap=el("div","inst");
+  const sub=(label,items,ranked)=> (items&&items.length)
+    ? `<div class="inst-group"><div class="inst-sub-label">${esc(label)}</div><div class="inst-ladder">${items.map((it,i)=>instRow(it,amap,ranked?i+1:null)).join("")}</div></div>` : "";
+  const block=(icon,title,summary,inner)=>{ const b=el("div","inst-block");
+    b.innerHTML=`<div class="inst-eyebrow">${ic(icon)} ${esc(title)}</div>${summary?`<p class="inst-summary">${esc(summary)}</p>`:""}${inner}`; return b; };
+  if(INST.police){ const P=INST.police;
+    wrap.appendChild(block("shield","Police",P.summary,
+      sub("Ranks - senior to junior",P.ranks,true)+sub("How the force is organised",P.units,false)+sub("Oversight bodies",P.oversight,false))); }
+  if(INST.judiciary){ const J=INST.judiciary;
+    wrap.appendChild(block("gavel","The courts",J.summary,
+      sub("The court hierarchy - apex to trial court",J.tiers,true)+sub("The people in the courts",J.roles,false))); }
+  return wrap;
+}
 V.story=()=>{
   if(!isModelled()) return notModelled();
   const stName=stateById(activeState).name;
@@ -832,6 +869,12 @@ V.story=()=>{
       rb.appendChild(card);
     });
     m.appendChild(rb);
+  }
+  // 2b - INSTITUTIONS (police & the courts) - the state's own, else the national baseline
+  const INST=((STATE_DATA||{}).institutions) || NATIONAL_INSTITUTIONS;
+  if(INST){
+    m.appendChild(secH("institutions","Police & the courts", INST.summary));
+    m.appendChild(renderInstitutions(INST, amap));
   }
   // 3 - FEES
   if(S && S.fees){
@@ -1645,9 +1688,15 @@ function storyBadge(){
 }
 /* the section headings the story page renders, in order - drives the nav accordion */
 function storySections(){
-  const S=(STATE_DATA||{}).story; if(!S) return [];
-  return [["process","The process"],["roles","The roles"],["fees","The fees"],["courts","The courts"],["caseload","Caseload"]]
-    .filter(([id])=>S[id]).map(([id,label])=>({id,label}));
+  const S=(STATE_DATA||{}).story;
+  const proc=(S&&S.process)||NATIONAL_PROCESS;
+  const INST=((STATE_DATA||{}).institutions)||NATIONAL_INSTITUTIONS;
+  const out=[];
+  if(proc) out.push({id:"process",label:"The process"});
+  if(S&&S.roles) out.push({id:"roles",label:"The roles"});
+  if(INST) out.push({id:"institutions",label:"Police & courts"});
+  ["fees","courts","caseload"].forEach(id=>{ if(S&&S[id]) out.push({id,label:id==="fees"?"The fees":id==="courts"?"The courts":"Caseload"}); });
+  return out;
 }
 function goStorySection(id){
   _extra={sec:"story-"+id};
