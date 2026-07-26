@@ -406,8 +406,8 @@ V.words=()=>{
   const stGroupOrder=[]; stTerms.forEach(t=>{ const g=t.group||"Other"; if(!stGroupOrder.includes(g)) stGroupOrder.push(g); });
   // uniform items across the two scopes, for counting and filtering
   const items=[];
-  natRaw.forEach(([w,v])=> items.push({kind:"national", w, v, pos:v.pos||"", role:v.role||"", group:v.group||"Other", hay:(w+" "+(v.gloss||"")+" "+(v.pos||"")+" "+(v.role||"")).toLowerCase()}));
-  stTerms.forEach(t=> items.push({kind:"state", t, pos:t.pos||"", role:t.role||"", group:t.group||"Other", hay:((t.word||"")+" "+(t.gloss||"")+" "+(t.source||"")+" "+(t.pos||"")+" "+(t.role||"")).toLowerCase()}));
+  natRaw.forEach(([w,v])=> items.push({kind:"national", w, v, pos:v.pos||"", role:v.role||"", group:v.group||"Other", hay:(w+" "+(v.gloss||"")+" "+(v.aka||[]).join(" ")+" "+(v.pos||"")+" "+(v.role||"")).toLowerCase()}));
+  stTerms.forEach(t=> items.push({kind:"state", t, pos:t.pos||"", role:t.role||"", group:t.group||"Other", hay:((t.word||"")+" "+(t.gloss||"")+" "+(t.aka||[]).join(" ")+" "+(t.source||"")+" "+(t.pos||"")+" "+(t.role||"")).toLowerCase()}));
 
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Vocabulary</h1>
@@ -421,6 +421,10 @@ V.words=()=>{
 
   const state={q:"", scope:"all", pos:"", role:""};
 
+  function akaRow(aka){
+    if(!aka||!aka.length) return "";
+    return `<div class="waka"><span class="waka-lbl">also called</span>${aka.map(a=>`<span class="waka-t">${esc(a)}</span>`).join("")}</div>`;
+  }
   function wcard(it){
     const clsTags=`${it.pos?`<span class="wtag wtag-pos">${esc(POS_LABEL[it.pos]||it.pos)}</span>`:""}${it.role?`<span class="wtag wtag-role">${esc(ROLE_LABEL[it.role]||it.role)}</span>`:""}`;
     if(it.kind==="national"){
@@ -430,6 +434,7 @@ V.words=()=>{
       c.innerHTML=`
         <div class="wt"><span class="wname">${esc(w[0].toUpperCase()+w.slice(1))}</span><span class="wtag wtag-national">national</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
         <div class="def">${esc(def)}</div>
+        ${akaRow(v.aka)}
         <div class="src">from <code>${esc(secNum(v.ref))}</code> · ${esc(s?s.title.split(",")[0]:v.ref)}</div>
         <div class="wfull"><div class="statute-slot" data-ref="${esc(v.ref)}"></div></div>`;
       c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open")) fillStatute(c.querySelector(".statute-slot"),true); };
@@ -439,6 +444,7 @@ V.words=()=>{
     c.innerHTML=`
       <div class="wt"><span class="wname">${esc(t.word)}</span><span class="wtag wtag-state">${esc(stName)}</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(t.gloss||'')}</div>
+      ${akaRow(t.aka)}
       <div class="src">from ${esc(t.source||'the state layer')}</div>
       <div class="wfull"><div class="ksec-slot"></div></div>`;
     c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && t.akn && t.eId) fillStateStatute(c.querySelector(".ksec-slot"), t.akn, t.eId, t.source||'the Kerala instrument', ''); };
@@ -981,8 +987,11 @@ function vocabMatcher(){
   const key = activeState + "|" + Object.keys(TERMS||{}).length;
   if(_vocabM && _vocabMState===key) return _vocabM;
   const map={};
+  // canonical terms first, then their aliases - an alias never overwrites a canonical entry
   Object.entries(TERMS||{}).forEach(([w,v])=>{ const o=(typeof v==="string"?{ref:v}:v); map[w.toLowerCase()]={word:w, gloss:o.gloss||"", scope:"national"}; });
   (((STATE_DATA||{}).vocabulary||{}).terms||[]).forEach(t=>{ if(t.word) map[t.word.toLowerCase()]={word:t.word, gloss:t.gloss||"", scope:"state"}; });
+  Object.entries(TERMS||{}).forEach(([w,v])=>{ const o=(typeof v==="string"?{ref:v}:v); (o.aka||[]).forEach(a=>{ const k=a.toLowerCase(); if(!map[k]) map[k]={word:w, gloss:o.gloss||"", scope:"national", alias:true}; }); });
+  (((STATE_DATA||{}).vocabulary||{}).terms||[]).forEach(t=>{ if(t.word)(t.aka||[]).forEach(a=>{ const k=a.toLowerCase(); if(!map[k]) map[k]={word:t.word, gloss:t.gloss||"", scope:"state", alias:true}; }); });
   const words=Object.keys(map).filter(w=>w.length>2).sort((a,b)=>b.length-a.length);
   const pat=words.map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|");
   let re=null;

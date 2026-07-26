@@ -1118,7 +1118,10 @@
       "gloss": "A bill of exchange drawn on a specified banker and payable on demand; includes the truncated cheque and the electronic-image cheque.",
       "group": "The cheque & the instrument",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "cheque leaf"
+      ]
     },
     "negotiable instrument": {
       "ref": "ni:sec_13",
@@ -1139,14 +1142,22 @@
       "gloss": "A written promise to pay a certain sum to, or to the order of, a person or the bearer.",
       "group": "The cheque & the instrument",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "pronote",
+        "pro note"
+      ]
     },
     "banker": {
       "ref": "ni:sec_3",
       "gloss": "A person carrying on the business of banking; the drawee of a cheque.",
       "group": "The cheque & the instrument",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "paying banker",
+        "collecting banker"
+      ]
     },
     "negotiation": {
       "ref": "ni:sec_14",
@@ -1160,42 +1171,63 @@
       "gloss": "Signing on an instrument (usually the back) for the purpose of negotiating it.",
       "group": "The cheque & the instrument",
       "pos": "verb",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "endorsement"
+      ]
     },
     "crossed cheque": {
       "ref": "ni:sec_123",
       "gloss": "A cheque marked so that it must be paid through a bank account, not across the counter.",
       "group": "The cheque & the instrument",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "account payee cheque",
+        "A/C payee cheque"
+      ]
     },
     "maturity": {
       "ref": "ni:sec_22",
       "gloss": "The date on which an instrument falls due for payment.",
       "group": "The cheque & the instrument",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "due date"
+      ]
     },
     "drawer": {
       "ref": "ni:sec_7",
       "gloss": "The person who makes (draws) the cheque; the accused in a s.138 case.",
       "group": "Parties & liability",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "maker of the cheque",
+        "cheque issuer"
+      ]
     },
     "drawee": {
       "ref": "ni:sec_7",
       "gloss": "The banker on whom the cheque is drawn and who is directed to pay.",
       "group": "Parties & liability",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "drawee bank",
+        "paying bank"
+      ]
     },
     "payee": {
       "ref": "ni:sec_7",
       "gloss": "The person named in the instrument as the one to whom payment is to be made.",
       "group": "Parties & liability",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "beneficiary"
+      ]
     },
     "holder": {
       "ref": "ni:sec_8",
@@ -1209,7 +1241,11 @@
       "gloss": "A holder who took the instrument for value, in good faith and before maturity.",
       "group": "Parties & liability",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "holder for value",
+        "bona fide holder"
+      ]
     },
     "payment in due course": {
       "ref": "ni:sec_10",
@@ -1223,14 +1259,22 @@
       "gloss": "Where the drawer is a company, the persons in charge of and responsible to it for the conduct of its business are also liable.",
       "group": "Parties & liability",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "vicarious liability of directors",
+        "director liability"
+      ]
     },
     "person in charge": {
       "ref": "ni:sec_141",
       "gloss": "The director or officer who, at the time of the offence, was in charge of and responsible to the company for its business - the test for vicarious liability.",
       "group": "Parties & liability",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "officer in charge of the company",
+        "signatory of the company"
+      ]
     },
     "defence not allowed": {
       "ref": "ni:sec_140",
@@ -1244,70 +1288,116 @@
       "gloss": "The offence: a cheque given for a legally enforceable debt, returned unpaid for insufficiency of funds or because it exceeds the arrangement.",
       "group": "The offence (§138)",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "cheque bounce",
+        "bounced cheque",
+        "cheque return",
+        "cheque dishonour",
+        "dishonoured cheque"
+      ]
     },
     "insufficiency of funds": {
       "ref": "ni:sec_138",
       "gloss": "The account not holding enough to honour the cheque - the trigger for the offence.",
       "group": "The offence (§138)",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "insufficient funds",
+        "not sufficient funds",
+        "exceeds arrangement"
+      ]
     },
     "legally enforceable debt or liability": {
       "ref": "ni:sec_138",
       "gloss": "The debt or liability the cheque must discharge; by the Explanation and s.139, presumed to exist unless rebutted (Rangappa).",
       "group": "The offence (§138)",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "legally recoverable debt",
+        "enforceable debt"
+      ]
     },
     "demand notice": {
       "ref": "ni:sec_138",
       "gloss": "The written notice the payee must give the drawer within 30 days of learning of dishonour, demanding payment of the cheque amount.",
       "group": "The offence (§138)",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "statutory notice",
+        "legal notice",
+        "section 138 notice",
+        "notice of demand"
+      ]
     },
     "stop-payment": {
       "ref": "ni:sec_138",
       "gloss": "Instructing the bank not to pay; still a dishonour attracting s.138 where a legally enforceable debt exists.",
       "group": "The offence (§138)",
       "pos": "verb",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "stop payment instruction",
+        "countermand of payment",
+        "payment stopped"
+      ]
     },
     "presumption in favour of holder": {
       "ref": "ni:sec_139",
       "gloss": "The court shall presume the cheque was received for the discharge of a debt or liability - a reverse onus on the accused.",
       "group": "Presumptions & evidence",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "section 139 presumption"
+      ]
     },
     "presumptions as to negotiable instruments": {
       "ref": "ni:sec_118",
       "gloss": "Presumptions of consideration, date, time of acceptance, transfer and the holder being a holder in due course.",
       "group": "Presumptions & evidence",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "section 118 presumption"
+      ]
     },
     "rebuttal of presumption": {
       "ref": "ni:sec_139",
       "gloss": "The accused may rebut the s.139 presumption on the preponderance of probabilities, not beyond reasonable doubt.",
       "group": "Presumptions & evidence",
       "pos": "verb",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "rebutting the presumption"
+      ]
     },
     "evidence on affidavit": {
       "ref": "ni:sec_145",
       "gloss": "The complainant's evidence may be given on affidavit and read in any inquiry, trial or other proceeding.",
       "group": "Presumptions & evidence",
       "pos": "noun",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "affidavit evidence",
+        "evidence by affidavit"
+      ]
     },
     "bank's return memo": {
       "ref": "ni:sec_146",
       "gloss": "The banker's slip or memo of dishonour is prima facie evidence of the fact of dishonour.",
       "group": "Presumptions & evidence",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "cheque return memo",
+        "return memo",
+        "dishonour memo",
+        "cheque return slip"
+      ]
     },
     "bankers' books evidence": {
       "ref": "bbea:sec_2",
@@ -1328,14 +1418,21 @@
       "gloss": "Authentication of an electronic record by an electronic technique specified in the Second Schedule.",
       "group": "Presumptions & evidence",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "digital signature"
+      ]
     },
     "complaint": {
       "ref": "bnss:sec_223",
       "gloss": "A s.138 case begins on the payee's written complaint (not an FIR); the Magistrate examines the complainant on oath.",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "private complaint",
+        "complaint petition"
+      ]
     },
     "cognizance": {
       "ref": "bnss:sec_210",
@@ -1349,14 +1446,20 @@
       "gloss": "The Magistrate issuing summons (or a warrant) to secure the accused's attendance.",
       "group": "Procedure & process",
       "pos": "verb",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "issuance of process"
+      ]
     },
     "summons": {
       "ref": "bnss:sec_63",
       "gloss": "The court's written order to a person to appear - the first step to bring in the accused.",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "court summons"
+      ]
     },
     "mode of service of summons": {
       "ref": "ni:sec_144",
@@ -1370,28 +1473,43 @@
       "gloss": "The court's written authority to arrest and produce a person who does not answer summons.",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "document"
+      "role": "document",
+      "aka": [
+        "arrest warrant",
+        "warrant of arrest",
+        "non-bailable warrant",
+        "bailable warrant"
+      ]
     },
     "proclamation": {
       "ref": "bnss:sec_84",
       "gloss": "A public notice requiring an absconding accused to appear - the step before attachment.",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "proclamation for absconding accused"
+      ]
     },
     "attachment": {
       "ref": "bnss:sec_85",
       "gloss": "Attachment of an absconder's property to compel appearance.",
       "group": "Procedure & process",
       "pos": "verb",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "attachment of property"
+      ]
     },
     "summary trial": {
       "ref": "ni:sec_143",
       "gloss": "s.138 cases are tried summarily, with a simplified and faster procedure.",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "summary procedure"
+      ]
     },
     "cognizance of offences": {
       "ref": "ni:sec_142",
@@ -1405,21 +1523,32 @@
       "gloss": "The case lies where the payee's bank branch (the collecting branch) is situated (post-2015 amendment).",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "place of trial"
+      ]
     },
     "revision": {
       "ref": "bnss:sec_438",
       "gloss": "Calling for the record of a subordinate court to test the legality of an order - the usual route after a s.138 conviction.",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "criminal revision",
+        "revision petition"
+      ]
     },
     "quashing (inherent powers)": {
       "ref": "bnss:sec_528",
       "gloss": "The High Court's power to quash a complaint to prevent abuse of process or to secure the ends of justice.",
       "group": "Procedure & process",
       "pos": "verb",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "quashing petition",
+        "section 482 petition"
+      ]
     },
     "deemed service of notice": {
       "ref": "genclauses:sec_27",
@@ -1433,7 +1562,11 @@
       "gloss": "The complaint must be filed within one month of the cause of action arising.",
       "group": "Notice, limitation & disposal",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "limitation period",
+        "30-day limitation"
+      ]
     },
     "condonation of delay": {
       "ref": "limitation:sec_5",
@@ -1447,42 +1580,61 @@
       "gloss": "s.138 offences are compoundable - the parties may settle and bring the case to an end.",
       "group": "Notice, limitation & disposal",
       "pos": "verb",
-      "role": "procedure"
+      "role": "procedure",
+      "aka": [
+        "compromise",
+        "out-of-court settlement"
+      ]
     },
     "interim compensation": {
       "ref": "ni:sec_143A",
       "gloss": "The court may order the drawer to pay up to 20% of the cheque amount as interim compensation.",
       "group": "Notice, limitation & disposal",
       "pos": "noun",
-      "role": "remedy"
+      "role": "remedy",
+      "aka": [
+        "section 143A compensation"
+      ]
     },
     "appeal deposit": {
       "ref": "ni:sec_148",
       "gloss": "On appeal against conviction, the court may require a deposit of at least 20% of the fine or compensation.",
       "group": "Notice, limitation & disposal",
       "pos": "noun",
-      "role": "remedy"
+      "role": "remedy",
+      "aka": [
+        "section 148 deposit"
+      ]
     },
     "probation": {
       "ref": "probation:sec_4",
       "gloss": "Release of an offender on probation of good conduct instead of sentencing them at once.",
       "group": "Notice, limitation & disposal",
       "pos": "noun",
-      "role": "remedy"
+      "role": "remedy",
+      "aka": [
+        "probation of offenders"
+      ]
     },
     "compensation to complainant": {
       "ref": "bnss:sec_395",
       "gloss": "The court's power to order the offender to pay compensation to the person who suffered the loss.",
       "group": "Notice, limitation & disposal",
       "pos": "noun",
-      "role": "remedy"
+      "role": "remedy",
+      "aka": [
+        "compensation order"
+      ]
     },
     "power of superintendence": {
       "ref": "constitution:art_227",
       "gloss": "The High Court's power over all courts subordinate to it - the source of its criminal rules of practice.",
       "group": "Constitutional & powers",
       "pos": "noun",
-      "role": "doctrine"
+      "role": "doctrine",
+      "aka": [
+        "Article 227 superintendence"
+      ]
     },
     "fair trial": {
       "ref": "constitution:art_21",
@@ -1517,28 +1669,47 @@
       "gloss": "A duly authorised agent who, being personally aware of the transaction, may file the complaint and depose for the complainant - a point settled for s.138 by the Supreme Court.",
       "group": "Parties & liability",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "POA holder",
+        "attorney holder",
+        "authorised representative"
+      ]
     },
     "advocate": {
       "ref": "advocates:sec_30",
       "gloss": "The enrolled legal practitioner who appears for the complainant or the accused; the right to appear flows from the Advocates Act.",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "lawyer",
+        "counsel",
+        "pleader",
+        "vakil"
+      ]
     },
     "magistrate": {
       "ref": "ni:sec_142",
       "gloss": "The Judicial Magistrate of the First Class who takes cognizance of the complaint, tries it summarily and passes judgment.",
       "group": "Procedure & process",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "JMFC",
+        "Judicial Magistrate First Class"
+      ]
     },
     "witness": {
       "ref": "ni:sec_145",
       "gloss": "A person who gives evidence on the facts; in a s.138 case the complainant's evidence may be led on affidavit.",
       "group": "Presumptions & evidence",
       "pos": "noun",
-      "role": "actor"
+      "role": "actor",
+      "aka": [
+        "deponent",
+        "prosecution witness"
+      ]
     }
   },
   "edges": [
