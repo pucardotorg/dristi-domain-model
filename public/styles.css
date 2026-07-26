@@ -492,19 +492,20 @@
 .tl-item:last-child::before{display:none}
 .tl-marker{width:38px; height:38px; border-radius:50%; background:var(--brand-dim); color:var(--brand-hi); border:1px solid var(--brand-border); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; z-index:1}
 .tl-content{min-width:0; padding-top:6px}
-.tl-stage-title{font-size:15.5px; font-weight:700; color:var(--ink); letter-spacing:-.01em; margin-bottom:5px}
-/* timings: subtle inline row, no boxes, led by a small clock */
-.tl-timing{display:flex; align-items:baseline; flex-wrap:wrap; gap:3px 13px; margin:0 0 10px; font-size:12.5px}
-.tl-clock{display:inline-flex; align-self:center; color:var(--ink-3)}
-.tl-clock svg.lu{width:13px; height:13px}
-.tl-t{display:inline-flex; align-items:baseline; gap:6px; white-space:nowrap}
+.tl-stage-title{font-size:15.5px; font-weight:700; color:var(--ink); letter-spacing:-.01em; margin-bottom:2px}
+/* timings: subtle inline row, each led by its own small clock, divided by a hairline */
+.tl-timing{display:flex; align-items:center; flex-wrap:wrap; gap:5px 0; margin:0 0 9px; font-size:12.5px}
+.tl-t{display:inline-flex; align-items:center; gap:4px; white-space:nowrap; padding:0 13px; border-left:1px solid var(--line-2)}
+.tl-t:first-child{padding-left:0; border-left:0}
+.tl-tclock{display:inline-flex; align-items:center; color:var(--ink-3); margin-right:1px}
+.tl-tclock svg.lu{width:12px; height:12px}
 .tl-tlabel{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
 .tl-tval{color:var(--ink-2); font-weight:500}
 .tl-presc .tl-tlabel{color:var(--blue-txt)}
 .tl-reg .tl-tlabel{color:var(--amber-txt)}
 .tl-on .tl-tlabel{color:var(--brand-hi)}
 .tl-steps{border-top:1px dashed var(--line)}
-@media(max-width:560px){ .tl-timing{flex-direction:column; gap:5px 0; align-items:flex-start} }
+@media(max-width:560px){ .tl-timing{flex-direction:column; gap:5px 0; align-items:flex-start} .tl-t{padding:0; border-left:0} }
 .pstep{padding:12px 0; border-bottom:1px dashed var(--line)}
 .tl-steps .pstep:last-child{padding-bottom:0}
 .pstep:last-child{border-bottom:0}

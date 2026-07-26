@@ -606,8 +606,8 @@ V.story=()=>{
       let html=`<div class="tl-marker">${esc(num)}</div><div class="tl-content"><div class="tl-stage-title">${esc(title)}</div>`;
       const t=st.timing;
       if(t){
-        const tv=(cls,label,val)=>`<span class="tl-t ${cls}"><span class="tl-tlabel">${label}</span> <span class="tl-tval">${val}</span></span>`;
-        html+=`<div class="tl-timing"><span class="tl-clock">${ic('clock')}</span>`
+        const tv=(cls,label,val)=>`<span class="tl-t ${cls}"><span class="tl-tclock">${ic('clock')}</span><span class="tl-tlabel">${label}</span><span class="tl-tval">${val}</span></span>`;
+        html+=`<div class="tl-timing">`
           +tv("tl-presc","Prescribed", t.prescribed?esc(t.prescribed):"No fixed limit")
           +tv("tl-reg","Regular court", esc(t.regular||"-"))
           +tv("tl-on","ON Court", esc(t.oncourt||"-"))
