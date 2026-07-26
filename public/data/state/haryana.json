@@ -1,0 +1,279 @@
+{
+  "state": "haryana",
+  "name": "Haryana",
+  "as_of": "2026",
+  "vocabulary": {
+    "summary": "The words the Haryana layer adds on top of the shared national vocabulary - the filing-branch roles, the e-Courts CIS mechanics and the local workarounds that a s.138 ('NACT') filing actually runs on in the Panchkula district courts. Drawn from a June 2026 field interview with the filing assistants.",
+    "terms": [
+      {
+        "word": "Filing Assistant",
+        "gloss": "The filing-branch clerk who receives a s.138 (NACT) file at the lower-court filing window, checks it for completeness and attestation, enters it in the e-Courts CIS, assigns the NACT filing number and CNR number, records it in the register and hands it to the peon for same-day dispatch to the trial court. A formal court-staff role; some of the practices around it (an emailed PDF copy, parking the police station under 'offence remarks') are self-started and outside any rule.",
+        "source": "Punjab & Haryana lower-court filing branch; described by the filing assistants, Panchkula (PUCAR field interview, June 2026)",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "filing clerk",
+          "filing branch clerk"
+        ]
+      },
+      {
+        "word": "Ahlmad",
+        "gloss": "The court's record-keeper and reader who receives the filed case in the destination court and takes over registration - entering the full address and any extra-party details - and the subsequent process. A formal establishment role in the North Indian courts; at the filing stage the window hands off to the ahlmad.",
+        "source": "Court establishment - the ahlmad (reader / record-keeper) of a trial court; Panchkula filing assistants (PUCAR interview, June 2026)",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "ahlamad",
+          "reader",
+          "record keeper"
+        ]
+      },
+      {
+        "word": "Computer room",
+        "gloss": "The office that holds the CIS permission to release ('consume' or approve) an e-filed case into the filing branch's queue. The filing assistants have no direct access, so they telephone the computer room each time an e-filing arrives - often ten to fifteen times a day - before they can edit and submit it. An access-control chokepoint rather than a rule.",
+        "source": "Local CIS access arrangement, Panchkula district courts (PUCAR interview, June 2026)",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "computer branch"
+        ]
+      },
+      {
+        "word": "CIS",
+        "gloss": "The Case Information System - the national e-Courts case-management software the filing branch works in. The assistant logs in, opens the filing counter, chooses Criminal and then the NACT case type, and enters the party, court-fee and Act details; the system then issues the case numbers. A known pain point is that civil and criminal columns appear together, inviting mis-clicks.",
+        "source": "e-Courts Project, Supreme Court e-Committee - Case Information System (CIS)",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "Case Information System",
+          "CIS module"
+        ]
+      },
+      {
+        "word": "CNR number",
+        "gloss": "The Case Number Record - a nationally unique 16-character identifier the e-Courts system assigns to every case, used to track and search it across courts. In Panchkula the CNR begins 'HRPK' (Haryana, Panchkula). The filing assistant writes it on the file cover alongside the NACT number.",
+        "source": "e-Courts Project - CNR (Case Number Record), the nationally unique case identifier",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "CNR",
+          "case number record"
+        ]
+      },
+      {
+        "word": "NACT number",
+        "gloss": "The filing number the CIS generates for a Negotiable Instruments Act case. 'NACT' is the e-Courts case-type code for a s.138 cheque-bounce complaint; selecting it under Criminal and submitting the party and Act details produces the NACT number, which is written on the file cover.",
+        "source": "e-Courts CIS case-type code for Negotiable Instruments Act s.138 complaints (NACT)",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "NACT",
+          "NACT case",
+          "N.I. Act case type"
+        ]
+      },
+      {
+        "word": "Memo of parties",
+        "gloss": "The list of the parties to the case - the complainant and each respondent with their address and phone number - filed as part of the complaint set. It is a mandatory, scrutinised document; the filing assistant checks that the address and phone fields are present because they are needed for service and registration.",
+        "source": "Standard pleading in the filed set; scrutinised at the filing window (Panchkula, PUCAR interview, June 2026)",
+        "group": "Filing & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "memo of parties"
+        ]
+      },
+      {
+        "word": "Offence remarks",
+        "gloss": "A free-text field in the CIS filing form that the assistants use to park the jurisdictional police station, because the filing counter has no dedicated column for it. The police station is derived from the bank where the cheque was presented and is used to distribute NACT cases among the clerks - not for any investigation, since a s.138 case has no FIR.",
+        "source": "Local CIS data-entry practice, Panchkula filing branch (PUCAR interview, June 2026) - a workaround for a missing field",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "procedure"
+      },
+      {
+        "word": "Filing window",
+        "gloss": "The lower-court counter where advocates submit physical NACT files and the filing assistant receives, scrutinises and enters them. In Panchkula the window is open until 12:00 PM and files are processed the same day; it handles 40 to 50 files of all categories a day, of which up to about 10 are NACT.",
+        "source": "Panchkula district courts filing branch (PUCAR interview, June 2026)",
+        "group": "Filing & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "filing counter"
+        ]
+      }
+    ]
+  },
+  "story": {
+    "summary": "How a s.138 (cheque bounce, 'NACT') case is filed in Haryana - from the advocate's submission at the Panchkula lower-court filing window through scrutiny, CIS entry and same-day dispatch to the trial court. Based on a June 2026 field interview with the filing assistants; it covers the filing and scrutiny stage, not yet the full trial journey.",
+    "process": {
+      "summary": "The filing spine at the Panchkula lower-court window - receive, scrutinise, enter in CIS, register and dispatch the same day. The procedure is the uniform e-Courts CIS flow; the local colour is in the scrutiny checklist and a set of self-started workarounds.",
+      "stages": [
+        {
+          "stage": "1 · Advocate submits the physical file",
+          "id": "file-submission",
+          "steps": [
+            {
+              "t": "The advocate submits the NACT file at the lower-court filing window (open until 12:00 PM); the filing assistant receives it."
+            },
+            {
+              "t": "The file is assembled in a fixed order: CIS proforma pasted on the cover and a second CIS proforma inside, then the index, the memo of parties, the application (the complaint, its 'prayer'), a Rs.10 court-fee ticket, an attested affidavit, the cheque (laminated), an attested power of attorney, and one full copy of the file per respondent.",
+              "c": [
+                {
+                  "l": "NI Act §138",
+                  "n": "ni:sec_138"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "2 · Scrutiny at the window",
+          "id": "filing-scrutiny",
+          "steps": [
+            {
+              "t": "The assistant scrutinises the file: CIS proforma pasted outside and present inside; index filled; pagination done; memo of parties carries address and phone; age recorded (treated as critical); every page signed and attested by the advocate for genuineness."
+            },
+            {
+              "t": "Mandatory supporting documents are checked - the cheque, the memo of parties and the legal notice - and the rest are verified against the list of documents in the index."
+            },
+            {
+              "t": "Limitation is checked; if the filing looks delayed the assistant tells the advocate verbally to attach a delay-condonation application (IA). The clerks use a rule of thumb of '45 days'; the statutory position is one month from the cause of action.",
+              "c": [
+                {
+                  "l": "NI Act §142",
+                  "n": "ni:sec_142"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "3 · CIS entry and numbering",
+          "id": "cis-entry",
+          "steps": [
+            {
+              "t": "The assistant logs into the CIS module, opens the filing counter, chooses Criminal and then the NACT case type, and enters the complainant (name, age, mobile), the advocate, the opposite party and any extra-party count, the Rs.10 court fee and the Act (NI Act §138), then submits."
+            },
+            {
+              "t": "The system issues the NACT filing number and the CNR number (beginning HRPK for Panchkula), which are written on the file cover with the date.",
+              "c": [
+                {
+                  "l": "NI Act §138",
+                  "n": "ni:sec_138"
+                }
+              ]
+            },
+            {
+              "t": "There is no filing-counter field for the police station, so the jurisdictional station (taken from the bank where the cheque was presented) is parked under 'offence remarks' and used to distribute cases among the clerks. A s.138 case has no FIR, so the shared criminal template's FIR field does not apply."
+            }
+          ]
+        },
+        {
+          "stage": "4 · Register and same-day dispatch",
+          "id": "register-dispatch",
+          "steps": [
+            {
+              "t": "The entry is recorded in the physical register (NACT number, date, party names) and the file is carried the same day by a peon to the destination court."
+            },
+            {
+              "t": "The ahlmad receives the file in the court and takes over registration - entering the full address and extra-party details - and the subsequent process."
+            }
+          ]
+        },
+        {
+          "stage": "5 · Informal digital and workaround practices",
+          "id": "informal-workarounds",
+          "steps": [
+            {
+              "t": "Digital copy by email: the advocate is asked to email a PDF of the file to an office inbox, which is kept unvalidated in a folder on the desktop - a recently self-started practice to pre-empt future e-filing and avoid re-scanning. Not required by any rule."
+            },
+            {
+              "t": "Cheque lamination: the cheque is laminated or kept in a polythene pouch purely for safety as it passes through many hands; it is explicitly not mandatory and its absence is not a ground to reject the file."
+            },
+            {
+              "t": "Google Translate as OCR: for civil suits (not NACT) with long relief text, the assistants photograph the pages and use Google Translate to copy and paste the text into CIS, to save typing under time pressure."
+            },
+            {
+              "t": "E-filing release: an e-filed case can only be released into the branch's queue by the computer room, so the assistants phone it repeatedly through the day; advocates often leave non-mandatory fields (the FIR number, the police station) blank, which the assistants then open the PDF to fill in."
+            }
+          ]
+        }
+      ],
+      "timing_note": "Timings are not modelled for the filing stage - Panchkula does same-day filing: the window is open until 12:00 PM and the file reaches the court the same day."
+    },
+    "roles": {
+      "summary": "Who handles a s.138 file at the Panchkula filing stage - the filing-branch assistant at the window, the ahlmad who takes over in the court, the peon who carries the file, and the computer room that gates e-filings.",
+      "items": [
+        {
+          "id": "filing-assistant",
+          "role": "Filing Assistant",
+          "cat": "staff",
+          "term": "filing-assistant",
+          "who": "Receives the NACT file at the lower-court filing window, scrutinises it for completeness and attestation, enters it in the e-Courts CIS, assigns the NACT and CNR numbers, records it in the register and hands it to the peon for same-day dispatch.",
+          "basis": "Punjab & Haryana lower-court filing branch; described firsthand by the filing assistants (Panchkula, June 2026)",
+          "informal": {
+            "practice": "Some practices around the role are self-started and outside any rule - emailing a PDF copy of the file to an office inbox kept on the desktop, and parking the police station under 'offence remarks' for case distribution."
+          },
+          "sourceNotes": [
+            "hr-filing-assistant-2026-06"
+          ],
+          "themes": [
+            "pre-cognizance-scrutiny",
+            "filing-and-intake"
+          ]
+        },
+        {
+          "id": "ahlmad",
+          "role": "Ahlmad",
+          "cat": "staff",
+          "term": "ahlmad",
+          "who": "The court's reader and record-keeper, who receives the filed case in the destination court and takes over registration - the full address, extra-party details - and the subsequent process.",
+          "basis": "Court establishment role (the ahlmad / reader); named by the filing assistants as the hand-off point",
+          "sourceNotes": [
+            "hr-filing-assistant-2026-06"
+          ],
+          "themes": [
+            "filing-and-intake"
+          ]
+        },
+        {
+          "id": "peon",
+          "role": "Peon",
+          "cat": "staff",
+          "who": "Carries the physical file the same day from the filing window to the destination court.",
+          "basis": "Court establishment; same-day dispatch in Panchkula",
+          "sourceNotes": [
+            "hr-filing-assistant-2026-06"
+          ],
+          "themes": [
+            "filing-and-intake"
+          ]
+        },
+        {
+          "id": "computer-room",
+          "role": "Computer room",
+          "cat": "staff",
+          "term": "computer-room",
+          "who": "Holds the CIS permission to release an e-filed case into the filing branch's queue. The assistants have no direct access and must telephone the computer room each time before they can edit and submit an e-filing.",
+          "basis": "Local CIS access-control arrangement, Panchkula district courts",
+          "informal": {
+            "practice": "An access bottleneck rather than a rule: e-filings can only be released by the computer room, so the filing branch phones it ten to fifteen times a day."
+          },
+          "sourceNotes": [
+            "hr-filing-assistant-2026-06"
+          ],
+          "themes": [
+            "access-bottleneck"
+          ]
+        }
+      ]
+    }
+  }
+}

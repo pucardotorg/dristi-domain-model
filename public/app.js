@@ -697,7 +697,9 @@ function citeChip(c, amap){
   return `<span class="cite cite-plain">${lbl}</span>`;
 }
 function citeRow(list, amap){
-  if(!list || !list.length) return `<span class="cite cite-none">Kerala adds nothing here - uniform central law</span>`;
+  // state-agnostic: a step/role with no state cite either runs on uniform central law
+  // or is local practice with no statute pinned - either way, no state-specific citation.
+  if(!list || !list.length) return `<span class="cite cite-none">no state-specific citation</span>`;
   return `<span class="cites">${list.map(c=>citeChip(c,amap)).join("")}</span>`;
 }
 const ROLE_CATS={
@@ -726,13 +728,16 @@ V.story=()=>{
   // 1 - PROCESS (a timeline, viewed through one of three lenses via tabs)
   if(S.process){
     m.appendChild(secH("process","The process - filing to disposal", S.process.summary));
-    // lens tabs
+    // lens tabs - only where the stages actually carry per-lens timing (the Kerala
+    // prescribed/regular/ON-Court model). A state that documents just one flow (e.g.
+    // a filing-stage layer) has no timing, so the tabs are suppressed.
+    const hasTiming=(S.process.stages||[]).some(st=>st.timing);
     const LENSES=[["prescribed","Prescribed","under the rules"],["regular","Regular court","typical timeline"],["oncourt","ON Court","24×7 special court"]];
     const tabs=el("div","proc-tabs");
     tabs.innerHTML=LENSES.map(([id,label,sub])=>`<button class="proc-tab tab-${id} ${processLens===id?'on':''}" data-lens="${id}"><span class="pt-main">${esc(label)}</span><span class="pt-sub">${esc(sub)}</span></button>`).join("");
     const procSec=el("div","proc-section");
     procSec.appendChild(el("div","proc-sentinel"));   // marks where the tabs start, for stuck-detection
-    procSec.appendChild(tabs);
+    if(hasTiming) procSec.appendChild(tabs);
     const tl=el("div","timeline lens-"+processLens);
     (S.process.stages||[]).forEach((st,i)=>{
       const raw=String(st.stage||"");
@@ -759,6 +764,7 @@ V.story=()=>{
     procSec.appendChild(tl);
     if(S.process.timing_note) procSec.appendChild(el("div","story-note story-note-loose",esc(S.process.timing_note)));
     m.appendChild(procSec);
+    if(hasTiming){
     tabs.querySelectorAll(".proc-tab").forEach(b=>b.onclick=()=>{
       processLens=b.dataset.lens;
       tabs.querySelectorAll(".proc-tab").forEach(x=>x.classList.toggle("on", x.dataset.lens===processLens));
@@ -774,6 +780,7 @@ V.story=()=>{
         tabs.style.transform = (stuck && avail>4) ? "translateX("+avail+"px)" : "";
       }, {rootMargin:"-14px 0px 0px 0px", threshold:0});
       io.observe(procSec.querySelector(".proc-sentinel"));
+    }
     }
   }
   // 2 - ROLES (who does what, and where each role is drawn from)
