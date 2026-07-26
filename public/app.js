@@ -174,8 +174,17 @@ function actBlocks(doc){
         const d=sectionData(c); blocks.push({t:"sec", unit:ln, eId:c.getAttribute("eId"), ...d});
       } else if(SEP.includes(ln)){
         const n=childByLocal(c,"num"), h=childByLocal(c,"heading");
-        const label=[n?cleanText(n):"", h?cleanText(h):""].filter(Boolean).join(" ");
-        if(label) blocks.push({t:"chap", label});
+        const num=n?cleanText(n):"", head=h?cleanText(h):"";
+        const label=[num,head].filter(Boolean).join(" ");
+        // Some source conversions mistook a mid-sentence "Chapter X" / "Part Y" for a heading and
+        // split a section. A real chapter/part title is capitalised and does not trail in ",;"; a
+        // fragment starts lowercase or is punctuation. Keep genuine headings; fold a real
+        // sentence-continuation back into the section it was split from; drop punctuation-only junk.
+        const fragment = head && (/^[a-z]/.test(head) || /^[;,.\s]*$/.test(head) || /[,;]\s*$/.test(head));
+        if(label && !fragment){ blocks.push({t:"chap", label}); }
+        else if(head && /^[a-z]/.test(head) && head.length>3 && blocks.length && blocks[blocks.length-1].t==="sec"){
+          (blocks[blocks.length-1].body||[]).push(["p",0,label]);
+        }
         walk(c);
       } else walk(c);
     }
