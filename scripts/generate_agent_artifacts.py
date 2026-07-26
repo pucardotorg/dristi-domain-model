@@ -120,6 +120,15 @@ def resolve_national_vocab():
                     "source": v.get("source"), "resolved": res, "deep_link": dl_term(list(jur_name)[0] if jur_name else "kerala", word)})
     return out
 
+def national_process():
+    np = prof.get("national_process")
+    if not np: return None
+    return {"summary": np.get("summary"),
+            "stages": [{"id": st.get("id"), "stage": st.get("stage"),
+                        "prescribed": (st.get("timing") or {}).get("prescribed"),
+                        "steps": [sp.get("t") for sp in st.get("steps", [])]}
+                       for st in np.get("stages", [])]}
+
 def resolve_state(sid, s):
     story = s.get("story", {})
     roles = [{"id": r.get("id"), "role": r.get("role"), "cat": r.get("cat"), "who": r.get("who"),
@@ -136,6 +145,7 @@ def resolve_state(sid, s):
               "sourceNotes": t.get("sourceNotes", []), "deep_link": dl_term(sid, t.get("word",""))}
              for t in s.get("vocabulary", {}).get("terms", [])]
     return {"name": s.get("name", jur_name.get(sid, sid)), "as_of": s.get("as_of"),
+            "process_source": "own" if stages else "national (inherited)",
             "story": {"summary": story.get("summary"), "roles": roles, "process": stages},
             "vocabulary": vocab}
 
@@ -155,7 +165,12 @@ bundle = {
                 "act": cfg["case_types"][0].get("act"), "blurb": cfg["case_types"][0].get("blurb")},
   "as_of": prof.get("as_of"), "maintained_by": prof.get("maintained_by"),
   "transition_date": prof.get("transition_date"), "ref_format": prof.get("ref_format"),
-  "national": {"acts": resolve_provisions(), "vocabulary": resolve_national_vocab()},
+  "national": {"acts": resolve_provisions(), "vocabulary": resolve_national_vocab(),
+               "process": national_process()},
+  "jurisdictions": [{"id": j["id"], "name": j["name"],
+                     "has_state_layer": j["id"] in states,
+                     "process_source": "own" if (states.get(j["id"], {}).get("story", {}).get("process")) else "national (inherited)"}
+                    for j in cfg.get("jurisdictions", [])],
   "states": {sid: resolve_state(sid, s) for sid, s in states.items()},
   "practice_notes": notes,
   "case_law": {"topics": caselaw.get("topics", []), "cases": caselaw.get("cases", [])},
@@ -208,9 +223,16 @@ def md_digest():
         src = (v["resolved"]["heading"] if v.get("resolved") else (v.get("source") or ""))
         w("| %s | %s | %s | %s |" % (v["word"], v.get("role") or "", (src or "")[:40],
                                      (v.get("gloss") or "")[:120].replace("\n"," ")))
+    npr = bundle["national"].get("process")
+    if npr:
+        w(""); w("## Prescribed process (central law - every state inherits this)")
+        if npr.get("summary"): w(""); w(npr["summary"])
+        for stg in npr["stages"]:
+            w(""); w("**%s**%s" % (stg["stage"], (" - _prescribed: %s_" % stg["prescribed"]) if stg.get("prescribed") else ""))
+            for step in stg["steps"]: w("- %s" % step)
     for sid, st in bundle["states"].items():
         w("")
-        w("## State layer - %s" % st["name"])
+        w("## State layer - %s (process: %s)" % (st["name"], st.get("process_source")))
         if st["story"].get("summary"): w(""); w(st["story"]["summary"])
         if st["story"]["roles"]:
             w(""); w("### Roles")

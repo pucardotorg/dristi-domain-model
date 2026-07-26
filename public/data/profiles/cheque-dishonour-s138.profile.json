@@ -2455,5 +2455,270 @@
       "to": "ipc:sec_166"
     }
   ],
-  "caselaw": "caselaw/cheque-dishonour-s138.caselaw.json"
+  "caselaw": "caselaw/cheque-dishonour-s138.caselaw.json",
+  "national_process": {
+    "summary": "The prescribed procedure for a Section 138 case under central law - the Negotiable Instruments Act read with the criminal procedure code (BNSS, earlier the CrPC). This is the same in every state until a state's own rules of practice add to it; the Prescribed lens shows the statutory deadlines. State-specific timings and rules are layered on top as each state is processed.",
+    "stages": [
+      {
+        "stage": "1 · Dishonour & statutory notice",
+        "id": "np-notice",
+        "timing": {
+          "prescribed": "Notice within 30 days of the dishonour memo"
+        },
+        "steps": [
+          {
+            "t": "The cheque, presented within its validity, is returned unpaid for insufficiency of funds or because it exceeds the arrangement; the bank issues a dishonour memo.",
+            "c": [
+              {
+                "l": "NI Act §138",
+                "n": "ni:sec_138"
+              },
+              {
+                "l": "NI Act §72",
+                "n": "ni:sec_72"
+              }
+            ]
+          },
+          {
+            "t": "The payee sends a written demand notice to the drawer within 30 days of receiving the dishonour memo, demanding the cheque amount.",
+            "c": [
+              {
+                "l": "NI Act §138",
+                "n": "ni:sec_138"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "2 · The 15-day window to pay",
+        "id": "np-pay",
+        "timing": {
+          "prescribed": "15 days for the drawer to pay"
+        },
+        "steps": [
+          {
+            "t": "The drawer has 15 days from receiving the notice to pay the amount. If it is paid, no offence arises.",
+            "c": [
+              {
+                "l": "NI Act §138",
+                "n": "ni:sec_138"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "3 · Cause of action & the complaint",
+        "id": "np-complaint",
+        "timing": {
+          "prescribed": "Complaint within 1 month of the cause of action"
+        },
+        "steps": [
+          {
+            "t": "If the amount is unpaid within 15 days, the offence is complete and the cause of action arises.",
+            "c": [
+              {
+                "l": "NI Act §138",
+                "n": "ni:sec_138"
+              },
+              {
+                "l": "NI Act §142",
+                "n": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "t": "The payee or holder in due course files a written complaint before a Judicial Magistrate of the First Class with jurisdiction (ordinarily where the payee's bank branch lies), within one month of the cause of action; delay may be condoned for sufficient cause.",
+            "c": [
+              {
+                "l": "NI Act §142",
+                "n": "ni:sec_142"
+              },
+              {
+                "l": "BNSS §514",
+                "n": "bnss:sec_514"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "4 · Cognizance & examination of the complainant",
+        "id": "np-cognizance",
+        "steps": [
+          {
+            "t": "The Magistrate takes cognizance of the offence on the complaint; the complainant's evidence may be given on affidavit.",
+            "c": [
+              {
+                "l": "BNSS §210",
+                "n": "bnss:sec_210"
+              },
+              {
+                "l": "BNSS §223",
+                "n": "bnss:sec_223"
+              },
+              {
+                "l": "NI Act §145",
+                "n": "ni:sec_145"
+              }
+            ]
+          },
+          {
+            "t": "The offence is tried only by a court not below a Judicial Magistrate of the First Class.",
+            "c": [
+              {
+                "l": "NI Act §142",
+                "n": "ni:sec_142"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "5 · Issue of process (summons) to the accused",
+        "id": "np-summons",
+        "steps": [
+          {
+            "t": "The Magistrate issues summons to the accused. A summons may be served by speed post or an approved courier and is deemed served even if the accused refuses it.",
+            "c": [
+              {
+                "l": "BNSS §227",
+                "n": "bnss:sec_227"
+              },
+              {
+                "l": "BNSS §63",
+                "n": "bnss:sec_63"
+              },
+              {
+                "l": "NI Act §144",
+                "n": "ni:sec_144"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "6 · Appearance, accusation & plea",
+        "id": "np-plea",
+        "steps": [
+          {
+            "t": "The accused appears; the substance of the accusation is stated and the plea recorded. A s.138 case is tried as a summary trial.",
+            "c": [
+              {
+                "l": "NI Act §143",
+                "n": "ni:sec_143"
+              },
+              {
+                "l": "BNSS §285",
+                "n": "bnss:sec_285"
+              }
+            ]
+          },
+          {
+            "t": "The court may direct the drawer to pay interim compensation of up to 20% of the cheque amount.",
+            "c": [
+              {
+                "l": "NI Act §143A",
+                "n": "ni:sec_143A"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "7 · Evidence & presumptions",
+        "id": "np-evidence",
+        "steps": [
+          {
+            "t": "The complainant's evidence is led, usually on affidavit, and the accused may cross-examine. The bank's dishonour slip is prima facie proof of dishonour, and the court presumes the cheque was issued for a debt or liability unless the accused rebuts it.",
+            "c": [
+              {
+                "l": "NI Act §145",
+                "n": "ni:sec_145"
+              },
+              {
+                "l": "NI Act §146",
+                "n": "ni:sec_146"
+              },
+              {
+                "l": "NI Act §139",
+                "n": "ni:sec_139"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "8 · Judgment",
+        "id": "np-judgment",
+        "timing": {
+          "prescribed": "Endeavour to conclude within 6 months of filing"
+        },
+        "steps": [
+          {
+            "t": "After final arguments the Magistrate delivers judgment. The trial is conducted summarily and the court is to endeavour to conclude it within six months of the filing of the complaint.",
+            "c": [
+              {
+                "l": "NI Act §143",
+                "n": "ni:sec_143"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "9 · Sentence, compensation & compounding",
+        "id": "np-sentence",
+        "steps": [
+          {
+            "t": "On conviction the drawer is liable to imprisonment up to two years, or a fine up to twice the cheque amount, or both, and the court ordinarily awards compensation to the payee.",
+            "c": [
+              {
+                "l": "NI Act §138",
+                "n": "ni:sec_138"
+              },
+              {
+                "l": "BNSS §395",
+                "n": "bnss:sec_395"
+              }
+            ]
+          },
+          {
+            "t": "The offence is compoundable at any stage, so the parties may settle and close the case.",
+            "c": [
+              {
+                "l": "NI Act §147",
+                "n": "ni:sec_147"
+              },
+              {
+                "l": "BNSS §359",
+                "n": "bnss:sec_359"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "10 · Appeal",
+        "id": "np-appeal",
+        "steps": [
+          {
+            "t": "An appeal against conviction lies to the Court of Session. Where compensation or a fine was awarded, the appellate court may require the appellant to deposit a minimum of 20% of it.",
+            "c": [
+              {
+                "l": "BNSS §415",
+                "n": "bnss:sec_415"
+              },
+              {
+                "l": "NI Act §148",
+                "n": "ni:sec_148"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "timing_note": "Prescribed shows the statutory deadline where the NI Act or the code sets one; Regular court and ON Court timings are state-specific and are filled in as each state's rules and practice are processed."
+  }
 }

@@ -595,7 +595,46 @@ This digest is generated from the data - it joins the relevance profile, the sta
 | code of civil procedure | doctrine | Short title, commencement and extent | The 1908 code that governs the procedure of civil suits and appeals. A s.138 case is criminal, run under the Bharatiya N |
 | central filing centre | actor | court filing administration - e-Courts / | A single designated counter or office through which cases are filed for a group of courts, instead of each court taking  |
 
-## State layer - Haryana
+## Prescribed process (central law - every state inherits this)
+
+The prescribed procedure for a Section 138 case under central law - the Negotiable Instruments Act read with the criminal procedure code (BNSS, earlier the CrPC). This is the same in every state until a state's own rules of practice add to it; the Prescribed lens shows the statutory deadlines. State-specific timings and rules are layered on top as each state is processed.
+
+**1 · Dishonour & statutory notice** - _prescribed: Notice within 30 days of the dishonour memo_
+- The cheque, presented within its validity, is returned unpaid for insufficiency of funds or because it exceeds the arrangement; the bank issues a dishonour memo.
+- The payee sends a written demand notice to the drawer within 30 days of receiving the dishonour memo, demanding the cheque amount.
+
+**2 · The 15-day window to pay** - _prescribed: 15 days for the drawer to pay_
+- The drawer has 15 days from receiving the notice to pay the amount. If it is paid, no offence arises.
+
+**3 · Cause of action & the complaint** - _prescribed: Complaint within 1 month of the cause of action_
+- If the amount is unpaid within 15 days, the offence is complete and the cause of action arises.
+- The payee or holder in due course files a written complaint before a Judicial Magistrate of the First Class with jurisdiction (ordinarily where the payee's bank branch lies), within one month of the cause of action; delay may be condoned for sufficient cause.
+
+**4 · Cognizance & examination of the complainant**
+- The Magistrate takes cognizance of the offence on the complaint; the complainant's evidence may be given on affidavit.
+- The offence is tried only by a court not below a Judicial Magistrate of the First Class.
+
+**5 · Issue of process (summons) to the accused**
+- The Magistrate issues summons to the accused. A summons may be served by speed post or an approved courier and is deemed served even if the accused refuses it.
+
+**6 · Appearance, accusation & plea**
+- The accused appears; the substance of the accusation is stated and the plea recorded. A s.138 case is tried as a summary trial.
+- The court may direct the drawer to pay interim compensation of up to 20% of the cheque amount.
+
+**7 · Evidence & presumptions**
+- The complainant's evidence is led, usually on affidavit, and the accused may cross-examine. The bank's dishonour slip is prima facie proof of dishonour, and the court presumes the cheque was issued for a debt or liability unless the accused rebuts it.
+
+**8 · Judgment** - _prescribed: Endeavour to conclude within 6 months of filing_
+- After final arguments the Magistrate delivers judgment. The trial is conducted summarily and the court is to endeavour to conclude it within six months of the filing of the complaint.
+
+**9 · Sentence, compensation & compounding**
+- On conviction the drawer is liable to imprisonment up to two years, or a fine up to twice the cheque amount, or both, and the court ordinarily awards compensation to the payee.
+- The offence is compoundable at any stage, so the parties may settle and close the case.
+
+**10 · Appeal**
+- An appeal against conviction lies to the Court of Session. Where compensation or a fine was awarded, the appellate court may require the appellant to deposit a minimum of 20% of it.
+
+## State layer - Haryana (process: own)
 
 How a s.138 (cheque bounce, 'NACT') case is filed in Haryana - from the advocate's submission at the Panchkula lower-court filing window through scrutiny, CIS entry and same-day dispatch to the trial court. Based on a June 2026 field interview with the filing assistants; it covers the filing and scrutiny stage, not yet the full trial journey.
 
@@ -637,7 +676,7 @@ How a s.138 (cheque bounce, 'NACT') case is filed in Haryana - from the advocate
 - **Offence remarks** - A free-text field in the CIS filing form that the assistants use to park the jurisdictional police station, because the filing counter has no dedicated column f (from Local CIS data-entry practice, Panchkula filing branch (PUCAR interview, June 2026) - a workaround for a missing field · field note: hr-filing-assistant-2026-06)
 - **Filing window** - The lower-court counter where advocates submit physical NACT files and the filing assistant receives, scrutinises and enters them. In Panchkula the window is op (from Panchkula district courts filing branch (PUCAR interview, June 2026) · field note: hr-filing-assistant-2026-06)
 
-## State layer - Kerala
+## State layer - Kerala (process: own)
 
 How a §138 cheque-bounce case runs in Kerala, from filing to disposal - built purely from the rules and Acts, with every step citing the provision that governs it. Click any citation to open the exact text. This is the de jure process the black-letter rules prescribe; the lived, local practice is a separate layer.
 

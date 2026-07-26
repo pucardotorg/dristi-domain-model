@@ -63,7 +63,7 @@ async function loadConfig(){
 }
 
 /* ---- data built from the profile at runtime -------------------------------- */
-let PROFILE=null, SOURCES={}, DOMAINS={}, PROVISIONS=[], TERMS={}, EDGES=[], ALIAS_MAP=[];
+let PROFILE=null, SOURCES={}, DOMAINS={}, PROVISIONS=[], TERMS={}, EDGES=[], ALIAS_MAP=[], NATIONAL_PROCESS=null;
 let CASES=[], CASE_TOPICS={}, CASES_BY_REF={};   // Supreme Court case law + reverse index (provRef -> [caseId])
 const caseById2 = id => CASES.find(c=>c.id===id);
 const docCache = {};   // actId -> parsed XML Document
@@ -106,6 +106,7 @@ async function loadProfile(){
   ordered.forEach(d=>{ DOMAINS[d]=DOMAIN_LABELS[d]||{label:d.charAt(0).toUpperCase()+d.slice(1),blurb:""}; });
   PROVISIONS=p.provisions.map(x=>({ref:x.ref, act:x.act, eId:x.eId, tier:x.tier, role:x.role, applies:x.applies, note:x.note||""}));
   TERMS=p.terms||{};
+  NATIONAL_PROCESS=p.national_process||null;   // prescribed central-law process, shared by every state's story
   EDGES=p.edges||[];
   ALIAS_MAP=(p.act_alias_map||[]).map(a=>({topic:a.topic, before:a.before, after:a.on_or_after, note:a.note}));
   const note=$("#src-note"); if(note) note.textContent=`profile: ${p.profile} · as of ${p.as_of||''} · maintained by ${p.maintained_by||'PUCAR'}`;
@@ -737,22 +738,28 @@ V.story=()=>{
   if(!isModelled()) return notModelled();
   const stName=stateById(activeState).name;
   const S=(STATE_DATA||{}).story;
+  const proc=(S&&S.process)||NATIONAL_PROCESS;         // state's own process, else the shared central one
+  const usingNat=!(S&&S.process)&&!!proc;              // showing only the central-law baseline
   const m=el("div"); m.appendChild(scopeBar());
   const head=el("div");
-  head.innerHTML=`<h1 class="page-title state-title">How a §138 case runs ${stateInlineSelectHTML()}</h1><p class="lede">${S?esc(S.summary):`The ${esc(stName)} story isn't modelled yet.`}</p>`;
+  const lede = S ? esc(S.summary)
+             : proc ? `The prescribed procedure under central law. ${esc(stName)}'s own rules of practice, roles and timings are not modelled yet - only the shared national process is shown.`
+             : `The ${esc(stName)} story isn't modelled yet.`;
+  head.innerHTML=`<h1 class="page-title state-title">How a §138 case runs ${stateInlineSelectHTML()}</h1><p class="lede">${lede}</p>`;
   m.appendChild(head);
   const sel=m.querySelector(".state-inline"); if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
-  if(!S){ m.appendChild(el("div","empty",`<b>${esc(stName)} - story not modelled yet.</b><br><span class="tiny">The process, fees, courts and caseload for this state are planned - the same shape as ${esc(stName)==='Kerala'?'this':'Kerala'}.</span>`)); return m; }
+  if(!S && !proc){ m.appendChild(el("div","empty",`<b>${esc(stName)} - story not modelled yet.</b><br><span class="tiny">The process, fees, courts and caseload for this state are planned - the same shape as Kerala.</span>`)); return m; }
   const amap=stateAliasMap();
   const secH=(id,t,sub)=>{ const d=el("div","story-sec-h",`<span>${esc(t)}</span>${sub?`<span class="ssh-sub">${esc(sub)}</span>`:''}`); d.id="story-"+id; return d; };
 
   // 1 - PROCESS (a timeline, viewed through one of three lenses via tabs)
-  if(S.process){
-    m.appendChild(secH("process","The process - filing to disposal", S.process.summary));
+  if(proc){
+    m.appendChild(secH("process","The process - filing to disposal", proc.summary));
+    if(usingNat) m.appendChild(el("div","story-note story-note-loose",`This is the prescribed central-law process, shared by every state. ${esc(stName)}'s own rules, timings and roles are layered on as they are processed.`));
     // lens tabs - only where the stages actually carry per-lens timing (the Kerala
     // prescribed/regular/ON-Court model). A state that documents just one flow (e.g.
     // a filing-stage layer) has no timing, so the tabs are suppressed.
-    const hasTiming=(S.process.stages||[]).some(st=>st.timing);
+    const hasTiming=(proc.stages||[]).some(st=>st.timing);
     const LENSES=[["prescribed","Prescribed","under the rules"],["regular","Regular court","typical timeline"],["oncourt","ON Court","24×7 special court"]];
     const tabs=el("div","proc-tabs");
     tabs.innerHTML=LENSES.map(([id,label,sub])=>`<button class="proc-tab tab-${id} ${processLens===id?'on':''}" data-lens="${id}"><span class="pt-main">${esc(label)}</span><span class="pt-sub">${esc(sub)}</span></button>`).join("");
@@ -760,7 +767,7 @@ V.story=()=>{
     procSec.appendChild(el("div","proc-sentinel"));   // marks where the tabs start, for stuck-detection
     if(hasTiming) procSec.appendChild(tabs);
     const tl=el("div","timeline lens-"+processLens);
-    (S.process.stages||[]).forEach((st,i)=>{
+    (proc.stages||[]).forEach((st,i)=>{
       const raw=String(st.stage||"");
       const num=(raw.split("·")[0].trim().split(".")[0].trim())||String(i+1);
       const title=raw.replace(/^\s*\d+\s*[·.\-]\s*/,"");
@@ -783,7 +790,7 @@ V.story=()=>{
       tl.appendChild(item);
     });
     procSec.appendChild(tl);
-    if(S.process.timing_note) procSec.appendChild(el("div","story-note story-note-loose",esc(S.process.timing_note)));
+    if(proc.timing_note) procSec.appendChild(el("div","story-note story-note-loose",esc(proc.timing_note)));
     m.appendChild(procSec);
     if(hasTiming){
     tabs.querySelectorAll(".proc-tab").forEach(b=>b.onclick=()=>{
@@ -806,7 +813,7 @@ V.story=()=>{
     }
   }
   // 2 - ROLES (who does what, and where each role is drawn from)
-  if(S.roles){
+  if(S && S.roles){
     m.appendChild(secH("roles","The roles", S.roles.summary));
     const rb=el("div","role-block");
     (S.roles.items||[]).forEach(r=>{
@@ -827,7 +834,7 @@ V.story=()=>{
     m.appendChild(rb);
   }
   // 3 - FEES
-  if(S.fees){
+  if(S && S.fees){
     m.appendChild(secH("fees","The fees", S.fees.summary));
     const fb=el("div","fee-block");
     if(S.fees.cite) fb.appendChild(el("div","fee-cite",`Source: ${citeChip(S.fees.cite,amap)}`));
@@ -838,7 +845,7 @@ V.story=()=>{
     m.appendChild(fb);
   }
   // 4 - COURTS
-  if(S.courts){
+  if(S && S.courts){
     m.appendChild(secH("courts","The courts", S.courts.summary));
     const cb=el("div","court-block");
     (S.courts.designated||[]).forEach(ct=>{
@@ -852,7 +859,7 @@ V.story=()=>{
     m.appendChild(cb);
   }
   // 5 - CASELOAD (placeholder)
-  if(S.caseload){
+  if(S && S.caseload){
     m.appendChild(secH("caseload","Caseload - by court", S.caseload.summary));
     const cols=S.caseload.columns||["Court","Location","Pending","Disposed"];
     let html=`<table class="caseload"><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>`;
@@ -1630,7 +1637,12 @@ function stateBadge(cat){
   return `<span class="count" style="opacity:.55">none</span>`;
 }
 /* story nav badge: nothing when modelled, "soon" when this state has no story block */
-function storyBadge(){ return ((STATE_DATA||{}).story) ? '' : `<span class="count soon">soon</span>`; }
+function storyBadge(){
+  const S=(STATE_DATA||{}).story;
+  if(S && (S.process||S.roles)) return '';                             // the state has its own modelled story
+  if(NATIONAL_PROCESS) return `<span class="count soon">central</span>`; // only the shared central baseline so far
+  return `<span class="count soon">soon</span>`;
+}
 /* the section headings the story page renders, in order - drives the nav accordion */
 function storySections(){
   const S=(STATE_DATA||{}).story; if(!S) return [];
