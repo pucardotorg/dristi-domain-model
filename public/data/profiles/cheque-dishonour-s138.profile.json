@@ -1967,8 +1967,7 @@
       "role": "forum",
       "aka": [
         "Sessions Court",
-        "Court of Sessions",
-        "Sessions Judge"
+        "Court of Sessions"
       ]
     },
     "fast track court": {
@@ -2213,6 +2212,48 @@
       "role": "actor",
       "aka": [
         "CFC"
+      ]
+    },
+    "chief judicial magistrate": {
+      "ref": "bnss:sec_10",
+      "gloss": "The magistrate who heads the judicial magistracy of a district and has administrative control over the Judicial Magistrates in it (BNSS s.10; earlier CrPC s.12). A s.138 case is tried before a Judicial Magistrate of the First Class, but the Chief Judicial Magistrate is the administrative head of that magistracy, to whom the allocation, distribution and transfer of cheque cases within the district fall.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "actor",
+      "aka": [
+        "CJM"
+      ]
+    },
+    "district and sessions judge": {
+      "ref": "constitution:art_233",
+      "gloss": "The judge who heads a district's judiciary, sitting as District Judge on the civil side and as Sessions Judge on the criminal side. In a s.138 case this is the judge of the Court of Session that hears the first appeal from a Magistrate's conviction, and who may under NI Act s.148 require the appellant to deposit at least 20% of the compensation. District judges are appointed by the Governor in consultation with the High Court (Constitution art.233), with control over the district judiciary vested in the High Court (art.235).",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "actor",
+      "aka": [
+        "District Judge",
+        "Sessions Judge"
+      ]
+    },
+    "bailiff": {
+      "source": "court ministerial establishment - the process-serving officer of the court (no single statute)",
+      "gloss": "The court officer who physically serves the summons, notices and warrants a court issues and reports back on whether service was effected. In a s.138 case the process that brings in the accused is served this way, though in Kerala service is often effected through the police (the local Station House Officer). It is a court-establishment role rather than a creature of any one statute - the Criminal Rules of Practice deal with process and process fees but do not define the server as a titled post.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "actor",
+      "aka": [
+        "process server",
+        "summons bailiff"
+      ]
+    },
+    "indian police service": {
+      "ref": "constitution:art_312",
+      "gloss": "The all-India civil service from which the senior police ranks (Superintendent of Police up to Director General) are drawn, recruited through the UPSC Civil Services Examination and allotted to state cadres. Its constitutional basis is Article 312. It rarely touches a s.138 case, which is a complaint tried by a Magistrate, but it staffs the command of the police who serve the court's process.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "actor",
+      "aka": [
+        "IPS"
       ]
     }
   },

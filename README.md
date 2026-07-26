@@ -715,6 +715,6 @@ Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the N
 - `vocab_group_national`: The cheque & the instrument, Parties & liability, The offence (§138), Presumptions & evidence, Procedure & process, Notice, limitation & disposal, Constitutional & powers
 - `domain`: substantive, procedure, representation, policing, penal, evidence, interpretation, limitation, sentencing, electronic, banking, constitutional, authentication, settlement, access
 
-**Counts:** 21 Acts, 108 provisions, 87 national terms; states: Haryana (9 terms), Kerala (24 terms); 2 field notes.
+**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Haryana (9 terms), Kerala (33 terms); 2 field notes.
 
 <!-- AUTO-DATA-MODEL:END -->

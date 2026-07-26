@@ -2716,8 +2716,7 @@
         "role": "forum",
         "aka": [
           "Sessions Court",
-          "Court of Sessions",
-          "Sessions Judge"
+          "Court of Sessions"
         ],
         "source": null,
         "resolved": {
@@ -3186,6 +3185,79 @@
         "source": "court filing administration - e-Courts / High Court designated-counter arrangement (no single statute)",
         "resolved": null,
         "deep_link": "#words?state=kerala&term=central filing centre"
+      },
+      {
+        "word": "chief judicial magistrate",
+        "ref": "bnss:sec_10",
+        "gloss": "The magistrate who heads the judicial magistracy of a district and has administrative control over the Judicial Magistrates in it (BNSS s.10; earlier CrPC s.12). A s.138 case is tried before a Judicial Magistrate of the First Class, but the Chief Judicial Magistrate is the administrative head of that magistracy, to whom the allocation, distribution and transfer of cheque cases within the district fall.",
+        "group": "Procedure & process",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "CJM"
+        ],
+        "source": null,
+        "resolved": {
+          "act": "Bharatiya Nagarik Suraksha Sanhita, 2023",
+          "ref": "bnss:sec_10",
+          "num": "10.",
+          "heading": "Chief Judicial Magistrate and Additional Chief Judicial Magistrate, etc"
+        },
+        "deep_link": "#words?state=kerala&term=chief judicial magistrate"
+      },
+      {
+        "word": "district and sessions judge",
+        "ref": "constitution:art_233",
+        "gloss": "The judge who heads a district's judiciary, sitting as District Judge on the civil side and as Sessions Judge on the criminal side. In a s.138 case this is the judge of the Court of Session that hears the first appeal from a Magistrate's conviction, and who may under NI Act s.148 require the appellant to deposit at least 20% of the compensation. District judges are appointed by the Governor in consultation with the High Court (Constitution art.233), with control over the district judiciary vested in the High Court (art.235).",
+        "group": "Procedure & process",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "District Judge",
+          "Sessions Judge"
+        ],
+        "source": null,
+        "resolved": {
+          "act": "Constitution of India",
+          "ref": "constitution:art_233",
+          "num": "233.",
+          "heading": "Appointment of district judges."
+        },
+        "deep_link": "#words?state=kerala&term=district and sessions judge"
+      },
+      {
+        "word": "bailiff",
+        "ref": null,
+        "gloss": "The court officer who physically serves the summons, notices and warrants a court issues and reports back on whether service was effected. In a s.138 case the process that brings in the accused is served this way, though in Kerala service is often effected through the police (the local Station House Officer). It is a court-establishment role rather than a creature of any one statute - the Criminal Rules of Practice deal with process and process fees but do not define the server as a titled post.",
+        "group": "Procedure & process",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "process server",
+          "summons bailiff"
+        ],
+        "source": "court ministerial establishment - the process-serving officer of the court (no single statute)",
+        "resolved": null,
+        "deep_link": "#words?state=kerala&term=bailiff"
+      },
+      {
+        "word": "indian police service",
+        "ref": "constitution:art_312",
+        "gloss": "The all-India civil service from which the senior police ranks (Superintendent of Police up to Director General) are drawn, recruited through the UPSC Civil Services Examination and allotted to state cadres. Its constitutional basis is Article 312. It rarely touches a s.138 case, which is a complaint tried by a Magistrate, but it staffs the command of the police who serve the court's process.",
+        "group": "Constitutional & powers",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "IPS"
+        ],
+        "source": null,
+        "resolved": {
+          "act": "Constitution of India",
+          "ref": "constitution:art_312",
+          "num": "312.",
+          "heading": "All-India services."
+        },
+        "deep_link": "#words?state=kerala&term=indian police service"
       }
     ],
     "process": {
@@ -5314,6 +5386,146 @@
           ],
           "sourceNotes": [],
           "deep_link": "#words?state=kerala&term=registry"
+        },
+        {
+          "word": "Registrar",
+          "gloss": "The senior judicial officer who heads the High Court's registry - scrutiny, listing, custody of records and the exercise of delegated administrative and quasi-judicial powers. In a s.138 case the Registrar's office is where a criminal revision or a petition to quash the complaint is presented and scrutinised before it reaches the Bench. The Rules of the High Court of Kerala, 1971 set out the Registrar's powers and duties (Rule 15).",
+          "source": "Rules of the High Court of Kerala, 1971, Rule 15",
+          "akn": "state/kerala/akn/rules-of-the-high-court-of-kerala-1971.akn.xml",
+          "eId": "rule_15",
+          "group": "Court process & records",
+          "pos": "noun",
+          "role": "actor",
+          "aka": [
+            "Registrar of the High Court"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=registrar"
+        },
+        {
+          "word": "Superintendent of Police",
+          "gloss": "The District Police Chief - the officer who commands the whole police force of a district. A s.138 case rarely involves the police, but the Superintendent heads the district machinery that serves the court's process and executes its warrants. The rank sits in the Kerala Police ladder fixed by s.14 of the Kerala Police Act, 2011; the Police Act, 1861 (s.47) is the older source of the SP's district command.",
+          "source": "Kerala Police Act, 2011, §14 (police ranks)",
+          "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+          "eId": "sec_14",
+          "group": "Police & execution",
+          "pos": "noun",
+          "role": "actor",
+          "aka": [
+            "SP",
+            "District Police Chief"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=superintendent of police"
+        },
+        {
+          "word": "Sub-Inspector of Police",
+          "gloss": "The rank that is the Station House Officer of most police stations - the officer who, in an ordinary criminal case, registers the FIR and investigates, and who in a s.138 case serves the court's summons and executes its warrants. One of the Kerala Police ranks fixed by s.14 of the Kerala Police Act, 2011, with the station-house charge under s.5.",
+          "source": "Kerala Police Act, 2011, §14 (police ranks)",
+          "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+          "eId": "sec_14",
+          "group": "Police & execution",
+          "pos": "noun",
+          "role": "actor",
+          "aka": [
+            "SI",
+            "Sub-Inspector"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=sub-inspector of police"
+        },
+        {
+          "word": "Circle Inspector",
+          "gloss": "The Inspector of Police who heads a circle - a group of police stations - and is the Station House Officer of the larger stations, supervising the Sub-Inspectors under him. In a s.138 case he sits one level above the officer who serves the court's process. A Kerala Police rank fixed by s.14 of the Kerala Police Act, 2011.",
+          "source": "Kerala Police Act, 2011, §14 (police ranks)",
+          "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+          "eId": "sec_14",
+          "group": "Police & execution",
+          "pos": "noun",
+          "role": "actor",
+          "aka": [
+            "Inspector of Police",
+            "CI"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=circle inspector"
+        },
+        {
+          "word": "Director General of Police",
+          "gloss": "The apex rank of the police and the head of the whole State force, in whom the administration, supervision and control of the entire Kerala Police is vested, subject to the Government. The role is remote from any single s.138 case but sits at the top of the machinery that serves the courts' process. The State Police Chief is designated under s.18 of the Kerala Police Act, 2011; the rank is the highest in the ladder fixed by s.14.",
+          "source": "Kerala Police Act, 2011, §18 (State Police Chief)",
+          "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+          "eId": "sec_18",
+          "group": "Police & execution",
+          "pos": "noun",
+          "role": "actor",
+          "aka": [
+            "DGP",
+            "State Police Chief"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=director general of police"
+        },
+        {
+          "word": "Commissioner of Police",
+          "gloss": "The head of a metropolitan Commissionerate - the unitary policing set up for larger cities such as Thiruvananthapuram and Kochi, where the Commissioner combines executive and certain magisterial powers. A s.138 case is tried by a court, not the police, but in a commissionerate city the Commissioner heads the force that serves the court's process. The commissionerate structure is provided for under s.15 of the Kerala Police Act, 2011.",
+          "source": "Kerala Police Act, 2011, §15 (police structure)",
+          "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+          "eId": "sec_15",
+          "group": "Police & execution",
+          "pos": "noun",
+          "role": "actor",
+          "aka": [
+            "City Police Commissioner"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=commissioner of police"
+        },
+        {
+          "word": "Constable",
+          "gloss": "The basic rank of the police - patrol, guard, beat duty and first response, and often the officer who physically carries and serves the court's process on the ground. Recruited directly through the Kerala PSC; the entrant must meet the eligibility in s.86 of the Kerala Police Act, 2011 and take the oath under s.87, and the rank is the first rung of the ladder fixed by s.14.",
+          "source": "Kerala Police Act, 2011, §14 (police ranks)",
+          "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+          "eId": "sec_14",
+          "group": "Police & execution",
+          "pos": "noun",
+          "role": "actor",
+          "aka": [
+            "Police Constable",
+            "PC"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=constable"
+        },
+        {
+          "word": "State Security Commission",
+          "gloss": "The oversight body that lays down broad policy for the police and insulates the force from illegitimate pressure. It has no role in any individual s.138 case but is part of the police-accountability structure the domain maps. Constituted under s.24 of the Kerala Police Act, 2011.",
+          "source": "Kerala Police Act, 2011, §24",
+          "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+          "eId": "sec_24",
+          "group": "Police & execution",
+          "pos": "noun",
+          "role": "forum",
+          "aka": [
+            "SSC"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=state security commission"
+        },
+        {
+          "word": "Police Complaints Authority",
+          "gloss": "The body that inquires into serious complaints of misconduct against the police, such as custodial wrongdoing or abuse of authority. It does not touch the trial of a s.138 case but is the forum a citizen uses to hold errant officers to account. Constituted under s.110 of the Kerala Police Act, 2011.",
+          "source": "Kerala Police Act, 2011, §110",
+          "akn": "state/kerala/akn/kerala-police-act-2011.akn.xml",
+          "eId": "sec_110",
+          "group": "Police & execution",
+          "pos": "noun",
+          "role": "forum",
+          "aka": [
+            "PCA"
+          ],
+          "sourceNotes": [],
+          "deep_link": "#words?state=kerala&term=police complaints authority"
         }
       ],
       "institutions": {
@@ -7722,6 +7934,18 @@
       {
         "term": "code of civil procedure",
         "provision": "cpc:sec_1"
+      },
+      {
+        "term": "chief judicial magistrate",
+        "provision": "bnss:sec_10"
+      },
+      {
+        "term": "district and sessions judge",
+        "provision": "constitution:art_233"
+      },
+      {
+        "term": "indian police service",
+        "provision": "constitution:art_312"
       }
     ],
     "note_to_units": [

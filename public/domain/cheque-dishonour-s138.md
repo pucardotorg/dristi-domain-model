@@ -594,6 +594,10 @@ This digest is generated from the data - it joins the relevance profile, the sta
 | first information report | document | Information in cognizable cases | The first record the police make of information about a cognizable offence, which sets an investigation in motion (BNSS  |
 | code of civil procedure | doctrine | Short title, commencement and extent | The 1908 code that governs the procedure of civil suits and appeals. A s.138 case is criminal, run under the Bharatiya N |
 | central filing centre | actor | court filing administration - e-Courts / | A single designated counter or office through which cases are filed for a group of courts, instead of each court taking  |
+| chief judicial magistrate | actor | Chief Judicial Magistrate and Additional | The magistrate who heads the judicial magistracy of a district and has administrative control over the Judicial Magistra |
+| district and sessions judge | actor | Appointment of district judges. | The judge who heads a district's judiciary, sitting as District Judge on the civil side and as Sessions Judge on the cri |
+| bailiff | actor | court ministerial establishment - the pr | The court officer who physically serves the summons, notices and warrants a court issues and reports back on whether ser |
+| indian police service | actor | All-India services. | The all-India civil service from which the senior police ranks (Superintendent of Police up to Director General) are dra |
 
 ## Prescribed process (central law - every state inherits this)
 
@@ -763,6 +767,15 @@ How a §138 cheque-bounce case runs in Kerala, from filing to disposal - built p
 - **Criminal Rules of Practice** - The rules the High Court of Kerala made in 1982, under Article 227 of the Constitution, to govern how the criminal courts below it actually run - filing, the co (from Criminal Rules of Practice, Kerala, 1982)
 - **Scrutiny officer** - The court official (part of the Registry / ministerial establishment) who scrutinises a complaint and its documents for defects before it is numbered and placed (from E-Filing Rules, Kerala, r.17 (read with CRP r.68) · field note: ke-scrutiny-officer-2026-07)
 - **Registry** - The court's administrative office - the ministerial establishment that receives filings, scrutinises them for defects, numbers and lists the case, keeps the rec (from Criminal Rules of Practice, Rule 27)
+- **Registrar** - The senior judicial officer who heads the High Court's registry - scrutiny, listing, custody of records and the exercise of delegated administrative and quasi-j (from Rules of the High Court of Kerala, 1971, Rule 15)
+- **Superintendent of Police** - The District Police Chief - the officer who commands the whole police force of a district. A s.138 case rarely involves the police, but the Superintendent heads (from Kerala Police Act, 2011, §14 (police ranks))
+- **Sub-Inspector of Police** - The rank that is the Station House Officer of most police stations - the officer who, in an ordinary criminal case, registers the FIR and investigates, and who  (from Kerala Police Act, 2011, §14 (police ranks))
+- **Circle Inspector** - The Inspector of Police who heads a circle - a group of police stations - and is the Station House Officer of the larger stations, supervising the Sub-Inspector (from Kerala Police Act, 2011, §14 (police ranks))
+- **Director General of Police** - The apex rank of the police and the head of the whole State force, in whom the administration, supervision and control of the entire Kerala Police is vested, su (from Kerala Police Act, 2011, §18 (State Police Chief))
+- **Commissioner of Police** - The head of a metropolitan Commissionerate - the unitary policing set up for larger cities such as Thiruvananthapuram and Kochi, where the Commissioner combines (from Kerala Police Act, 2011, §15 (police structure))
+- **Constable** - The basic rank of the police - patrol, guard, beat duty and first response, and often the officer who physically carries and serves the court's process on the g (from Kerala Police Act, 2011, §14 (police ranks))
+- **State Security Commission** - The oversight body that lays down broad policy for the police and insulates the force from illegitimate pressure. It has no role in any individual s.138 case bu (from Kerala Police Act, 2011, §24)
+- **Police Complaints Authority** - The body that inquires into serious complaints of misconduct against the police, such as custodial wrongdoing or abuse of authority. It does not touch the trial (from Kerala Police Act, 2011, §110)
 
 ## Local practice - field notes
 
