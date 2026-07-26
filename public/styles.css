@@ -73,11 +73,11 @@
   }
 
   .brand{display:flex; gap:8px; align-items:center; margin:0 0 7px; padding:0 6px; cursor:pointer}
-  .brand .mark{width:22px; height:22px; border-radius:6px; flex:none;
-    background:linear-gradient(135deg,var(--brand),var(--blue)); display:grid; place-items:center; font-weight:800; color:#fff; font-size:11px}
-  .brand h1{font-size:14.5px; margin:0; letter-spacing:.2px; line-height:1.15}
+  .brand .mark{width:24px; height:24px; border-radius:6px; flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--blue)); display:grid; place-items:center; font-weight:800; color:#fff; font-size:11.5px}
+  .brand h1{font-size:13px; margin:0; letter-spacing:.2px; line-height:1.05}
   .brand .brand-txt{min-width:0}
-  .brand .brand-sub{display:block; font-size:10px; line-height:1.05; margin-top:1px; color:var(--ink-3); letter-spacing:.01em}
+  .brand .brand-sub{display:block; font-size:9.5px; line-height:1; margin-top:0; color:var(--ink-3); letter-spacing:.01em}
 
   .nav-group{margin:12px 0 4px; padding:0 8px; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
   .nav-group:first-child{margin-top:2px}
