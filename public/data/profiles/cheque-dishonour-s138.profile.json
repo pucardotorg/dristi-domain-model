@@ -1778,6 +1778,29 @@
         "people's court",
         "permanent lok adalat"
       ]
+    },
+    "affidavit": {
+      "ref": "ni:sec_145",
+      "gloss": "A written statement of facts sworn or affirmed before an officer authorised to administer oaths, offered to a court as evidence. In a §138 case the complainant may give evidence-in-chief by affidavit under NI Act s.145, and documents can be proved the same way - which is what keeps a summary cheque trial quick.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "document",
+      "aka": [
+        "sworn statement",
+        "sworn affidavit"
+      ]
+    },
+    "notary": {
+      "ref": "bsa:sec_84",
+      "gloss": "A public officer appointed under the Notaries Act, 1952 who administers oaths and attests, authenticates and certifies documents. The notary matters to a §138 case because a power-of-attorney authenticated before a notary is presumed genuine: the court shall presume due execution under BSA s.84 (formerly Evidence Act s.85), which is how a POA holder proves authority to file and depose.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "actor",
+      "aka": [
+        "notary public",
+        "notarised",
+        "notarisation"
+      ]
     }
   },
   "edges": [

@@ -524,6 +524,51 @@
           "lawyer's clerk",
           "advocate clerk"
         ]
+      },
+      {
+        "word": "Oath",
+        "gloss": "The declaration by which a witness, interpreter or deponent binds themselves to tell the truth before giving evidence. In Kerala the Criminal Rules of Practice name the officer who administers it (Rule 50) and prescribe its form (Rule 51); a person who objects to being sworn makes a solemn affirmation instead, which has the same effect.",
+        "source": "Criminal Rules of Practice, Rules 50 & 51",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_50",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "oath-taking",
+          "on oath",
+          "solemn affirmation",
+          "affirmation"
+        ]
+      },
+      {
+        "word": "Vakalatnama",
+        "gloss": "The document by which a party authorises an advocate to appear and act for them; until it is on record the advocate has no authority to represent the party. The Kerala Criminal Rules of Practice prescribe its form and attestation (Rule 32).",
+        "source": "Criminal Rules of Practice, Rule 32",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_32",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "vakkalath",
+          "vakalat",
+          "authority to appear"
+        ]
+      },
+      {
+        "word": "Deposition",
+        "gloss": "A witness's evidence as recorded in court and signed. The Kerala Criminal Rules of Practice prescribe how depositions are headed (Rule 56) and signed (Rule 57); in a summary §138 trial much of the evidence reaches the record as affidavits rather than long oral depositions.",
+        "source": "Criminal Rules of Practice, Rules 56 & 57",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_56",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "recorded evidence",
+          "witness deposition"
+        ]
       }
     ]
   },
