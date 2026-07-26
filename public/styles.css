@@ -457,8 +457,12 @@
   .modal.show{display:block}
   .modal-back{position:absolute; inset:0; background:rgba(0,0,0,.55)}
   .modal-panel{position:absolute; top:4vh; bottom:4vh; left:50%; transform:translateX(-50%); width:min(880px,94vw); background:var(--panel); border:1px solid var(--line-2); border-radius:14px; box-shadow:var(--shadow-modal); display:flex; flex-direction:column; overflow:hidden}
-  .modal-x{position:absolute; top:14px; right:16px; z-index:3; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:12.5px; font-family:var(--font-sans)}
+  .modal-tools{position:absolute; top:14px; right:16px; z-index:3; display:flex; align-items:center; gap:8px}
+  .modal-x{background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:12.5px; font-family:var(--font-sans)}
   .modal-x:hover{color:var(--ink)}
+  .modal-pdf{margin:0; padding:0; width:31px; height:31px; justify-content:center; color:var(--ink-3)}
+  .modal-pdf svg.lu{width:15px; height:15px; opacity:1}
+  .modal-pdf[hidden]{display:none}
   .modal-body{overflow-y:auto; overflow-x:hidden; scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--ink-3) 40%,transparent) transparent}
   .modal-body::-webkit-scrollbar{width:10px}
   .modal-body::-webkit-scrollbar-track{background:transparent}
@@ -482,7 +486,7 @@
   .inst-actions .pdf-orig{margin-top:0}
   .ad-loading{padding:80px 30px; text-align:center; color:var(--ink-3)}
   .actdoc-h{position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--line); padding:20px 30px 15px; z-index:2}
-  .ad-title{font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.01em; padding-right:70px}
+  .ad-title{font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.01em; padding-right:118px}
   .ad-sub{font-size:12.5px; color:var(--ink-3); margin-top:4px}
   .actdoc-body{padding:8px 30px 50px}
   .ad-chap{font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--brand); font-weight:700; margin:26px 0 10px; padding-bottom:7px; border-bottom:1px solid var(--line)}

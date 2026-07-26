@@ -747,7 +747,8 @@ async function openStateCiteModal(akn,eId,title){
     const d=await getStateSection(akn,eId);
     body.innerHTML="";
     const wrap=el("div");
-    wrap.appendChild(el("div","actdoc-h",`<div class="ad-title">${esc(title||'Provision')}</div><div class="ad-sub">${esc(eId)} · verbatim Akoma Ntoso · ${esc((akn||'').split('/').pop())}</div>`));
+    wrap.appendChild(el("div","actdoc-h",`<div class="ad-title">${esc(title||'Provision')}</div>`));
+    setModalPdf(null);
     const bodyEl=el("div","actdoc-body");
     if(d){ const sec=el("div","ad-sec"); sec.innerHTML=`<div class="ad-sec-h"><span class="ad-num">${esc(d.num||'')}</span>${esc(d.heading||'')}</div>`+renderBody(d.body,"ad"); bodyEl.appendChild(sec); }
     else bodyEl.appendChild(el("div","callout amber",`Text not found for ${esc(eId)}.`));
@@ -1209,10 +1210,8 @@ function renderFullAct(actId, blocks, focusEid){
   const wrap=el("div");
   const focusLabel = focusEid ? secNum(actId+":"+focusEid) : "";
   const pdfUrl = (DATA_BASE||"") + src.file.replace('/akn/','/sources/').replace(/\.akn\.xml$/,'.pdf');
-  wrap.appendChild(el("div","actdoc-h",
-    `<div class="ad-title">${esc(src.title)}</div>
-     <div class="ad-sub">${nsec} ${unit} · verbatim Akoma Ntoso (${esc(src.file)})${focusEid?` · jumped to ${esc(focusLabel)}`:''}</div>
-     <button class="pdf-orig" data-pdf="${esc(pdfUrl)}" data-pdftitle="${esc(src.title)}">${ic('file')} Original PDF</button>`));
+  wrap.appendChild(el("div","actdoc-h",`<div class="ad-title">${esc(src.title)}</div>`));
+  setModalPdf(pdfUrl, src.title);
   const body=el("div","actdoc-body");
   if(!nsec) body.appendChild(el("div","callout amber",`This Act's full text isn't in the corpus yet - its Akoma&nbsp;Ntoso conversion is incomplete, so only structural headings are present.`));
   blocks.forEach(b=>{
@@ -1240,7 +1239,14 @@ async function openActModal(actId, focusEid){
     body.innerHTML=`<div class="ad-loading">Couldn't load this Act.<br><br>The viewer reads the <code>.akn.xml</code> files live, so it must be served over http - see the note under the sidebar.</div>`;
   }
 }
-function closeModal(){ $("#modal").classList.remove("show"); document.body.style.overflow=""; }
+/* the modal's Original-PDF control lives in the chrome, beside Close - one place
+   for every modal. Each opener declares its PDF (or clears it) via this. */
+function setModalPdf(url, title){
+  const b=$("#modal-pdf"); if(!b) return;
+  if(url){ b.dataset.pdf=url; b.dataset.pdftitle=title||"Original document"; b.title=`Open the original PDF${title?` - ${title}`:""}`; b.innerHTML=ic('file'); b.hidden=false; }
+  else { b.hidden=true; b.removeAttribute("data-pdf"); }
+}
+function closeModal(){ $("#modal").classList.remove("show"); document.body.style.overflow=""; setModalPdf(null); }
 
 /* render + open an arbitrary Akoma Ntoso <act> document (used for state instruments) */
 function renderStateDoc(title, subtitle, blocks, pdfUrl, focusEid){
@@ -1248,9 +1254,8 @@ function renderStateDoc(title, subtitle, blocks, pdfUrl, focusEid){
   const unit=blocks.some(b=>b.unit==="article")?"articles":(blocks.some(b=>b.t==="sec"&&/^rule_/.test(b.eId||""))?"rules":"sections");
   const wrap=el("div");
   wrap.appendChild(el("div","actdoc-h",
-    `<div class="ad-title">${esc(title)}</div>
-     <div class="ad-sub">${nsec} ${unit}${subtitle?` · ${esc(subtitle)}`:''} · verbatim Akoma Ntoso</div>
-     ${pdfUrl?`<button class="pdf-orig" data-pdf="${esc(pdfUrl)}" data-pdftitle="${esc(title)}">${ic('file')} Original PDF</button>`:''}`));
+    `<div class="ad-title">${esc(title)}</div>${subtitle?`<div class="ad-sub">${esc(subtitle)}</div>`:''}`));
+  setModalPdf(pdfUrl||null, title);
   const bodyEl=el("div","actdoc-body");
   if(!nsec) bodyEl.appendChild(el("div","callout amber",`This document's full text isn't in the corpus yet.`));
   blocks.forEach(b=>{
@@ -1441,9 +1446,8 @@ function renderJudgment(c, doc){
   if(c.neutral_citation||H.neutralCitation) sub.push(c.neutral_citation||H.neutralCitation);
   const jpdf = c.source_pdf ? ((DATA_BASE||"") + c.source_pdf) : "";
   wrap.appendChild(el("div","actdoc-h",
-    `<div class="ad-title">${esc(c.name)}</div>
-     <div class="ad-sub">${esc(sub.join(" · "))} · verbatim Akoma Ntoso (${esc((c.akn||"").split("/").pop())})</div>
-     ${jpdf?`<button class="pdf-orig" data-pdf="${esc(jpdf)}" data-pdftitle="${esc(c.name)}">${ic('file')} Original PDF</button>`:''}`));
+    `<div class="ad-title">${esc(c.name)}</div><div class="ad-sub">${esc(sub.join(" · "))}</div>`));
+  setModalPdf(jpdf||null, c.name);
   const body=el("div","actdoc-body");
   const cap=el("div","jcap");
   cap.innerHTML=`${H.docketNumber?`<div class="jrow strong">${esc(H.docketNumber)}</div>`:''}
