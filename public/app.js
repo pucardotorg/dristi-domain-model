@@ -1773,6 +1773,9 @@ function buildHash(){
 function writeHash(push){
   const h=buildHash(); if(h===_lastHash) return; _lastHash=h;
   try{ history[push?"pushState":"replaceState"](null,"","#"+h); }catch(e){}
+  // remember the last position (state + view + section + lens) forever - restored on
+  // the next visit. localStorage never expires and never leaves the browser.
+  try{ localStorage.setItem("dristi:pos", h); }catch(e){}
 }
 function applyHash(raw, push){
   const [view0,qs]=String(raw||"law").split("?");
@@ -1867,8 +1870,11 @@ function showLoadError(err){
     await loadProfile();
     await loadStateData();
     buildNav();
-    // the Map ("graph") is hidden for now; keep V.graph defined but never land on it
-    const raw=(location.hash||"").slice(1);
+    // the Map ("graph") is hidden for now; keep V.graph defined but never land on it.
+    // Restore where the user last was: an explicit URL hash (a shared deep link) wins;
+    // otherwise fall back to the saved position; otherwise the default law view.
+    let saved=""; try{ saved=localStorage.getItem("dristi:pos")||""; }catch(e){}
+    const raw=(location.hash||"").slice(1) || saved || "law";
     const startView=(raw.split("?")[0])||"law";
     applyHash((V[startView] && startView!=="graph") ? raw : "law", false);
   }catch(err){ showLoadError(err); }
