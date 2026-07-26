@@ -22,6 +22,7 @@ let activeCase = "active";
 let overviewOpen = false;
 let currentView = "overview";
 let processLens = "prescribed";   // which lens the story "process" is viewed through
+let vocabScrollTo = null;         // a vocab word to scroll to when the Vocabulary view next renders
 const OV_SUBVIEWS = ["structure","split","time"];
 
 let JURISDICTIONS = [];
@@ -424,7 +425,7 @@ V.words=()=>{
     if(it.kind==="national"){
       const w=it.w, v=it.v, p=PROVISIONS.find(x=>x.ref===v.ref), s=actOf(v.ref);
       const def=v.gloss || (p&&p.note) || "The canonical meaning the system uses for this term - fixed by the section below.";
-      const c=el("div","word");
+      const c=el("div","word"); c.dataset.word=w.toLowerCase();
       c.innerHTML=`
         <div class="wt"><span class="wname">${esc(w[0].toUpperCase()+w.slice(1))}</span><span class="wtag wtag-national">national</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
         <div class="def">${esc(def)}</div>
@@ -433,7 +434,7 @@ V.words=()=>{
       c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open")) fillStatute(c.querySelector(".statute-slot"),true); };
       return c;
     }
-    const t=it.t, c=el("div","word");
+    const t=it.t, c=el("div","word"); c.dataset.word=(t.word||"").toLowerCase();
     c.innerHTML=`
       <div class="wt"><span class="wname">${esc(t.word)}</span><span class="wtag wtag-state">${esc(stName)}</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(t.gloss||'')}</div>
@@ -488,6 +489,20 @@ V.words=()=>{
   });
   setTimeout(()=>{const inp=$("#w-search"); if(inp)inp.oninput=e=>{ state.q=e.target.value.toLowerCase().trim(); redraw(); };},0);
   redraw();
+  // arrived here from a vocab-term link: clear any filters, then scroll to and open that word
+  if(vocabScrollTo){
+    const wanted=vocabScrollTo; vocabScrollTo=null;
+    setTimeout(()=>{
+      state.q=""; state.scope="all"; state.pos=""; state.role=""; redraw();
+      const card=[...m.querySelectorAll(".word")].find(c=>c.dataset.word===wanted.toLowerCase());
+      if(card){
+        const y=card.getBoundingClientRect().top+window.scrollY-16;
+        window.scrollTo({top:Math.max(0,y), behavior:"smooth"});
+        const wt=card.querySelector(".wt"); if(wt && !card.classList.contains("open")) wt.click();
+        card.classList.add("word-flash"); setTimeout(()=>card.classList.remove("word-flash"),1500);
+      }
+    },70);
+  }
   return m;
 };
 
@@ -928,6 +943,104 @@ if(window.matchMedia && window.matchMedia("(hover: hover)").matches){
     if(!_pp || !_pp.classList.contains("show")) return;
     if(_ppHover || (e.target && e.target.nodeType===1 && _pp.contains(e.target))) return;
     hideProvPop();
+  }, true);
+}
+
+/* ============================================================ VOCABULARY AUTO-LINKING
+   Highlight any word that is in the vocabulary wherever it appears in prose; hover shows
+   its gloss; click opens that word in the Vocabulary tab. */
+let _vocabM=null, _vocabMState=null;
+function vocabMatcher(){
+  const key = activeState + "|" + Object.keys(TERMS||{}).length;
+  if(_vocabM && _vocabMState===key) return _vocabM;
+  const map={};
+  Object.entries(TERMS||{}).forEach(([w,v])=>{ const o=(typeof v==="string"?{ref:v}:v); map[w.toLowerCase()]={word:w, gloss:o.gloss||"", scope:"national"}; });
+  (((STATE_DATA||{}).vocabulary||{}).terms||[]).forEach(t=>{ if(t.word) map[t.word.toLowerCase()]={word:t.word, gloss:t.gloss||"", scope:"state"}; });
+  const words=Object.keys(map).filter(w=>w.length>2).sort((a,b)=>b.length-a.length);
+  const pat=words.map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|");
+  let re=null;
+  if(pat){ try{ re=new RegExp("(?<![\\w-])("+pat+")(?![\\w-])","gi"); }
+    catch(e){ try{ re=new RegExp("\\b("+pat+")\\b","gi"); }catch(e2){ re=null; } } }  // lookbehind fallback for old browsers
+  _vocabM={ map, re };
+  _vocabMState=key; return _vocabM;
+}
+const VOCAB_SKIP_TAGS=new Set(["A","CODE","INPUT","TEXTAREA","SCRIPT","STYLE","BUTTON","SELECT","H1"]);
+const VOCAB_SKIP_CLASS=/(^|\s)(cite|cchip|stedge|vocab-term|statute|st-num|st-h|st-src|badge|wtag|chip|tl-marker|proc-tab|caret|mag|role-name|court-name|tl-stage-title|fee-stage|clabel|page-title|grouphead|vsub|vp-word|vp-gloss)($|\s)/;
+function linkifyVocab(root){
+  if(!root) return;
+  const M=vocabMatcher(); if(!M.re) return; const {map,re}=M;
+  const walker=document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode(node){
+    if(!node.nodeValue || node.nodeValue.trim().length<3) return NodeFilter.FILTER_REJECT;
+    let p=node.parentElement;
+    while(p && p!==root.parentElement){
+      if(VOCAB_SKIP_TAGS.has(p.tagName)) return NodeFilter.FILTER_REJECT;
+      const cn=p.getAttribute && p.getAttribute("class");
+      if(cn && VOCAB_SKIP_CLASS.test(cn)) return NodeFilter.FILTER_REJECT;
+      p=p.parentElement;
+    }
+    return NodeFilter.FILTER_ACCEPT;
+  }});
+  const nodes=[]; let nd; while(nd=walker.nextNode()) nodes.push(nd);
+  nodes.forEach(node=>{
+    const text=node.nodeValue; re.lastIndex=0;
+    if(!re.test(text)) return; re.lastIndex=0;
+    const frag=document.createDocumentFragment(); let last=0, m; const seen=new Set(); let any=false;
+    while((m=re.exec(text))){
+      const lc=m[0].toLowerCase(); if(!map[lc] || seen.has(lc)) continue; seen.add(lc);
+      if(m.index>last) frag.appendChild(document.createTextNode(text.slice(last,m.index)));
+      const span=document.createElement("span"); span.className="vocab-term"; span.dataset.term=map[lc].word; span.textContent=m[0];
+      frag.appendChild(span); last=m.index+m[0].length; any=true;
+    }
+    if(any){ if(last<text.length) frag.appendChild(document.createTextNode(text.slice(last))); node.parentNode.replaceChild(frag, node); }
+  });
+}
+/* vocab hover popover (gloss is already in memory - no fetch) */
+let _vp=null, _vpTimer=null, _vpHover=false, _vpAnchor=null;
+function vpEl(){
+  if(!_vp){ _vp=document.createElement("div"); _vp.className="vocabpop";
+    _vp.addEventListener("mouseenter",()=>{ _vpHover=true; clearTimeout(_vpTimer); });
+    _vp.addEventListener("mouseleave",()=>{ _vpHover=false; hideVocabPop(); });
+    _vp.addEventListener("click",()=>{ if(_vpAnchor) goVocabWord(_vpAnchor.dataset.term); });
+    document.body.appendChild(_vp);
+  }
+  return _vp;
+}
+function positionVocabPop(el){
+  const pop=_vp, r=el.getBoundingClientRect(); const pw=pop.offsetWidth, ph=pop.offsetHeight;
+  let left=Math.min(r.left, window.innerWidth-12-pw); if(left<12) left=12;
+  let top=r.bottom+7; if(top+ph>window.innerHeight-12){ const up=r.top-7-ph; top=up>12?up:Math.max(12, window.innerHeight-12-ph); }
+  pop.style.left=left+"px"; pop.style.top=top+"px";
+}
+function showVocabPop(el){
+  const word=el.dataset.term; if(!word) return;
+  const t=vocabMatcher().map[word.toLowerCase()]; if(!t) return;
+  const pop=vpEl(); clearTimeout(_vpTimer); _vpAnchor=el;
+  const scope = t.scope==="state" ? `<span class="vp-scope">${esc(stateById(activeState).name)}</span>` : `<span class="vp-scope vp-nat">national</span>`;
+  pop.innerHTML=`<div class="vp-word">${esc(t.word)} ${scope}</div>${t.gloss?`<div class="vp-gloss">${esc(t.gloss)}</div>`:""}<div class="vp-go">${ic('type')} Open in Vocabulary</div>`;
+  pop.classList.add("show"); positionVocabPop(el);
+}
+function hideVocabPop(){ clearTimeout(_vpTimer); _vpTimer=setTimeout(()=>{ if(!_vpHover && _vp) _vp.classList.remove("show"); _vpAnchor=null; },140); }
+function goVocabWord(word){
+  if(_vp) _vp.classList.remove("show");
+  vocabScrollTo=word;
+  go("words");
+}
+/* hover + scroll wiring for vocab terms (hover-capable pointers only) */
+if(window.matchMedia && window.matchMedia("(hover: hover)").matches){
+  document.addEventListener("mouseover",e=>{
+    const el=e.target.closest && e.target.closest(".vocab-term"); if(!el) return;
+    if(el===_vpAnchor && _vp && _vp.classList.contains("show")){ clearTimeout(_vpTimer); return; }
+    clearTimeout(_vpTimer); _vpTimer=setTimeout(()=>showVocabPop(el),150);
+  });
+  document.addEventListener("mouseout",e=>{
+    const el=e.target.closest && e.target.closest(".vocab-term"); if(!el) return;
+    if(e.relatedTarget && el.contains(e.relatedTarget)) return;
+    hideVocabPop();
+  });
+  window.addEventListener("scroll",e=>{
+    if(!_vp || !_vp.classList.contains("show")) return;
+    if(_vpHover || (e.target && e.target.nodeType===1 && _vp.contains(e.target))) return;
+    hideVocabPop();
   }, true);
 }
 
@@ -1436,6 +1549,7 @@ function go(view){
   currentView=view;
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
   setMain(V[view]());
+  if(view!=="words") try{ linkifyVocab($("#main")); }catch(e){}   // turn vocabulary words in the prose into links
   if(history.replaceState) history.replaceState(null,"","#"+view);
 }
 window.go=go;
@@ -1470,6 +1584,8 @@ document.addEventListener("click",e=>{
     if(ci.dataset.nat){ const [a,eid]=ci.dataset.nat.split(":"); if(SOURCES[a]) openActModal(a,eid); }
     else if(ci.dataset.akn){ openStateCiteModal(ci.dataset.akn, ci.dataset.eid, ci.dataset.title); }
     return; }
+  const vt=e.target.closest(".vocab-term");
+  if(vt && vt.dataset.term){ e.stopPropagation(); goVocabWord(vt.dataset.term); return; }
   const se=e.target.closest(".stedge");
   if(se && se.dataset.ref){ e.stopPropagation(); const [a,eid]=se.dataset.ref.split(":"); if(SOURCES[a]) openActModal(a,eid); return; }
   const b=e.target.closest(".view-full");
