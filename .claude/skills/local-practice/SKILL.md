@@ -115,8 +115,13 @@ provenance, so the link is bidirectional and lives in data, not the UI:
 ```
 
 Same `sourceNotes` + `relatesToLaw` + `informal` + `themes` (+ `id`) on the vocab
-term and the process step/stage. `V.practice` renders an `informal aspects` chip and
-a "field note" link on any role that has these fields - generically.
+term and the process step/stage. The UI renders these generically: a role or a
+**vocabulary term** that carries `sourceNotes` shows a clickable **"field note"**
+backlink (`goPracticeNote`) that opens the note in Local practice - the same way a
+provision link opens its statute. So always put `sourceNotes` on every unit the note
+creates (roles, process stages, **and vocab terms**), not just on the note's
+`impact.changes`; that is what makes the term-to-note link live, not only
+note-to-term. `V.practice` also renders an `informal aspects` chip on any role.
 
 **The links must resolve (do not leave dead chips).** An `impact.changes[]` entry is
 `{ unit, ref, label }` where `ref` is `<state>:<unit>:<id>` and the created/enhanced

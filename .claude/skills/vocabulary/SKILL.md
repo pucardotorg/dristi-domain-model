@@ -33,6 +33,12 @@ Active state: `public/data/state/kerala.json`.
   (`rule_50`). A state term with no clean statutory home may omit `akn`/`eId` and
   carry a free-text `source` only (e.g. "High Court registry practice") - the card
   then shows the gloss and source with no openable text.
+- **`sourceNotes` (either scope).** A term that came from a field note carries
+  `"sourceNotes": ["<note-id>"]` - the card then renders a clickable **"field note"**
+  backlink next to the source that opens that note in Local practice (just as a
+  provision link opens its statute). Add it to every term a field note creates, so
+  the term-to-note link is bidirectional in the data, not just the note-to-term
+  half. This is the `field-interview` / `local-practice` path.
 - **National practice term (no statute).** A concept that is genuinely pan-India
   but is court-administration practice, not a rule of any one Act (e.g. the Central
   Filing Centre), belongs in the *national* `terms` but has no `ref` to resolve.

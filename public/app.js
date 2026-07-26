@@ -23,6 +23,7 @@ let overviewOpen = false;
 let currentView = "overview";
 let processLens = "prescribed";   // which lens the story "process" is viewed through
 let vocabScrollTo = null;         // a vocab word to scroll to when the Vocabulary view next renders
+let practiceScrollTo = null;      // a field-note id to scroll to when the Local practice view next renders
 const OV_SUBVIEWS = ["structure","split","time"];
 
 let JURISDICTIONS = [];
@@ -445,6 +446,8 @@ V.words=()=>{
     if(!aka||!aka.length) return "";
     return `<div class="waka"><span class="waka-lbl">also called</span>${aka.map(a=>`<span class="waka-t">${esc(a)}</span>`).join("")}</div>`;
   }
+  // a term drawn from a field note carries sourceNotes - render a backlink to that note
+  const noteLink=sn=>(sn&&sn.length)?` <a class="src-note" data-note="${esc(sn[0])}">${ic('messages-square')} field note</a>`:"";
   function wcard(it){
     const clsTags=`${it.pos?`<span class="wtag wtag-pos">${esc(POS_LABEL[it.pos]||it.pos)}</span>`:""}${it.role?`<span class="wtag wtag-role">${esc(ROLE_LABEL[it.role]||it.role)}</span>`:""}`;
     if(it.kind==="national"){
@@ -461,7 +464,7 @@ V.words=()=>{
         <div class="wt"><span class="wname">${esc(w[0].toUpperCase()+w.slice(1))}</span><span class="wtag wtag-national">national</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
         <div class="def">${esc(def)}</div>
         ${akaRow(v.aka)}
-        <div class="src">${srcLine}</div>
+        <div class="src">${srcLine}${noteLink(v.sourceNotes)}</div>
         ${v.ref?`<div class="wfull"><div class="statute-slot" data-ref="${esc(v.ref)}"></div></div>`:""}`;
       c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && v.ref) fillStatute(c.querySelector(".statute-slot"),true); };
       return c;
@@ -471,7 +474,7 @@ V.words=()=>{
       <div class="wt"><span class="wname">${esc(t.word)}</span><span class="wtag wtag-state">${esc(stName)}</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(t.gloss||'')}</div>
       ${akaRow(t.aka)}
-      <div class="src">from ${esc(t.source||'the state layer')}</div>
+      <div class="src">from ${esc(t.source||'the state layer')}${noteLink(t.sourceNotes)}</div>
       <div class="wfull"><div class="ksec-slot"></div></div>`;
     c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && t.akn && t.eId) fillStateStatute(c.querySelector(".ksec-slot"), t.akn, t.eId, t.source||'the Kerala instrument', ''); };
     return c;
@@ -567,6 +570,7 @@ V.practice=()=>{
   // one card - scan layer always visible, detail behind accordions. Generic over the note schema.
   function pnote(n){
     const c=el("div","pnote");
+    if(n.id) c.id="pnote-"+n.id;   // target for "field note" backlinks from vocab terms / roles
     const A=n.attribution||{};
     const heard=A.heardFrom?`${esc(A.heardFrom)}${A.affiliation?` (${esc(A.affiliation)})`:""}`:(n.who?esc(n.who):"");
     const secondhand=A.secondhand?`<span class="pn-2nd" title="${esc(A.originalSource||'relayed; may be secondhand')}">relayed · may be secondhand</span>`:"";
@@ -633,6 +637,21 @@ V.practice=()=>{
   }
   facets.addEventListener("click",e=>{ const p=e.target.closest(".chip"); if(!p) return; const fg=p.dataset.fg, fv=p.dataset.fv; if(fg==="place") fstate.place=fv; else if(fg==="tag"){ if(fstate.tags.has(fv)) fstate.tags.delete(fv); else fstate.tags.add(fv); } redraw(); });
   redraw();
+  // arrived here from a "field note" backlink: make sure that note is visible, then scroll to and open it
+  if(practiceScrollTo){
+    const wanted=practiceScrollTo; practiceScrollTo=null;
+    const target=notes.find(n=>n.id===wanted);
+    if(target){ fstate.place=(target.place && statesPresent.includes(target.place))?target.place:"all"; fstate.tags.clear(); redraw(); }
+    setTimeout(()=>{
+      const card=document.getElementById("pnote-"+wanted);
+      if(card){
+        const y=card.getBoundingClientRect().top+window.scrollY-16;
+        window.scrollTo({top:Math.max(0,y), behavior:"smooth"});
+        card.querySelectorAll(".pn-acc-head").forEach(h=>{ if(h.getAttribute("aria-expanded")!=="true") h.click(); });
+        card.classList.add("word-flash"); setTimeout(()=>card.classList.remove("word-flash"),1600);
+      }
+    },70);
+  }
   return m;
 };
 
@@ -793,7 +812,7 @@ V.story=()=>{
       const cat=ROLE_CATS[r.cat]||ROLE_CATS.litigant;
       // generic markers from the data: an "informal aspects" flag and a link to the source field note
       const flag = r.informal ? `<span class="role-flag" title="Some aspects are informal - see the field note">informal aspects</span>` : "";
-      const prov = (r.sourceNotes&&r.sourceNotes.length) ? `<a class="role-prov" onclick="go('practice')">${ic('messages-square')} field note</a>` : "";
+      const prov = (r.sourceNotes&&r.sourceNotes.length) ? `<a class="role-prov src-note" data-note="${esc(r.sourceNotes[0])}">${ic('messages-square')} field note</a>` : "";
       const card=el("div","role-card role-"+(r.cat||"litigant"));
       if(r.id) card.id="role-"+r.id;   // target for "what it changed" links from field notes
       card.innerHTML=`<div class="role-top"><span class="role-ico">${ic(cat.icon)}</span>
@@ -1169,6 +1188,13 @@ function goVocabWord(word){
   if(_vp) _vp.classList.remove("show");
   vocabScrollTo=word;
   go("words");
+}
+/* a unit (vocab term, role, process step) carries sourceNotes back to the field note
+   it came from - open the Local practice view and scroll to that note. */
+function goPracticeNote(id){
+  if(_vp) _vp.classList.remove("show");
+  practiceScrollTo=id;
+  go("practice");
 }
 /* hover + scroll wiring for vocab terms (hover-capable pointers only) */
 if(window.matchMedia && window.matchMedia("(hover: hover)").matches){
@@ -1744,6 +1770,8 @@ document.addEventListener("click",e=>{
     if(ci.dataset.nat){ const [a,eid]=ci.dataset.nat.split(":"); if(SOURCES[a]) openActModal(a,eid); }
     else if(ci.dataset.akn){ openStateCiteModal(ci.dataset.akn, ci.dataset.eid, ci.dataset.title); }
     return; }
+  const sn=e.target.closest(".src-note");
+  if(sn && sn.dataset.note){ e.stopPropagation(); goPracticeNote(sn.dataset.note); return; }
   const pc=e.target.closest(".pn-change");
   if(pc && pc.dataset.ref){ e.stopPropagation(); goPracticeChange(pc.dataset.unit, pc.dataset.ref, pc.dataset.label); return; }
   const vt=e.target.closest(".vocab-term");

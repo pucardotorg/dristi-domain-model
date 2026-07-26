@@ -15,6 +15,9 @@
         "aka": [
           "filing clerk",
           "filing branch clerk"
+        ],
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
         ]
       },
       {
@@ -28,6 +31,9 @@
           "ahlamad",
           "reader",
           "record keeper"
+        ],
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
         ]
       },
       {
@@ -39,6 +45,9 @@
         "role": "actor",
         "aka": [
           "computer branch"
+        ],
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
         ]
       },
       {
@@ -51,6 +60,9 @@
         "aka": [
           "Case Information System",
           "CIS module"
+        ],
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
         ]
       },
       {
@@ -63,6 +75,9 @@
         "aka": [
           "CNR",
           "case number record"
+        ],
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
         ]
       },
       {
@@ -76,6 +91,9 @@
           "NACT",
           "NACT case",
           "N.I. Act case type"
+        ],
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
         ]
       },
       {
@@ -87,6 +105,9 @@
         "role": "document",
         "aka": [
           "memo of parties"
+        ],
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
         ]
       },
       {
@@ -95,7 +116,10 @@
         "source": "Local CIS data-entry practice, Panchkula filing branch (PUCAR interview, June 2026) - a workaround for a missing field",
         "group": "Systems & records",
         "pos": "noun",
-        "role": "procedure"
+        "role": "procedure",
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
+        ]
       },
       {
         "word": "Filing window",
@@ -106,6 +130,9 @@
         "role": "procedure",
         "aka": [
           "filing counter"
+        ],
+        "sourceNotes": [
+          "hr-filing-assistant-2026-06"
         ]
       }
     ]
