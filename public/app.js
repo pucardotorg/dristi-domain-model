@@ -1243,7 +1243,7 @@ async function openActModal(actId, focusEid){
    for every modal. Each opener declares its PDF (or clears it) via this. */
 function setModalPdf(url, title){
   const b=$("#modal-pdf"); if(!b) return;
-  if(url){ b.dataset.pdf=url; b.dataset.pdftitle=title||"Original document"; b.title=`Open the original PDF${title?` - ${title}`:""}`; b.innerHTML=ic('file'); b.hidden=false; }
+  if(url){ b.dataset.pdf=url; b.dataset.pdftitle=title||"Original document"; b.title=`Open the original PDF${title?` - ${title}`:""}`; b.innerHTML=`${ic('file')} PDF`; b.hidden=false; }
   else { b.hidden=true; b.removeAttribute("data-pdf"); }
 }
 function closeModal(){ $("#modal").classList.remove("show"); document.body.style.overflow=""; setModalPdf(null); }

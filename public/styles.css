@@ -397,7 +397,7 @@
   .interp .ic:hover .icn{color:var(--brand-hi)}
   .interp .icn{font-weight:600; color:var(--ink)}
   .interp .icy{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3); flex:none}
-  .view-full{margin-top:12px; display:inline-flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--line-2); color:var(--link); border-radius:8px; padding:8px 13px; font-size:12.5px; font-weight:600; cursor:pointer; font-family:var(--font-sans)}
+  .view-full{margin-top:12px; display:inline-flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--line-2); color:var(--link); border-radius:8px; height:34px; padding:0 13px; line-height:1; font-size:12.5px; font-weight:600; cursor:pointer; font-family:var(--font-sans)}
   .view-full:hover{border-color:var(--brand); background:var(--brand-dim); color:var(--brand-hi)}
 
   .word{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 16px; margin-bottom:9px}
@@ -458,18 +458,18 @@
   .modal-back{position:absolute; inset:0; background:rgba(0,0,0,.55)}
   .modal-panel{position:absolute; top:4vh; bottom:4vh; left:50%; transform:translateX(-50%); width:min(880px,94vw); background:var(--panel); border:1px solid var(--line-2); border-radius:14px; box-shadow:var(--shadow-modal); display:flex; flex-direction:column; overflow:hidden}
   .modal-tools{position:absolute; top:14px; right:16px; z-index:3; display:flex; align-items:center; gap:8px}
-  .modal-x{background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:12.5px; font-family:var(--font-sans)}
+  .modal-x{display:inline-flex; align-items:center; height:32px; padding:0 12px; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; cursor:pointer; font-size:12.5px; font-family:var(--font-sans)}
   .modal-x:hover{color:var(--ink)}
-  .modal-pdf{margin:0; padding:0; width:31px; height:31px; justify-content:center; color:var(--ink-3)}
-  .modal-pdf svg.lu{width:15px; height:15px; opacity:1}
-  .modal-pdf[hidden]{display:none}
+  #modal-pdf{margin:0; height:32px; padding:0 12px; color:var(--ink-2)}    /* match Close exactly */
+  #modal-pdf svg.lu{width:14px; height:14px; opacity:.85}
+  #modal-pdf[hidden]{display:none}
   .modal-body{overflow-y:auto; overflow-x:hidden; scrollbar-width:thin; scrollbar-color:color-mix(in srgb,var(--ink-3) 40%,transparent) transparent}
   .modal-body::-webkit-scrollbar{width:10px}
   .modal-body::-webkit-scrollbar-track{background:transparent}
   .modal-body::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--ink-3) 26%,transparent); border-radius:20px; border:3px solid transparent; background-clip:padding-box}
   .modal-body::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--ink-3) 50%,transparent); background-clip:padding-box}
   /* subtle "Original PDF" button in Act / judgment modals */
-  .pdf-orig{margin-top:11px; display:inline-flex; align-items:center; gap:7px; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; padding:6px 12px; cursor:pointer; font-family:var(--font-sans); font-size:12.5px}
+  .pdf-orig{margin-top:11px; display:inline-flex; align-items:center; gap:7px; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; height:34px; padding:0 13px; line-height:1; cursor:pointer; font-family:var(--font-sans); font-size:12.5px}
   .pdf-orig:hover{border-color:var(--brand-border); color:var(--ink)}
   .pdf-orig svg.lu{width:14px; height:14px; opacity:.85}
   /* state-layer instruments (State rules / amendments / notifications) */
@@ -486,7 +486,7 @@
   .inst-actions .pdf-orig{margin-top:0}
   .ad-loading{padding:80px 30px; text-align:center; color:var(--ink-3)}
   .actdoc-h{position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--line); padding:20px 30px 15px; z-index:2}
-  .ad-title{font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.01em; padding-right:118px}
+  .ad-title{font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.01em; padding-right:150px}
   .ad-sub{font-size:12.5px; color:var(--ink-3); margin-top:4px}
   .actdoc-body{padding:8px 30px 50px}
   .ad-chap{font-size:12px; letter-spacing:.07em; text-transform:uppercase; color:var(--brand); font-weight:700; margin:26px 0 10px; padding-bottom:7px; border-bottom:1px solid var(--line)}
