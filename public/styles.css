@@ -335,8 +335,10 @@
   /* case law */
   .case{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:15px 17px; margin-bottom:10px; box-shadow:var(--shadow-raised)}
   .case .cn{font-size:16px; font-weight:700; color:var(--ink); letter-spacing:-.01em}
-  .case .cmeta{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:5px 0 9px}
-  .case .cite{font-family:var(--font-mono); font-size:12px; color:var(--ink-3)}
+  .case .cmeta{display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin:6px 0 10px}
+  /* every case-meta tag shares one size and shape; only the status tag carries colour */
+  .case .cmeta > .cite, .case .cmeta > .badge{height:22px; padding:0 9px; border-radius:6px; border-width:1px; border-style:solid; font-size:11.5px; font-weight:600; display:inline-flex; align-items:center; box-sizing:border-box; white-space:nowrap; gap:5px}
+  .case .cite{font-family:var(--font-mono); color:var(--ink-2); background:var(--panel-2); border-color:var(--line-2); cursor:default}
   .case .hold{font-size:13.5px; color:var(--ink-2); line-height:1.55}
   .case .construes{display:flex; flex-wrap:wrap; gap:6px; margin-top:11px}
   .case .clabel{font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); font-weight:700; margin-right:2px; align-self:center}
@@ -348,7 +350,7 @@
   .provpop .statute{margin:0}
   .provpop .view-full{margin-top:10px}
   .case .rels-c{margin-top:9px; font-size:12px; color:var(--ink-3)}
-  .case .cite.neutral{color:var(--brand-hi); border:1px solid var(--line-2); border-radius:6px; padding:1px 7px; background:var(--panel-2)}
+  .case .cite.neutral{color:var(--ink-2)}
   .case .cactions{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:12px; padding-top:11px; border-top:1px solid var(--line)}
   .readjmt{font-size:12.5px; font-weight:600; color:var(--brand-hi); cursor:pointer; display:inline-flex; align-items:center; gap:5px}
   .readjmt:before{content:"§"; font-family:var(--font-mono); opacity:.7}
@@ -362,7 +364,7 @@
   .jpara{margin:12px 0}
   .jpara .jp{font-size:14px; line-height:1.68; color:var(--ink-2)}
   .jpara .jnum{display:inline-block; min-width:26px; color:var(--brand-hi); font-family:var(--font-mono); font-weight:600; font-size:12.5px; vertical-align:top}
-  .b-bench{color:var(--purple-txt); background:var(--purple-dim); border-color:var(--purple-border)}
+  .b-bench{color:var(--ink-2); background:var(--panel-2); border-color:var(--line-2)}
   .b-good{color:var(--green-txt); background:var(--green-dim); border-color:var(--green-border)}
   .b-partly{color:var(--amber-txt); background:var(--amber-dim); border-color:var(--amber-border)}
   .b-overruled{color:#ff9592; background:var(--red-dim); border-color:var(--red-border)}
