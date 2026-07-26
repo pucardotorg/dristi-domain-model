@@ -565,24 +565,30 @@ V.practice=()=>{
     const tally=Object.keys(counts).sort((a,b)=>(SEV[b]??1)-(SEV[a]??1)).map(s=>`<span class="pn-tstat pn-tstat-${esc(s)}"><i class="pn-dot"></i>${counts[s]} ${esc(TALLY[s]||s.replace(/-/g,' '))}</span>`).join("");
     const maxSev=claims.reduce((mx,cl)=>Math.max(mx,SEV[String(cl.status)]??1),-1);
     c.dataset.verdict = maxSev<0?"none":maxSev>=3?"contradicted":maxSev>=1?"caution":"clear";
-    const verBody=claims.map(cl=>{
+    const verBody=`<ul class="pn-claims">`+claims.map(cl=>{
       const st=String(cl.status||"unverified");
-      const ev=(cl.evidence||[]).map(cchip).join(" ");
-      const meta=[cl.by,cl.on].filter(Boolean).join(" · ");
-      return `<div class="pn-claim"><span class="verif verif-${esc(st)}">${esc(st.replace(/-/g,' '))}</span><span class="pn-claim-t">${esc(cl.claim||"")}</span>${cl.method?`<div class="pn-sub">${esc(cl.method)}${meta?` · ${esc(meta)}`:""}</div>`:""}${cl.note?`<div class="pn-sub">${esc(cl.note)}</div>`:""}${cl.toCheck?`<div class="pn-sub pn-tocheck">To check: ${esc(cl.toCheck)}</div>`:""}${ev?`<div class="pn-sub">Evidence: ${ev}</div>`:""}</div>`;
-    }).join("");
+      const stLabel=TALLY[st]||st.replace(/-/g,' ');
+      const ev=(cl.evidence||[]).map(cchip).join(", ");
+      const meta=[cl.method,cl.by,cl.on].filter(Boolean).join(" · ");
+      let subs="";
+      if(meta) subs+=`<div class="pn-claim-sub">${esc(meta)}</div>`;
+      if(cl.note) subs+=`<div class="pn-claim-sub">${esc(cl.note)}</div>`;
+      if(cl.toCheck) subs+=`<div class="pn-claim-sub">To check: ${esc(cl.toCheck)}</div>`;
+      if(ev) subs+=`<div class="pn-claim-sub">Evidence: ${ev}</div>`;
+      return `<li class="pn-claim pn-st-${esc(st)}"><i class="pn-dot"></i><div class="pn-claim-body"><div class="pn-claim-hd"><span class="pn-claim-st">${esc(stLabel)}</span> ${esc(cl.claim||"")}</div>${subs}</div></li>`;
+    }).join("")+`</ul>`;
     const verAcc=claims.length?accordion("Verification",claims.length,tally,verBody):"";
     const I=n.impact||{};
     let impAcc="";
     if(I.changed===false){ impAcc=accordion("What it changed",null,"changed nothing",`<div class="pn-sub">Changed nothing in the model.${I.reason?` ${esc(I.reason)}`:""}</div>`); }
     else {
-      const ch=(I.changes||[]).map(x=>`<a class="pn-change" data-unit="${esc(x.unit||'')}" data-ref="${esc(x.ref||'')}" data-label="${esc(x.label||'')}">${esc(x.op||"changed")} ${esc(x.unit||"")} · ${esc(x.label||x.ref||"")}</a>`).join("");
-      const law=(I.relatesToLaw||[]).map(cchip).join(" ");
+      const ch=(I.changes||[]).map(x=>`<li><a class="pn-change" data-unit="${esc(x.unit||'')}" data-ref="${esc(x.ref||'')}" data-label="${esc(x.label||'')}">${esc(x.op||"changed")} ${esc(x.unit||"")} · ${esc(x.label||x.ref||"")}</a></li>`).join("");
+      const law=(I.relatesToLaw||[]).map(cchip).join(", ");
       const units=[...new Set((I.changes||[]).map(x=>x.unit).filter(Boolean))].join(" · ");
-      const body=`${ch?`<div class="pn-changes">${ch}</div>`:""}${law?`<div class="pn-sub">Relates to law: ${law}</div>`:""}`;
+      const body=`${ch?`<ul class="pn-bullets">${ch}</ul>`:""}${law?`<div class="pn-claim-sub">Relates to law: ${law}</div>`:""}`;
       if(body) impAcc=accordion("What it changed",(I.changes||[]).length,units,body);
     }
-    const cmpBody=(n.compare||[]).map(x=>`<div class="pn-claim"><span class="verif verif-${esc(x.relation||'')}">${esc(x.relation||'')}</span><span class="pn-claim-t">${esc((stateById(x.place)||{}).name||x.place)}: ${esc(x.note||'')}</span></div>`).join("");
+    const cmpBody=`<ul class="pn-claims">`+(n.compare||[]).map(x=>`<li class="pn-claim pn-st-${esc(x.relation||'')}"><i class="pn-dot"></i><div class="pn-claim-body"><div class="pn-claim-hd"><span class="pn-claim-st">${esc(x.relation||'')}</span> ${esc((stateById(x.place)||{}).name||x.place)}: ${esc(x.note||'')}</div></div></li>`).join("")+`</ul>`;
     const cmpAcc=(n.compare||[]).length?accordion("Across states",n.compare.length,"",cmpBody):"";
     c.innerHTML=`
       <div class="pn-top">${n.serial?`<span class="pn-serial">${esc(n.serial)}</span>`:""}${tags?`<div class="pn-tags">${tags}</div>`:""}</div>

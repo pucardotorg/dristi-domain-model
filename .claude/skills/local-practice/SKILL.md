@@ -157,13 +157,14 @@ the role `id: "scrutiny-officer"` (rendered `id="role-scrutiny-officer"`), the s
 derived from the notes, and cards are **grouped by state** and carry their `serial`
 badge. Each card is scannable at a glance - statement (clamped, with a "more"
 toggle), attribution + `relayed · may be secondhand` badge, `tags`, and a
-colour-coded **verification tally** (severity-ordered, a contradiction shown in red
-even while collapsed, plus a red left accent on the card). Detail sits behind
+compact **verification tally** (severity-ordered, a contradiction shown in red even
+while collapsed - no left accent, per the `design` skill). Detail sits behind
 **accordions** (Verification / What it changed / Across states), collapsed by
-default. The status chip colour is derived from the status slug (`.verif-<slug>`),
-the tally severity/label from small lookup maps that default unknown statuses to
-caution - so a new status needs no code. `impact.changes[]` render as clickable
-chips that navigate (term/role/process). Add a note, a tag, or a new field and it
+default, and is a **clean bullet list** (a small status dot + plain status word +
+muted sub-lines + plain underlined citations - no pills). The dot/tally colour is
+derived from the status slug and the severity/label from small lookup maps that
+default unknown statuses to caution - so a new status needs no code.
+`impact.changes[]` render as plain clickable links that navigate (term/role/process). Add a note, a tag, or a new field and it
 flows through with no code change. If you find yourself editing `app.js` to show a
 specific note, stop - put it in the data instead.
 
