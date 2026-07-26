@@ -622,6 +622,17 @@
         "aka": [
           "court registry"
         ]
+      },
+      {
+        "word": "Central Filing Centre",
+        "gloss": "A single designated counter or office through which cases are filed for a group of courts, instead of each court taking its own filings. An advocate or litigant submits the complaint and papers at the Centre, where they are checked for defects, numbered and then sent to the court that will hear the matter - so intake and scrutiny are centralised. It is an administrative arrangement of the court establishment, not a creature of any one statute; it operates alongside the Registry's scrutiny and the e-filing system.",
+        "source": "Court establishment - central filing arrangement (administrative)",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "CFC"
+        ]
       }
     ]
   },
