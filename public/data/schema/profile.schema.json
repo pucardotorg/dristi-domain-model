@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DRISTI relevance profile",
+  "type": "object",
+  "required": [
+    "profile",
+    "sources",
+    "provisions",
+    "terms"
+  ],
+  "properties": {
+    "profile": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "title",
+          "file"
+        ],
+        "properties": {
+          "uri": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "substantive",
+              "procedure",
+              "representation",
+              "policing",
+              "penal",
+              "evidence",
+              "interpretation",
+              "limitation",
+              "sentencing",
+              "electronic",
+              "banking",
+              "constitutional",
+              "authentication",
+              "settlement",
+              "access"
+            ]
+          },
+          "status": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "provisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ref",
+          "act",
+          "eId",
+          "tier"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+:[A-Za-z0-9_]+$"
+          },
+          "act": {
+            "type": "string"
+          },
+          "eId": {
+            "type": "string"
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "operative",
+              "definition",
+              "supporting",
+              "procedure",
+              "evidence",
+              "notice",
+              "limitation",
+              "sentencing",
+              "constitutional"
+            ]
+          },
+          "role": {
+            "type": "string"
+          },
+          "applies": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "terms": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "gloss",
+          "group",
+          "pos",
+          "role"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "gloss": {
+            "type": "string"
+          },
+          "group": {
+            "type": "string"
+          },
+          "pos": {
+            "type": "string",
+            "enum": [
+              "noun",
+              "verb"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "document",
+              "actor",
+              "procedure",
+              "doctrine",
+              "remedy",
+              "forum"
+            ]
+          },
+          "aka": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceNotes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

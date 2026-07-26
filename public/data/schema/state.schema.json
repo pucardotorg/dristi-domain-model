@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DRISTI state layer",
+  "type": "object",
+  "required": [
+    "state",
+    "name"
+  ],
+  "properties": {
+    "state": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "as_of": {
+      "type": "string"
+    },
+    "vocabulary": {
+      "type": "object",
+      "properties": {
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "word",
+              "gloss",
+              "group",
+              "pos",
+              "role"
+            ],
+            "properties": {
+              "word": {
+                "type": "string"
+              },
+              "gloss": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "akn": {
+                "type": "string"
+              },
+              "eId": {
+                "type": "string"
+              },
+              "group": {
+                "type": "string"
+              },
+              "pos": {
+                "type": "string",
+                "enum": [
+                  "noun",
+                  "verb"
+                ]
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "document",
+                  "actor",
+                  "procedure",
+                  "doctrine",
+                  "remedy",
+                  "forum"
+                ]
+              },
+              "aka": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sourceNotes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "story": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "role",
+                  "cat"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  },
+                  "cat": {
+                    "type": "string",
+                    "enum": [
+                      "staff",
+                      "litigant",
+                      "bank",
+                      "witness",
+                      "advocate",
+                      "advclerk",
+                      "judge",
+                      "police"
+                    ]
+                  },
+                  "who": {
+                    "type": "string"
+                  },
+                  "basis": {
+                    "type": "string"
+                  },
+                  "cite": {
+                    "type": "array"
+                  },
+                  "informal": {
+                    "type": "object"
+                  },
+                  "sourceNotes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "themes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "process": {
+          "type": "object",
+          "properties": {
+            "stages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "stage"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "stage": {
+                    "type": "string"
+                  },
+                  "steps": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "t": {
+                          "type": "string"
+                        },
+                        "c": {
+                          "type": "array"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

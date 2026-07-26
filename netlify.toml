@@ -1,9 +1,11 @@
-# Netlify config — static site, no build step.
-# The deployable site is the public/ folder (index.html + data/).
+# Netlify config — static site. The only build step regenerates the agent-facing
+# artifacts (the denormalized bundle, digest, schemas, llms.txt, README block) from
+# the data, so the deployed copies can never drift from the source of truth.
+# The deployable site is the public/ folder (index.html + data/ + domain/ + llms.txt).
 
 [build]
   publish = "public"
-  command = ""
+  command = "python3 scripts/generate_agent_artifacts.py"
 
 # Long-cache the immutable legal source files; the HTML stays revalidated.
 [[headers]]

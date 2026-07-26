@@ -221,3 +221,4 @@ PY
 - [ ] Gloss says what / why-it-matters / where-from; **no em-dashes**.
 - [ ] `aka` distinctive; no alias==canonical, no duplicate alias.
 - [ ] JSON parses; verified in a fresh (cache-busted) app load.
+- [ ] Regenerated the agent artifacts (`python3 scripts/generate_agent_artifacts.py`) so the bundle / digest / schemas / `llms.txt` stay in sync (the Netlify build also runs it).

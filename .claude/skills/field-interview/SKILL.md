@@ -167,3 +167,4 @@ verification, bidirectional `impact` links, the state-prefixed `serial` (e.g.
 - [ ] New state layer stood up only if needed, scoped to what the interview covers; shapes match; app kept state-agnostic (no hardcoded state name).
 - [ ] Note recorded via `local-practice` (firsthand attribution + video source; `reported-practice` where apt; reciprocal `compare`; resolving impact links).
 - [ ] Validated (JSON, no em-dashes in app copy, ids/anchors resolve) and verified in the served app; committed.
+- [ ] Regenerated the agent artifacts (`python3 scripts/generate_agent_artifacts.py`) so the bundle / digest / schemas / `llms.txt` include the new state and note (the Netlify build also runs it).

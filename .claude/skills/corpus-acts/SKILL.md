@@ -236,3 +236,4 @@ the commit message ends with the `Co-Authored-By` trailer. Push only when asked.
       judged, relevant ones pinned with tier + note, considered exclusions recorded)
       - not just the obvious two or three; new `domain` labelled if needed.
 - [ ] Verified in the app (law tree + `sectionByRef`); PDF and AKN both committed.
+- [ ] Regenerated the agent artifacts (`python3 scripts/generate_agent_artifacts.py`) so the bundle / digest resolve the new provisions' text (the Netlify build also runs it).

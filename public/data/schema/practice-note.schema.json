@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DRISTI field note (practice_notes[] in app.config.json)",
+  "type": "object",
+  "required": [
+    "id",
+    "place",
+    "attribution",
+    "statement"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "serial": {
+      "type": "string"
+    },
+    "place": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "attribution": {
+      "type": "object",
+      "required": [
+        "heardFrom"
+      ],
+      "properties": {
+        "heardFrom": {
+          "type": "string"
+        },
+        "affiliation": {
+          "type": "string"
+        },
+        "secondhand": {
+          "type": "boolean"
+        },
+        "originalSource": {
+          "type": "string"
+        }
+      }
+    },
+    "statement": {
+      "type": "string"
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "claim",
+              "status"
+            ],
+            "properties": {
+              "claim": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "corroborated",
+                  "contradicted",
+                  "reported-allegation",
+                  "needs-check",
+                  "reported-practice"
+                ]
+              },
+              "method": {
+                "type": "string"
+              },
+              "evidence": {
+                "type": "array"
+              },
+              "by": {
+                "type": "string"
+              },
+              "on": {
+                "type": "string"
+              },
+              "note": {
+                "type": "string"
+              },
+              "toCheck": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "impact": {
+      "type": "object",
+      "properties": {
+        "changed": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "unit",
+              "ref"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "term",
+                  "role",
+                  "process"
+                ]
+              },
+              "op": {
+                "type": "string"
+              },
+              "ref": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "relatesToLaw": {
+          "type": "array"
+        }
+      }
+    },
+    "compare": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "place": {
+            "type": "string"
+          },
+          "noteId": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string",
+            "enum": [
+              "similar"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

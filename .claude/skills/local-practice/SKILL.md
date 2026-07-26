@@ -192,3 +192,4 @@ specific note, stop - put it in the data instead.
 - [ ] `impact.changed` set true (with changes) or false (with reason).
 - [ ] Note has a `serial` (state-prefixed) and `tags` (categorical facets); `themes` for cross-state joins; `compare` links written where a shared theme exists.
 - [ ] JSON valid; anchors resolve; app copy em-dash-free; nothing hardcoded in the UI; committed.
+- [ ] Regenerated the agent artifacts (`python3 scripts/generate_agent_artifacts.py`) so the denormalized bundle / digest / schemas / `llms.txt` reflect the new note (the Netlify build also runs it).

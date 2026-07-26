@@ -1,0 +1,25 @@
+# DRISTI 2.0 - Domain Model
+
+> A data-driven reference of the legal domain a single court **case type** is built on. Modelled case type: **Cheque bounce** (NI Act, 1881 · §138). The site is a static viewer that reads the corpus below at runtime; every data file is fetchable directly.
+
+For agents: start with the denormalized bundle - it joins the profile, the state layers, the field notes and the Akoma Ntoso statute text into one document, each node carrying a shareable deep link (a `#...` URL fragment). Then use the schemas and data dictionary to read the raw files directly.
+
+## Start here (denormalized, everything joined)
+- [/domain/cheque-dishonour-s138.json](/domain/cheque-dishonour-s138.json): the full domain bundle as JSON.
+- [/domain/cheque-dishonour-s138.md](/domain/cheque-dishonour-s138.md): the same as a readable digest.
+- [/domain/data-dictionary.md](/domain/data-dictionary.md): field meanings and enumerations.
+
+## Raw data (source of truth)
+- [/data/profiles/cheque-dishonour-s138.profile.json](/data/profiles/cheque-dishonour-s138.profile.json): national provisions + vocabulary.
+- [/data/config/app.config.json](/data/config/app.config.json): case types, jurisdictions, field notes.
+- State layers: [/data/state/haryana.json](/data/state/haryana.json) · [/data/state/kerala.json](/data/state/kerala.json)
+- [/data/caselaw/cheque-dishonour-s138.caselaw.json](/data/caselaw/cheque-dishonour-s138.caselaw.json): case-law dataset.
+- Statute corpus: 24 Akoma Ntoso XML files under [/data/acts/akn/](/data/acts/akn/) (national) and /data/state/<state>/akn/.
+
+## Schemas
+- [/data/schema/profile.schema.json](/data/schema/profile.schema.json)
+- [/data/schema/state.schema.json](/data/schema/state.schema.json)
+- [/data/schema/practice-note.schema.json](/data/schema/practice-note.schema.json)
+
+## Deep links
+Append a fragment to the site root, e.g. `/#law?act=ni&eid=sec_138`, `/#story?state=haryana&sec=role-filing-assistant`, `/#words?state=kerala&term=scrutiny%20officer`, `/#practice?state=haryana&note=hr-filing-assistant-2026-06`.
