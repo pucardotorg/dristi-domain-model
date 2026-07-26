@@ -18,7 +18,7 @@ steps: a term whose anchor does not resolve renders a broken card.
 
 | Scope | File | Shape |
 |---|---|---|
-| National | `public/data/profiles/<case-type>.profile.json` → `terms` (object, **keyed by the lowercase word**) | `{ "ref", "gloss", "group", "pos", "role", "aka"? }` |
+| National | `public/data/profiles/<case-type>.profile.json` → `terms` (object, **keyed by the lowercase word**) | `{ "ref", "gloss", "group", "pos", "role", "aka"? }` - or a practice term: `{ "source", "gloss", "group", "pos", "role", "aka"? }` with no `ref` |
 | State | `public/data/state/<state>.json` → `vocabulary.terms` (array) | `{ "word", "gloss", "source", "akn"?, "eId"?, "group", "pos", "role", "aka"? }` |
 
 Active profile today: `public/data/profiles/cheque-dishonour-s138.profile.json`.
@@ -33,6 +33,14 @@ Active state: `public/data/state/kerala.json`.
   (`rule_50`). A state term with no clean statutory home may omit `akn`/`eId` and
   carry a free-text `source` only (e.g. "High Court registry practice") - the card
   then shows the gloss and source with no openable text.
+- **National practice term (no statute).** A concept that is genuinely pan-India
+  but is court-administration practice, not a rule of any one Act (e.g. the Central
+  Filing Centre), belongs in the *national* `terms` but has no `ref` to resolve.
+  Give it a free-text `source` and omit `ref`; `wcard` renders `from <source>` and
+  no statute slot, exactly like a source-only state term. **Do not force it into
+  the state layer** just because it lacks an anchor - that would falsely imply it is
+  specific to that state. Scope is about where the concept lives (all-India vs one
+  state), not about whether a statute happens to define it.
 
 ## The workflow
 

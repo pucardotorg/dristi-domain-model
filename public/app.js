@@ -448,16 +448,22 @@ V.words=()=>{
   function wcard(it){
     const clsTags=`${it.pos?`<span class="wtag wtag-pos">${esc(POS_LABEL[it.pos]||it.pos)}</span>`:""}${it.role?`<span class="wtag wtag-role">${esc(ROLE_LABEL[it.role]||it.role)}</span>`:""}`;
     if(it.kind==="national"){
-      const w=it.w, v=it.v, p=PROVISIONS.find(x=>x.ref===v.ref), s=actOf(v.ref);
+      const w=it.w, v=it.v, p=v.ref?PROVISIONS.find(x=>x.ref===v.ref):null, s=v.ref?actOf(v.ref):null;
       const def=v.gloss || (p&&p.note) || "The canonical meaning the system uses for this term - fixed by the section below.";
+      // Most national terms pin to a statute (v.ref); a few are administrative practice
+      // with no single statutory home (e.g. a central filing arrangement) - those carry a
+      // free-text v.source and open to nothing, like the state layer.
+      const srcLine = v.ref
+        ? `from <code>${esc(secNum(v.ref))}</code> · ${esc(s?s.title.split(",")[0]:v.ref)}`
+        : `from ${esc(v.source||'court practice')}`;
       const c=el("div","word"); c.dataset.word=w.toLowerCase();
       c.innerHTML=`
         <div class="wt"><span class="wname">${esc(w[0].toUpperCase()+w.slice(1))}</span><span class="wtag wtag-national">national</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
         <div class="def">${esc(def)}</div>
         ${akaRow(v.aka)}
-        <div class="src">from <code>${esc(secNum(v.ref))}</code> · ${esc(s?s.title.split(",")[0]:v.ref)}</div>
-        <div class="wfull"><div class="statute-slot" data-ref="${esc(v.ref)}"></div></div>`;
-      c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open")) fillStatute(c.querySelector(".statute-slot"),true); };
+        <div class="src">${srcLine}</div>
+        ${v.ref?`<div class="wfull"><div class="statute-slot" data-ref="${esc(v.ref)}"></div></div>`:""}`;
+      c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && v.ref) fillStatute(c.querySelector(".statute-slot"),true); };
       return c;
     }
     const t=it.t, c=el("div","word"); c.dataset.word=(t.word||"").toLowerCase();

@@ -2204,6 +2204,16 @@
         "CPC"
       ],
       "gloss": "The 1908 code that governs the procedure of civil suits and appeals. A s.138 case is criminal, run under the Bharatiya Nagarik Suraksha Sanhita (earlier the CrPC), so the CPC does not govern it. It appears in this model only as the source of the drafting vocabulary the courts and filing rules borrow - pleading, plaint, and the relief or prayer clause."
+    },
+    "central filing centre": {
+      "source": "court filing administration - e-Courts / High Court designated-counter arrangement (no single statute)",
+      "gloss": "A single designated counter or office through which cases are filed for a group of courts, instead of each court taking its own filings. Papers are submitted there, checked for defects, numbered and routed to the court that will hear the matter, so intake and scrutiny are centralised. It is a general court-administration arrangement - High Courts and district courts across India run central or designated filing counters and e-Service Centres under the e-Courts project - not a rule of any one statute, and it works alongside each court's Registry and the e-filing system.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "actor",
+      "aka": [
+        "CFC"
+      ]
     }
   },
   "edges": [
