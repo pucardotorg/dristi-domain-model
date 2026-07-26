@@ -160,7 +160,14 @@
           }
         ]
       },
-      "compare": []
+      "compare": [],
+      "serial": "KL-01",
+      "tags": [
+        "corruption",
+        "informal-practice",
+        "gatekeeping",
+        "delay"
+      ]
     }
   ],
   "domain_labels": {

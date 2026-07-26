@@ -46,12 +46,14 @@ clickable, hoverable source links, so use them for every piece of evidence.
 ```json
 {
   "id": "ke-scrutiny-officer-2026-07",
+  "serial": "KL-01",                 // human serial, state-prefixed (KL=Kerala, HR=Haryana...); shown as a badge
   "place": "kerala",
   "date": "2026-07-26",
   "attribution": { "heardFrom": "Mehul", "affiliation": "PUCAR Team",
                    "secondhand": true, "originalSource": "as relayed; ultimate source likely court staff" },
   "statement": "verbatim or close paraphrase of what was said",
-  "themes": ["pre-cognizance-scrutiny", "gatekeeping-rent-seeking"],
+  "themes": ["pre-cognizance-scrutiny", "gatekeeping-rent-seeking"],   // cross-state comparison join keys
+  "tags": ["corruption", "informal-practice", "gatekeeping", "delay"], // categorical facets - drive the filter bar
 
   "verification": { "claims": [
     { "claim": "a defect-scrutiny step happens before cognizance",
@@ -108,6 +110,16 @@ Same `sourceNotes` + `relatesToLaw` + `informal` + `themes` (+ `id`) on the voca
 term and the process step/stage. `V.practice` renders an `informal aspects` chip and
 a "field note" link on any role that has these fields - generically.
 
+**The links must resolve (do not leave dead chips).** An `impact.changes[]` entry is
+`{ unit, ref, label }` where `ref` is `<state>:<unit>:<id>` and the created/enhanced
+unit carries that same trailing `id`. The card renders each change as a clickable
+chip (`<a class="pn-change" data-unit data-ref data-label>`); `goPracticeChange`
+routes it: `term` -> the Vocabulary word (`goVocabWord(label)`), `role` -> the story
+role card (`#role-<id>`), `process` -> the story stage (`#procstage-<id>`). So give
+the role `id: "scrutiny-officer"` (rendered `id="role-scrutiny-officer"`), the stage
+`id: "scrutiny-defect-check"` (`id="procstage-..."`), and match the term by its
+`word`. A new unit kind needs a DOM id + a branch in `goStoryUnit`/`goPracticeChange`.
+
 ## The workflow
 
 1. **Attribute.** Capture `heardFrom`, `affiliation`, `secondhand` + `originalSource`,
@@ -141,14 +153,19 @@ a "field note" link on any role that has these fields - generically.
 
 ## Rendering (already generic - do not hardcode)
 
-`V.practice` reads the whole schema: attribution + `relayed · may be secondhand`
-badge, theme chips, one verification row per claim (chip coloured from the status
-slug, evidence as cite links, method/by/on, `toCheck`), the `What it changed` links
-(a `term` change links into Vocabulary), `Relates to law` cite links, and an
-`Across states` panel. Role cards show an `informal aspects` chip and a `field note`
-link when the data has them. Add a note or a new field and it flows through with no
-code change. If you find yourself editing `app.js` to show a specific note, stop -
-put it in the data instead.
+`V.practice` reads the whole schema. The list has a **filter bar** (State + Tags)
+derived from the notes, and cards are **grouped by state** and carry their `serial`
+badge. Each card is scannable at a glance - statement (clamped, with a "more"
+toggle), attribution + `relayed · may be secondhand` badge, `tags`, and a
+colour-coded **verification tally** (severity-ordered, a contradiction shown in red
+even while collapsed, plus a red left accent on the card). Detail sits behind
+**accordions** (Verification / What it changed / Across states), collapsed by
+default. The status chip colour is derived from the status slug (`.verif-<slug>`),
+the tally severity/label from small lookup maps that default unknown statuses to
+caution - so a new status needs no code. `impact.changes[]` render as clickable
+chips that navigate (term/role/process). Add a note, a tag, or a new field and it
+flows through with no code change. If you find yourself editing `app.js` to show a
+specific note, stop - put it in the data instead.
 
 ## Checklist
 
@@ -157,6 +174,7 @@ put it in the data instead.
 - [ ] Every claim has a `status`; verified ones say how/evidence/by/on; false ones `contradicted` with evidence; allegations `reported-allegation`, never asserted.
 - [ ] Formal units added with governing cites; only out-of-rules parts under `informal`.
 - [ ] Units carry `id` + `sourceNotes` + `relatesToLaw` + `themes`; note mirrors them in `impact` (bidirectional). New terms via the `vocabulary` skill.
+- [ ] `impact.changes[]` refs resolve: each unit has the matching `id`, so the "what it changed" chip navigates (term/role/process) - no dead links.
 - [ ] `impact.changed` set true (with changes) or false (with reason).
-- [ ] Themes tagged; cross-state `compare` links written where a shared theme exists.
+- [ ] Note has a `serial` (state-prefixed) and `tags` (categorical facets); `themes` for cross-state joins; `compare` links written where a shared theme exists.
 - [ ] JSON valid; anchors resolve; app copy em-dash-free; nothing hardcoded in the UI; committed.

@@ -528,63 +528,92 @@ V.words=()=>{
 
 V.practice=()=>{
   if(!isModelled()) return notModelled();
-  const stName=stateById(activeState).name;
   const m=el("div"); m.appendChild(scopeBar());
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Local practice</h1>
     <p class="lede">The part of the domain no Act writes down - how a ${caseById(activeCase).name.toLowerCase()} case is actually filed, moved and disposed on the ground. Field notes from people who run the process, each attributed and cross-checked against the rules; it changes by state.</p>`;
   m.appendChild(head);
-  const here=PRACTICE_NOTES.filter(n=>n.place===activeState);
-  const rest=PRACTICE_NOTES.filter(n=>n.place!==activeState);
   const amap=stateAliasMap();
   const cchip=c=>citeChip(c,amap);
-  // fully generic over the note schema - a new field flows through with no code change
+  const notes=(PRACTICE_NOTES||[]).slice();
+  if(!notes.length){ m.appendChild(el("div","empty","No field notes recorded yet for this case type.")); return m; }
+  const statesPresent=[...new Set(notes.map(n=>n.place))];
+  const tagsPresent=[...new Set(notes.flatMap(n=>n.tags||[]))].sort();
+  const fstate={place:(statesPresent.includes(activeState)?activeState:"all"), tags:new Set()};
+  const facets=el("div","vfacets"); m.appendChild(facets);
+  const list=el("div","pnotes"); list.style.marginTop="12px"; m.appendChild(list);
+  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
+
+  // status severity (drives the tally order + the card's left accent) and the short tally label
+  const SEV={contradicted:3,"reported-allegation":2,"needs-check":2,unverified:1,corroborated:0,verified:0,similar:0};
+  const TALLY={contradicted:"contradicted",corroborated:"corroborated","reported-allegation":"reported","needs-check":"to verify",unverified:"unverified",verified:"verified",similar:"similar"};
+  const accordion=(title,count,peekHTML,bodyHTML)=>{
+    const isTally=/pn-tstat/.test(peekHTML||"");
+    return `<div class="pn-acc${isTally?" pn-acc-verif":""}"><button class="pn-acc-head" aria-expanded="false"><span class="pn-acc-title">${esc(title)}${count!=null?`<span class="pn-acc-n">${count}</span>`:""}</span><span class="${isTally?"pn-tally":"pn-acc-peek"}">${peekHTML||""}</span><span class="pn-acc-chev">${ic("chevron-down")}</span></button><div class="pn-acc-body"><div class="pn-acc-inner">${bodyHTML}</div></div></div>`;
+  };
+  // one card - scan layer always visible, detail behind accordions. Generic over the note schema.
   function pnote(n){
     const c=el("div","pnote");
     const A=n.attribution||{};
-    const heard = A.heardFrom ? `${esc(A.heardFrom)}${A.affiliation?` (${esc(A.affiliation)})`:""}` : (n.who?esc(n.who):"");
-    const secondhand = A.secondhand ? `<span class="pn-2nd" title="${esc(A.originalSource||'relayed; may be secondhand')}">relayed · may be secondhand</span>` : "";
-    const statement = n.statement || n.quote || "";
-    const themes = (n.themes||[]).map(t=>`<span class="pn-theme">${esc(String(t).replace(/-/g,' '))}</span>`).join("");
-    const block=(h,inner)=> inner ? `<div class="pn-block"><div class="pn-h">${esc(h)}</div>${inner}</div>` : "";
-    // verification - one row per claim, chip class derived from the status slug (CSS colours it)
+    const heard=A.heardFrom?`${esc(A.heardFrom)}${A.affiliation?` (${esc(A.affiliation)})`:""}`:(n.who?esc(n.who):"");
+    const secondhand=A.secondhand?`<span class="pn-2nd" title="${esc(A.originalSource||'relayed; may be secondhand')}">relayed · may be secondhand</span>`:"";
+    const statement=n.statement||n.quote||"";
+    const place=esc((stateById(n.place)||{}).name||n.place);
+    const tags=(n.tags||[]).map(t=>`<span class="pn-tag">${esc(String(t).replace(/-/g,' '))}</span>`).join("");
     const claims=(n.verification&&n.verification.claims)||[];
-    const ver=block("Verification", claims.map(cl=>{
+    const counts={}; claims.forEach(cl=>{const s=String(cl.status||"unverified"); counts[s]=(counts[s]||0)+1;});
+    const tally=Object.keys(counts).sort((a,b)=>(SEV[b]??1)-(SEV[a]??1)).map(s=>`<span class="pn-tstat pn-tstat-${esc(s)}"><i class="pn-dot"></i>${counts[s]} ${esc(TALLY[s]||s.replace(/-/g,' '))}</span>`).join("");
+    const maxSev=claims.reduce((mx,cl)=>Math.max(mx,SEV[String(cl.status)]??1),-1);
+    c.dataset.verdict = maxSev<0?"none":maxSev>=3?"contradicted":maxSev>=1?"caution":"clear";
+    const verBody=claims.map(cl=>{
       const st=String(cl.status||"unverified");
       const ev=(cl.evidence||[]).map(cchip).join(" ");
       const meta=[cl.by,cl.on].filter(Boolean).join(" · ");
-      return `<div class="pn-claim"><span class="verif verif-${esc(st)}">${esc(st.replace(/-/g,' '))}</span>
-        <span class="pn-claim-t">${esc(cl.claim||"")}</span>
-        ${cl.method?`<div class="pn-sub">${esc(cl.method)}${meta?` - ${esc(meta)}`:""}</div>`:""}
-        ${cl.note?`<div class="pn-sub">${esc(cl.note)}</div>`:""}
-        ${cl.toCheck?`<div class="pn-sub pn-tocheck">To check: ${esc(cl.toCheck)}</div>`:""}
-        ${ev?`<div class="pn-sub">Evidence: ${ev}</div>`:""}</div>`;
-    }).join(""));
-    // impact - what the note changed (linked), or an explicit "changed nothing"
+      return `<div class="pn-claim"><span class="verif verif-${esc(st)}">${esc(st.replace(/-/g,' '))}</span><span class="pn-claim-t">${esc(cl.claim||"")}</span>${cl.method?`<div class="pn-sub">${esc(cl.method)}${meta?` · ${esc(meta)}`:""}</div>`:""}${cl.note?`<div class="pn-sub">${esc(cl.note)}</div>`:""}${cl.toCheck?`<div class="pn-sub pn-tocheck">To check: ${esc(cl.toCheck)}</div>`:""}${ev?`<div class="pn-sub">Evidence: ${ev}</div>`:""}</div>`;
+    }).join("");
+    const verAcc=claims.length?accordion("Verification",claims.length,tally,verBody):"";
     const I=n.impact||{};
-    let imp="";
-    if(I.changed===false){ imp=block("Impact", `<div class="pn-sub">Changed nothing in the model.${I.reason?` ${esc(I.reason)}`:""}</div>`); }
+    let impAcc="";
+    if(I.changed===false){ impAcc=accordion("What it changed",null,"changed nothing",`<div class="pn-sub">Changed nothing in the model.${I.reason?` ${esc(I.reason)}`:""}</div>`); }
     else {
-      const ch=(I.changes||[]).map(x=>{
-        const lbl=`${esc(x.op||"changed")} ${esc(x.unit||"")} · ${esc(x.label||x.ref||"")}`;
-        return (x.unit==="term"&&x.label)?`<a class="pn-change vocab-term" data-term="${esc(x.label)}">${lbl}</a>`:`<span class="pn-change">${lbl}</span>`;
-      }).join("");
+      const ch=(I.changes||[]).map(x=>`<a class="pn-change" data-unit="${esc(x.unit||'')}" data-ref="${esc(x.ref||'')}" data-label="${esc(x.label||'')}">${esc(x.op||"changed")} ${esc(x.unit||"")} · ${esc(x.label||x.ref||"")}</a>`).join("");
       const law=(I.relatesToLaw||[]).map(cchip).join(" ");
-      imp=block("What it changed", `${ch?`<div class="pn-changes">${ch}</div>`:""}${law?`<div class="pn-sub">Relates to law: ${law}</div>`:""}`);
+      const units=[...new Set((I.changes||[]).map(x=>x.unit).filter(Boolean))].join(" · ");
+      const body=`${ch?`<div class="pn-changes">${ch}</div>`:""}${law?`<div class="pn-sub">Relates to law: ${law}</div>`:""}`;
+      if(body) impAcc=accordion("What it changed",(I.changes||[]).length,units,body);
     }
-    // cross-state comparison
-    const cmp=block("Across states", (n.compare||[]).map(x=>
-      `<div class="pn-claim"><span class="verif verif-${esc(x.relation||'')}">${esc(x.relation||'')}</span><span class="pn-claim-t">${esc((stateById(x.place)||{}).name||x.place)}: ${esc(x.note||'')}</span></div>`).join(""));
-    c.innerHTML=`<div class="pn-q">${ic('messages-square')}<span>${esc(statement)}</span></div>
-      <div class="pn-who">${heard}${heard?" · ":""}${esc((stateById(n.place)||{}).name||n.place)}${n.date?` · ${esc(n.date)}`:""} ${secondhand}</div>
-      ${themes?`<div class="pn-themes">${themes}</div>`:""}
-      ${n.establishes?`<div class="pn-est"><span class="pn-lbl">Establishes</span> ${esc(n.establishes)}</div>`:""}
-      ${ver}${imp}${cmp}`;
+    const cmpBody=(n.compare||[]).map(x=>`<div class="pn-claim"><span class="verif verif-${esc(x.relation||'')}">${esc(x.relation||'')}</span><span class="pn-claim-t">${esc((stateById(x.place)||{}).name||x.place)}: ${esc(x.note||'')}</span></div>`).join("");
+    const cmpAcc=(n.compare||[]).length?accordion("Across states",n.compare.length,"",cmpBody):"";
+    c.innerHTML=`
+      <div class="pn-top">${n.serial?`<span class="pn-serial">${esc(n.serial)}</span>`:""}${tags?`<div class="pn-tags">${tags}</div>`:""}</div>
+      <blockquote class="pn-q"><span class="pn-q-ico">${ic("messages-square")}</span><span class="pn-q-t">${esc(statement)}</span></blockquote>
+      <button class="pn-more" hidden>more</button>
+      <div class="pn-who">${heard}${heard?" · ":""}${place}${n.date?` · ${esc(n.date)}`:""} ${secondhand}</div>
+      ${verAcc}${impAcc}${cmpAcc}`;
+    c.querySelectorAll(".pn-acc-head").forEach(h=>h.onclick=()=>{ const open=h.parentElement.classList.toggle("open"); h.setAttribute("aria-expanded",open?"true":"false"); });
+    const qt=c.querySelector(".pn-q-t"), more=c.querySelector(".pn-more");
+    qt.classList.add("is-clamped");
+    requestAnimationFrame(()=>{ if(qt.scrollHeight-qt.clientHeight>2){ more.hidden=false; more.onclick=()=>{ const clamped=qt.classList.toggle("is-clamped"); more.textContent=clamped?"more":"less"; }; } });
     return c;
   }
-  const render=list=>{ const wrap=el("div","pnotes"); list.forEach(n=>wrap.appendChild(pnote(n))); return wrap; };
-  if(here.length){ m.appendChild(el("h2","sec",`In ${esc(stName)}`)); m.appendChild(render(here)); }
-  if(rest.length){ m.appendChild(el("h2","sec",here.length?"Elsewhere":"Notes")); m.appendChild(render(rest)); }
+  function redraw(){
+    const filtered=notes.filter(n=>(fstate.place==="all"||n.place===fstate.place)&&(!fstate.tags.size||(n.tags||[]).some(t=>fstate.tags.has(t))));
+    let fh=`<div class="vfacet-row"><span class="vfacet-lbl">State</span><div class="chips">`
+      +pill("place","all","All states",notes.length,fstate.place==="all")
+      +statesPresent.map(s=>pill("place",s,(stateById(s)||{}).name||s,notes.filter(n=>n.place===s).length,fstate.place===s)).join("")
+      +`</div></div>`;
+    if(tagsPresent.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Tags</span><div class="chips">`+tagsPresent.map(t=>pill("tag",t,String(t).replace(/-/g,' '),notes.filter(n=>(n.tags||[]).includes(t)).length,fstate.tags.has(t))).join("")+`</div></div>`;
+    facets.innerHTML=fh;
+    list.innerHTML="";
+    if(!filtered.length){ list.appendChild(el("div","empty","No field notes match these filters.")); return; }
+    const byState={}; filtered.forEach(n=>{(byState[n.place]=byState[n.place]||[]).push(n);});
+    Object.keys(byState).forEach(pl=>{
+      list.appendChild(el("div","grouphead",`${esc((stateById(pl)||{}).name||pl)} <span class="gh-status">${byState[pl].length} note${byState[pl].length>1?'s':''}</span>`));
+      byState[pl].forEach(n=>list.appendChild(pnote(n)));
+    });
+  }
+  facets.addEventListener("click",e=>{ const p=e.target.closest(".chip"); if(!p) return; const fg=p.dataset.fg, fv=p.dataset.fv; if(fg==="place") fstate.place=fv; else if(fg==="tag"){ if(fstate.tags.has(fv)) fstate.tags.delete(fv); else fstate.tags.add(fv); } redraw(); });
+  redraw();
   return m;
 };
 
@@ -691,6 +720,7 @@ V.story=()=>{
       const num=(raw.split("·")[0].trim().split(".")[0].trim())||String(i+1);
       const title=raw.replace(/^\s*\d+\s*[·.\-]\s*/,"");
       const item=el("div","tl-item");
+      if(st.id) item.id="procstage-"+st.id;   // target for "what it changed" links from field notes
       let html=`<div class="tl-marker">${esc(num)}</div><div class="tl-content"><div class="tl-stage-title">${esc(title)}</div>`;
       const t=st.timing;
       if(t){
@@ -739,6 +769,7 @@ V.story=()=>{
       const flag = r.informal ? `<span class="role-flag" title="Some aspects are informal - see the field note">informal aspects</span>` : "";
       const prov = (r.sourceNotes&&r.sourceNotes.length) ? `<a class="role-prov" onclick="go('practice')">${ic('messages-square')} field note</a>` : "";
       const card=el("div","role-card role-"+(r.cat||"litigant"));
+      if(r.id) card.id="role-"+r.id;   // target for "what it changed" links from field notes
       card.innerHTML=`<div class="role-top"><span class="role-ico">${ic(cat.icon)}</span>
         <div class="role-id"><div class="role-name">${esc(r.role)}</div><div class="role-cat">${esc(cat.label)}</div></div></div>
         <div class="role-who">${esc(r.who)}</div>
@@ -1556,6 +1587,19 @@ function goStorySection(id){
   if(currentView!=="story"){ go("story"); setTimeout(scroll,110); }   // render first, then scroll
   else { const sw=$("#storyWrap"); if(sw) sw.classList.remove("ov-collapsed"); scroll(); }  // already here: just scroll
 }
+/* jump to a specific role or process stage on the story page (target of a field-note "what it changed" link) */
+function goStoryUnit(unit, id){
+  const domId = unit==="role" ? "role-"+id : unit==="process" ? "procstage-"+id : null;
+  if(!domId) return;
+  const scroll=()=>{ const t=document.getElementById(domId); if(t){ const y=t.getBoundingClientRect().top+window.scrollY-70; window.scrollTo({top:Math.max(0,y), behavior:"smooth"}); t.classList.add("sec-flash"); setTimeout(()=>t.classList.remove("sec-flash"),1300); } };
+  if(currentView!=="story"){ go("story"); setTimeout(scroll,140); } else scroll();
+}
+/* resolve a note's impact ref ("<state>:<unit>:<id>") to the right navigation */
+function goPracticeChange(unit, ref, label){
+  const id=String(ref||"").split(":").pop();
+  if(unit==="term"){ if(label) goVocabWord(label); return; }
+  if(unit==="role"||unit==="process"){ goStoryUnit(unit, id); return; }
+}
 function buildNav(){
   const c=caseById(activeCase);
   const nav=$("#nav");
@@ -1674,6 +1718,8 @@ document.addEventListener("click",e=>{
     if(ci.dataset.nat){ const [a,eid]=ci.dataset.nat.split(":"); if(SOURCES[a]) openActModal(a,eid); }
     else if(ci.dataset.akn){ openStateCiteModal(ci.dataset.akn, ci.dataset.eid, ci.dataset.title); }
     return; }
+  const pc=e.target.closest(".pn-change");
+  if(pc && pc.dataset.ref){ e.stopPropagation(); goPracticeChange(pc.dataset.unit, pc.dataset.ref, pc.dataset.label); return; }
   const vt=e.target.closest(".vocab-term");
   if(vt && vt.dataset.term){ e.stopPropagation(); goVocabWord(vt.dataset.term); return; }
   const se=e.target.closest(".stedge");
