@@ -166,6 +166,13 @@
       "domain": "access",
       "status": "in force",
       "file": "acts/akn/rights-of-persons-with-disabilities-act-2016.akn.xml"
+    },
+    "cpc": {
+      "uri": "/akn/in/act/1908/5",
+      "title": "Code of Civil Procedure, 1908",
+      "domain": "procedure",
+      "status": "in force",
+      "file": "acts/akn/code-of-civil-procedure-1908.akn.xml"
     }
   },
   "act_alias_map": [
@@ -1318,6 +1325,26 @@
       "role": "legal capacity",
       "applies": "always",
       "note": "Recognises the equal legal capacity of a person with disability to own and inherit property and control their financial affairs - the capacity behind a disabled party being drawer, payee or holder of the cheque and litigating over it."
+    },
+    {
+      "ref": "cpc:ord_6_r_1",
+      "act": "cpc",
+      "eId": "ord_6_r_1",
+      "file": "code-of-civil-procedure-1908.akn.xml",
+      "tier": "definition",
+      "role": "what a pleading is",
+      "applies": "always",
+      "note": "Defines a 'pleading' as a plaint or written statement (First Schedule, Order VI rule 1). A s.138 matter is a criminal complaint, not a suit, so the CPC does not govern it; this is pinned as the source of the drafting vocabulary the courts and e-filing rules borrow for the papers filed in the case."
+    },
+    {
+      "ref": "cpc:ord_7_r_7",
+      "act": "cpc",
+      "eId": "ord_7_r_7",
+      "file": "code-of-civil-procedure-1908.akn.xml",
+      "tier": "procedure",
+      "role": "the relief clause (prayer)",
+      "applies": "always",
+      "note": "Requires a plaint to state specifically the relief claimed (First Schedule, Order VII rule 7) - the origin of the 'prayer' in a petition. Drafting practice carries it into the s.138 complaint, where the prayer is to take cognizance and, on conviction, award a fine or compensation to the payee."
     }
   ],
   "terms": {
@@ -2106,6 +2133,27 @@
       "role": "remedy",
       "aka": [
         "writ petition"
+      ]
+    },
+    "pleading": {
+      "ref": "cpc:ord_6_r_1",
+      "gloss": "The formal written statements in which each side sets out its case. The Code of Civil Procedure, Order VI rule 1 defines a pleading as a plaint or written statement; in a s.138 prosecution the pleadings are the complaint with its annexures and the accused's reply or defence, and the filing and e-filing rules speak of scrutinising 'the pleadings and documents'. A civil-procedure term carried across into criminal filing practice.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "document",
+      "aka": [
+        "pleadings"
+      ]
+    },
+    "prayer": {
+      "ref": "cpc:ord_7_r_7",
+      "gloss": "The relief clause of a petition or complaint - the specific order the party asks the court to pass, usually set out and numbered at the end. The Code of Civil Procedure, Order VII rule 7 requires a plaint to state specifically the relief claimed; drafting practice carries the same 'prayer' into a s.138 complaint, where it asks the court to take cognizance and try the accused and, on conviction, award a fine or compensation to the payee.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "remedy",
+      "aka": [
+        "prayer clause",
+        "relief clause"
       ]
     }
   },

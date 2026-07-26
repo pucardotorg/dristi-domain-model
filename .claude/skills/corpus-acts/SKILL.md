@@ -104,6 +104,21 @@ Sections are addressed by `eId` (`sec_143`, `art_141`, `rule_50`) - the app find
 them with a global `[eId="…"]` lookup, so chapter nesting is optional but preferred
 where the Act has chapters.
 
+**Schedules with Orders/Rules (e.g. the CPC First Schedule).** The India Code
+converter does not recognise a First Schedule and sweeps the whole thing into the
+*last* section as one giant blob (the CPC had all 51 Orders inside `sec_158`). Fix
+it: strip the blob out of that section (restore the section to its own text), then
+structure the schedule as `<part><num>THE FIRST SCHEDULE</num>` → one `<chapter>`
+per Order (`<num>ORDER VI</num><heading>Pleadings generally</heading>`) → one
+`<section eId="ord_<n>_r_<m>">` per Rule. `actBlocks` renders part/chapter as
+separators and each rule as an addressable, openable row. Parse Orders by walking
+the monotonic roman sequence I..whatever (so cross-references like "in Order XXI"
+are skipped), split rules on `(\[?\d+[A-Z]?)\.\s+(heading up to the em-dash)—`, and
+**validate character-conservation** (sum of rule texts ≈ blob length) before
+writing - a 100% match means nothing was dropped or mis-grouped. Then the app's
+`secNum()` needs to know the eId shape: `ord_6_r_1` -> "Order VI r.1" (a roman
+helper), else the source line shows the raw "ord 6 r 1".
+
 ## Step 5 - Convert
 
 For an India Code central Act, the general converter auto-detects title, number,

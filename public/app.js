@@ -68,7 +68,14 @@ const docCache = {};   // actId -> parsed XML Document
 const $=(s,el=document)=>el.querySelector(s);
 const el=(t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
 const esc=s=>(s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-const secNum=ref=>ref.split(":")[1].replace("sec_","§").replace(/_/g," ");
+const ROMAN=[[1000,"M"],[900,"CM"],[500,"D"],[400,"CD"],[100,"C"],[90,"XC"],[50,"L"],[40,"XL"],[10,"X"],[9,"IX"],[5,"V"],[4,"IV"],[1,"I"]];
+const toRoman=n=>{let r="";for(const [v,s] of ROMAN){while(n>=v){r+=s;n-=v;}}return r;};
+const secNum=ref=>{
+  const e=ref.split(":")[1]||"";
+  const m=e.match(/^ord_(\d+)_r_(\w+)$/);           // CPC First Schedule: ord_6_r_1 -> Order VI r.1
+  if(m) return "Order "+toRoman(+m[1])+" r."+m[2];
+  return e.replace("sec_","§").replace("art_","Art. ").replace(/_/g," ");
+};
 const actOf=ref=>SOURCES[ref.split(":")[0]];
 const eraOf=a=>a==="always"?"always":(a.indexOf("pre")===0?"pre":"post");
 function eraFromStatus(s){ s=s||""; if(/from\s*2024/i.test(s))return"post"; if(/repealed/i.test(s))return"pre"; return"always"; }
