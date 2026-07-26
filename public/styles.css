@@ -508,7 +508,11 @@
 .tl-content{min-width:0; padding-top:6px}
 .tl-stage-title{font-size:15.5px; font-weight:700; color:var(--ink); letter-spacing:-.01em; margin-bottom:3px}
 /* process lens tabs */
-.proc-tabs{display:inline-flex; gap:2px; background:var(--panel-2); border:1px solid var(--line); border-radius:11px; padding:3px; margin:2px 0 18px; max-width:100%}
+.proc-section{position:relative}
+.proc-sentinel{height:0}
+/* the lens tabs pin to the top while scrolling the process, dock to the right when stuck, and release at the section end */
+.proc-tabs{display:flex; width:fit-content; gap:2px; background:var(--panel-2); border:1px solid var(--line); border-radius:11px; padding:3px; margin:2px 0 18px; max-width:100%; position:sticky; top:14px; z-index:6; transition:transform .25s ease, box-shadow .2s ease}
+.proc-tabs.is-stuck{box-shadow:var(--shadow-modal)}
 .proc-tab{display:inline-flex; flex-direction:column; align-items:flex-start; gap:1px; padding:6px 15px; border:none; background:transparent; border-radius:8px; color:var(--ink-2); font-family:inherit; cursor:pointer; text-align:left}
 .proc-tab .pt-main{font-size:13px; font-weight:600; line-height:1.25}
 .proc-tab .pt-sub{font-size:9.5px; font-weight:500; color:var(--ink-3); letter-spacing:.02em}
@@ -530,6 +534,7 @@
 .timeline.lens-regular .tl-tclock{color:var(--amber-txt)}
 .timeline.lens-oncourt .tl-tclock{color:var(--brand-hi)}
 .tl-steps{border-top:1px dashed var(--line)}
+@media(max-width:880px){ .proc-tabs{top:64px} }
 @media(max-width:560px){ .proc-tabs{display:flex; width:100%} .proc-tab{flex:1; padding:6px 8px} }
 .pstep{padding:12px 0; border-bottom:1px dashed var(--line)}
 .tl-steps .pstep:last-child{padding-bottom:0}

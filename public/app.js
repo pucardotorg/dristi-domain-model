@@ -617,7 +617,9 @@ V.story=()=>{
     const LENSES=[["prescribed","Prescribed","under the rules"],["regular","Regular court","typical timeline"],["oncourt","ON Court","24×7 special court"]];
     const tabs=el("div","proc-tabs");
     tabs.innerHTML=LENSES.map(([id,label,sub])=>`<button class="proc-tab tab-${id} ${processLens===id?'on':''}" data-lens="${id}"><span class="pt-main">${esc(label)}</span><span class="pt-sub">${esc(sub)}</span></button>`).join("");
-    m.appendChild(tabs);
+    const procSec=el("div","proc-section");
+    procSec.appendChild(el("div","proc-sentinel"));   // marks where the tabs start, for stuck-detection
+    procSec.appendChild(tabs);
     const tl=el("div","timeline lens-"+processLens);
     (S.process.stages||[]).forEach((st,i)=>{
       const raw=String(st.stage||"");
@@ -640,13 +642,25 @@ V.story=()=>{
       item.innerHTML=html;
       tl.appendChild(item);
     });
-    m.appendChild(tl);
-    if(S.process.timing_note) m.appendChild(el("div","story-note story-note-loose",esc(S.process.timing_note)));
+    procSec.appendChild(tl);
+    if(S.process.timing_note) procSec.appendChild(el("div","story-note story-note-loose",esc(S.process.timing_note)));
+    m.appendChild(procSec);
     tabs.querySelectorAll(".proc-tab").forEach(b=>b.onclick=()=>{
       processLens=b.dataset.lens;
       tabs.querySelectorAll(".proc-tab").forEach(x=>x.classList.toggle("on", x.dataset.lens===processLens));
       tl.className="timeline lens-"+processLens;
     });
+    // pin the lens tabs while scrolling the process, slide them to the right when stuck, release at the section end
+    if("IntersectionObserver" in window){
+      const io=new IntersectionObserver(([e])=>{
+        const stuck = !e.isIntersecting;
+        tabs.classList.toggle("is-stuck", stuck);
+        // slide to the right edge of the section when stuck (skip when the bar is full-width on mobile)
+        const avail = procSec.clientWidth - tabs.offsetWidth;
+        tabs.style.transform = (stuck && avail>4) ? "translateX("+avail+"px)" : "";
+      }, {rootMargin:"-14px 0px 0px 0px", threshold:0});
+      io.observe(procSec.querySelector(".proc-sentinel"));
+    }
   }
   // 2 - ROLES (who does what, and where each role is drawn from)
   if(S.roles){
