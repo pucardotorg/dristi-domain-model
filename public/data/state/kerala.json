@@ -831,6 +831,7 @@
       "items": [
         {
           "role": "Complainant",
+          "cat": "litigant",
           "who": "The payee or the holder in due course of the dishonoured cheque. Only this person can set a §138 case going, by filing the complaint in their own name.",
           "cite": [
             {
@@ -845,6 +846,7 @@
         },
         {
           "role": "Power-of-attorney holder",
+          "cat": "litigant",
           "who": "Where duly authorised and personally aware of the transaction, may file the complaint and depose on the complainant's behalf - a point the Supreme Court has settled for §138 cases. Stands in the payee's place, not as a separate party.",
           "cite": [
             {
@@ -855,6 +857,7 @@
         },
         {
           "role": "Accused",
+          "cat": "litigant",
           "who": "The drawer of the cheque, prosecuted for the dishonour. Where the drawer is a company, the company and every person who was in charge of and responsible to it.",
           "cite": [
             {
@@ -869,6 +872,7 @@
         },
         {
           "role": "Surety",
+          "cat": "litigant",
           "who": "Stands surety for the accused's release on bail, undertaking by bond to secure their appearance. The court tests the surety's sufficiency before accepting the bond.",
           "cite": [
             {
@@ -885,6 +889,7 @@
         },
         {
           "role": "Drawee bank",
+          "cat": "bank",
           "who": "The bank on which the cheque is drawn. Its return of the cheque unpaid is the event the offence turns on, and its return memo proves both the dishonour and the reason for it.",
           "cite": [
             {
@@ -903,6 +908,7 @@
         },
         {
           "role": "Witness",
+          "cat": "witness",
           "who": "Gives evidence on the facts. In a §138 case the complainant's evidence may be led on affidavit, and an officer of the drawee bank often proves the dishonour. A witness is sworn before deposing.",
           "cite": [
             {
@@ -918,6 +924,7 @@
         },
         {
           "role": "Advocate",
+          "cat": "advocate",
           "who": "The legal practitioner who appears for the complainant or the accused. The right to appear flows from enrolment under the Advocates Act.",
           "cite": [
             {
@@ -932,11 +939,13 @@
         },
         {
           "role": "Advocate's clerk",
+          "cat": "advclerk",
           "who": "Assists the advocate with filing, inspection of records and following the matter through the registry. A recognised court-precinct role rather than a statutory office.",
           "basis": "Court-precinct and registry practice, governed by the High Court's rules rather than a provision of the substantive law."
         },
         {
           "role": "Magistrate (JMFC)",
+          "cat": "judge",
           "who": "The Judicial Magistrate of the First Class who takes cognizance of the complaint, tries it summarily and passes judgment. In Kerala a §138 case may be assigned to the designated Special Court.",
           "cite": [
             {
@@ -951,6 +960,7 @@
         },
         {
           "role": "Chief Ministerial Officer",
+          "cat": "staff",
           "who": "The court's senior ministerial officer who signs and issues the summons and other process 'by order of the Court'.",
           "cite": [
             {
@@ -962,6 +972,7 @@
         },
         {
           "role": "Bench clerk",
+          "cat": "staff",
           "who": "The clerk who attends the sitting: calls the cases, marks the exhibits, and keeps the court diary and the proceedings paper - the running record of each hearing.",
           "cite": [
             {
@@ -983,6 +994,7 @@
         },
         {
           "role": "Stenographer",
+          "cat": "staff",
           "who": "Takes down the dictation of the depositions, orders and judgment. The depositions they record are headed and signed in the form the rules prescribe.",
           "cite": [
             {
@@ -999,6 +1011,7 @@
         },
         {
           "role": "Interpreter",
+          "cat": "staff",
           "who": "Interprets the evidence when a witness does not speak the court's language, which matters in Kerala where the court language is Malayalam. The interpreter is put on oath, and a police officer may not interpret the evidence.",
           "cite": [
             {
@@ -1015,6 +1028,7 @@
         },
         {
           "role": "Station House Officer",
+          "cat": "police",
           "who": "The local police officer who executes warrants and serves the process the court issues, as part of the statutory functions of the police.",
           "cite": [
             {

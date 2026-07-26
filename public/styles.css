@@ -493,7 +493,19 @@
 /* the roles: who does what, and the provision each is drawn from */
 .role-block{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px}
 .role-card{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 16px; display:flex; flex-direction:column}
-.role-name{font-size:14.5px; font-weight:700; color:var(--ink); letter-spacing:-.01em; margin-bottom:6px}
+.role-top{display:flex; align-items:center; gap:10px; margin-bottom:10px}
+.role-ico{flex:none; width:32px; height:32px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--panel-2); border:1px solid var(--line-2); color:var(--ink-2)}
+.role-ico svg.lu{width:16px; height:16px}
+.role-id{min-width:0}
+.role-cat{font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); margin-top:2px}
+.role-name{font-size:14.5px; font-weight:700; color:var(--ink); letter-spacing:-.01em}
+/* per-category colour on the icon badge + label */
+.role-litigant .role-ico{color:var(--blue-txt); background:var(--blue-dim); border-color:var(--blue-border)} .role-litigant .role-cat{color:var(--blue-txt)}
+.role-advocate .role-ico, .role-advclerk .role-ico{color:var(--brand-hi); background:var(--brand-dim); border-color:var(--brand-border)} .role-advocate .role-cat, .role-advclerk .role-cat{color:var(--brand-hi)}
+.role-judge .role-ico{color:var(--amber-txt); background:var(--amber-dim); border-color:var(--amber-border)} .role-judge .role-cat{color:var(--amber-txt)}
+.role-staff .role-ico{color:var(--purple-txt); background:var(--purple-dim); border-color:var(--purple-border)} .role-staff .role-cat{color:var(--purple-txt)}
+.role-police .role-ico{color:var(--red); background:var(--red-dim); border-color:var(--red-border)} .role-police .role-cat{color:var(--red)}
+.role-bank .role-ico{color:var(--green-txt); background:var(--green-dim); border-color:var(--green-border)} .role-bank .role-cat{color:var(--green-txt)}
 .role-who{font-size:13px; color:var(--ink-2); line-height:1.55; margin-bottom:14px}
 .role-src{display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:auto}
 .role-src-l{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}

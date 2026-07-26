@@ -598,6 +598,16 @@ function citeRow(list, amap){
   if(!list || !list.length) return `<span class="cite cite-none">Kerala adds nothing here - uniform central law</span>`;
   return `<span class="cites">${list.map(c=>citeChip(c,amap)).join("")}</span>`;
 }
+const ROLE_CATS={
+  litigant:{label:"Litigant", icon:"user"},
+  advocate:{label:"Advocate", icon:"briefcase"},
+  advclerk:{label:"Advocate clerk", icon:"user"},
+  judge:{label:"Judge", icon:"gavel"},
+  staff:{label:"Court staff", icon:"users"},
+  police:{label:"Police", icon:"shield"},
+  bank:{label:"Bank", icon:"landmark"},
+  witness:{label:"Witness", icon:"user-check"},
+};
 V.story=()=>{
   if(!isModelled()) return notModelled();
   const stName=stateById(activeState).name;
@@ -670,8 +680,10 @@ V.story=()=>{
     (S.roles.items||[]).forEach(r=>{
       const src = (r.cite && r.cite.length) ? citeRow(r.cite,amap)
                 : (r.basis?`<span class="role-basis">${esc(r.basis)}</span>`:"");
-      const card=el("div","role-card");
-      card.innerHTML=`<div class="role-name">${esc(r.role)}</div>
+      const cat=ROLE_CATS[r.cat]||ROLE_CATS.litigant;
+      const card=el("div","role-card role-"+(r.cat||"litigant"));
+      card.innerHTML=`<div class="role-top"><span class="role-ico">${ic(cat.icon)}</span>
+        <div class="role-id"><div class="role-name">${esc(r.role)}</div><div class="role-cat">${esc(cat.label)}</div></div></div>
         <div class="role-who">${esc(r.who)}</div>
         ${src?`<div class="role-src"><span class="role-src-l">From</span> ${src}</div>`:""}`;
       rb.appendChild(card);
