@@ -523,22 +523,57 @@ V.practice=()=>{
   const m=el("div"); m.appendChild(scopeBar());
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Local practice</h1>
-    <p class="lede">The part of the domain no Act writes down - how a ${caseById(activeCase).name.toLowerCase()} case is actually filed, moved and disposed on the ground. Field notes on local practice the statute leaves unsaid; it changes by state.</p>
-    <div class="pnote-flag">Illustrative - the kind of field note this section will hold. Not a verified transcript.</div>`;
+    <p class="lede">The part of the domain no Act writes down - how a ${caseById(activeCase).name.toLowerCase()} case is actually filed, moved and disposed on the ground. Field notes from people who run the process, each attributed and cross-checked against the rules; it changes by state.</p>`;
   m.appendChild(head);
   const here=PRACTICE_NOTES.filter(n=>n.place===activeState);
   const rest=PRACTICE_NOTES.filter(n=>n.place!==activeState);
-  const render=list=>{
-    const wrap=el("div","pnotes");
-    list.forEach(n=>{
-      const c=el("div","pnote");
-      c.innerHTML=`<div class="pn-q">${ic('messages-square')}<span>${esc(n.quote)}</span></div>
-        <div class="pn-who">${esc(n.who)} · ${esc(stateById(n.place).name)}</div>
-        <div class="pn-est"><span class="pn-lbl">Establishes</span> ${esc(n.establishes)}</div>`;
-      wrap.appendChild(c);
-    });
-    return wrap;
-  };
+  const amap=stateAliasMap();
+  const cchip=c=>citeChip(c,amap);
+  // fully generic over the note schema - a new field flows through with no code change
+  function pnote(n){
+    const c=el("div","pnote");
+    const A=n.attribution||{};
+    const heard = A.heardFrom ? `${esc(A.heardFrom)}${A.affiliation?` (${esc(A.affiliation)})`:""}` : (n.who?esc(n.who):"");
+    const secondhand = A.secondhand ? `<span class="pn-2nd" title="${esc(A.originalSource||'relayed; may be secondhand')}">relayed · may be secondhand</span>` : "";
+    const statement = n.statement || n.quote || "";
+    const themes = (n.themes||[]).map(t=>`<span class="pn-theme">${esc(String(t).replace(/-/g,' '))}</span>`).join("");
+    const block=(h,inner)=> inner ? `<div class="pn-block"><div class="pn-h">${esc(h)}</div>${inner}</div>` : "";
+    // verification - one row per claim, chip class derived from the status slug (CSS colours it)
+    const claims=(n.verification&&n.verification.claims)||[];
+    const ver=block("Verification", claims.map(cl=>{
+      const st=String(cl.status||"unverified");
+      const ev=(cl.evidence||[]).map(cchip).join(" ");
+      const meta=[cl.by,cl.on].filter(Boolean).join(" · ");
+      return `<div class="pn-claim"><span class="verif verif-${esc(st)}">${esc(st.replace(/-/g,' '))}</span>
+        <span class="pn-claim-t">${esc(cl.claim||"")}</span>
+        ${cl.method?`<div class="pn-sub">${esc(cl.method)}${meta?` - ${esc(meta)}`:""}</div>`:""}
+        ${cl.note?`<div class="pn-sub">${esc(cl.note)}</div>`:""}
+        ${cl.toCheck?`<div class="pn-sub pn-tocheck">To check: ${esc(cl.toCheck)}</div>`:""}
+        ${ev?`<div class="pn-sub">Evidence: ${ev}</div>`:""}</div>`;
+    }).join(""));
+    // impact - what the note changed (linked), or an explicit "changed nothing"
+    const I=n.impact||{};
+    let imp="";
+    if(I.changed===false){ imp=block("Impact", `<div class="pn-sub">Changed nothing in the model.${I.reason?` ${esc(I.reason)}`:""}</div>`); }
+    else {
+      const ch=(I.changes||[]).map(x=>{
+        const lbl=`${esc(x.op||"changed")} ${esc(x.unit||"")} · ${esc(x.label||x.ref||"")}`;
+        return (x.unit==="term"&&x.label)?`<a class="pn-change vocab-term" data-term="${esc(x.label)}">${lbl}</a>`:`<span class="pn-change">${lbl}</span>`;
+      }).join("");
+      const law=(I.relatesToLaw||[]).map(cchip).join(" ");
+      imp=block("What it changed", `${ch?`<div class="pn-changes">${ch}</div>`:""}${law?`<div class="pn-sub">Relates to law: ${law}</div>`:""}`);
+    }
+    // cross-state comparison
+    const cmp=block("Across states", (n.compare||[]).map(x=>
+      `<div class="pn-claim"><span class="verif verif-${esc(x.relation||'')}">${esc(x.relation||'')}</span><span class="pn-claim-t">${esc((stateById(x.place)||{}).name||x.place)}: ${esc(x.note||'')}</span></div>`).join(""));
+    c.innerHTML=`<div class="pn-q">${ic('messages-square')}<span>${esc(statement)}</span></div>
+      <div class="pn-who">${heard}${heard?" · ":""}${esc((stateById(n.place)||{}).name||n.place)}${n.date?` · ${esc(n.date)}`:""} ${secondhand}</div>
+      ${themes?`<div class="pn-themes">${themes}</div>`:""}
+      ${n.establishes?`<div class="pn-est"><span class="pn-lbl">Establishes</span> ${esc(n.establishes)}</div>`:""}
+      ${ver}${imp}${cmp}`;
+    return c;
+  }
+  const render=list=>{ const wrap=el("div","pnotes"); list.forEach(n=>wrap.appendChild(pnote(n))); return wrap; };
   if(here.length){ m.appendChild(el("h2","sec",`In ${esc(stName)}`)); m.appendChild(render(here)); }
   if(rest.length){ m.appendChild(el("h2","sec",here.length?"Elsewhere":"Notes")); m.appendChild(render(rest)); }
   return m;
@@ -691,11 +726,14 @@ V.story=()=>{
       const src = (r.cite && r.cite.length) ? citeRow(r.cite,amap)
                 : (r.basis?`<span class="role-basis">${esc(r.basis)}</span>`:"");
       const cat=ROLE_CATS[r.cat]||ROLE_CATS.litigant;
+      // generic markers from the data: an "informal aspects" flag and a link to the source field note
+      const flag = r.informal ? `<span class="role-flag" title="Some aspects are informal - see the field note">informal aspects</span>` : "";
+      const prov = (r.sourceNotes&&r.sourceNotes.length) ? `<a class="role-prov" onclick="go('practice')">${ic('messages-square')} field note</a>` : "";
       const card=el("div","role-card role-"+(r.cat||"litigant"));
       card.innerHTML=`<div class="role-top"><span class="role-ico">${ic(cat.icon)}</span>
         <div class="role-id"><div class="role-name">${esc(r.role)}</div><div class="role-cat">${esc(cat.label)}</div></div></div>
         <div class="role-who">${esc(r.who)}</div>
-        ${src?`<div class="role-src"><span class="role-src-l">From</span> ${src}</div>`:""}`;
+        ${(src||flag||prov)?`<div class="role-src">${src?`<span class="role-src-l">From</span> ${src}`:""}${flag}${prov}</div>`:""}`;
       rb.appendChild(card);
     });
     m.appendChild(rb);

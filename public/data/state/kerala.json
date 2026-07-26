@@ -581,6 +581,34 @@
           "CRP",
           "Criminal Rules"
         ]
+      },
+      {
+        "id": "scrutiny-officer",
+        "word": "Scrutiny officer",
+        "gloss": "The court official (part of the Registry / ministerial establishment) who scrutinises a complaint and its documents for defects before it is numbered and placed for cognizance. On e-filing the Registry scrutinises and notes objections (E-Filing Rules r.17); a defective petition is not numbered and is returned for amendment and representation (CRP r.68). 'Scrutiny officer' is the functional name used on the ground; the rules name 'the Registry' or the 'officer concerned', not this title.",
+        "source": "E-Filing Rules, Kerala, r.17 (read with CRP r.68)",
+        "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
+        "eId": "rule_17",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor",
+        "informal": {
+          "title": "the title is functional, not a titled post in the rules",
+          "practice": "reported holding of files for payment (Mehul, PUCAR; unverified)"
+        },
+        "relatesToLaw": [
+          {
+            "l": "CRP r.68",
+            "s": "crp",
+            "e": "rule_68"
+          }
+        ],
+        "sourceNotes": [
+          "ke-scrutiny-officer-2026-07"
+        ],
+        "themes": [
+          "pre-cognizance-scrutiny"
+        ]
       }
     ]
   },
@@ -638,6 +666,46 @@
                 }
               ]
             }
+          ]
+        },
+        {
+          "id": "scrutiny-defect-check",
+          "stage": "1b · Scrutiny & defect check",
+          "timing": {
+            "prescribed": "-",
+            "regular": "Days to a couple of weeks",
+            "oncourt": "Same day; e-scrutiny by the Registry"
+          },
+          "steps": [
+            {
+              "t": "Before the complaint is numbered and placed for cognizance it is scrutinised for defects. On e-filing the Registry scrutinises the pleadings and documents and notes objections; a defective petition is not numbered and is returned to the party, pleader or officer concerned for amendment and representation.",
+              "c": [
+                {
+                  "l": "E-Filing Rules r.17",
+                  "s": "kefr",
+                  "e": "rule_17"
+                },
+                {
+                  "l": "CRP r.68",
+                  "s": "crp",
+                  "e": "rule_68"
+                }
+              ]
+            },
+            {
+              "t": "On the ground this is done by an official commonly called the scrutiny officer. Reported (Mehul, PUCAR; unverified): defects are sometimes not marked properly and files held so the advocate approaches the officer and may pay to move the file forward. The scrutiny function is in the rules; the title and this practice are not.",
+              "informal": true,
+              "sourceNotes": [
+                "ke-scrutiny-officer-2026-07"
+              ],
+              "c": []
+            }
+          ],
+          "sourceNotes": [
+            "ke-scrutiny-officer-2026-07"
+          ],
+          "themes": [
+            "pre-cognizance-scrutiny"
           ]
         },
         {
@@ -1185,6 +1253,35 @@
               "l": "Police Act §23",
               "n": "police1861:sec_23"
             }
+          ]
+        },
+        {
+          "id": "scrutiny-officer",
+          "role": "Scrutiny officer",
+          "cat": "staff",
+          "term": "scrutiny-officer",
+          "who": "The court official (part of the Registry / ministerial establishment) who scrutinises a complaint and its documents for defects before it is numbered and placed for cognizance, noting objections or returning it for amendment.",
+          "cite": [
+            {
+              "l": "E-Filing Rules r.17",
+              "s": "kefr",
+              "e": "rule_17"
+            },
+            {
+              "l": "CRP r.68",
+              "s": "crp",
+              "e": "rule_68"
+            }
+          ],
+          "informal": {
+            "title": "'Scrutiny officer' is the functional name used on the ground; the rules assign scrutiny to 'the Registry' (E-Filing Rules r.17) and returns to the 'officer concerned' (CRP r.68).",
+            "practice": "Reported (Mehul, PUCAR; unverified): defects are sometimes not marked properly and files held so the advocate approaches the officer and may pay to move the file forward."
+          },
+          "sourceNotes": [
+            "ke-scrutiny-officer-2026-07"
+          ],
+          "themes": [
+            "pre-cognizance-scrutiny"
           ]
         }
       ]

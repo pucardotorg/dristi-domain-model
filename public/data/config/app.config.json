@@ -58,28 +58,109 @@
   ],
   "practice_notes": [
     {
-      "quote": "For a cheque bounce we always file in the branch's town, not where the drawer lives. The magistrate here knows the bankers, it moves faster.",
-      "who": "Advocate, trial court",
+      "id": "ke-scrutiny-officer-2026-07",
       "place": "kerala",
-      "establishes": "Forum choice by local convenience - a habit that sits on top of the §142 jurisdiction rules, not in them."
-    },
-    {
-      "quote": "The registry won't take the complaint without the original memo of dishonour stapled on top, even though the section only needs the fact of return.",
-      "who": "Filing clerk",
-      "place": "kerala",
-      "establishes": "A documentary norm enforced at the counter that is stricter than the statute's own requirement."
-    },
-    {
-      "quote": "Nine out of ten of these settle the day the accused is first summoned. Nobody wants the conviction; they want the money and the compounding.",
-      "who": "Retired judicial officer",
-      "place": "haryana",
-      "establishes": "The real disposal path - compounding under §147 - dwarfs contested trial, though the Act treats trial as the default."
-    },
-    {
-      "quote": "Banks here file in bulk - a clerk brings fifty complaints in one folder. We've built our own numbering just to keep the batch together.",
-      "who": "Bench clerk",
-      "place": "gujarat",
-      "establishes": "Institutional-filer reality that shapes court workflow well before any rule of procedure applies."
+      "date": "2026-07-26",
+      "attribution": {
+        "heardFrom": "Mehul",
+        "affiliation": "PUCAR Team",
+        "secondhand": true,
+        "originalSource": "as relayed by Mehul; ultimate source likely court staff or field observation"
+      },
+      "statement": "In Kerala a scrutiny officer reviews litigant and advocate submissions and marks defects before the file is sent for taking cognizance. Reportedly the role is informal and not in the rules, and the officer often does not mark defects properly, holding files so the advocate approaches him and may make a payment to move the file forward.",
+      "themes": [
+        "pre-cognizance-scrutiny",
+        "gatekeeping-rent-seeking"
+      ],
+      "verification": {
+        "status": "mixed",
+        "claims": [
+          {
+            "claim": "a defect-scrutiny step happens before cognizance",
+            "status": "corroborated",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.17",
+                "s": "kefr",
+                "e": "rule_17"
+              },
+              {
+                "l": "CRP r.68",
+                "s": "crp",
+                "e": "rule_68"
+              }
+            ],
+            "by": "DRISTI (Claude)",
+            "on": "2026-07-26"
+          },
+          {
+            "claim": "the scrutiny role is informal and not in the rules",
+            "status": "contradicted",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.17",
+                "s": "kefr",
+                "e": "rule_17"
+              },
+              {
+                "l": "CRP r.68",
+                "s": "crp",
+                "e": "rule_68"
+              }
+            ],
+            "by": "DRISTI (Claude)",
+            "on": "2026-07-26",
+            "note": "Scrutiny is a formal function: the Registry scrutinises filings and notes objections under E-Filing Rules r.17, and CRP r.68 requires defective petitions to be returned for amendment and representation. Only the specific title 'scrutiny officer' and the file-holding-for-payment fall outside the rules."
+          },
+          {
+            "claim": "files are held so the advocate pays to move them",
+            "status": "reported-allegation",
+            "toCheck": "not established as fact; needs field corroboration - who, how often, which courts"
+          }
+        ]
+      },
+      "impact": {
+        "changed": true,
+        "changes": [
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "kerala:term:scrutiny-officer",
+            "label": "Scrutiny officer"
+          },
+          {
+            "unit": "role",
+            "op": "created",
+            "ref": "kerala:role:scrutiny-officer",
+            "label": "Scrutiny officer"
+          },
+          {
+            "unit": "process",
+            "op": "created",
+            "ref": "kerala:process:scrutiny-defect-check",
+            "label": "1b · Scrutiny & defect check"
+          }
+        ],
+        "relatesToLaw": [
+          {
+            "l": "E-Filing Rules r.17",
+            "s": "kefr",
+            "e": "rule_17",
+            "relation": "governs",
+            "note": "the Registry scrutinises filings and notes objections"
+          },
+          {
+            "l": "CRP r.68",
+            "s": "crp",
+            "e": "rule_68",
+            "relation": "governs",
+            "note": "defective petitions are returned for amendment and representation"
+          }
+        ]
+      },
+      "compare": []
     }
   ],
   "domain_labels": {

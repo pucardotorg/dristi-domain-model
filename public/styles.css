@@ -439,6 +439,24 @@
   .pn-who{font-size:12.5px; color:var(--ink-3); margin:10px 0 0; padding-left:29px}
   .pn-est{font-size:13px; color:var(--ink-2); line-height:1.5; margin:13px 0 0; padding:12px 0 0; border-top:1px solid var(--line-2)}
   .pn-lbl{font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--brand-hi); font-weight:700; margin-right:8px}
+  .pn-2nd{font-size:10.5px; color:var(--amber); background:color-mix(in srgb,var(--amber) 12%,transparent); border:1px solid color-mix(in srgb,var(--amber) 30%,transparent); border-radius:20px; padding:1px 8px; margin-left:6px; white-space:nowrap}
+  .pn-themes{display:flex; flex-wrap:wrap; gap:6px; margin:9px 0 0; padding-left:29px}
+  .pn-theme{font-size:10.5px; color:var(--ink-3); background:var(--panel-2); border:1px solid var(--line); border-radius:5px; padding:1px 8px}
+  .pnote .pn-block{margin:13px 0 0; padding:12px 0 0; border-top:1px solid var(--line-2)}
+  .pn-h{font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); font-weight:700; margin:0 0 8px}
+  .pn-claim{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; margin:0 0 9px}
+  .pn-claim-t{font-size:13px; color:var(--ink-2); line-height:1.45; flex:1 1 60%; min-width:220px}
+  .pn-sub{flex-basis:100%; font-size:12px; color:var(--ink-3); line-height:1.5; margin:3px 0 0; padding-left:0}
+  .pn-sub .cite{font-size:12px}
+  .pn-tocheck{color:var(--amber)}
+  /* verification / relation chip - colour is derived from the status slug, so new statuses need no code */
+  .verif{font-size:10px; letter-spacing:.04em; text-transform:uppercase; font-weight:700; border-radius:5px; padding:2px 7px; border:1px solid var(--line-2); color:var(--ink-2); background:var(--panel-2); white-space:nowrap}
+  .verif-corroborated,.verif-verified,.verif-similar{color:var(--brand-hi); background:var(--brand-dim); border-color:var(--brand-border)}
+  .verif-contradicted{color:#e5484d; background:color-mix(in srgb,#e5484d 12%,transparent); border-color:color-mix(in srgb,#e5484d 34%,transparent)}
+  .verif-reported-allegation,.verif-needs-check,.verif-unverified,.verif-diverges{color:var(--amber); background:color-mix(in srgb,var(--amber) 12%,transparent); border-color:color-mix(in srgb,var(--amber) 32%,transparent)}
+  .pn-changes{display:flex; flex-wrap:wrap; gap:7px; margin:0 0 4px}
+  .pn-change{font-size:12px; color:var(--ink-2); background:var(--panel-2); border:1px solid var(--line); border-radius:6px; padding:2px 9px}
+  a.pn-change{cursor:pointer; border-bottom:1px dotted var(--ink-3)} a.pn-change:hover{color:var(--brand-hi); border-color:var(--brand)}
   .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:var(--ink-2); margin:10px 0 4px}
   .legend span{display:flex; align-items:center; gap:6px}
   .backlink{cursor:pointer; font-size:12.5px; color:var(--ink-3)}
@@ -523,6 +541,8 @@
 .role-src{display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:auto}
 .role-src-l{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
 .role-basis{font-size:12px; font-style:italic; color:var(--ink-3); line-height:1.5}
+.role-flag{font-size:9.5px; letter-spacing:.04em; text-transform:uppercase; font-weight:700; color:var(--amber); background:color-mix(in srgb,var(--amber) 12%,transparent); border:1px solid color-mix(in srgb,var(--amber) 30%,transparent); border-radius:5px; padding:1px 7px}
+.role-prov{font-size:11px; color:var(--ink-3); cursor:pointer; display:inline-flex; align-items:center; gap:4px} .role-prov:hover{color:var(--brand-hi)} .role-prov svg.lu{width:12px; height:12px}
 .story-sec-h>span:first-child{display:block; font-size:18px; font-weight:700; letter-spacing:-.01em; color:var(--ink)}
 .story-sec-h .ssh-sub{display:block; margin-top:5px; font-size:13px; color:var(--ink-2); font-weight:400; max-width:760px; line-height:1.55}
 /* process timeline: a numbered spine, each stage carrying prescribed vs actual timings */
