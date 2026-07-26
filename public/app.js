@@ -21,6 +21,7 @@ let CASE_TYPES = [];
 let activeCase = "active";
 let overviewOpen = false;
 let currentView = "overview";
+let processLens = "prescribed";   // which lens the story "process" is viewed through
 const OV_SUBVIEWS = ["structure","split","time"];
 
 let JURISDICTIONS = [];
@@ -594,10 +595,15 @@ V.story=()=>{
   const amap=stateAliasMap();
   const secH=(id,t,sub)=>{ const d=el("div","story-sec-h",`<span>${esc(t)}</span>${sub?`<span class="ssh-sub">${esc(sub)}</span>`:''}`); d.id="story-"+id; return d; };
 
-  // 1 - PROCESS (a timeline: one marker per stage, with prescribed vs actual timings)
+  // 1 - PROCESS (a timeline, viewed through one of three lenses via tabs)
   if(S.process){
     m.appendChild(secH("process","The process - filing to disposal", S.process.summary));
-    const tl=el("div","timeline");
+    // lens tabs
+    const LENSES=[["prescribed","Prescribed","under the rules"],["regular","Regular court","typical timeline"],["oncourt","ON Court","24×7 special court"]];
+    const tabs=el("div","proc-tabs");
+    tabs.innerHTML=LENSES.map(([id,label,sub])=>`<button class="proc-tab tab-${id} ${processLens===id?'on':''}" data-lens="${id}"><span class="pt-main">${esc(label)}</span><span class="pt-sub">${esc(sub)}</span></button>`).join("");
+    m.appendChild(tabs);
+    const tl=el("div","timeline lens-"+processLens);
     (S.process.stages||[]).forEach((st,i)=>{
       const raw=String(st.stage||"");
       const num=(raw.split("·")[0].trim().split(".")[0].trim())||String(i+1);
@@ -606,11 +612,11 @@ V.story=()=>{
       let html=`<div class="tl-marker">${esc(num)}</div><div class="tl-content"><div class="tl-stage-title">${esc(title)}</div>`;
       const t=st.timing;
       if(t){
-        const tv=(cls,label,val)=>`<span class="tl-t ${cls}"><span class="tl-tclock">${ic('clock')}</span><span class="tl-tlabel">${label}</span><span class="tl-tval">${val}</span></span>`;
+        const tv=(cls,val)=>`<span class="tl-t ${cls}"><span class="tl-tclock">${ic('clock')}</span><span class="tl-tval">${val}</span></span>`;
         html+=`<div class="tl-timing">`
-          +tv("tl-presc","Prescribed", t.prescribed?esc(t.prescribed):"No fixed limit")
-          +tv("tl-reg","Regular court", esc(t.regular||"-"))
-          +tv("tl-on","ON Court", esc(t.oncourt||"-"))
+          +tv("tl-presc", t.prescribed?esc(t.prescribed):"No fixed limit")
+          +tv("tl-reg", esc(t.regular||"-"))
+          +tv("tl-on", esc(t.oncourt||"-"))
           +`</div>`;
       }
       html+=`<div class="tl-steps">`;
@@ -621,6 +627,11 @@ V.story=()=>{
     });
     m.appendChild(tl);
     if(S.process.timing_note) m.appendChild(el("div","story-note story-note-loose",esc(S.process.timing_note)));
+    tabs.querySelectorAll(".proc-tab").forEach(b=>b.onclick=()=>{
+      processLens=b.dataset.lens;
+      tabs.querySelectorAll(".proc-tab").forEach(x=>x.classList.toggle("on", x.dataset.lens===processLens));
+      tl.className="timeline lens-"+processLens;
+    });
   }
   // 2 - ROLES (who does what, and where each role is drawn from)
   if(S.roles){
