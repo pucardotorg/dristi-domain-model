@@ -12,13 +12,27 @@ layout. Here we use the raw (reflowed) pdftotext, where the text appears as:
 
 Sections start at a standalone `N.` line; the heading is the short preceding
 line(s); the body runs to the next section. Best-effort headings (marginal notes
-reflow imperfectly), clean bodies. Usage:
+reflow imperfectly), clean bodies.
+
+IMPORTANT - state gazette PDFs are often BUNDLES: the principal Act followed by
+the gazette pages of one or more later Amendment Acts. Each amendment Act restarts
+at section 1, so without a stop point this parser reads them as further sections of
+the principal Act - producing phantom provisions and duplicate eIds, which is
+schema-INVALID (Akoma Ntoso requires @eId to be unique document-wide) even though
+`xmllint --noout` passes. Use --cut-before/--cut-after to end the input at the
+principal Act; the uniqueness guard fails the build if a duplicate survives.
+
+Usage:
 
     python3 scripts/convert_marginal_act.py --pdf <in.pdf> --out <out.akn.xml> \
-        --title "..." --number N --year Y --date YYYY-MM-DD
+        --title "..." --number N --year Y --date YYYY-MM-DD \
+        [--cut-before REGEX] [--cut-after REGEX]
 """
 import re, sys, argparse, subprocess, html
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from akn_ids import assert_unique_eids
 
 def esc(t): return html.escape(t, quote=True)
 
@@ -28,10 +42,35 @@ def main():
     ap.add_argument("--title", required=True); ap.add_argument("--number", type=int, required=True)
     ap.add_argument("--year", type=int, required=True); ap.add_argument("--date", required=True)
     ap.add_argument("--longtitle", default="")
+    ap.add_argument("--cut-before", default="",
+                    help="drop everything from the first line matching this regex onward "
+                         "(use it to cut appended Amendment Act gazettes)")
+    ap.add_argument("--cut-after", default="",
+                    help="drop everything after the first line matching this regex")
     a = ap.parse_args()
 
     raw = subprocess.check_output(["pdftotext", str(a.pdf), "-"]).decode("utf-8", "replace")
     lines = [l.rstrip() for l in raw.split("\n")]
+
+    # end the input at the principal Act, before any appended amendment gazettes
+    if a.cut_before:
+        rx = re.compile(a.cut_before)
+        for i, l in enumerate(lines):
+            if rx.search(l.strip()):
+                print(f"  cut-before matched at line {i + 1}: {l.strip()[:60]!r}")
+                lines = lines[:i]
+                break
+        else:
+            sys.exit(f"ERROR: --cut-before {a.cut_before!r} matched nothing.")
+    if a.cut_after:
+        rx = re.compile(a.cut_after)
+        for i, l in enumerate(lines):
+            if rx.search(l.strip()):
+                print(f"  cut-after matched at line {i + 1}: {l.strip()[:60]!r}")
+                lines = lines[:i + 1]
+                break
+        else:
+            sys.exit(f"ERROR: --cut-after {a.cut_after!r} matched nothing.")
 
     # drop page furniture
     JUNK = re.compile(r'^(HARYANA ACT|THE HARYANA|\s*\d+\s*$|Page \d+|PART|GOVERNMENT OF|EXTRAORDINARY|PUBLISHED BY)', re.I)
@@ -122,6 +161,7 @@ def main():
   </act>
 </akomaNtoso>
 '''
+    assert_unique_eids(doc, Path(a.out).name)
     Path(a.out).write_text(doc, encoding="utf-8")
     print(f"wrote {a.out}: {len(sections)} sections")
 

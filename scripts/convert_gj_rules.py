@@ -39,6 +39,11 @@ import re, html, datetime, sys
 from pathlib import Path
 import xml.dom.minidom as M
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+from akn_ids import assert_unique_eids
+
 REPO = Path(__file__).resolve().parent.parent
 SRC = REPO / "public" / "data" / "state" / "gujarat" / "sources"
 OUT = REPO / "public" / "data" / "state" / "gujarat" / "akn"
@@ -475,6 +480,7 @@ def main(only=None):
         text = raw_text(cfg, slug)
         xml, n = build(slug, cfg, text)
         M.parseString(xml)
+        assert_unique_eids(xml, slug)
         (OUT / f"{slug}.akn.xml").write_text(xml)
         print(f"  -> {n} units, {len(xml)} bytes")
 

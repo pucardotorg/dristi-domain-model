@@ -24,7 +24,7 @@ Generated from the data - the field meanings and the **enumerations are derived 
 - `provisions[].tier` - `operative`, `definition`, `supporting`, `procedure`, `evidence`, `notice`, `limitation`, `sentencing`, `constitutional`
 - `terms[].pos` - `noun`, `verb`
 - `terms[].role` - `document`, `actor`, `procedure`, `doctrine`, `remedy`, `forum`
-- `story.roles.items[].cat` - `staff`, `litigant`, `bank`, `witness`, `advocate`, `advclerk`, `judge`, `police`
+- `story.roles.items[].cat` - `litigant`, `bank`, `witness`, `advocate`, `advclerk`, `judge`, `staff`, `police`
 - `verification.claims[].status` - `corroborated`, `contradicted`, `reported-allegation`, `needs-check`, `reported-practice`
 - `compare[].relation` - `similar`
 - national vocab `group` - `The cheque & the instrument`, `Parties & liability`, `The offence (§138)`, `Presumptions & evidence`, `Procedure & process`, `Notice, limitation & disposal`, `Constitutional & powers`

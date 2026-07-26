@@ -111,13 +111,13 @@
                   "cat": {
                     "type": "string",
                     "enum": [
-                      "staff",
                       "litigant",
                       "bank",
                       "witness",
                       "advocate",
                       "advclerk",
                       "judge",
+                      "staff",
                       "police"
                     ]
                   },

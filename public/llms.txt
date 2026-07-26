@@ -12,7 +12,7 @@ For agents: start with the denormalized bundle - it joins the profile, the state
 ## Raw data (source of truth)
 - [/data/profiles/cheque-dishonour-s138.profile.json](/data/profiles/cheque-dishonour-s138.profile.json): national provisions + vocabulary.
 - [/data/config/app.config.json](/data/config/app.config.json): case types, jurisdictions, field notes.
-- State layers: [/data/state/haryana.json](/data/state/haryana.json) · [/data/state/kerala.json](/data/state/kerala.json)
+- State layers: [/data/state/gujarat.json](/data/state/gujarat.json) · [/data/state/haryana.json](/data/state/haryana.json) · [/data/state/kerala.json](/data/state/kerala.json)
 - [/data/caselaw/cheque-dishonour-s138.caselaw.json](/data/caselaw/cheque-dishonour-s138.caselaw.json): case-law dataset.
 - Statute corpus: 24 Akoma Ntoso XML files under [/data/acts/akn/](/data/acts/akn/) (national) and /data/state/<state>/akn/.
 

@@ -15,6 +15,11 @@ import re, html, datetime, subprocess
 from pathlib import Path
 import xml.dom.minidom as M
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+from akn_ids import assert_unique_eids
+
 REPO = Path(__file__).resolve().parent.parent
 PDF  = REPO / "public/data/acts/sources/police-act-1861.pdf"
 OUT  = REPO / "public/data/acts/akn/police-act-1861.akn.xml"
@@ -180,6 +185,7 @@ DOC = f'''<?xml version="1.0" encoding="UTF-8"?>
 
 # pretty-print / validate well-formedness
 dom = M.parseString(DOC)
+assert_unique_eids(DOC, OUT.name)
 OUT.write_text(DOC, encoding="utf-8")
 print(f"wrote {OUT}  ({len(sections)} sections)")
 print("sections:", ", ".join(f"{n}{l}" for n,l,_,_ in sections))

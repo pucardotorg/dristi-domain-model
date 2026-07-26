@@ -23,6 +23,11 @@ paragraph text follows the reported version, not the certified record.
 """
 import pdfplumber, re, os, json, datetime
 from pathlib import Path
+
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+from akn_ids import assert_unique_eids
 from xml.sax.saxutils import escape
 
 REPO = Path(__file__).resolve().parent.parent
@@ -340,7 +345,9 @@ def main():
         meta = extract_meta(full)
         body, _ = find_body(clean(full))
         preamble, paras, mode = parse_body(body)
-        (OUT / f"{slug}.akn.xml").write_text(build_akn(cid, meta, mode, preamble, paras, c))
+        _xml = build_akn(cid, meta, mode, preamble, paras, c)
+        assert_unique_eids(_xml, slug)
+        (OUT / f"{slug}.akn.xml").write_text(_xml)
         c["akn"] = f"caselaw/akn/{slug}.akn.xml"
         c["source_status"] = "ok"; c.pop("source_issue", None)
         if meta.get("date"): c["decided"] = meta["date"]

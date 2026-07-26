@@ -39,6 +39,11 @@ import re, html, sys, argparse, datetime, subprocess
 from pathlib import Path
 import xml.dom.minidom as minidom
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+from akn_ids import assert_unique_eids
+
 REPO = Path(__file__).resolve().parent.parent
 GEN  = datetime.date.today().isoformat()
 EM, EN = "\u2014", "\u2013"   # em / en dash (kept as escapes; house rule: no literal em-dashes)
@@ -293,6 +298,7 @@ def main():
 </akomaNtoso>
 '''
     minidom.parseString(doc)                      # well-formedness gate
+    assert_unique_eids(doc, out.name)
     out.write_text(doc, encoding="utf-8")
     print(f"wrote {out.relative_to(REPO)}  ({len(sections)} sections, {len(chapters)} chapters)")
     print("sections:", ", ".join(f"{n}{l}" for n,l,_,_ in sections))

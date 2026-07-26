@@ -27,12 +27,15 @@ Usage:
     python3 scripts/convert_hr_rules.py --fetch-vol3 <dir> # (re)download the Vol III parts
 
 Requirements: pip install pdfplumber
-Validate:     xmllint --noout public/data/state/haryana/akn/*.akn.xml
+Validate:     python3 scripts/validate_akn.py public/data/state/haryana/akn/*.akn.xml
 """
 import pdfplumber, re, html, datetime, sys, tempfile, subprocess
 from collections import Counter
 from pathlib import Path
 import xml.dom.minidom as M
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from akn_ids import assert_unique_eids
 
 REPO = Path(__file__).resolve().parent.parent
 SRC = REPO / "public" / "data" / "state" / "haryana" / "sources"
@@ -172,11 +175,16 @@ def parse_content(body_list, eid):
                 ctr[0] += 1
                 s = '<blockList eId="' + eid + "__l" + str(ctr[0]) + '">'
                 for it in grp:
+                    # Claim this item's number BEFORE recursing into its children:
+                    # ser() advances the shared counter, so reading ctr[0] after the
+                    # recursive call handed the parent the last CHILD's number and
+                    # produced duplicate eIds (an Akoma Ntoso schema violation).
                     ctr[0] += 1
+                    iid = eid + "__i" + str(ctr[0])
                     inner = "<num>" + esc(it["mark"]) + "</num><p>" + esc(clean(it["text"])) + "</p>"
                     if it["children"]:
                         inner += ser(it["children"])
-                    s += '<item eId="' + eid + "__i" + str(ctr[0]) + '">' + inner + "</item>"
+                    s += '<item eId="' + iid + '">' + inner + "</item>"
                 out.append(s + "</blockList>")
         return "".join(out)
 
@@ -667,6 +675,7 @@ def main(argv):
             extra = ""
         xml = wrap(cfg, body, extra)
         M.parseString(xml)
+        assert_unique_eids(xml, slug)
         (OUT / f"{slug}.akn.xml").write_text(xml)
         print(f"  {slug}: {n} units, {len(xml)} bytes")
 

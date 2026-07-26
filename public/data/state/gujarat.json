@@ -881,5 +881,2658 @@
         "pdf": "state/gujarat/sources/gujarat-saras-ni-courts-inauguration-2024.pdf"
       }
     ]
+  },
+  "vocabulary": {
+    "summary": "The words the Gujarat layer adds on top of the shared national vocabulary - the Roznama and the muddamal register that a criminal court in Gujarat actually runs on, the flat three-rupee court fee, the e-filing terms, and the SARAS remote-adjudication vocabulary written for cheque cases alone.",
+    "terms": [
+      {
+        "word": "SARAS court",
+        "gloss": "The StateWide Access to Remote Adjudication System - Gujarat's cheque-case courts. Rule 1 applies the SARAS Rules to the SARAS N.I. Court establishment under the Chief Judicial Magistrate courts of Ahmedabad City and to cases e-filed under section 25 of the Payment and Settlement Systems Act, 2007. Created by a Full Court resolution of 2 December 2024 and inaugurated on 7 December 2024, these are courts written for cheque cases alone: the complaint is e-filed, the magistrate may sit anywhere in the State and hear the case by video conferencing, and the electronic record on the portal is the judicial record.",
+        "source": "SARAS Courts Rules, 2026, Rule 1",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "eId": "rule_1",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "forum",
+        "aka": [
+          "StateWide Access to Remote Adjudication System",
+          "SARAS N.I. Court",
+          "SARAS Court establishment"
+        ]
+      },
+      {
+        "word": "Remote adjudication",
+        "gloss": "The principle that makes a SARAS court work: even though the presiding judicial officer is stationed somewhere else in Gujarat, adjudication through audio-video electronic means is a valid mode of adjudication. Rule 9 says so expressly, resting on the Government and High Court notifications that set the courts up. The place the officer sits is the remote adjudication point; scanned physical papers are verified there before being sent on to the SARAS court.",
+        "source": "SARAS Courts Rules, 2026, Rule 9",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "eId": "rule_9",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "doctrine",
+        "aka": [
+          "remote adjudication court",
+          "remote adjudication point"
+        ]
+      },
+      {
+        "word": "Designated portal",
+        "gloss": "The eGujCourtIS system, or any other portal the High Court notifies, on which a SARAS case is viewed, processed and stored. Complaints are e-filed at filing.ecourts.gov.in, but it is the designated portal that holds the judicial record - the complaint, affidavits, exhibits, orders, judgments and rojnama entries the court actually acts on. Defined in Rule 2(1)(e).",
+        "source": "SARAS Courts Rules, 2026, Rule 2",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "eId": "rule_2",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "eGujCourtIS",
+          "designated e-filing portal"
+        ]
+      },
+      {
+        "word": "Digital record",
+        "gloss": "The electronic record maintained on the designated portal - and, in a SARAS court, the primary and authoritative judicial record, not a copy of a paper file. Rule 3 puts everything in electronic form: complaints, affidavits, applications, evidence, orders, judgments and rojnama entries are accessed and acted on electronically, authenticated by a token-based digital signature or by a scanned physical signature with photo identity. This is the sharpest difference between a SARAS cheque case and an ordinary one.",
+        "source": "SARAS Courts Rules, 2026, Rule 3",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "eId": "rule_3",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "primary judicial record",
+          "electronic judicial record"
+        ]
+      },
+      {
+        "word": "Remote point",
+        "gloss": "A place from which a person appears before the court through a live link. It includes a designated place notified for the purpose but not an advocate's own chamber, which the Video Conferencing Rules call the advocate's remote point. In a SARAS cheque case the accused may be at a remote point when the plea is recorded, and a witness may be examined from one. Defined in Rule 2(1)(l).",
+        "source": "Electronic Communication Rules, 2025, Rule 2",
+        "akn": "state/gujarat/akn/gujarat-district-courts-electronic-communication-rules-2025.akn.xml",
+        "eId": "rule_2",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "forum",
+        "aka": [
+          "remote point location",
+          "advocate's remote point"
+        ]
+      },
+      {
+        "word": "Court point",
+        "gloss": "The courtroom itself, or wherever the court is physically convened - the other end of the live link from the remote point. A coordinator sits at the court point as well as at the remote point, and a document at the court point is shown to a remote witness from there. Defined in Rule 2(1)(f).",
+        "source": "Electronic Communication Rules, 2025, Rule 2",
+        "akn": "state/gujarat/akn/gujarat-district-courts-electronic-communication-rules-2025.akn.xml",
+        "eId": "rule_2",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "forum"
+      },
+      {
+        "word": "Coordinator",
+        "gloss": "The person who runs the video link at each end. Rule 9 requires a coordinator both at the court point and at the designated place from which a person is to be examined or heard, though one is needed at the remote point only where a witness or an accused is being examined. The High Court or the Principal District and Sessions Judge nominates them, and the Act of showing a document to a remote witness ends with the hard copy being counter-signed by the witness and the coordinator.",
+        "source": "Electronic Communication Rules, 2025, Rule 9",
+        "akn": "state/gujarat/akn/gujarat-district-courts-electronic-communication-rules-2025.akn.xml",
+        "eId": "rule_9",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "remote point coordinator",
+          "video conferencing coordinator"
+        ]
+      },
+      {
+        "word": "Live link",
+        "gloss": "The audio-video connection by which a witness, an accused, a party or an advocate is required to be virtually present in the courtroom. Defined in Rule 2(1)(k) of the Video Conferencing Rules; it is the mechanism a SARAS hearing runs on.",
+        "source": "Electronic Communication Rules, 2025, Rule 2",
+        "akn": "state/gujarat/akn/gujarat-district-courts-electronic-communication-rules-2025.akn.xml",
+        "eId": "rule_2",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "audio-video link"
+        ]
+      },
+      {
+        "word": "Audio-video electronic means",
+        "gloss": "Video conferencing and the other electronic modes recognised by the Bharatiya Nagarik Suraksha Sanhita. Rule 5 lets them be used at all stages of a judicial proceeding where a person required to be present is not physically in the courtroom, and makes clear that such a proceeding is a judicial proceeding to which the BNSS, the Contempt of Courts Act, the Bharatiya Sakshya Adhiniyam and the IT Act all apply.",
+        "source": "Electronic Communication Rules, 2025, Rule 5",
+        "akn": "state/gujarat/akn/gujarat-district-courts-electronic-communication-rules-2025.akn.xml",
+        "eId": "rule_5",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "audio-visual electronic communication"
+        ]
+      },
+      {
+        "word": "Formal Witness Deposition Centre",
+        "gloss": "A centre notified by the High Court of Gujarat where a witness deposes, as an alternative to attending the SARAS court in person. Rule 6.2 says the examination-in-chief of the accused and the cross-examination of witnesses are ordinarily conducted in physical presence before the court, at an FWDC, or at a Government-notified remote point - so in a cheque case the affidavit goes in electronically but the cross-examination usually happens face to face somewhere.",
+        "source": "SARAS Courts Rules, 2026, Rule 6",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "eId": "rule_6",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "forum",
+        "aka": [
+          "FWDC",
+          "witness deposition centre"
+        ]
+      },
+      {
+        "word": "Document visualizer",
+        "gloss": "The camera at the court point that transmits a document to a person at a remote point. Rule 14 is how the three documents a cheque case is fought over - the cheque, the return memo and the demand notice - are actually put to a witness or an accused who is not in the courtroom: by document visualizer, or, failing that, by sending an image through the designated software or official e-mail. Where the document is at the remote point, the hard copy counter-signed by the witness and the coordinator must also be despatched to the court point.",
+        "source": "Electronic Communication Rules, 2025, Rule 14",
+        "akn": "state/gujarat/akn/gujarat-district-courts-electronic-communication-rules-2025.akn.xml",
+        "eId": "rule_14",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "document visualiser"
+        ]
+      },
+      {
+        "word": "Token-based digital signature",
+        "gloss": "The hardware-token Digital Signature Certificate by which a document is authenticated in a SARAS court. Rule 3.4 allows only two modes of authentication: a token-based DSC, or a physical signature scanned and uploaded with self-attested photo identity where the person has no token. The presiding officer signs orders, judgments, depositions and the rojnama with the token, and it is that signature that makes the electronic document part of the official record.",
+        "source": "SARAS Courts Rules, 2026, Rule 3",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "eId": "rule_3",
+        "group": "Remote & digital court",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "token-based Digital Signature Certificate",
+          "DSC token"
+        ]
+      },
+      {
+        "word": "e-Filer",
+        "gloss": "The registered user who files electronically - an advocate, or a litigant in person, registered on the e-filing portal under the Gujarat e-Filing SOP. An advocate registers with the Bar Council certificate or I-card, a litigant in person with a Government photo identity, and a login ID issues on the next working day. Defined in clause 2.8.",
+        "source": "e-Filing SOP for the District Judiciary, 2024, Clause 2",
+        "akn": "state/gujarat/akn/gujarat-efiling-sop-district-judiciary-2024.akn.xml",
+        "eId": "rule_2",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "Electronic Filer"
+        ]
+      },
+      {
+        "word": "Designated counter",
+        "gloss": "The staffed counter where a person who cannot use the e-filing portal can still file electronically - at an eSewa Kendra, a Central Filing Centre or a helpdesk in the court complex. Clause 2.5 defines them and clause 3.3 gives the right to use them on payment of the stipulated charges; the SARAS Rules repeat the right in rule 4.3. Filing through a designated counter closes at 1600 hours on a court working day.",
+        "source": "e-Filing SOP for the District Judiciary, 2024, Clause 2",
+        "akn": "state/gujarat/akn/gujarat-efiling-sop-district-judiciary-2024.akn.xml",
+        "eId": "rule_2",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "forum",
+        "aka": [
+          "designated counters",
+          "e-Service Centre",
+          "eSewa Kendra"
+        ]
+      },
+      {
+        "word": "Office objection",
+        "gloss": "The defect the office notes against a filing, and the clock that runs on it. On the High Court's criminal side rule 340 requires the office objections to be put up on a special notice board, with fourteen days for the advocate or applicant to remove them, failing which the matter goes before the Court for orders. The district-court counterpart is the Registry's written 'Objections' under the e-Filing SOP, notified by e-mail, SMS or web hosting.",
+        "source": "Gujarat High Court Rules, 1993, Rule 340",
+        "akn": "state/gujarat/akn/gujarat-high-court-rules-1993.akn.xml",
+        "eId": "rule_340",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "office objections",
+          "registry objection"
+        ]
+      },
+      {
+        "word": "Filing number",
+        "gloss": "The number a criminal matter gets on presentation, before it is registered. Rule 333 gives every criminal main matter a filing number first; a registration number issues only if there is no office objection. The same two-step appears in the e-filing SOP, where the filing or registration number is notified to the advocate or litigant once the e-filing is accepted. Until the matter is registered it is not a numbered case.",
+        "source": "Gujarat High Court Rules, 1993, Rule 333",
+        "akn": "state/gujarat/akn/gujarat-high-court-rules-1993.akn.xml",
+        "eId": "rule_333",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "registration number"
+        ]
+      },
+      {
+        "word": "Court fee on a §138 complaint",
+        "gloss": "Three rupees. Schedule II, Article 1(c) of the Gujarat Court-Fees Act, 2004 charges a flat three rupees on a writing containing a complaint or charge of any offence presented to any criminal court, whatever the cheque is worth - not a fee scaled to the amount, as in Kerala. Section 4 makes it a gate rather than a formality: a chargeable document may not be filed, exhibited or recorded unless the fee has been paid. It is part of why banks and NBFCs file cheque cases in Gujarat in bulk.",
+        "source": "Gujarat Court-Fees Act, 2004, Schedule II, Article 1",
+        "akn": "state/gujarat/akn/gujarat-court-fees-act-2004.akn.xml",
+        "eId": "art_1",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "doctrine",
+        "aka": [
+          "three-rupee complaint fee"
+        ]
+      },
+      {
+        "word": "Process fee",
+        "gloss": "What the complainant pays for the court to serve its summons and execute its warrants. The Criminal Manual's table, made under the court-fees power and confirmed by the State Government, charges 30 paise for every summons or notice and Rs.1.25 for every warrant of arrest, proclamation or warrant of attachment in a case of an offence for which the police may not arrest without a warrant - which is what a §138 case is. No fresh fee is charged on a re-issue, and the court may remit the fee where a party cannot pay. Section 33 of the Court-Fees Act requires the table to be displayed in every court in English and the regional language.",
+        "source": "Criminal Manual, 1977, Rule 41",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_41",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "process fees"
+        ]
+      },
+      {
+        "word": "Bhatta",
+        "gloss": "The money a court pays a witness for attending - travelling and subsistence expenses, deposited by the party who summoned them. Rule 208 says bhatta not claimed in person within fifteen days of final disposal is remitted by money order, and if that fails it goes on the Criminal Deposit Register or to Government. Rule 76 expressly keeps the receipt of bhatta out of the Roznama as a ministerial act. In a cheque case it is what it costs to bring the bank witness to court.",
+        "source": "Criminal Manual, 1977, Rule 208",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_208",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "witness bhatta",
+          "bhatta money"
+        ]
+      },
+      {
+        "word": "Vakalatnama",
+        "gloss": "The document by which a party authorises a pleader to appear and act. Rule 135 requires it from every pleader appearing for any party in every class of case in every criminal court in Gujarat, including appeals and revisional and miscellaneous applications, excepting only the Public Prosecutor, a court-appointed defence pleader, an amicus curiae, and a pleader briefed by another pleader already on record. Schedule II, Article 12 of the Court-Fees Act prices it at two rupees to a criminal court other than a District or Sessions Court or the High Court. On e-filing the signed original must be preserved for at least two years after final disposal.",
+        "source": "Criminal Manual, 1977, Rule 135",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_135",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "mukhtarnama",
+          "vakalat"
+        ]
+      },
+      {
+        "word": "Court language (Gujarati)",
+        "gloss": "Gujarati is the language of the criminal courts of Gujarat. Rule 148 requires the magistrate, in summons cases and summary trials, to make the memorandum of the substance of the evidence in Gujarati, and in warrant cases to take the evidence down as a narrative in Gujarati; a memorandum in English is not necessary. The e-Filing SOP carries the rule into the digital layer - a document typed in the local language in a trial court must use LOHIT Gujarati Unicode and be OCR-enabled for Gujarati.",
+        "source": "Criminal Manual, 1977, Rule 148",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_148",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "language of the Court"
+        ]
+      },
+      {
+        "word": "Retention of originals",
+        "gloss": "The rule that decides what happens to the paper once the case is electronic. Clause 10 of the e-Filing SOP requires originals of scanned documents to be preserved for production or inspection as the Bench directs; the signed vakalatnama, the notarised affidavit and anything whose authenticity is likely to be questioned for at least two years after final disposal including appeal; and a negotiable instrument other than a cheque, a power-of-attorney, a trust, a will and a conveyance permanently. Cheques are the express exception - so the SARAS Rules step in and require the original cheque to be retained through the trial, and let it be returned to the complainant only against an undertaking and an endorsement of the case and exhibit number.",
+        "source": "e-Filing SOP for the District Judiciary, 2024, Clause 10",
+        "akn": "state/gujarat/akn/gujarat-efiling-sop-district-judiciary-2024.akn.xml",
+        "eId": "rule_10",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "preservation of originals"
+        ]
+      },
+      {
+        "word": "Date of e-filing",
+        "gloss": "The date the case counts as filed - which in a cheque case decides limitation. Clause 14 makes it the date the action is electronically received in the Registry within the prescribed time on a working day, on Indian Standard Time. An online filing after 1600 hours is treated as filed on the next court working day, as is anything filed on a holiday or a day the court is closed, and no exemption from limitation is allowed because the portal failed. Since a §138 complaint must be filed within one month of the cause of action, this clause bites directly.",
+        "source": "e-Filing SOP for the District Judiciary, 2024, Clause 14",
+        "akn": "state/gujarat/akn/gujarat-efiling-sop-district-judiciary-2024.akn.xml",
+        "eId": "rule_14",
+        "group": "Filing & language",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "date of electronic filing"
+        ]
+      },
+      {
+        "word": "Roznama",
+        "gloss": "The running record of a criminal case in Gujarat - the proceeding sheet in Form No. 41, kept in Gujarati in the magistrates' courts. Rule 76 requires it to be a faithful history of the case and to carry a correct list and description of the exhibits, to be kept from day to day as an original document, and to be initialled or signed by the magistrate at the end of each day's proceedings. Ministerial acts such as the receipt of bhatta or process fees stay out of it. In a SARAS court the same record is entered by the designated staff member in the Case Information System under the Case Proceedings block and then digitally signed by the presiding officer.",
+        "source": "Criminal Manual, 1977, Rule 76",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_76",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "rojnama",
+          "proceeding sheet",
+          "Form No. 41"
+        ]
+      },
+      {
+        "word": "Exhibit",
+        "gloss": "A document brought on the record and given a number. Rule 76 requires every document in the case to bear an exhibit number and a serial number as it comes before the court, and to be listed and described in the Roznama. The SARAS Rules keep the same scheme in the digital record: the designated staff member assigns bookmarks, exhibits and marks strictly in conformity with rule 76, and an order or document filed in continuation of an existing exhibit is sub-numbered below it - an order below Exhibit 5 becomes Exhibit 5/1, not a new exhibit.",
+        "source": "Criminal Manual, 1977, Rule 76",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_76",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "exhibit number",
+          "exhibit marking"
+        ]
+      },
+      {
+        "word": "Muddamal",
+        "gloss": "Case property produced in court. Rule 216 requires muddamal to be entered in the Property Register in Form No. 51 immediately on receipt, and rule 219 requires the article to be verified against the Pavti or Yadi the police produce in duplicate before it is entered. In a cheque case the muddamal that matters is the original cheque, the return memo and the demand notice, which the SARAS Rules say are retained for evidentiary purposes through the trial and may be returned to the complainant only on his undertaking to produce them when ordered.",
+        "source": "Criminal Manual, 1977, Rule 216",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_216",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "muddamal property",
+          "muddamal register",
+          "case property"
+        ]
+      },
+      {
+        "word": "Sheristedar",
+        "gloss": "The head ministerial officer of a court. Rule 48(3) makes the officer performing the duties of Sheristedar the person who signs and seals a summons issued by a Metropolitan Magistrate's court; rule 383 puts copy applications in the same hands; rules 216 and 219 make the Sheristedar responsible for the property register. The Criminal Manual was written when Ahmedabad had Metropolitan Magistrates - the BNSS no longer provides for them, and the Ahmedabad City courts in which the SARAS establishment sits are Chief Judicial Magistrate courts, where the Senior Clerk performs the corresponding work.",
+        "source": "Criminal Manual, 1977, Rule 48",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_48",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "Sheristadar",
+          "Serishtedar"
+        ]
+      },
+      {
+        "word": "Clerk of the Court",
+        "gloss": "The officer who signs and seals the court's process. Rule 48(2) lets a summons issued by a Judicial Magistrate of the First Class be signed and sealed by the Clerk of the Court, and where there is none, by the Senior Clerk or the clerk specially assigned that work in writing by the presiding officer. In the Sessions Court the Clerk of the Court also certifies the typed copies of the record sent up to the High Court in appeal.",
+        "source": "Criminal Manual, 1977, Rule 48",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_48",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "Senior Clerk"
+        ]
+      },
+      {
+        "word": "Nazir",
+        "gloss": "The court officer who handles cash, deposits and case property. Rules 216 and 219 make the Nazir primarily responsible for preparing and signing the Property Register in the Sessions Court and for verifying muddamal against the police Pavti or Yadi before it is entered; rule 28 puts him among the officers before whom an intending surety presents the application for suretyship; rule 408 requires officers dealing with cash, stamps or muddamal to give security in the manner prescribed for the Nazir.",
+        "source": "Criminal Manual, 1977, Rule 216",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_216",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor"
+      },
+      {
+        "word": "Bench Clerk",
+        "gloss": "The staff member attached to the court who runs the file through the day. In a SARAS court rule 3.12 makes the Bench Clerk, or another designated ministerial staff member, place the physically produced documents of each case in a sealed envelope marked with the case particulars and keep them ready for the court; rule 13.1 puts physical documents in the custody of the Superintendent or Board Clerk. Rule 89 of the Criminal Manual cuts the other way on listing - the magistrate must settle his own Board and not leave it to the Bench Clerk.",
+        "source": "SARAS Courts Rules, 2026, Rule 3",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "eId": "rule_3",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "Board Clerk"
+        ]
+      },
+      {
+        "word": "Registry",
+        "gloss": "The ministerial establishment of the court, responsible for scrutiny, processing and maintenance of records - defined in that form in Rule 2(1)(i) of the SARAS Rules. It is the Registry, and only the Registry, that scrutinises an e-filed complaint for technical compliance (rule 3.10): it takes up a newly e-filed complaint on the next working day, registers it under the appropriate case type if it is in order, and otherwise records objections in writing for rectification before the case is registered and assigned to a court.",
+        "source": "SARAS Courts Rules, 2026, Rule 2",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "eId": "rule_2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "ministerial establishment"
+        ]
+      },
+      {
+        "word": "Surety",
+        "gloss": "The person who stands behind the accused's bond and undertakes to secure their appearance. Rule 28 makes the sufficiency of the surety primarily the presiding officer's own responsibility, to be tested by such summary enquiry as he thinks fit; a revenue solvency certificate is to be insisted on only in cases of doubt or large sums, affidavits may be accepted in proof of solvency, and for a bond up to Rs.2,000 moveable property and assets are enough. The intending surety applies in model Form No. 33. In a cheque case the accused who answers summons is released on a bond, and Schedule II, Article 10 of the Court-Fees Act charges two rupees on it.",
+        "source": "Criminal Manual, 1977, Rule 28",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_28",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "suretyship"
+        ]
+      },
+      {
+        "word": "Record room",
+        "gloss": "Where the file goes when the case is over. Rule 361 says the record of a substantive criminal proceeding is not due for despatch to the record room until the appeal or revision period expires, and where an appeal or revision has been instituted, not until it is disposed of; records are kept intact in institution order for a further two months before filing orders are taken. The SARAS Rules carry the same regime to the digital side - the maintenance, classification, retention and destruction of electronic records on the designated portal are governed by rules 361 to 367 of the Criminal Manual so far as they can apply.",
+        "source": "Criminal Manual, 1977, Rule 361",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "eId": "rule_361",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "forum"
+      },
+      {
+        "word": "Duties of a Police officer",
+        "gloss": "The hinge between the court and the police in a cheque case. Section 64(a) of the Gujarat Police Act makes it the duty of every police officer promptly to serve every summons and to obey and execute every warrant or other order lawfully issued to him by competent authority. A §138 case is a complaint case, so the police have no investigation to do - but the summons to the accused and any warrant that follows non-appearance are served and executed under this section.",
+        "source": "Gujarat Police Act, 1951, Section 64",
+        "akn": "state/gujarat/akn/gujarat-police-act-1951.akn.xml",
+        "eId": "sec_64",
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "duty to serve process"
+        ]
+      },
+      {
+        "word": "Lok Rakshak",
+        "gloss": "A Gujarat police recruit of the lowest grade. Section 2(4) defines 'constable' as a police officer of the lowest grade and expressly includes a Lok Rakshak, so a Lok Rakshak carries a constable's powers and duties under the Act - including the section 64 duty to serve the court's summons.",
+        "source": "Gujarat Police Act, 1951, Section 2",
+        "akn": "state/gujarat/akn/gujarat-police-act-1951.akn.xml",
+        "eId": "sec_2",
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "actor"
+      },
+      {
+        "word": "Competent authority",
+        "gloss": "The officer whose orders a police officer is bound to obey and execute under section 64. Section 2(3) defines it by area: in an area for which a Commissioner of Police has been appointed under section 7, the Commissioner; elsewhere the District Magistrate, the District Superintendent, or an Additional Superintendent specially empowered by the State Government. It is the term the service-of-process duty is written in.",
+        "source": "Gujarat Police Act, 1951, Section 2",
+        "akn": "state/gujarat/akn/gujarat-police-act-1951.akn.xml",
+        "eId": "sec_2",
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "doctrine"
+      },
+      {
+        "word": "Commissioner of Police",
+        "gloss": "The head of policing for a city area. Section 7 lets the State Government appoint a Commissioner of Police, and an Additional Commissioner, for any notified area, and takes that area out of the charge of the District Magistrate and the District Superintendent. This matters concretely for a Gujarat cheque case because the SARAS establishment sits under the Chief Judicial Magistrate courts of Ahmedabad City, a commissionerate; section 12 lets the Commissioner constitute police divisions under a Superintendent and sections under an Inspector of Police.",
+        "source": "Gujarat Police Act, 1951, Section 7",
+        "akn": "state/gujarat/akn/gujarat-police-act-1951.akn.xml",
+        "eId": "sec_7",
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "City Police Commissioner",
+          "Additional Commissioner of Police"
+        ]
+      },
+      {
+        "word": "District Superintendent of Police",
+        "gloss": "The district police command. Section 8 lets the State Government appoint a Superintendent, and one or more Additional, Assistant and Deputy Superintendents, for each district. Outside the commissionerate cities the District Superintendent heads the machinery that serves a magistrate's summons and executes his warrants, and is a competent authority for the purposes of section 64.",
+        "source": "Gujarat Police Act, 1951, Section 8",
+        "akn": "state/gujarat/akn/gujarat-police-act-1951.akn.xml",
+        "eId": "sec_8",
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "District Superintendent"
+        ]
+      },
+      {
+        "word": "Director General and Inspector General of Police",
+        "gloss": "The head of the Gujarat police. Section 5A requires the State Government to appoint a Director General and Inspector General of Police for the overall direction and supervision of the force; section 6 provides for the Inspector General and for Additional and Deputy Inspectors General. Superintendence of the whole force vests in the State Government under section 4, and there is one police force for the whole of Gujarat under section 3.",
+        "source": "Gujarat Police Act, 1951, Section 5",
+        "akn": "state/gujarat/akn/gujarat-police-act-1951.akn.xml",
+        "eId": "sec_5",
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "DGP and IGP",
+          "Director General of Police"
+        ]
+      },
+      {
+        "word": "State Police Complaints Authority",
+        "gloss": "Gujarat's police oversight body for serious complaints. Section 32G lets it look into complaints against police officers of the rank of Deputy Superintendent and above for serious misconduct, dereliction of duty or misuse of powers not covered by another commission; it may require information, enforce attendance and take evidence on oath like a civil court, and recommend action to the State Government. Section 32H establishes a District Police Complaints Authority for the ranks below.",
+        "source": "Gujarat Police Act, 1951, Section 32G",
+        "akn": "state/gujarat/akn/gujarat-police-act-1951.akn.xml",
+        "eId": "sec_32G",
+        "group": "Police & execution",
+        "pos": "noun",
+        "role": "forum",
+        "aka": [
+          "Police Complaints Authority",
+          "District Police Complaints Authority"
+        ]
+      }
+    ]
+  },
+  "story": {
+    "summary": "How a §138 cheque-bounce case runs in Gujarat, from filing to disposal - built from the Gujarat instruments, with every step citing the provision that governs it. Click any citation to open the exact text. Two things set Gujarat apart: the complaint costs three rupees to file, and for bank and NBFC cheque cases in Ahmedabad City the case runs in a SARAS court, where the electronic record is the primary judicial record and the magistrate may be sitting anywhere in the State.",
+    "process": {
+      "summary": "The spine is uniform central law - the NI Act and the BNSS. Gujarat's own layer prices the case (the Court-Fees Act), tells the criminal court how to run it (the Criminal Manual, 1977), moves it onto the portal (the e-Filing SOP and the Video Conferencing Rules), and, for cheque cases filed by banks and NBFCs in the C.J.M. courts of Ahmedabad City, onto the SARAS remote-adjudication track. Where Gujarat adds nothing, the step is pure central law.",
+      "stages": [
+        {
+          "id": "filing",
+          "stage": "1 · Filing the complaint",
+          "steps": [
+            {
+              "t": "A cheque-bounce case is a complaint case. Only the payee or the holder in due course can start it, and the Magistrate can take cognizance only on such a written complaint - never on a police report.",
+              "c": [
+                {
+                  "l": "NI §142",
+                  "n": "ni:sec_142"
+                },
+                {
+                  "l": "BNSS §223",
+                  "n": "bnss:sec_223"
+                }
+              ]
+            },
+            {
+              "t": "It must be filed within one month of the cause of action, which arises when the drawer fails to pay within fifteen days of the demand notice served after dishonour.",
+              "c": [
+                {
+                  "l": "NI §138",
+                  "n": "ni:sec_138"
+                },
+                {
+                  "l": "NI §142",
+                  "n": "ni:sec_142"
+                },
+                {
+                  "l": "General Clauses §27",
+                  "n": "genclauses:sec_27"
+                }
+              ]
+            },
+            {
+              "t": "In Gujarat the complaint is e-filed. The e-Filing SOP for the District Judiciary defines an 'Action' to include criminal complaints, which is what brings a cheque case inside the regime at all, and an advocate or a litigant in person files from anywhere through the portal or through a designated counter.",
+              "c": [
+                {
+                  "l": "e-Filing SOP cl.1",
+                  "s": "gefr",
+                  "e": "rule_1"
+                },
+                {
+                  "l": "cl.2 (definitions)",
+                  "s": "gefr",
+                  "e": "rule_2"
+                }
+              ]
+            },
+            {
+              "t": "The complaint, the vakalatnama, the list of documents and the affidavits are signed with a digital signature or an Aadhaar-based e-sign; where the filer has neither, the physically signed papers are scanned and uploaded.",
+              "c": [
+                {
+                  "l": "e-Filing SOP cl.7",
+                  "s": "gefr",
+                  "e": "rule_7"
+                },
+                {
+                  "l": "IT Act §3A",
+                  "n": "itact:sec_3A"
+                }
+              ]
+            },
+            {
+              "t": "The court fee is three rupees. Schedule II, Article 1(c) of the Gujarat Court-Fees Act charges a flat three rupees on a writing containing a complaint or charge of any offence presented to a criminal court, whatever the cheque is worth, and section 4 forbids the document being filed at all unless the fee is paid. It is paid electronically.",
+              "c": [
+                {
+                  "l": "Court-Fees Act Sch.II Art.1",
+                  "s": "gcf",
+                  "e": "art_1"
+                },
+                {
+                  "l": "§4 (no filing without fee)",
+                  "s": "gcf",
+                  "e": "sec_4"
+                },
+                {
+                  "l": "§37 (e-payment)",
+                  "s": "gcf",
+                  "e": "sec_37"
+                },
+                {
+                  "l": "e-Filing SOP cl.9",
+                  "s": "gefr",
+                  "e": "rule_9"
+                }
+              ]
+            },
+            {
+              "t": "Every pleader appearing for a party in any criminal court in Gujarat must file a vakalatnama; the fee on it is two rupees in a magistrate's court.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.135",
+                  "s": "gcrm",
+                  "e": "rule_135"
+                },
+                {
+                  "l": "Court-Fees Act Sch.II Art.12",
+                  "s": "gcf",
+                  "e": "art_12"
+                }
+              ]
+            },
+            {
+              "t": "The date of e-filing is the date the filing is electronically received in the Registry on a working day, IST. Anything filed online after 1600 hours, or on a holiday, counts as filed on the next court working day - and no exemption from limitation is allowed because the portal failed. In a cheque case with a one-month window that clause bites directly.",
+              "c": [
+                {
+                  "l": "e-Filing SOP cl.14",
+                  "s": "gefr",
+                  "e": "rule_14"
+                },
+                {
+                  "l": "NI §142(b)",
+                  "n": "ni:sec_142"
+                },
+                {
+                  "l": "Limitation Act §5",
+                  "n": "limitation:sec_5"
+                }
+              ]
+            },
+            {
+              "t": "Where the case is a cheque complaint by a bank or an NBFC in the Chief Judicial Magistrate courts of Ahmedabad City, e-filing is not optional: the SARAS Rules apply to that establishment and to cases e-filed under section 25 of the Payment and Settlement Systems Act, and all complaints, applications and affidavits are e-filed on the designated portal.",
+              "c": [
+                {
+                  "l": "SARAS r.1",
+                  "s": "saras",
+                  "e": "rule_1"
+                },
+                {
+                  "l": "SARAS r.4",
+                  "s": "saras",
+                  "e": "rule_4"
+                },
+                {
+                  "l": "PSS Act §25",
+                  "n": "pss:sec_25"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "scrutiny",
+          "stage": "2 · Scrutiny by the Registry and numbering",
+          "steps": [
+            {
+              "t": "Scrutiny of an e-filed complaint for technical compliance is the exclusive domain of the Registry - the ministerial establishment responsible for scrutiny, processing and maintenance of records.",
+              "c": [
+                {
+                  "l": "SARAS r.3.10",
+                  "s": "saras",
+                  "e": "rule_3"
+                },
+                {
+                  "l": "SARAS r.2 (Registry)",
+                  "s": "saras",
+                  "e": "rule_2"
+                }
+              ]
+            },
+            {
+              "t": "The Registry takes up a newly e-filed complaint on the next working day. If it is in order the matter is registered under the appropriate case type; if defects are noticed, objections are recorded in writing and communicated for rectification, and only when every objection is cleared is the case registered and assigned to a court.",
+              "c": [
+                {
+                  "l": "SARAS r.4.11",
+                  "s": "saras",
+                  "e": "rule_4"
+                },
+                {
+                  "l": "e-Filing SOP cl.18",
+                  "s": "gefr",
+                  "e": "rule_18"
+                }
+              ]
+            },
+            {
+              "t": "Once registered, the matter goes first to the presiding officer's account on the designated portal for perusal, then to the designated court staff, who assign bookmarks, exhibits and marks strictly in conformity with rule 76 of the Criminal Manual, and then back to the presiding officer to be digitally signed. Only then is it part of the official judicial record.",
+              "c": [
+                {
+                  "l": "SARAS r.4.12-4.15",
+                  "s": "saras",
+                  "e": "rule_4"
+                },
+                {
+                  "l": "Criminal Manual r.76",
+                  "s": "gcrm",
+                  "e": "rule_76"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cognizance",
+          "stage": "3 · Cognizance and examination of the complainant",
+          "steps": [
+            {
+              "t": "The Magistrate takes cognizance on the complaint and examines the complainant, and any witnesses present, on oath.",
+              "c": [
+                {
+                  "l": "BNSS §210",
+                  "n": "bnss:sec_210"
+                },
+                {
+                  "l": "BNSS §223",
+                  "n": "bnss:sec_223"
+                },
+                {
+                  "l": "NI §142",
+                  "n": "ni:sec_142"
+                }
+              ]
+            },
+            {
+              "t": "The Criminal Manual tells the Gujarat magistrate how to do it: the examination should as far as possible be taken immediately, and it must be full enough to let him judge whether there are grounds for proceeding. No reasons need be recorded for postponing the issue of process, but reasons must be recorded for dismissing the complaint.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.74",
+                  "s": "gcrm",
+                  "e": "rule_74"
+                }
+              ]
+            },
+            {
+              "t": "Where that first examination of the complainant is reduced to writing, the Court-Fees Act charges a further ten rupees, unless the court remits it.",
+              "c": [
+                {
+                  "l": "Court-Fees Act §19",
+                  "s": "gcf",
+                  "e": "sec_19"
+                }
+              ]
+            },
+            {
+              "t": "A §138 complaint is tried as a summary trial unless the Magistrate decides otherwise. The Criminal Manual's own gloss is that no sentence above three months may be passed in a summary trial and that the summons-case procedure is followed.",
+              "c": [
+                {
+                  "l": "NI §143",
+                  "n": "ni:sec_143"
+                },
+                {
+                  "l": "Criminal Manual r.101",
+                  "s": "gcrm",
+                  "e": "rule_101"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "process",
+          "stage": "4 · Issue of process and service",
+          "steps": [
+            {
+              "t": "No summons or warrant issues until the list of prosecution witnesses is filed, and on a complaint made in writing a copy of the complaint must accompany the summons - the complainant supplies the copies.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.75",
+                  "s": "gcrm",
+                  "e": "rule_75"
+                },
+                {
+                  "l": "BNSS §227",
+                  "n": "bnss:sec_227"
+                }
+              ]
+            },
+            {
+              "t": "The summons of a Judicial Magistrate of the First Class is signed and sealed by the Clerk of the Court, or where there is none by the Senior Clerk or a clerk specially assigned that work in writing by the presiding officer.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.48",
+                  "s": "gcrm",
+                  "e": "rule_48"
+                },
+                {
+                  "l": "BNSS §63",
+                  "n": "bnss:sec_63"
+                }
+              ]
+            },
+            {
+              "t": "The complainant pays the process fee for service and execution - 30 paise for a summons or notice, Rs.1.25 for a warrant of arrest, a proclamation or a warrant of attachment. The table must be exposed to view in a conspicuous part of every court, in English and the regional language.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.41",
+                  "s": "gcrm",
+                  "e": "rule_41"
+                },
+                {
+                  "l": "Court-Fees Act §33",
+                  "s": "gcf",
+                  "e": "sec_33"
+                }
+              ]
+            },
+            {
+              "t": "Service is the police's job: it is the duty of every police officer promptly to serve every summons and to obey and execute every warrant or other order lawfully issued to him by competent authority.",
+              "c": [
+                {
+                  "l": "Gujarat Police Act §64",
+                  "s": "gpa",
+                  "e": "sec_64"
+                },
+                {
+                  "l": "§2 (competent authority)",
+                  "s": "gpa",
+                  "e": "sec_2"
+                },
+                {
+                  "l": "NI §144",
+                  "n": "ni:sec_144"
+                }
+              ]
+            },
+            {
+              "t": "Where a witness is to be examined by video conferencing, the process must state the date, time and venue of the designated place, direct the witness to attend in person with proof of identity, and, if the examination is about a particular document, carry a copy of that document.",
+              "c": [
+                {
+                  "l": "VC Rules r.12",
+                  "s": "gvcr",
+                  "e": "rule_12"
+                }
+              ]
+            },
+            {
+              "t": "Documents filed electronically may in addition be served from the designated e-mail IDs of Registry officials to the e-mail address of the advocate or party. That sits alongside, and does not displace, the statutory modes of serving the demand notice and the summons.",
+              "c": [
+                {
+                  "l": "e-Filing SOP cl.13",
+                  "s": "gefr",
+                  "e": "rule_13"
+                },
+                {
+                  "l": "NI §144",
+                  "n": "ni:sec_144"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "appearance",
+          "stage": "5 · Appearance, plea and bail",
+          "steps": [
+            {
+              "t": "In a SARAS case the accused must be physically present at the SARAS court, or at a remote point, when the plea is recorded. The plea is signed physically and the signed sheet is scanned into the record with self-attested photo identity.",
+              "c": [
+                {
+                  "l": "SARAS r.5.1-5.2",
+                  "s": "saras",
+                  "e": "rule_5"
+                },
+                {
+                  "l": "SARAS r.3.5",
+                  "s": "saras",
+                  "e": "rule_3"
+                }
+              ]
+            },
+            {
+              "t": "The copies of the complaint, documents and statements the accused is entitled to are ordinarily furnished electronically - by e-mail, by a recognised messaging service, or on a storage device at the accused's cost - or to a person nominated by the accused or the pleader appearing for him. Only where the accused cannot receive them electronically are printed copies supplied free of cost.",
+              "c": [
+                {
+                  "l": "SARAS r.5.3-5.5",
+                  "s": "saras",
+                  "e": "rule_5"
+                }
+              ]
+            },
+            {
+              "t": "A party, an advocate or an accused may otherwise appear through video conferencing; in a criminal case any party or witness may move a request for it, and an advocate may appear from the advocate's remote point.",
+              "c": [
+                {
+                  "l": "VC Rules r.11",
+                  "s": "gvcr",
+                  "e": "rule_11"
+                },
+                {
+                  "l": "VC Rules r.5",
+                  "s": "gvcr",
+                  "e": "rule_5"
+                }
+              ]
+            },
+            {
+              "t": "The accused who answers the summons is released on a bond. Two rupees of court fee is charged on a bail bond or a recognizance for appearance, and the sufficiency of the surety is primarily the presiding officer's own responsibility - a revenue solvency certificate only where there is doubt, moveable property enough for a bond up to Rs.2,000.",
+              "c": [
+                {
+                  "l": "Court-Fees Act Sch.II Art.10",
+                  "s": "gcf",
+                  "e": "art_10"
+                },
+                {
+                  "l": "Criminal Manual r.28",
+                  "s": "gcrm",
+                  "e": "rule_28"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "stage": "6 · Evidence",
+          "steps": [
+            {
+              "t": "The complainant's evidence may be given on affidavit and read in any inquiry, trial or other proceeding under the NI Act. In a SARAS court the examination-in-chief of the complainant's witnesses is ordinarily tendered by affidavit through electronic filing.",
+              "c": [
+                {
+                  "l": "NI §145",
+                  "n": "ni:sec_145"
+                },
+                {
+                  "l": "SARAS r.6.1",
+                  "s": "saras",
+                  "e": "rule_6"
+                }
+              ]
+            },
+            {
+              "t": "The Criminal Manual prescribes how an affidavit used in a criminal court is headed and entitled, and requires the officer administering the oath to read and explain it, and certify that he has, where the deponent has not read it or is blind, illiterate or ignorant of the language.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.236",
+                  "s": "gcrm",
+                  "e": "rule_236"
+                },
+                {
+                  "l": "Criminal Manual r.243",
+                  "s": "gcrm",
+                  "e": "rule_243"
+                }
+              ]
+            },
+            {
+              "t": "Cross-examination is not remote by default. The examination-in-chief of the accused, the accused's witnesses and all cross-examination are ordinarily conducted in physical presence before the court, at a Formal Witness Deposition Centre notified by the High Court, or at a Government-notified remote point; recording evidence by audio-video means is permitted only in the court's discretion and strictly under the Video Conferencing Rules.",
+              "c": [
+                {
+                  "l": "SARAS r.6.2-6.3",
+                  "s": "saras",
+                  "e": "rule_6"
+                },
+                {
+                  "l": "VC Rules r.13",
+                  "s": "gvcr",
+                  "e": "rule_13"
+                }
+              ]
+            },
+            {
+              "t": "Where a person does appear remotely, the court first satisfies itself who is on the screen, and a document is put to them through the document visualizer at the court point or by transmitting an image; a document at the remote point comes back as a hard copy counter-signed by the witness and the coordinator.",
+              "c": [
+                {
+                  "l": "VC Rules r.6",
+                  "s": "gvcr",
+                  "e": "rule_6"
+                },
+                {
+                  "l": "VC Rules r.14",
+                  "s": "gvcr",
+                  "e": "rule_14"
+                },
+                {
+                  "l": "VC Rules r.9",
+                  "s": "gvcr",
+                  "e": "rule_9"
+                }
+              ]
+            },
+            {
+              "t": "The cheque, the return memo and the notice stay physical. Original documents produced in court are retained through the trial for evidentiary purposes even though the e-Filing SOP excludes cheques from permanent preservation, and may be returned to the complainant only on his undertaking to produce them again, against an endorsement of the case and exhibit number.",
+              "c": [
+                {
+                  "l": "SARAS r.3.9",
+                  "s": "saras",
+                  "e": "rule_3"
+                },
+                {
+                  "l": "SARAS r.3.11",
+                  "s": "saras",
+                  "e": "rule_3"
+                },
+                {
+                  "l": "e-Filing SOP cl.10",
+                  "s": "gefr",
+                  "e": "rule_10"
+                },
+                {
+                  "l": "NI §146",
+                  "n": "ni:sec_146"
+                }
+              ]
+            },
+            {
+              "t": "Case property produced in court is entered in the Property Register in Form No. 51 immediately on receipt, and verified against the Pavti or Yadi before entry.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.216",
+                  "s": "gcrm",
+                  "e": "rule_216"
+                },
+                {
+                  "l": "Criminal Manual r.219",
+                  "s": "gcrm",
+                  "e": "rule_219"
+                }
+              ]
+            },
+            {
+              "t": "The evidence is recorded in Gujarati. In summons cases and summary trials the Magistrate makes a memorandum of the substance of the evidence in the language of the court; a memorandum in English is not necessary. An interpreter is paid where a witness gives evidence in a language the court or the accused does not understand.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.148",
+                  "s": "gcrm",
+                  "e": "rule_148"
+                },
+                {
+                  "l": "Criminal Manual r.171",
+                  "s": "gcrm",
+                  "e": "rule_171"
+                }
+              ]
+            },
+            {
+              "t": "Once the cheque and the signature are proved or admitted, the presumption under §139 works for the holder, and it is for the accused to rebut it on the balance of probabilities.",
+              "c": [
+                {
+                  "l": "NI §139",
+                  "n": "ni:sec_139"
+                },
+                {
+                  "l": "NI §118",
+                  "n": "ni:sec_118"
+                },
+                {
+                  "l": "Bankers' Books Evidence §2",
+                  "n": "bbea:sec_2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "record",
+          "stage": "7 · The record - Roznama, exhibits and order sheets",
+          "steps": [
+            {
+              "t": "The Roznama in Form No. 41 is the case's running history. It must be a faithful account with a correct list and description of the exhibits, kept from day to day as an original document, and initialled or signed by the Magistrate at the end of each day's proceedings. Ministerial acts such as receipt of bhatta or process fees stay out of it.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.76",
+                  "s": "gcrm",
+                  "e": "rule_76"
+                }
+              ]
+            },
+            {
+              "t": "In a SARAS court the rojnama is recorded by the designated staff member in the Case Information System under the Case Proceedings block at the end of each hearing date, then placed for the presiding officer's digital signature - and only then does it form part of the official record.",
+              "c": [
+                {
+                  "l": "SARAS r.4.20",
+                  "s": "saras",
+                  "e": "rule_4"
+                }
+              ]
+            },
+            {
+              "t": "Every document bears an exhibit number and a serial number as it comes before the court; an order or document filed below an existing exhibit is sub-numbered under it - an order below Exhibit 5 becomes Exhibit 5/1, not a new exhibit.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.76",
+                  "s": "gcrm",
+                  "e": "rule_76"
+                },
+                {
+                  "l": "SARAS r.4.13",
+                  "s": "saras",
+                  "e": "rule_4"
+                },
+                {
+                  "l": "SARAS r.4.17",
+                  "s": "saras",
+                  "e": "rule_4"
+                }
+              ]
+            },
+            {
+              "t": "Orders, judgments and depositions are generated directly in PDF and digitally signed by the presiding officer on the portal; order sheets may be dictated to a stenographer online during or after the hearing and are digitally signed before being uploaded to CIS.",
+              "c": [
+                {
+                  "l": "SARAS r.4.18",
+                  "s": "saras",
+                  "e": "rule_4"
+                },
+                {
+                  "l": "SARAS r.8",
+                  "s": "saras",
+                  "e": "rule_8"
+                }
+              ]
+            },
+            {
+              "t": "Physically signed originals, once scanned and uploaded, are preserved in sealed and marked covers in the custody of the court staff; the Bench Clerk or another designated staff member keeps each case's physical papers in a sealed envelope marked with the case particulars.",
+              "c": [
+                {
+                  "l": "SARAS r.3.8",
+                  "s": "saras",
+                  "e": "rule_3"
+                },
+                {
+                  "l": "SARAS r.3.12",
+                  "s": "saras",
+                  "e": "rule_3"
+                },
+                {
+                  "l": "SARAS r.13",
+                  "s": "saras",
+                  "e": "rule_13"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "judgment",
+          "stage": "8 · Judgment, sentence and compensation",
+          "steps": [
+            {
+              "t": "The offence carries imprisonment up to two years, or a fine up to twice the cheque amount, or both; the court may also order compensation to the complainant.",
+              "c": [
+                {
+                  "l": "NI §138",
+                  "n": "ni:sec_138"
+                },
+                {
+                  "l": "BNSS §395",
+                  "n": "bnss:sec_395"
+                }
+              ]
+            },
+            {
+              "t": "In a SARAS court the accused must be personally present when judgment is pronounced. Where a person is produced on a warrant, or is to be committed to prison on a conviction warrant, the issue, execution and compliance of that process follow the ordinary procedure established by law - the remote court does not change it.",
+              "c": [
+                {
+                  "l": "SARAS r.10",
+                  "s": "saras",
+                  "e": "rule_10"
+                },
+                {
+                  "l": "Gujarat Police Act §64",
+                  "s": "gpa",
+                  "e": "sec_64"
+                },
+                {
+                  "l": "BNSS §72",
+                  "n": "bnss:sec_72"
+                }
+              ]
+            },
+            {
+              "t": "Fine, penalty or compensation may be accepted through the e-payment facility once it is enabled for the court, and by cash or another permissible mode until then.",
+              "c": [
+                {
+                  "l": "SARAS r.12",
+                  "s": "saras",
+                  "e": "rule_12"
+                },
+                {
+                  "l": "Court-Fees Act §37",
+                  "s": "gcf",
+                  "e": "sec_37"
+                }
+              ]
+            },
+            {
+              "t": "The case may also end by compounding at any stage - the offence is compoundable, and a settlement between the parties disposes of it.",
+              "c": [
+                {
+                  "l": "NI §147",
+                  "n": "ni:sec_147"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "copies-appeal",
+          "stage": "9 · Copies, appeal and revision",
+          "steps": [
+            {
+              "t": "Certified copies are governed by Chapter XXII of the Criminal Manual, but in a SARAS court they are generated from the digitally signed electronic record on the portal, and those digitally signed electronic copies are certified copies for all legal purposes. Supply by e-mail or on a device costs a minimum of Rs.50 for up to 25 MB and Rs.50 for each further 25 MB, plus the cost of the device.",
+              "c": [
+                {
+                  "l": "SARAS r.11",
+                  "s": "saras",
+                  "e": "rule_11"
+                },
+                {
+                  "l": "Criminal Manual r.383",
+                  "s": "gcrm",
+                  "e": "rule_383"
+                }
+              ]
+            },
+            {
+              "t": "The record is not despatched to the record room until the appeal or revision period expires and any appeal or revision is disposed of; the electronic record on the portal is retained and destroyed under the same rules 361 to 367 of the Criminal Manual so far as they can apply.",
+              "c": [
+                {
+                  "l": "Criminal Manual r.361",
+                  "s": "gcrm",
+                  "e": "rule_361"
+                },
+                {
+                  "l": "SARAS r.7",
+                  "s": "saras",
+                  "e": "rule_7"
+                }
+              ]
+            },
+            {
+              "t": "Appeal from a §138 conviction lies to the Court of Session. Where the appellant is the convicted drawer, the appellate court must order a deposit of at least 20% of the fine or compensation.",
+              "c": [
+                {
+                  "l": "BNSS §415",
+                  "n": "bnss:sec_415"
+                },
+                {
+                  "l": "NI §148",
+                  "n": "ni:sec_148"
+                }
+              ]
+            },
+            {
+              "t": "On a direction from the appellate or revisional court the record and proceedings are transmitted electronically from the designated portal; the original record and hard copies go up only if that court so directs.",
+              "c": [
+                {
+                  "l": "SARAS r.14",
+                  "s": "saras",
+                  "e": "rule_14"
+                }
+              ]
+            },
+            {
+              "t": "Revision and quashing go to the High Court of Gujarat, where a Single Judge hears applications on the criminal side. The matter is presented in the office of the Registrar, gets a filing number at once and a registration number only if there is no office objection, must be accompanied by the certified copy of the judgment or order challenged, and must be examined by the office within six days of filing.",
+              "c": [
+                {
+                  "l": "HC Rules r.2",
+                  "s": "ghcr",
+                  "e": "rule_2"
+                },
+                {
+                  "l": "HC Rules r.333",
+                  "s": "ghcr",
+                  "e": "rule_333"
+                },
+                {
+                  "l": "HC Rules r.345",
+                  "s": "ghcr",
+                  "e": "rule_345"
+                },
+                {
+                  "l": "HC Rules r.339",
+                  "s": "ghcr",
+                  "e": "rule_339"
+                },
+                {
+                  "l": "BNSS §438",
+                  "n": "bnss:sec_438"
+                },
+                {
+                  "l": "BNSS §528",
+                  "n": "bnss:sec_528"
+                }
+              ]
+            },
+            {
+              "t": "Office objections are put up on a special notice board and must be removed within fourteen days, failing which the matter goes before the Court for orders. Where the office re-examines the court fee, a receipt of a payment made through the e-payment system may be required in place of a stamp.",
+              "c": [
+                {
+                  "l": "HC Rules r.340",
+                  "s": "ghcr",
+                  "e": "rule_340"
+                },
+                {
+                  "l": "HC Rules r.64",
+                  "s": "ghcr",
+                  "e": "rule_64"
+                },
+                {
+                  "l": "Court-Fees Act §37",
+                  "s": "gcf",
+                  "e": "sec_37"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "timing_note": "No indicative durations are shown for Gujarat. The rules fix only a few clocks - the one-month limitation under NI §142, Registry scrutiny on the next working day under SARAS rule 4.11, office examination within six days and fourteen days to remove office objections in the High Court - and there is no verified field data on how long a Gujarat cheque case actually takes. Those rule-set clocks are cited on the steps themselves."
+    },
+    "fees": {
+      "summary": "What a §138 case costs to bring in Gujarat. The striking figure is the first one: a flat three rupees on the complaint, whatever the cheque is worth, because Gujarat prices a criminal complaint by the document and not ad valorem.",
+      "cite": {
+        "l": "Gujarat Court-Fees Act, Schedule II",
+        "s": "gcf",
+        "e": "art_1"
+      },
+      "items": [
+        {
+          "stage": "Complaint to a criminal court",
+          "fee": "₹3 - flat, whatever the cheque amount (Sch. II, Art.1(c))."
+        },
+        {
+          "stage": "Written examination of the complainant",
+          "fee": "₹10 where the first or only examination is reduced to writing, unless remitted (§19)."
+        },
+        {
+          "stage": "Vakalatnama",
+          "fee": "₹2 to a criminal court other than a District or Sessions Court or the High Court; ₹3 to a District or Sessions Court; ₹5 to the High Court (Sch. II, Art.12)."
+        },
+        {
+          "stage": "Bail bond or recognizance",
+          "fee": "₹2 (Sch. II, Art.10)."
+        },
+        {
+          "stage": "Process fee - summons or notice",
+          "fee": "₹0.30 for every summons or notice (Criminal Manual r.41)."
+        },
+        {
+          "stage": "Process fee - warrant, proclamation or attachment",
+          "fee": "₹1.25 each; no fresh fee on re-issue; the court may remit where a party cannot pay (Criminal Manual r.41)."
+        },
+        {
+          "stage": "Certified copy in electronic form (SARAS)",
+          "fee": "Minimum ₹50 for up to 25 MB as handling charges and ₹50 for each further 25 MB, plus the actual cost of the storage device where one is used (SARAS r.11.5)."
+        }
+      ],
+      "note": "The amounts are those in the schedules as converted from the official text; the process-fee table is the Criminal Manual's 1977 table, still the operative one in the Manual. The Act has no article pricing a criminal revision or a quashing petition - Schedule II, Article 2 covers a civil revision under section 115 CPC - so the fee on a High Court challenge to a cheque case is not stated here. Verify the current figure before relying on it."
+    },
+    "courts": {
+      "summary": "Gujarat has designated one class of court specifically for cheque cases - the SARAS N.I. Court establishment under the Chief Judicial Magistrate courts of Ahmedabad City. Everywhere else in the State, ordinary Judicial Magistrate First Class courts hear §138 cases under their general criminal jurisdiction.",
+      "designated": [
+        {
+          "name": "SARAS N.I. Court establishment, Ahmedabad City",
+          "location": "C.J.M. Courts, Ahmedabad City - presiding officers sitting anywhere in Gujarat",
+          "basis": "Cheque cases filed by banks and NBFCs in the C.J.M. courts of Ahmedabad City, and cases e-filed under section 25 of the Payment and Settlement Systems Act, 2007. Mandatory e-filing and remote adjudication by video conferencing, resolved by the Full Court on 2 December 2024, notified 5 December 2024 and inaugurated 7 December 2024; the electronic record on the designated portal is the primary and authoritative judicial record.",
+          "cite": {
+            "l": "SARAS Rules r.1",
+            "s": "saras",
+            "e": "rule_1"
+          }
+        }
+      ]
+    },
+    "roles": {
+      "summary": "Who does what in a §138 case in Gujarat - the parties, their advocates, the magistrate, the court's ministerial establishment and the police officer who serves the process - and the provision each role is drawn from. Click a citation to read the source.",
+      "items": [
+        {
+          "id": "complainant",
+          "role": "Complainant",
+          "cat": "litigant",
+          "who": "The payee or the holder in due course of the dishonoured cheque. Only this person can set a §138 case going, by filing the written complaint in their own name. In the Ahmedabad City SARAS courts the complainant is typically a bank or an NBFC filing in bulk.",
+          "cite": [
+            {
+              "l": "NI §142",
+              "n": "ni:sec_142"
+            },
+            {
+              "l": "NI §138",
+              "n": "ni:sec_138"
+            },
+            {
+              "l": "SARAS r.1",
+              "s": "saras",
+              "e": "rule_1"
+            }
+          ]
+        },
+        {
+          "id": "poa",
+          "role": "Power-of-attorney holder",
+          "cat": "litigant",
+          "who": "Where duly authorised and personally aware of the transaction, files the complaint and deposes for the complainant. The e-Filing SOP requires the original power-of-attorney to be preserved permanently, not merely for two years - so the paper behind a bulk bank filing does not disappear.",
+          "cite": [
+            {
+              "l": "NI §142",
+              "n": "ni:sec_142"
+            },
+            {
+              "l": "e-Filing SOP cl.10.3",
+              "s": "gefr",
+              "e": "rule_10"
+            }
+          ]
+        },
+        {
+          "id": "accused",
+          "role": "Accused",
+          "cat": "litigant",
+          "who": "The drawer of the cheque. Where the drawer is a company, the company and every person who was in charge of and responsible to it. In a SARAS case the accused must be physically present at the SARAS court or a remote point when the plea is recorded and when judgment is pronounced.",
+          "cite": [
+            {
+              "l": "NI §138",
+              "n": "ni:sec_138"
+            },
+            {
+              "l": "NI §141",
+              "n": "ni:sec_141"
+            },
+            {
+              "l": "SARAS r.5",
+              "s": "saras",
+              "e": "rule_5"
+            },
+            {
+              "l": "SARAS r.10",
+              "s": "saras",
+              "e": "rule_10"
+            }
+          ]
+        },
+        {
+          "id": "surety",
+          "role": "Surety",
+          "cat": "litigant",
+          "who": "Stands behind the accused's bond. The presiding officer tests the surety's solvency himself by summary enquiry; a revenue solvency certificate is insisted on only in cases of doubt or for large sums, and moveable property suffices for a bond up to Rs.2,000. The intending surety applies in model Form No. 33.",
+          "cite": [
+            {
+              "l": "Criminal Manual r.28",
+              "s": "gcrm",
+              "e": "rule_28"
+            },
+            {
+              "l": "Court-Fees Act Sch.II Art.10",
+              "s": "gcf",
+              "e": "art_10"
+            }
+          ]
+        },
+        {
+          "id": "drawee-bank",
+          "role": "Drawee bank",
+          "cat": "bank",
+          "who": "The bank on which the cheque is drawn. Its return memo is the document that starts the clock, and the NI Act makes the bank's slip with the official mark evidence of dishonour.",
+          "cite": [
+            {
+              "l": "NI §138",
+              "n": "ni:sec_138"
+            },
+            {
+              "l": "NI §146",
+              "n": "ni:sec_146"
+            },
+            {
+              "l": "Bankers' Books Evidence §2",
+              "n": "bbea:sec_2"
+            }
+          ]
+        },
+        {
+          "id": "witness",
+          "role": "Witness",
+          "cat": "witness",
+          "who": "Usually the bank official who proves the return. Examination-in-chief for the complainant is ordinarily tendered by affidavit; cross-examination is ordinarily in physical presence, at a Formal Witness Deposition Centre or a notified remote point. The court pays the witness bhatta, and unclaimed bhatta is remitted by money order fifteen days after final disposal.",
+          "cite": [
+            {
+              "l": "NI §145",
+              "n": "ni:sec_145"
+            },
+            {
+              "l": "SARAS r.6",
+              "s": "saras",
+              "e": "rule_6"
+            },
+            {
+              "l": "Criminal Manual r.208",
+              "s": "gcrm",
+              "e": "rule_208"
+            }
+          ]
+        },
+        {
+          "id": "advocate",
+          "role": "Advocate",
+          "cat": "advocate",
+          "who": "Appears for a party on a vakalatnama, which every pleader must file in every class of criminal case in Gujarat. On the digital side the advocate is also the registered e-Filer - registered on the portal with the Bar Council certificate or I-card, and signing filings with a digital signature or an Aadhaar e-sign.",
+          "cite": [
+            {
+              "l": "Advocates Act §30",
+              "n": "advocates:sec_30"
+            },
+            {
+              "l": "Criminal Manual r.135",
+              "s": "gcrm",
+              "e": "rule_135"
+            },
+            {
+              "l": "e-Filing SOP cl.4",
+              "s": "gefr",
+              "e": "rule_4"
+            },
+            {
+              "l": "e-Filing SOP cl.7",
+              "s": "gefr",
+              "e": "rule_7"
+            }
+          ]
+        },
+        {
+          "id": "advocate-clerk",
+          "role": "Advocate's clerk",
+          "cat": "advclerk",
+          "who": "Carries the file through the registry - filing, clearing objections, collecting copies and following the matter. A recognised court-precinct role rather than a statutory office; the Gujarat instruments name the e-Filer and the Registry, not the clerk.",
+          "basis": "Court-precinct and registry practice - not a statutory office in the Gujarat rules"
+        },
+        {
+          "id": "magistrate",
+          "role": "Judicial Magistrate (presiding officer)",
+          "cat": "judge",
+          "who": "Tries the §138 complaint - takes cognizance, examines the complainant, records evidence and delivers judgment. In a SARAS court the same officer is the 'Presiding Officer' who verifies the registered matter on the portal, digitally signs the exhibits, the orders, the depositions and the rojnama, and may sit anywhere in the State.",
+          "cite": [
+            {
+              "l": "BNSS §9",
+              "n": "bnss:sec_9"
+            },
+            {
+              "l": "NI §143",
+              "n": "ni:sec_143"
+            },
+            {
+              "l": "Criminal Manual r.74",
+              "s": "gcrm",
+              "e": "rule_74"
+            },
+            {
+              "l": "SARAS r.4",
+              "s": "saras",
+              "e": "rule_4"
+            }
+          ]
+        },
+        {
+          "id": "cjm",
+          "role": "Chief Judicial Magistrate, Ahmedabad City",
+          "cat": "judge",
+          "who": "Heads the magistracy under which the SARAS N.I. Court establishment sits. The SARAS Rules apply to that establishment 'under C.J.M. Courts of Ahmedabad City' and to such other courts or classes of proceeding as the High Court notifies.",
+          "cite": [
+            {
+              "l": "BNSS §10",
+              "n": "bnss:sec_10"
+            },
+            {
+              "l": "SARAS r.1",
+              "s": "saras",
+              "e": "rule_1"
+            }
+          ]
+        },
+        {
+          "id": "registry",
+          "role": "Registry",
+          "cat": "staff",
+          "who": "The ministerial establishment responsible for scrutiny, processing and maintenance of records. Scrutiny of e-filed complaints for technical compliance is its exclusive domain: it takes up a new complaint on the next working day, registers it or records objections in writing, and assigns the registered case to a court.",
+          "cite": [
+            {
+              "l": "SARAS r.2",
+              "s": "saras",
+              "e": "rule_2"
+            },
+            {
+              "l": "SARAS r.3.10",
+              "s": "saras",
+              "e": "rule_3"
+            },
+            {
+              "l": "SARAS r.4.11",
+              "s": "saras",
+              "e": "rule_4"
+            }
+          ]
+        },
+        {
+          "id": "clerk-of-court",
+          "role": "Clerk of the Court / Senior Clerk",
+          "cat": "staff",
+          "who": "Signs and seals the summons of a Judicial Magistrate of the First Class, or where there is no Clerk of the Court, the Senior Clerk or a clerk specially assigned that work in writing. In the Sessions Court the Clerk of the Court also certifies the typed copies of the record sent up in appeal.",
+          "cite": [
+            {
+              "l": "Criminal Manual r.48",
+              "s": "gcrm",
+              "e": "rule_48"
+            },
+            {
+              "l": "Criminal Manual r.314",
+              "s": "gcrm",
+              "e": "rule_314"
+            }
+          ]
+        },
+        {
+          "id": "sheristedar",
+          "role": "Sheristedar",
+          "cat": "staff",
+          "who": "The head ministerial officer. Under the Criminal Manual the Sheristedar signs and seals the summons of a Metropolitan Magistrate's court, keeps the property register and deals with copy applications. The Manual predates the BNSS, which no longer provides for Metropolitan Magistrates; in the Chief Judicial Magistrate courts the Senior Clerk does the corresponding work.",
+          "cite": [
+            {
+              "l": "Criminal Manual r.48",
+              "s": "gcrm",
+              "e": "rule_48"
+            },
+            {
+              "l": "Criminal Manual r.383",
+              "s": "gcrm",
+              "e": "rule_383"
+            },
+            {
+              "l": "Criminal Manual r.216",
+              "s": "gcrm",
+              "e": "rule_216"
+            }
+          ]
+        },
+        {
+          "id": "nazir",
+          "role": "Nazir",
+          "cat": "staff",
+          "who": "Handles cash, deposits and case property. Prepares and signs the Property Register, verifies muddamal against the police Pavti or Yadi before entry, and is among the officers before whom an intending surety presents the suretyship application. Officers dealing with cash, stamps or muddamal give security in the manner prescribed for the Nazir.",
+          "cite": [
+            {
+              "l": "Criminal Manual r.216",
+              "s": "gcrm",
+              "e": "rule_216"
+            },
+            {
+              "l": "Criminal Manual r.219",
+              "s": "gcrm",
+              "e": "rule_219"
+            },
+            {
+              "l": "Criminal Manual r.408",
+              "s": "gcrm",
+              "e": "rule_408"
+            }
+          ]
+        },
+        {
+          "id": "bench-clerk",
+          "role": "Bench Clerk / Board Clerk",
+          "cat": "staff",
+          "who": "Runs the file through the hearing day and records the rojnama in CIS at the end of it. In a SARAS court the Bench Clerk places each case's physically produced documents in a sealed, marked envelope and keeps them ready for the court; physical documents are held by the Superintendent or Board Clerk. The Magistrate, though, must settle his own Board and not leave it to the Bench Clerk.",
+          "cite": [
+            {
+              "l": "SARAS r.3.12",
+              "s": "saras",
+              "e": "rule_3"
+            },
+            {
+              "l": "SARAS r.4.20",
+              "s": "saras",
+              "e": "rule_4"
+            },
+            {
+              "l": "SARAS r.13",
+              "s": "saras",
+              "e": "rule_13"
+            },
+            {
+              "l": "Criminal Manual r.89",
+              "s": "gcrm",
+              "e": "rule_89"
+            }
+          ]
+        },
+        {
+          "id": "coordinator",
+          "role": "Coordinator (video conferencing)",
+          "cat": "staff",
+          "who": "Sits at each end of the live link. There is a coordinator at the court point and at the designated place from which a person is examined or heard, though one is needed at the remote point only where a witness or an accused is being examined. Nominated by the High Court or the Principal District and Sessions Judge, and counter-signs a document sent back from the remote point.",
+          "cite": [
+            {
+              "l": "VC Rules r.9",
+              "s": "gvcr",
+              "e": "rule_9"
+            },
+            {
+              "l": "VC Rules r.14",
+              "s": "gvcr",
+              "e": "rule_14"
+            },
+            {
+              "l": "VC Rules r.22",
+              "s": "gvcr",
+              "e": "rule_22"
+            }
+          ]
+        },
+        {
+          "id": "stenographer",
+          "role": "Stenographer",
+          "cat": "staff",
+          "who": "Takes the magistrate's dictation of the order sheets, online during or after the hearing in a SARAS court; the typed order sheet is digitally signed before it is uploaded to CIS.",
+          "cite": [
+            {
+              "l": "SARAS r.8",
+              "s": "saras",
+              "e": "rule_8"
+            }
+          ]
+        },
+        {
+          "id": "interpreter",
+          "role": "Interpreter",
+          "cat": "staff",
+          "who": "Interprets evidence given in a language the court or the accused does not understand. Sessions Judges, District Magistrates and Chief Metropolitan Magistrates are authorised to pay a reasonable sum for the service. In a remote hearing the fee of the translator or interpreter is borne as the court directs.",
+          "cite": [
+            {
+              "l": "Criminal Manual r.171",
+              "s": "gcrm",
+              "e": "rule_171"
+            },
+            {
+              "l": "VC Rules r.22",
+              "s": "gvcr",
+              "e": "rule_22"
+            }
+          ]
+        },
+        {
+          "id": "police-server",
+          "role": "Police officer serving process",
+          "cat": "police",
+          "who": "Serves the court's summons on the accused and executes any warrant that follows. It is a statutory duty of every police officer to do so promptly for every order lawfully issued by competent authority. A §138 case is a complaint case, so this is essentially the only role the police have in it.",
+          "cite": [
+            {
+              "l": "Gujarat Police Act §64",
+              "s": "gpa",
+              "e": "sec_64"
+            },
+            {
+              "l": "§2 (competent authority)",
+              "s": "gpa",
+              "e": "sec_2"
+            },
+            {
+              "l": "Criminal Manual r.41",
+              "s": "gcrm",
+              "e": "rule_41"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "institutions": {
+    "summary": "The two institutions a §138 case runs through on the ground in Gujarat - the police and the courts - with their hierarchy, the people in each role and where each comes from in law. Grounded in the Gujarat Police Act, 1951 for the police, and in the Constitution, the BNSS, the Criminal Manual, the Gujarat High Court Rules and the SARAS Rules for the courts.",
+    "police": {
+      "summary": "One Police Force for the whole of Gujarat (§3), with superintendence vested in the State Government (§4). The Act does not enumerate the ranks the way Kerala's does: §5(a) leaves the number, ranks, organisation, powers and duties of the force to the State Government by general or special order, and the Act names only the senior offices. A §138 case rarely touches the police at all - it is a complaint, not an FIR case - but §64(a) makes serving the court's summons and executing its warrants a police duty.",
+      "sources": [
+        {
+          "l": "Gujarat Police Act, 1951 §3",
+          "s": "gpa",
+          "e": "sec_3"
+        },
+        {
+          "l": "§5 (constitution of the force)",
+          "s": "gpa",
+          "e": "sec_5"
+        },
+        {
+          "l": "Police Act, 1861",
+          "n": "police1861:sec_2"
+        }
+      ],
+      "ranks": [
+        {
+          "id": "dgigp",
+          "name": "Director General and Inspector General of Police",
+          "aka": [
+            "DG & IGP",
+            "State Police Chief"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §5A",
+              "s": "gpa",
+              "e": "sec_5"
+            },
+            {
+              "l": "§4 (superintendence)",
+              "s": "gpa",
+              "e": "sec_4"
+            }
+          ],
+          "who": "Appointed by the State Government for the overall direction and supervision of the police force.",
+          "entry": "An IPS officer of the State cadre, appointed by the State Government.",
+          "service": "IPS"
+        },
+        {
+          "id": "igp",
+          "name": "Inspector General of Police",
+          "aka": [
+            "IGP",
+            "IG"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §6(1)",
+              "s": "gpa",
+              "e": "sec_6"
+            }
+          ],
+          "who": "Appointed for the direction and supervision of the force, with the powers, functions and authority the Act or Government orders provide.",
+          "entry": "IPS, by promotion.",
+          "service": "IPS"
+        },
+        {
+          "id": "adlig",
+          "name": "Additional and Deputy Inspector General of Police",
+          "aka": [
+            "Addl. IGP",
+            "DIG"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §6(2)",
+              "s": "gpa",
+              "e": "sec_6"
+            }
+          ],
+          "who": "May exercise any of the Inspector General's powers as the State Government directs, and aid and assist him.",
+          "entry": "IPS, by promotion.",
+          "service": "IPS"
+        },
+        {
+          "id": "cp",
+          "name": "Commissioner of Police",
+          "aka": [
+            "City Police Commissioner",
+            "Additional Commissioner of Police"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §7",
+              "s": "gpa",
+              "e": "sec_7"
+            },
+            {
+              "l": "§16 (general powers)",
+              "s": "gpa",
+              "e": "sec_16"
+            },
+            {
+              "l": "§2(3) (competent authority)",
+              "s": "gpa",
+              "e": "sec_2"
+            }
+          ],
+          "who": "Heads policing for a notified city area, which is taken out of the charge of the District Magistrate and the District Superintendent. The competent authority for that area - relevant here because the SARAS cheque courts sit under the C.J.M. courts of Ahmedabad City.",
+          "entry": "A senior IPS officer, appointed by the State Government.",
+          "service": "IPS"
+        },
+        {
+          "id": "sp",
+          "name": "District Superintendent of Police",
+          "aka": [
+            "District Superintendent",
+            "SP"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §8",
+              "s": "gpa",
+              "e": "sec_8"
+            },
+            {
+              "l": "§16",
+              "s": "gpa",
+              "e": "sec_16"
+            },
+            {
+              "l": "§17 (District Magistrate's control)",
+              "s": "gpa",
+              "e": "sec_17"
+            }
+          ],
+          "who": "Commands the police of a district, subject to the orders of the Inspector General and the District Magistrate. A competent authority outside the commissionerates.",
+          "entry": "IPS, or a promoted State Police Service officer.",
+          "service": "IPS / GPS"
+        },
+        {
+          "id": "addlsp",
+          "name": "Additional, Assistant and Deputy Superintendent of Police",
+          "aka": [
+            "Addl. SP",
+            "ASP",
+            "Dy.SP"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §8",
+              "s": "gpa",
+              "e": "sec_8"
+            },
+            {
+              "l": "§11 (in a commissionerate)",
+              "s": "gpa",
+              "e": "sec_11"
+            }
+          ],
+          "who": "Appointed for a district or part of one; an Additional Superintendent may be empowered to exercise all the District Superintendent's powers, and other powers may be delegated to an Assistant or Deputy Superintendent.",
+          "entry": "IPS (Assistant Superintendent, as a direct recruit) or the Gujarat Police Service.",
+          "service": "IPS / GPS"
+        },
+        {
+          "id": "pi",
+          "name": "Inspector of Police",
+          "aka": [
+            "Police Inspector",
+            "PI"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §12(2)",
+              "s": "gpa",
+              "e": "sec_12"
+            },
+            {
+              "l": "§12A (appointment)",
+              "s": "gpa",
+              "e": "sec_12"
+            },
+            {
+              "l": "§14 (certificate)",
+              "s": "gpa",
+              "e": "sec_14"
+            }
+          ],
+          "who": "Each section of a police division is in charge of an Inspector of Police. Appointed by the Commissioner for his area and by the Inspector General elsewhere; every officer of the grade of Inspector or below receives a certificate of appointment.",
+          "entry": "Gujarat Police Service, by direct recruitment or promotion.",
+          "service": "GPS"
+        },
+        {
+          "id": "psi",
+          "name": "Sub-Inspector and Assistant Sub-Inspector of Police",
+          "aka": [
+            "PSI",
+            "ASI"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §5(a)",
+              "s": "gpa",
+              "e": "sec_5"
+            },
+            {
+              "l": "§14",
+              "s": "gpa",
+              "e": "sec_14"
+            }
+          ],
+          "who": "The station-level ranks. They are not enumerated in the Act - the ranks and organisation of the force are what the State Government determines under §5(a) - but they hold a certificate of appointment under §14 and the §64 duties.",
+          "entry": "Gujarat Police Service, by direct recruitment or promotion.",
+          "service": "GPS"
+        },
+        {
+          "id": "constable",
+          "name": "Constable (including Lok Rakshak)",
+          "aka": [
+            "Police Constable",
+            "Lok Rakshak"
+          ],
+          "cite": [
+            {
+              "l": "GP Act §2(4)",
+              "s": "gpa",
+              "e": "sec_2"
+            },
+            {
+              "l": "§14",
+              "s": "gpa",
+              "e": "sec_14"
+            },
+            {
+              "l": "§64",
+              "s": "gpa",
+              "e": "sec_64"
+            }
+          ],
+          "who": "A police officer of the lowest grade, expressly including a Lok Rakshak. Serves the court's summons and assists in executing its warrants.",
+          "entry": "Direct recruitment to the Gujarat Police.",
+          "service": "Gujarat Police"
+        },
+        {
+          "id": "spo",
+          "name": "Special Police Officer",
+          "cite": [
+            {
+              "l": "GP Act §21",
+              "s": "gpa",
+              "e": "sec_21"
+            }
+          ],
+          "who": "A person appointed in writing by the Commissioner, District Superintendent or a specially empowered Magistrate to assist the force on an occasion of apprehended riot or grave disturbance, with the same powers and duties as an ordinary police officer while so serving.",
+          "entry": "Appointed ad hoc by written order.",
+          "service": "Temporary"
+        }
+      ],
+      "units": [
+        {
+          "id": "state",
+          "name": "Gujarat Police (State)",
+          "head": "Director General and Inspector General of Police",
+          "cite": [
+            {
+              "l": "§3",
+              "s": "gpa",
+              "e": "sec_3"
+            },
+            {
+              "l": "§4",
+              "s": "gpa",
+              "e": "sec_4"
+            },
+            {
+              "l": "§5",
+              "s": "gpa",
+              "e": "sec_5"
+            }
+          ],
+          "who": "One force for the whole State, its numbers, ranks and organisation determined by the State Government."
+        },
+        {
+          "id": "commissionerate",
+          "name": "Commissionerate (city area)",
+          "head": "Commissioner of Police",
+          "cite": [
+            {
+              "l": "§7",
+              "s": "gpa",
+              "e": "sec_7"
+            },
+            {
+              "l": "§11",
+              "s": "gpa",
+              "e": "sec_11"
+            }
+          ],
+          "who": "A notified city area under a Commissioner, outside the charge of the District Magistrate and District Superintendent. Ahmedabad City, where the SARAS cheque courts sit, is one."
+        },
+        {
+          "id": "district",
+          "name": "District",
+          "head": "District Superintendent of Police",
+          "cite": [
+            {
+              "l": "§8",
+              "s": "gpa",
+              "e": "sec_8"
+            },
+            {
+              "l": "§2(5) (definition)",
+              "s": "gpa",
+              "e": "sec_2"
+            },
+            {
+              "l": "§17",
+              "s": "gpa",
+              "e": "sec_17"
+            }
+          ],
+          "who": "The territorial command outside the commissionerates; the District Magistrate controls the force in the district for the purposes of the Act."
+        },
+        {
+          "id": "division",
+          "name": "Police division",
+          "head": "Superintendent of Police",
+          "cite": [
+            {
+              "l": "§12(1)-(2)",
+              "s": "gpa",
+              "e": "sec_12"
+            }
+          ],
+          "who": "Constituted within a Commissioner's area, subject to the control of the State Government."
+        },
+        {
+          "id": "section",
+          "name": "Section",
+          "head": "Inspector of Police",
+          "cite": [
+            {
+              "l": "§12(2)",
+              "s": "gpa",
+              "e": "sec_12"
+            }
+          ],
+          "who": "A sub-division of a police division, in charge of an Inspector of Police."
+        },
+        {
+          "id": "station",
+          "name": "Police station",
+          "head": "Station House Officer",
+          "basis": "The primary territorial unit. The Gujarat Police Act does not constitute police stations - their limits are fixed administratively and the officer in charge draws his powers from the BNSS.",
+          "who": "Where the court's summons in a cheque case is sent for service."
+        }
+      ],
+      "oversight": [
+        {
+          "id": "ssc",
+          "name": "State Security Commission",
+          "cite": [
+            {
+              "l": "GP Act §32B",
+              "s": "gpa",
+              "e": "sec_32B"
+            },
+            {
+              "l": "§32C (annual report)",
+              "s": "gpa",
+              "e": "sec_32C"
+            }
+          ],
+          "who": "Advises the State Government on policy guidelines for the police, helps identify performance indicators, and periodically reviews the force's performance."
+        },
+        {
+          "id": "peb",
+          "name": "Police Establishment Board",
+          "cite": [
+            {
+              "l": "GP Act §32D",
+              "s": "gpa",
+              "e": "sec_32D"
+            },
+            {
+              "l": "§32E (powers)",
+              "s": "gpa",
+              "e": "sec_32E"
+            }
+          ],
+          "who": "Chaired ex officio by the Director General and Inspector General of Police; deals with postings, transfers and service matters of the force."
+        },
+        {
+          "id": "spca",
+          "name": "State Police Complaints Authority",
+          "cite": [
+            {
+              "l": "GP Act §32G",
+              "s": "gpa",
+              "e": "sec_32G"
+            },
+            {
+              "l": "§32H (district authority)",
+              "s": "gpa",
+              "e": "sec_32H"
+            }
+          ],
+          "who": "Looks into complaints of serious misconduct, dereliction of duty or misuse of powers against officers of the rank of Deputy Superintendent and above; may enforce attendance and take evidence on oath, and recommends action. A District Police Complaints Authority covers the ranks below."
+        },
+        {
+          "id": "dm",
+          "name": "District Magistrate",
+          "cite": [
+            {
+              "l": "GP Act §17",
+              "s": "gpa",
+              "e": "sec_17"
+            },
+            {
+              "l": "§18 (reports)",
+              "s": "gpa",
+              "e": "sec_18"
+            },
+            {
+              "l": "§19 (supervision)",
+              "s": "gpa",
+              "e": "sec_19"
+            }
+          ],
+          "who": "Controls and supervises the police force in the district for the purposes of the Act and may require reports from the District Superintendent."
+        }
+      ]
+    },
+    "judiciary": {
+      "summary": "The court hierarchy a §138 case moves through in Gujarat: the trial court is the Judicial Magistrate of the First Class - and, for bank and NBFC cheque cases in Ahmedabad City, the SARAS N.I. Court under the Chief Judicial Magistrate there. Appeal lies to the Court of Session; revision and quashing to the High Court of Gujarat, where a Single Judge hears them. Alongside the judges sits the court's ministerial establishment, whose offices the Criminal Manual, 1977 still names in pre-BNSS language.",
+      "sources": [
+        {
+          "l": "Constitution, Part VI Ch.V-VI",
+          "n": "constitution:art_214"
+        },
+        {
+          "l": "BNSS §6",
+          "n": "bnss:sec_6"
+        },
+        {
+          "l": "Criminal Manual, 1977",
+          "s": "gcrm",
+          "e": "rule_76"
+        },
+        {
+          "l": "Gujarat High Court Rules, 1993",
+          "s": "ghcr",
+          "e": "rule_2"
+        }
+      ],
+      "tiers": [
+        {
+          "id": "sc",
+          "name": "Supreme Court of India",
+          "aka": [
+            "SC",
+            "Apex Court"
+          ],
+          "cite": [
+            {
+              "l": "Constitution art.124",
+              "n": "constitution:art_124"
+            },
+            {
+              "l": "art.136 (SLP)",
+              "n": "constitution:art_136"
+            },
+            {
+              "l": "art.141 (binding)",
+              "n": "constitution:art_141"
+            }
+          ],
+          "who": "The highest court. A §138 matter reaches it only by special leave; its law binds every court in India.",
+          "role": "Final appeal, by special leave"
+        },
+        {
+          "id": "hc",
+          "name": "High Court of Gujarat",
+          "aka": [
+            "High Court",
+            "HC"
+          ],
+          "cite": [
+            {
+              "l": "Constitution art.214",
+              "n": "constitution:art_214"
+            },
+            {
+              "l": "art.226/227",
+              "n": "constitution:art_226"
+            },
+            {
+              "l": "HC Rules r.2 (Single Judge)",
+              "s": "ghcr",
+              "e": "rule_2"
+            },
+            {
+              "l": "HC Rules r.333",
+              "s": "ghcr",
+              "e": "rule_333"
+            }
+          ],
+          "who": "Hears criminal revisions and petitions to quash a cheque complaint, and superintends the courts below. A Single Judge takes the criminal list. It also makes the rules this whole layer runs on - the Criminal Manual, the e-Filing SOP, the Video Conferencing Rules and the SARAS Rules.",
+          "role": "Revision, quashing, writ, superintendence and rule-making"
+        },
+        {
+          "id": "sessions",
+          "name": "Court of Session (District & Sessions Court)",
+          "aka": [
+            "Sessions Court",
+            "District Court"
+          ],
+          "cite": [
+            {
+              "l": "BNSS §6",
+              "n": "bnss:sec_6"
+            },
+            {
+              "l": "BNSS §415 (appeal)",
+              "n": "bnss:sec_415"
+            },
+            {
+              "l": "NI §148 (deposit)",
+              "n": "ni:sec_148"
+            }
+          ],
+          "who": "Headed by the District & Sessions Judge; hears the first appeal from a §138 conviction, and orders the appellant's deposit of at least 20% of the fine or compensation.",
+          "role": "First appeal from conviction"
+        },
+        {
+          "id": "cjm",
+          "name": "Chief Judicial Magistrate",
+          "aka": [
+            "CJM"
+          ],
+          "cite": [
+            {
+              "l": "BNSS §10",
+              "n": "bnss:sec_10"
+            },
+            {
+              "l": "SARAS r.1",
+              "s": "saras",
+              "e": "rule_1"
+            }
+          ],
+          "who": "Heads the magistracy of a district. The SARAS N.I. Court establishment sits under the C.J.M. courts of Ahmedabad City.",
+          "role": "Administrative head of the magistracy; host of the SARAS establishment"
+        },
+        {
+          "id": "saras",
+          "name": "SARAS N.I. Court (remote adjudication)",
+          "aka": [
+            "SARAS court",
+            "Remote Adjudication Court"
+          ],
+          "cite": [
+            {
+              "l": "SARAS r.1",
+              "s": "saras",
+              "e": "rule_1"
+            },
+            {
+              "l": "SARAS r.3",
+              "s": "saras",
+              "e": "rule_3"
+            },
+            {
+              "l": "SARAS r.9",
+              "s": "saras",
+              "e": "rule_9"
+            },
+            {
+              "l": "PSS Act §25",
+              "n": "pss:sec_25"
+            }
+          ],
+          "who": "Gujarat's dedicated cheque-case court: mandatory e-filing, hearings by audio-video means, the electronic record on the designated portal as the primary judicial record, and a presiding officer who may be stationed anywhere in the State. Adjudication in that mode is expressly a valid mode of adjudication.",
+          "role": "The §138 trial court for bank and NBFC cases in Ahmedabad City"
+        },
+        {
+          "id": "jmfc",
+          "name": "Judicial Magistrate of the First Class",
+          "aka": [
+            "JMFC",
+            "trial court"
+          ],
+          "cite": [
+            {
+              "l": "BNSS §9",
+              "n": "bnss:sec_9"
+            },
+            {
+              "l": "NI §142 (cognizance)",
+              "n": "ni:sec_142"
+            },
+            {
+              "l": "NI §143 (summary trial)",
+              "n": "ni:sec_143"
+            },
+            {
+              "l": "Criminal Manual r.74",
+              "s": "gcrm",
+              "e": "rule_74"
+            }
+          ],
+          "who": "The trial court for a §138 case everywhere else in Gujarat: takes cognizance of the complaint, examines the complainant, tries the case summarily and, on conviction, sentences the accused.",
+          "role": "The ordinary §138 trial court"
+        }
+      ],
+      "roles": [
+        {
+          "id": "sessions-judge",
+          "name": "District & Sessions Judge",
+          "cat": "judge",
+          "aka": [
+            "Sessions Judge",
+            "District Judge"
+          ],
+          "cite": [
+            {
+              "l": "Constitution art.233",
+              "n": "constitution:art_233"
+            },
+            {
+              "l": "art.235 (control)",
+              "n": "constitution:art_235"
+            },
+            {
+              "l": "BNSS §415",
+              "n": "bnss:sec_415"
+            }
+          ],
+          "who": "Heads the district judiciary and hears §138 appeals. The Principal District and Sessions Judge also nominates the video-conferencing coordinators for the courts in his jurisdiction.",
+          "entry": "The Higher Judicial Service - direct recruitment of advocates with seven years' practice, or promotion from the subordinate judiciary."
+        },
+        {
+          "id": "magistrate",
+          "name": "Judicial Magistrate (First Class)",
+          "cat": "judge",
+          "aka": [
+            "Magistrate",
+            "JMFC"
+          ],
+          "cite": [
+            {
+              "l": "BNSS §9",
+              "n": "bnss:sec_9"
+            },
+            {
+              "l": "Constitution art.234",
+              "n": "constitution:art_234"
+            },
+            {
+              "l": "NI §143",
+              "n": "ni:sec_143"
+            }
+          ],
+          "who": "Tries the §138 complaint - cognizance, examination of the complainant, evidence, judgment and sentence.",
+          "entry": "The Gujarat Judicial Service - the Civil Judge examination conducted by the High Court of Gujarat."
+        },
+        {
+          "id": "presiding-officer",
+          "name": "Presiding Officer of a SARAS court",
+          "cat": "judge",
+          "aka": [
+            "SARAS Presiding Officer"
+          ],
+          "cite": [
+            {
+              "l": "SARAS r.4.12-4.18",
+              "s": "saras",
+              "e": "rule_4"
+            },
+            {
+              "l": "SARAS r.3.7",
+              "s": "saras",
+              "e": "rule_3"
+            },
+            {
+              "l": "SARAS r.9",
+              "s": "saras",
+              "e": "rule_9"
+            }
+          ],
+          "who": "The magistrate nominated to a SARAS N.I. Court. Verifies the registered matter on the portal, digitally signs the exhibits, orders, judgments, depositions and the rojnama, and may sit at a remote adjudication point anywhere in the State.",
+          "entry": "A judicial officer of the Gujarat Judicial Service nominated by the High Court to the SARAS establishment."
+        },
+        {
+          "id": "registrar",
+          "name": "Registrar (High Court)",
+          "cat": "staff",
+          "aka": [
+            "Registrar of the High Court"
+          ],
+          "cite": [
+            {
+              "l": "HC Rules r.333",
+              "s": "ghcr",
+              "e": "rule_333"
+            },
+            {
+              "l": "HC Rules r.339",
+              "s": "ghcr",
+              "e": "rule_339"
+            },
+            {
+              "l": "HC Rules r.340",
+              "s": "ghcr",
+              "e": "rule_340"
+            }
+          ],
+          "who": "All criminal matters are presented in the office of the Registrar. The office gives a filing number, examines the matter within six days, notifies office objections on a special notice board and gives a registration number when they are cleared.",
+          "entry": "Judicial or ministerial service of the High Court of Gujarat."
+        },
+        {
+          "id": "registry-staff",
+          "name": "Registry (district judiciary)",
+          "cat": "staff",
+          "aka": [
+            "ministerial establishment"
+          ],
+          "cite": [
+            {
+              "l": "SARAS r.2",
+              "s": "saras",
+              "e": "rule_2"
+            },
+            {
+              "l": "SARAS r.3.10",
+              "s": "saras",
+              "e": "rule_3"
+            },
+            {
+              "l": "SARAS r.4.11",
+              "s": "saras",
+              "e": "rule_4"
+            },
+            {
+              "l": "e-Filing SOP cl.18",
+              "s": "gefr",
+              "e": "rule_18"
+            }
+          ],
+          "who": "Scrutinises the e-filed complaint on the next working day, registers it or records written objections, and assigns the registered case to a court. Technical scrutiny is its exclusive domain.",
+          "entry": "Ministerial establishment of the district judiciary."
+        },
+        {
+          "id": "sheristedar",
+          "name": "Sheristedar / Senior Clerk",
+          "cat": "staff",
+          "aka": [
+            "Sheristadar",
+            "Clerk of the Court"
+          ],
+          "cite": [
+            {
+              "l": "Criminal Manual r.48",
+              "s": "gcrm",
+              "e": "rule_48"
+            },
+            {
+              "l": "Criminal Manual r.383",
+              "s": "gcrm",
+              "e": "rule_383"
+            },
+            {
+              "l": "Criminal Manual r.216",
+              "s": "gcrm",
+              "e": "rule_216"
+            }
+          ],
+          "who": "The head ministerial officer of a magistrate's court - signs and seals the summons, keeps the property register, deals with copy applications. The Criminal Manual names the Sheristedar for the Metropolitan Magistrate's court, an office the BNSS no longer provides for; in the C.J.M. and J.M.F.C. courts the Clerk of the Court or the Senior Clerk does the same work.",
+          "entry": "Ministerial (judicial) establishment of the district judiciary, by recruitment and promotion."
+        },
+        {
+          "id": "nazir",
+          "name": "Nazir",
+          "cat": "staff",
+          "cite": [
+            {
+              "l": "Criminal Manual r.216",
+              "s": "gcrm",
+              "e": "rule_216"
+            },
+            {
+              "l": "Criminal Manual r.219",
+              "s": "gcrm",
+              "e": "rule_219"
+            },
+            {
+              "l": "Criminal Manual r.408",
+              "s": "gcrm",
+              "e": "rule_408"
+            }
+          ],
+          "who": "Keeps the court's cash, deposits and muddamal; prepares and signs the Property Register and verifies case property against the police Pavti or Yadi.",
+          "entry": "Ministerial establishment of the district judiciary."
+        },
+        {
+          "id": "bench-clerk",
+          "name": "Bench Clerk / Board Clerk",
+          "cat": "staff",
+          "cite": [
+            {
+              "l": "SARAS r.3.12",
+              "s": "saras",
+              "e": "rule_3"
+            },
+            {
+              "l": "SARAS r.4.20",
+              "s": "saras",
+              "e": "rule_4"
+            },
+            {
+              "l": "Criminal Manual r.89",
+              "s": "gcrm",
+              "e": "rule_89"
+            }
+          ],
+          "who": "Runs the file through the hearing day, records the rojnama in CIS for the presiding officer to sign, and keeps each case's physical papers in a sealed, marked envelope. The Magistrate must nonetheless settle his own Board.",
+          "entry": "Ministerial establishment of the district judiciary."
+        },
+        {
+          "id": "stenographer",
+          "name": "Stenographer",
+          "cat": "staff",
+          "cite": [
+            {
+              "l": "SARAS r.8",
+              "s": "saras",
+              "e": "rule_8"
+            }
+          ],
+          "who": "Takes the magistrate's dictation of order sheets, online during or after the hearing in a SARAS court.",
+          "entry": "Ministerial establishment of the district judiciary."
+        },
+        {
+          "id": "coordinator",
+          "name": "Video conferencing coordinator",
+          "cat": "staff",
+          "cite": [
+            {
+              "l": "VC Rules r.9",
+              "s": "gvcr",
+              "e": "rule_9"
+            },
+            {
+              "l": "VC Rules r.14",
+              "s": "gvcr",
+              "e": "rule_14"
+            }
+          ],
+          "who": "Runs the link at the court point and at the designated place, and counter-signs documents sent back from a remote point. Nominated by the High Court or the Principal District and Sessions Judge; the court may appoint any court official as the coordinator at the court point.",
+          "entry": "Nominated from the court's own staff or from the officials named in the rule 9 table for the place concerned."
+        }
+      ]
+    }
   }
 }

@@ -26,6 +26,11 @@ Verify against the official source before relying on exact text.
 """
 import pdfplumber, re, html
 import xml.dom.minidom as M
+
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+from akn_ids import assert_unique_eids
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -262,6 +267,7 @@ xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
        '    <body>\n'
        + ''.join(render_node(n) for n in body_out) +
        '\n    </body>\n  </act>\n</akomaNtoso>\n')
+assert_unique_eids(xml, OUT_PATH.name)
 OUT_PATH.write_text(xml)
 
 M.parseString(xml)   # raises if not well-formed

@@ -628,7 +628,7 @@
     ]
   },
   "vocabulary": {
-    "summary": "The words the Haryana layer adds on top of the shared national vocabulary - the filing-branch roles, the e-Courts CIS mechanics and the local workarounds that a s.138 ('NACT') filing actually runs on in the Panchkula district courts. Drawn from a June 2026 field interview with the filing assistants.",
+    "summary": "The words the Haryana layer adds on top of the shared national vocabulary. Two sources feed it: a June 2026 field interview with the filing assistants of the Panchkula district courts, which gives the filing-branch roles, the e-Courts CIS mechanics and the local workarounds a s.138 ('NACT') filing runs on; and the Punjab and Haryana High Court's own instruments - Volume III of the Rules and Orders, the Electronic Filing Rules and the Rules for Video Conferencing - which give the court-process, establishment, e-filing and remote-hearing words a cheque case meets after it is filed.",
     "terms": [
       {
         "word": "Filing Assistant",
@@ -647,15 +647,17 @@
       },
       {
         "word": "Ahlmad",
-        "gloss": "The court's record-keeper and reader who receives the filed case in the destination court and takes over registration - entering the full address and any extra-party details - and the subsequent process. A formal establishment role in the North Indian courts; at the filing stage the window hands off to the ahlmad.",
-        "source": "Court establishment - the ahlmad (reader / record-keeper) of a trial court; Panchkula filing assistants (PUCAR interview, June 2026)",
+        "gloss": "The court's record-keeper and reader. He receives the filed case in the destination court and takes over registration - entering the full address and any extra-party details - and the subsequent process. Volume III recognises the office directly: the process money and stamped postal envelopes filed by litigants are received by the ahlmad or the moharrir against a receipt, and never by any other member of the ministerial establishment, and the registers of a magistrate's court are maintained by the ahlmad attached to it. A formal establishment role in the North Indian courts; at the filing stage the window hands off to the ahlmad.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.4; named by the Panchkula filing assistants (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-A.4",
         "group": "Court staff",
         "pos": "noun",
         "role": "actor",
         "aka": [
           "ahlamad",
-          "reader",
-          "record keeper"
+          "court reader",
+          "record-keeper of the court"
         ],
         "sourceNotes": [
           "hr-filing-assistant-2026-06"
@@ -663,7 +665,7 @@
       },
       {
         "word": "Computer room",
-        "gloss": "The office that holds the CIS permission to release ('consume' or approve) an e-filed case into the filing branch's queue. The filing assistants have no direct access, so they telephone the computer room each time an e-filing arrives - often ten to fifteen times a day - before they can edit and submit it. An access-control chokepoint rather than a rule.",
+        "gloss": "The office that holds the CIS permission to release ('consume' or approve) an e-filed case into the filing branch's queue. The filing assistants have no direct access, so they telephone the computer room each time an e-filing arrives - often ten to fifteen times a day - before they can edit and submit it. 'Computer room' is the local name; the office the E-Filing Rules actually create is the Administrator, who for a district court is the officer appointed by the District and Sessions Judge. An access-control chokepoint rather than a rule.",
         "source": "Local CIS access arrangement, Panchkula district courts (PUCAR interview, June 2026)",
         "group": "Court staff",
         "pos": "noun",
@@ -729,7 +731,8 @@
         "pos": "noun",
         "role": "document",
         "aka": [
-          "memo of parties"
+          "memorandum of parties",
+          "array of parties"
         ],
         "sourceNotes": [
           "hr-filing-assistant-2026-06"
@@ -748,7 +751,7 @@
       },
       {
         "word": "Filing window",
-        "gloss": "The lower-court counter where advocates submit physical NACT files and the filing assistant receives, scrutinises and enters them. In Panchkula the window is open until 12:00 PM and files are processed the same day; it handles 40 to 50 files of all categories a day, of which up to about 10 are NACT.",
+        "gloss": "The lower-court counter where advocates submit physical NACT files and the filing assistant receives, scrutinises and enters them. In Panchkula the window is open until 12:00 PM and files are processed the same day; it handles 40 to 50 files of all categories a day, of which up to about 10 are NACT. It is the modern form of the Volume III petition box, and it sits beside the designated counters and e-Service Centres at which the same complaint may be filed electronically. Court and office timings across the subordinate courts of Haryana are fixed by rule: court from 10:00 to 16:30, office from 09:30 to 17:00.",
         "source": "Panchkula district courts filing branch (PUCAR interview, June 2026)",
         "group": "Filing & records",
         "pos": "noun",
@@ -759,13 +762,382 @@
         "sourceNotes": [
           "hr-filing-assistant-2026-06"
         ]
+      },
+      {
+        "word": "Rules and Orders, Volume III",
+        "gloss": "The Punjab and Haryana High Court's standing instructions to the subordinate criminal courts of Punjab, Haryana and Chandigarh - the Haryana counterpart of Kerala's Criminal Rules of Practice. Volume III governs the whole spine of a cheque case: cognizance on a complaint, the issue of process, the conduct of the trial, the record of evidence, dismissal in default, the judgment, the sentence and the appeal. It is made under the High Court's powers of superintendence in Articles 225 and 227 of the Constitution, and it opens at Chapter 1 Part A with the uniform court and office timings for every subordinate court in the two States. It still cites the old Codes of 1898 and 1973 by their former section numbers, so it has to be read through the 2024 Sanhita mapping.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.1",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-A.1",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "R&O Volume III",
+          "High Court Rules and Orders",
+          "Instructions to Criminal Courts"
+        ]
+      },
+      {
+        "word": "Preliminary examination",
+        "gloss": "The first duty of a magistrate taking cognizance on a complaint: to examine the complainant, and any witnesses present, on oath and to record the substance of that examination in writing, signed by the complainant, the witnesses and the magistrate. Volume III insists it is not a formality - it is what tells the magistrate whether to put the machinery of the criminal court in motion or to dismiss the complaint for want of sufficient ground. In a cheque case this is the moment the complaint becomes a case, and in practice the s.145 affidavit does much of the work.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-B.4",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-B.4",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "oral examination of the complainant",
+          "examination of the complainant",
+          "preliminary inquiry"
+        ]
+      },
+      {
+        "word": "e-summons",
+        "gloss": "An electronic summons. Since the November 2018 amendment to Volume III a magistrate may, in his discretion, issue a summons or an e-summons for the attendance of the accused, and must record his reasons before issuing a warrant in a case where the law provides for a summons. It is the Haryana rule-level recognition of electronic process, and it sits alongside s.144 of the NI Act, which lets a cheque summons go by speed post or an approved courier.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-Ci.2",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-Ci.2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "electronic summons",
+          "e-summon"
+        ]
+      },
+      {
+        "word": "Process fee",
+        "gloss": "The fee payable for issuing and serving the court's process. Volume III is blunt about it: where process fees or other fees are payable, no process is to be issued until they are paid, and on default of payment within a reasonable time the magistrate may dismiss the complaint. It is the sharpest early risk a cheque complainant carries after cognizance, and it is separate from the ten rupee court fee on the complaint itself. In the Punjab and Haryana courts the process money handed in with stamped postal envelopes is called talbana.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-Ci.2",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-Ci.2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "doctrine",
+        "aka": [
+          "process fees",
+          "process-fee",
+          "talbana"
+        ]
+      },
+      {
+        "word": "Petition box",
+        "gloss": "A box placed in the verandah of the court house about an hour before the court sits, into which petitions and applications are dropped. It is opened in the magistrate's presence about fifteen minutes after the court opens, again before the lunch recess and a third time fifteen minutes before rising, and every petition in it is initialled by him. Members of the ministerial establishment are forbidden to receive complaints or petitions directly from lawyers or their clerks. It is the Volume III answer to the counter queue, and the rule-level ancestor of the Panchkula filing window.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.4",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-A.4",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "court petition box"
+        ]
+      },
+      {
+        "word": "Kaifiyat",
+        "gloss": "The office note or report put up to the magistrate on a petition before he can pass orders on it. Volume III has the magistrate either pass proper orders on a petition forthwith or tell the petitioner when the orders will be ready, once the necessary kaifiyats have been put up. It is one of the Urdu-derived establishment words that the Punjab and Haryana courts still run on, alongside ahlmad, nazir, peshi and talbana.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.4",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-A.4",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "kaifiyat report",
+          "office report on a petition"
+        ]
+      },
+      {
+        "word": "Peshi register",
+        "gloss": "The register in which the dates of hearing of the cases before a court are entered. Volume III makes the presiding officer himself fix fresh dates in the peshi register when an unexpected holiday or absence wipes out a day's list, and then hand the register to the reader of the court, who is responsible for telling the parties and witnesses who turn up at a closed court what their new date is. It is the paper ancestor of the CIS cause list, and 'peshi' remains the everyday word for a date of appearance in a Haryana court.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.10",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-A.10",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "peshi",
+          "register of hearing dates"
+        ]
+      },
+      {
+        "word": "Day-to-day hearing",
+        "gloss": "The direction that once the examination of witnesses has begun the proceedings continue from day to day until the witnesses in attendance have been examined, with reasons recorded in writing for any adjournment beyond the following day. Volume III repeats it twice, for speedy disposal generally and for the stage after the accusation is put. It is the local counterpart of s.143(3) of the NI Act, which asks that a cheque trial be concluded within six months of the filing of the complaint, and the standard against which the years a NACT case actually takes are measured.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-D.11",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-D.11",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "day to day trial",
+          "hearings from day to day"
+        ]
+      },
+      {
+        "word": "Substance of the evidence",
+        "gloss": "The lighter record a summons case and a summary trial get. In a summons case the record is ordinarily a memorandum of the substance of the evidence and no more; in a summary case in which no appeal lies no evidence need be recorded at all, only the prescribed particulars in the summary register, but where an appeal does lie the magistrate must record the substance of the evidence and the particulars, and write a judgment before passing sentence. Since a cheque case is tried summarily and carries an appeal, this is the shape of the trial record a s.138 file actually ends up with.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-E.8",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-E.8",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "memorandum of the substance of the evidence",
+          "substance of evidence"
+        ]
+      },
+      {
+        "word": "Dismissal in default",
+        "gloss": "Dismissal of a complaint case because the complainant did not appear. Volume III opens the chapter with the warning that some magistrates are inclined to dismiss cases in default hastily, and then requires the magistrate to consider whether such an order is legal and whether it is justified by the circumstances, and to record his reasons in every case. A complainant absent when the case is first called must have it called again later, and the time of dismissal must be noted on the record. This is the check a dismissed cheque complaint is revived on, in revision.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-F.2",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-F.2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "dismissed in default",
+          "dismissal for absence of the complainant"
+        ]
+      },
+      {
+        "word": "Acquittal in default",
+        "gloss": "In a summons case instituted on a complaint, if the complainant fails to attend on a day fixed for hearing the accused is to be acquitted, unless the magistrate adjourns the hearing or dispenses with the complainant's attendance and proceeds. A s.138 case is tried as a summons case, so this is not a mere dismissal - the accused walks free on the merits, and the complainant's remedy is revision, not a fresh complaint. It is the procedural risk the complainant carries on every single date.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-D.5",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-D.5",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "acquittal on the complainant's non-attendance",
+          "acquittal for non-appearance of the complainant"
+        ]
+      },
+      {
+        "word": "Fine proportionate to means",
+        "gloss": "The Volume III rule that a fine, though the lightest punishment a criminal court can impose, must never be excessive with reference to the means of the offender. Indiscriminate fines only waste the time of the courts and the police in trying to realise them and harass the convict and his dependants. On a s.138 conviction the fine may run to twice the amount of the cheque, so this is the state-level counterweight a Haryana magistrate applies when fixing it, and the reason the sentence in default is set with the status of the accused in mind.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 19-B.1",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_19-B.1",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "doctrine",
+        "aka": [
+          "fine in proportion to the offender's means",
+          "capacity of the convict to pay"
+        ]
+      },
+      {
+        "word": "Default imprisonment",
+        "gloss": "Imprisonment ordered to be served if the fine is not paid. Volume III confirms that criminal courts are empowered to impose it but only subject to the limits the penal code sets, and asks that it be regulated with regard to the status of the accused so that he is induced to pay rather than to evade payment. In a cheque case, where the fine can be twice the cheque amount, the default sentence is often the only thing that actually moves money.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 19-B.2",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_19-B.2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "doctrine",
+        "aka": [
+          "imprisonment in default of payment of fine",
+          "in default of fine"
+        ]
+      },
+      {
+        "word": "Fine in instalments",
+        "gloss": "Where an offender is sentenced to a fine and to imprisonment in default and does not pay at once, the court may order that the fine be paid within a stated period or by instalments. Volume III points the magistrate at the power expressly. In a s.138 case this is the ordinary route by which a convicted drawer pays the cheque amount over to the complainant without going to jail, and it is the sentencing side of the settlements that end most cheque cases.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 19-B.3",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_19-B.3",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "remedy",
+        "aka": [
+          "payment of fine by instalments",
+          "postponement of realisation of the fine"
+        ]
+      },
+      {
+        "word": "Nazir",
+        "gloss": "The court's treasurer and custodian. The nazir holds cash and property in the court's keeping, and pays out the money side of a case: the memorandum of the costs of witnesses is made out and forwarded to him, and property sent in by the police is made over to him for custody. The office is the nazarat branch. In a cheque case the nazir is who a witness's diet and road money comes from, and where a fine or a deposit is lodged.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 9-A.3",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_9-A.3",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "nazarat branch",
+          "court nazir"
+        ]
+      },
+      {
+        "word": "Diet money",
+        "gloss": "The daily allowance, with road money, paid to a witness who attends a criminal court. Volume III sets out when the court pays these expenses and carries a whole set of State instructions written for the nazarat officers and the presiding officers to prevent fraud and embezzlement in their disbursement. In a cheque case they are what the bank official who proves the return memo is entitled to, and one of the practical reasons a bank witness is better examined over a live link.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 9-B.1",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_9-B.1",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "doctrine",
+        "aka": [
+          "diet and road money",
+          "witness expenses"
+        ]
+      },
+      {
+        "word": "e-filing Administrator",
+        "gloss": "The officer who administers e-filing. Under the E-Filing Rules the Administrator is, for the High Court, the Registrar (IT) or an officer appointed by the Chief Justice, and for a district court the officer or official appointed by the District and Sessions Judge. Everything that has to be unlocked in an e-filed case goes through him, including transferring an action from a litigant in person to the advocate later engaged. This is the formal name for the office the Panchkula filing assistants call the computer room and telephone before an e-filed NACT case can be released into their queue.",
+        "source": "The Electronic Filing (E-Filing) Rules, High Court of Punjab and Haryana, rule 3.2",
+        "akn": "state/haryana/akn/punjab-haryana-hc-electronic-filing-rules.akn.xml",
+        "eId": "rule_3",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "Registrar (IT)",
+          "Administrator under the E-Filing Rules"
+        ]
+      },
+      {
+        "word": "Action (e-filing)",
+        "gloss": "The defined term that decides whether the e-filing regime reaches a cheque case at all. An Action under the E-Filing Rules includes all proceedings instituted in the court or tribunal, and criminal complaints are named expressly, alongside suits, petitions, appeals, revisions and interlocutory applications. So a s.138 complaint is inside the e-filing rules and not merely a civil-side facility, and every rule that follows - formatting, digital signature, court fees, retention of originals, computation of time - applies to it.",
+        "source": "The Electronic Filing (E-Filing) Rules, High Court of Punjab and Haryana, rule 3.1",
+        "akn": "state/haryana/akn/punjab-haryana-hc-electronic-filing-rules.akn.xml",
+        "eId": "rule_3",
+        "group": "Filing & records",
+        "pos": "noun",
+        "role": "doctrine",
+        "aka": [
+          "Action under the E-Filing Rules"
+        ]
+      },
+      {
+        "word": "Designated Counter",
+        "gloss": "A counter at which a case can be filed electronically over the court's intranet instead of over the internet, together with the e-Service Centres provided for the purpose. The E-Filing Rules apply to both online e-filing and e-filing through designated counters, and filing at a counter is permitted up to 1600 hours on a court working day. For a filer who has no digital signature, or whose document will not scan, this is the staffed alternative to the portal - and the point at which the e-filing regime meets the physical filing window.",
+        "source": "The Electronic Filing (E-Filing) Rules, High Court of Punjab and Haryana, rule 2",
+        "akn": "state/haryana/akn/punjab-haryana-hc-electronic-filing-rules.akn.xml",
+        "eId": "rule_2",
+        "group": "Filing & records",
+        "pos": "noun",
+        "role": "forum",
+        "aka": [
+          "designated counters",
+          "e-Service Centre",
+          "e-Sewa Kendra"
+        ]
+      },
+      {
+        "word": "Date of e-filing",
+        "gloss": "The date on which an action is treated as filed electronically: the date it is received in the Registry within the prescribed time on a working day, reckoned in Indian Standard Time. Online filing after midnight counts as the next day, and filing on a gazetted holiday or a day the court is closed counts as the next working day; failure of the portal is no ground for exemption from limitation. Limitation is otherwise the same regime as physical filing. This is what fixes whether a cheque complaint is inside the one month allowed by s.142(1)(b) of the NI Act.",
+        "source": "The Electronic Filing (E-Filing) Rules, High Court of Punjab and Haryana, rule 15",
+        "akn": "state/haryana/akn/punjab-haryana-hc-electronic-filing-rules.akn.xml",
+        "eId": "rule_15",
+        "group": "Filing & records",
+        "pos": "noun",
+        "role": "doctrine",
+        "aka": [
+          "computation of time",
+          "date of electronic filing"
+        ]
+      },
+      {
+        "word": "Retention of originals",
+        "gloss": "The duty on a party who e-files scanned documents to keep the originals for production or inspection as the court directs, to preserve a signed vakalatnama or an attested affidavit for at least two years after final disposal including appeal, and to bear the burden of producing the originals and proving they are genuine. Some documents must be kept permanently - and a negotiable instrument is one of them, except a cheque. So the cheque, which is the whole of a s.138 case, sits under the ordinary rule and has to be produced when the court calls for it.",
+        "source": "The Electronic Filing (E-Filing) Rules, High Court of Punjab and Haryana, rule 11",
+        "akn": "state/haryana/akn/punjab-haryana-hc-electronic-filing-rules.akn.xml",
+        "eId": "rule_11",
+        "group": "Filing & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "preservation of originals",
+          "production of the originals"
+        ]
+      },
+      {
+        "word": "OCR-searchable PDF",
+        "gloss": "The form an e-filed document has to take. All original typed material must be prepared as the Rules and Orders require and converted into an optical-character-recognition searchable PDF, and documents that are not text - scans, photographs - must be scanned to the stated standard. It is the bar the cheque, the bank return memo and the demand notice have to clear before an e-filed cheque complaint will be accepted, and the reason the Panchkula assistants ask for a clean PDF copy of a physical file.",
+        "source": "The Electronic Filing (E-Filing) Rules, High Court of Punjab and Haryana, rule 7",
+        "akn": "state/haryana/akn/punjab-haryana-hc-electronic-filing-rules.akn.xml",
+        "eId": "rule_7",
+        "group": "Filing & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "searchable PDF",
+          "PDF/A"
+        ]
+      },
+      {
+        "word": "Live Link",
+        "gloss": "A live television link or other audio-video electronic arrangement by which a person who is physically absent from the courtroom is nevertheless virtually present in it, to give evidence and be cross-examined. The Video Conferencing Rules make video conferencing available at all stages of a judicial proceeding and treat a proceeding conducted that way as a judicial proceeding for every purpose, using the software the High Court designates. Chapter 1 Part BB of Volume III is what carries these Rules into the criminal courts where a cheque case is tried.",
+        "source": "Rules for Video Conferencing for Courts, High Court of Punjab and Haryana, rule 2(ix)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-video-conferencing-rules.akn.xml",
+        "eId": "rule_2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "live television link",
+          "video link"
+        ]
+      },
+      {
+        "word": "Court Point",
+        "gloss": "The courtroom, or any place where the court is physically convened, in a hearing held over a live link - including the place where a commissioner or an inquiring officer holds proceedings on the court's directions. It is the anchor end of a video-conferenced hearing: the judge, the record and the coordinator who runs the link sit at the Court Point, and a document at the Court Point is shown to a remote witness by transmitting an image of it.",
+        "source": "Rules for Video Conferencing for Courts, High Court of Punjab and Haryana, rule 2(v)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-video-conferencing-rules.akn.xml",
+        "eId": "rule_2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "forum"
+      },
+      {
+        "word": "Remote Point",
+        "gloss": "The place where a person appears or is examined through a video link. It may be another court, a legal services authority or mediation centre, a jail, a hospital, or an Indian consulate abroad, and the Rules name who acts as coordinator at each. A summons to a witness who is to be examined by video conferencing must state the date, time and venue of the Remote Point and direct him to attend there in person with proof of identity. In a cheque case this is usually where the out-of-station complainant or the bank official appears from.",
+        "source": "Rules for Video Conferencing for Courts, High Court of Punjab and Haryana, rule 2(x)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-video-conferencing-rules.akn.xml",
+        "eId": "rule_2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "forum"
+      },
+      {
+        "word": "Required Person",
+        "gloss": "The defined class of people who may take part in a hearing over a live link: the person to be examined, the person in whose presence proceedings are to be recorded, an advocate or a party in person who intends to examine a witness, anyone required to make submissions, and anyone else the court permits to appear by video conferencing. In a s.138 case it covers the complainant, the accused whose personal attendance has been dispensed with, and the bank witness.",
+        "source": "Rules for Video Conferencing for Courts, High Court of Punjab and Haryana, rule 2(xii)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-video-conferencing-rules.akn.xml",
+        "eId": "rule_2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor"
+      },
+      {
+        "word": "Video conferencing Coordinator",
+        "gloss": "The official who runs a video-conferenced hearing at each end. There is a coordinator at the Court Point and, where a witness or an accused is to be examined, one at the Remote Point as well; in the district judiciary they are nominated by the High Court or the District Judge. Who it is depends on where the remote end sits - a consular official abroad, a nominated official of another district court, the jail superintendent, a medical superintendent, or an officer of the legal services authority. The coordinator identifies the person appearing, and identifies and accounts for anyone else present at the Remote Point.",
+        "source": "Rules for Video Conferencing for Courts, High Court of Punjab and Haryana, rule 5",
+        "akn": "state/haryana/akn/punjab-haryana-hc-video-conferencing-rules.akn.xml",
+        "eId": "rule_5",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "VC Coordinator",
+          "Remote Point Coordinator",
+          "Court Point Coordinator"
+        ]
       }
     ]
   },
   "story": {
-    "summary": "How a s.138 (cheque bounce, 'NACT') case is filed in Haryana - from the advocate's submission at the Panchkula lower-court filing window through scrutiny, CIS entry and same-day dispatch to the trial court. Based on a June 2026 field interview with the filing assistants; it covers the filing and scrutiny stage, not yet the full trial journey.",
+    "summary": "How a s.138 (cheque bounce, 'NACT') case runs in Haryana, end to end. It starts at the Panchkula lower-court filing window - submission, scrutiny, CIS entry and same-day dispatch to the trial court, from a June 2026 field interview with the filing assistants - and then follows the case through cognizance, the issue of summons or e-summons, appearance, the summary trial, the evidence, compounding, judgment and sentence, and appeal, grounded in Volume III of the Punjab and Haryana High Court's Rules and Orders and the High Court's E-Filing and Video Conferencing Rules.",
     "process": {
-      "summary": "The filing spine at the Panchkula lower-court window - receive, scrutinise, enter in CIS, register and dispatch the same day. The procedure is the uniform e-Courts CIS flow; the local colour is in the scrutiny checklist and a set of self-started workarounds.",
+      "summary": "The whole spine of a NACT case in Haryana. Stages 1 to 4 are the Panchkula lower-court filing window as the filing assistants describe it: receive, scrutinise, enter in CIS, register and dispatch the same day. Stages 5 to 13 are the case after it reaches the trial court, grounded in Volume III of the Punjab and Haryana High Court's Rules and Orders, the Instructions to Criminal Courts, with the E-Filing and Video Conferencing Rules layered on. The last stage collects the self-started workarounds that sit outside any rule.",
       "stages": [
         {
           "stage": "1 · Advocate submits the physical file",
@@ -840,7 +1212,828 @@
           ]
         },
         {
-          "stage": "5 · Informal digital and workaround practices",
+          "stage": "5 · Cognizance and the examination of the complainant",
+          "id": "cognizance-examination",
+          "timing": {
+            "prescribed": "No fixed limit; the complaint itself must be within 1 month of the cause of action"
+          },
+          "steps": [
+            {
+              "t": "The complaint is endorsed with the date of presentation the moment it is instituted, together with the name of the magistrate it is to go to, and the complainant is directed to appear for examination the same day or on one of the following days.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-B.3",
+                  "s": "phhc3",
+                  "e": "rule_1-B.3"
+                },
+                {
+                  "l": "BNSS §223",
+                  "n": "bnss:sec_223"
+                }
+              ]
+            },
+            {
+              "t": "The first duty of the magistrate taking cognizance on the complaint is to examine the complainant, and any witnesses present, on oath, and to record the substance of that examination in writing, signed by the complainant, the witnesses and the magistrate.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-B.4",
+                  "s": "phhc3",
+                  "e": "rule_1-B.4"
+                },
+                {
+                  "l": "BNSS §223",
+                  "n": "bnss:sec_223"
+                },
+                {
+                  "l": "NI Act §142",
+                  "n": "ni:sec_142"
+                }
+              ]
+            },
+            {
+              "t": "Volume III insists that this examination is not a formality: it is what tells the magistrate whether to put the machinery of the criminal court in motion. If there is no sufficient ground for proceeding he dismisses the complaint at this stage.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-B.6",
+                  "s": "phhc3",
+                  "e": "rule_1-B.6"
+                },
+                {
+                  "l": "R&O Vol.III r.1-B.5",
+                  "s": "phhc3",
+                  "e": "rule_1-B.5"
+                },
+                {
+                  "l": "BNSS §226",
+                  "n": "bnss:sec_226"
+                }
+              ]
+            },
+            {
+              "t": "In a cheque case the complainant's evidence is usually given on affidavit, which may be read in evidence at any stage, so the sworn statement, the cheque, the bank return memo and the demand notice do most of the work.",
+              "c": [
+                {
+                  "l": "NI Act §145",
+                  "n": "ni:sec_145"
+                },
+                {
+                  "l": "NI Act §146",
+                  "n": "ni:sec_146"
+                }
+              ]
+            },
+            {
+              "t": "Jurisdiction is checked. Volume III puts the ordinary test at the place where the offence was committed, but for a cheque case s.142(2) of the NI Act displaces it with the branch of the bank where the payee maintains the account.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-B.9",
+                  "s": "phhc3",
+                  "e": "rule_1-B.9"
+                },
+                {
+                  "l": "BNSS §197",
+                  "n": "bnss:sec_197"
+                },
+                {
+                  "l": "NI Act §142",
+                  "n": "ni:sec_142"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "6 · Issue of process: summons, e-summons and the process fee",
+          "id": "issue-of-process",
+          "timing": {
+            "prescribed": null
+          },
+          "steps": [
+            {
+              "t": "Finding sufficient ground to proceed, the magistrate issues process for the attendance of the accused. No summons or warrant issues until a list of prosecution witnesses has been filed, and in a complaint case the process must be accompanied by a copy of the complaint.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-B.5",
+                  "s": "phhc3",
+                  "e": "rule_1-B.5"
+                },
+                {
+                  "l": "R&O Vol.III r.1-Ci.1",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.1"
+                },
+                {
+                  "l": "BNSS §227",
+                  "n": "bnss:sec_227"
+                }
+              ]
+            },
+            {
+              "t": "Since the November 2018 amendment the magistrate may, in his discretion, issue a summons or an e-summons, and must record his reasons before issuing a warrant in a case where the law provides for a summons.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-Ci.2",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.2"
+                },
+                {
+                  "l": "BNSS §63",
+                  "n": "bnss:sec_63"
+                },
+                {
+                  "l": "BNSS §90",
+                  "n": "bnss:sec_90"
+                }
+              ]
+            },
+            {
+              "t": "Where process fees are payable no process is to be issued until they are paid, and on default of payment within a reasonable time the magistrate may dismiss the complaint. This is the sharpest risk a cheque complainant carries immediately after cognizance.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-Ci.2",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.2"
+                },
+                {
+                  "l": "BNSS §226",
+                  "n": "bnss:sec_226"
+                }
+              ]
+            },
+            {
+              "t": "Volume III also warns that great care should be taken not to issue a warrant where a summons would serve, since a warrant interferes with personal liberty, and that the court's discretion to make a warrant bailable should be used with regard to the nature of the offence and the position of the accused.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-Ci.3",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.3"
+                },
+                {
+                  "l": "BNSS §72",
+                  "n": "bnss:sec_72"
+                }
+              ]
+            },
+            {
+              "t": "The process goes out for service through the police station of the area, whose Station House Officer is constituted by the Haryana Police Act; s.144 of the NI Act also allows a cheque summons to be served by speed post or an approved courier.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-Ci.6",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.6"
+                },
+                {
+                  "l": "Haryana Police Act s.12",
+                  "s": "hpa",
+                  "e": "sec_12"
+                },
+                {
+                  "l": "NI Act §144",
+                  "n": "ni:sec_144"
+                },
+                {
+                  "l": "BNSS §64",
+                  "n": "bnss:sec_64"
+                }
+              ]
+            },
+            {
+              "t": "Where a witness is to be examined over a live link, the summons must state the date, time and venue of the Remote Point and direct him to attend there in person with proof of identity.",
+              "c": [
+                {
+                  "l": "VC Rules r.7",
+                  "s": "phvc",
+                  "e": "rule_7"
+                },
+                {
+                  "l": "BNSS §71",
+                  "n": "bnss:sec_71"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "7 · Appearance, bail and dispensing with personal attendance",
+          "id": "appearance-attendance",
+          "timing": {
+            "prescribed": null
+          },
+          "steps": [
+            {
+              "t": "A criminal trial is to be conducted in the presence of the accused, but the court has a discretion to dispense with his personal attendance and permit an advocate to appear for him. In a cheque case, where the accused is often out of station and the trial is meant to be summary, this is the everyday relief.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-Ci.5",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.5"
+                },
+                {
+                  "l": "BNSS §228",
+                  "n": "bnss:sec_228"
+                },
+                {
+                  "l": "CrPC §205",
+                  "n": "crpc:sec_205"
+                }
+              ]
+            },
+            {
+              "t": "s.138 is a bailable offence. Volume III treats bail in a bailable case as a right and not a favour, tells the magistrate to fix the amount with regard to the social status of the accused and to see that it is not excessive, and reminds him that it is a hardship to detain an undertrial an hour longer than the law requires.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.10.1",
+                  "s": "phhc3",
+                  "e": "rule_10.1"
+                },
+                {
+                  "l": "R&O Vol.III r.10.5",
+                  "s": "phhc3",
+                  "e": "rule_10.5"
+                }
+              ]
+            },
+            {
+              "t": "If the accused does not appear after service, or the court has reason to believe he has absconded or will not obey the summons, a warrant may issue in lieu of or in addition to the summons.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-Ci.2",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.2"
+                },
+                {
+                  "l": "BNSS §90",
+                  "n": "bnss:sec_90"
+                }
+              ]
+            },
+            {
+              "t": "If he absconds, the court may proclaim him and attach his property as the last remedy for compelling attendance; Volume III warns that the procedure must be followed strictly or the attachment and sale will be set aside.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.15-A.1",
+                  "s": "phhc3",
+                  "e": "rule_15-A.1"
+                },
+                {
+                  "l": "BNSS §84",
+                  "n": "bnss:sec_84"
+                },
+                {
+                  "l": "BNSS §85",
+                  "n": "bnss:sec_85"
+                }
+              ]
+            },
+            {
+              "t": "The accused may instead appear over a live link. Chapter 1 Part BB of Volume III makes the Video Conferencing Rules the procedure for criminal matters in the subordinate courts, a party or witness applies for remote appearance under r.6, and the court may frame the accusation and examine the accused by video conferencing.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-BB.1",
+                  "s": "phhc3",
+                  "e": "rule_1-BB.1"
+                },
+                {
+                  "l": "VC Rules r.6",
+                  "s": "phvc",
+                  "e": "rule_6"
+                },
+                {
+                  "l": "VC Rules r.11",
+                  "s": "phvc",
+                  "e": "rule_11"
+                },
+                {
+                  "l": "BNSS §530",
+                  "n": "bnss:sec_530"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "8 · Summary trial: the accusation and the plea",
+          "id": "summary-trial",
+          "timing": {
+            "prescribed": "Trial to be concluded within 6 months of filing the complaint"
+          },
+          "steps": [
+            {
+              "t": "s.143 of the NI Act directs that a cheque case be tried summarily. Volume III Chapter 2 is the local manual for that trial: a summary trial may be held only by a magistrate of the first class empowered in that behalf, or by a Bench of magistrates so empowered.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.2.1",
+                  "s": "phhc3",
+                  "e": "rule_2.1"
+                },
+                {
+                  "l": "R&O Vol.III r.1-D.22",
+                  "s": "phhc3",
+                  "e": "rule_1-D.22"
+                },
+                {
+                  "l": "NI Act §143",
+                  "n": "ni:sec_143"
+                },
+                {
+                  "l": "BNSS §283",
+                  "n": "bnss:sec_283"
+                }
+              ]
+            },
+            {
+              "t": "The procedure followed at the hearing is that of a summons case, subject to the lighter record the summary chapters allow. The particulars of the offence are stated to the accused and he is asked whether he pleads guilty; no formal charge is framed in a summons case.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.2.1",
+                  "s": "phhc3",
+                  "e": "rule_2.1"
+                },
+                {
+                  "l": "BNSS §274",
+                  "n": "bnss:sec_274"
+                },
+                {
+                  "l": "BNSS §285",
+                  "n": "bnss:sec_285"
+                }
+              ]
+            },
+            {
+              "t": "Volume III carries the general summary cap of three months' imprisonment, but s.143(1) of the NI Act lets a magistrate trying a cheque case summarily pass up to one year and a fine up to five thousand rupees. If a heavier sentence appears called for, the magistrate must recall the witnesses and rehear the case as a summons case.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.2.2",
+                  "s": "phhc3",
+                  "e": "rule_2.2"
+                },
+                {
+                  "l": "NI Act §143",
+                  "n": "ni:sec_143"
+                }
+              ]
+            },
+            {
+              "t": "If the accused pleads guilty the plea is recorded in his own words and he may be convicted on it; where he is not convicted the final order must show on its face whether he was discharged or acquitted.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.2.6",
+                  "s": "phhc3",
+                  "e": "rule_2.6"
+                },
+                {
+                  "l": "BNSS §275",
+                  "n": "bnss:sec_275"
+                },
+                {
+                  "l": "BNSS §277",
+                  "n": "bnss:sec_277"
+                }
+              ]
+            },
+            {
+              "t": "The court may order the drawer to pay the complainant interim compensation of up to twenty per cent of the cheque amount while the trial runs.",
+              "c": [
+                {
+                  "l": "NI Act §143A",
+                  "n": "ni:sec_143A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "9 · Evidence, affidavits and remote examination",
+          "id": "trial-evidence",
+          "timing": {
+            "prescribed": "Evidence to continue from day to day once it has begun"
+          },
+          "steps": [
+            {
+              "t": "In a summons case the record is ordinarily a memorandum of the substance of the evidence and no more. In a summary case in which no appeal lies no evidence need be recorded at all, only the prescribed particulars in the summary register; where an appeal does lie the magistrate must record the substance of the evidence and the particulars, and write a judgment before passing sentence.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-D.1",
+                  "s": "phhc3",
+                  "e": "rule_1-D.1"
+                },
+                {
+                  "l": "R&O Vol.III r.1-E.8",
+                  "s": "phhc3",
+                  "e": "rule_1-E.8"
+                },
+                {
+                  "l": "R&O Vol.III r.2.3",
+                  "s": "phhc3",
+                  "e": "rule_2.3"
+                },
+                {
+                  "l": "BNSS §286",
+                  "n": "bnss:sec_286"
+                },
+                {
+                  "l": "BNSS §287",
+                  "n": "bnss:sec_287"
+                }
+              ]
+            },
+            {
+              "t": "Only relevant and admissible evidence should be recorded, an objection to admissibility should be decided forthwith with the objection and the decision written down, and the magistrate should note the demeanour of a witness where it is noteworthy.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-E.1",
+                  "s": "phhc3",
+                  "e": "rule_1-E.1"
+                },
+                {
+                  "l": "R&O Vol.III r.1-E.13",
+                  "s": "phhc3",
+                  "e": "rule_1-E.13"
+                }
+              ]
+            },
+            {
+              "t": "Most of a cheque case is proved on paper: the complainant's evidence may be given on affidavit, the bank's slip is prima facie evidence of dishonour, and entries in bankers' books are proved by certified copy.",
+              "c": [
+                {
+                  "l": "NI Act §145",
+                  "n": "ni:sec_145"
+                },
+                {
+                  "l": "NI Act §146",
+                  "n": "ni:sec_146"
+                },
+                {
+                  "l": "Bankers' Books Evidence Act §4",
+                  "n": "bbea:sec_4"
+                }
+              ]
+            },
+            {
+              "t": "Evidence must be taken in the presence of the accused, or of his advocate where his personal attendance has been dispensed with.",
+              "c": [
+                {
+                  "l": "BNSS §308",
+                  "n": "bnss:sec_308"
+                },
+                {
+                  "l": "R&O Vol.III r.1-Ci.5",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.5"
+                }
+              ]
+            },
+            {
+              "t": "A witness at a distance - typically the complainant or the bank official - may be examined from a Remote Point over a live link: identity proved first, oath administered, the deposition recorded and signed, and a document shown to him by transmitting its image between the Court Point and the Remote Point.",
+              "c": [
+                {
+                  "l": "VC Rules r.8",
+                  "s": "phvc",
+                  "e": "rule_8"
+                },
+                {
+                  "l": "VC Rules r.9",
+                  "s": "phvc",
+                  "e": "rule_9"
+                },
+                {
+                  "l": "R&O Vol.III r.1-BB.1",
+                  "s": "phhc3",
+                  "e": "rule_1-BB.1"
+                }
+              ]
+            },
+            {
+              "t": "Once the examination of witnesses has begun the proceedings should continue from day to day, with reasons recorded for any adjournment beyond the following day. s.143(3) of the NI Act asks that the trial be concluded within six months of the filing of the complaint.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-D.11",
+                  "s": "phhc3",
+                  "e": "rule_1-D.11"
+                },
+                {
+                  "l": "R&O Vol.III r.1-A.6",
+                  "s": "phhc3",
+                  "e": "rule_1-A.6"
+                },
+                {
+                  "l": "NI Act §143",
+                  "n": "ni:sec_143"
+                }
+              ]
+            },
+            {
+              "t": "The accused is then examined on the circumstances appearing in the evidence against him; this too may be done over a video link.",
+              "c": [
+                {
+                  "l": "BNSS §351",
+                  "n": "bnss:sec_351"
+                },
+                {
+                  "l": "VC Rules r.11",
+                  "s": "phvc",
+                  "e": "rule_11"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "10 · Dismissal in default and acquittal on the complainant's absence",
+          "id": "dismissal-default",
+          "timing": {
+            "prescribed": null
+          },
+          "steps": [
+            {
+              "t": "In a summons case instituted on a complaint, if the complainant fails to attend on a day fixed for hearing the accused should be acquitted, unless the magistrate adjourns the hearing or dispenses with the complainant's attendance and proceeds with the case.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-D.5",
+                  "s": "phhc3",
+                  "e": "rule_1-D.5"
+                },
+                {
+                  "l": "BNSS §272",
+                  "n": "bnss:sec_272"
+                },
+                {
+                  "l": "CrPC §256",
+                  "n": "crpc:sec_256"
+                }
+              ]
+            },
+            {
+              "t": "Volume III opens this Part with the flat observation that some magistrates are inclined to dismiss cases in default hastily.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-F.0",
+                  "s": "phhc3",
+                  "e": "rule_1-F.0"
+                }
+              ]
+            },
+            {
+              "t": "Before dismissing a case for the complainant's absence the magistrate must consider whether such an order is legal and whether it is justified by the circumstances, and reasons should always be recorded.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-F.2",
+                  "s": "phhc3",
+                  "e": "rule_1-F.2"
+                }
+              ]
+            },
+            {
+              "t": "The complainant must have a full opportunity to appear: if he is absent when the case is first called it should be called again later, the time of dismissal must be noted on the record, and on tour a case is not to be dismissed unless he had due notice of the place of hearing.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-F.3",
+                  "s": "phhc3",
+                  "e": "rule_1-F.3"
+                }
+              ]
+            },
+            {
+              "t": "A dismissal in default, or an acquittal that follows it, is challenged in revision - and the absence of recorded reasons is the usual ground on which a dismissed cheque complaint is revived.",
+              "c": [
+                {
+                  "l": "BNSS §438",
+                  "n": "bnss:sec_438"
+                },
+                {
+                  "l": "R&O Vol.III r.1-F.3",
+                  "s": "phhc3",
+                  "e": "rule_1-F.3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "11 · Compounding and settlement",
+          "id": "compounding-settlement",
+          "timing": {
+            "prescribed": null
+          },
+          "steps": [
+            {
+              "t": "Every offence punishable under the NI Act is compoundable, and most cheque cases end in a settlement rather than a verdict.",
+              "c": [
+                {
+                  "l": "NI Act §147",
+                  "n": "ni:sec_147"
+                },
+                {
+                  "l": "BNSS §359",
+                  "n": "bnss:sec_359"
+                }
+              ]
+            },
+            {
+              "t": "Compounding has the effect of an acquittal. No judgment on the facts is needed, but the statements of all the parties concerned must be recorded, and where the court's permission is required the reasons for granting it must be stated in the order directing the acquittal.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-H.10",
+                  "s": "phhc3",
+                  "e": "rule_1-H.10"
+                }
+              ]
+            },
+            {
+              "t": "Volume III tells the magistrate to look at the facts before permitting a compromise, and in particular to ask whether it is a genuine reconciliation or the result of undue pressure on the complainant, and to record his reasons in every case in which he allows the parties to compromise.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-H.12",
+                  "s": "phhc3",
+                  "e": "rule_1-H.12"
+                }
+              ]
+            },
+            {
+              "t": "A large share of cheque cases are settled in a Lok Adalat, whose award is final; parties may now take part in a Lok Adalat over a live link.",
+              "c": [
+                {
+                  "l": "VC Rules r.15",
+                  "s": "phvc",
+                  "e": "rule_15"
+                },
+                {
+                  "l": "Legal Services Authorities Act §19",
+                  "n": "lsa:sec_19"
+                },
+                {
+                  "l": "Legal Services Authorities Act §21",
+                  "n": "lsa:sec_21"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "12 · Judgment, sentence and compensation",
+          "id": "judgment-sentence",
+          "timing": {
+            "prescribed": null
+          },
+          "steps": [
+            {
+              "t": "The judgment must contain the point or points for determination, the decision on them and the reasons for it, and on a conviction must indicate the offence and the sentence separately. Since a December 2021 amendment it must also carry the prescribed preface, a tabular statement of dates, and an appendix listing the witnesses, exhibits and material objects.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                },
+                {
+                  "l": "BNSS §392",
+                  "n": "bnss:sec_392"
+                }
+              ]
+            },
+            {
+              "t": "It is written in the language of the court or in English, pronounced in open court, and dated and signed at the time it is pronounced; the record and the final order must also disclose the criminal powers the officer exercised in deciding the case.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                },
+                {
+                  "l": "R&O Vol.III r.1-H.2",
+                  "s": "phhc3",
+                  "e": "rule_1-H.2"
+                }
+              ]
+            },
+            {
+              "t": "s.138 is punishable with imprisonment up to two years, or a fine up to twice the amount of the cheque, or both. Volume III's counterweight is that a fine, though the lightest punishment a court can impose, must never be excessive with reference to the means of the offender.",
+              "c": [
+                {
+                  "l": "NI Act §138",
+                  "n": "ni:sec_138"
+                },
+                {
+                  "l": "R&O Vol.III r.19-B.1",
+                  "s": "phhc3",
+                  "e": "rule_19-B.1"
+                }
+              ]
+            },
+            {
+              "t": "Imprisonment in default of payment may be ordered, but only within the limits the penal code sets, and it should be regulated with regard to the status of the accused so that he is induced to pay rather than to evade payment.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.19-B.2",
+                  "s": "phhc3",
+                  "e": "rule_19-B.2"
+                },
+                {
+                  "l": "BNSS §24",
+                  "n": "bnss:sec_24"
+                }
+              ]
+            },
+            {
+              "t": "Where the fine is not paid at once the court may order it to be paid within a stated period or by instalments; an unpaid fine is realised on a warrant for levy, and compensation to the complainant is paid out of it.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.19-B.3",
+                  "s": "phhc3",
+                  "e": "rule_19-B.3"
+                },
+                {
+                  "l": "BNSS §461",
+                  "n": "bnss:sec_461"
+                },
+                {
+                  "l": "BNSS §395",
+                  "n": "bnss:sec_395"
+                }
+              ]
+            },
+            {
+              "t": "A first offender may be released on probation instead of being sentenced. Volume III gives the Probation of Offenders Act a chapter of its own, on the premise that many offenders are weak characters rather than dangerous criminals and are better kept out of prison.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.21.1",
+                  "s": "phhc3",
+                  "e": "rule_21.1"
+                },
+                {
+                  "l": "R&O Vol.III r.21.2",
+                  "s": "phhc3",
+                  "e": "rule_21.2"
+                },
+                {
+                  "l": "Probation of Offenders Act §4",
+                  "n": "probation:sec_4"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "13 · Appeal and revision",
+          "id": "appeal-revision",
+          "timing": {
+            "prescribed": "Appeal within 30 days of the sentence"
+          },
+          "steps": [
+            {
+              "t": "A conviction by a magistrate is appealed to the Court of Session. Volume III requires the appellate court, once it decides to hear the appeal, to give notice of the day fixed for hearing to the appellant or his pleader.",
+              "c": [
+                {
+                  "l": "BNSS §415",
+                  "n": "bnss:sec_415"
+                },
+                {
+                  "l": "R&O Vol.III r.25-C.3",
+                  "s": "phhc3",
+                  "e": "rule_25-C.3"
+                }
+              ]
+            },
+            {
+              "t": "A criminal appeal must be disposed of on its merits and cannot be dismissed in default - a point Volume III makes expressly to Sessions Judges.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.25-C.5",
+                  "s": "phhc3",
+                  "e": "rule_25-C.5"
+                }
+              ]
+            },
+            {
+              "t": "The appellate court may order the appellant to deposit a minimum of twenty per cent of the fine or compensation awarded, while the appeal against a s.138 conviction is pending.",
+              "c": [
+                {
+                  "l": "NI Act §148",
+                  "n": "ni:sec_148"
+                }
+              ]
+            },
+            {
+              "t": "Orders that fall short of a conviction - a dismissal in default, an order on process fees, a refusal to dispense with attendance - are challenged in revision before the Sessions Judge or the High Court, whose power of superintendence over the subordinate courts is the source of these Rules and Orders themselves.",
+              "c": [
+                {
+                  "l": "BNSS §438",
+                  "n": "bnss:sec_438"
+                },
+                {
+                  "l": "Constitution Art.227",
+                  "n": "constitution:art_227"
+                },
+                {
+                  "l": "R&O Vol.III r.1-A.1",
+                  "s": "phhc3",
+                  "e": "rule_1-A.1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "14 · Informal digital and workaround practices",
           "id": "informal-workarounds",
           "steps": [
             {
@@ -858,10 +2051,10 @@
           ]
         }
       ],
-      "timing_note": "Timings are not modelled for the filing stage - Panchkula does same-day filing: the window is open until 12:00 PM and the file reaches the court the same day."
+      "timing_note": "Only the prescribed period is modelled for Haryana, and only where a provision actually fixes one. The filing stages carry no timing at all: Panchkula does same-day filing, with the window open until 12:00 PM and the file reaching the court the same day. There is no ON Court in Haryana, and no field data yet on how long a regular Haryana court takes at each stage, so those two lenses are empty."
     },
     "roles": {
-      "summary": "Who handles a s.138 file at the Panchkula filing stage - the filing-branch assistant at the window, the ahlmad who takes over in the court, the peon who carries the file, and the computer room that gates e-filings.",
+      "summary": "Who handles a s.138 file in Haryana. At the filing stage: the filing-branch assistant at the window, the ahlmad who takes over in the court, the peon who carries the file, and the computer room that gates e-filings. In the case itself: the magistrate who tries it, the nazir who holds the court's money and property, the e-filing Administrator the E-Filing Rules actually create, the coordinator who runs a hearing over a live link, and the Station House Officer who serves the court's process.",
       "items": [
         {
           "id": "filing-assistant",
@@ -923,6 +2116,140 @@
           ],
           "themes": [
             "access-bottleneck"
+          ]
+        },
+        {
+          "id": "magistrate-jmfc",
+          "role": "Magistrate (JMFC)",
+          "cat": "judge",
+          "who": "The judicial magistrate who tries the NACT case. He examines the complainant on cognizance, decides between a summons and an e-summons, dispenses with the accused's personal attendance, holds the summary trial, and passes the judgment and sentence. Only a magistrate of the first class specially empowered, or a Bench so empowered, may hold a summary trial, which is the trial s.143 of the NI Act directs for a cheque case.",
+          "basis": "Rules and Orders Vol.III, Chapter 2 and Chapter 1 Parts B, C(i) and H",
+          "cite": [
+            {
+              "l": "R&O Vol.III r.2.1",
+              "s": "phhc3",
+              "e": "rule_2.1"
+            },
+            {
+              "l": "R&O Vol.III r.1-B.4",
+              "s": "phhc3",
+              "e": "rule_1-B.4"
+            },
+            {
+              "l": "NI Act §142",
+              "n": "ni:sec_142"
+            },
+            {
+              "l": "NI Act §143",
+              "n": "ni:sec_143"
+            }
+          ]
+        },
+        {
+          "id": "nazir",
+          "role": "Nazir",
+          "cat": "staff",
+          "term": "nazir",
+          "who": "The court's treasurer and custodian, whose office is the nazarat branch. The memorandum of the costs of witnesses is made out and forwarded to him for payment, and property sent in by the police is made over to him for custody. In a cheque case he is where a witness's diet and road money comes from, and where a fine or a deposit is lodged.",
+          "basis": "Rules and Orders Vol.III, Chapter 9 Part A and Chapter 11 Part E",
+          "cite": [
+            {
+              "l": "R&O Vol.III r.9-A.3",
+              "s": "phhc3",
+              "e": "rule_9-A.3"
+            },
+            {
+              "l": "R&O Vol.III r.11-E.4",
+              "s": "phhc3",
+              "e": "rule_11-E.4"
+            },
+            {
+              "l": "R&O Vol.III r.9-B.1",
+              "s": "phhc3",
+              "e": "rule_9-B.1"
+            }
+          ]
+        },
+        {
+          "id": "efiling-administrator",
+          "role": "e-filing Administrator",
+          "cat": "staff",
+          "term": "efiling-administrator",
+          "who": "The officer who administers e-filing. For a district court he is the officer or official appointed by the District and Sessions Judge; for the High Court, the Registrar (IT) or an officer appointed by the Chief Justice. He releases and unlocks e-filed matters and transfers an action from a litigant in person to an advocate later engaged. This is the formal office behind what the Panchkula filing assistants call the computer room.",
+          "basis": "E-Filing Rules r.3.2, read with r.5",
+          "cite": [
+            {
+              "l": "E-Filing Rules r.3",
+              "s": "phef",
+              "e": "rule_3"
+            },
+            {
+              "l": "E-Filing Rules r.5",
+              "s": "phef",
+              "e": "rule_5"
+            },
+            {
+              "l": "E-Filing Rules r.19",
+              "s": "phef",
+              "e": "rule_19"
+            }
+          ],
+          "themes": [
+            "access-bottleneck",
+            "filing-and-intake"
+          ]
+        },
+        {
+          "id": "vc-coordinator",
+          "role": "Video conferencing Coordinator",
+          "cat": "staff",
+          "term": "vc-coordinator",
+          "who": "The official who runs a video-conferenced hearing at each end. There is one at the Court Point and, where a witness or an accused is to be examined, one at the Remote Point as well, nominated by the High Court or the District Judge. Who it is depends on where the remote end sits - a consular official abroad, an official of another district court, the jail superintendent, a medical superintendent, or an officer of the legal services authority. He proves the identity of the person appearing and accounts for anyone else present at the Remote Point.",
+          "basis": "Video Conferencing Rules r.5, read with r.2(iii)",
+          "cite": [
+            {
+              "l": "VC Rules r.5",
+              "s": "phvc",
+              "e": "rule_5"
+            },
+            {
+              "l": "VC Rules r.2",
+              "s": "phvc",
+              "e": "rule_2"
+            },
+            {
+              "l": "VC Rules r.8",
+              "s": "phvc",
+              "e": "rule_8"
+            }
+          ]
+        },
+        {
+          "id": "station-house-officer",
+          "role": "Station House Officer",
+          "cat": "police",
+          "who": "The officer in charge of the police station, not below the rank of Sub-Inspector, under the Haryana Police Act. A cheque case generates no FIR and no investigation, so the police enter only once the court issues process: the station of the area serves the summons and executes any warrant the magistrate issues.",
+          "basis": "Haryana Police Act, 2007, ss.12 and 47, read with Vol.III r.1-Ci.6",
+          "cite": [
+            {
+              "l": "Haryana Police Act s.12",
+              "s": "hpa",
+              "e": "sec_12"
+            },
+            {
+              "l": "Haryana Police Act s.47",
+              "s": "hpa",
+              "e": "sec_47"
+            },
+            {
+              "l": "R&O Vol.III r.1-Ci.6",
+              "s": "phhc3",
+              "e": "rule_1-Ci.6"
+            },
+            {
+              "l": "BNSS §64",
+              "n": "bnss:sec_64"
+            }
           ]
         }
       ]

@@ -871,8 +871,13 @@ V.story=()=>{
     // lens tabs - only where the stages actually carry per-lens timing (the Kerala
     // prescribed/regular/ON-Court model). A state that documents just one flow (e.g.
     // a filing-stage layer) has no timing, so the tabs are suppressed.
-    const hasTiming=(proc.stages||[]).some(st=>st.timing);
-    const LENSES=[["prescribed","Prescribed","under the rules"],["regular","Regular court","typical timeline"],["oncourt","ON Court","24×7 special court"]];
+    const ALL_LENSES=[["prescribed","Prescribed","under the rules"],["regular","Regular court","typical timeline"],["oncourt","ON Court","24×7 special court"]];
+    // show a lens only where the data actually has values for it: a state that records
+    // statutory deadlines but no observed durations (Haryana) gets no empty tabs, and a
+    // state with a single documented flow gets no tab bar at all.
+    const LENSES=ALL_LENSES.filter(([id])=>(proc.stages||[]).some(st=>st.timing && st.timing[id]));
+    const hasTiming=LENSES.length>1;
+    if(LENSES.length && !LENSES.some(([id])=>id===processLens)) processLens=LENSES[0][0];
     const tabs=el("div","proc-tabs");
     tabs.innerHTML=LENSES.map(([id,label,sub])=>`<button class="proc-tab tab-${id} ${processLens===id?'on':''}" data-lens="${id}"><span class="pt-main">${esc(label)}</span><span class="pt-sub">${esc(sub)}</span></button>`).join("");
     const procSec=el("div","proc-section");

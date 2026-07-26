@@ -16,7 +16,7 @@ This script joins them and writes, under public/ (so they deploy) and the repo:
 Deterministic (no timestamps) so committed output does not churn. Run locally and
 in the Netlify build (see netlify.toml) so the artifacts can never drift from data.
 """
-import json, os, re, glob
+import json, os, re, glob, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "public", "data")
@@ -517,6 +517,32 @@ except ImportError:
     print("self-check: jsonschema not installed - skipped (install to validate on generate)")
 except Exception as e:
     raise SystemExit("SCHEMA VIOLATION: %s: %s" % (type(e).__name__, str(e)[:300]))
+
+# ------------------------------------------------- self-validate the AKN corpus
+# Akoma Ntoso requires @eId to be unique document-wide; `xmllint --noout` only
+# checks well-formedness and never caught that. Validate every .akn.xml against
+# the official akomantoso30.xsd and resolve every eId the JSON pins.
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import validate_akn as _va
+    _schema = _va.load_schema()
+    _files = sorted(_va.DATA.rglob("*.akn.xml"))
+    _bad = [r for r in (_va.validate_file(p, _schema) for p in _files) if not r["valid"]]
+    _n, _problems = _va.check_pins()
+    if _bad or _problems:
+        for r in _bad:
+            print("  INVALID %s (%d errors)" % (r["path"], len(r["errors"])))
+        for p in _problems:
+            print("  " + p)
+        raise SystemExit("AKN VALIDATION FAILED: %d invalid file(s), %d broken pin(s). "
+                         "Run python3 scripts/validate_akn.py for detail."
+                         % (len(_bad), len(_problems)))
+    print("self-check: %d .akn.xml valid against akomantoso30.xsd, %d JSON-pinned eIds resolve"
+          % (len(_files), _n))
+except SystemExit:
+    raise
+except ImportError as e:
+    print("self-check: AKN validation skipped (%s) - run scripts/validate_akn.py" % e)
 
 print("generated:")
 print("  public/domain/%s.json (%d acts, %d nat terms, %d states, %d notes)" %
