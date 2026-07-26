@@ -567,6 +567,20 @@
           "recorded evidence",
           "witness deposition"
         ]
+      },
+      {
+        "word": "Criminal Rules of Practice",
+        "gloss": "The rules the High Court of Kerala made in 1982, under Article 227 of the Constitution, to govern how the criminal courts below it actually run - filing, the court diary, oaths, depositions, the vakalatnama, bail and so on. This site cites them as the source of most of the Kerala state-layer vocabulary.",
+        "source": "Criminal Rules of Practice, Kerala, 1982",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_1",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "CRP",
+          "Criminal Rules"
+        ]
       }
     ]
   },

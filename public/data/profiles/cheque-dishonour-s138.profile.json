@@ -2075,6 +2075,28 @@
       "aka": [
         "prima facie"
       ]
+    },
+    "rules of practice": {
+      "ref": "constitution:art_227",
+      "gloss": "The general rules a High Court makes, under Article 227(2) of the Constitution, to regulate the practice and proceedings of the courts below it - how cases are filed, listed, recorded and disposed. They fill in the working detail the central codes leave open. In Kerala they are the Criminal Rules of Practice, 1982, which this site cites as the source of many state-layer terms.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": [
+        "practice rules",
+        "rules of the court"
+      ]
+    },
+    "state rules": {
+      "ref": "constitution:art_227",
+      "gloss": "This site's label for the subordinate legislation the state layer adds on top of the uniform central law. Chiefly the High Court's rules of practice made under Article 227 (the Criminal Rules of Practice, the e-filing rules, the High Court Rules), together with State Government orders and the state's own Acts such as court fees. The central law is the same everywhere; the state rules change from state to state.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": [
+        "subordinate legislation",
+        "delegated legislation"
+      ]
     }
   },
   "edges": [
