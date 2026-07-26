@@ -237,7 +237,7 @@ V.cases=()=>{
   const m=el("div");
   m.innerHTML=`
     <h1 class="page-title">Case types</h1>
-    <p class="lede">DRISTI is one platform that hosts <strong>many kinds of case</strong>, each modelled as its own domain - but all sitting over the <strong>same shared legal core</strong> and the <strong>same state layer</strong>. Pick a case type to explore its model. The cross-cutting views at the bottom of the sidebar apply to every case type.</p>
+    <p class="lede">Each case type is modelled as its own domain over the same shared legal core and state layer. Pick one to explore its model; the views at the bottom of the sidebar apply to every case type.</p>
     <div class="ctgrid" id="ctgrid"></div>
     <div class="callout teal" style="margin-top:22px"><b>Why structure it this way?</b> The substantive law changes with the case type - cheque bounce leans on the NI Act, a motor claim on the Motor Vehicles Act. But the procedure, evidence, limitation and sentencing machinery underneath is largely shared, and the state layer works the same way for all of them. Model each case type once; reuse the core.</div>`;
   const g=$("#ctgrid",m);
@@ -280,7 +280,7 @@ V.overview=()=>{
   const head=el("div");
   head.innerHTML=`
     <h1 class="page-title">${c.name} - the domain, one screen at a time</h1>
-    <p class="lede">Everything here sits under one case type: <strong>${c.act}</strong>. It's the shared understanding this case is built on - the Acts, the vocabulary, the rules of procedure and evidence, read from the corpus. Read every provision with three lenses at once.</p>
+    <p class="lede">Everything here sits under one case type, ${c.act}: the Acts, vocabulary, procedure and evidence this case is built on, read from the corpus.</p>
     <div class="lenses">
       <div class="lens what"><div class="k">Lens 1 · What</div><h3>The rules</h3><p>The offence, the presumptions, procedure, evidence, limitation, sentencing - ${PROVISIONS.length} provisions across ${Object.keys(SOURCES).length} Acts, each with its verbatim text.</p></div>
       <div class="lens where"><div class="k">Lens 2 · Where</div><h3>National vs state</h3><p>The central law is the same everywhere in India. Each <em>state</em> layers its own rules, practice and filer reality on top.</p></div>
@@ -304,7 +304,7 @@ V.law=()=>{
   const m=el("div"); m.appendChild(scopeBar());
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Acts &amp; provisions</h1>
-    <p class="lede">Every Act this case draws on, and the sections inside it. Open an Act for its provisions; open a provision for the verbatim text. All central law, shared by every state.</p>
+    <p class="lede">Every Act this case draws on and the sections inside it. Open an Act for its provisions, or a provision for its verbatim text.</p>
     <div class="legend"><span><span class="dot" style="background:var(--blue)"></span> in force</span><span><span class="dot" style="background:var(--amber)"></span> 2023 Sanhita (from 2024-07-01)</span><span><span class="dot" style="background:var(--ink-3)"></span> repealed - pre-2024 cases only</span></div>`;
   m.appendChild(head);
   const controls=el("div","controls");
@@ -415,7 +415,7 @@ V.words=()=>{
 
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Vocabulary</h1>
-    <p class="lede">The words a ${caseById(activeCase).name.toLowerCase()} case is built on - the <strong>shared national vocabulary</strong> and the <strong>${esc(stName)} words</strong> the state layer adds. Filter by <strong>where a word comes from</strong>, its <strong>part of speech</strong>, or its <strong>role</strong> in the case. Tap any word to read the source text.</p>`;
+    <p class="lede">The words a ${caseById(activeCase).name.toLowerCase()} case is built on - the shared national vocabulary plus the ${esc(stName)} words the state layer adds. Filter by scope, part of speech or role, and tap any word for its source text.</p>`;
   m.appendChild(head);
   const controls=el("div","controls");
   controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="w-search" placeholder="Search a word - cheque, drawer, summons, Chief Ministerial Officer…"></div>`;
@@ -523,7 +523,7 @@ V.practice=()=>{
   const m=el("div"); m.appendChild(scopeBar());
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Local practice</h1>
-    <p class="lede">The part of the domain <strong>no Act writes down</strong> - how a ${caseById(activeCase).name.toLowerCase()} case is actually filed, moved and disposed on the ground. These are snippets from conversations with people who run the process; each one names an <strong>informal or local practice</strong> that the shared central law leaves unsaid. It changes by state; the statute does not.</p>
+    <p class="lede">The part of the domain no Act writes down - how a ${caseById(activeCase).name.toLowerCase()} case is actually filed, moved and disposed on the ground. Field notes on local practice the statute leaves unsaid; it changes by state.</p>
     <div class="pnote-flag">Illustrative - the kind of field note this section will hold. Not a verified transcript.</div>`;
   m.appendChild(head);
   const here=PRACTICE_NOTES.filter(n=>n.place===activeState);
@@ -1131,7 +1131,7 @@ V.caselaw=()=>{
 V.structure=()=>{
   const m=el("div");
   m.innerHTML=`<h1 class="page-title">The structure</h1>
-    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;Keep three things apart - the <strong>rules</strong> you must obey, the <strong>systems</strong> you plug into, and the <strong>context</strong> you adapt to - and remember they all move through <strong>time</strong>. This shape holds for any case type; only the top substantive Act swaps out.</p>`;
+    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;Keep three things apart - the rules you obey, the systems you plug into, and the context you adapt to - all moving through time. This shape holds for any case type.</p>`;
   const wrap=el("div","struct-wrap");
   const rules=el("div","stack");
   rules.appendChild(el("div","col-h rules","1 · THE RULES - what you must obey"));
@@ -1163,7 +1163,7 @@ V.structure=()=>{
 V.split=()=>{
   const m=el("div");
   m.innerHTML=`<h1 class="page-title">National vs State</h1>
-    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;The idea DRISTI 2.0 is organised around. The <strong>national core</strong> is central law - identical in every state. The <strong>state layer</strong> is everything a state owns, sequences and advances on its own. <strong>Build for the state, over the national core</strong> - not one all-India instance. (Examples below are drawn from the cheque-bounce case type.)</p>`;
+    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;The national core is central law, identical in every state; the state layer is everything a state owns and advances on its own. Build for the state, over the national core.</p>`;
   const split=el("div","split");
   const core=el("div","col core");
   core.innerHTML=`<div class="col-top"><h3>National <span class="badge b-shared">same everywhere</span></h3><p>Central statutes & binding judgments - reused across case types. Modelled here as ${PROVISIONS.length} provisions across ${Object.keys(SOURCES).length} Acts.</p></div>`;
@@ -1184,7 +1184,7 @@ V.split=()=>{
 V.time=()=>{
   const m=el("div");
   m.innerHTML=`<h1 class="page-title">The 2024 code switch</h1>
-    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;On <strong>1 July 2024</strong>, three foundational codes were replaced. They sit under every criminal case type, so this switch is platform-wide. Which set is live depends on <strong>when the cause of action arose</strong>.</p>
+    <p class="lede"><span class="badge b-crosscase" style="vertical-align:middle">across every case type</span> &nbsp;On 1 July 2024, three foundational codes were replaced. They sit under every criminal case type; which set is live depends on when the cause of action arose.</p>
     <div class="callout amber"><b>The rule of thumb.</b> Cause of action <b>before</b> 1 July 2024 → the old codes (CrPC / IPC / Evidence Act). <b>On or after</b> → the 2023 Sanhitas (BNSS / BNS / BSA).</div>`;
   const table=el("div"); table.style.marginTop="8px";
   ALIAS_MAP.forEach(a=>{
