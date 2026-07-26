@@ -609,6 +609,44 @@
         "themes": [
           "pre-cognizance-scrutiny"
         ]
+      },
+      {
+        "word": "Registry",
+        "gloss": "The court's administrative office - the ministerial establishment that receives filings, scrutinises them for defects, numbers and lists the case, keeps the records and issues process. A s.138 complaint is presented here before it reaches the Magistrate: the office checks the form and enclosures under the Criminal Rules of Practice (rule 27 on presentation of proceedings; rule 68 on returning defective petitions), and on e-filing the Electronic Filing Rules assign the same scrutiny to 'the Registry'. In the High Court the office is headed by the Registrar under the Rules of the High Court of Kerala, 1971.",
+        "source": "Criminal Rules of Practice, Rule 27",
+        "akn": "state/kerala/akn/criminal-rules-of-practice-kerala-1982.akn.xml",
+        "eId": "rule_27",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "court registry"
+        ]
+      },
+      {
+        "word": "Pleading",
+        "gloss": "The formal written statements in which each side sets out its case on paper. In a s.138 prosecution the pleadings are the complaint with its annexures and the accused's reply or defence; the Electronic Filing Rules speak of scrutinising and storing 'the pleadings and documents' filed in a case (rules 14 and 15). The classic definition comes from the Code of Civil Procedure, Order VI - a plaint or a written statement - and the usage carries over into criminal filing practice.",
+        "source": "Electronic Filing Rules for Courts (Kerala), Rule 14",
+        "akn": "state/kerala/akn/electronic-filing-rules-for-courts-kerala-2021.akn.xml",
+        "eId": "rule_14",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "pleadings"
+        ]
+      },
+      {
+        "word": "Prayer",
+        "gloss": "The relief clause of a petition or complaint - the specific order the party asks the court to pass, usually set out and numbered at the end of the document. In a s.138 complaint the prayer is to take cognizance and try the accused, and on conviction to award a fine or compensation to the payee. It has no separate defining rule; the convention comes from the Code of Civil Procedure, Order VII rule 7, which requires a plaint to state the relief claimed, and drafting practice carries it into criminal petitions.",
+        "source": "Court drafting practice (cf. CPC Order VII rule 7)",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "remedy",
+        "aka": [
+          "prayer clause",
+          "relief clause"
+        ]
       }
     ]
   },

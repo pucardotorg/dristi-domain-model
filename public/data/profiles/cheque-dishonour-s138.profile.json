@@ -2097,6 +2097,16 @@
         "subordinate legislation",
         "delegated legislation"
       ]
+    },
+    "writ": {
+      "ref": "constitution:art_226",
+      "gloss": "A direct order from a constitutional court commanding a public authority or a lower court to do, or to stop doing, something - the classic five are habeas corpus, mandamus, certiorari, prohibition and quo warranto. In a s.138 matter a party rarely needs a writ; a challenge to the complaint usually goes by the High Court's inherent power (s.482 CrPC / s.528 BNSS). But the writ power is separate and independent: a High Court issues writs under Article 226 of the Constitution, and the Supreme Court under Article 32, where a legal or fundamental right is at stake.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "remedy",
+      "aka": [
+        "writ petition"
+      ]
     }
   },
   "edges": [
