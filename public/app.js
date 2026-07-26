@@ -259,8 +259,12 @@ V.cases=()=>{
 function scopeBar(){
   const c=caseById(activeCase);
   const b=el("div","scopebar");
+  const opts=JURISDICTIONS.map(s=>`<option value="${s.id}"${s.id===activeState?' selected':''}>${esc(s.name)}</option>`).join("");
   b.innerHTML=`<span class="lab">Case type</span> <span class="ct">${c.name}</span> <span class="tiny">${c.act}</span>`
-    +`<span class="sb-state" title="Active state">${ic('map-pin')}<span class="sb-state-name">${esc(stateById(activeState).name)}</span></span>`;
+    +`<span class="sb-state" title="Switch state">${ic('map-pin')}<span class="sb-state-name">${esc(stateById(activeState).name)}</span><span class="sb-state-chev">${ic('chevron-down')}</span>`
+    +`<select class="sb-state-sel" aria-label="Switch state">${opts}</select></span>`;
+  const sel=b.querySelector(".sb-state-sel");
+  if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
   return b;
 }
 const isModelled=()=>caseById(activeCase).status==="active";
@@ -1084,8 +1088,7 @@ V.caselaw=()=>{
   if(!isModelled()) return notModelled();
   const m=el("div"); m.appendChild(scopeBar());
   const head=el("div");
-  head.innerHTML=`<h1 class="page-title">Case law</h1>
-    <p class="lede">The leading <strong>Supreme Court</strong> authority a ${caseById(activeCase).name.toLowerCase()} case is decided on - ${CASES.length} judgments, each pinned to the <strong>provisions it construes</strong> (by <strong>Article&nbsp;141</strong>, these bind every court). Filter by what they settle. Hover a section chip to preview the provision, or click to open its full text.</p>`;
+  head.innerHTML=`<h1 class="page-title">Case law</h1>`;
   m.appendChild(head);
   if(!CASES.length){ m.appendChild(el("div","empty","No case-law dataset is linked from this profile.")); return m; }
   const controls=el("div","controls");

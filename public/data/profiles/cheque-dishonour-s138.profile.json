@@ -1697,7 +1697,8 @@
       "role": "actor",
       "aka": [
         "JMFC",
-        "Judicial Magistrate First Class"
+        "Judicial Magistrate First Class",
+        "Magistrate's court"
       ]
     },
     "witness": {
@@ -1709,6 +1710,73 @@
       "aka": [
         "deponent",
         "prosecution witness"
+      ]
+    },
+    "good law": {
+      "ref": "constitution:art_141",
+      "gloss": "A judgment that still states the law - it has not been overruled, doubted or superseded, so every court must follow it. It is the healthiest of the case-law status labels used here (the others being partly overruled, overruled and superseded by statute). The binding force comes from Article 141 of the Constitution: the law declared by the Supreme Court binds all courts in India.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": [
+        "binding precedent",
+        "good authority",
+        "still binding"
+      ]
+    },
+    "court of session": {
+      "ref": "bnss:sec_415",
+      "gloss": "The court that hears an appeal from the Judicial Magistrate's conviction or sentence in a §138 case, sitting one step above the magistrate in the criminal court hierarchy. The appeal route is set by BNSS s.415 (formerly CrPC s.374); on such an appeal the court may, under NI Act s.148, order the appellant to deposit at least 20% of the compensation.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "forum",
+      "aka": [
+        "Sessions Court",
+        "Court of Sessions",
+        "Sessions Judge"
+      ]
+    },
+    "fast track court": {
+      "ref": "ni:sec_143",
+      "gloss": "A court earmarked to clear cases quickly, not a separate kind of court. Fast Track Courts are set up administratively - originally under the 11th Finance Commission scheme and continued through central and state schemes and Supreme Court directions (Indian Bank Association v. Union of India) - rather than by a dedicated section. For cheque cases the speedy-disposal mandate rests on NI Act s.143, and states designate special magistrate courts to run them.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "forum",
+      "aka": [
+        "fast-track court",
+        "fast track magistrate court"
+      ]
+    },
+    "high court": {
+      "ref": "constitution:art_227",
+      "gloss": "The court that oversees the §138 trial from above: it hears criminal revisions (BNSS s.438), quashes complaints in its inherent jurisdiction (BNSS s.528 / CrPC s.482, through Art. 226) and exercises superintendence over the trial magistrate under Article 227 of the Constitution.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "forum",
+      "aka": [
+        "HC"
+      ]
+    },
+    "supreme court": {
+      "ref": "constitution:art_136",
+      "gloss": "The apex court. It reaches §138 matters mainly by special leave under Article 136, and the law it declares binds every court in India under Article 141 - which is why the leading §138 judgments are good law nationwide.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "forum",
+      "aka": [
+        "apex court",
+        "SC"
+      ]
+    },
+    "lok adalat": {
+      "ref": "constitution:art_39A",
+      "gloss": "A settlement forum under the Legal Services Authorities Act, 1987 where a §138 case can be compromised and disposed by consent; its award is final and binds the parties. Referral of cheque disputes to Lok Adalat and mediation is underpinned by Article 39A (access to justice).",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "forum",
+      "aka": [
+        "people's court",
+        "permanent lok adalat"
       ]
     }
   },

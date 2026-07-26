@@ -181,8 +181,14 @@
   .scopebar .lab{color:var(--ink-3); font-size:12px; letter-spacing:.03em; text-transform:uppercase}
   .scopebar .ct{color:var(--ink); font-weight:600}
   .scopebar .sw{margin-left:auto; color:var(--brand); cursor:pointer; font-size:12.5px}
-  .scopebar .sb-state{margin-left:auto; display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:var(--brand-hi); background:var(--brand-dim); border:1px solid var(--brand-border); border-radius:20px; padding:3px 12px}
+  .scopebar .sb-state{margin-left:auto; position:relative; display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:var(--brand-hi); background:var(--brand-dim); border:1px solid var(--brand-border); border-radius:20px; padding:3px 10px 3px 12px; cursor:pointer}
+  .scopebar .sb-state:hover{border-color:var(--brand)}
   .scopebar .sb-state svg.lu{width:13px; height:13px}
+  .scopebar .sb-state-chev{display:inline-flex; margin-left:-1px; opacity:.75; transition:opacity .15s}
+  .scopebar .sb-state:hover .sb-state-chev{opacity:1}
+  .scopebar .sb-state-chev svg.lu{width:12px; height:12px}
+  .scopebar .sb-state-sel{position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; appearance:none; -webkit-appearance:none; font-size:16px}
+  .scopebar .sb-state-sel option{background:var(--panel); color:var(--ink); font-size:14px; font-weight:500}
 
   .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; margin-bottom:14px}
   .muted{color:var(--ink-2)} .tiny{font-size:12.5px; color:var(--ink-3)}
