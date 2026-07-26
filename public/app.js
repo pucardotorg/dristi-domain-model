@@ -1581,7 +1581,7 @@ function stateKeyRow(it,k){
     <div class="prov-head">
       <span class="ref">${esc(stEidNum(k.eId))}</span>
       <span class="rt">${esc(k.label||'')}</span>
-      <span class="hbadges"><span class="badge b-state">Kerala layer</span> ${eraBadge(k.applies||'always')}</span>
+      <span class="hbadges"><span class="badge b-state">${esc(stateById(activeState).name)} layer</span> ${eraBadge(k.applies||'always')}</span>
       <span class="caret">${ic('chevron-right')}</span>
     </div>
     <div class="prov-body">

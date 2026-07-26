@@ -1,0 +1,885 @@
+{
+  "state": "gujarat",
+  "name": "Gujarat",
+  "as_of": "2026",
+  "amendments": {
+    "summary": "Gujarat has not amended Section 138 (or ss.139-147) of the Negotiable Instruments Act. The offence, the presumptions, the notice period and limitation, and compounding are uniform central law. What sits here instead are Gujarat's own State Acts that bear on a cheque case: the Gujarat Court-Fees Act, 2004, which prices every step of the case, and the Gujarat Police Act, 1951, which supplies the machinery that serves the court's process and executes its warrants. The court-fee position is the striking one. Gujarat charges a flat three rupees on a writing containing a complaint of any offence presented to a criminal court (Schedule II, Article 1(c)), not a fee scaled to the cheque amount. Filing a cheque case in Gujarat therefore costs almost nothing per case, which is part of why banks and NBFCs file here in bulk. The rules of practice, the e-filing regime and the SARAS remote-adjudication courts are under State rules.",
+    "items": [
+      {
+        "title": "The Gujarat Court-Fees Act, 2004",
+        "cite": "Gujarat Act 4 of 2004 · court fees on a §138 case",
+        "alias": "gcf",
+        "note": "The State Act that prices a cheque case in Gujarat. It repealed the Bombay Court-fees Act, 1959 in its application to Gujarat (s.49), so the Bombay Act is spent here. Unlike Kerala's ad valorem article, Gujarat's fee on a criminal complaint is a fixed amount: Schedule II, Article 1(c) charges three rupees on a writing containing a complaint or charge of any offence presented to a criminal court, whatever the cheque is worth. Around that sit the small fixed fees a §138 case actually meets - ten rupees when the complainant's examination is reduced to writing (s.19), two rupees on the vakalatnama to a magistrate (Sch. II Art.12), two rupees on a bail bond (Sch. II Art.10) and fifty rupees on an application to the High Court under Article 227 (Sch. II Art.1(f)(ii)). Rendered from the official Government of Gujarat text as modified up to 31 January 2024.",
+        "akn": "state/gujarat/akn/gujarat-court-fees-act-2004.akn.xml",
+        "pdf": "state/gujarat/sources/gujarat-court-fees-act-2004.pdf",
+        "made_under": [
+          {
+            "rel": "enacted under competence",
+            "to": "constitution:art_246"
+          }
+        ],
+        "key": [
+          {
+            "eId": "art_1",
+            "label": "Fee on a complaint to a criminal court (Sch. II, Art.1)",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The entry that prices a §138 complaint in Gujarat. Clause (c) fixes three rupees on a writing containing a complaint or charge of any offence presented to any criminal court - a flat fee, not a slice of the cheque amount. Clause (f)(ii) charges fifty rupees on an application to the High Court under Article 227, which is the supervisory route a §138 accused takes to have the complaint quashed or the proceedings stayed. This is the filing economics that makes bulk institutional filing viable in Gujarat.",
+            "edges": [
+              {
+                "rel": "sets the fee to file a complaint under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "priced on the complaint taken under",
+                "to": "bnss:sec_223"
+              },
+              {
+                "rel": "sets the fee on a supervisory application under",
+                "to": "constitution:art_227"
+              }
+            ]
+          },
+          {
+            "eId": "sec_4",
+            "label": "No document to be filed unless the proper fee is paid",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The gate. A document chargeable under either Schedule may not be filed, exhibited or recorded in any court of justice unless the fee indicated by the Schedule has been paid. It is the provision the registry applies when it scrutinises a §138 complaint before numbering it.",
+            "edges": [
+              {
+                "rel": "conditions presentation of the complaint under",
+                "to": "bnss:sec_223"
+              }
+            ]
+          },
+          {
+            "eId": "sec_19",
+            "label": "Fee on the written examination of a complainant",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Ten rupees where the first or only examination of a person who complains of an offence for which a police officer may not arrest without warrant is reduced to writing under the Code. A §138 offence is exactly that kind of offence, so this is the fee that attaches at the cognizance stage when the magistrate records the complainant's statement on oath.",
+            "edges": [
+              {
+                "rel": "attaches to the examination under",
+                "to": "bnss:sec_223"
+              },
+              {
+                "rel": "originally framed on",
+                "to": "crpc:sec_200"
+              }
+            ]
+          },
+          {
+            "eId": "art_12",
+            "label": "Fee on a vakalatnama (Sch. II, Art.12)",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Two rupees on a mukhtarnama or vakalatnama presented to a criminal court other than a Sessions Court or the High Court, three rupees to a District or Sessions Court and five rupees to the High Court. Every appearance by an advocate in a §138 case passes through this entry.",
+            "edges": [
+              {
+                "rel": "prices the authority to appear under",
+                "to": "advocates:sec_30"
+              }
+            ]
+          },
+          {
+            "eId": "art_10",
+            "label": "Fee on bail bonds and recognizances (Sch. II, Art.10)",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Two rupees on bail bonds in criminal cases and on recognizances for personal appearance. In a §138 case the accused who answers summons is released on a bond, so this is the fee that meets him at his first appearance. Article 9 charges five rupees on a bond given in pursuance of a court's order under the Code.",
+            "edges": [
+              {
+                "rel": "prices the bond taken on process under",
+                "to": "bnss:sec_227"
+              }
+            ]
+          },
+          {
+            "eId": "sec_33",
+            "label": "Tables of process fees",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The process fee is what the complainant pays for the court to serve its summons and execute its warrants. The table of those fees must be exposed to view in a conspicuous part of every court, in English and in the regional language. This is the running cost of the summons-to-warrant ladder in a cheque case.",
+            "edges": [
+              {
+                "rel": "prices service of summons under",
+                "to": "bnss:sec_63"
+              },
+              {
+                "rel": "prices execution of a warrant under",
+                "to": "bnss:sec_72"
+              }
+            ]
+          },
+          {
+            "eId": "sec_37",
+            "label": "Collection of fees, including by e-payment",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "How the fee is actually collected. The e-payment definition inserted in 2015 (s.2(bb)) and this section are what let a court fee be paid electronically, which is the precondition for the e-filed cheque cases that the SARAS courts were built for.",
+            "edges": [
+              {
+                "rel": "enables electronic payment on filing under",
+                "to": "itact:sec_4"
+              }
+            ]
+          },
+          {
+            "eId": "sec_44",
+            "label": "Admission in criminal cases of documents on which the fee was not paid",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "A safety valve on the criminal side. Where the presiding judge thinks the filing or exhibition of a document is necessary to prevent a failure of justice, section 4 does not bar it even though the proper fee was not paid. In a cheque case this keeps a defective court fee from shutting out the cheque, the return memo or the demand notice.",
+            "edges": [
+              {
+                "rel": "relaxes",
+                "to": "ni:sec_146"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Gujarat Police Act, 1951",
+        "cite": "Bombay Act XXII of 1951 as applied to Gujarat · execution of process",
+        "alias": "gpa",
+        "note": "The State police law for Gujarat - the Bombay Police Act, 1951 as adapted by the Gujarat Adaptation of Laws Order, 1960 and renamed. It is the machinery a §138 case leans on only at the process stage. A cheque case is a complaint case with no police investigation and no arrest at the outset; the police enter when the court issues process, and section 64(a) is the duty that makes them serve it. Rendered from the official Government of Gujarat text as modified up to 31 March 2017; the source is a scan and the converted text carries residual OCR noise.",
+        "akn": "state/gujarat/akn/gujarat-police-act-1951.akn.xml",
+        "pdf": "state/gujarat/sources/gujarat-police-act-1951.pdf",
+        "made_under": [
+          {
+            "rel": "enacted under competence",
+            "to": "constitution:art_246"
+          }
+        ],
+        "key": [
+          {
+            "eId": "sec_64",
+            "label": "Duties of a police officer",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Clause (a) is the hinge for a cheque case: it is the duty of every police officer promptly to serve every summons and to obey and execute every warrant or other order lawfully issued to him by a competent authority. This is the single point at which the police touch a §138 case, and the Gujarat counterpart of Kerala's section 4.",
+            "edges": [
+              {
+                "rel": "serves process issued under",
+                "to": "bnss:sec_227"
+              },
+              {
+                "rel": "executes warrants under",
+                "to": "bnss:sec_72"
+              },
+              {
+                "rel": "operationalises the duty under",
+                "to": "police1861:sec_23"
+              }
+            ]
+          },
+          {
+            "eId": "sec_4",
+            "label": "Superintendence of the police force vests in the State Government",
+            "tier": "supporting",
+            "applies": "always",
+            "note": "Superintendence of the whole force throughout Gujarat vests in and is exercisable by the State Government, and every control or direction by any officer is subject to it. The constitutional top of the chain that ends with a constable serving a summons on a cheque-case accused.",
+            "edges": []
+          },
+          {
+            "eId": "sec_5",
+            "label": "Constitution of the police force",
+            "tier": "supporting",
+            "applies": "always",
+            "note": "Constitutes the single Gujarat police force and its subordinate ranks. It is the ladder that the officer executing the court's warrant sits on, and the basis for the role names the Gujarat layer uses.",
+            "edges": []
+          },
+          {
+            "eId": "sec_7",
+            "label": "Commissioner of Police",
+            "tier": "supporting",
+            "applies": "always",
+            "note": "Provides for a Commissioner of Police for a city area. This matters concretely here because the SARAS cheque-case establishment sits under the Chief Judicial Magistrate courts of Ahmedabad City, a commissionerate area, so the Commissioner heads the force that serves process in those cases.",
+            "edges": []
+          },
+          {
+            "eId": "sec_8",
+            "label": "Appointment of District and other Superintendents",
+            "tier": "supporting",
+            "applies": "always",
+            "note": "The district command. Outside the commissionerate cities the District Superintendent heads the machinery that serves the court's summons and executes its warrants in a cheque case.",
+            "edges": []
+          },
+          {
+            "eId": "sec_2",
+            "label": "Definitions",
+            "tier": "definition",
+            "applies": "always",
+            "note": "Defines 'police officer', 'competent authority' and 'District' for the whole Act - the terms section 64's service-of-process duty is written in.",
+            "edges": []
+          }
+        ]
+      }
+    ]
+  },
+  "rules": {
+    "summary": "How a §138 case is actually filed and tried in Gujarat: the manuals and rules the High Court makes for the courts below it, plus the digital layer that Gujarat has built specifically for cheque cases. Two things set Gujarat apart. The Criminal Manual, 1977 is the working rulebook of every criminal court in the State, the counterpart of Kerala's Criminal Rules of Practice. And the SARAS Courts Rules, 2026 are a rulebook written for cheque cases alone: mandatory e-filing and remote adjudication by video conferencing for Negotiable Instruments Act cases filed by banks and NBFCs in the Chief Judicial Magistrate courts of Ahmedabad City, with the electronic record as the primary judicial record.",
+    "items": [
+      {
+        "title": "The Criminal Manual, 1977 (High Court of Gujarat)",
+        "cite": "High Court rules of practice · criminal courts",
+        "alias": "gcrm",
+        "note": "The core Gujarat instrument for how a criminal court runs a case: process and attendance of witnesses, inquiry and trial by magistrates, exhibits and depositions, affidavits, records, copies and translation, and court fees. Issued by the High Court of Gujarat for the guidance of the criminal courts and officers subordinate to it, and carried forward by notifications from 27 December 1978 to 26 June 2024. It is the Gujarat counterpart of Kerala's Criminal Rules of Practice, and the newer digital rules are written on top of it - the SARAS Courts Rules send exhibit marking to Criminal Manual rule 76, records retention to rules 361 to 367, and certified copies to Chapter XXII. The official source is a scan of the first edition; the text here was recovered by OCR of that scan and carries residual OCR noise, so verify a rule against the official copy before relying on its exact words. The High Court publishes the scan as a 150 MB file, too large to keep in the repository, so the PDF stored here is the same 479 pages re-rendered at 200 dpi bilevel (21 MB) and fully legible; the original remains at gujarathighcourt.nic.in.",
+        "akn": "state/gujarat/akn/gujarat-criminal-manual-1977.akn.xml",
+        "pdf": "state/gujarat/sources/gujarat-criminal-manual-1977.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          },
+          {
+            "rel": "made under",
+            "to": "crpc:sec_477"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_74",
+            "label": "Examination of the complainant on taking cognizance",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The rule that governs the moment a cheque case begins. When a magistrate takes cognizance on a complaint, the examination of the complainant and his witnesses should as far as possible be taken immediately, and the enquiry must be full enough to let the magistrate judge whether there are grounds for proceeding. It also tells him he need give no reasons for postponing process but must record reasons for dismissing a complaint.",
+            "edges": [
+              {
+                "rel": "operationalises the examination under",
+                "to": "bnss:sec_223"
+              },
+              {
+                "rel": "operationalises",
+                "to": "crpc:sec_200"
+              },
+              {
+                "rel": "applies to the complaint required by",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "rule_75",
+            "label": "List of prosecution witnesses and the copy that goes with the summons",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "No summons or warrant issues until a list of prosecution witnesses is filed, and on a complaint made in writing a copy of the complaint must accompany the summons, the copies being supplied by the complainant. In a bulk cheque filing this is the concrete work the complainant has to do before process will issue.",
+            "edges": [
+              {
+                "rel": "conditions the issue of process under",
+                "to": "bnss:sec_227"
+              },
+              {
+                "rel": "supplies the copy served under",
+                "to": "bnss:sec_63"
+              }
+            ]
+          },
+          {
+            "eId": "rule_76",
+            "label": "The Roznama - the proceeding sheet and the record of exhibits",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The running record of a criminal case in Gujarat. The Roznama in Form No. 41 must be a faithful history of the case and carry a correct list and description of the exhibits, while leaving out ministerial acts. It is the Gujarat counterpart of Kerala's proceedings paper, and the SARAS rules send exhibit and bookmark assignment in an e-filed cheque case straight back to this rule.",
+            "edges": [
+              {
+                "rel": "records the proceedings of the trial under",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "rule_41",
+            "label": "Process fees for serving and executing a magistrate's process",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The table of fees for serving and executing the process of a magistrate's court in cases of offences for which police officers may not arrest without a warrant - which is exactly what a §138 case is. It prices each rung of the ladder: the summons, the warrant of arrest, the proclamation for an absconding party and the warrant of attachment. The figures are the 1977 ones and the enabling power has since moved to section 33 of the Gujarat Court-Fees Act, 2004, so verify the current rate.",
+            "edges": [
+              {
+                "rel": "prices service of summons under",
+                "to": "bnss:sec_63"
+              },
+              {
+                "rel": "prices the warrant under",
+                "to": "bnss:sec_72"
+              },
+              {
+                "rel": "prices proclamation and attachment under",
+                "to": "bnss:sec_84"
+              }
+            ]
+          },
+          {
+            "eId": "rule_101",
+            "label": "Summary trials",
+            "tier": "procedure",
+            "applies": "pre-2024-07-01",
+            "note": "The manual's own gloss on summary trial: offences punishable with imprisonment up to two years may be tried summarily, no sentence over three months may be passed in such a trial, and in all summary trials the summons-case procedure is followed. This is the machinery the NI Act's own summary-trial direction runs on in a Gujarat magistrate's court. The section numbers cited are the 1973 Code's; for causes of action on or after 1 July 2024 read the corresponding BNSS provisions.",
+            "edges": [
+              {
+                "rel": "runs the summary trial directed by",
+                "to": "ni:sec_143"
+              },
+              {
+                "rel": "corresponds to the summary-trial power under",
+                "to": "bnss:sec_283"
+              }
+            ]
+          },
+          {
+            "eId": "rule_135",
+            "label": "Vakalatnama to be filed by every pleader",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Vakalatnamas must be filed by all pleaders appearing for any party in all classes of cases, including appeals and revisional and miscellaneous applications, in every criminal court in Gujarat, with narrow exceptions for the Public Prosecutor and court-appointed counsel. This is the authority-to-appear rule an advocate in a cheque case satisfies, and the vakalatnama itself bears a fixed court fee.",
+            "edges": [
+              {
+                "rel": "gives effect to the right to appear under",
+                "to": "advocates:sec_30"
+              }
+            ]
+          },
+          {
+            "eId": "rule_236",
+            "label": "Form and heading of an affidavit",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "Opens the manual's affidavits chapter and prescribes how an affidavit used in a criminal court is headed and entitled. It matters here because the NI Act lets the complainant give evidence on affidavit, and in a SARAS cheque case the examination-in-chief is tendered that way through the e-filing portal.",
+            "edges": [
+              {
+                "rel": "gives form to evidence on affidavit under",
+                "to": "ni:sec_145"
+              },
+              {
+                "rel": "sworn under",
+                "to": "oaths:sec_4"
+              }
+            ]
+          },
+          {
+            "eId": "rule_361",
+            "label": "When a criminal record goes to the record room",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The record of a substantive criminal proceeding is not due for despatch to the record room until the appeal or revision period expires, and where an appeal or revision is filed, until it is disposed of. It heads the block of rules (361 to 367) that the SARAS rules apply to the retention and destruction of the electronic record of an e-filed cheque case.",
+            "edges": [
+              {
+                "rel": "holds the record pending appeal under",
+                "to": "ni:sec_148"
+              },
+              {
+                "rel": "holds the record pending revision under",
+                "to": "bnss:sec_438"
+              }
+            ]
+          },
+          {
+            "eId": "rule_383",
+            "label": "Dealing with an application for a certified copy",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Who processes an application for a certified copy once the office finds it complete - the Registrar or Clerk of the Court in the Sessions Court, the Clerk of the Court before a Judicial Magistrate, the Sheristedar before a Metropolitan Magistrate. A §138 party needs a certified copy of the judgment to appeal, and the SARAS rules route certified copies of the digital record back to this chapter.",
+            "edges": [
+              {
+                "rel": "issues the certified copy proved under",
+                "to": "bsa:sec_75"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Gujarat High Court Rules, 1993",
+        "cite": "High Court rules · amended to 2 April 2026",
+        "alias": "ghcr",
+        "note": "Govern the High Court's own side, in supersession of the Bombay High Court Appellate Side Rules, 1960. For a cheque case this is the layer above the trial: the quashing petition under section 528 BNSS (section 482 CrPC) and the criminal revision against conviction or acquittal, both of which rule 2 assigns to a Single Judge. Chapter XXVI, 'Criminal Business', carries the presentation, registration, scrutiny and objection-removal machinery that a §138 revision or quashing petition passes through before it reaches a Bench.",
+        "akn": "state/gujarat/akn/gujarat-high-court-rules-1993.akn.xml",
+        "pdf": "state/gujarat/sources/gujarat-high-court-rules-1993.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_225"
+          },
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_2",
+            "label": "Matters a Single Judge may dispose of, including quashing and revision",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The jurisdiction rule that decides who hears a challenge to a cheque case in the High Court. Its criminal list gives a Single Judge applications under section 482 CrPC (now section 528 BNSS) to quash a complaint, revisional jurisdiction under section 401 CrPC, and applications to transfer or stay proceedings pending in a criminal court. Most §138 litigation that reaches the High Court arrives through this rule.",
+            "edges": [
+              {
+                "rel": "assigns the inherent-powers petition under",
+                "to": "bnss:sec_528"
+              },
+              {
+                "rel": "assigns the revision under",
+                "to": "bnss:sec_438"
+              }
+            ]
+          },
+          {
+            "eId": "rule_333",
+            "label": "Presentation of criminal proceedings",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Opens Chapter XXVI, Criminal Business. All criminal matters are presented in the office of the Registrar; a filing number issues first, and a registration number only once there is no office objection. This is where a §138 revision or quashing petition enters the High Court.",
+            "edges": [
+              {
+                "rel": "receives the revision brought under",
+                "to": "bnss:sec_438"
+              }
+            ]
+          },
+          {
+            "eId": "rule_339",
+            "label": "Examination of proceedings by the office",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The scrutiny clock. Every criminal appeal or application must be examined by the office as expeditiously as possible and within six days of filing, shortened to the next day where the sentence is six months or less and the accused is in custody. It sets how quickly a cheque-case revision is checked for defects.",
+            "edges": []
+          },
+          {
+            "eId": "rule_340",
+            "label": "Office objections and their removal",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The defect loop on the High Court's criminal side: office objections are notified on a special notice board, and the advocate or applicant has fourteen days to remove them, failing which the matter goes before the Court for orders. The counterpart of the trial-court scrutiny that a §138 complaint meets on filing.",
+            "edges": []
+          },
+          {
+            "eId": "rule_64",
+            "label": "Inquiry regarding sufficiency of court fees",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "When the office must re-examine the court fee on an appeal, and the express recognition that a receipt of payment made through the e-payment system may be required instead of a stamp. This is where the Court-Fees Act meets the High Court registry in an appeal or revision arising out of a cheque case.",
+            "edges": [
+              {
+                "rel": "checks the fee on an appeal under",
+                "to": "ni:sec_148"
+              }
+            ]
+          },
+          {
+            "eId": "rule_345",
+            "label": "Accompaniments to criminal appeals and applications",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "What must be filed with a criminal appeal or application - the judgment or order challenged and the supporting papers. It is the checklist a §138 revision or quashing petition is measured against at scrutiny.",
+            "edges": []
+          }
+        ]
+      },
+      {
+        "title": "The Gujarat High Court Rules for seamless functioning of SARAS Courts (StateWide Access to Remote Adjudication System), 2026",
+        "cite": "Notification No. C.3008/2026 · gazetted 24 March 2026",
+        "alias": "saras",
+        "note": "The most §138-specific instrument in the Gujarat corpus. These rules govern the SARAS N.I. Court establishment under the Chief Judicial Magistrate courts of Ahmedabad City, set up for cheque cases e-filed by banks and NBFCs, and for e-filed cases under section 25 of the Payment and Settlement Systems Act, 2007. They make the electronic record on the designated portal the primary and authoritative judicial record, put scrutiny of e-filed complaints exclusively with the Registry, keep the original cheque and return memo in physical custody for evidentiary purposes, tender the complainant's examination-in-chief by affidavit through e-filing while keeping cross-examination physical or at a notified deposition centre, and route certified copies, exhibits and record retention back to the Criminal Manual. Made under Articles 225 and 227 of the Constitution and the enabling sections of the BNSS.",
+        "akn": "state/gujarat/akn/gujarat-saras-courts-rules-2026.akn.xml",
+        "pdf": "state/gujarat/sources/gujarat-saras-courts-rules-2026.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_225"
+          },
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          },
+          {
+            "rel": "made under",
+            "to": "bnss:sec_530"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_1",
+            "label": "Application to the SARAS N.I. Court establishment",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "Fixes what these rules cover: the SARAS N.I. Court establishment under the C.J.M. courts of Ahmedabad City and e-filed cases under section 25 of the Payment and Settlement Systems Act, 2007. It also ties the regime to the e-Filing SOP of 6 January 2024 and the District Courts video-conferencing rules of 2025. This is the gateway provision for a cheque case tried in a Gujarat remote-adjudication court.",
+            "edges": [
+              {
+                "rel": "covers the offence under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "covers cases under",
+                "to": "pss:sec_25"
+              }
+            ]
+          },
+          {
+            "eId": "rule_3",
+            "label": "General principles: the electronic record is the primary judicial record",
+            "tier": "evidence",
+            "applies": "post-2024-07-01",
+            "note": "The doctrinal core. The electronic record on the designated portal is the primary and authoritative judicial record; signatures are by token-based digital signature certificate or by a scanned physical signature with identity proof; scrutiny of e-filed complaints stays exclusively with the Registry; and the original cheque, return memo and demand notice, though produced physically, are retained during trial for evidentiary purposes and may be returned to the complainant on an endorsement. That last point is the Gujarat answer to the practical problem of the original instrument in a paperless cheque trial.",
+            "edges": [
+              {
+                "rel": "gives electronic form to the record of the trial under",
+                "to": "ni:sec_143"
+              },
+              {
+                "rel": "operates under the electronic mode permitted by",
+                "to": "bnss:sec_530"
+              },
+              {
+                "rel": "authenticates records under",
+                "to": "itact:sec_4"
+              }
+            ]
+          },
+          {
+            "eId": "rule_4",
+            "label": "E-filing, registry scrutiny, exhibits and rojnama",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "The working procedure of a SARAS cheque case. All complaints and applications are e-filed on the designated portal; the Registry scrutinises a new complaint on the next working day and either registers it or records objections in writing for rectification; the designated staff assign exhibits in conformity with rule 76 of the Criminal Manual; the presiding officer digitally signs; and the rojnama is recorded in the Case Information System and digitally authenticated at the end of each hearing.",
+            "edges": [
+              {
+                "rel": "receives the complaint taken under",
+                "to": "bnss:sec_223"
+              },
+              {
+                "rel": "gives electronic form to the summary trial under",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "rule_5",
+            "label": "Recording the plea and supply of copies",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "The accused must be physically present at the SARAS court or at a remote point when the plea is recorded, and the plea is signed physically and scanned. Copies of the complaint and papers due to the accused are furnished in electronic form - by e-mail, a recognised messaging service or a storage device - and only printed free of cost where the accused cannot receive them electronically.",
+            "edges": [
+              {
+                "rel": "gives electronic form to the plea under",
+                "to": "bnss:sec_274"
+              }
+            ]
+          },
+          {
+            "eId": "rule_6",
+            "label": "Recording of evidence and the further statement of the accused",
+            "tier": "evidence",
+            "applies": "post-2024-07-01",
+            "note": "Where the §138 evidence rules meet the digital court. The complainant's examination-in-chief is ordinarily tendered by affidavit through electronic filing, which is the NI Act's own affidavit-evidence rule run through the portal; cross-examination and the accused's own evidence are ordinarily taken physically, before the court or at a notified Formal Witness Deposition Centre or remote point. Evidence by audio-video means is allowed at the court's discretion under the 2025 rules.",
+            "edges": [
+              {
+                "rel": "gives electronic form to evidence on affidavit under",
+                "to": "ni:sec_145"
+              },
+              {
+                "rel": "records evidence in the mode permitted by",
+                "to": "bnss:sec_530"
+              }
+            ]
+          },
+          {
+            "eId": "rule_10",
+            "label": "Custody upon conviction",
+            "tier": "sentencing",
+            "applies": "post-2024-07-01",
+            "note": "The accused must be personally present at the SARAS court when judgment is pronounced, and the issue and execution of a conviction warrant follow the ordinary procedure established by law. The point at which a remote-adjudication cheque case comes back into the physical world.",
+            "edges": [
+              {
+                "rel": "gives effect to sentence under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "rule_11",
+            "label": "Certified copies from the digital record",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "Certified copies are governed by Chapter XXII of the Criminal Manual but are generated from the digitally signed electronic record, and such digitally signed electronic copies count as certified copies for all legal purposes. It fixes a fee of fifty rupees per twenty-five megabytes for supply by electronic means. This is how a §138 party gets the judgment it needs for an appeal.",
+            "edges": [
+              {
+                "rel": "supplies the certified copy proved under",
+                "to": "bsa:sec_75"
+              }
+            ]
+          },
+          {
+            "eId": "rule_12",
+            "label": "Payment of fine and compensation",
+            "tier": "sentencing",
+            "applies": "post-2024-07-01",
+            "note": "Fine, penalty or compensation may be accepted through the e-payment facility once enabled, and by cash or another permissible mode until then. In a cheque case the compensation ordered on conviction is the relief the complainant actually came for, so how it is paid matters.",
+            "edges": [
+              {
+                "rel": "pays the fine and compensation imposed under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "rule_14",
+            "label": "Transmission of the record in appeal or revision",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "On a direction from the appellate or revisional court the record and proceedings are transmitted electronically from the designated portal; originals and hard copies go up only if that court so directs. The bridge from a digital cheque trial to a conventional appeal or revision.",
+            "edges": [
+              {
+                "rel": "sends the record up on appeal under",
+                "to": "ni:sec_148"
+              },
+              {
+                "rel": "sends the record up on revision under",
+                "to": "bnss:sec_438"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The District Courts of the Gujarat State for the Use of Electronic Communication and Audio-Video Electronic Means Rules, 2025",
+        "cite": "High Court of Gujarat · 2 June 2025",
+        "alias": "gvcr",
+        "note": "Gujarat's video-conferencing rules for the district judiciary, made under Article 227 and the enabling sections of the BNSS, and repealing the 2021 video-conferencing rules so far as they applied to the district judiciary. They are the general regime the SARAS cheque courts sit inside: who may appear remotely, how a person appearing by video is identified, how a witness is examined and documents are shown at a remote point, and how service of process is effected. Relevant to a §138 case chiefly because the Gujarat cheque courts adjudicate by video conferencing.",
+        "akn": "state/gujarat/akn/gujarat-district-courts-electronic-communication-rules-2025.akn.xml",
+        "pdf": "state/gujarat/sources/gujarat-district-courts-electronic-communication-rules-2025.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          },
+          {
+            "rel": "made under",
+            "to": "bnss:sec_530"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_5",
+            "label": "General principles governing video conferencing",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "Video conferencing and other audio-video electronic means may be used at all stages of a judicial proceeding where a person required to be present is not physically in the courtroom. The permission that lets a magistrate posted elsewhere in Gujarat try an Ahmedabad cheque case.",
+            "edges": [
+              {
+                "rel": "gives effect to",
+                "to": "bnss:sec_530"
+              }
+            ]
+          },
+          {
+            "eId": "rule_6",
+            "label": "Identification of a person appearing by video conferencing",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "How the court satisfies itself who is on the screen. In a cheque case the identity of the accused answering summons, and of the bank witness proving the return memo, is established through this rule.",
+            "edges": []
+          },
+          {
+            "eId": "rule_11",
+            "label": "Appearance through video conferencing",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "When a party, advocate or accused may appear by audio-video means rather than in person. It is the provision under which an accused in a §138 case attends a remote-adjudication hearing from a video-enabled room in the court complex where the case was filed.",
+            "edges": [
+              {
+                "rel": "gives effect to",
+                "to": "bnss:sec_355"
+              }
+            ]
+          },
+          {
+            "eId": "rule_12",
+            "label": "Service of processes",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "What a summons must say when the witness is to be examined by video conferencing: the date, time and venue of the designated place, a direction to attend in person with proof of identity, and a copy of any document the witness will be examined on. In a cheque case that is the process that goes to the bank officer who proves the dishonour.",
+            "edges": [
+              {
+                "rel": "shapes the summons issued under",
+                "to": "bnss:sec_63"
+              },
+              {
+                "rel": "summons the witness who proves dishonour under",
+                "to": "ni:sec_146"
+              }
+            ]
+          },
+          {
+            "eId": "rule_13",
+            "label": "Examination of persons and witnesses by video conferencing",
+            "tier": "evidence",
+            "applies": "post-2024-07-01",
+            "note": "The conditions on which evidence may be recorded remotely, including the coordinator at the remote point and the handling of the deposition. In a cheque case it governs the bank official who proves the dishonour without travelling to Ahmedabad.",
+            "edges": [
+              {
+                "rel": "records evidence permitted under",
+                "to": "bnss:sec_530"
+              },
+              {
+                "rel": "sits alongside affidavit evidence under",
+                "to": "ni:sec_145"
+              }
+            ]
+          },
+          {
+            "eId": "rule_14",
+            "label": "Exhibiting documents to a witness at a remote point",
+            "tier": "evidence",
+            "applies": "post-2024-07-01",
+            "note": "How a document is put to a witness or the accused who is not in the courtroom. A cheque case is fought over three documents - the cheque, the return memo and the demand notice - so the mechanics of showing them to a remote witness are load-bearing.",
+            "edges": [
+              {
+                "rel": "puts documents proved under",
+                "to": "bbea:sec_4"
+              }
+            ]
+          },
+          {
+            "eId": "rule_22",
+            "label": "Costs of video conferencing",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "Who bears the cost of a remote hearing. It is part of what a cheque case costs the parties in Gujarat, alongside the fixed court fee.",
+            "edges": []
+          }
+        ]
+      },
+      {
+        "title": "Standard Operating Procedure for Online Electronic Filing (e-Filing) for the Gujarat District Judiciary, 2024",
+        "cite": "No. ITC/25/2024 · 6 January 2024",
+        "alias": "gefr",
+        "note": "The operative e-filing regime for the Gujarat district judiciary and the tribunals under the High Court's supervisory jurisdiction. Its definition of an 'Action' expressly includes criminal complaints, so a §138 complaint is squarely within it. The SARAS rules make reference to this SOP mandatory for avoiding objections and defects, and hand it the retention of originals. Gujarat has no separate gazetted e-filing rules for the district judiciary; this SOP does that work.",
+        "akn": "state/gujarat/akn/gujarat-efiling-sop-district-judiciary-2024.akn.xml",
+        "pdf": "state/gujarat/sources/gujarat-efiling-sop-district-judiciary-2024.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_1",
+            "label": "Scope and applicability",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Which filings and which courts the e-filing regime covers - online e-filing, designated counters and e-Service Centres, for the categories of case the High Court notifies. The gateway a §138 complaint passes through when it is filed electronically in Gujarat.",
+            "edges": [
+              {
+                "rel": "receives the complaint filed under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "rule_2",
+            "label": "Definitions, including 'Action' and 'Objections'",
+            "tier": "definition",
+            "applies": "always",
+            "note": "'Action' expressly includes criminal complaints, which is what brings a cheque case inside the e-filing regime at all. 'Objections' are the deficiencies the Registry points out - the defect loop every e-filed complaint can meet.",
+            "edges": []
+          },
+          {
+            "eId": "rule_7",
+            "label": "Digital signatures",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "How an e-filed complaint, affidavit or vakalatnama is signed and authenticated. In a cheque case filed in bulk by a bank or an NBFC, this is the provision that makes the electronic complaint an authentic document.",
+            "edges": [
+              {
+                "rel": "authenticates under",
+                "to": "itact:sec_3"
+              }
+            ]
+          },
+          {
+            "eId": "rule_9",
+            "label": "Payment of court fees and other charges",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "How the court fee is paid on an e-filed complaint. Read with the Gujarat Court-Fees Act it completes the filing economics of a cheque case: a fixed three-rupee fee, paid electronically at the moment of filing.",
+            "edges": [
+              {
+                "rel": "collects the fee on the complaint filed under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "rule_10",
+            "label": "Retention of originals",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "The most important clause here for a cheque case. Originals of scanned documents must be preserved for production or inspection as the Bench directs, and the signed vakalatnama, notarised affidavit and any document whose authenticity is likely to be questioned must be kept for at least two years. The dishonoured cheque is exactly such a document, and the SARAS rules send retention of originals back to this clause.",
+            "edges": [
+              {
+                "rel": "preserves the instrument the offence turns on under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "supports proof under",
+                "to": "bsa:sec_57"
+              }
+            ]
+          },
+          {
+            "eId": "rule_13",
+            "label": "Service of electronic documents",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "When service of a document in electronic form is good service under the e-filing regime. It sits alongside, and does not displace, the statutory modes of serving the demand notice and the summons in a cheque case.",
+            "edges": [
+              {
+                "rel": "sits alongside",
+                "to": "ni:sec_144"
+              },
+              {
+                "rel": "sits alongside service under",
+                "to": "bnss:sec_64"
+              }
+            ]
+          },
+          {
+            "eId": "rule_14",
+            "label": "Computation of time",
+            "tier": "limitation",
+            "applies": "always",
+            "note": "When an electronic filing is treated as made. That date decides whether a §138 complaint was filed within the one month the NI Act allows from the cause of action, so the rule bites directly on limitation.",
+            "edges": [
+              {
+                "rel": "fixes the filing date for limitation under",
+                "to": "ni:sec_142"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Gujarat High Court Case Flow Management (Subordinate Courts) Rules, 2016",
+        "cite": "Notification No. C.3002/2016 · gazetted 28 July 2016",
+        "note": "The case-flow rules for every court subordinate to the High Court of Gujarat, made under Part X of the Civil Procedure Code, Article 227 and section 477(1)(d) of the Code of Criminal Procedure. They sort cases into four colour-coded tracks with outer time limits of nine, twelve, fifteen and twenty-four months, and rule 21 applies the same scheme to criminal trials and appeals in the subordinate courts. Schedule II Part B places a criminal case on a private complaint, which is what a §138 case is, in Track I with a prescribed outer limit of six months for concluding the matter - the same horizon the NI Act itself sets for a summary cheque trial. Source PDF only: the official gazette copy is a low-quality scan and OCR of it was not clean enough to convert without misreporting the rule text.",
+        "pdf": "state/gujarat/sources/gujarat-hc-case-flow-management-subordinate-courts-rules-2016.pdf"
+      }
+    ]
+  },
+  "notifications": {
+    "summary": "The orders that stood up Gujarat's dedicated cheque-case courts. On 2 December 2024 the Full Court of the High Court of Gujarat resolved to make e-filing and remote adjudication by video conferencing mandatory for cheque cases filed by banks and NBFCs in the Chief Judicial Magistrate courts of Ahmedabad City, and to create the SARAS N.I. Court establishment for them. The Government of Gujarat notified the extended jurisdiction on 5 December 2024 and the High Court nominated the presiding officers the same day; the courts were inaugurated on 7 December 2024. This is Gujarat's answer to the same problem Kerala met with the Kollam ON Court, approached from the other end - not one dedicated court in one district, but magistrates posted anywhere in the State hearing Ahmedabad cheque cases remotely.",
+    "items": [
+      {
+        "title": "SARAS Remote Adjudication Magisterial Courts for e-filed cheque cases, Ahmedabad City",
+        "cite": "High Court of Gujarat · Full Court resolution 2 December 2024; State notification 5 December 2024; inaugurated 7 December 2024",
+        "note": "The official High Court press release recording how the SARAS cheque courts were created and what they do. The Full Court resolved on 2 December 2024 to implement mandatory e-filing and remote adjudication with video conferencing for cases of dishonour of cheques under the Negotiable Instruments Act instituted by banks and NBFCs in the C.J.M. courts of Ahmedabad City, and to establish the SARAS N.I. Court establishment as a sub-establishment of those courts, with the case type 'eCriminal Case'. The Government of Gujarat issued the notification extending the jurisdiction of all magisterial courts in the State on 5 December 2024, and the High Court nominated five judicial officers posted at Ahmedabad, Anand, Narmada and Gir Somnath as presiding officers the same day. Source PDF only: the two underlying notifications are referred to as enclosures but are not in the published file, and the High Court's own link to the nomination notification is broken.",
+        "pdf": "state/gujarat/sources/gujarat-saras-ni-courts-inauguration-2024.pdf"
+      }
+    ]
+  }
+}
