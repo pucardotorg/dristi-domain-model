@@ -799,63 +799,6 @@ V.graph=()=>{
   return m;
 };
 
-/* the whole relationship web (national provisions + all edges + the state layer),
-   for the force-directed graph page. Unlike buildGraphModel (the structured Map),
-   this includes every modelled provision and every typed edge. */
-function buildFullGraph(){
-  const nodes=[], links=[], seen={};
-  function natNode(ref){
-    if(seen[ref]) return "nat:"+ref;
-    seen[ref]=1;
-    const act=ref.split(":")[0];
-    nodes.push({id:"nat:"+ref, label:gLabelNat(ref), cat: ref==="ni:sec_138"?"case":"national",
-      open:SOURCES[act]?()=>openNat(ref):null});
-    return "nat:"+ref;
-  }
-  (PROVISIONS||[]).forEach(p=> natNode(p.ref));
-  (EDGES||[]).forEach(e=>{ if(seen[e.from] && seen[e.to]) links.push({source:"nat:"+e.from, target:"nat:"+e.to, label:e.rel}); });
-
-  const D=STATE_DATA||{};
-  const insts=[...(((D.amendments||{}).items)||[]).map(x=>({...x,cat:"law"})),
-               ...(((D.rules||{}).items)||[]).map(x=>({...x,cat:"rule"}))];
-  let efilingId=null;
-  insts.forEach((it,ii)=>{
-    const instId="inst:"+ii;
-    if(/electronic filing/i.test(it.title||"")) efilingId=instId;
-    nodes.push({id:instId, label:it.title, cat:it.cat,
-      open:it.akn?()=>openStateDocModal(it.akn,it.title,it.cite||"",it.pdf?(DATA_BASE+it.pdf):""):(it.pdf?()=>openPdf(DATA_BASE+it.pdf,it.title):null)});
-    (it.made_under||[]).forEach(e=>{ const nid=natNode(e.to); links.push({source:instId, target:nid, label:e.rel||"made under"}); });
-    (it.key||[]).forEach(k=>{
-      const kid="key:"+ii+":"+k.eId;
-      nodes.push({id:kid, label:stEidNum(k.eId)+" "+(k.label||""), cat:"rule",
-        open:it.akn?()=>openStateDocModal(it.akn,it.title,it.cite||"",it.pdf?(DATA_BASE+it.pdf):"",k.eId):null});
-      links.push({source:instId, target:kid});
-      (k.edges||[]).forEach(e=>{ const nid=natNode(e.to); links.push({source:kid, target:nid, label:e.rel}); });
-    });
-  });
-  (((D.notifications||{}).items)||[]).forEach((it,ni)=>{
-    const id="notif:"+ni;
-    nodes.push({id, label:it.title, cat:"notification", open:it.pdf?()=>openPdf(DATA_BASE+it.pdf,it.title):null});
-    links.push({source:id, target:efilingId||natNode("ni:sec_138"), label:efilingId?"operates under":"governs filing"});
-  });
-  return {nodes, links};
-}
-V.web=()=>{
-  if(!isModelled()) return notModelled();
-  const m=el("div","view-graph");
-  const bar=el("div","flow-bar");
-  bar.innerHTML=`<div class="flow-bar-l">${graphLegendInline()}</div>
-    <div class="flow-bar-hint">Drag a node · scroll to zoom · hover to trace its links · click to open the text</div>`;
-  m.appendChild(bar);
-  const host=el("div","flow-host"); host.id="graph-root"; m.appendChild(host);
-  setTimeout(()=>{
-    const h=document.getElementById("graph-root"); if(!h) return;
-    import("./graph.js").then(mod=>{ mod.mountGraph(h, buildFullGraph()); })
-      .catch(err=>{ h.innerHTML=`<div class="empty">Couldn't load the graph. <span class="tiny">${esc(String(err&&err.message||err))}</span></div>`; });
-  },40);
-  return m;
-};
-
 /* ---- case law helpers ---- */
 function provRefShort(ref){
   const [a,eid]=ref.split(":"); const s=SOURCES[a];
@@ -1418,7 +1361,6 @@ function buildNav(){
     <div class="nav-scoped">
       <a data-view="law"><span class="ico">${ic('library')}</span> Acts &amp; provisions <span class="count">${isModelled()?PROVISIONS.length:'-'}</span></a>
       <a data-view="caselaw"><span class="ico">${ic('scale')}</span> Case law <span class="count">${isModelled()?(CASES.length||'-'):'-'}</span></a>
-      <a data-view="web"><span class="ico">${ic('share-2')}</span> Relationship graph</a>
     </div>
     <div class="nav-divider"></div>
     <div class="state-layer nav-scroll">
