@@ -665,31 +665,36 @@
       },
       {
         "word": "Computer room",
-        "gloss": "The office that holds the CIS permission to release ('consume' or approve) an e-filed case into the filing branch's queue. The filing assistants have no direct access, so they telephone the computer room each time an e-filing arrives - often ten to fifteen times a day - before they can edit and submit it. 'Computer room' is the local name; the office the E-Filing Rules actually create is the Administrator, who for a district court is the officer appointed by the District and Sessions Judge. An access-control chokepoint rather than a rule.",
+        "gloss": "The office that holds the CIS permission to release ('consume' or approve) an e-filed case into the filing branch's queue. The filing assistants have no direct access, so they telephone the computer room each time an e-filing arrives - often ten to fifteen times a day - before they can edit and submit it. 'Computer room' is the local name, and two different offices sit behind it. The E-Filing Rules create the Administrator, who for a district court is the officer appointed by the District and Sessions Judge, for everything connected with e-filing. Separately, every court location has its own technical establishment - a System Officer and a System Assistant - who run the CIS server and its permissions and who are very probably the people the branch actually rings. Which of the two holds the release permission has not been established. An access-control chokepoint rather than a rule.",
         "source": "Local CIS access arrangement, Panchkula district courts (PUCAR interview, June 2026)",
         "group": "Court staff",
         "pos": "noun",
         "role": "actor",
         "aka": [
-          "computer branch"
+          "computer branch",
+          "system branch",
+          "technical branch"
         ],
         "sourceNotes": [
-          "hr-filing-assistant-2026-06"
+          "hr-filing-assistant-2026-06",
+          "hr-hc-it-systems-2026-06"
         ]
       },
       {
         "word": "CIS",
-        "gloss": "The Case Information System - the national e-Courts case-management software the filing branch works in. The assistant logs in, opens the filing counter, chooses Criminal and then the NACT case type, and enters the party, court-fee and Act details; the system then issues the case numbers. A known pain point is that civil and criminal columns appear together, inviting mis-clicks.",
+        "gloss": "The Case Information System - the national e-Courts case-management software the filing branch works in. The assistant logs in, opens the filing counter, chooses Criminal and then the NACT case type, and enters the party, court-fee and Act details; the system then issues the case numbers. A known pain point is that civil and criminal columns appear together, inviting mis-clicks. It belongs to NIC, not to the High Court: the versions reported were 1.0 from 2011, 2.0 from 2014, 3.0 from 2017 and 4.0 from 2025, and each district court location runs its own instance on its own server, syncing case data to the NJDG in real time while orders and judgments are pushed each evening. A High Court cannot change the core - a suggestion goes to NIC and moves only if the Supreme Court eCommittee approves - so anything a court needs for itself is built beside CIS as a read-only peripheral application.",
         "source": "e-Courts Project, Supreme Court e-Committee - Case Information System (CIS)",
         "group": "Systems & records",
         "pos": "noun",
         "role": "procedure",
         "aka": [
           "Case Information System",
-          "CIS module"
+          "CIS module",
+          "CIS 4.0"
         ],
         "sourceNotes": [
-          "hr-filing-assistant-2026-06"
+          "hr-filing-assistant-2026-06",
+          "hr-hc-it-systems-2026-06"
         ]
       },
       {
@@ -1131,6 +1136,206 @@
           "Remote Point Coordinator",
           "Court Point Coordinator"
         ]
+      },
+      {
+        "word": "Peripheral application",
+        "gloss": "A piece of software a High Court or district court builds for itself alongside CIS, because the CIS core cannot be changed locally. A peripheral application reads case data through an API - case type, case status, case number, party name - and cannot write anything back into CIS. Punjab and Haryana runs three of them, written in-house in PHP: the Surety module, Crystal CIS Reports and a s.138 tool. The read-only limit is the boundary any court-facing system has to design around: it can show and cross-check what CIS holds, but the case record itself is only ever written inside CIS.",
+        "source": "e-Courts CIS architecture as described by the IT wing of the High Court of Punjab and Haryana (PUCAR interview, June 2026)",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "periphery application",
+          "peripheral module",
+          "in-house application"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems"
+        ]
+      },
+      {
+        "word": "Surety module",
+        "gloss": "The in-house application in which a person offering surety for an accused is recorded, with an Aadhaar number, and checked against every other court in Punjab, Haryana and Chandigarh to see whether he is a repeat or habitual surety. A person who has already stood surety may stand again, but must produce a different document each time - a motorcycle registration certificate, then a car registration certificate, then a mortgage of property. It puts into software the declaration BNSS §486 already requires of every surety and the stock-surety concern behind Rules and Orders Volume III r.10.9. The database sits centrally at the High Court; it cannot see any other state, so a surety standing repeatedly across state lines is invisible to it.",
+        "source": "Rules and Orders, Volume III, rule 10.9 (surety and identity documents), read with BNSS §486; the module itself described by the High Court IT wing (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_10.9",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "surety database",
+          "habitual surety check",
+          "surety verification module"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "bail-and-surety",
+          "court-technology-systems"
+        ]
+      },
+      {
+        "word": "Stock surety",
+        "gloss": "A person who stands surety again and again, for strangers and for a consideration, rather than out of any real connection with the accused. Rules and Orders Volume III r.10.9(9A) was added in 2007 to stop accused persons absconding on a bogus surety or a bond furnished by a stock surety: in the classes of case it covers, the surety must give two passport photographs no more than six months old, one kept in the court record and one with the police station, together with a passport, election identity card, PAN card, bank card, government identity card or any other document ordinarily issued after verification of identity and address. BNSS §486 goes wider and makes every surety declare how many people he has already stood surety for.",
+        "source": "Rules and Orders, Volume III, rule 10.9(9A) (added 2007), read with BNSS §486 and §140",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_10.9",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "habitual surety",
+          "bogus surety",
+          "professional surety",
+          "repeat surety"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "bail-and-surety"
+        ]
+      },
+      {
+        "word": "Crystal CIS Reports",
+        "gloss": "CCR, the reporting application the High Court's technical wing built in-house because some of the reports CIS produces are not usable. It runs on each district's own server, since it can only read that district's local CIS data, and the Statement Clerk uses it to produce the monthly returns the High Court's branches ask for - cases registered, cases not registered and the reason, summonses issued, cases listed, cause lists, pendency by stage, and how many cases moved from one court to another on a given date, in a single click.",
+        "source": "In-house peripheral application of the High Court of Punjab and Haryana, described by its IT wing (PUCAR interview, June 2026)",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "CCR",
+          "CIS reports tool"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems"
+        ]
+      },
+      {
+        "word": "Statement Clerk",
+        "gloss": "The official posted in each district court who generates the periodical statements and returns the High Court requires - what was registered, what was not and why, what was listed, what is pending and at which stage. The duty is old: Rules and Orders Volume III r.2.6 makes a magistrate exercising summary powers prepare a statement every month of the summary cases received and the progress in disposing of them, which reaches cheque cases because NI Act §143 makes a s.138 complaint triable summarily, and r.11-A.15 speaks of quarterly statistical returns and of the records the statistical writer needs to make them out. In practice the clerk now produces them through the in-house Crystal CIS Reports tool and sends soft copies up.",
+        "source": "Rules and Orders, Volume III, rules 2.6 and 11-A.15 (periodical statements and statistical returns); the post described by the High Court IT wing (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_2.6",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "statement writer",
+          "statistical writer",
+          "statistics clerk"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems"
+        ]
+      },
+      {
+        "word": "System Officer",
+        "gloss": "The technical official posted in a district court establishment. There is a System Officer and a System Assistant per district, and at the district headquarters a System Officer with two or three System Assistants depending on how many courts sit there. They run the CIS server and its performance, the hardware and the annual maintenance contract, while the court officials do the data entry. No rule in the corpus creates the post, and it is not the same as the Administrator whom E-Filing Rules r.3.2 appoints for e-filing matters, although this is very probably the office a filing branch means when it says it has to telephone 'the computer room'.",
+        "source": "District court technical establishment, Punjab and Haryana; described by the High Court IT wing (PUCAR interview, June 2026). No rule in the corpus creates the post.",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "System Assistant",
+          "technical official",
+          "court system administrator"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems",
+          "access-bottleneck"
+        ]
+      },
+      {
+        "word": "NJDG",
+        "gloss": "The National Judicial Data Grid, the national store into which every court's case data flows. Each of the district court servers in Punjab, Haryana and Chandigarh talks to it directly over whitelisted addresses. Case data reflects in it in real time when the network is up, so a date the reader assigns appears without anything being sent; orders and judgments are the exception and are pushed each evening by running a command.",
+        "source": "e-Courts Project, Supreme Court eCommittee - National Judicial Data Grid; the local synchronisation described by the High Court IT wing (PUCAR interview, June 2026)",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "National Judicial Data Grid",
+          "NJDG portal",
+          "national data grid"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems"
+        ]
+      },
+      {
+        "word": "NIC",
+        "gloss": "The National Informatics Centre, which builds and maintains CIS for the courts. A High Court can suggest a change but cannot make one: the suggestion goes to NIC's Pune unit, which acts only after the Supreme Court eCommittee approves it. A small change may be done in a few days; otherwise it waits for the next version patch, into which suggestions from every High Court in India are gathered. NIC also supplies the migration script that moves a court's data from one CIS version to the next, and NIC scientists are posted at the High Court itself.",
+        "source": "National Informatics Centre, the technical agency for the e-Courts project; its role described by the High Court IT wing (PUCAR interview, June 2026)",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "National Informatics Centre",
+          "NIC Pune",
+          "NIC team"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems"
+        ]
+      },
+      {
+        "word": "eCommittee",
+        "gloss": "The e-Committee of the Supreme Court of India, which governs the e-Courts project and is the gate every change to CIS has to pass. A High Court's suggestion reaches NIC, but NIC only builds it once the eCommittee agrees; if it does not, the suggestion waits for the next version, and that has meant years. This is why a court that needs something now builds a peripheral application instead of asking for the core to change.",
+        "source": "e-Committee of the Supreme Court of India, the governing body of the e-Courts project; its role in the change route described by the High Court IT wing (PUCAR interview, June 2026)",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "forum",
+        "aka": [
+          "e-Committee",
+          "Supreme Court e-Committee",
+          "eCommittee of the Supreme Court"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems"
+        ]
+      },
+      {
+        "word": "Mirror server",
+        "gloss": "The third machine at a district court location, alongside the two that run CIS, holding a copy of the court's data so that work can continue if the primary fails. E-Filing Rules r.18 is the rule behind it: e-filings are to be stored on an exclusive server maintained under the control and directions of the Court, and a mirror image of them may be kept at a different geographical location for continuity of operations in a disaster, natural calamity or breakdown.",
+        "source": "The Electronic Filing (E-Filing) Rules, High Court of Punjab and Haryana, rule 18",
+        "akn": "state/haryana/akn/punjab-haryana-hc-electronic-filing-rules.akn.xml",
+        "eId": "rule_18",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "mirror image server",
+          "standby server",
+          "disaster recovery server"
+        ],
+        "sourceNotes": [
+          "hr-hc-it-systems-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems"
+        ]
       }
     ]
   },
@@ -1196,6 +1401,24 @@
             },
             {
               "t": "There is no filing-counter field for the police station, so the jurisdictional station (taken from the bank where the cheque was presented) is parked under 'offence remarks' and used to distribute cases among the clerks. A s.138 case has no FIR, so the shared criminal template's FIR field does not apply."
+            },
+            {
+              "t": "The CIS instance the assistant is typing into is local. Each of the roughly 130 court locations in Punjab, Haryana and U.T. Chandigarh runs its own server, with a mirror alongside it for continuity, and the district's own System Officer and System Assistant administer it. Case data reflects in the National Judicial Data Grid in real time when the network is up, so a date the reader assigns is visible outside the court without anything being sent; orders and judgments are the exception and are uploaded each evening by running a command.",
+              "c": [
+                {
+                  "l": "E-Filing Rules r.18",
+                  "s": "phef",
+                  "e": "rule_18"
+                },
+                {
+                  "l": "E-Filing Rules r.2",
+                  "s": "phef",
+                  "e": "rule_2"
+                }
+              ]
+            },
+            {
+              "t": "Nothing in the CIS screen can be changed locally. The core belongs to NIC and a High Court's suggestion moves only if the Supreme Court eCommittee approves it - days for a small change, otherwise the next version patch, which has meant years. So the mis-click risk between the civil and criminal columns, and the fields that do not fit a NACT case, are not local defects that a local fix can reach."
             }
           ]
         },
@@ -1506,6 +1729,38 @@
                 {
                   "l": "BNSS §530",
                   "n": "bnss:sec_530"
+                }
+              ]
+            },
+            {
+              "t": "When surety is offered for the accused, the person standing surety is entered in the High Court's in-house Surety module with an identity number, and checked against the courts of Punjab, Haryana and U.T. Chandigarh for whether he is a repeat or habitual surety. Someone who has already stood surety may stand again, but must produce a different document each time. This puts into software a declaration the law already requires: BNSS §486 makes every surety tell the court how many persons he has stood surety for, and §140 lets the Magistrate reject an unfit surety.",
+              "c": [
+                {
+                  "l": "BNSS §486",
+                  "n": "bnss:sec_486"
+                },
+                {
+                  "l": "BNSS §140",
+                  "n": "bnss:sec_140"
+                }
+              ]
+            },
+            {
+              "t": "The concern behind the check is old. Rules and Orders Volume III r.10.9(9A), added in 2007, is aimed at the accused who absconds on a bogus surety or a bond furnished by a stock surety, and in the classes of case it covers requires two recent passport photographs plus one identity document, one photograph kept in the court record and one with the police station. By its own terms that requirement reaches NDPS cases, offences carrying more than ten years and special enactments, so it does not of its own force apply to a s.138 bail bond; the software check is applied more widely than the rule.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.10.9",
+                  "s": "phhc3",
+                  "e": "rule_10.9"
+                }
+              ]
+            },
+            {
+              "t": "The check stops at the jurisdiction's edge. The surety database is centralised at the High Court and covers only Punjab, Haryana and U.T. Chandigarh, so a person standing surety repeatedly across state lines is invisible to it, and the declaration BNSS §486 asks for cannot be verified beyond one High Court.",
+              "c": [
+                {
+                  "l": "BNSS §486",
+                  "n": "bnss:sec_486"
                 }
               ]
             }
@@ -2042,6 +2297,22 @@
             },
             {
               "t": "E-filing release: an e-filed case can only be released into the branch's queue by the computer room, so the assistants phone it repeatedly through the day; advocates often leave non-mandatory fields (the FIR number, the police station) blank, which the assistants then open the PDF to fill in."
+            },
+            {
+              "t": "Peripheral applications: because the CIS core cannot be changed by a High Court, anything the courts of Punjab and Haryana need for themselves is written in-house in PHP and run beside CIS, reading case data through an API and never writing back. Three exist - the Surety module, held centrally at the High Court, Crystal CIS Reports, held on each district's own server, and a third the technical wing named only as a s.138 tool and did not describe."
+            },
+            {
+              "t": "Local reporting: the monthly returns the High Court's branches require are generated district by district through Crystal CIS Reports, an in-house tool built because some CIS reports are not usable, and sent up as soft copies. The High Court does not query the district data itself for them, even though the network reaches every location.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.2.6",
+                  "s": "phhc3",
+                  "e": "rule_2.6"
+                }
+              ]
+            },
+            {
+              "t": "Network headroom: the district courts share a Department of Justice wide-area network on a leased line with a small private address range, and some locations have no spare address at all. Anything new that has to be hosted for several courts is constrained first by that, before any question of software."
             }
           ]
         }
@@ -2101,16 +2372,18 @@
           "role": "Computer room",
           "cat": "staff",
           "term": "computer-room",
-          "who": "Holds the CIS permission to release an e-filed case into the filing branch's queue. The assistants have no direct access and must telephone the computer room each time before they can edit and submit an e-filing.",
+          "who": "Holds the CIS permission to release an e-filed case into the filing branch's queue. The assistants have no direct access and must telephone the computer room each time before they can edit and submit an e-filing. Two offices sit behind the local name and it is not settled which holds the permission: the Administrator whom E-Filing Rules r.3.2 appoints for e-filing matters, and the district court's own technical establishment, the System Officer and System Assistant who run the CIS server and its permissions at every court location.",
           "basis": "Local CIS access-control arrangement, Panchkula district courts",
           "informal": {
-            "practice": "An access bottleneck rather than a rule: e-filings can only be released by the computer room, so the filing branch phones it ten to fifteen times a day."
+            "practice": "An access bottleneck rather than a rule: e-filings can only be released by the computer room, so the filing branch phones it ten to fifteen times a day. Which office actually holds the release permission - the e-filing Administrator or the district System Officer - has not been established and is flagged for checking."
           },
           "sourceNotes": [
-            "hr-filing-assistant-2026-06"
+            "hr-filing-assistant-2026-06",
+            "hr-hc-it-systems-2026-06"
           ],
           "themes": [
-            "access-bottleneck"
+            "access-bottleneck",
+            "court-technology-systems"
           ]
         },
         {
@@ -2245,6 +2518,61 @@
               "l": "BNSS §64",
               "n": "bnss:sec_64"
             }
+          ]
+        },
+        {
+          "id": "system-officer",
+          "role": "System Officer",
+          "cat": "staff",
+          "term": "system-officer",
+          "who": "The technical official of a district court establishment. Each district has a System Officer and a System Assistant, and the district headquarters has a System Officer with two or three System Assistants depending on how many courts sit there. They run the CIS server and its performance, the hardware and the annual maintenance contract, and they are the first line for any software or hardware problem before it goes up to the High Court's IT wing. Data entry into CIS is not theirs: that is done by the court officials, the reader and the civil and criminal data entry staff.",
+          "basis": "District court technical establishment, Punjab, Haryana and U.T. Chandigarh; described firsthand by the High Court IT wing (June 2026). No rule in the corpus creates the post.",
+          "informal": {
+            "title": "the post is an establishment arrangement, not a creature of any rule in the corpus",
+            "practice": "The wing absorbs whatever court staff cannot handle - vendor and annual maintenance meetings, video conferencing, virtual inaugurations - on the working rule that anything with an 'e' or a 'computer' in it is forwarded to it."
+          },
+          "cite": [
+            {
+              "l": "E-Filing Rules r.3",
+              "s": "phef",
+              "e": "rule_3"
+            }
+          ],
+          "sourceNotes": [
+            "hr-hc-it-systems-2026-06"
+          ],
+          "themes": [
+            "court-technology-systems",
+            "access-bottleneck"
+          ]
+        },
+        {
+          "id": "statement-clerk",
+          "role": "Statement Clerk",
+          "cat": "staff",
+          "term": "statement-clerk",
+          "who": "The official in each district court who generates the periodical statements and returns the High Court requires - cases registered, cases not registered and the reason, summonses issued, cases listed, cause lists and pendency by stage - and sends them up as soft copies. The duty is a rule: a magistrate exercising summary powers must prepare a monthly statement of the summary cases received and the progress in disposing of them, which reaches a s.138 case because it is triable summarily, and Volume III also speaks of quarterly statistical returns. The tool is local: the clerk works through the in-house Crystal CIS Reports application because CIS does not produce some of these reports usably.",
+          "basis": "Rules and Orders Volume III r.2.6 and r.11-A.15, read with NI Act §143",
+          "cite": [
+            {
+              "l": "R&O Vol.III r.2.6",
+              "s": "phhc3",
+              "e": "rule_2.6"
+            },
+            {
+              "l": "R&O Vol.III r.11-A.15",
+              "s": "phhc3",
+              "e": "rule_11-A.15"
+            }
+          ],
+          "informal": {
+            "practice": "The reporting tool the clerk actually uses was built in-house by the High Court's technical wing, not supplied with CIS, and the High Court receives the returns as generated soft copies rather than querying the district data itself."
+          },
+          "sourceNotes": [
+            "hr-hc-it-systems-2026-06"
+          ],
+          "themes": [
+            "court-technology-systems"
           ]
         }
       ]

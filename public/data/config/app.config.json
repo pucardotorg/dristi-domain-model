@@ -361,6 +361,12 @@
           "noteId": "ke-scrutiny-officer-2026-07",
           "relation": "similar",
           "note": "Both states run a defect-scrutiny check at filing before the case reaches the court - Kerala through the Registry / 'scrutiny officer', Haryana through the filing-branch assistant at the window. They diverge on integrity: Kerala's note reports file-holding for payment, while the Panchkula assistants describe a routine, same-day, checklist-driven scrutiny with no such allegation."
+        },
+        {
+          "place": "haryana",
+          "noteId": "hr-hc-it-systems-2026-06",
+          "relation": "similar",
+          "note": "The systems layer beneath this account. The High Court IT wing describes the establishment behind 'the computer room' - a System Officer and a System Assistant at every court location, who own the CIS server and its permissions - and the architectural reason the branch's problems cannot simply be fixed: no High Court can change the CIS core, so local need is met by read-only peripheral applications or waits years for a national patch. It does not reach the release permission, the blank non-mandatory fields or the emailed PDF copy, which were never raised in that interview and remain to be checked."
         }
       ],
       "tags": [
@@ -371,6 +377,466 @@
         "workaround",
         "court-staff",
         "data-entry"
+      ]
+    },
+    {
+      "id": "hr-hc-it-systems-2026-06",
+      "serial": "HR-03",
+      "place": "haryana",
+      "date": "2026-06-16",
+      "attribution": {
+        "heardFrom": "Mandeep",
+        "affiliation": "IT / technical wing, High Court of Punjab and Haryana at Chandigarh; also oversees IT for the district courts of Punjab, Haryana and U.T. Chandigarh",
+        "secondhand": false,
+        "originalSource": "Firsthand - PUCAR field interview, 'Interview #3: [P&H HC] - High Court IT Team - June 2026', 16 June 2026, 34 minutes. Video: https://youtu.be/nzQGdu0164Q. Mandeep's remit is the whole High Court jurisdiction, so several claims below are expressly pan Punjab and Haryana (with U.T. Chandigarh) rather than Haryana alone, and are marked as such in the claim text. Colleagues and officials named only in passing, and the districts they were named for, are omitted; the function is recorded, not the person. The video has no uploader subtitles, so the transcript is machine-generated: product names, model numbers and figures are recorded as reported and flagged where they need checking."
+      },
+      "statement": "The officer who runs IT for the Punjab and Haryana High Court, and who supports the district courts of Punjab, Haryana and U.T. Chandigarh, described the systems layer beneath the filing process. His office takes software and hardware problems from every district court, gives administrative approval for the use of software, and carries queries up to the authorities; everything else is done by the district courts themselves. Each district has its own technical establishment - a System Officer and a System Assistant, with a System Officer and two or three System Assistants at the district headquarters depending on how many courts sit there. There are 46 districts and about 130 court locations, and each location runs its own CIS server (three machines: two application servers and a mirror). Case data reflects in the National Judicial Data Grid in real time when the network is up, while orders and judgments are pushed each evening by running a command. CIS itself belongs to NIC: he gave the versions as 1.0 in 2011, 2.0 in 2014, 3.0 in 2017 and 4.0 in 2025, migrated by running an NIC-supplied script over a full backup, which takes two to six hours at a small location and up to twenty-four at a large one. The central constraint he described is that no High Court can change the CIS core. The CIS team will not accept changes to core software, so any High Court or district court in India that wants its own functionality must build it as a 'peripheral application', which reads CIS data through an API (case type, case status, case number, party name) and cannot write anything back. Suggestions for the core go from the High Court to NIC Pune and move only if the Supreme Court eCommittee approves: a small change can be done in two to four days, otherwise it waits for the next version patch, into which suggestions from every High Court in India are bundled. His wing has therefore built three peripheral applications in-house in PHP - a Surety module, CCR (Crystal CIS Reports), and a third he named only as '138 book software'. The Surety module records the person offering surety, including an Aadhaar number, and checks whether he is a repeat or habitual surety across the courts of Punjab, Haryana and Chandigarh; a person who has already stood surety may stand again but must produce a different document each time (a motorcycle registration certificate, then a car registration certificate, then a mortgage of property), and monthly reports are generated. Version 1.0 kept the data on each district's local server; version 2.0 holds it centrally at the High Court, which the district courts reach over the network. It cannot see any other state. CCR runs on each district's own server and was built because some reports CIS produces are not usable; the Statement Clerk in each district uses it to generate the monthly returns the High Court's branches require, because the High Court cannot pull that data itself and wants soft copies. The district courts sit on a Department of Justice WAN over a leased MPLS line with a private 172.18 address series, so every district court can reach every other, but spare addresses are scarce and some locations have none, which he flagged as the first thing to check before hosting anything new. He put his own split at roughly 60 per cent technical and 40 per cent non-technical work - vendor and AMC meetings, video conferencing, and the virtual inaugurations of the last two years - and said anything with an 'e' or a 'computer' in it is forwarded to the technical team. On capacity he was candid: the cadre is almost entirely system administrators for servers, network and hardware, around 90 per cent purely infrastructure, and he was not sure whether anyone holds programming skills, offering to check; hiring programmers would be an administrative decision for the High Court, on which the NIC scientists posted there could advise. He offered direct help during any implementation.",
+      "themes": [
+        "court-technology-systems",
+        "access-bottleneck",
+        "informal-digital-workaround",
+        "bail-and-surety"
+      ],
+      "tags": [
+        "systems",
+        "cis",
+        "e-courts",
+        "infrastructure",
+        "court-staff",
+        "bail",
+        "surety",
+        "reporting",
+        "capacity",
+        "integration"
+      ],
+      "verification": {
+        "status": "mixed",
+        "claims": [
+          {
+            "claim": "the High Court's IT wing supports every district court in its jurisdiction for both software and hardware, gives administrative approval for the use of software and carries queries to the authorities, while day to day operation is done by the district court staff themselves (pan Punjab and Haryana, with U.T. Chandigarh)",
+            "status": "corroborated",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.2",
+                "s": "phef",
+                "e": "rule_2"
+              },
+              {
+                "l": "E-Filing Rules r.3",
+                "s": "phef",
+                "e": "rule_3"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The corpus corroborates the reach, not the support arrangement itself. E-Filing Rules r.2 applies the rules to the High Court and to every court and tribunal over which it has supervisory jurisdiction, and brings them into force on notification in the gazettes of Punjab, Haryana and U.T. Chandigarh; r.3.7 defines District Courts as the courts functioning under the control and supervision of the High Court. That is the same three-territory remit the interviewee describes. No rule in the corpus creates the IT support function itself."
+          },
+          {
+            "claim": "every district has its own technical establishment - a System Officer and a System Assistant, with a System Officer and two or three System Assistants at the district headquarters scaled to the number of courts - and it is these officials, not the court staff, who administer the CIS server and its performance",
+            "status": "reported-practice",
+            "method": "firsthand account; no provision in the corpus creates these posts",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.3",
+                "s": "phef",
+                "e": "rule_3"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "An establishment fact with no rule behind it in the corpus. It is very probably the office the Panchkula filing assistants (HR-01) call the 'computer room' - the district court's own technical wing. It is not the same as the Administrator, whom E-Filing Rules r.3.2 makes an officer appointed by the District and Sessions Judge for e-filing matters. The two should not be conflated."
+          },
+          {
+            "claim": "there are 46 districts and about 130 court locations in the High Court's jurisdiction, each running its own CIS server, and each server communicates directly with the National Judicial Data Grid over whitelisted addresses",
+            "status": "reported-practice",
+            "method": "firsthand account",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.2",
+                "s": "phef",
+                "e": "rule_2"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The three-territory scope is consistent with E-Filing Rules r.2, and 46 districts is consistent with Punjab, Haryana and Chandigarh taken together rather than with Haryana alone. The counts, and the name of the national data centre he gave, come from a machine-generated transcript and should be confirmed with the High Court before being published as figures."
+          },
+          {
+            "claim": "each district court location has three servers, two application servers and a mirror server, and extra capacity can be requested from the High Court",
+            "status": "corroborated",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.18",
+                "s": "phef",
+                "e": "rule_18"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "E-Filing Rules r.18 requires e-filings to be stored on an exclusive server maintained under the control and directions of the Court, and expressly allows a mirror image of those filings to be kept at a different geographical location for continuity of operations in a disaster or breakdown. That is the rule behind the mirror server. The hardware model numbers he gave are as reported from a machine-generated transcript."
+          },
+          {
+            "claim": "case data reflects in the National Judicial Data Grid in real time when the network is working, and only orders and judgments are uploaded at the end of the day by running a command",
+            "status": "reported-practice",
+            "method": "firsthand account",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "An operational description of the e-Courts synchronisation design with no legal provision behind it. He was explicit that the real-time part depends on the network being up, which makes network quality, not software, the thing that decides whether a date entered by the reader is visible outside the court."
+          },
+          {
+            "claim": "CIS is developed and upgraded by NIC, and ran as version 1.0 from 2011, 2.0 from 2014, 3.0 from 2017 and 4.0 from 2025",
+            "status": "needs-check",
+            "method": "internal inconsistency in the account; nothing in the corpus records CIS releases",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "He also said NIC upgrades the software every two or three years, and separately that CIS 4.0 took approximately five to six years after 2017, but the dates he gave span eight. The version numbers and dates should be checked against the eCommittee's own CIS release record before they are relied on anywhere in the model."
+          },
+          {
+            "claim": "a version migration is done by taking a full backup of the server and running a script supplied by NIC; it takes two to six hours at a small location and twelve to twenty-four hours at a large one",
+            "status": "reported-practice",
+            "method": "firsthand account",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Recorded because it sets the realistic outage window for any court during an upgrade, which matters for scheduling a rollout."
+          },
+          {
+            "claim": "no High Court can change the CIS core; any High Court or district court in India that wants its own functionality must build it as a peripheral application, which can only read CIS data through an API (case type, case status, case number, party name) and cannot write anything back",
+            "status": "reported-practice",
+            "method": "firsthand account; the corpus contains no provision governing the software architecture",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.12",
+                "s": "phef",
+                "e": "rule_12"
+              },
+              {
+                "l": "E-Filing Rules r.18",
+                "s": "phef",
+                "e": "rule_18"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "This is an architectural and administrative constraint of the national e-Courts system, not a rule, and reported-practice is the honest status. The corpus goes only so far as to contemplate controlled access to the electronic data of an Action (r.12) and court-controlled storage (r.18); it says nothing about whether locally built software may write to the case record. The read-only limit is the single most important constraint on any portal that has to live alongside CIS."
+          },
+          {
+            "claim": "a suggested change to CIS goes from the High Court to NIC Pune and moves only if the Supreme Court eCommittee approves it; a small change can be done in two to four days, otherwise it waits for the next version patch, into which suggestions from every High Court in India are bundled, and it can take years",
+            "status": "reported-practice",
+            "method": "firsthand account",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The change route explains the peripheral-application pattern: local need cannot be met in the core on any usable timescale, so it is met beside it."
+          },
+          {
+            "claim": "the High Court's technical wing has built three peripheral applications in-house, all in PHP - a Surety module (deployed at the High Court on a Postgres database), CCR or Crystal CIS Reports (deployed on each district's own server), and a third",
+            "status": "reported-practice",
+            "method": "firsthand account",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The deployment split is deliberate and he confirmed it: the surety data is centralised at the High Court because it must be checked across courts, while the reporting tool sits on each district's own server because it can only read that district's local CIS data."
+          },
+          {
+            "claim": "the third peripheral application is a s.138 tool he named as '138 book software'",
+            "status": "needs-check",
+            "method": "named in a single line and never described; the audio is machine-transcribed",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "toCheck": "Confirm with the High Court technical wing what this application actually is and is called, what it does, who uses it, and whether it holds or generates any s.138 case data. If it exists it is the only known state-built software specific to this case type and is directly material to this domain model and to anything the portal does.",
+            "note": "Recorded as needs-check, not as fact. The transcript is machine-generated and 'book' may be a mishearing."
+          },
+          {
+            "claim": "the Surety module records the person offering surety, including an Aadhaar number, and checks whether he is a repeat or habitual surety; a person who has already stood surety may stand again but must produce a different document each time",
+            "status": "corroborated",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §486",
+                "n": "bnss:sec_486"
+              },
+              {
+                "l": "R&O Vol.III r.10.9",
+                "s": "phhc3",
+                "e": "rule_10.9"
+              },
+              {
+                "l": "BNSS §140",
+                "n": "bnss:sec_140"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The module operationalises a duty that already exists. BNSS §486 requires every person standing surety to declare to the court how many persons he has stood surety for, with particulars, and §140 lets a Magistrate reject a surety who is unfit. R&O Volume III r.10.9(9A), added in 2007, is written against exactly this problem - abscondence of the accused because of a bogus surety or a surety bond furnished by a stock surety - and requires two recent passport photographs plus one identity document. Two limits should be noted: r.10.9(9A) by its own terms reaches NDPS cases, offences carrying more than ten years and special enactments, so it does not of its own force apply to a s.138 bail bond; and Aadhaar is not in its list of documents, which predates it, although clause 6 lets the Judge or Magistrate accept any document ordinarily issued by an authority after verification of identity and address, for reasons recorded."
+          },
+          {
+            "claim": "the surety database is centralised at the High Court (version 1.0 held it on each district's local server, version 2.0 holds it on High Court servers reached over the network) and covers only the courts of Punjab, Haryana and Chandigarh, so a person who has stood surety in another state cannot be detected",
+            "status": "reported-practice",
+            "method": "firsthand account",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.18",
+                "s": "phef",
+                "e": "rule_18"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "A capacity limit with a direct bearing on bail in a s.138 case: the declaration BNSS §486 asks for is verifiable only inside one High Court's jurisdiction. He said the script and database have been shared on request with one or two other High Courts, but each runs it on its own server, so nothing is pooled. The custody arrangement is consistent with the principle in E-Filing Rules r.18 that court data sits on servers under the court's control."
+          },
+          {
+            "claim": "CCR was built because some CIS reports are not produced properly, and the Statement Clerk in each district court uses it to generate the monthly returns the High Court's branches require - cases registered, cases not registered and why, summonses issued, cases listed, cause lists, pendency by stage and transfers between courts - because the High Court cannot pull that data itself and wants soft copies",
+            "status": "corroborated",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.2.6",
+                "s": "phhc3",
+                "e": "rule_2.6"
+              },
+              {
+                "l": "R&O Vol.III r.11-A.15",
+                "s": "phhc3",
+                "e": "rule_11-A.15"
+              },
+              {
+                "l": "NI Act §143",
+                "n": "ni:sec_143"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The periodical return is a real duty, and it reaches cheque cases. R&O Volume III r.2.6 directs a magistrate exercising summary powers to prepare a statement every month showing the summary cases received and the progress made in disposing of them, and NI Act §143 makes a s.138 complaint triable summarily, so a NACT case falls inside that monthly statement. R.11-A.15 refers to quarterly statistical returns and to the magistrate's records having to let the statistical writer make out his returns. What is not in any rule is the operational fact he reported: that the High Court receives these as soft copies generated district by district rather than querying the data itself."
+          },
+          {
+            "claim": "video conferencing support, vendor and AMC meetings and virtual inaugurations fall to the technical team, and anything with an 'e' or a 'computer' in it is forwarded to it; his own split is roughly 60 per cent technical and 40 per cent non-technical",
+            "status": "reported-practice",
+            "method": "firsthand account, read against the corpus",
+            "evidence": [
+              {
+                "l": "VC Rules r.10",
+                "s": "phvc",
+                "e": "rule_10"
+              },
+              {
+                "l": "VC Rules r.5",
+                "s": "phvc",
+                "e": "rule_5"
+              },
+              {
+                "l": "VC Rules r.4",
+                "s": "phvc",
+                "e": "rule_4"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The rules put the technical responsibility for a video hearing on the Coordinators, not on an IT department: r.10 makes the Court Point Coordinator resolve remote users' problems, share the link and run a trial connection about thirty minutes before the hearing, and r.4 lists the equipment recommended at each end. What he describes is the layer behind that - the technical wing is where a Coordinator's problem escalates, and it absorbs whatever court staff cannot handle. That absorption is practice, not rule."
+          },
+          {
+            "claim": "the technical cadre is almost entirely system administrators for servers, network and hardware, around 90 per cent purely infrastructure, and he was not certain whether anyone holds programming skills",
+            "status": "reported-practice",
+            "method": "firsthand self-description of his own team",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "A capacity observation recorded as reported, not as an assessment of anyone. He offered to check whether any official has programming knowledge, and said hiring programmers would be an administrative decision for the High Court, with the NIC scientists posted there able to advise. It sits in tension with the same wing having built three PHP applications, so the fair reading is that development capacity exists but is thin and is not part of the cadre's job description. Directly relevant to any hand-over plan."
+          },
+          {
+            "claim": "the district courts sit on a Department of Justice WAN over a leased MPLS line with a private 172.18 address series, so every district court can reach every other, but spare addresses are scarce and some locations have none",
+            "status": "reported-practice",
+            "method": "firsthand account",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "He raised this unprompted as the first thing to verify before hosting a shared instance anywhere: check that the chosen location has one or two spare addresses, or the deployment will contend for the network. A practical constraint with no rule behind it."
+          },
+          {
+            "claim": "the three firsthand claims in HR-01 - that only the computer room can release an e-filed case into the filing branch's queue, that advocates leave non-mandatory fields blank so the assistants re-enter them, and that the branch keeps an emailed PDF copy on a desktop - are confirmed or explained by the High Court IT wing",
+            "status": "needs-check",
+            "method": "cross-checked against this interview; the topics were never raised",
+            "evidence": [
+              {
+                "l": "E-Filing Rules r.3",
+                "s": "phef",
+                "e": "rule_3"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "toCheck": "Ask the High Court technical wing directly whether the permission to release an e-filed case into a filing branch's queue sits with the district System Officer or with the Administrator appointed under E-Filing Rules r.3.2, whether it can be delegated to the filing branch itself, and whether the same office is what Panchkula calls the computer room.",
+            "note": "Recorded so the gap is visible rather than assumed away. This interview did not touch e-filing, the e-Sewa Kendra or Designated Counters, NSTEP or process service, digitisation and scanning, or SMS delivery at all, so HR-01's three claims are neither confirmed nor contradicted. What it does add is the organisational fact underneath the first of them: every court location has its own technical establishment that owns the CIS server and its permissions, and that is a different office from the Administrator whom E-Filing Rules r.3.2 creates for e-filing matters."
+          }
+        ]
+      },
+      "impact": {
+        "changed": true,
+        "changes": [
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:peripheral-application",
+            "label": "Peripheral application"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:surety-module",
+            "label": "Surety module"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:stock-surety",
+            "label": "Stock surety"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:crystal-cis-reports",
+            "label": "Crystal CIS Reports"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:statement-clerk",
+            "label": "Statement Clerk"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:system-officer",
+            "label": "System Officer"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:njdg",
+            "label": "NJDG"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:nic",
+            "label": "NIC"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:e-committee",
+            "label": "eCommittee"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:mirror-server",
+            "label": "Mirror server"
+          },
+          {
+            "unit": "term",
+            "op": "enhanced",
+            "ref": "haryana:term:cis",
+            "label": "CIS"
+          },
+          {
+            "unit": "term",
+            "op": "enhanced",
+            "ref": "haryana:term:computer-room",
+            "label": "Computer room"
+          },
+          {
+            "unit": "role",
+            "op": "created",
+            "ref": "haryana:role:system-officer",
+            "label": "System Officer"
+          },
+          {
+            "unit": "role",
+            "op": "created",
+            "ref": "haryana:role:statement-clerk",
+            "label": "Statement Clerk"
+          },
+          {
+            "unit": "role",
+            "op": "enhanced",
+            "ref": "haryana:role:computer-room",
+            "label": "Computer room"
+          },
+          {
+            "unit": "process",
+            "op": "enhanced",
+            "ref": "haryana:process:cis-entry",
+            "label": "3 · CIS entry and numbering"
+          },
+          {
+            "unit": "process",
+            "op": "enhanced",
+            "ref": "haryana:process:appearance-attendance",
+            "label": "7 · Appearance, bail and dispensing with personal attendance"
+          },
+          {
+            "unit": "process",
+            "op": "enhanced",
+            "ref": "haryana:process:informal-workarounds",
+            "label": "14 · Informal digital and workaround practices"
+          }
+        ],
+        "relatesToLaw": [
+          {
+            "l": "E-Filing Rules r.2",
+            "s": "phef",
+            "e": "rule_2",
+            "relation": "governs",
+            "note": "applies the e-filing regime to the High Court and every court under its supervisory jurisdiction, on notification in the gazettes of Punjab, Haryana and U.T. Chandigarh - the three-territory remit this IT wing serves"
+          },
+          {
+            "l": "E-Filing Rules r.18",
+            "s": "phef",
+            "e": "rule_18",
+            "relation": "governs",
+            "note": "e-filings on an exclusive server under the Court's control, with a mirror image at another geographical location for continuity - the rule behind the mirror server at each district location"
+          },
+          {
+            "l": "E-Filing Rules r.3",
+            "s": "phef",
+            "e": "rule_3",
+            "relation": "relates",
+            "note": "the Administrator appointed for e-filing matters is a distinct office from the district technical establishment described here; the two should not be conflated"
+          },
+          {
+            "l": "R&O Vol.III r.10.9",
+            "s": "phhc3",
+            "e": "rule_10.9",
+            "relation": "operationalises",
+            "note": "the stock-surety and identity-document rule the in-house Surety module puts into software"
+          },
+          {
+            "l": "BNSS §486",
+            "n": "bnss:sec_486",
+            "relation": "operationalises",
+            "note": "every surety must declare how many persons he has stood surety for; the Surety module is the record that makes that declaration checkable, but only inside one High Court's jurisdiction"
+          },
+          {
+            "l": "R&O Vol.III r.2.6",
+            "s": "phhc3",
+            "e": "rule_2.6",
+            "relation": "operationalises",
+            "note": "the monthly statement of summary cases received and disposed of, which the Statement Clerk now generates through CCR; a s.138 case is triable summarily under NI Act §143 and falls inside it"
+          },
+          {
+            "l": "VC Rules r.10",
+            "s": "phvc",
+            "e": "rule_10",
+            "relation": "relates",
+            "note": "technical responsibility for a video hearing rests on the Court Point and Remote Point Coordinators; the technical wing is the escalation layer behind them"
+          }
+        ]
+      },
+      "compare": [
+        {
+          "place": "haryana",
+          "noteId": "hr-filing-assistant-2026-06",
+          "relation": "similar",
+          "note": "Two ends of the same access bottleneck. The Panchkula filing assistants describe having to telephone 'the computer room' ten to fifteen times a day before an e-filed case can be released into their queue; this note supplies the establishment on the other end of that telephone - every court location has its own System Officer and System Assistant who own the CIS server and its permissions. They diverge on coverage rather than substance: the High Court IT wing was not asked about e-filing, the e-Sewa Kendra, NSTEP or scanning, so it neither confirms nor contradicts HR-01's release, blank-field and emailed-PDF claims, and the E-Filing Rules put e-filing matters with a different officer again, the Administrator appointed by the District and Sessions Judge under r.3.2."
+        }
       ]
     }
   ],
