@@ -641,7 +641,10 @@
 .story-acc-body.open{grid-template-rows:1fr; margin-top:14px}
 .inst-links{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px}
 .inst-link{display:block; border:1px solid var(--line); border-radius:12px; background:var(--panel); padding:13px 15px; cursor:pointer; text-decoration:none; transition:border-color .15s}
-.inst-link:hover{border-color:var(--brand-border)}
+/* the whole card is an <a>, so the global a:hover underline would strike through
+   the title and the summary - the border colour is the hover signal instead */
+.inst-link:hover,.inst-link:hover *{text-decoration:none}
+.inst-link:hover{border-color:var(--brand-border); background:var(--panel-2)}
 .inst-link-hd{display:flex; align-items:center; gap:9px}
 .inst-link-ico svg.lu{width:16px; height:16px; color:var(--brand-hi)}
 .inst-link-t{font-size:14px; font-weight:650; color:var(--ink)}
