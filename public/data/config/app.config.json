@@ -91,7 +91,7 @@
                 "e": "rule_68"
               }
             ],
-            "by": "DRISTI (Claude)",
+            "by": "PUCAR",
             "on": "2026-07-26"
           },
           {
@@ -110,7 +110,7 @@
                 "e": "rule_68"
               }
             ],
-            "by": "DRISTI (Claude)",
+            "by": "PUCAR",
             "on": "2026-07-26",
             "note": "Scrutiny is a formal function: the Registry scrutinises filings and notes objections under E-Filing Rules r.17, and CRP r.68 requires defective petitions to be returned for amendment and representation. Only the specific title 'scrutiny officer' and the file-holding-for-payment fall outside the rules."
           },
@@ -211,7 +211,7 @@
                 "n": "bnss:sec_223"
               }
             ],
-            "by": "DRISTI (Claude)",
+            "by": "PUCAR",
             "on": "2026-07-26"
           },
           {
@@ -228,7 +228,7 @@
                 "n": "ni:sec_138"
               }
             ],
-            "by": "DRISTI (Claude)",
+            "by": "PUCAR",
             "on": "2026-07-26",
             "note": "The statute gives one month from the cause of action to file (NI §142(1)(b)); the cause of action arises 15 days after the demand notice (§138 proviso). '45 days' looks like a practical rule of thumb combining the 15-day notice window with the one-month filing period, not a statutory 45-day limit. Safe as a conservative check, but it should be computed from the actual dates in each case."
           },
@@ -246,7 +246,7 @@
                 "n": "bnss:sec_223"
               }
             ],
-            "by": "DRISTI (Claude)",
+            "by": "PUCAR",
             "on": "2026-07-26",
             "note": "A s.138 case is a complaint offence with no FIR and no police investigation, so the FIR field in the shared CIS criminal template does not apply to it. The 'police station' the assistants record is used only to distribute cases (by the bank where the cheque was presented), not for any investigation."
           },
@@ -254,7 +254,7 @@
             "claim": "a PDF copy of each file is emailed to an office inbox and kept on the desktop as a record",
             "status": "reported-practice",
             "method": "firsthand account",
-            "by": "DRISTI (Claude)",
+            "by": "PUCAR",
             "on": "2026-07-26",
             "note": "A recently self-started, informal practice - not required by any rule and not validated; the copy sits in a local desktop folder. Recorded as practice, not as an official record."
           },
@@ -262,7 +262,7 @@
             "claim": "the cheque is laminated at filing",
             "status": "reported-practice",
             "method": "firsthand account",
-            "by": "DRISTI (Claude)",
+            "by": "PUCAR",
             "on": "2026-07-26",
             "note": "An informal safety habit, explicitly not mandatory; its absence is not a ground to reject the file."
           },
@@ -270,7 +270,7 @@
             "claim": "e-filed cases can only be released into the filing branch's queue by the computer room, and advocates skip non-mandatory fields",
             "status": "reported-practice",
             "method": "firsthand account",
-            "by": "DRISTI (Claude)",
+            "by": "PUCAR",
             "on": "2026-07-26",
             "note": "An access-control and data-quality gap described firsthand: the branch has no direct release permission (10 to 15 calls a day), and non-mandatory fields left blank in e-filing are re-entered by the assistants. A direct signal for portal design - make the paper-mandatory fields mandatory online."
           }

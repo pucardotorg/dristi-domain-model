@@ -64,7 +64,7 @@ clickable, hoverable source links, so use them for every piece of evidence.
     { "claim": "a defect-scrutiny step happens before cognizance",
       "status": "corroborated", "method": "cross-checked against the corpus",
       "evidence": [ {"l":"E-Filing Rules r.17","s":"kefr","e":"rule_17"}, {"l":"CRP r.68","s":"crp","e":"rule_68"} ],
-      "by": "DRISTI (Claude)", "on": "2026-07-26" },
+      "by": "PUCAR", "on": "2026-07-26" },
     { "claim": "the role is informal and not in the rules",
       "status": "contradicted", "method": "cross-checked against the corpus",
       "evidence": [ ...same refs... ], "by": "...", "on": "...",
@@ -97,6 +97,12 @@ clickable, hoverable source links, so use them for every piece of evidence.
   `reported-practice` = a firsthand informal practice that is real but governed by
   no rule (distinct from `reported-allegation`, an unproven accusation, and
   `needs-check`, a factual claim still to reconcile with the corpus).
+- `verification.claims[].by` is the human or organisation answerable for the check.
+  Use the named person who did the verification, or `"PUCAR"` for project work.
+  **Never attribute a check to the AI** - no `Claude`, no `DRISTI (Claude)`, no
+  model or assistant name. This is a legal reference tool: an AI byline on a
+  verified legal claim is noise and a credibility problem. If you genuinely do
+  not know who verified it, ask the user rather than inventing an attributor.
 - If the note changes nothing: `"impact": { "changed": false, "reason": "already covered by crp:rule_68" }`.
 
 ## The other half of the link (units point back)
@@ -186,6 +192,7 @@ specific note, stop - put it in the data instead.
 - [ ] Attributed (who + affiliation + secondhand chain + date); statement faithful.
 - [ ] Decomposed by unit; each classified Known/New/Renamed/Enhances/Contradicted.
 - [ ] Every claim has a `status`; verified ones say how/evidence/by/on; false ones `contradicted` with evidence; allegations `reported-allegation`, never asserted.
+- [ ] Every `by` names a person or `PUCAR` - never the AI (no `Claude`, no model or assistant name) anywhere in the data.
 - [ ] Formal units added with governing cites; only out-of-rules parts under `informal`.
 - [ ] Units carry `id` + `sourceNotes` + `relatesToLaw` + `themes`; note mirrors them in `impact` (bidirectional). New terms via the `vocabulary` skill.
 - [ ] `impact.changes[]` refs resolve: each unit has the matching `id`, so the "what it changed" chip navigates (term/role/process) - no dead links.

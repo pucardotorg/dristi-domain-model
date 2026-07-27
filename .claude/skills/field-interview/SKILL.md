@@ -134,6 +134,9 @@ verification, bidirectional `impact` links, the state-prefixed `serial` (e.g.
 - **Firsthand:** `attribution.secondhand=false`; name the interviewees and their
   affiliation; put the **video URL + title + date** in `originalSource`, and note
   that third-party names / contact details were omitted.
+- **Who verified:** `verification.claims[].by` is the interviewer or the person who
+  ran the corpus check, or `PUCAR` for project work. Never the AI - no `Claude`,
+  no model or assistant name in user-facing data.
 - **Status slugs:** use `reported-practice` for a firsthand informal practice (real,
   but no rule governs it) - distinct from `reported-allegation` (an unproven
   accusation) and from `needs-check` (a factual claim to reconcile with the corpus).
@@ -164,6 +167,7 @@ verification, bidirectional `impact` links, the state-prefixed `serial` (e.g.
 - [ ] Transcript pulled (manual subs preferred; 429 handled via the caption-URL curl); read in full; title/date/uploader captured.
 - [ ] Decomposed into roles / process / vocabulary / workarounds / integrity; corpus-checkable claims flagged.
 - [ ] Privacy applied: interviewees attributed; third-party names and contact details dropped.
+- [ ] Verification `by` names a person or `PUCAR` - never the AI.
 - [ ] New state layer stood up only if needed, scoped to what the interview covers; shapes match; app kept state-agnostic (no hardcoded state name).
 - [ ] Note recorded via `local-practice` (firsthand attribution + video source; `reported-practice` where apt; reciprocal `compare`; resolving impact links).
 - [ ] Validated (JSON, no em-dashes in app copy, ids/anchors resolve) and verified in the served app; committed.
