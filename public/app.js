@@ -461,9 +461,13 @@ V.words=()=>{
       // Most national terms pin to a statute (v.ref); a few are administrative practice
       // with no single statutory home (e.g. a central filing arrangement) - those carry a
       // free-text v.source and open to nothing, like the state layer.
-      const srcLine = v.ref
-        ? `from <code>${esc(secNum(v.ref))}</code> · ${esc(s?s.title.split(",")[0]:v.ref)}`
-        : `from ${esc(v.source||'court practice')}`;
+      // the citation reads as one reference - section and Act together open the provision.
+      // Only link it when the Act actually resolves; otherwise it stays plain text.
+      const srcLine = (v.ref && s)
+        ? `from <a class="src-ref" data-nat="${esc(v.ref)}"><span class="sr-sec">${esc(secNum(v.ref))}</span> · ${esc(s.title.split(",")[0])}</a>`
+        : v.ref
+          ? `from <span class="sr-sec">${esc(secNum(v.ref))}</span> · ${esc(v.ref.split(":")[0])}`
+          : `from ${esc(v.source||'court practice')}`;
       const c=el("div","word"); c.dataset.word=w.toLowerCase();
       c.innerHTML=`
         <div class="wt"><span class="wname">${esc(w[0].toUpperCase()+w.slice(1))}</span><span class="wtag wtag-national">national</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
@@ -475,11 +479,21 @@ V.words=()=>{
       return c;
     }
     const t=it.t, c=el("div","word"); c.dataset.word=(t.word||"").toLowerCase();
+    // same treatment on the state layer: where the term is pinned to an instrument the
+    // citation itself is the link. A state source often carries a trailing attribution
+    // after a semicolon ("…; named by the filing assistants") - that part stays plain.
+    const stRaw=t.source||'the state layer';
+    let stSrc;
+    if(t.akn && t.eId){
+      const i=stRaw.indexOf(";");
+      const cite=(i>0?stRaw.slice(0,i):stRaw).trim(), rest=(i>0?stRaw.slice(i):"");
+      stSrc=`from <a class="src-ref" data-akn="${esc(t.akn)}" data-eid="${esc(t.eId)}" data-title="${esc(cite)}">${esc(cite)}</a>${esc(rest)}`;
+    } else stSrc=`from ${esc(stRaw)}`;
     c.innerHTML=`
       <div class="wt"><span class="wname">${esc(t.word)}</span><span class="wtag wtag-state">${esc(stName)}</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(t.gloss||'')}</div>
       ${akaRow(t.aka)}
-      <div class="src">from ${esc(t.source||'the state layer')}${noteLink(t.sourceNotes)}</div>
+      <div class="src">${stSrc}${noteLink(t.sourceNotes)}</div>
       <div class="wfull"><div class="ksec-slot"></div></div>`;
     c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && t.akn && t.eId) fillStateStatute(c.querySelector(".ksec-slot"), t.akn, t.eId, t.source||'the Kerala instrument', ''); };
     return c;
@@ -812,9 +826,8 @@ function instLinkCard(view, title, icon, summary){
   c.onclick=()=>{ _extra={}; go(view, true); };
   return c;
 }
-/* Police / Courts are their own pages. Each renders the interactive React Flow
-   hierarchy (loaded on demand from flow.js) plus the full cited detail below, so
-   there is always content even if the diagram library fails to load (offline). */
+/* Police / Courts are their own pages. Each renders the heading and summary,
+   then the full cited detail for every role and unit. */
 function institutionPage(kind, title){
   if(!isModelled()) return notModelled();
   const stName=stateById(activeState).name;
@@ -829,17 +842,12 @@ function institutionPage(kind, title){
   const sel=head.querySelector(".state-inline"); if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
   const bl=head.querySelector(".backlink"); if(bl) bl.onclick=()=>{ _extra={sec:"story-roles"}; go("story", true); };
   if(!data){ m.appendChild(el("div","empty",`Not modelled for ${esc(stName)} yet.`)); return m; }
-  const dcard=el("div","flowcard");
-  dcard.appendChild(el("div","flow-hint","Drag to pan, scroll to zoom, click any node for its detail and source."));
-  const canvas=el("div","flowcanvas"); dcard.appendChild(canvas); m.appendChild(dcard);
-  import("./flow.js").then(mod=> mod.mountInstitution(canvas, kind, data))
-    .catch(()=>{ canvas.innerHTML=`<div class="empty">The interactive diagram needs internet to load. The full detail is below.</div>`; });
   const amap=stateAliasMap();
   const det=el("div","inst"); det.style.marginTop="26px";
   det.innerHTML=`<div class="inst-sub-label" style="margin-bottom:12px">Full detail - every role and unit, with its source</div>`+instListInner(kind,data,amap);
   m.appendChild(det);
   // the court-specific story blocks (designated §138 courts, caseload) belong here,
-  // after the hierarchy and its diagram fallback. Empty for a state that has neither.
+  // after the full detail. Empty for a state that has neither.
   if(kind==="courts") courtsStoryBlocks(amap).forEach(n=>m.appendChild(n));
   return m;
 }
@@ -1996,6 +2004,11 @@ document.addEventListener("click",e=>{
   if(ci){ e.stopPropagation();
     if(ci.dataset.nat){ const [a,eid]=ci.dataset.nat.split(":"); if(SOURCES[a]) openActModal(a,eid); }
     else if(ci.dataset.akn){ openStateCiteModal(ci.dataset.akn, ci.dataset.eid, ci.dataset.title); }
+    return; }
+  const sr=e.target.closest(".src-ref");
+  if(sr){ e.stopPropagation();
+    if(sr.dataset.nat){ const [a,eid]=sr.dataset.nat.split(":"); if(SOURCES[a]) openActModal(a,eid); }
+    else if(sr.dataset.akn){ openStateCiteModal(sr.dataset.akn, sr.dataset.eid, sr.dataset.title); }
     return; }
   const sn=e.target.closest(".src-note");
   if(sn && sn.dataset.note){ e.stopPropagation(); goPracticeNote(sn.dataset.note); return; }

@@ -420,7 +420,11 @@
   .word .waka{display:flex; flex-wrap:wrap; align-items:center; gap:5px; margin:0 0 9px}
   .word .waka-lbl{font-size:10px; letter-spacing:.05em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
   .word .waka-t{font-size:11.5px; color:var(--ink-2); background:var(--panel-2); border:1px solid var(--line); border-radius:5px; padding:1px 7px; white-space:nowrap}
-  .word .src{font-size:12px; color:var(--ink-3)} .word .src code{color:var(--brand); font-family:var(--font-mono)}
+  .word .src{font-size:12px; color:var(--ink-3); line-height:1.6}
+  /* the whole citation is one quiet reference - section, separator and instrument together */
+  .src-ref{color:var(--ink-2); cursor:pointer; text-decoration:underline; text-decoration-color:color-mix(in srgb,var(--ink-3) 40%,transparent); text-underline-offset:2px; transition:color .12s, text-decoration-color .12s}
+  .src-ref:hover{color:var(--brand-hi); text-decoration-color:var(--brand)}
+  .src-ref .sr-sec, .word .src .sr-sec{font-family:var(--font-mono)}
   .src-note{cursor:pointer; color:var(--ink-3); text-decoration:underline; text-underline-offset:2px; white-space:nowrap} .src-note:hover{color:var(--brand-hi)} .src-note svg.lu{width:12px; height:12px; vertical-align:-2px; margin-right:2px}
   .word .wfull{display:none; margin-top:10px} .word.open .wfull{display:block}
 
@@ -605,31 +609,9 @@
 .inst-line{font-size:12px; color:var(--ink-2); line-height:1.5; margin-top:3px}
 .inst-line .inst-l{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:var(--ink-3); margin-right:5px}
 .inst-cite{margin-top:7px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-/* Police / Courts pages + React Flow diagrams */
+/* Police / Courts pages */
 .backlink{display:inline-block; font-size:12.5px; color:var(--ink-3); cursor:pointer; margin-bottom:8px; text-decoration:none}
 .backlink:hover{color:var(--brand-hi)}
-.flowcard{border:1px solid var(--line); border-radius:14px; background:var(--panel); overflow:hidden; margin-top:14px}
-.flow-hint{font-size:11.5px; color:var(--ink-3); padding:10px 14px; border-bottom:1px solid var(--line-2)}
-.flowcanvas{height:min(72vh,640px); position:relative; background:var(--bg)}
-.react-flow__node-inst{background:none; border:0; padding:0; box-shadow:none; width:auto; font-family:inherit; color:var(--ink)}
-.rfn{width:232px; background:var(--panel-2); border:1px solid var(--line); border-radius:11px; padding:9px 12px; cursor:pointer; transition:border-color .15s, box-shadow .15s}
-.rfn:hover{border-color:var(--brand-border); box-shadow:0 2px 10px rgba(0,0,0,.18)}
-.rfn-badge{font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--brand-hi); margin-bottom:3px}
-.rfn-name{font-size:12.5px; font-weight:650; color:var(--ink); line-height:1.2}
-.rfn-sub{font-size:10.5px; color:var(--ink-3); margin-top:3px; line-height:1.3}
-.rfn-oversight,.rfn-staff{background:var(--panel)}
-.rfn-tier-admin{border-style:dashed}
-.rfn-trial{border-color:var(--brand-border); box-shadow:0 0 0 1px var(--brand-border)}
-.rfn-h{opacity:0; width:1px; height:1px; min-width:0; border:0}
-.rfn-collabel{font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
-.rfp{width:272px; max-width:78vw; background:var(--panel); border:1px solid var(--line-2); border-radius:12px; padding:14px 15px 15px; box-shadow:var(--shadow-modal); position:relative}
-.rfp-x{position:absolute; top:7px; right:9px; background:none; border:0; color:var(--ink-3); font-size:19px; line-height:1; cursor:pointer}
-.rfp-x:hover{color:var(--ink)}
-.rfp-name{font-size:14px; font-weight:650; color:var(--ink); padding-right:18px; line-height:1.25}
-.rfp-aka{font-size:11.5px; color:var(--ink-3); margin-top:3px}
-.rfp-who{font-size:12.5px; color:var(--ink-2); line-height:1.5; margin-top:9px}
-.rfp-line{font-size:12px; color:var(--ink-2); margin-top:7px; line-height:1.45}
-.rfp-k{font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); margin-right:4px}
 /* roles accordion + police/courts link cards on the story page */
 .story-acc{cursor:pointer; user-select:none; display:flex; align-items:center}
 .story-acc .story-acc-chev{margin-left:auto; color:var(--ink-3); transition:transform .2s}
