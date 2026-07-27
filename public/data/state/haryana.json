@@ -823,8 +823,8 @@
       },
       {
         "word": "Ahlmad",
-        "gloss": "The court's record-keeper and reader. He receives the filed case in the destination court and takes over registration - entering the full address and any extra-party details - and the subsequent process. Volume III recognises the office directly: the process money and stamped postal envelopes filed by litigants are received by the ahlmad or the moharrir against a receipt, and never by any other member of the ministerial establishment, and the registers of a magistrate's court are maintained by the ahlmad attached to it. A formal establishment role in the North Indian courts; at the filing stage the window hands off to the ahlmad.",
-        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.4; named by the Panchkula filing assistants (PUCAR interview, June 2026)",
+        "gloss": "The record-keeper and process clerk of a criminal court. He receives the file from the filing branch once it has a filing number, registers the case in CIS after the objections are removed and the main case number issues, enters the parties and addresses, and from then on owns the court's process: generating and publishing summons and warrants, entering bail bonds and sureties, attaching the service reports the process servers bring back, keeping the registers, binding and consigning the decided file, and building the monthly returns the High Court asks for. Volume III recognises the office directly - talbana and stamped postal envelopes filed by litigants are received by the ahlmad or the moharrir against a receipt and never by any other member of the ministerial establishment, and the registers of a magistrate's court are maintained by the ahlmad attached to it. He is not the reader: Volume III names the reader of the court separately, and at Panchkula the reader raises the objections and keeps the dates while the ahlmad registers, generates process and keeps the record.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.4 and rule 11-A.14; described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
         "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
         "eId": "rule_1-A.4",
         "group": "Court staff",
@@ -832,10 +832,12 @@
         "role": "actor",
         "aka": [
           "ahlamad",
-          "court reader",
-          "record-keeper of the court"
+          "ahalmad",
+          "record-keeper of the court",
+          "criminal ahlmad"
         ],
         "sourceNotes": [
+          "hr-ahlmad-2026-06",
           "hr-filing-assistant-2026-06"
         ]
       },
@@ -1347,11 +1349,13 @@
           "surety verification module"
         ],
         "sourceNotes": [
+          "hr-ahlmad-2026-06",
           "hr-hc-it-systems-2026-06"
         ],
         "themes": [
           "bail-and-surety",
-          "court-technology-systems"
+          "court-technology-systems",
+          "process-and-service"
         ]
       },
       {
@@ -1511,6 +1515,218 @@
         ],
         "themes": [
           "court-technology-systems"
+        ]
+      },
+      {
+        "word": "Reader (court)",
+        "gloss": "The officer who sits with the presiding judge, keeps the daily proceedings and the dates, and raises the objections on a newly filed case before it is registered. Volume III names him separately from the ahlmad: when a holiday or an absence wipes out a day's list, the presiding officer fixes fresh dates in the peshi register himself and hands the register to the reader of the court, who is responsible for telling the parties and witnesses who turn up at a closed court what their new date is. At Panchkula the reader and the ahlmad are two different desks - the reader owns the daily proceedings and the dates, the ahlmad owns registration, process and the record.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.10; described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-A.10",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "reader",
+          "peshkar",
+          "reader of the court"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Process generation",
+        "gloss": "The CIS function through which the ahlmad turns a judicial order into an actual piece of process. He opens the court and the date, picks the process type from a numbered list (summons to accused, summons to witness, warrant, and a separate entry for the s.138 summons), generates it, and publishes it. Until it is published the document prints 'Draft' across it and cannot be used. Volume III sends the detailed instructions on issuing and serving process to Volume IV, Chapter 8; what the Sanhita requires of the finished article is that it be signed and sealed, or digitally signed if electronic.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-Ci.6 (mode of issuing and serving process); the CIS process-generation module, described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-Ci.6",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "generate process",
+          "process module",
+          "process generation (CIS)"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "NACT summons",
+        "gloss": "The summons issued to an accused in a s.138 cheque case, which in CIS is a separate template from the ordinary criminal summons and prints in a different, larger format. It has its own service regime: s.144 of the NI Act lets the magistrate direct service by speed post or by a courier approved by a Court of Session, and an acknowledgment or a refusal endorsement lets the court declare service complete. Since the November 2018 amendment to Volume III the magistrate may issue it as an e-summons.",
+        "source": "NI Act s.144 (mode of service of summons in cheque cases); Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-Ci.2; the distinct CIS template described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-Ci.2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "summons to accused in 138",
+          "138 summons",
+          "specified-case summons"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Publishing (CIS)",
+        "gloss": "The step that turns a generated process from a draft into a live document. Before publishing, the printout carries 'Draft' in large letters and is not acceptable for use; publishing is what commits it. The legal reason is exact: a summons must be in writing signed by the presiding officer and bear the seal of the court, or be in an electronic form bearing the image of the seal or a digital signature, and a warrant must likewise be signed and sealed - a draft carries none of that, so it is not process at all.",
+        "source": "CIS process-generation workflow, described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026); the requirement it satisfies is in BNSS s.63 and s.72",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "publish",
+          "published process",
+          "draft process"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Notice of accusation",
+        "gloss": "What the staff of a Haryana criminal court call the moment the substance of the accusation is put to the accused. In a summons case, and so in a cheque case tried summarily, the particulars of the offence are stated to the accused and he is asked whether he pleads guilty or has any defence, and no formal charge is framed. The everyday phrasing at the desk is that 'charge will be framed' - this and this is alleged against you, you took this much money, what do you say - but in law it is a statement of the particulars, not a charge.",
+        "source": "BNSS s.274 (substance of accusation to be stated), formerly CrPC s.251; Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-D.2; the local usage recorded firsthand from the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-D.2",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "substance of accusation",
+          "NOA",
+          "particulars of the offence"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Bank KYC verification",
+        "gloss": "The step a Haryana magistrate's court takes when bailable and non-bailable warrants keep coming back unserved: it writes to the drawer's bank for the KYC address on the account, on the footing that the address the complainant supplied may be false or stale, and then re-issues process to the address the bank returns. No rule prescribes it. It rests on the court's ordinary power to summon a document or thing, and on the Bankers' Books Evidence Act, under which a court may order a party to be at liberty to inspect and take copies of entries in a banker's book.",
+        "source": "A local coercive-execution step described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026); the powers it rests on are BNSS s.94 and the Bankers' Books Evidence Act s.6",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "KYC",
+          "KYC verification",
+          "bank address verification"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Consignment",
+        "gloss": "Sending a finished case file down to the court's record room for keeping. When judgment is pronounced the file comes back to the ahlmad, who binds it, generates the index proforma and consigns it. Volume III's standing requirement is that the record be complete before it is consigned, and that a proceeding which is separate from the main case - a transfer application, and by the same logic a criminal miscellaneous matter - be consigned to the record room separately from it.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 3.18 and rule 26-B.1; the binding-and-sending practice described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_3.18",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "consigned",
+          "record room",
+          "consignment of records"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Index for Decided File",
+        "gloss": "The proforma the ahlmad generates out of CIS for a decided case and attaches to the bound file before consigning it to the record room; it lists what the record contains. CIS can produce the same index for a pending file. It is the modern form of Volume III's requirement that the record be complete before it goes to the record room - the retention and indexing rules themselves sit in Rules and Orders Volumes IV and VI-B, which are not yet in this corpus.",
+        "source": "CIS report, described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026); the completeness requirement it serves is in Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 3.18",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_3.18",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "decided file index",
+          "index proforma",
+          "index for pending file"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Criminal miscellaneous",
+        "gloss": "A miscellaneous criminal proceeding taken out of a case that has already been decided and consigned - an application on a NACT file that has gone to the record room, for instance. It is separated from the parent file and becomes a fresh file with its own number, obtained from the filing branch downstairs. Volume III states the same principle for transfer applications: they must form a file separate from the record of the main case and be consigned to the record room separately.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 26-B.1; the CRM separation described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_26-B.1",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "CRM",
+          "Crl. Misc.",
+          "criminal miscellaneous application"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Institution register",
+        "gloss": "The register of cases instituted in the court. Volume III requires a summary case to be entered in Register No. 1 as soon as it is received in court, and again in the register of summary cases when the accused appears, and makes the ahlmad the keeper of the court's registers subject to a monthly inspection by the presiding officer. In Panchkula the register is now fed from the database: the ahlmad runs the month's institution report out of e-Courts for the establishment and case type, prints it, and pastes it into the physical register.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 2.6 and rule 11-A.14; the e-Courts print-and-paste method described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_2.6",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "register of institution",
+          "Register No. 1",
+          "institution report"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Action plan",
+        "gloss": "The case-management reporting the High Court requires of each court, which at Panchkula means a running list of two hundred cases kept updated almost daily out of a pendency of about a thousand, alongside some twenty to thirty other statements. Its rule-level ancestors are in Volume III: every judicial officer must send the High Court a monthly statement of criminal cases pending over one year in the prescribed proforma before the 10th of the following month, with history sheets for the six oldest, and daily progress reports besides. The ahlmad assembles it himself in a spreadsheet, because the reports CIS gives are not aligned with what the High Court asks for.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.12, rule 1-A.13 and rule 1-A.11; the current High Court format described firsthand by the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-A.12",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "action plan list",
+          "High Court action plan",
+          "200-case list"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Goshwara",
+        "gloss": "The summary statement of a court's work - the balance sheet of institution, disposal and pendency - that the staff prepare from the CIS management report for the monthly return to the High Court. The word is the everyday Punjab and Haryana term for such an abstract. Volume III's periodical statements are what it feeds: the monthly statement of criminal cases pending over one year, and the monthly statement of summary cases received and disposed of.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-A.12 and rule 2.6; the word and the CIS balance-sheet source recorded firsthand from the criminal ahlmad, Panchkula (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-A.12",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "summary statement",
+          "balance sheet",
+          "goshwara statement"
+        ],
+        "sourceNotes": [
+          "hr-ahlmad-2026-06"
         ]
       }
     ]
@@ -2489,6 +2705,370 @@
             },
             {
               "t": "Network headroom: the district courts share a Department of Justice wide-area network on a leased line with a small private address range, and some locations have no spare address at all. Anything new that has to be hosted for several courts is constrained first by that, before any question of software."
+            },
+            {
+              "t": "Cheque amount in the FIR field: with no cheque-amount column in the CIS criminal template, the ahlmad types the cheque amount into the FIR box so that the value can be read off the case record at a glance. His own verdict: 'this is some of our own innovation, which is wrong'. It is the same dead field the filing branch downstairs uses for the police station - a s.138 case has no FIR."
+            },
+            {
+              "t": "Blank-template surety process: CIS has no summons-to-surety form, so process to a surety is sent from a blank template. The statutory step behind it is real - the court must call on a person bound by a forfeited bond to pay the penalty or show cause - so the workaround is filling a genuine hole in the software, not inventing a step."
+            },
+            {
+              "t": "Register by print-and-paste: the month's institution report is run out of e-Courts, printed, and pasted into the physical register that Volume III requires the ahlmad to keep."
+            },
+            {
+              "t": "Manual service tracking: process servers take the ahlmad's receiving for served process, and he attaches the acknowledgments to each file by hand, date by date, because no service status reaches the cause list or the case record."
+            },
+            {
+              "t": "Personal Excel returns: the High Court's action plan and its twenty to thirty statements are rebuilt by each ahlmad in his own spreadsheet with VLOOKUP and date formulas, because CIS gives pendency but not disposal and its reports are not aligned with the High Court's format. Explicitly informal, unversioned and untrained - the same shape of private artefact HR-01 found at the filing window."
+            }
+          ]
+        },
+        {
+          "stage": "4a · The ahlmad's desk: objections, registration and numbering",
+          "id": "ahlmad-registration",
+          "sourceNotes": [
+            "hr-ahlmad-2026-06"
+          ],
+          "themes": [
+            "filing-and-intake",
+            "pre-cognizance-scrutiny"
+          ],
+          "steps": [
+            {
+              "t": "The file arrives from the filing branch with its filing number. The reader of the court raises the objections on it - court fee, condonation of delay - and those are argued before the judge, who decides them. Condonation is squarely judicial: the complaint must be made within one month of the cause of action, and only the court may take cognizance later on sufficient cause.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-A.10",
+                  "s": "phhc3",
+                  "e": "rule_1-A.10"
+                },
+                {
+                  "l": "R&O Vol.III r.1-A.4",
+                  "s": "phhc3",
+                  "e": "rule_1-A.4"
+                },
+                {
+                  "l": "NI Act §142",
+                  "n": "ni:sec_142"
+                }
+              ]
+            },
+            {
+              "t": "Once the objections are removed and registration is permitted, the ahlmad registers the case in CIS and the main case number issues. Volume III's standing requirement is that a summary case be entered in Register No. 1 as soon as it is received in court, and it makes the ahlmad the keeper of the court's registers.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.2.6",
+                  "s": "phhc3",
+                  "e": "rule_2.6"
+                },
+                {
+                  "l": "R&O Vol.III r.11-A.14",
+                  "s": "phhc3",
+                  "e": "rule_11-A.14"
+                }
+              ]
+            },
+            {
+              "t": "He enters the complainant and his advocate, then several addresses for the accused. There is no cheque-amount column in the criminal template, so the cheque amount is typed into the FIR field - a self-started local convention he himself calls wrong. A s.138 case has no FIR at all, and the filing branch downstairs uses the same dead field for the police station.",
+              "c": [
+                {
+                  "l": "NI Act §138",
+                  "n": "ni:sec_138"
+                },
+                {
+                  "l": "BNSS §223",
+                  "n": "bnss:sec_223"
+                }
+              ]
+            },
+            {
+              "t": "The file then goes to the reader for the next date, the preliminary evidence is taken and the exhibits go on, and the summoning order follows on the same day. The advocate supplies the copies of the complaint that must go out with the process.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-B.5",
+                  "s": "phhc3",
+                  "e": "rule_1-B.5"
+                },
+                {
+                  "l": "R&O Vol.III r.1-B.6",
+                  "s": "phhc3",
+                  "e": "rule_1-B.6"
+                },
+                {
+                  "l": "BNSS §223",
+                  "n": "bnss:sec_223"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "6a · Process generation, service and the coercive ladder",
+          "id": "process-generation-service",
+          "sourceNotes": [
+            "hr-ahlmad-2026-06"
+          ],
+          "themes": [
+            "process-and-service",
+            "system-data-gap"
+          ],
+          "steps": [
+            {
+              "t": "The ahlmad opens process generation in CIS, selects the court and the date, and picks the process from a numbered list. A s.138 case has its own template - 'summons to accused in 138' - which prints differently from the ordinary summons; s.144 of the NI Act gives the cheque summons its own service regime by speed post or approved courier, and since November 2018 Volume III lets the magistrate issue it as an e-summons.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-Ci.2",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.2"
+                },
+                {
+                  "l": "NI Act §144",
+                  "n": "ni:sec_144"
+                },
+                {
+                  "l": "BNSS §63",
+                  "n": "bnss:sec_63"
+                }
+              ]
+            },
+            {
+              "t": "The document prints 'Draft' in large letters until it is published; a draft is not acceptable for use. That is not a formality - a summons must be signed by the presiding officer and bear the seal of the court, or bear the image of the seal or a digital signature if electronic, and a warrant must likewise be signed and sealed.",
+              "c": [
+                {
+                  "l": "BNSS §63",
+                  "n": "bnss:sec_63"
+                },
+                {
+                  "l": "BNSS §72",
+                  "n": "bnss:sec_72"
+                }
+              ]
+            },
+            {
+              "t": "If the accused appears, his bail bond and the names of his sureties go into a module shared across the Punjab and Haryana establishments, so that one person cannot quietly stand surety in case after case. That is the software form of the surety's statutory declaration of how many persons he has stood surety for, and of Volume III's photograph-and-identity requirement against the stock surety. There is no summons-to-surety form in the module, so surety process is sent from a blank template.",
+              "c": [
+                {
+                  "l": "BNSS §486",
+                  "n": "bnss:sec_486"
+                },
+                {
+                  "l": "R&O Vol.III r.10.9",
+                  "s": "phhc3",
+                  "e": "rule_10.9"
+                },
+                {
+                  "l": "BNSS §491",
+                  "n": "bnss:sec_491"
+                }
+              ]
+            },
+            {
+              "t": "If he does not appear the ladder runs bailable warrant, then non-bailable warrant, then a request to the bank for the KYC address on the account (the address the complainant gave may be false), then fresh warrants at the address the bank returns, then proclamation, then attachment of the property the complainant's advocate lists. Volume III still cites the 1898 numbering here; the live provisions are BNSS §§90, 84 and 85.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-Ci.2",
+                  "s": "phhc3",
+                  "e": "rule_1-Ci.2"
+                },
+                {
+                  "l": "R&O Vol.III r.15-A.1",
+                  "s": "phhc3",
+                  "e": "rule_15-A.1"
+                },
+                {
+                  "l": "R&O Vol.III r.15-A.2",
+                  "s": "phhc3",
+                  "e": "rule_15-A.2"
+                },
+                {
+                  "l": "BNSS §90",
+                  "n": "bnss:sec_90"
+                },
+                {
+                  "l": "BNSS §84",
+                  "n": "bnss:sec_84"
+                },
+                {
+                  "l": "BNSS §85",
+                  "n": "bnss:sec_85"
+                },
+                {
+                  "l": "BNSS §94",
+                  "n": "bnss:sec_94"
+                }
+              ]
+            },
+            {
+              "t": "Attachment is often spoken of at the desk as a way of getting the cheque amount paid. It is not. Volume III calls it the last remedy for compelling attendance, the attached property remains at the disposal of Government, and it goes back to the absconder if he appears within two years. The complainant's money comes instead from compensation out of a fine, or from a settlement.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.15-A.1",
+                  "s": "phhc3",
+                  "e": "rule_15-A.1"
+                },
+                {
+                  "l": "R&O Vol.III r.15-A.3",
+                  "s": "phhc3",
+                  "e": "rule_15-A.3"
+                },
+                {
+                  "l": "BNSS §395",
+                  "n": "bnss:sec_395"
+                }
+              ]
+            },
+            {
+              "t": "Process for another district is sent to the magistrate of that district, who has it served and returns it with proof of service; out of state, the police travel, get the warrant endorsed at the local police station and execute it from that jurisdiction. A warrant of arrest may be executed anywhere in India.",
+              "c": [
+                {
+                  "l": "BNSS §69",
+                  "n": "bnss:sec_69"
+                },
+                {
+                  "l": "BNSS §70",
+                  "n": "bnss:sec_70"
+                },
+                {
+                  "l": "BNSS §79",
+                  "n": "bnss:sec_79"
+                },
+                {
+                  "l": "BNSS §81",
+                  "n": "bnss:sec_81"
+                },
+                {
+                  "l": "BNSS §82",
+                  "n": "bnss:sec_82"
+                },
+                {
+                  "l": "HR Police Act §47",
+                  "s": "hpa",
+                  "e": "sec_47"
+                }
+              ]
+            },
+            {
+              "t": "The return leg is entirely manual. Process servers bring the served process back and take the ahlmad's receiving; he sorts the acknowledgments date by date and attaches them to each file by hand. Nothing about service status shows in the cause list or in the issuing court's CIS record, so for process sent outside the district the court often learns of service only when the person appears. The Sanhita already contemplates a service register with address, email and phone.",
+              "c": [
+                {
+                  "l": "BNSS §70",
+                  "n": "bnss:sec_70"
+                },
+                {
+                  "l": "BNSS §64",
+                  "n": "bnss:sec_64"
+                },
+                {
+                  "l": "R&O Vol.III r.1-A.10",
+                  "s": "phhc3",
+                  "e": "rule_1-A.10"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "13a · Consignment, the record room and the miscellaneous file",
+          "id": "consignment-record-room",
+          "sourceNotes": [
+            "hr-ahlmad-2026-06"
+          ],
+          "themes": [
+            "records-and-registers"
+          ],
+          "steps": [
+            {
+              "t": "After judgment the file comes back to the ahlmad. He binds it, generates the 'Index for Decided File' proforma out of CIS - the same report can be produced for a pending file - and sends it down to the record room. Volume III's requirement is that the record be complete before it is consigned.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.3.18",
+                  "s": "phhc3",
+                  "e": "rule_3.18"
+                }
+              ]
+            },
+            {
+              "t": "A criminal miscellaneous matter arising out of a decided and consigned NACT file is separated from it and becomes a fresh file with its own number, obtained from the filing branch downstairs. Volume III states the same principle for transfer applications: a separate record, separately consigned.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.26-B.1",
+                  "s": "phhc3",
+                  "e": "rule_26-B.1"
+                }
+              ]
+            },
+            {
+              "t": "The record-room rules themselves - retention periods, indexing, destruction - sit in Rules and Orders Volumes IV and VI-B, which are not yet in this corpus.",
+              "c": []
+            }
+          ]
+        },
+        {
+          "stage": "13b · Registers, returns and the High Court action plan",
+          "id": "registers-returns",
+          "sourceNotes": [
+            "hr-ahlmad-2026-06"
+          ],
+          "themes": [
+            "records-and-registers",
+            "informal-digital-workaround",
+            "system-data-gap",
+            "court-technology-systems"
+          ],
+          "steps": [
+            {
+              "t": "The registers are the ahlmad's charge. A summary case must be entered in Register No. 1 as soon as it is received in court and again in the register of summary cases when the accused appears, and the presiding officer must inspect the registers monthly. In Panchkula the paper register is now fed from the database: the month's institution report is run out of e-Courts for the establishment and case type, printed, and pasted in.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.2.6",
+                  "s": "phhc3",
+                  "e": "rule_2.6"
+                },
+                {
+                  "l": "R&O Vol.III r.11-A.14",
+                  "s": "phhc3",
+                  "e": "rule_11-A.14"
+                }
+              ]
+            },
+            {
+              "t": "The reporting stack above it is formal and heavy. Every judicial officer must send the High Court a monthly statement of criminal cases pending over one year in the prescribed proforma before the 10th of the following month, with history sheets for the six oldest; daily progress reports are prescribed besides; and a monthly statement of summary cases received and disposed of is required on top.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-A.12",
+                  "s": "phhc3",
+                  "e": "rule_1-A.12"
+                },
+                {
+                  "l": "R&O Vol.III r.1-A.13",
+                  "s": "phhc3",
+                  "e": "rule_1-A.13"
+                },
+                {
+                  "l": "R&O Vol.III r.1-A.11",
+                  "s": "phhc3",
+                  "e": "rule_1-A.11"
+                },
+                {
+                  "l": "R&O Vol.III r.2.6",
+                  "s": "phhc3",
+                  "e": "rule_2.6"
+                }
+              ]
+            },
+            {
+              "t": "In practice the High Court asks for some twenty to thirty statements, including an 'action plan' list of two hundred cases kept updated almost daily out of a pendency of about a thousand. CIS produces a management report, a balance sheet and the goshwara, but its output is not aligned with the format the High Court asks for, and it returns pendency without disposal - so age at disposal has to be computed from the institution and decision dates by hand.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-A.12",
+                  "s": "phhc3",
+                  "e": "rule_1-A.12"
+                }
+              ]
+            },
+            {
+              "t": "The gap is closed with a personal spreadsheet. The ahlmad exports the case data, and rebuilds the statements in Excel with VLOOKUP and date formulas on an Ubuntu desktop. He is explicit that this is not formal and that every ahlmad has his own way of doing it, and that he has had no training in it. His ask is the simplest one in the interview: make the system report what the High Court asks for.",
+              "c": []
             }
           ]
         }
@@ -2521,14 +3101,44 @@
           "role": "Ahlmad",
           "cat": "staff",
           "term": "ahlmad",
-          "who": "The court's reader and record-keeper, who receives the filed case in the destination court and takes over registration - the full address, extra-party details - and the subsequent process.",
-          "basis": "Court establishment role (the ahlmad / reader); named by the filing assistants as the hand-off point",
+          "who": "The court's record-keeper and process clerk. He receives the file from the filing branch, registers the case in CIS once the objections are removed, and from then on owns the court's process - generating and publishing the summons and warrants, entering bail bonds and sureties in the module shared across Punjab and Haryana, attaching the service reports the process servers bring back, keeping the registers, binding and consigning the decided file to the record room, and assembling the monthly returns the High Court requires. He is distinct from the reader, who keeps the daily proceedings and the dates.",
+          "basis": "Rules and Orders Vol.III, Chapter 1 Part A and Chapter 11 Part A; described firsthand by the criminal ahlmad, Panchkula (June 2026)",
           "sourceNotes": [
+            "hr-ahlmad-2026-06",
             "hr-filing-assistant-2026-06"
           ],
           "themes": [
-            "filing-and-intake"
-          ]
+            "filing-and-intake",
+            "process-and-service",
+            "records-and-registers",
+            "informal-digital-workaround",
+            "system-data-gap"
+          ],
+          "cite": [
+            {
+              "l": "R&O Vol.III r.1-A.4",
+              "s": "phhc3",
+              "e": "rule_1-A.4"
+            },
+            {
+              "l": "R&O Vol.III r.11-A.14",
+              "s": "phhc3",
+              "e": "rule_11-A.14"
+            },
+            {
+              "l": "R&O Vol.III r.2.6",
+              "s": "phhc3",
+              "e": "rule_2.6"
+            },
+            {
+              "l": "R&O Vol.III r.1-A.12",
+              "s": "phhc3",
+              "e": "rule_1-A.12"
+            }
+          ],
+          "informal": {
+            "practice": "Several of the things this desk does every day rest on no rule: the cheque amount is typed into the CIS FIR field because there is no cheque-amount column (his own words: 'our own innovation, which is wrong'); surety process is sent from a blank template because CIS has no summons-to-surety form; the month's institution register is printed from e-Courts and pasted into the physical register; service reports are attached to files by hand, date by date; and the High Court's action plan and statements are built in a personal Excel workbook with VLOOKUP and date formulas, differently by every ahlmad."
+          }
         },
         {
           "id": "peon",
@@ -2612,6 +3222,12 @@
               "s": "phhc3",
               "e": "rule_9-B.1"
             }
+          ],
+          "sourceNotes": [
+            "hr-ahlmad-2026-06"
+          ],
+          "themes": [
+            "process-and-service"
           ]
         },
         {
@@ -2749,6 +3365,68 @@
           ],
           "themes": [
             "court-technology-systems"
+          ]
+        },
+        {
+          "id": "court-reader",
+          "role": "Reader (court)",
+          "cat": "staff",
+          "term": "court-reader",
+          "who": "Sits with the presiding judge, keeps the daily proceedings and the dates, and raises the objections on a newly filed case - court fee, condonation of delay - before it is registered. Those objections are argued before the judge and it is the judge who decides them. Volume III makes the reader responsible, when a holiday or an absence wipes out a day's list, for telling the parties and witnesses who turn up at a closed court what their fresh dates are.",
+          "basis": "Rules and Orders Vol.III, Chapter 1 Part A; described firsthand by the criminal ahlmad, Panchkula (June 2026)",
+          "cite": [
+            {
+              "l": "R&O Vol.III r.1-A.10",
+              "s": "phhc3",
+              "e": "rule_1-A.10"
+            },
+            {
+              "l": "NI Act §142 (proviso on delay)",
+              "n": "ni:sec_142"
+            }
+          ],
+          "sourceNotes": [
+            "hr-ahlmad-2026-06"
+          ],
+          "themes": [
+            "pre-cognizance-scrutiny",
+            "filing-and-intake"
+          ]
+        },
+        {
+          "id": "process-server",
+          "role": "Process server",
+          "cat": "staff",
+          "who": "Serves the court's summons and warrants and brings the served process back to the ahlmad, taking his receiving for it. Nothing of that return reaches the case record automatically: the ahlmad sorts the acknowledgments date by date and attaches them to each file by hand. Where the process has to be served outside the district it goes instead to the magistrate of that district, and where summons have gone out two or three times without result the judge sends the police, who are answerable to her.",
+          "basis": "Court ministerial establishment; described firsthand by the criminal ahlmad, Panchkula (June 2026)",
+          "cite": [
+            {
+              "l": "R&O Vol.III r.1-Ci.6",
+              "s": "phhc3",
+              "e": "rule_1-Ci.6"
+            },
+            {
+              "l": "BNSS §64",
+              "n": "bnss:sec_64"
+            },
+            {
+              "l": "BNSS §69",
+              "n": "bnss:sec_69"
+            },
+            {
+              "l": "BNSS §70",
+              "n": "bnss:sec_70"
+            }
+          ],
+          "informal": {
+            "practice": "The whole return leg is manual. The server takes a receiving from the ahlmad, who then walks the acknowledgments into the files date by date; nothing about service status appears in the cause list or in CIS, so for process sent outside the district the court often learns of service only when the person appears."
+          },
+          "sourceNotes": [
+            "hr-ahlmad-2026-06"
+          ],
+          "themes": [
+            "process-and-service",
+            "system-data-gap"
           ]
         }
       ]

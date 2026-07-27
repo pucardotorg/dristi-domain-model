@@ -367,6 +367,12 @@
           "noteId": "hr-hc-it-systems-2026-06",
           "relation": "similar",
           "note": "The systems layer beneath this account. The High Court IT wing describes the establishment behind 'the computer room' - a System Officer and a System Assistant at every court location, who own the CIS server and its permissions - and the architectural reason the branch's problems cannot simply be fixed: no High Court can change the CIS core, so local need is met by read-only peripheral applications or waits years for a national patch. It does not reach the release permission, the blank non-mandatory fields or the emailed PDF copy, which were never raised in that interview and remain to be checked."
+        },
+        {
+          "place": "haryana",
+          "noteId": "hr-ahlmad-2026-06",
+          "relation": "similar",
+          "note": "The next link in the same chain, in the same building. HR-01 ends when the peon carries the file out of the filing window; HR-02 is the criminal ahlmad who receives it. They meet exactly on the FIR field: the filing branch parks the jurisdictional police station in it, the ahlmad types the cheque amount into it, and a s.138 case has no FIR at all - one dead column in the shared criminal template, repurposed twice for different data by two desks in the same court. The workarounds diverge in direction: the window's are about getting a file in, the ahlmad's about getting data back out. Neither note reports rent-seeking."
         }
       ],
       "tags": [
@@ -836,6 +842,895 @@
           "noteId": "hr-filing-assistant-2026-06",
           "relation": "similar",
           "note": "Two ends of the same access bottleneck. The Panchkula filing assistants describe having to telephone 'the computer room' ten to fifteen times a day before an e-filed case can be released into their queue; this note supplies the establishment on the other end of that telephone - every court location has its own System Officer and System Assistant who own the CIS server and its permissions. They diverge on coverage rather than substance: the High Court IT wing was not asked about e-filing, the e-Sewa Kendra, NSTEP or scanning, so it neither confirms nor contradicts HR-01's release, blank-field and emailed-PDF claims, and the E-Filing Rules put e-filing matters with a different officer again, the Administrator appointed by the District and Sessions Judge under r.3.2."
+        },
+        {
+          "place": "haryana",
+          "noteId": "hr-ahlmad-2026-06",
+          "relation": "diverges",
+          "note": "The district end of the two systems this note describes from the High Court. On the surety module the accounts agree, and the criminal ahlmad of a Panchkula court is the person who actually keys the bail bond and the sureties in; he adds one thing the centre does not mention, that the module has no summons-to-surety form, so surety process goes out on a blank template. On reporting they diverge: this note has a Statement Clerk in each district producing the periodical statements through the in-house reporting tool, while the ahlmad rebuilds the High Court's action plan and statements himself in Excel because the system returns pendency without disposal and its output is not aligned with the format the High Court asks for."
+        }
+      ]
+    },
+    {
+      "id": "hr-ahlmad-2026-06",
+      "serial": "HR-02",
+      "place": "haryana",
+      "date": "2026-06-15",
+      "attribution": {
+        "heardFrom": "Vinod",
+        "affiliation": "Criminal Ahlmad, Panchkula District Court, Haryana (Punjab & Haryana High Court)",
+        "secondhand": false,
+        "originalSource": "Firsthand - PUCAR field interview by Garvita and Varun, 'Interview #2: [P&H HC] - Ahlmad (Criminal) - June 2026', 30 minutes, published 15 June 2026. Video: https://youtu.be/ZUNBHZm7efQ. The presiding judge and the colleagues named in passing, and an unrelated case discussed on a phone call during the recording, are omitted; no contact details are recorded."
+      },
+      "statement": "The criminal ahlmad of a Panchkula magistrate's court walked through the whole life of a s.138 ('NACT') file from the moment it leaves the filing window to the moment it is consigned to the record room. The filing branch gives the file a filing number and sends it up; the reader raises objections on it (court fee, condonation of delay) and those are argued out before the judge; once the objections are removed the ahlmad registers the case in CIS and the main case number issues. He enters the complainant, the advocate, the accused's several addresses - and, because the criminal template has no cheque-amount column, he types the cheque amount into the FIR field, which he calls 'our own innovation, which is wrong'. Process generation is his desk: the CIS process list carries a separate 'summons to accused in 138' template that prints differently from the ordinary summons, and a generated process stays watermarked 'Draft' until it is published. If the accused appears, bail bonds and sureties go into a module shared across Punjab and Haryana so that one person cannot quietly stand surety everywhere; there is no summons-to-surety form, so he sends surety process from a blank template. If the accused does not appear the ladder runs bailable warrant, non-bailable warrant, a request to the bank for the KYC address, fresh warrants at the new address, proclamation, and attachment of the property the complainant's advocate lists. Out-of-district process goes to the magistrate of that district and comes back on paper; nothing shows in CIS, so he estimates that for about ninety per cent of process sent outside there is no certainty of service until the person turns up. Out of state, the police travel, make an entry at the local police station and execute from there. Where summons have gone out two or three times without result, the judge sends the police, who are answerable to her. Evidence is written out by hand, which he says produces mixed hands and illegible stretches; after the prosecution evidence the case goes to '313', then defence, then judgment. On decision he binds the file, prints the 'Index for Decided File' proforma out of CIS and sends it to the record room; if a criminal miscellaneous matter comes out of a consigned file it becomes a fresh file with a new number. Registers are kept by printing the month's institution register from e-Courts and pasting it in. The heaviest burden he described is reporting: the High Court asks for twenty to thirty statements including an 'action plan' list of two hundred cases updated almost daily, and because CIS gives pendency but not disposal data he builds them himself in Excel with VLOOKUP and date formulas on an Ubuntu desktop - 'this is not anything formal, these are all our own innovations', and every ahlmad has his own. His asks were specific: make the service report upload itself into the file, put the person's name on the process addressed to the police, add a summons to surety, and align what CIS reports with what the High Court asks for. No rent-seeking, payment for a file, or delay-for-payment was described or alleged at any point in the interview.",
+      "themes": [
+        "filing-and-intake",
+        "informal-digital-workaround",
+        "process-and-service",
+        "records-and-registers",
+        "system-data-gap",
+        "court-technology-systems"
+      ],
+      "tags": [
+        "court-staff",
+        "process-service",
+        "summons",
+        "warrants",
+        "record-room",
+        "registers",
+        "reporting",
+        "informal-practice",
+        "workaround",
+        "data-entry"
+      ],
+      "verification": {
+        "status": "mixed",
+        "claims": [
+          {
+            "claim": "the file reaches the ahlmad only after the filing branch has given it a filing number, and the main case registration and number are then done at his desk in CIS",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.2.6",
+                "s": "phhc3",
+                "e": "rule_2.6"
+              },
+              {
+                "l": "R&O Vol.III r.11-A.14",
+                "s": "phhc3",
+                "e": "rule_11-A.14"
+              },
+              {
+                "l": "BNSS §223",
+                "n": "bnss:sec_223"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Volume III r.2.6 requires that as soon as a summary case is received in Court it be entered in Register No. 1, and r.11-A.14 states that the registers of a magistrate's court are maintained by the ahlmad attached to it. The CIS registration number is the modern form of that entry; the filing number that precedes it is the filing branch's, as HR-01 describes."
+          },
+          {
+            "claim": "the ahlmad and the reader are two different officers of the same court - the reader raises objections and fixes the dates, the ahlmad registers, generates process and keeps the record",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.1-A.4 (Ahlmad or Moharrir)",
+                "s": "phhc3",
+                "e": "rule_1-A.4"
+              },
+              {
+                "l": "R&O Vol.III r.1-A.10 (reader of the court)",
+                "s": "phhc3",
+                "e": "rule_1-A.10"
+              },
+              {
+                "l": "R&O Vol.III r.11-A.14",
+                "s": "phhc3",
+                "e": "rule_11-A.14"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Volume III names the two offices separately: r.1-A.4(d) has talbana and stamped envelopes received by the Ahlmad or the Moharrir, while r.1-A.10 hands the peshi register to the reader of the court, who tells parties their fresh dates. The Haryana layer previously glossed the ahlmad as 'the court's record-keeper and reader'; this note corrects that - at Panchkula they are distinct desks."
+          },
+          {
+            "claim": "objections are raised on the file before registration - court fee, condonation of delay - and it is the judge, not the staff, who decides them",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "NI Act §142 (proviso on delay)",
+                "n": "ni:sec_142"
+              },
+              {
+                "l": "R&O Vol.III r.1-A.4 (ministerial staff not to receive petitions)",
+                "s": "phhc3",
+                "e": "rule_1-A.4"
+              },
+              {
+                "l": "R&O Vol.III r.1-B.6",
+                "s": "phhc3",
+                "e": "rule_1-B.6"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "s.142(1)(b) of the NI Act gives one month from the cause of action, and its proviso lets the court take cognizance later on sufficient cause - so condonation is a judicial act, exactly as described. Volume III r.1-A.4(c) keeps the ministerial establishment out of receiving and disposing of petitions."
+          },
+          {
+            "claim": "a cheque case carries its own summons, different from the ordinary criminal summons",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "NI Act §144 (mode of service of summons)",
+                "n": "ni:sec_144"
+              },
+              {
+                "l": "BNSS §63 (form of summons)",
+                "n": "bnss:sec_63"
+              },
+              {
+                "l": "R&O Vol.III r.1-Ci.2 (summons / e-summons)",
+                "s": "phhc3",
+                "e": "rule_1-Ci.2"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "s.144 of the NI Act gives a cheque summons its own service regime (speed post or an approved courier), and BNSS §63(i) lets the High Court direct by rule who signs a summons - which is why the CIS process list carries a distinct 'summons to accused in 138' template rather than the generic one."
+          },
+          {
+            "claim": "the NACT summons sits at a particular numbered entry in the CIS process list",
+            "status": "needs-check",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §63",
+                "n": "bnss:sec_63"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "toCheck": "The interview names 41, 45 and 50 at different moments while scrolling the screen, and the published chapter titles call it code 41. The number is a CIS process-master configuration for the establishment, not a legal provision, so it cannot be settled from the corpus. Check the CIS process master for the Panchkula establishment before recording any code."
+          },
+          {
+            "claim": "bail bonds and sureties are entered in a CIS module shared across Punjab and Haryana, so that the same person cannot quietly stand surety in many cases",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §486 (declaration by sureties)",
+                "n": "bnss:sec_486"
+              },
+              {
+                "l": "R&O Vol.III r.10.9 (sufficiency of bonds; stock sureties)",
+                "s": "phhc3",
+                "e": "rule_10.9"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "BNSS §486 requires every surety to declare before the court how many persons he has already stood surety for, and Volume III r.10.9 (para 9A) makes a surety file a photograph and an identity document precisely to defeat the bogus or 'stock' surety. The shared module is the software implementation of that statutory declaration."
+          },
+          {
+            "claim": "CIS has no 'summons to surety' and no warrant against a surety, so the ahlmad sends surety process from a blank template",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §491 (procedure when bond has been forfeited)",
+                "n": "bnss:sec_491"
+              },
+              {
+                "l": "BNSS §486",
+                "n": "bnss:sec_486"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Half of this is a real gap and half is not. BNSS §491 does require the court to call on the person bound by a forfeited bond to pay the penalty or show cause, so a notice to the surety is a statutory step with no CIS form behind it - the blank-template workaround fills a genuine hole. But the Sanhita's remedy against a defaulting surety is forfeiture and recovery of the penalty, not arrest, so the missing 'warrant of arrest for surety' has no statutory counterpart to be missing."
+          },
+          {
+            "claim": "when the accused does not appear the ladder runs summons, bailable warrant, non-bailable warrant, then proclamation, then attachment of the property listed by the complainant's advocate",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.1-Ci.2",
+                "s": "phhc3",
+                "e": "rule_1-Ci.2"
+              },
+              {
+                "l": "R&O Vol.III r.1-Ci.3 (bailable warrant)",
+                "s": "phhc3",
+                "e": "rule_1-Ci.3"
+              },
+              {
+                "l": "R&O Vol.III r.15-A.1 (attachment)",
+                "s": "phhc3",
+                "e": "rule_15-A.1"
+              },
+              {
+                "l": "R&O Vol.III r.15-A.2 (proclamation)",
+                "s": "phhc3",
+                "e": "rule_15-A.2"
+              },
+              {
+                "l": "BNSS §90 (warrant in lieu of summons)",
+                "n": "bnss:sec_90"
+              },
+              {
+                "l": "BNSS §84 (proclamation)",
+                "n": "bnss:sec_84"
+              },
+              {
+                "l": "BNSS §85 (attachment)",
+                "n": "bnss:sec_85"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Code-switch to watch: Volume III r.15-A.1 and r.15-A.2 still speak in the 1898 numbering (ss.87 to 89) and r.1-Ci.2 in its s.90; the live provisions are BNSS §§84, 85 and 90 (CrPC 1973 §§82, 83 and 87). The rule text is otherwise intact, including the thirty-day minimum in the proclamation."
+          },
+          {
+            "claim": "attachment of the absconder's property is used to get the cheque amount paid",
+            "status": "contradicted",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.15-A.1",
+                "s": "phhc3",
+                "e": "rule_15-A.1"
+              },
+              {
+                "l": "R&O Vol.III r.15-A.3",
+                "s": "phhc3",
+                "e": "rule_15-A.3"
+              },
+              {
+                "l": "BNSS §85",
+                "n": "bnss:sec_85"
+              },
+              {
+                "l": "BNSS §395 (compensation out of fine)",
+                "n": "bnss:sec_395"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Attachment under BNSS §85 is a coercive measure to compel attendance, and Volume III r.15-A.1 calls it exactly that - the last remedy for compelling attendance. r.15-A.3 says the attached property remains at the disposal of Government and, if sold, the proceeds go back to the absconder if he appears within two years. It is not a recovery mechanism and the complainant is not paid out of it; the complainant's money comes from compensation out of a fine on conviction, or from a settlement. Recorded as a widely held but mistaken working assumption, not as a finding against the officer."
+          },
+          {
+            "claim": "the court asks the bank for the accused's KYC address when warrants keep coming back unserved, and re-issues process to the new address",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §94 (summons to produce document or other thing)",
+                "n": "bnss:sec_94"
+              },
+              {
+                "l": "Bankers' Books Evidence Act §6 (inspection by order of court)",
+                "n": "bbea:sec_6"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "No rule in the corpus prescribes a 'KYC step'. It is a local sequencing habit resting on the court's ordinary power to call for a document under BNSS §94 and on the Bankers' Books Evidence Act, and it is a genuinely useful one - the address the complainant supplies is often the one on the cheque, and the bank holds a verified one."
+          },
+          {
+            "claim": "the cheque amount is typed into the FIR field of the CIS record, because the criminal template has no cheque-amount column",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "NI Act §138",
+                "n": "ni:sec_138"
+              },
+              {
+                "l": "BNSS §223",
+                "n": "bnss:sec_223"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The interviewee volunteers that this is 'our own innovation, which is wrong'. It is the same field HR-01 found the filing branch using for the police station: a s.138 case is a complaint offence with no FIR, so the FIR column in the shared criminal template is dead space and both desks in the same building have repurposed it for different data. That is a data-model defect worth fixing at source with a cheque-amount field, not a staff failing."
+          },
+          {
+            "claim": "the evidence in the trial is written out by hand",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.1-E.3 (mode of recording evidence)",
+                "s": "phhc3",
+                "e": "rule_1-E.3"
+              },
+              {
+                "l": "R&O Vol.III r.1-E.11 (illegible record)",
+                "s": "phhc3",
+                "e": "rule_1-E.11"
+              },
+              {
+                "l": "BNSS §309 (memorandum of substance of evidence)",
+                "n": "bnss:sec_309"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Lawful but against the grain of the rule. BNSS §309 lets the memorandum be made from the magistrate's dictation in open court, so a written record is proper; but Volume III r.1-E.3(ii)(a) says depositions shall be recorded in typed format if possible and prepared on computers if available, and r.1-E.11 requires a legible record. The ahlmad's own complaint - mixed hands, illegible stretches, no symmetry in the file - is the harm r.1-E.11 was written against."
+          },
+          {
+            "claim": "after the prosecution evidence the case goes to '313' and then to defence evidence and judgment",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "CrPC §313 (the number staff still use)",
+                "n": "crpc:sec_313"
+              },
+              {
+                "l": "BNSS §351 (the live provision)",
+                "n": "bnss:sec_351"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "A pure code-switch observation. Everyone on the ground still says '313'; since 1 July 2024 the provision is BNSS §351, which adds a proviso letting the court dispense with the examination in a summons case where personal attendance has been dispensed with - directly relevant to a cheque case run under BNSS §228."
+          },
+          {
+            "claim": "on decision the file is bound, an 'Index for Decided File' proforma is generated from CIS, and the file goes down to the record room",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.3.18 (record complete before consigning)",
+                "s": "phhc3",
+                "e": "rule_3.18"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The duty to complete the record before consigning it to the record room is in Volume III r.3.18; the index proforma itself is a CIS artefact. The record-room rules proper sit in Rules and Orders Volume IV and Volume VI-B, which are not in the corpus, so the retention and indexing requirements could not be checked here."
+          },
+          {
+            "claim": "a criminal miscellaneous (CRM) matter arising out of a decided and consigned NACT file is taken out as a fresh file with its own number",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.26-B.1 (separate record, separate consignment)",
+                "s": "phhc3",
+                "e": "rule_26-B.1"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Volume III states the principle for transfer applications: they form a file separate from the record of the main case and are consigned to the record room separately. The CRM practice applies the same principle to any miscellaneous proceeding that outlives the main case; the numbering itself is a registry and CIS mechanic."
+          },
+          {
+            "claim": "a summons for another district is sent to the magistrate of that district, who has it served and returns it",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §69 (service of summons outside local limits)",
+                "n": "bnss:sec_69"
+              },
+              {
+                "l": "BNSS §70 (proof of service; duplicate returned)",
+                "n": "bnss:sec_70"
+              },
+              {
+                "l": "R&O Vol.III r.1-Ci.6 (service of processes)",
+                "s": "phhc3",
+                "e": "rule_1-Ci.6"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "BNSS §69 is exactly the described loop - the court sends the summons in duplicate to a magistrate in whose local jurisdiction the person is, to be served there - and §70 closes it with an affidavit of service and the endorsed duplicate returned to the issuing court."
+          },
+          {
+            "claim": "there is no interconnectivity for out-of-district process, so in roughly ninety per cent of cases the court cannot be sure whether it was served",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §70",
+                "n": "bnss:sec_70"
+              },
+              {
+                "l": "BNSS §64 (register of address, email and phone)",
+                "n": "bnss:sec_64"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "toCheck": "The ninety per cent is the officer's impression from the desk, not a measured figure - it should be tested against a sample of NACT files with out-of-district service before it is quoted.",
+            "note": "The tracking gap itself is real and is a software gap, not a legal one: BNSS §70 already provides a paper return, and the proviso to §64(1) now requires the police station or the court registrar to keep a service register with address, email and phone. Nothing surfaces either in the issuing court's CIS record, so the ahlmad learns of service only when the paper comes back or the accused turns up."
+          },
+          {
+            "claim": "for out-of-state process the police travel, make an entry at the local police station, and execute the process from that local jurisdiction",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §79 (warrant executable anywhere in India)",
+                "n": "bnss:sec_79"
+              },
+              {
+                "l": "BNSS §80 (warrant forwarded outside jurisdiction)",
+                "n": "bnss:sec_80"
+              },
+              {
+                "l": "BNSS §81 (endorsement by local Magistrate or SHO)",
+                "n": "bnss:sec_81"
+              },
+              {
+                "l": "BNSS §82 (arrest outside the district)",
+                "n": "bnss:sec_82"
+              },
+              {
+                "l": "HR Police Act §47 (role and functions of the police)",
+                "s": "hpa",
+                "e": "sec_47"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The 'entry at the local police station' is BNSS §81: a warrant taken beyond the issuing court's jurisdiction is endorsed by an Executive Magistrate or by an officer in charge of a police station there, and that endorsement is the authority to execute. §82 then requires the person arrested outside the district to be produced before the local Magistrate or Superintendent."
+          },
+          {
+            "claim": "in a NACT case summons are the prime responsibility of the Nazir branch",
+            "status": "needs-check",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.1-Ci.6",
+                "s": "phhc3",
+                "e": "rule_1-Ci.6"
+              },
+              {
+                "l": "R&O Vol.III r.9-A.3 (nazir and witness costs)",
+                "s": "phhc3",
+                "e": "rule_9-A.3"
+              },
+              {
+                "l": "R&O Vol.III r.9-B.1 (nazarat instructions)",
+                "s": "phhc3",
+                "e": "rule_9-B.1"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "toCheck": "Volume III puts the nazarat in charge of the money side - witness diet and road money, custody of property - and expressly sends the reader elsewhere for process: r.1-Ci.6 says the detailed instructions on issuing and serving the process of criminal courts are in Rules and Orders Volume IV, Chapter 8, which is not in the corpus. Bring Volume IV Chapter 8 in through the corpus-acts skill before recording the nazarat as the process branch."
+          },
+          {
+            "claim": "process servers bring the served summons back to the ahlmad, take his receiving, and he attaches them to each file by date entirely by hand",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §70",
+                "n": "bnss:sec_70"
+              },
+              {
+                "l": "BNSS §64",
+                "n": "bnss:sec_64"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The manual attach is the local implementation of the statutory return in BNSS §70. His own ask is precise and worth quoting to any designer: if the service report uploaded itself, the page would already be in the file on the judge's desk on the day of service."
+          },
+          {
+            "claim": "the cause list shows the stage of a case but not whether the process issued in it was executed",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.1-A.10 (peshi register)",
+                "s": "phhc3",
+                "e": "rule_1-A.10"
+              },
+              {
+                "l": "BNSS §64",
+                "n": "bnss:sec_64"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "No rule requires the cause list to carry service status - the peshi register's job under r.1-A.10 is dates. But the proviso to BNSS §64(1) now requires a service register to be maintained, which is the natural place for the status the cause list does not show."
+          },
+          {
+            "claim": "the court's registers are kept by printing the month's institution register out of e-Courts and pasting it into the physical register",
+            "status": "reported-practice",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.2.6 (Register No. 1; register of summary cases)",
+                "s": "phhc3",
+                "e": "rule_2.6"
+              },
+              {
+                "l": "R&O Vol.III r.11-A.14 (registers maintained by the ahlmad)",
+                "s": "phhc3",
+                "e": "rule_11-A.14"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The duty is formal and the ahlmad's: r.2.6 requires a summary case to be entered in Register No. 1 as soon as it is received in court and in the register of summary cases when the accused appears, and r.11-A.14 makes the ahlmad the keeper of the registers with a monthly inspection by the presiding officer. The paste-in is the informal method by which a paper register is now fed from the database. Note that r.11-A.14 is written for the First Information Report registers, which never arise in a NACT case - the same no-FIR point HR-01 recorded from the filing window."
+          },
+          {
+            "claim": "the High Court requires roughly twenty to thirty statements, including an 'action plan' list of two hundred cases that has to be kept updated almost daily",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.1-A.12 (monthly statement of cases over one year old)",
+                "s": "phhc3",
+                "e": "rule_1-A.12"
+              },
+              {
+                "l": "R&O Vol.III r.1-A.13 (history sheets, six oldest cases)",
+                "s": "phhc3",
+                "e": "rule_1-A.13"
+              },
+              {
+                "l": "R&O Vol.III r.1-A.11 (daily progress reports)",
+                "s": "phhc3",
+                "e": "rule_1-A.11"
+              },
+              {
+                "l": "R&O Vol.III r.2.6 (monthly statement of summary cases)",
+                "s": "phhc3",
+                "e": "rule_2.6"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The reporting burden is not informal at all. r.1-A.12 makes every judicial officer send the High Court a monthly statement of criminal cases pending over one year in Proforma B before the 10th of the following month, r.1-A.13 adds history sheets for the six oldest, r.1-A.11 prescribes daily progress reports, and r.2.6 adds a monthly summary-case statement. The 'action plan' is the current administrative expression of that stack. The count of twenty to thirty separate statements is the officer's description of the present High Court format, which is an administrative circular and not in the corpus."
+          },
+          {
+            "claim": "the periodical statements the High Court requires are produced by a Statement Clerk through the CIS reporting tool",
+            "status": "contradicted",
+            "method": "firsthand account from the district desk, set against the account given by the High Court IT wing",
+            "evidence": [
+              {
+                "l": "R&O Vol.III r.2.6 (monthly statement of summary cases)",
+                "s": "phhc3",
+                "e": "rule_2.6"
+              },
+              {
+                "l": "R&O Vol.III r.1-A.12",
+                "s": "phhc3",
+                "e": "rule_1-A.12"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Not contradicted as law - the duty and the post are both real - but contradicted as a description of what happens on this desk. The High Court IT wing's account has a Statement Clerk in each district producing the periodical statements through the in-house reporting tool. The criminal ahlmad of a Panchkula court says he builds the High Court's action plan and statements himself, in his own Excel workbook, because what the system returns is not aligned with the format the High Court asks for and it gives pendency without disposal. Both can be true at once - a clerk files the standard returns while each ahlmad rebuilds the case-level lists by hand - and the gap between the two accounts is itself the finding: the centre believes the reporting is automated, the desk is doing it by formula."
+          },
+          {
+            "claim": "the ahlmad builds those statements himself in Excel with VLOOKUP and date formulas, and each ahlmad has his own way of doing it",
+            "status": "reported-practice",
+            "method": "firsthand account",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "His own framing: 'this is not anything formal, but these are all our own innovations', and 'this is our each individual, each Ahlmad's own separate innovation'. It is the same shape of workaround HR-01 found at the filing window - a private, unversioned artefact standing between a statutory duty and a system that does not meet it. The spreadsheets run on an Ubuntu desktop and the staff have had no training in building them."
+          },
+          {
+            "claim": "CIS returns pendency data but not disposal data, so age-at-disposal has to be computed by hand",
+            "status": "needs-check",
+            "method": "cross-checked against the corpus",
+            "evidence": [],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "toCheck": "This is a claim about software behaviour, not law, and the corpus cannot settle it. Check the CIS management report, balance sheet and query-builder outputs for the establishment: whether a disposal register with the date of decision can be exported for a date range, and whether the date of decision auto-populates on exit or has to be filled in manually as described."
+          },
+          {
+            "claim": "an ahlmad's CIS login can open the process-generation screen of any other court in the establishment",
+            "status": "reported-practice",
+            "method": "firsthand account, demonstrated on screen during the interview",
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "toCheck": "Check the CIS role-permission matrix for the ahlmad role: whether cross-court process generation is intended, logged, and attributable. No misuse was alleged or observed - the officer said plainly that he does not know his way around other courts' screens and was demonstrating the system, not a practice.",
+            "note": "Recorded as a control observation, not as an integrity allegation. It matters because process generation is the act that puts the court's seal behind a coercive order."
+          },
+          {
+            "claim": "a generated process carries 'Draft' in large letters until it is published in CIS, and a draft version is not acceptable for use",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §63 (form of summons)",
+                "n": "bnss:sec_63"
+              },
+              {
+                "l": "BNSS §72 (form of warrant)",
+                "n": "bnss:sec_72"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Legally sound. A summons must be in writing signed by the presiding officer and bear the seal of the court, or be in electronic form bearing the image of the seal or a digital signature; a warrant must likewise be signed and sealed. An unpublished draft carries none of that, so it is not process at all - the watermark is doing real work."
+          },
+          {
+            "claim": "the process CIS generates for police execution is addressed to the police but does not carry the name of the person to be produced",
+            "status": "reported-practice",
+            "method": "firsthand account, observed on screen; the legal requirement cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §72 (warrant in writing, signed, sealed)",
+                "n": "bnss:sec_72"
+              },
+              {
+                "l": "BNSS §77 (notification of substance of warrant)",
+                "n": "bnss:sec_77"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The officer flags it himself: 'this is also wrong, the person's name should appear here'. He is right. BNSS §77 requires the officer executing a warrant to notify its substance to the person to be arrested and to show him the warrant if asked, which is impossible if the process does not identify that person. A template defect with a direct legal consequence."
+          },
+          {
+            "claim": "s.138 is bailable, so anyone who appears will get bail",
+            "status": "corroborated",
+            "method": "firsthand account cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "NI Act §138 (imprisonment up to two years)",
+                "n": "ni:sec_138"
+              },
+              {
+                "l": "BNSS §478 (in what cases bail to be taken)",
+                "n": "bnss:sec_478"
+              },
+              {
+                "l": "R&O Vol.III r.10.1 (bail a right, not a favour)",
+                "s": "phhc3",
+                "e": "rule_10.1"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "Correct. BNSS §478(1) makes release on bail mandatory for a person not accused of a non-bailable offence, and Volume III r.10.1 says for every bailable offence bail is a right and not a favour. The classification itself comes from Part II of the BNSS First Schedule (an offence under another law punishable with less than three years), which is not in the corpus."
+          },
+          {
+            "claim": "the one way an accused will not get bail is if he has no surety",
+            "status": "contradicted",
+            "method": "cross-checked against the corpus",
+            "evidence": [
+              {
+                "l": "BNSS §478 (proviso and Explanation)",
+                "n": "bnss:sec_478"
+              },
+              {
+                "l": "R&O Vol.III r.10.1",
+                "s": "phhc3",
+                "e": "rule_10.1"
+              }
+            ],
+            "by": "PUCAR",
+            "on": "2026-07-27",
+            "note": "The proviso to BNSS §478(1) says the court shall, if the person is indigent and unable to furnish surety, discharge him on his own bond instead of taking a bail bond, and the Explanation presumes indigence where he cannot give a bail bond within a week of arrest. So the absence of a surety is not a lawful ground for keeping a s.138 accused in custody. Recorded because it is the single point in this interview where the working assumption at the desk could cost a person his liberty."
+          }
+        ]
+      },
+      "impact": {
+        "changed": true,
+        "changes": [
+          {
+            "unit": "role",
+            "op": "enhanced",
+            "ref": "haryana:role:ahlmad",
+            "label": "Ahlmad"
+          },
+          {
+            "unit": "role",
+            "op": "created",
+            "ref": "haryana:role:court-reader",
+            "label": "Reader (court)"
+          },
+          {
+            "unit": "role",
+            "op": "created",
+            "ref": "haryana:role:process-server",
+            "label": "Process server"
+          },
+          {
+            "unit": "role",
+            "op": "enhanced",
+            "ref": "haryana:role:nazir",
+            "label": "Nazir"
+          },
+          {
+            "unit": "process",
+            "op": "created",
+            "ref": "haryana:process:ahlmad-registration",
+            "label": "4a · The ahlmad's desk: objections, registration and numbering"
+          },
+          {
+            "unit": "process",
+            "op": "created",
+            "ref": "haryana:process:process-generation-service",
+            "label": "6a · Process generation, service and the coercive ladder"
+          },
+          {
+            "unit": "process",
+            "op": "created",
+            "ref": "haryana:process:consignment-record-room",
+            "label": "13a · Consignment, the record room and the miscellaneous file"
+          },
+          {
+            "unit": "process",
+            "op": "created",
+            "ref": "haryana:process:registers-returns",
+            "label": "13b · Registers, returns and the High Court action plan"
+          },
+          {
+            "unit": "process",
+            "op": "enhanced",
+            "ref": "haryana:process:informal-workarounds",
+            "label": "14 · Informal digital and workaround practices"
+          },
+          {
+            "unit": "term",
+            "op": "enhanced",
+            "ref": "haryana:term:ahlmad",
+            "label": "Ahlmad"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:court-reader",
+            "label": "Reader (court)"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:process-generation",
+            "label": "Process generation"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:nact-summons",
+            "label": "NACT summons"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:publishing-cis",
+            "label": "Publishing (CIS)"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:notice-of-accusation",
+            "label": "Notice of accusation"
+          },
+          {
+            "unit": "term",
+            "op": "enhanced",
+            "ref": "haryana:term:surety-module",
+            "label": "Surety module"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:bank-kyc-verification",
+            "label": "Bank KYC verification"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:consignment",
+            "label": "Consignment"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:index-for-decided-file",
+            "label": "Index for Decided File"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:criminal-miscellaneous",
+            "label": "Criminal miscellaneous"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:institution-register",
+            "label": "Institution register"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:action-plan",
+            "label": "Action plan"
+          },
+          {
+            "unit": "term",
+            "op": "created",
+            "ref": "haryana:term:goshwara",
+            "label": "Goshwara"
+          }
+        ],
+        "relatesToLaw": [
+          {
+            "l": "R&O Vol.III r.11-A.14",
+            "s": "phhc3",
+            "e": "rule_11-A.14",
+            "relation": "governs",
+            "note": "the registers of a magistrate's court are maintained by the ahlmad attached to it"
+          },
+          {
+            "l": "R&O Vol.III r.2.6",
+            "s": "phhc3",
+            "e": "rule_2.6",
+            "relation": "governs",
+            "note": "a summary case is entered in Register No. 1 as soon as it is received in court"
+          },
+          {
+            "l": "R&O Vol.III r.1-A.12",
+            "s": "phhc3",
+            "e": "rule_1-A.12",
+            "relation": "governs",
+            "note": "the monthly statement of over-one-year criminal cases the High Court's action plan descends from"
+          },
+          {
+            "l": "R&O Vol.III r.15-A.1",
+            "s": "phhc3",
+            "e": "rule_15-A.1",
+            "relation": "governs",
+            "note": "attachment as the last remedy for compelling attendance, not a recovery route"
+          },
+          {
+            "l": "BNSS §69",
+            "n": "bnss:sec_69",
+            "relation": "governs",
+            "note": "out-of-district service through the magistrate of the place where the person is"
+          },
+          {
+            "l": "BNSS §486",
+            "n": "bnss:sec_486",
+            "relation": "operationalises",
+            "note": "the surety's declaration of how many persons he has stood surety for - what the shared CIS module enforces"
+          },
+          {
+            "l": "BNSS §351",
+            "n": "bnss:sec_351",
+            "relation": "relates",
+            "note": "the live provision behind the '313' everyone at the desk still says"
+          },
+          {
+            "l": "BNSS §478",
+            "n": "bnss:sec_478",
+            "relation": "governs",
+            "note": "bail as of right in a bailable offence, and release on personal bond where no surety can be furnished"
+          }
+        ]
+      },
+      "compare": [
+        {
+          "place": "haryana",
+          "noteId": "hr-filing-assistant-2026-06",
+          "relation": "similar",
+          "note": "The two halves of the same building and the same file. HR-01 ends where the peon carries the file out of the filing window; HR-02 begins when it lands on the ahlmad's desk upstairs. They converge exactly on the FIR field: the filing branch parks the police station in it, the ahlmad types the cheque amount into it, and neither has anything to do with a s.138 case, which has no FIR at all. They diverge on where the pain sits - the filing window's workarounds are about getting a file in (an emailed PDF, a laminated cheque, the computer room gating e-filings), while the ahlmad's are about getting data back out (Excel action plans, hand-attached service reports, a manual cause-list cross-check). Neither note reports any rent-seeking."
+        },
+        {
+          "place": "haryana",
+          "noteId": "hr-hc-it-systems-2026-06",
+          "relation": "diverges",
+          "note": "The same two systems seen from opposite ends. On the surety module the accounts agree: the High Court IT wing describes a central database that checks a proposed surety against every court in Punjab, Haryana and Chandigarh, and the ahlmad is the person who actually keys the bail bond and the sureties into it - he adds the gap the centre does not mention, that there is no summons-to-surety form, so surety process goes out on a blank template. On reporting they diverge sharply. The IT wing has a Statement Clerk in each district producing the periodical statements through the in-house reporting tool; the ahlmad says he rebuilds the High Court's action plan and statements himself in Excel, because the system returns pendency without disposal and its output is not aligned with the format the High Court asks for. The centre believes the reporting is automated; the desk is doing it by formula."
         }
       ]
     }
