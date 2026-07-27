@@ -1463,7 +1463,7 @@
                   "e": "rule_1"
                 },
                 {
-                  "l": "cl.2 (definitions)",
+                  "l": "e-Filing SOP cl.2 (definitions)",
                   "s": "gefr",
                   "e": "rule_2"
                 }
@@ -1487,17 +1487,17 @@
               "t": "The court fee is three rupees. Schedule II, Article 1(c) of the Gujarat Court-Fees Act charges a flat three rupees on a writing containing a complaint or charge of any offence presented to a criminal court, whatever the cheque is worth, and section 4 forbids the document being filed at all unless the fee is paid. It is paid electronically.",
               "c": [
                 {
-                  "l": "Court-Fees Act Sch.II Art.1",
+                  "l": "Gujarat Court-Fees Act Sch.II Art.1",
                   "s": "gcf",
                   "e": "art_1"
                 },
                 {
-                  "l": "§4 (no filing without fee)",
+                  "l": "Gujarat Court-Fees Act §4 (no filing without fee)",
                   "s": "gcf",
                   "e": "sec_4"
                 },
                 {
-                  "l": "§37 (e-payment)",
+                  "l": "Gujarat Court-Fees Act §37 (e-payment)",
                   "s": "gcf",
                   "e": "sec_37"
                 },
@@ -1517,7 +1517,7 @@
                   "e": "rule_135"
                 },
                 {
-                  "l": "Court-Fees Act Sch.II Art.12",
+                  "l": "Gujarat Court-Fees Act Sch.II Art.12",
                   "s": "gcf",
                   "e": "art_12"
                 }
@@ -1648,7 +1648,7 @@
               "t": "Where that first examination of the complainant is reduced to writing, the Court-Fees Act charges a further ten rupees, unless the court remits it.",
               "c": [
                 {
-                  "l": "Court-Fees Act §19",
+                  "l": "Gujarat Court-Fees Act §19",
                   "s": "gcf",
                   "e": "sec_19"
                 }
@@ -1711,7 +1711,7 @@
                   "e": "rule_41"
                 },
                 {
-                  "l": "Court-Fees Act §33",
+                  "l": "Gujarat Court-Fees Act §33",
                   "s": "gcf",
                   "e": "sec_33"
                 }
@@ -1726,7 +1726,7 @@
                   "e": "sec_64"
                 },
                 {
-                  "l": "§2 (competent authority)",
+                  "l": "Gujarat Police Act §2 (competent authority)",
                   "s": "gpa",
                   "e": "sec_2"
                 },
@@ -1810,7 +1810,7 @@
               "t": "The accused who answers the summons is released on a bond. Two rupees of court fee is charged on a bail bond or a recognizance for appearance, and the sufficiency of the surety is primarily the presiding officer's own responsibility - a revenue solvency certificate only where there is doubt, moveable property enough for a bond up to Rs.2,000.",
               "c": [
                 {
-                  "l": "Court-Fees Act Sch.II Art.10",
+                  "l": "Gujarat Court-Fees Act Sch.II Art.10",
                   "s": "gcf",
                   "e": "art_10"
                 },
@@ -2090,7 +2090,7 @@
                   "e": "rule_12"
                 },
                 {
-                  "l": "Court-Fees Act §37",
+                  "l": "Gujarat Court-Fees Act §37",
                   "s": "gcf",
                   "e": "sec_37"
                 }
@@ -2168,22 +2168,22 @@
               "t": "Revision and quashing go to the High Court of Gujarat, where a Single Judge hears applications on the criminal side. The matter is presented in the office of the Registrar, gets a filing number at once and a registration number only if there is no office objection, must be accompanied by the certified copy of the judgment or order challenged, and must be examined by the office within six days of filing.",
               "c": [
                 {
-                  "l": "HC Rules r.2",
+                  "l": "Gujarat HC Rules r.2",
                   "s": "ghcr",
                   "e": "rule_2"
                 },
                 {
-                  "l": "HC Rules r.333",
+                  "l": "Gujarat HC Rules r.333",
                   "s": "ghcr",
                   "e": "rule_333"
                 },
                 {
-                  "l": "HC Rules r.345",
+                  "l": "Gujarat HC Rules r.345",
                   "s": "ghcr",
                   "e": "rule_345"
                 },
                 {
-                  "l": "HC Rules r.339",
+                  "l": "Gujarat HC Rules r.339",
                   "s": "ghcr",
                   "e": "rule_339"
                 },
@@ -2201,17 +2201,17 @@
               "t": "Office objections are put up on a special notice board and must be removed within fourteen days, failing which the matter goes before the Court for orders. Where the office re-examines the court fee, a receipt of a payment made through the e-payment system may be required in place of a stamp.",
               "c": [
                 {
-                  "l": "HC Rules r.340",
+                  "l": "Gujarat HC Rules r.340",
                   "s": "ghcr",
                   "e": "rule_340"
                 },
                 {
-                  "l": "HC Rules r.64",
+                  "l": "Gujarat HC Rules r.64",
                   "s": "ghcr",
                   "e": "rule_64"
                 },
                 {
-                  "l": "Court-Fees Act §37",
+                  "l": "Gujarat Court-Fees Act §37",
                   "s": "gcf",
                   "e": "sec_37"
                 }
@@ -2355,7 +2355,7 @@
               "e": "rule_28"
             },
             {
-              "l": "Court-Fees Act Sch.II Art.10",
+              "l": "Gujarat Court-Fees Act Sch.II Art.10",
               "s": "gcf",
               "e": "art_10"
             }
@@ -2661,7 +2661,7 @@
               "e": "sec_64"
             },
             {
-              "l": "§2 (competent authority)",
+              "l": "Gujarat Police Act §2 (competent authority)",
               "s": "gpa",
               "e": "sec_2"
             },
@@ -2686,7 +2686,7 @@
           "e": "sec_3"
         },
         {
-          "l": "§5 (constitution of the force)",
+          "l": "Gujarat Police Act §5",
           "s": "gpa",
           "e": "sec_5"
         },
@@ -2705,12 +2705,12 @@
           ],
           "cite": [
             {
-              "l": "GP Act §5A",
+              "l": "Gujarat Police Act §5A",
               "s": "gpa",
               "e": "sec_5"
             },
             {
-              "l": "§4 (superintendence)",
+              "l": "Gujarat Police Act §4 (superintendence)",
               "s": "gpa",
               "e": "sec_4"
             }
@@ -2728,7 +2728,7 @@
           ],
           "cite": [
             {
-              "l": "GP Act §6(1)",
+              "l": "Gujarat Police Act §6(1)",
               "s": "gpa",
               "e": "sec_6"
             }
@@ -2746,7 +2746,7 @@
           ],
           "cite": [
             {
-              "l": "GP Act §6(2)",
+              "l": "Gujarat Police Act §6(2)",
               "s": "gpa",
               "e": "sec_6"
             }
@@ -2764,17 +2764,17 @@
           ],
           "cite": [
             {
-              "l": "GP Act §7",
+              "l": "Gujarat Police Act §7",
               "s": "gpa",
               "e": "sec_7"
             },
             {
-              "l": "§16 (general powers)",
+              "l": "Gujarat Police Act §16 (general powers)",
               "s": "gpa",
               "e": "sec_16"
             },
             {
-              "l": "§2(3) (competent authority)",
+              "l": "Gujarat Police Act §2(3) (competent authority)",
               "s": "gpa",
               "e": "sec_2"
             }
@@ -2792,17 +2792,17 @@
           ],
           "cite": [
             {
-              "l": "GP Act §8",
+              "l": "Gujarat Police Act §8",
               "s": "gpa",
               "e": "sec_8"
             },
             {
-              "l": "§16",
+              "l": "Gujarat Police Act §16",
               "s": "gpa",
               "e": "sec_16"
             },
             {
-              "l": "§17 (District Magistrate's control)",
+              "l": "Gujarat Police Act §17 (District Magistrate's control)",
               "s": "gpa",
               "e": "sec_17"
             }
@@ -2821,12 +2821,12 @@
           ],
           "cite": [
             {
-              "l": "GP Act §8",
+              "l": "Gujarat Police Act §8",
               "s": "gpa",
               "e": "sec_8"
             },
             {
-              "l": "§11 (in a commissionerate)",
+              "l": "Gujarat Police Act §11 (in a commissionerate)",
               "s": "gpa",
               "e": "sec_11"
             }
@@ -2844,17 +2844,17 @@
           ],
           "cite": [
             {
-              "l": "GP Act §12(2)",
+              "l": "Gujarat Police Act §12(2)",
               "s": "gpa",
               "e": "sec_12"
             },
             {
-              "l": "§12A (appointment)",
+              "l": "Gujarat Police Act §12A (appointment)",
               "s": "gpa",
               "e": "sec_12"
             },
             {
-              "l": "§14 (certificate)",
+              "l": "Gujarat Police Act §14 (certificate)",
               "s": "gpa",
               "e": "sec_14"
             }
@@ -2872,12 +2872,12 @@
           ],
           "cite": [
             {
-              "l": "GP Act §5(a)",
+              "l": "Gujarat Police Act §5(a)",
               "s": "gpa",
               "e": "sec_5"
             },
             {
-              "l": "§14",
+              "l": "Gujarat Police Act §14",
               "s": "gpa",
               "e": "sec_14"
             }
@@ -2895,17 +2895,17 @@
           ],
           "cite": [
             {
-              "l": "GP Act §2(4)",
+              "l": "Gujarat Police Act §2(4)",
               "s": "gpa",
               "e": "sec_2"
             },
             {
-              "l": "§14",
+              "l": "Gujarat Police Act §14",
               "s": "gpa",
               "e": "sec_14"
             },
             {
-              "l": "§64",
+              "l": "Gujarat Police Act §64",
               "s": "gpa",
               "e": "sec_64"
             }
@@ -2919,7 +2919,7 @@
           "name": "Special Police Officer",
           "cite": [
             {
-              "l": "GP Act §21",
+              "l": "Gujarat Police Act §21",
               "s": "gpa",
               "e": "sec_21"
             }
@@ -2936,17 +2936,17 @@
           "head": "Director General and Inspector General of Police",
           "cite": [
             {
-              "l": "§3",
+              "l": "Gujarat Police Act §3",
               "s": "gpa",
               "e": "sec_3"
             },
             {
-              "l": "§4",
+              "l": "Gujarat Police Act §4",
               "s": "gpa",
               "e": "sec_4"
             },
             {
-              "l": "§5",
+              "l": "Gujarat Police Act §5",
               "s": "gpa",
               "e": "sec_5"
             }
@@ -2959,12 +2959,12 @@
           "head": "Commissioner of Police",
           "cite": [
             {
-              "l": "§7",
+              "l": "Gujarat Police Act §7",
               "s": "gpa",
               "e": "sec_7"
             },
             {
-              "l": "§11",
+              "l": "Gujarat Police Act §11",
               "s": "gpa",
               "e": "sec_11"
             }
@@ -2977,17 +2977,17 @@
           "head": "District Superintendent of Police",
           "cite": [
             {
-              "l": "§8",
+              "l": "Gujarat Police Act §8",
               "s": "gpa",
               "e": "sec_8"
             },
             {
-              "l": "§2(5) (definition)",
+              "l": "Gujarat Police Act §2(5) (definition)",
               "s": "gpa",
               "e": "sec_2"
             },
             {
-              "l": "§17",
+              "l": "Gujarat Police Act §17",
               "s": "gpa",
               "e": "sec_17"
             }
@@ -3000,7 +3000,7 @@
           "head": "Superintendent of Police",
           "cite": [
             {
-              "l": "§12(1)-(2)",
+              "l": "Gujarat Police Act §12(1)-(2)",
               "s": "gpa",
               "e": "sec_12"
             }
@@ -3013,7 +3013,7 @@
           "head": "Inspector of Police",
           "cite": [
             {
-              "l": "§12(2)",
+              "l": "Gujarat Police Act §12(2)",
               "s": "gpa",
               "e": "sec_12"
             }
@@ -3034,12 +3034,12 @@
           "name": "State Security Commission",
           "cite": [
             {
-              "l": "GP Act §32B",
+              "l": "Gujarat Police Act §32B",
               "s": "gpa",
               "e": "sec_32B"
             },
             {
-              "l": "§32C (annual report)",
+              "l": "Gujarat Police Act §32C (annual report)",
               "s": "gpa",
               "e": "sec_32C"
             }
@@ -3051,12 +3051,12 @@
           "name": "Police Establishment Board",
           "cite": [
             {
-              "l": "GP Act §32D",
+              "l": "Gujarat Police Act §32D",
               "s": "gpa",
               "e": "sec_32D"
             },
             {
-              "l": "§32E (powers)",
+              "l": "Gujarat Police Act §32E (powers)",
               "s": "gpa",
               "e": "sec_32E"
             }
@@ -3068,12 +3068,12 @@
           "name": "State Police Complaints Authority",
           "cite": [
             {
-              "l": "GP Act §32G",
+              "l": "Gujarat Police Act §32G",
               "s": "gpa",
               "e": "sec_32G"
             },
             {
-              "l": "§32H (district authority)",
+              "l": "Gujarat Police Act §32H (district authority)",
               "s": "gpa",
               "e": "sec_32H"
             }
@@ -3085,17 +3085,17 @@
           "name": "District Magistrate",
           "cite": [
             {
-              "l": "GP Act §17",
+              "l": "Gujarat Police Act §17",
               "s": "gpa",
               "e": "sec_17"
             },
             {
-              "l": "§18 (reports)",
+              "l": "Gujarat Police Act §18 (reports)",
               "s": "gpa",
               "e": "sec_18"
             },
             {
-              "l": "§19 (supervision)",
+              "l": "Gujarat Police Act §19 (supervision)",
               "s": "gpa",
               "e": "sec_19"
             }
@@ -3140,11 +3140,11 @@
               "n": "constitution:art_124"
             },
             {
-              "l": "art.136 (SLP)",
+              "l": "Constitution art.136 (SLP)",
               "n": "constitution:art_136"
             },
             {
-              "l": "art.141 (binding)",
+              "l": "Constitution art.141 (binding)",
               "n": "constitution:art_141"
             }
           ],
@@ -3164,16 +3164,16 @@
               "n": "constitution:art_214"
             },
             {
-              "l": "art.226/227",
+              "l": "Constitution art.226/227",
               "n": "constitution:art_226"
             },
             {
-              "l": "HC Rules r.2 (Single Judge)",
+              "l": "Gujarat HC Rules r.2 (Single Judge)",
               "s": "ghcr",
               "e": "rule_2"
             },
             {
-              "l": "HC Rules r.333",
+              "l": "Gujarat HC Rules r.333",
               "s": "ghcr",
               "e": "rule_333"
             }
@@ -3301,7 +3301,7 @@
               "n": "constitution:art_233"
             },
             {
-              "l": "art.235 (control)",
+              "l": "Constitution art.235 (control)",
               "n": "constitution:art_235"
             },
             {
@@ -3373,17 +3373,17 @@
           ],
           "cite": [
             {
-              "l": "HC Rules r.333",
+              "l": "Gujarat HC Rules r.333",
               "s": "ghcr",
               "e": "rule_333"
             },
             {
-              "l": "HC Rules r.339",
+              "l": "Gujarat HC Rules r.339",
               "s": "ghcr",
               "e": "rule_339"
             },
             {
-              "l": "HC Rules r.340",
+              "l": "Gujarat HC Rules r.340",
               "s": "ghcr",
               "e": "rule_340"
             }

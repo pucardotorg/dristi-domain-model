@@ -1383,7 +1383,7 @@
                   "e": "rule_1-Ci.6"
                 },
                 {
-                  "l": "Haryana Police Act s.12",
+                  "l": "HR Police Act §12",
                   "s": "hpa",
                   "e": "sec_12"
                 },
@@ -2020,13 +2020,8 @@
                   "n": "bnss:sec_438"
                 },
                 {
-                  "l": "Constitution Art.227",
+                  "l": "Constitution art.227",
                   "n": "constitution:art_227"
-                },
-                {
-                  "l": "R&O Vol.III r.1-A.1",
-                  "s": "phhc3",
-                  "e": "rule_1-A.1"
                 }
               ]
             }
@@ -2232,12 +2227,12 @@
           "basis": "Haryana Police Act, 2007, ss.12 and 47, read with Vol.III r.1-Ci.6",
           "cite": [
             {
-              "l": "Haryana Police Act s.12",
+              "l": "HR Police Act §12",
               "s": "hpa",
               "e": "sec_12"
             },
             {
-              "l": "Haryana Police Act s.47",
+              "l": "HR Police Act §47",
               "s": "hpa",
               "e": "sec_47"
             },
@@ -2301,7 +2296,7 @@
           ],
           "cite": [
             {
-              "l": "§22 (rank structure)",
+              "l": "HR Police Act §22 (ranks)",
               "s": "hpa",
               "e": "sec_22"
             }
@@ -2319,7 +2314,7 @@
           ],
           "cite": [
             {
-              "l": "§22",
+              "l": "HR Police Act §22",
               "s": "hpa",
               "e": "sec_22"
             },
@@ -2340,7 +2335,7 @@
           ],
           "cite": [
             {
-              "l": "§9 (police range)",
+              "l": "HR Police Act §9 (police ranges)",
               "s": "hpa",
               "e": "sec_9"
             }
@@ -2358,13 +2353,13 @@
           ],
           "cite": [
             {
-              "l": "§10 (police districts)",
+              "l": "HR Police Act §10 (police districts)",
               "s": "hpa",
               "e": "sec_10"
             },
             {
-              "l": "Police Act 1861 §47",
-              "n": "police1861:sec_47"
+              "l": "Police Act 1861 §4 (District Superintendent)",
+              "n": "police1861:sec_4"
             }
           ],
           "service": "IPS / HPS",
@@ -2380,7 +2375,7 @@
           ],
           "cite": [
             {
-              "l": "§22",
+              "l": "HR Police Act §22",
               "s": "hpa",
               "e": "sec_22"
             }
@@ -2397,7 +2392,7 @@
           ],
           "cite": [
             {
-              "l": "§12 (police stations)",
+              "l": "HR Police Act §12 (police stations)",
               "s": "hpa",
               "e": "sec_12"
             }
@@ -2415,7 +2410,7 @@
           ],
           "cite": [
             {
-              "l": "§12 (police stations)",
+              "l": "HR Police Act §12 (police stations)",
               "s": "hpa",
               "e": "sec_12"
             }
@@ -2432,7 +2427,7 @@
           ],
           "cite": [
             {
-              "l": "§20 (certificate of appointment)",
+              "l": "HR Police Act §20 (certificate of appointment)",
               "s": "hpa",
               "e": "sec_20"
             }
@@ -2449,7 +2444,7 @@
           ],
           "cite": [
             {
-              "l": "§22",
+              "l": "HR Police Act §22",
               "s": "hpa",
               "e": "sec_22"
             }
@@ -2466,12 +2461,12 @@
           ],
           "cite": [
             {
-              "l": "§20 (certificate of appointment)",
+              "l": "HR Police Act §20 (certificate of appointment)",
               "s": "hpa",
               "e": "sec_20"
             },
             {
-              "l": "§22",
+              "l": "HR Police Act §22",
               "s": "hpa",
               "e": "sec_22"
             }
@@ -2488,12 +2483,12 @@
           "head": "Director General of Police",
           "cite": [
             {
-              "l": "§3 (constitution)",
+              "l": "HR Police Act §3 (police service)",
               "s": "hpa",
               "e": "sec_3"
             },
             {
-              "l": "§5",
+              "l": "HR Police Act §5",
               "s": "hpa",
               "e": "sec_5"
             }
@@ -2506,7 +2501,7 @@
           "head": "DIG / IG",
           "cite": [
             {
-              "l": "§9",
+              "l": "HR Police Act §9",
               "s": "hpa",
               "e": "sec_9"
             }
@@ -2519,7 +2514,7 @@
           "head": "Superintendent of Police",
           "cite": [
             {
-              "l": "§10",
+              "l": "HR Police Act §10",
               "s": "hpa",
               "e": "sec_10"
             }
@@ -2532,7 +2527,7 @@
           "head": "Commissioner of Police",
           "cite": [
             {
-              "l": "§8",
+              "l": "HR Police Act §8",
               "s": "hpa",
               "e": "sec_8"
             }
@@ -2545,7 +2540,7 @@
           "head": "Station House Officer",
           "cite": [
             {
-              "l": "§12",
+              "l": "HR Police Act §12",
               "s": "hpa",
               "e": "sec_12"
             }
@@ -2558,7 +2553,7 @@
           "head": "ASI / Head Constable",
           "cite": [
             {
-              "l": "§12",
+              "l": "HR Police Act §12",
               "s": "hpa",
               "e": "sec_12"
             }
@@ -2572,9 +2567,14 @@
           "name": "State Police Board / Security Commission",
           "cite": [
             {
-              "l": "§24 (superintendence)",
+              "l": "HR Police Act §24 (superintendence)",
               "s": "hpa",
               "e": "sec_24"
+            },
+            {
+              "l": "HR Police Act §25 (State Police Board)",
+              "s": "hpa",
+              "e": "sec_25"
             }
           ],
           "who": "Superintendence of the police vests in the State Government, advised by the Board."
@@ -2584,7 +2584,7 @@
           "name": "District Police Complaints Authority",
           "cite": [
             {
-              "l": "§68",
+              "l": "HR Police Act §68",
               "s": "hpa",
               "e": "sec_68"
             }
@@ -2619,11 +2619,11 @@
               "n": "constitution:art_124"
             },
             {
-              "l": "art.136 (SLP)",
+              "l": "Constitution art.136 (SLP)",
               "n": "constitution:art_136"
             },
             {
-              "l": "art.141 (binding)",
+              "l": "Constitution art.141 (binding)",
               "n": "constitution:art_141"
             }
           ],
@@ -2643,7 +2643,7 @@
               "n": "constitution:art_214"
             },
             {
-              "l": "art.226/227",
+              "l": "Constitution art.226/227",
               "n": "constitution:art_226"
             }
           ],
@@ -2730,7 +2730,7 @@
               "n": "constitution:art_233"
             },
             {
-              "l": "art.235 (control)",
+              "l": "Constitution art.235 (control)",
               "n": "constitution:art_235"
             }
           ],

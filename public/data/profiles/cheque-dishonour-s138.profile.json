@@ -2782,7 +2782,7 @@
           ],
           "cite": [],
           "who": "The administration, supervision, direction and control of the entire State police, subject to the Government.",
-          "entry": "An IPS officer of the State cadre already promoted to DGP, selected by Government (KL Police Act s.18).",
+          "entry": "An IPS officer of the State cadre already promoted to Director General, selected by the State Government under the State's Police Act.",
           "service": "IPS"
         },
         {
@@ -2844,13 +2844,13 @@
           ],
           "cite": [
             {
-              "l": "Police Act 1861 §47",
-              "n": "police1861:sec_47"
+              "l": "Police Act 1861 §4 (District Superintendent)",
+              "n": "police1861:sec_4"
             }
           ],
           "who": "District Police Chief - commands the whole police of a district. Registers and supervises serious cases.",
           "entry": "IPS (direct recruit, after serving as Assistant SP), or a promoted State Police Service officer.",
-          "service": "IPS / KPS"
+          "service": "IPS / State service"
         },
         {
           "id": "dysp",
@@ -2862,7 +2862,7 @@
           "cite": [],
           "who": "Sub-divisional officer; supervises a group of circles and stations.",
           "entry": "The State Police Service, via the State Public Service Commission, or promotion from Inspector.",
-          "service": "KPS"
+          "service": "State service"
         },
         {
           "id": "ci",
@@ -2874,7 +2874,7 @@
           "cite": [],
           "who": "Heads a circle; Station House Officer of larger stations; supervises the Sub-Inspectors under him.",
           "entry": "Promotion, or direct recruitment through the State Public Service Commission.",
-          "service": "KPS"
+          "service": "State service"
         },
         {
           "id": "si",
@@ -2886,7 +2886,7 @@
           "cite": [],
           "who": "Station House Officer of most police stations - registers the FIR, investigates, files the charge-sheet.",
           "entry": "Direct recruitment through the State Public Service Commission, or promotion.",
-          "service": "KPS"
+          "service": "State service"
         },
         {
           "id": "asi",
@@ -2897,7 +2897,7 @@
           "cite": [],
           "who": "Assists the SHO; may hold charge of an outpost.",
           "entry": "Promotion, or the State Public Service Commission.",
-          "service": "KPS"
+          "service": "State service"
         },
         {
           "id": "hc",
@@ -2909,7 +2909,7 @@
           "cite": [],
           "who": "Senior constable; supervises constables and beat duty.",
           "entry": "Promotion from Constable.",
-          "service": "KPS"
+          "service": "State service"
         },
         {
           "id": "pc",
@@ -2921,7 +2921,7 @@
           "cite": [],
           "who": "The basic rank - patrol, guard, beat and first response.",
           "entry": "Direct recruitment through the State's police recruitment process; the entrant must meet the statutory eligibility and take the prescribed oath.",
-          "service": "KPS"
+          "service": "State service"
         }
       ],
       "units": [
@@ -2952,8 +2952,8 @@
           "head": "Superintendent of Police",
           "cite": [
             {
-              "l": "Police Act 1861 §47",
-              "n": "police1861:sec_47"
+              "l": "Police Act 1861 §4 (District Superintendent)",
+              "n": "police1861:sec_4"
             }
           ],
           "who": "The basic territorial police command."
@@ -2963,7 +2963,7 @@
           "name": "Commissionerate (metropolitan)",
           "head": "Commissioner of Police",
           "cite": [],
-          "who": "Unitary metropolitan policing for larger cities (e.g. Thiruvananthapuram, Kochi)."
+          "who": "Unitary metropolitan policing for the larger cities a State notifies."
         },
         {
           "id": "subdiv",
@@ -3041,11 +3041,11 @@
               "n": "constitution:art_124"
             },
             {
-              "l": "art.136 (SLP)",
+              "l": "Constitution art.136 (SLP)",
               "n": "constitution:art_136"
             },
             {
-              "l": "art.141 (binding)",
+              "l": "Constitution art.141 (binding)",
               "n": "constitution:art_141"
             }
           ],
@@ -3065,7 +3065,7 @@
               "n": "constitution:art_214"
             },
             {
-              "l": "art.226/227",
+              "l": "Constitution art.226/227",
               "n": "constitution:art_226"
             }
           ],
@@ -3152,7 +3152,7 @@
               "n": "constitution:art_233"
             },
             {
-              "l": "art.235 (control)",
+              "l": "Constitution art.235 (control)",
               "n": "constitution:art_235"
             }
           ],

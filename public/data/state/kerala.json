@@ -795,7 +795,7 @@
                   "e": "rule_1"
                 },
                 {
-                  "l": "Court Fees Act Art.21",
+                  "l": "Kerala Court Fees Act Art.21",
                   "s": "kcf",
                   "e": "art_21"
                 }
@@ -821,7 +821,7 @@
                   "e": "rule_17"
                 },
                 {
-                  "l": "CRP r.68",
+                  "l": "Criminal Rules r.68",
                   "s": "crp",
                   "e": "rule_68"
                 }
@@ -868,12 +868,12 @@
               "t": "The summons is signed and issued by the court's ministerial officer 'by order of the Court', in the prescribed form.",
               "c": [
                 {
-                  "l": "CRP r.7",
+                  "l": "Criminal Rules r.7",
                   "s": "crp",
                   "e": "rule_7"
                 },
                 {
-                  "l": "CRP r.13",
+                  "l": "Criminal Rules r.13",
                   "s": "crp",
                   "e": "rule_13"
                 }
@@ -883,7 +883,7 @@
               "t": "Because the court language is Malayalam, process issued in Malayalam must carry an authorised English translation.",
               "c": [
                 {
-                  "l": "CRP r.14",
+                  "l": "Criminal Rules r.14",
                   "s": "crp",
                   "e": "rule_14"
                 }
@@ -967,7 +967,7 @@
               "t": "Kerala's rules carry the absconding-accused track; the police execute the warrant.",
               "c": [
                 {
-                  "l": "CRP r.15",
+                  "l": "Criminal Rules r.15",
                   "s": "crp",
                   "e": "rule_15"
                 },
@@ -1079,7 +1079,7 @@
                   "n": "bnss:sec_438"
                 },
                 {
-                  "l": "HC Rules r.44",
+                  "l": "Kerala HC Rules r.44",
                   "s": "khcr",
                   "e": "rule_44"
                 }
@@ -1093,7 +1093,7 @@
                   "n": "bnss:sec_528"
                 },
                 {
-                  "l": "HC Rules r.232",
+                  "l": "Kerala HC Rules r.232",
                   "s": "khcr",
                   "e": "rule_232"
                 }
@@ -1107,7 +1107,7 @@
     "fees": {
       "summary": "What it costs to bring and contest a §138 case in Kerala - the ad valorem court fee scaled to the dishonoured-cheque amount, set by Article 21 of the Court Fees Act (inserted by the Finance Act 2024).",
       "cite": {
-        "l": "Court Fees Act, Article 21",
+        "l": "Kerala Court Fees Act, Article 21",
         "s": "kcf",
         "e": "art_21"
       },
@@ -1224,12 +1224,12 @@
           "who": "Stands surety for the accused's release on bail, undertaking by bond to secure their appearance. The court tests the surety's sufficiency before accepting the bond.",
           "cite": [
             {
-              "l": "CRP r.122",
+              "l": "Criminal Rules r.122",
               "s": "crp",
               "e": "rule_122"
             },
             {
-              "l": "CRP r.124",
+              "l": "Criminal Rules r.124",
               "s": "crp",
               "e": "rule_124"
             }
@@ -1264,7 +1264,7 @@
               "n": "ni:sec_145"
             },
             {
-              "l": "CRP r.49",
+              "l": "Criminal Rules r.49",
               "s": "crp",
               "e": "rule_49"
             }
@@ -1312,7 +1312,7 @@
           "who": "The court's senior ministerial officer who signs and issues the summons and other process 'by order of the Court'.",
           "cite": [
             {
-              "l": "CRP r.7",
+              "l": "Criminal Rules r.7",
               "s": "crp",
               "e": "rule_7"
             }
@@ -1324,17 +1324,17 @@
           "who": "The clerk who attends the sitting: calls the cases, marks the exhibits, and keeps the court diary and the proceedings paper - the running record of each hearing.",
           "cite": [
             {
-              "l": "CRP r.72",
+              "l": "Criminal Rules r.72",
               "s": "crp",
               "e": "rule_72"
             },
             {
-              "l": "CRP r.73",
+              "l": "Criminal Rules r.73",
               "s": "crp",
               "e": "rule_73"
             },
             {
-              "l": "CRP r.62",
+              "l": "Criminal Rules r.62",
               "s": "crp",
               "e": "rule_62"
             }
@@ -1346,12 +1346,12 @@
           "who": "Takes down the dictation of the depositions, orders and judgment. The depositions they record are headed and signed in the form the rules prescribe.",
           "cite": [
             {
-              "l": "CRP r.56",
+              "l": "Criminal Rules r.56",
               "s": "crp",
               "e": "rule_56"
             },
             {
-              "l": "CRP r.57",
+              "l": "Criminal Rules r.57",
               "s": "crp",
               "e": "rule_57"
             }
@@ -1363,12 +1363,12 @@
           "who": "Interprets the evidence when a witness does not speak the court's language, which matters in Kerala where the court language is Malayalam. The interpreter is put on oath, and a police officer may not interpret the evidence.",
           "cite": [
             {
-              "l": "CRP r.52",
+              "l": "Criminal Rules r.52",
               "s": "crp",
               "e": "rule_52"
             },
             {
-              "l": "CRP r.54",
+              "l": "Criminal Rules r.54",
               "s": "crp",
               "e": "rule_54"
             }
@@ -1385,7 +1385,7 @@
               "e": "sec_4"
             },
             {
-              "l": "Police Act §23",
+              "l": "Police Act 1861 §23",
               "n": "police1861:sec_23"
             }
           ]
@@ -1403,7 +1403,7 @@
               "e": "rule_17"
             },
             {
-              "l": "CRP r.68",
+              "l": "Criminal Rules r.68",
               "s": "crp",
               "e": "rule_68"
             }
@@ -1452,7 +1452,7 @@
               "e": "sec_18"
             },
             {
-              "l": "§14(2)(l)",
+              "l": "KL Police Act §14(2)(l)",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1469,7 +1469,7 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(k)",
+              "l": "KL Police Act §14(2)(k)",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1486,7 +1486,7 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(j)",
+              "l": "KL Police Act §14(2)(j)",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1504,7 +1504,7 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(i)",
+              "l": "KL Police Act §14(2)(i)",
               "s": "kpa",
               "e": "sec_14"
             },
@@ -1525,7 +1525,7 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(h)",
+              "l": "KL Police Act §14(2)(h)",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1543,13 +1543,14 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(g)",
+              "l": "KL Police Act §14(2)(g)",
               "s": "kpa",
               "e": "sec_14"
             },
             {
-              "l": "Police Act 1861 §47",
-              "n": "police1861:sec_47"
+              "l": "KL Police Act §17 (District Police Chief)",
+              "s": "kpa",
+              "e": "sec_17"
             }
           ],
           "who": "District Police Chief - commands the whole police of a district. Registers and supervises serious cases.",
@@ -1565,7 +1566,7 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(f)",
+              "l": "KL Police Act §14(2)(f)",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1583,7 +1584,7 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(e)",
+              "l": "KL Police Act §14(2)(e)",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1601,12 +1602,12 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(d)",
+              "l": "KL Police Act §14(2)(d)",
               "s": "kpa",
               "e": "sec_14"
             },
             {
-              "l": "§5 (SHO)",
+              "l": "KL Police Act §5 (police stations)",
               "s": "kpa",
               "e": "sec_5"
             }
@@ -1623,7 +1624,7 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(c)",
+              "l": "KL Police Act §14(2)(c)",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1641,7 +1642,7 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(b)",
+              "l": "KL Police Act §14(2)(b)",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1659,17 +1660,17 @@
           ],
           "cite": [
             {
-              "l": "§14(2)(a)",
+              "l": "KL Police Act §14(2)(a)",
               "s": "kpa",
               "e": "sec_14"
             },
             {
-              "l": "§86 (eligibility)",
+              "l": "KL Police Act §86 (eligibility)",
               "s": "kpa",
               "e": "sec_86"
             },
             {
-              "l": "§87 (oath)",
+              "l": "KL Police Act §87 (oath)",
               "s": "kpa",
               "e": "sec_87"
             }
@@ -1686,12 +1687,12 @@
           "head": "State Police Chief / DGP",
           "cite": [
             {
-              "l": "§14",
+              "l": "KL Police Act §14",
               "s": "kpa",
               "e": "sec_14"
             },
             {
-              "l": "§18",
+              "l": "KL Police Act §18",
               "s": "kpa",
               "e": "sec_18"
             }
@@ -1704,7 +1705,7 @@
           "head": "ADGP / IGP",
           "cite": [
             {
-              "l": "§15 (structure)",
+              "l": "KL Police Act §15 (structure)",
               "s": "kpa",
               "e": "sec_15"
             }
@@ -1717,7 +1718,7 @@
           "head": "DIG",
           "cite": [
             {
-              "l": "§15",
+              "l": "KL Police Act §15",
               "s": "kpa",
               "e": "sec_15"
             }
@@ -1730,8 +1731,9 @@
           "head": "Superintendent of Police",
           "cite": [
             {
-              "l": "Police Act 1861 §47",
-              "n": "police1861:sec_47"
+              "l": "KL Police Act §16 (police district)",
+              "s": "kpa",
+              "e": "sec_16"
             }
           ],
           "who": "The basic territorial police command."
@@ -1742,7 +1744,7 @@
           "head": "Commissioner of Police",
           "cite": [
             {
-              "l": "§15(2)-(3)",
+              "l": "KL Police Act §15(2)-(3)",
               "s": "kpa",
               "e": "sec_15"
             }
@@ -1755,7 +1757,7 @@
           "head": "Dy.SP",
           "cite": [
             {
-              "l": "§15",
+              "l": "KL Police Act §15",
               "s": "kpa",
               "e": "sec_15"
             }
@@ -1768,7 +1770,7 @@
           "head": "Circle Inspector",
           "cite": [
             {
-              "l": "§15",
+              "l": "KL Police Act §15",
               "s": "kpa",
               "e": "sec_15"
             }
@@ -1781,12 +1783,12 @@
           "head": "Station House Officer",
           "cite": [
             {
-              "l": "§5",
+              "l": "KL Police Act §5",
               "s": "kpa",
               "e": "sec_5"
             },
             {
-              "l": "§10 (always functional)",
+              "l": "KL Police Act §10 (always functional)",
               "s": "kpa",
               "e": "sec_10"
             }
@@ -1799,7 +1801,7 @@
           "head": "ASI / Head Constable",
           "cite": [
             {
-              "l": "§14",
+              "l": "KL Police Act §14",
               "s": "kpa",
               "e": "sec_14"
             }
@@ -1813,7 +1815,7 @@
           "name": "State Security Commission",
           "cite": [
             {
-              "l": "§24",
+              "l": "KL Police Act §24",
               "s": "kpa",
               "e": "sec_24"
             }
@@ -1825,7 +1827,7 @@
           "name": "Police Establishment Board",
           "cite": [
             {
-              "l": "§105",
+              "l": "KL Police Act §105",
               "s": "kpa",
               "e": "sec_105"
             }
@@ -1837,7 +1839,7 @@
           "name": "Police Complaints Authority",
           "cite": [
             {
-              "l": "§110",
+              "l": "KL Police Act §110",
               "s": "kpa",
               "e": "sec_110"
             }
@@ -1858,7 +1860,7 @@
           "n": "bnss:sec_6"
         },
         {
-          "l": "Criminal Rules of Practice",
+          "l": "Criminal Rules of Practice r.7",
           "s": "crp",
           "e": "rule_7"
         }
@@ -1877,11 +1879,11 @@
               "n": "constitution:art_124"
             },
             {
-              "l": "art.136 (SLP)",
+              "l": "Constitution art.136 (SLP)",
               "n": "constitution:art_136"
             },
             {
-              "l": "art.141 (binding)",
+              "l": "Constitution art.141 (binding)",
               "n": "constitution:art_141"
             }
           ],
@@ -1901,11 +1903,11 @@
               "n": "constitution:art_214"
             },
             {
-              "l": "art.226/227",
+              "l": "Constitution art.226/227",
               "n": "constitution:art_226"
             },
             {
-              "l": "HC Rules 1971",
+              "l": "Kerala HC Rules 1971 r.1",
               "s": "khcr",
               "e": "rule_1"
             }
@@ -1993,7 +1995,7 @@
               "n": "constitution:art_233"
             },
             {
-              "l": "art.235 (control)",
+              "l": "Constitution art.235 (control)",
               "n": "constitution:art_235"
             }
           ],
@@ -2036,7 +2038,7 @@
           ],
           "cite": [
             {
-              "l": "CRP r.7",
+              "l": "Criminal Rules r.7",
               "s": "crp",
               "e": "rule_7"
             }
@@ -2053,9 +2055,14 @@
           ],
           "cite": [
             {
-              "l": "CRP r.7",
+              "l": "Criminal Rules r.73 (proceedings paper)",
               "s": "crp",
-              "e": "rule_7"
+              "e": "rule_73"
+            },
+            {
+              "l": "Criminal Rules r.62 (exhibits)",
+              "s": "crp",
+              "e": "rule_62"
             }
           ],
           "who": "Maintains the court's daily records, exhibits and order sheet during hearings.",
@@ -2076,7 +2083,7 @@
               "e": "rule_17"
             },
             {
-              "l": "CRP r.68",
+              "l": "Criminal Rules r.68",
               "s": "crp",
               "e": "rule_68"
             }
@@ -2096,7 +2103,7 @@
           ],
           "cite": [
             {
-              "l": "HC Rules r.15",
+              "l": "Kerala HC Rules r.15",
               "s": "khcr",
               "e": "rule_15"
             }
@@ -2127,9 +2134,14 @@
           ],
           "cite": [
             {
-              "l": "CRP",
+              "l": "Criminal Rules r.57 (depositions)",
               "s": "crp",
-              "e": "rule_7"
+              "e": "rule_57"
+            },
+            {
+              "l": "Criminal Rules r.52 (oath to interpreter)",
+              "s": "crp",
+              "e": "rule_52"
             }
           ],
           "who": "Records dictation and interprets a deposition into the court language (Malayalam in Kerala).",
