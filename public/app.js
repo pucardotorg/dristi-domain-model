@@ -123,13 +123,29 @@ async function loadCaselaw(p){
     CASES.forEach(c=>{ (c.construes||[]).forEach(ref=>{ (CASES_BY_REF[ref]=CASES_BY_REF[ref]||[]).push(c.id); }); });
   }catch(e){ /* case law optional */ }
 }
-/* per-state layer (state amendments / rules / notifications); null if the state
-   has no manifest yet. Fetched from data/state/<id>.json. */
+/* per-state layers (state amendments / rules / notifications / vocabulary / story).
+   Every jurisdiction's file is fetched once at boot, in parallel, so a page can
+   filter across states instead of switching the whole app. A state with no file
+   yet simply has no entry. STATE_DATA stays a pointer to the active state's layer,
+   so every single-state view keeps reading it exactly as before. */
+let STATES_DATA={};
 let STATE_DATA=null;
+let _aliasCache={};
+const stateLayer = id => STATES_DATA[id] || null;
+const stateVocabTerms = id => ((stateLayer(id)||{}).vocabulary||{}).terms || [];
+async function loadAllStates(){
+  const ids=(JURISDICTIONS||[]).map(s=>s.id);
+  const loaded=await Promise.all(ids.map(id=>
+    fetchText((DATA_BASE||"")+"state/"+id+".json").then(t=>JSON.parse(t)).catch(()=>null)));
+  STATES_DATA={}; ids.forEach((id,i)=>{ if(loaded[i]) STATES_DATA[id]=loaded[i]; });
+  _aliasCache={};
+  STATE_DATA=STATES_DATA[activeState]||null;
+}
+/* re-point STATE_DATA at the active state. Kept async, and kept as the name every
+   state-selector calls, so switching state is now just a pointer move. */
 async function loadStateData(){
-  STATE_DATA=null;
-  try{ STATE_DATA=JSON.parse(await fetchText((DATA_BASE||"")+"state/"+activeState+".json")); }
-  catch(e){ /* state layer optional / not modelled */ }
+  if(!Object.keys(STATES_DATA).length) await loadAllStates();
+  STATE_DATA=STATES_DATA[activeState]||null;
 }
 async function getDoc(actId){
   if(docCache[actId]) return docCache[actId];
@@ -427,17 +443,22 @@ V.words=()=>{
   const stName=stateById(activeState).name;
   const m=el("div"); m.appendChild(scopeBar());
   const natRaw=Object.entries(TERMS).map(([w,v])=>[w,(typeof v==="string"?{ref:v}:v)]);
-  const stTerms=((STATE_DATA||{}).vocabulary||{}).terms||[];
+  // every jurisdiction that carries vocabulary, in configured order. Each keeps its own
+  // name and group order, so a card always names the state the word actually belongs to.
+  const vStates=(JURISDICTIONS||[]).map(s=>({id:s.id,name:s.name,terms:stateVocabTerms(s.id)})).filter(s=>s.terms.length);
   const groupOrder=[]; natRaw.forEach(([w,v])=>{ const g=v.group||"Other"; if(!groupOrder.includes(g)) groupOrder.push(g); });
-  const stGroupOrder=[]; stTerms.forEach(t=>{ const g=t.group||"Other"; if(!stGroupOrder.includes(g)) stGroupOrder.push(g); });
-  // uniform items across the two scopes, for counting and filtering
+  const stGroupOrder={};
+  vStates.forEach(s=>{ const o=[]; s.terms.forEach(t=>{ const g=t.group||"Other"; if(!o.includes(g)) o.push(g); }); stGroupOrder[s.id]=o; });
+  // uniform items across every scope, for counting and filtering
   const items=[];
-  natRaw.forEach(([w,v])=> items.push({kind:"national", w, v, pos:v.pos||"", role:v.role||"", group:v.group||"Other", hay:(w+" "+(v.gloss||"")+" "+(v.aka||[]).join(" ")+" "+(v.pos||"")+" "+(v.role||"")).toLowerCase()}));
-  stTerms.forEach(t=> items.push({kind:"state", t, pos:t.pos||"", role:t.role||"", group:t.group||"Other", hay:((t.word||"")+" "+(t.gloss||"")+" "+(t.aka||[]).join(" ")+" "+(t.source||"")+" "+(t.pos||"")+" "+(t.role||"")).toLowerCase()}));
+  natRaw.forEach(([w,v])=> items.push({kind:"national", scope:"national", w, v, pos:v.pos||"", role:v.role||"", group:v.group||"Other", hay:(w+" "+(v.gloss||"")+" "+(v.aka||[]).join(" ")+" "+(v.pos||"")+" "+(v.role||"")).toLowerCase()}));
+  vStates.forEach(s=> s.terms.forEach(t=> items.push({kind:"state", scope:s.id, st:s.id, stName:s.name, t, pos:t.pos||"", role:t.role||"", group:t.group||"Other", hay:((t.word||"")+" "+(t.gloss||"")+" "+(t.aka||[]).join(" ")+" "+(t.source||"")+" "+(t.pos||"")+" "+(t.role||"")+" "+s.name).toLowerCase()})));
+  const scopes=["national", ...vStates.map(s=>s.id)];
+  const scopeName=k=> k==="national" ? "National" : ((vStates.find(s=>s.id===k)||{}).name||k);
 
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Vocabulary</h1>
-    <p class="lede">The words a ${caseById(activeCase).name.toLowerCase()} case is built on - the shared national vocabulary plus the ${esc(stName)} words the state layer adds. Filter by scope, part of speech or role, and tap any word for its source text.</p>`;
+    <p class="lede">The words a ${caseById(activeCase).name.toLowerCase()} case is built on - the shared national vocabulary plus the words each state layer adds. It opens on National and ${esc(stName)}; use Show to see All, or any other state.</p>`;
   m.appendChild(head);
   const controls=el("div","controls");
   controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="w-search" placeholder="Search a word - cheque, drawer, summons, Chief Ministerial Officer…"></div>`;
@@ -445,7 +466,11 @@ V.words=()=>{
   const facets=el("div","vfacets"); m.appendChild(facets);
   const list=el("div"); list.id="w-list"; list.style.marginTop="10px"; m.appendChild(list);
 
-  const state={q:"", scope:"all", pos:"", role:""};
+  // scope is a multi-select set: it opens on the national layer plus the state the app
+  // is set to - today's effective view - and every other state is one chip away.
+  const state={q:"", sel:new Set(["national"]), pos:"", role:""};
+  if(vStates.some(s=>s.id===activeState)) state.sel.add(activeState);
+  const allScopes=()=>scopes.every(k=>state.sel.has(k));
 
   function akaRow(aka){
     if(!aka||!aka.length) return "";
@@ -490,12 +515,12 @@ V.words=()=>{
       stSrc=`from <a class="src-ref" data-akn="${esc(t.akn)}" data-eid="${esc(t.eId)}" data-title="${esc(cite)}">${esc(cite)}</a>${esc(rest)}`;
     } else stSrc=`from ${esc(stRaw)}`;
     c.innerHTML=`
-      <div class="wt"><span class="wname">${esc(t.word)}</span><span class="wtag wtag-state">${esc(stName)}</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
+      <div class="wt"><span class="wname">${esc(t.word)}</span><span class="wtag wtag-state">${esc(it.stName||stName)}</span>${clsTags}<span class="caret">${ic('chevron-right')}</span></div>
       <div class="def">${esc(t.gloss||'')}</div>
       ${akaRow(t.aka)}
       <div class="src">${stSrc}${noteLink(t.sourceNotes)}</div>
       <div class="wfull"><div class="ksec-slot"></div></div>`;
-    c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && t.akn && t.eId) fillStateStatute(c.querySelector(".ksec-slot"), t.akn, t.eId, t.source||'the Kerala instrument', ''); };
+    c.querySelector(".wt").onclick=()=>{ c.classList.toggle("open"); if(c.classList.contains("open") && t.akn && t.eId) fillStateStatute(c.querySelector(".ksec-slot"), t.akn, t.eId, t.source||'the state instrument', ''); };
     return c;
   }
   function pill(fg,fv,label,count,active){
@@ -503,17 +528,16 @@ V.words=()=>{
   }
   function redraw(){
     const bySearch=items.filter(it=> !state.q || it.hay.includes(state.q));
-    const base=bySearch.filter(it=> state.scope==="all" || state.scope===it.kind);
+    const base=bySearch.filter(it=> state.sel.has(it.scope));
     // cross-filtered facet counts: pos counts respect the active role, and vice versa
     const posCounts={}, roleCounts={};
     base.filter(it=> !state.role || it.role===state.role).forEach(it=>{ if(it.pos) posCounts[it.pos]=(posCounts[it.pos]||0)+1; });
     base.filter(it=> !state.pos || it.pos===state.pos).forEach(it=>{ if(it.role) roleCounts[it.role]=(roleCounts[it.role]||0)+1; });
-    const scNat=bySearch.filter(i=>i.kind==="national").length, scSt=bySearch.filter(i=>i.kind==="state").length;
+    const scopeCount={}; scopes.forEach(k=>{ scopeCount[k]=bySearch.filter(i=>i.scope===k).length; });
 
     let fh=`<div class="vfacet-row"><span class="vfacet-lbl">Show</span><div class="chips">`
-      +pill("scope","all","All",bySearch.length,state.scope==="all")
-      +pill("scope","national","National",scNat,state.scope==="national")
-      +(scSt?pill("scope","state",stName,scSt,state.scope==="state"):"")
+      +pill("scope","all","All",bySearch.length,allScopes())
+      +scopes.map(k=>pill("scope",k,scopeName(k),scopeCount[k],state.sel.has(k))).join("")
       +`</div></div>`;
     const posVals=POS_ORDER.filter(p=>posCounts[p]);
     if(posVals.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Type</span><div class="chips">`+posVals.map(p=>pill("pos",p,POS_LABEL[p]||p,posCounts[p],state.pos===p)).join("")+`</div></div>`;
@@ -523,21 +547,30 @@ V.words=()=>{
 
     const final=base.filter(it=> (!state.pos||it.pos===state.pos) && (!state.role||it.role===state.role));
     list.innerHTML="";
-    const natFinal=final.filter(i=>i.kind==="national"), stFinal=final.filter(i=>i.kind==="state");
+    const natFinal=final.filter(i=>i.kind==="national");
     if(natFinal.length){
       list.appendChild(el("div","grouphead",`National vocabulary <span class="gh-status">national · ${natFinal.length}</span>`));
       groupOrder.forEach(g=>{ const rows=natFinal.filter(it=>it.group===g).sort((a,b)=>a.w.localeCompare(b.w)); if(!rows.length) return; list.appendChild(el("div","vsub",esc(g))); rows.forEach(it=> list.appendChild(wcard(it))); });
     }
-    if(stFinal.length){
-      list.appendChild(el("div","grouphead",`${esc(stName)} vocabulary <span class="gh-status">state layer · ${stFinal.length}</span>`));
-      stGroupOrder.forEach(g=>{ const rows=stFinal.filter(it=>it.group===g); if(!rows.length) return; list.appendChild(el("div","vsub",esc(g))); rows.forEach(it=> list.appendChild(wcard(it))); });
-    }
+    // one heading per state, so an "All" view reads as national then state by state
+    vStates.forEach(s=>{
+      const rows=final.filter(i=>i.st===s.id); if(!rows.length) return;
+      list.appendChild(el("div","grouphead",`${esc(s.name)} vocabulary <span class="gh-status">state layer · ${rows.length}</span>`));
+      (stGroupOrder[s.id]||[]).forEach(g=>{ const gr=rows.filter(it=>it.group===g); if(!gr.length) return; list.appendChild(el("div","vsub",esc(g))); gr.forEach(it=> list.appendChild(wcard(it))); });
+    });
     if(!final.length) list.appendChild(el("div","empty","No word matches these filters."));
   }
   facets.addEventListener("click",e=>{
     const p=e.target.closest(".chip"); if(!p) return;
     const fg=p.dataset.fg, fv=p.dataset.fv;
-    if(fg==="scope") state.scope=fv;
+    if(fg==="scope"){
+      // All selects every scope; from All a click narrows to just that scope, otherwise
+      // a click adds or removes one. Emptying the selection falls back to All.
+      if(fv==="all") state.sel=new Set(scopes);
+      else if(allScopes()) state.sel=new Set([fv]);
+      else if(state.sel.has(fv)){ state.sel.delete(fv); if(!state.sel.size) state.sel=new Set(scopes); }
+      else state.sel.add(fv);
+    }
     else if(fg==="pos") state.pos=(state.pos===fv?"":fv);
     else if(fg==="role") state.role=(state.role===fv?"":fv);
     redraw();
@@ -548,7 +581,7 @@ V.words=()=>{
   if(vocabScrollTo){
     const wanted=vocabScrollTo; vocabScrollTo=null;
     setTimeout(()=>{
-      state.q=""; state.scope="all"; state.pos=""; state.role=""; redraw();
+      state.q=""; state.sel=new Set(scopes); state.pos=""; state.role=""; redraw();
       const card=[...m.querySelectorAll(".word")].find(c=>c.dataset.word===wanted.toLowerCase());
       if(card){
         const y=card.getBoundingClientRect().top+window.scrollY-16;
@@ -568,8 +601,6 @@ V.practice=()=>{
   head.innerHTML=`<h1 class="page-title">Local practice</h1>
     <p class="lede">The part of the domain no Act writes down - how a ${caseById(activeCase).name.toLowerCase()} case is actually filed, moved and disposed on the ground. Field notes from people who run the process, each attributed and cross-checked against the rules; it changes by state.</p>`;
   m.appendChild(head);
-  const amap=stateAliasMap();
-  const cchip=c=>citeChip(c,amap);
   const notes=(PRACTICE_NOTES||[]).slice();
   if(!notes.length){ m.appendChild(el("div","empty","No field notes recorded yet for this case type.")); return m; }
   const statesPresent=[...new Set(notes.map(n=>n.place))];
@@ -589,6 +620,9 @@ V.practice=()=>{
   // one card - scan layer always visible, detail behind accordions. Generic over the note schema.
   function pnote(n){
     const c=el("div","pnote");
+    // this list is cross-state, so a note's cites must resolve against the aliases of
+    // the state the note came from - never against whichever state happens to be active.
+    const cchip=x=>citeChip(x, stateAliasMap(n.place));
     if(n.id) c.id="pnote-"+n.id;   // target for "field note" backlinks from vocab terms / roles
     const A=n.attribution||{};
     const heard=A.heardFrom?`${esc(A.heardFrom)}${A.affiliation?` (${esc(A.affiliation)})`:""}`:(n.who?esc(n.who):"");
@@ -722,12 +756,19 @@ V.notifications= stateTreeView("notifications","Notifications & orders");   // G
    it (click a citation to open the verbatim text). The court-specific blocks
    (the designated s138 courts and the per-court caseload) live on the Courts
    page, which the story links out to. */
-function stateAliasMap(){
-  const map={}; const D=STATE_DATA||{};
+/* Alias -> instrument, for ONE state. A cite carries a short alias ("kcf", "gcf")
+   that only means anything inside its own state's layer, and aliases are not
+   guaranteed unique across states - so every caller must pass the state the cited
+   item belongs to. Defaults to the active state for the single-state views.
+   Memoised per state; the cache is cleared whenever the layers are reloaded. */
+function stateAliasMap(stId){
+  const id=stId||activeState;
+  if(_aliasCache[id]) return _aliasCache[id];
+  const map={}; const D=STATES_DATA[id]||{};
   ["amendments","rules","notifications"].forEach(cat=>{
     ((D[cat]||{}).items||[]).forEach(it=>{ if(it.alias) map[it.alias]={akn:it.akn,title:it.title}; });
   });
-  return map;
+  _aliasCache[id]=map; return map;
 }
 function citeChip(c, amap){
   const lbl=esc(c.l||c.n||"");
@@ -1588,13 +1629,13 @@ function stEdgesBlock(list,label){
   if(!list||!list.length) return "";
   return `<div class="rels">${label?`<div class="rel-lbl">${esc(label)}</div>`:""}${list.map(e=>stEdgeRow(e.rel||"related",e.to)).join("")}</div>`;
 }
-function stateKeyRow(it,k){
+function stateKeyRow(it,k,stId){
   const row=el("div","prov");
   row.innerHTML=`
     <div class="prov-head">
       <span class="ref">${esc(stEidNum(k.eId))}</span>
       <span class="rt">${esc(k.label||'')}</span>
-      <span class="hbadges"><span class="badge b-state">${esc(stateById(activeState).name)} layer</span> ${eraBadge(k.applies||'always')}</span>
+      <span class="hbadges"><span class="badge b-state">${esc(stateById(stId||activeState).name)} layer</span> ${eraBadge(k.applies||'always')}</span>
       <span class="caret">${ic('chevron-right')}</span>
     </div>
     <div class="prov-body">
@@ -1616,7 +1657,7 @@ function stateKeyRow(it,k){
   };
   return row;
 }
-function stateRuleGroup(it){
+function stateRuleGroup(it,stId){
   const grp=el("div","actgrp");
   const yr=(it.title.match(/\d{4}/)||[''])[0];
   const titleClean=it.title.replace(/,?\s*\d{4}\s*$/,'').replace(/\s*\(.*?\)\s*$/,'').trim();
@@ -1640,7 +1681,7 @@ function stateRuleGroup(it){
   if(it.key && it.key.length){
     const kh=el("div"); kh.textContent=`Key provisions for §138`; kh.style.cssText="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--brand);font-weight:700;margin:18px 0 8px";
     body.appendChild(kh);
-    it.key.forEach(k=> body.appendChild(stateKeyRow(it,k)));
+    it.key.forEach(k=> body.appendChild(stateKeyRow(it,k,stId)));
   }
   if(it.akn){
     const bw=el("div"); bw.style.marginTop="14px";
@@ -1658,23 +1699,55 @@ function stateRuleGroup(it){
   grp.querySelector(".actgrp-head").onclick=()=>grp.classList.toggle("open");
   return grp;
 }
+/* An instrument tree, filtered by state. The state the app is set to is only the
+   default - "All states" and every other state are one chip away, exactly like the
+   State facet on Local practice. Each group is rendered for its own state, so its
+   badges and its cites resolve against that state's layer. */
 function stateTreeView(catKey, title){ return function(){
   if(!isModelled()) return notModelled();
-  const stName=stateById(activeState).name;
   const m=el("div"); m.appendChild(scopeBar());
-  const data=STATE_DATA && STATE_DATA[catKey];
-  const lede=(data&&data.summary) || "These sit on top of the shared national core and change from state to state, so pick the jurisdiction above.";
+  // every state with a layer, plus the active one even if it has none yet - so the
+  // default selection is always represented by a chip
+  const present=(JURISDICTIONS||[]).filter(s=>STATES_DATA[s.id] || s.id===activeState);
+  const itemsOf=id=>(((stateLayer(id)||{})[catKey])||{}).items||[];
+  const summaryOf=id=>(((stateLayer(id)||{})[catKey])||{}).summary||"";
   const head=el("div");
-  head.innerHTML=`<h1 class="page-title state-title">${esc(title)} ${stateInlineSelectHTML()}</h1><p class="lede">${lede}</p>`;
+  head.innerHTML=`<h1 class="page-title">${esc(title)}</h1><p class="lede"></p>`;
   m.appendChild(head);
-  const sel=m.querySelector(".state-inline");
-  if(sel) sel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
-  const items=(data&&data.items)||[];
-  if(!items.length){ m.appendChild(el("div","empty", (data&&data.summary)?`Nothing separate to list here for ${esc(stName)} - the summary above is the whole story.`:`<b>${esc(stName)} - ${esc(title.toLowerCase())} not modelled yet.</b><br><span class="tiny">This state-layer object is planned.</span>`)); return m; }
-  m.appendChild(el("div","legend",`<span>Each opens to its sections; each section opens to the verbatim text - the same shape as the national <b>Acts &amp; provisions</b>, for the ${esc(stName)} layer.</span>`));
-  const list=el("div"); list.style.marginTop="14px";
-  items.forEach(it=>list.appendChild(stateRuleGroup(it)));
-  m.appendChild(list);
+  const lede=head.querySelector(".lede");
+  const facets=el("div","vfacets"); m.appendChild(facets);
+  const body=el("div"); body.style.marginTop="6px"; m.appendChild(body);
+  const fstate={place:activeState};
+  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
+  const GENERIC="These sit on top of the shared national core and change from state to state.";
+
+  function redraw(){
+    const sel=fstate.place;
+    const total=present.reduce((n,s)=>n+itemsOf(s.id).length,0);
+    facets.innerHTML=`<div class="vfacet-row"><span class="vfacet-lbl">State</span><div class="chips">`
+      +pill("place","all","All states",total,sel==="all")
+      +present.map(s=>pill("place",s.id,s.name,itemsOf(s.id).length,sel===s.id)).join("")
+      +`</div></div>`;
+    lede.textContent = sel==="all" ? `${title} from every modelled state layer. ${GENERIC}` : (summaryOf(sel)||GENERIC);
+    body.innerHTML="";
+    const chosen = sel==="all" ? present.map(s=>s.id) : [sel];
+    if(!chosen.reduce((n,id)=>n+itemsOf(id).length,0)){
+      const nm=(stateById(sel)||{}).name||sel;
+      body.appendChild(el("div","empty", summaryOf(sel)
+        ? `Nothing separate to list here for ${esc(nm)} - the summary above is the whole story.`
+        : `<b>${esc(nm)} - ${esc(title.toLowerCase())} not modelled yet.</b><br><span class="tiny">This state-layer object is planned.</span>`));
+      return;
+    }
+    body.appendChild(el("div","legend",`<span>Each opens to its sections; each section opens to the verbatim text - the same shape as the national <b>Acts &amp; provisions</b></span>`));
+    const list=el("div"); list.style.marginTop="14px"; body.appendChild(list);
+    chosen.forEach(id=>{
+      const items=itemsOf(id); if(!items.length) return;
+      if(sel==="all") list.appendChild(el("div","grouphead",`${esc((stateById(id)||{}).name||id)} <span class="gh-status">${items.length} instrument${items.length>1?'s':''}</span>`));
+      items.forEach(it=>list.appendChild(stateRuleGroup(it,id)));
+    });
+  }
+  facets.addEventListener("click",e=>{ const p=e.target.closest(".chip"); if(!p) return; if(p.dataset.fg==="place"){ fstate.place=p.dataset.fv; redraw(); } });
+  redraw();
   return m;
 }; }
 
@@ -2045,7 +2118,7 @@ function showLoadError(err){
   try{
     await loadConfig();
     await loadProfile();
-    await loadStateData();
+    await loadAllStates();   // every state layer, in parallel - state is a filter, not a switch
     buildNav();
     // the Map ("graph") is hidden for now; keep V.graph defined but never land on it.
     // Restore where the user last was: an explicit URL hash (a shared deep link) wins;
