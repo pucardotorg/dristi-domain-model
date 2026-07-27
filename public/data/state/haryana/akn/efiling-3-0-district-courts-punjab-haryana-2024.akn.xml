@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="circular" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-hr/doc/2024/efiling-3-0-district-courts/!main"/>
+          <FRBRuri value="/akn/in-hr/doc/2024/efiling-3-0-district-courts"/>
+          <FRBRalias value="Implementation of e-filing 3.0 in District Courts in the States of Punjab, Haryana and UT Chandigarh" name="shortTitle"/>
+          <FRBRdate date="2024-02-12" name="generation"/>
+          <FRBRauthor href="#phhc"/>
+          <FRBRcountry value="in-hr"/>
+          <FRBRnumber value="287/Spl.C.B.11"/>
+          <FRBRname value="Implementation of e-filing 3.0 in District Courts in the States of Punjab, Haryana and UT Chandigarh"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-hr/doc/2024/efiling-3-0-district-courts/eng@/!main"/>
+          <FRBRuri value="/akn/in-hr/doc/2024/efiling-3-0-district-courts/eng@"/>
+          <FRBRdate date="2024-02-12" name="generation"/>
+          <FRBRauthor href="#phhc"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-hr/doc/2024/efiling-3-0-district-courts/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in-hr/doc/2024/efiling-3-0-district-courts/eng@.akn"/>
+          <FRBRdate date="2026-07-27" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="phhc" href="/ontology/organization/in/phhc" showAs="High Court of Punjab and Haryana at Chandigarh"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Structural conversion of letter No. 287/Spl.C.B.11 of the Registrar General, Punjab and Haryana High Court, addressed to all District and Sessions Judges in Punjab, Haryana and U.T. Chandigarh. The letter carries a manuscript date reading 12/02/24. The five numbered directions and their sub-clauses are verbatim; the From/To/Sub/Ref block and the opening paragraph are carried in the preface, and the short headings on each direction are editorial, since the source numbers the directions without naming them.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <longTitle><p>IMPLEMENTATION OF E-FILING 3.0 IN DISTRICT COURTS IN THE STATES OF PUNJAB, HARYANA AND UT CHANDIGARH</p></longTitle>
+      <p>No. 287  Spl.C.B.11</p>
+      <p>From: The Registrar General, Punjab and Haryana High Court, Chandigarh.</p>
+      <p>To: All the District and Sessions Judges, in the States of Punjab, Haryana and UT Chandigarh.</p>
+      <p>Dated, Chandigarh 12/02/24</p>
+      <p>Sub: Implementation of e-filing 3.0 in District Courts in the States of Punjab, Haryana and UT Chandigarh.</p>
+      <p>Ref: This Court's earlier letter No. 200 dated 01.02.2024.</p>
+      <p>Sir/Madam,</p>
+      <p>I am directed to refer you on the subject cited above and to inform you the Hon'ble Computer Committee of Punjab and Haryana High Court has been pleased to pass the directions, duly approved by Hon'ble the Acting Chief Justice,to migrate from e-filing 1.0 to e-filing 3.0 software, as provided by Hon'ble e-Committee, Supreme Court of India.</p>
+      <p>For successful migration to e-filing 3.0 software, it is requested as under –</p>
+    </preface>
+    <mainBody>
+      <section eId="para_1">
+        <num>(i)</num>
+        <heading>Last date for accepting e-filing on the old software</heading>
+        <content>
+          <p>To accept e-filing of fresh cases only till 14.02.2024.</p>
+        </content>
+      </section>
+      <section eId="para_2">
+        <num>(ii)</num>
+        <heading>Physical filing only during the changeover</heading>
+        <content>
+          <p>e-Filing of fresh cases to remain unavailable from 15.02.2024 till 22.02.2024 and the cases shall only be filed through physical mode during these days.</p>
+        </content>
+      </section>
+      <section eId="para_3">
+        <num>(iii)</num>
+        <heading>Clearing pending requests before migration</heading>
+        <content>
+          <p>All the pending requests in the admin account of e-filing 1.0 software and in the accounts of the e-filers be cleared till 17.02.2024. Accordingly –</p>
+          <blockList eId="para_3__list">
+            <item eId="para_3__i1"><num>a)</num><p>the e-filers(Advocates/Litigants/Government Organizations) be requested to complete any pending petitions in their e-filing accounts under the 'Drafts' folder as the same will not be migrated to the new version(version 3.0) of the e-filing portal and all the data related to the case(s) will be erased.</p></item>
+            <item eId="para_3__i2"><num>b)</num><p>The e-filing users be requested to clear all the cases under Objection stage present in the 'Not Accepted' folder by re-efiling the petitions without any further Objection so that the cases can be scrutinized and a CNR number is assigned to the cases. It is informed that the cases pending in the 'Not Accepted' folder of any e-filing user will not be migrated to the new version of e-filing portal and all the history of the case will be erased permanently, leading to loss of exemption of limitation and delay of days also.</p></item>
+            <item eId="para_3__i3"><num>c)</num><p>CNR number is required to be assigned to the correctly e-filed case(s) as the cases pending in the 'New Filing', 'Re-Filing' and 'Transfer to Section' stage at the Admin user account will not be migrated to the version 3.0 of e-filing portal and the e-filing user will have to again e-file these petition(s) freshly in the new version on e-filing portal as all the previous data of the e-filed cases will be lost permanently.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="para_4">
+        <num>(iv)</num>
+        <heading>Four-day downtime for migration</heading>
+        <content>
+          <p>For migration of e-filing 1.0 to 3.0, a downtime of four days from 19.02.2024 till 22.02.2024 has been approved, whereby no e-filer shall be able to access his/ her e-filing account in e-filing version 1.0.</p>
+        </content>
+      </section>
+      <section eId="para_5">
+        <num>(v)</num>
+        <heading>Resumption of e-filing and the date compulsory e-filing restarts</heading>
+        <content>
+          <p>e-Filing through e-filing 3.0 portal shall resume from 23.02.2024, however a gap of 15 working days till 14.03.2024 is being provided for live testing of e-filing 3.0 software by Court officials, to get accustomed to the usage of the new software, resolving the issues of Advocates arising in the software and for training of the Advocates for e-filing 3.0 software. Thereafter, the compulsory e-filing of cases (if any) be resumed from 15.03.2024, from e-filing 3.0 software.</p>
+        </content>
+      </section>
+      <section eId="para_6">
+        <heading>Technical assistance</heading>
+        <content>
+          <p>For any technical assistance, you are requested to coordinate with Ms. Nikita Babbar, Junior Assistant, Computer Branch at 95013-35971.</p>
+          <p>Yours faithfully, Joint Registrar (Computerization &amp; I.T.) for Registrar General</p>
+        </content>
+      </section>
+    </mainBody>
+  </doc>
+</akomaNtoso>

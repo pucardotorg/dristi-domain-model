@@ -1,0 +1,1301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="act" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-gj/act/2016/hc-case-flow-management-subordinate-courts-rules/!main"/>
+          <FRBRuri value="/akn/in-gj/act/2016/hc-case-flow-management-subordinate-courts-rules"/>
+          <FRBRalias value="The Gujarat High Court Case Flow Management (Subordinate Courts) Rules, 2016" name="shortTitle"/>
+          <FRBRdate date="2016-07-28" name="generation"/>
+          <FRBRauthor href="#gujarat-hc"/>
+          <FRBRcountry value="in-gj"/>
+          <FRBRnumber value="C.3002/2016"/>
+          <FRBRname value="The Gujarat High Court Case Flow Management (Subordinate Courts) Rules, 2016"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-gj/act/2016/hc-case-flow-management-subordinate-courts-rules/eng@/!main"/>
+          <FRBRuri value="/akn/in-gj/act/2016/hc-case-flow-management-subordinate-courts-rules/eng@"/>
+          <FRBRdate date="2016-07-28" name="generation"/>
+          <FRBRauthor href="#gujarat-hc"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-gj/act/2016/hc-case-flow-management-subordinate-courts-rules/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in-gj/act/2016/hc-case-flow-management-subordinate-courts-rules/eng@.akn"/>
+          <FRBRdate date="2026-07-27" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="gujarat-hc" href="/ontology/organization/in/gujarat-hc" showAs="High Court of Gujarat"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Converted from the only published source, the Gujarat Government Gazette Part IV-C of 28 July 2016 (pages 323-335), which carries Notification No. C.3002/2016 dated 14 July 2016. That gazette copy is a scan with no text layer, so the text was transcribed by reading the page images and cross-checking every line against a 300 and 500 dpi OCR pass; where the two differed the page image governed. Rules 1 to 21 and both Schedules are reproduced in full and verbatim, including the source's own misprints (for example 'TOACK-I, II, III' at Schedule-I item 48, 'RESTORATON'/'DAFAULT' at item 24, 'PETITONS' at items 33 and 34, 'ESSENCIAL' at Schedule-II item 18, and 'DOWERY DEATH' at item 28). The tabular schedules are flattened: each row is one addressable unit carrying its case type, nature of suit, track, set valve and outer time limit. Rule 21's heading and the sub-clause lettering follow the gazette. Rule 18's heading is editorial - the gazette numbers that rule without naming it.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <longTitle><p>THE GUJARAT HIGH COURT CASE FLOW MANAGEMENT (SUBORDINATE COURTS) RULES, 2016</p></longTitle>
+      <p>BY THE HIGH COURT OF GUJARAT AT AHMEDABAD. NOTIFICATION No.C.3002/2016.</p>
+      <p>In exercise of the power conferred by Part X of the Code of Civil Procedure 1908 (5 of 1908), Article 227 of the Constitution of India, Section 477(1)(d) of the Code of Criminal Procedure, 1973 and all other enabling powers, the High Court of Gujarat hereby makes the following Rules, with regard to the Case Flow Management in Subordinate Courts.</p>
+    </preface>
+    <body>
+      <section eId="rule_1">
+        <num>1.</num>
+        <heading>Title &amp; Commencement</heading>
+        <content>
+          <blockList eId="rule_1__list">
+            <item eId="rule_1__i1"><num>(1)</num><p>These Rules may be called &quot;The Gujarat High Court Case Flow Management (Subordinate Courts) Rules, 2016.&quot;</p></item>
+            <item eId="rule_1__i2"><num>(2)</num><p>These rules shall come into force from the date of their publication in the Official Gazette.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_2">
+        <num>2.</num>
+        <heading>Definitions</heading>
+        <content>
+          <p>In these rules, unless the context otherwise provides-</p>
+          <blockList eId="rule_2__list">
+            <item eId="rule_2__i1"><num>1.</num><p>&quot;Ministerial Officer&quot; means the Registrar/Deputy Registrar or any other officer of the Court concerned, designated as such.</p></item>
+            <item eId="rule_2__i2"><num>2.</num><p>&quot;Subordinate Courts&quot; means all Courts subordinate to the High Court of Gujarat including Labour and Industrial Courts/Tribunals.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_3">
+        <num>3.</num>
+        <heading>Categorisation of Suits and Appeals and other proceedings into Tracks</heading>
+        <content>
+          <blockList eId="rule_3__list">
+            <item eId="rule_3__i1"><num>(i)</num><p>The Ministerial Officer shall categorise the Suits, Appeals and other Proceedings into four Tracks viz. Track-I, Track-II, Track-III and Track-IV, as per Schedule-I to these Rules.</p></item>
+            <item eId="rule_3__i2"><num>(ii)</num><p>The categorization/ classification shall, thereafter be confirmed by the Judicial Officer concerned.</p></item>
+            <item eId="rule_3__i3"><num>(iii)</num><p>The case files categorized in different Tracks viz. Track I, Track II, Track III and Track IV shall, for the purpose of easy identification, be of different Colour-Codes, which shall be common in all the subordinate Courts: say Track-I Case Files of VIOLET/INDIGO colour; Track-II Case Files of BROWN colour, Track-III Case Files of GREEN colour and Track-IV Case Files of YELLOW colour.</p></item>
+            <item eId="rule_3__i4"><num>(iv)</num><p>The Time schedule (limit) prescribed for each Track (the maximum time-limit) for respective category of cases will be as mentioned hereinunder: Track-I - 9 Months; Track-II - 12 Months; Track-III - 15 Months; Track-IV - 24 Months.</p></item>
+            <item eId="rule_3__i5"><num>(v)</num><p>However, in the event of inconsistency between the Time schedule (limit) prescribed under these Rules and/or the provisions in these Rules and the provisions and/or the time limit prescribed under the Code of Civil Procedure or Civil Manual or under any other Special Statute or under the Code of Criminal Procedure or Criminal Manual as the case may be, the provision and/or time limit prescribed under the Code of Civil Procedure and/or Code of Criminal Procedure or such other special Statute shall prevail.</p></item>
+            <item eId="rule_3__i6"><num>(vi)</num><p>The Presiding Judge may, for valid reason to be recorded in writing, extend the time limit applicable in respect of the concerned Track and/or shift a case from one Track to another depending upon the complexity and the nature of dispute, the number of witnesses and quantum of evidence to be recorded, the time likely to be taken for the completion of the Suit or the Proceeding, and other circumstances of the case.</p></item>
+            <item eId="rule_3__i7"><num>(vii)</num><p>On the last working day of the third week of every month or 5 working days before the end of a particular business period, whichever is earlier, the Ministerial Officer, shall cause a report, (about the stage and progress of the cases which are scheduled to be listed in next month) to be prepared, and shall place the report before the Court concerned.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_4">
+        <num>4.</num>
+        <heading>Precursor to the filing of Suits / Applications / Proceeding against State/Union Government, etc.</heading>
+        <content>
+          <blockList eId="rule_4__list">
+            <item eId="rule_4__i1"><num>(1) (a)</num><p>When the State / Union Government / Public Servants of State/Union Government are parties to the Suit, Appeal or Proceeding, in such cases, in addition to the copies required for affecting Summons/Notice under and as per these Rules, a copy of the Plaint/ Petition / Memorandum of appeal etc, shall be simultaneously served on the Government Pleader of the State/Counsel of the Central Government, as the case may be, while filing the same in the Court and necessary endorsement in proof of such service shall be obtained and produced before the Registry.</p></item>
+            <item eId="rule_4__i2"><num>(1) (b)</num><p>The summons or notice along with the copy of the pleadings, served on the Government Pleader / Central Government Counsel as the case may be, shall be deemed to be a valid service.</p></item>
+            <item eId="rule_4__i3"><num>(2) (a)</num><p>The Cause-title of the plaint and other Applications shall contain the true, complete and latest postal address of all parties to the suit, appeal, application or other proceedings. In every proceeding all addresses including address of office as well as residence, permanent and temporary including e-mail I.D., if any, of the plaintiff/applicant/appellant shall be supplied, at the first instance, which shall be treated as the &quot;Registered Address&quot; failing which the matter shall be liable to be dismissed for non-prosecution/non-removal of infirmity or shall not be assigned final registration number until the infirmity-objection is removed. Likewise, the respondent shall supply/mention in the written statement/reply the correct, complete and latest addresses of all respondents.</p></item>
+            <item eId="rule_4__i4"><num>(2) (b)</num><p>In case the plaintiff and respondent is/are partnership, company, corporation then the addresses of the partners, directors, CEOs, officers in-charge shall be mentioned.</p></item>
+            <item eId="rule_4__i5"><num>(3)</num><p>The plaintiff/applicant, appellant or the defendant, as the case may be, shall also supply, along with the plaint/application, or the Reply/Written Statements, a list of all heirs/legal representatives of the plaintiff/applicant or the defendant along with their true and complete names and addresses and an Undertaking that any change in such details, shall be immediately, informed to the office in absence of which, the suit/application/appeal shall be treated as incomplete and defective.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_5">
+        <num>5.</num>
+        <heading>Summons</heading>
+        <content>
+          <blockList eId="rule_5__list">
+            <item eId="rule_5__i1"><num>(i) (a)</num><p>The Summons/Notices issued in suit, appeal or original proceedings shall indicate that Code prescribes maximum of 30 days for filing written statement from the date of service of summons/notice. The notice shall be accompanied by the entire set of plaint and its annexures and interlocutory application, if any.</p></item>
+            <item eId="rule_5__i2"><num>(i) (b)</num><p>However, if the defendant or an advocate on his behalf, appears at the time of Presentation of the suit or application or appeal, the Registry shall accordingly show the appearance, in the cause list.</p></item>
+            <item eId="rule_5__i3"><num>(ii)</num><p>The plaintiff/applicant/appellant shall, file complete copies of the plaint/petition/appeal and interlocutory application together with the documents for service on the defendant/respondent at the time of institution of the proceedings itself.</p></item>
+            <item eId="rule_5__i4"><num>(iii)</num><p>The process fee for service shall be paid within three (3) days from the date of order, failing which, the case will be posted in Cause List-I referred to in Rule-6 hereunder for dismissal for non-prosecution.</p></item>
+            <item eId="rule_5__i5"><num>(iv)</num><p>In addition to service of Summons/ Notice as indicated in clause (3) of Rule 9 of Order V of the Code, the service of Summons or Notice or any direction, for completion of proceeding, may also be effected preferentially, through Digitally Signed Electronic Communication (email, etc.), acknowledgement of the receipt of which, by the other side shall be within 5 working days, and upon acknowledgment of the receipt/service by e-message, the service shall be deemed to have been made in accordance with the requirements of the Code.</p></item>
+            <item eId="rule_5__i6"><num>(v)</num><p>In cases where service of Summons is permitted and is effected by the plaintiff or a certified/registered courier, the concerned person shall file 'Affidavit of Service' in prescribed manner, form and time.</p></item>
+            <item eId="rule_5__i7"><num>(vi)</num><p>In cases where service of Summons or Notice is permitted to be effected by the plaintiff or applicant's/plaintiffs agent representative through Certified/Registered courier and the Summons/Notice is returned with the endorsement that the party of the other side has refused Notice, the return shall be accompanied by a declaration signed by or the plaintiff or a responsible person of the courier agency, as the case may be, to the effect that the endorsement made is correct and if it is found to be false, he can be punished for perjury or summarily dealt with for abuse of the provisions of the Code, or any other law in force &amp; in case the person concerned was representing Certified/Registered Courier Agency, the said Courier Agency can be black-listed. On consideration of such declaration, the Court may place the defendant ex-parte.</p></item>
+            <item eId="rule_5__i8"><num>(vii)</num><p>Whenever Summons/Notice issued to defendant/respondent through post/courier is reported unserved, the Court shall order issuance of Summons through Bailiff and substituted service simultaneously.</p></item>
+            <item eId="rule_5__i9"><num>(viii)</num><p>The envelope of the Summons/ Notice sent through Courier shall bear written or printed instructions to the server to deliver Summons/Notice to the party and in his absence, to any adult member of the family residing with him.</p></item>
+            <item eId="rule_5__i10"><num>(ix)</num><p>Work of the Courier shall be supervised and controlled by the Ministerial Officer or other designated person holding equivalent post, as per the instructions and directions contained in the Civil Manual for the service by the Bailiff.</p></item>
+            <item eId="rule_5__i11"><num>(x)</num><p>The matter shall be listed before the Court on expiry of 30 days from the date of service or refusal to receive service of summons, whereupon, the Judge shall pass appropriate order as deemed fit.</p></item>
+            <item eId="rule_5__i12"><num>(xi)</num><p>Where the plaintiff comes forward with a return of 'refusal', the provisions of Order 9-A Rule 4 will be followed by reissue of summons through court.</p></item>
+            <item eId="rule_5__i13"><num>(xii)</num><p>If it has not been possible to effect service of summons under Rule 9 Order 5, the provisions of Rule 17 Order 5 shall apply and the plaintiff shall within 7 days from the date of its inability to serve the summons, to request the court to permit substituted service. The dates for filing the written statement and replication, if any, shall accordingly stand extended.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_6">
+        <num>6.</num>
+        <heading>Listing and Calling of Cases</heading>
+        <content>
+          <blockList eId="rule_6__list">
+            <item eId="rule_6__i1"><num>(a)</num><p>The Principal District Judge or the Principal Judge of City Courts at Ahmedabad, shall notify a senior officer of the Registry, before whom there shall be formal listing of cases, for final verification of compliance of all requirements including the orders by court and other pre-requisites before listing the matter on the cause list for hearing. The parties shall comply with all requirements and the verification shall be completed before the date on which the case should be listed, as per track norms, for hearing.</p></item>
+            <item eId="rule_6__i2"><num>(b)</num><p>Ordinarily the proceedings of the suit, appeal or proceedings may be undertaken in below mentioned stages:- (i) Return of Summons/Notices. (ii) Filing of objection/counter affidavit to the interlocutory applications. (iii) Hearing of interlocutory applications. (iv) Filing of written statement/ objections. (v) Consideration of Alternative Dispute Resolution mechanisms. (vi) Framing of issues. (vii) Pre-trial steps. (viii) Evidence (ix) Arguments (x) Judgment</p></item>
+            <item eId="rule_6__i3"><num>(c)</num><p>The Presiding Officer shall cause preparation of two Cause-Lists of the cases for the calling work every day.</p></item>
+            <item eId="rule_6__i4"><num>(d)</num><p>The cases at the stage of hearing of interlocutory applications, consideration of Alternate Dispute Resolution Mechanisms, framing of issues, pretrial steps, evidence, arguments and judgment/order shall be listed in Cause List-I. Execution matters also shall be listed in Cause List-I.</p></item>
+            <item eId="rule_6__i5"><num>(e)</num><p>The cases at the stage of return of Summons/Notices, appearance of parties, filing of written statement or objections affidavits, written submissions, Cases for ascertaining whether earlier orders of the Court have been complied within time and recording reasons/causes for non-compliance, if any, shall be listed in Cause List-II.</p></item>
+            <item eId="rule_6__i6"><num>(f)</num><p>Whenever the Advocate / Party fails to attend or take steps in the case posted in Cause List-II and does not seek extension of time, the case shall be included in Cause List-I and posted for necessary orders within three days. The case at the stage of appearance of parties be posted in Cause List-I for necessary orders only, if requested for by the Advocate or Party or if considered necessary by the designated officer. In all such cases the cause list shall carry a remark about the reason for listing of the case in List-I.</p></item>
+            <item eId="rule_6__i7"><num>(g)</num><p>The cases listed in Cause List - I shall be called in Open Court.</p></item>
+            <item eId="rule_6__i8"><num>(h)</num><p>The Ministerial/designated Officer shall attend to the cases listed in Cause List-II.</p></item>
+            <item eId="rule_6__i9"><num>(i)</num><p>Cause List Nos. I and II shall be published in advance by the Officer on the previous day.</p></item>
+            <item eId="rule_6__i10"><num>(j)</num><p>The cases posted in this List, and not attended by the Advocate/party or where no extension of time is sought for, be included in Cause List-I for necessary orders within 3 days.</p></item>
+            <item eId="rule_6__i11"><num>(k)</num><p>The cases which are not ready and wherein steps are required to be taken for making the cases ready and/or for taking steps to ensure that prescribed time limit is observed, shall be notified on the Board of the Ministerial/Designated Officer.</p></item>
+            <item eId="rule_6__i12"><num>(l)</num><p>The cases which are more than 3 years old, which are not ready for whatever reason shall not be continued as adjourned Sine die, but shall be listed before the Ministerial/Designated Officer (under a separate Cause-List of unready cases,) every fortnight, for monitoring the progress of such cases getting ready, identifying the reasons for the cases remaining unready and for passing appropriate orders directing the parties to take necessary steps before the time granted by him, for removal of defects.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_7">
+        <num>7.</num>
+        <heading>Procedure regarding Interim orders/disposal of Interim Applications</heading>
+        <content>
+          <blockList eId="rule_7__list">
+            <item eId="rule_7__i1"><num>(1)</num><p>In a suit, appeal or other proceeding, if only notice is ordered in the Interlocutory applications, the applications shall be posted for hearing in Cause List-I immediately on expiry of notice period on the appearance of the respondent/respondents, whichever is earlier.</p></item>
+            <item eId="rule_7__i2"><num>(1A)</num><p>If ex-parte ad-interim order is not passed, the Court may fix an earlier date, for hearing application for interim relief, before the ordinary time limit available for filing written statement.</p></item>
+            <item eId="rule_7__i3"><num>(2)</num><p>If an interim order is granted at the first hearing by the Court, the defendants would have the option of moving appropriate applications for vacating the interim order even before the returnable date indicated in the notice and if such an application is filed, it shall be listed as soon as possible even before the returnable date.</p></item>
+            <item eId="rule_7__i4"><num>(3)</num><p>If the Court passes an ad-interim ex-parte order in an interlocutory application, and the reply by the defendants is filed, and if, thereafter, the plaintiff fails to file the rejoinder (if any) without good reason for the delay, the Court shall, consider whether the stay or interim order passed by the Court should be vacated and shall list the case for that purpose. The plaintiff may, if he so chooses, also waive his right to file a rejoinder. A communication of option by the plaintiff not to file a rejoinder, made to the Registry will be deemed to be the completion of pleadings in the interlocutory application.</p></item>
+            <item eId="rule_7__i5"><num>(4)</num><p>In a suit, appeal or other proceeding, if an exparte interim order is granted on an interlocutory application, the same shall be posted in Cause List-I for disposal on merits immediately after the appearance of the respondent/s and the court shall endeavour for disposal of the said application within 30 days from the date of the order.</p></item>
+            <item eId="rule_7__i6"><num>(5)</num><p>The applications filed for interim orders in respect of the cases in Cause List-I may be listed on the date of hearing after it is filed in advance with due notice to the other side.</p></item>
+            <item eId="rule_7__i7"><num>(6)</num><p>Any application seeking for emergent interim orders in any matter pending in Cause List-I before the Ministerial Officer, shall be posted before the Court forthwith.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_8">
+        <num>8.</num>
+        <heading>Reference of Cases to mediation. Conciliation and Lok Adalat</heading>
+        <content>
+          <blockList eId="rule_8__list">
+            <item eId="rule_8__i1"><num>(1)</num><p>Reference to the Alternative Dispute Resolution Forum, shall be in the manner prescribed under Sec.89 of the Code of Civil Procedure and as per the procedure under 'Appropriate Dispute Resolution (Gujarat) Draft Rules, 2007' or the 'Civil Procedure Mediation (Gujarat) Draft Rules, 2007'.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_9">
+        <num>9.</num>
+        <heading>Procedure on the failure of Alternative Dispute Resolution (Furtherance of Cases)</heading>
+        <content>
+          <blockList eId="rule_9__list">
+            <item eId="rule_9__i1"><num>(1)</num><p>On the filing of the report by the mediator or the Conciliator or from the Lok Adalat about the failure of the process, the Suit shall be listed, for framing of issues, in Cause List-I, within three days after the report (along with the case record received upon failure of the Alternative Dispute Resolution process). The stage of framing issues will be concluded immediately, and preferably within 7 days, after the matter is returned upon failure of Alternative Dispute Resolution process.</p><p>However while fixing the date, the court shall keep in mind the outer time limit as per the Track norms, for finally disposing of the case.</p></item>
+            <item eId="rule_9__i2"><num>(2)</num><p>In the cases where the report about failure of Conciliation/ Mediation is received and record is returned, the time spent in the process shall be set-off and the time limit, as per the respective Tracks shall proportionately stand extended.</p></item>
+            <item eId="rule_9__i3"><num>(3)</num><p>The Courts shall not allow the parties to abuse the ADR Forum to prolong and indirectly extend the Time-Schedule (limit) under the Track norms.</p></item>
+            <item eId="rule_9__i4"><num>(4)</num><p>As far as possible, the evidence must be continued and recorded day-to-day as per the provision under Code of Civil Procedure (clause (a) of proviso to Rule 2 Order 17), until all witnesses are examined. All witnesses shall be in attendance.</p></item>
+            <item eId="rule_9__i5"><num>(5)</num><p>After completion of evidence on the plaintiffs side, the defendants shall lead evidence likewise, witness after witness. The chief examination of each witness being by affidavit and the witness being then cross-examined or re-examined. The parties shall keep the affidavit in chief-examination ready whenever the witness's examination is taken up. After confirming the availability of time the Court will list the matter for trial on a date when the trial can go on from day to day and conclude the evidence.</p></item>
+            <item eId="rule_9__i6"><num>(6)</num><p>The Presiding Judge may, after hearing the parties and for reasons to be recorded, grant the request for recording of evidence by Commission in respect of cases listed in Track-II, III and IV and for special reasons to be recorded in respect of cases listed in Track-I and make appropriate order appointing commission for recording evidence in accordance with Rule 1 to Rule 4 of Order XXVI.</p></item>
+            <item eId="rule_9__i7"><num>(7)</num><p>It is not necessary that in every case the Court should appoint a Commissioner for recording evidence. Only if recording of evidence is likely to take a long time, or there are any other special grounds, the Court may consider appointing a Commissioner for recording the evidence.</p></item>
+            <item eId="rule_9__i8"><num>(8)</num><p>The Commissioner for recording evidence shall be appointed only from the panel prepared by the District Judge in his respective district as per paragraph 112 (ii) of Chap.-VII of the Civil Manual 1960 (High Court Notification No. C.2006/80, dtd. June 18, 2004)</p></item>
+            <item eId="rule_9__i9"><num>(9)</num><p>The Presiding Judge shall, keeping in view the time limit as per Track norms, fix specific period, which may not be more than one month, for recording the evidence by the Commissioner. The Commissioner may not consume more than 1 month for recording evidence unless extended on joint request of parties with the remark of the Commissioner, keeping track norms in view. If there is delay of more than one month in the dates fixed for recording evidence, it is advisable for the Commissioner to return the file to the Court and take it back on the eve of the adjourned date and after the order extending time is passed. The Court would also direct that the matter be listed before the Court for further proceedings on the date of expiry of the period or within 3 days after the Commissioner files his report with evidence, whichever is earlier.</p></item>
+            <item eId="rule_9__i10"><num>(10)</num><p>The Ministerial Officer shall keep a Check-List of the record and entire list of the File handed over to and received from the Commissioner.</p></item>
+            <item eId="rule_9__i11"><num>(11)</num><p>The Commissioners shall have to file an Undertaking in Court upon their appointment, that they will keep the records handed over to them and those that may be filed before them safe and shall not allow any party to take copies thereof and/or to inspect them without prior permission and in absence of the Commission's representative and opposite party or its Advocate; that they shall discharge their duties conscientiously.</p></item>
+            <item eId="rule_9__i12"><num>(12)</num><p>The recording of evidence by Commissioner can also be done through the mode of Video Conferencing facility, wherever possible.</p></item>
+            <item eId="rule_9__i13"><num>(13) (a)</num><p>The case shall be listed immediately after the completion of evidence, for arguments, which shall, as far as possible, not be more than 7 (seven) days.</p></item>
+            <item eId="rule_9__i14"><num>(13) (b)</num><p>The Presiding Judge may, after considering the available material, complexity of and the number the issues and the track norms, fix the maximum time for completion of arguments, by each party to the proceedings.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_10">
+        <num>10.</num>
+        <heading>Stay for Miscellaneous Applications</heading>
+        <content>
+          <blockList eId="rule_10__list">
+            <item eId="rule_10__i1"><num>(1)</num><p>Subject to the provisions of the Code, the proceedings in a Suit proceeding shall not be stayed merely because of Miscellaneous Application/s, filed in the course of the Suit proceedings, unless the Court, in its discretion considers it necessary, and records reasons, to Stay the proceedings in the suit.</p><p>The Courts shall dispose of such Miscellaneous Application/s, expeditiously, particularly in Application/s wherein on account of the order passed in the Suit, the proceeding has been stayed.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_10a">
+        <num>10. A</num>
+        <heading>Costs</heading>
+        <content>
+          <p>Awarding of costs must be treated generally as mandatory. Costs should invariably follow the event.</p>
+          <p>Special reasons must be assigned if costs are not being awarded. Costs should be assessed according to rules in force. If any of the parties has unreasonably protracted the proceedings, the Judge should consider exercising discretion to impose exemplary costs after taking into account the expense incurred for the purpose of attendance on the adjourned dates.</p>
+        </content>
+      </section>
+      <section eId="rule_11">
+        <num>11.</num>
+        <heading>First Appeals to Subordinate Courts</heading>
+        <content>
+          <blockList eId="rule_11__list">
+            <item eId="rule_11__i1"><num>(1) (a)</num><p>Service of Notice of Appeal- When Memorandum of Appeal is presented, as per amended Rule 9(1) of Order XLI of the Code of Civil Procedure, in addition to the process for normal service as per the Code, an advance copy of the Appeal with a notice / notice of date of hearing, shall be served on the Respondent or his Advocate, who appeared in the subordinate Court.</p></item>
+            <item eId="rule_11__i2"><num>(1) (b)</num><p>The above mentioned provisions of Rule-4, shall apply, wherever relevant and applicable, mutatis mutandis in case of Appeal.</p></item>
+            <item eId="rule_11__i3"><num>(2)</num><p>The provisions regarding Service of Notice in case of Suit and Applications, shall be applicable to Appeals as well.</p></item>
+            <item eId="rule_11__i4"><num>(3)</num><p>So as to avoid delay (at Admission-stage), the appellant shall file, along with the Appeal-Memo, certified copy of the Order/Judgment impugned, in lieu of the Original Judgment and the entire set comprising the pleadings and all documents forming record of the suit shall accompany/ shall be attached to the Appeal memo and such entire set shall be served on all respondents.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_12">
+        <num>12.</num>
+        <heading>Time limits in Interlocutory Applications</heading>
+        <content>
+          <p>The provisions of Rule-7, shall apply mutatis mutandis, to such applications in Appeal.</p>
+        </content>
+      </section>
+      <section eId="rule_13">
+        <num>13.</num>
+        <heading>Procedure on grant of interim orders on Interim Applications</heading>
+        <content>
+          <p>The provisions of Rule-7, shall apply mutatis mutandis, to such applications in Appeal.</p>
+        </content>
+      </section>
+      <section eId="rule_14">
+        <num>14.</num>
+        <heading>Filing of Written Submissions</heading>
+        <content>
+          <blockList eId="rule_14__list">
+            <item eId="rule_14__i1"><num>(1)</num><p>The appellants and the respondents shall submit their respective written submissions at least 3 days before the date fixed for commencement of the arguments in the Appeal. Each party shall also simultaneously serve copy thereof on the opposite side. The Registry shall update the cause list and it shall reflect whether written submission, by each party, has been filed and served, on the otherside.</p></item>
+            <item eId="rule_14__i2"><num>(2)</num><p>Neither party shall file nor the Court shall receive Counter Submissions to the Written Submissions of the opposite side.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_15">
+        <num>15.</num>
+        <heading>Caution List or Alternative List</heading>
+        <content>
+          <p>The Presiding Judge may, to take care of eventualities when a case does not go on as per the schedule and/or as per the scheduled norm, notify a Caution List or Alternative List and the cases listed therein shall be taken up when, for any reason, the scheduled cases could not be taken up for hearing.</p>
+        </content>
+      </section>
+      <section eId="rule_16">
+        <num>16.</num>
+        <heading>Application or Petitions under Special Acts</heading>
+        <content>
+          <p>Notwithstanding anything contained in these Rules, the provisions under the Special Acts like Hindu Marriage Act, Indian Succession Act, Industrial Disputes Act, Arbitration Act, Design Act, etc., including the Rules made under the Special Acts, shall prevail over these Rules, to the extent of inconsistency. However, unless inconsistent with the Rules framed under Special Statute, the provisions under this Rules and/or the practice and directions in regard to original suits or applications shall apply to the applications, petitions, etc. filed under such Special Statutes also.</p>
+        </content>
+      </section>
+      <section eId="rule_17">
+        <num>17.</num>
+        <heading>Notice issued under Sec. 80 of Code of Civil Procedure; Public Authority to appoint Officer</heading>
+        <content>
+          <blockList eId="rule_17__list">
+            <item eId="rule_17__i1"><num>(1)</num><p>Every Public Authority, Corporation, Local Body, Municipality, etc. shall appoint an Officer authorized and responsible to receive notices and take appropriate and prompt action without delay on a notice issued under Sec. 80 of the Code of Civil Procedure and/or any advance notice given by any applicant giving intimation about hearing date.</p></item>
+            <item eId="rule_17__i2"><num>(2)</num><p>Every such Officer shall take appropriate action on receipt of such notice.</p></item>
+            <item eId="rule_17__i3"><num>(3)</num><p>If the Court finds that the concerned Officer, on receipt of the notice, failed to take necessary action or was negligent in taking necessary steps, the Court shall pass appropriate order of exemplary costs, and if the facts so demand, then the Court shall also direct, after considering submission of such Officer, that the costs, shall be paid by the Officer concerned and/or the Court may recommend appropriate disciplinary action by the Competent Authority.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="rule_18">
+        <num>18.</num>
+        <heading>Advance copy where an injunction order is requested</heading>
+        <content>
+          <p>So as to ensure that an advance copy of the Petition/Appeal/Application wherein injunction order is requested for, is duly served, while such Petition/Appeal/Application is presented for circulation and urgent hearing, the Public Sector Undertaking-Corporations, local bodies-authorities shall file, with the Registrar (Judicial) the list containing details of the names and addresses of their respective advocates. The Registrar (Judicial) shall cause publication of all such lists on the Notice Boards at all such places which may be considered appropriate.</p>
+        </content>
+      </section>
+      <section eId="rule_19">
+        <num>19.</num>
+        <heading>E-Filing</heading>
+        <content>
+          <p>Suits/Proceedings can be instituted through E-filing mode using a predefined template to be made available.</p>
+        </content>
+      </section>
+      <section eId="rule_20">
+        <num>20.</num>
+        <heading>Miscellaneous</heading>
+        <content>
+          <p>Wherever there is any inconsistency between these Rules and the provisions of either the Code of Civil Procedure, 1908 or the Code of Criminal Procedure, 1973 or the Bombay Reorganization Act, 1960 or Civil Manual and Criminal Manual or any Special Act or any other Statute, and the Rules framed thereunder, the provisions of Codes and such other Statutes, shall prevail.</p>
+        </content>
+      </section>
+      <section eId="rule_21">
+        <num>21.</num>
+        <heading>Criminal Trials and Criminal Appeals to Subordinate Courts</heading>
+        <content>
+          <blockList eId="rule_21__list">
+            <item eId="rule_21__i1"><num>(A) (1)</num><p>Division of Criminal Trials into Tracks.- The presiding officer of the Court shall classify criminal trials or proceedings as per Schedule-1. There will be time-frames of particular type of cases falling in particular Track as per Schedule-1 to these rules.</p></item>
+            <item eId="rule_21__i2"><num>(A) (1A)</num><p>The Presiding Officer shall classify trials based on offence, sentence and whether the accused is on bail or in jail.</p></item>
+            <item eId="rule_21__i3"><num>(A) (2)</num><p>All efforts shall be made to complete Track I, Track II, Track III and Track IV cases within a period of nine months, twelve months, 15 months and 24 months, respectively. There will be time-frames of particular type of cases falling in particular Track as per Schedule I.</p></item>
+            <item eId="rule_21__i4"><num>(A) (3)</num><p>The Appellate Court may classify criminal appeals into different tracks on the same lines mentioned above.</p></item>
+            <item eId="rule_21__i5"><num>(B)</num><p>The same procedure / norms / formalities, etc., shall apply to all Criminal Trials and Criminal Appeals to Subordinate Courts as those applicable to Suits / Appeals / Proceedings, etc., as provided in these Rules, with the corresponding changes, as applicable under the Code of Criminal Procedure, 1973 / Special Acts / Statutes, etc.</p></item>
+            <item eId="rule_21__i6"><num>(C)</num><p>Legal Aid Counsel in Acquittal Appeal.- In respect of appeals filed against acquittals, steps for appointment of amicus-curiae or State Legal Aid counsel in respect of the accused who do not have a lawyer of their own shall be undertaken by the Registry or State Legal Services Authority as the case may be. Immediately after completion of four weeks of service of notice. It shall be presumed that in such an event the accused is not in a position to appoint advocate.</p></item>
+          </blockList>
+          <p>Wherever an appeal is filed by a person in jail, and also when appeals are filed by the State, as far as possible, the memorandum of appeal may be accompanied by important documents, if any, having a bearing on the question of bail.</p>
+          <p>HIGH COURT OF GUJARAT, SOLA, AHMEDABAD-380060. 14th July, 2016. (Sd)/- Illegible, Registrar General.</p>
+        </content>
+      </section>
+      <part eId="part_sch1">
+        <num>SCHEDULE-I</num>
+        <heading>[ PART - A - CIVIL ]</heading>
+        <section eId="sch1_a_1">
+          <num>1.</num>
+          <heading>ELECTION PETITION</heading>
+          <content>
+            <p>Case Type: ELECTION PETITION</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS (From the date of presentation in High Court)</p>
+          </content>
+        </section>
+        <section eId="sch1_a_2">
+          <num>2.</num>
+          <heading>REVIEW APPLICATION</heading>
+          <content>
+            <p>Case Type: REVIEW APPLICATION</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: A</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 30 DAYS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_3">
+          <num>3.</num>
+          <heading>CIVIL REVISION APPLICATION</heading>
+          <content>
+            <p>Case Type: CIVIL REVISION APPLICATION</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: C</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 2 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_4">
+          <num>4.</num>
+          <heading>COURT FEES REFERENCE</heading>
+          <content>
+            <p>Case Type: COURT FEES REFERENCE</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: C</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 2 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_5">
+          <num>5.</num>
+          <heading>PRECEPTS</heading>
+          <content>
+            <p>Case Type: PRECEPTS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: D</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 3 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_6">
+          <num>6.</num>
+          <heading>MISC.CIVIL APPEAL</heading>
+          <content>
+            <p>Case Type: MISC.CIVIL APPEAL</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: D</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 3 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_7">
+          <num>7.</num>
+          <heading>MUNICIPAL TAX APPEAL</heading>
+          <content>
+            <p>Case Type: MUNICIPAL TAX APPEAL</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_8">
+          <num>8.</num>
+          <heading>SUMMARY SUITS</heading>
+          <content>
+            <p>Case Type: SUMMARY SUITS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_9">
+          <num>9.</num>
+          <heading>TOWN PLANNING APPEAL</heading>
+          <content>
+            <p>Case Type: TOWN PLANNING APPEAL</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_10">
+          <num>10.</num>
+          <heading>WAQF APPEAL</heading>
+          <content>
+            <p>Case Type: WAQF APPEAL</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_11">
+          <num>11.</num>
+          <heading>LAND ACQUISITION CASE</heading>
+          <content>
+            <p>Case Type: LAND ACQUISITION CASE</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_12">
+          <num>12.</num>
+          <heading>EXECUTION PETITION-REGULAR</heading>
+          <content>
+            <p>Case Type: EXECUTION PETITION-REGULAR</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_13">
+          <num>13.</num>
+          <heading>EXECUTION PETITION-SPECIAL</heading>
+          <content>
+            <p>Case Type: EXECUTION PETITION-SPECIAL</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_14">
+          <num>14.</num>
+          <heading>MATRIMONIAL PETITION</heading>
+          <content>
+            <p>Case Type: MATRIMONIAL PETITION</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_15">
+          <num>15.</num>
+          <heading>REGULAR CIVIL APPEAL</heading>
+          <content>
+            <p>Case Type: REGULAR CIVIL APPEAL</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_16">
+          <num>16.</num>
+          <heading>TRUST SUIT</heading>
+          <content>
+            <p>Case Type: TRUST SUIT</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_17">
+          <num>17.</num>
+          <heading>REGULAR CIVIL SUIT - MONEY</heading>
+          <content>
+            <p>Case Type: REGULAR CIVIL SUIT - MONEY</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_18">
+          <num>18.</num>
+          <heading>REGULAR CIVIL SUIT - OTHER</heading>
+          <content>
+            <p>Case Type: REGULAR CIVIL SUIT - OTHER</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_19">
+          <num>19.</num>
+          <heading>SPECIAL CIVIL SUIT - MONEY</heading>
+          <content>
+            <p>Case Type: SPECIAL CIVIL SUIT - MONEY</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: IV</p>
+            <p>SET VALVE: I</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 24 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_20">
+          <num>20.</num>
+          <heading>SPECIAL CIVIL SUIT - OTHER</heading>
+          <content>
+            <p>Case Type: SPECIAL CIVIL SUIT - OTHER</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: IV</p>
+            <p>SET VALVE: I</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 24 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_21">
+          <num>21.</num>
+          <heading>CIVIL MISC APPLICATION - (except otherwise specified in this list)</heading>
+          <content>
+            <p>Case Type: CIVIL MISC APPLICATION - (except otherwise specified in this list)</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: D</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 3 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_22">
+          <num>22.</num>
+          <heading>INTERIM APPLICATION</heading>
+          <content>
+            <p>Case Type: INTERIM APPLICATION</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: A</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 30 DAYS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_23">
+          <num>23.</num>
+          <heading>APPLICATION FOR INTERIM MAINTENANCE IN H.M PETITION</heading>
+          <content>
+            <p>Case Type: APPLICATION FOR INTERIM MAINTENANCE IN H.M PETITION</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: B</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 WEEKS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_24">
+          <num>24.</num>
+          <heading>APPLICATION FOR RESTORATON OF SUITS DISMISSED FOR DAFAULT</heading>
+          <content>
+            <p>Case Type: APPLICATION FOR RESTORATON OF SUITS DISMISSED FOR DAFAULT</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: B</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 WEEKS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_25">
+          <num>25.</num>
+          <heading>APPLICATION FOR SETTING ASIDE EXPARTE DECREE</heading>
+          <content>
+            <p>Case Type: APPLICATION FOR SETTING ASIDE EXPARTE DECREE</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: B</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 WEEKS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_26">
+          <num>26.</num>
+          <heading>ADOPTION MATTERS</heading>
+          <content>
+            <p>Case Type: ADOPTION MATTERS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: C</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 2 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_27">
+          <num>27.</num>
+          <heading>CASES UNDER THE WORKMEN'S COMPENSATION ACT</heading>
+          <content>
+            <p>Case Type: CASES UNDER THE WORKMEN'S COMPENSATION ACT</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: D</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 3 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_28">
+          <num>28.</num>
+          <heading>CASES UNDER THE PAYMENT OF WAGES ACT</heading>
+          <content>
+            <p>Case Type: CASES UNDER THE PAYMENT OF WAGES ACT</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: D</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 3 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_29">
+          <num>29.</num>
+          <heading>APPLICATION TO SUE AS INDIGENT PERSON</heading>
+          <content>
+            <p>Case Type: APPLICATION TO SUE AS INDIGENT PERSON</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: D</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 3 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_30">
+          <num>30.</num>
+          <heading>CUSTODY CASES</heading>
+          <content>
+            <p>Case Type: CUSTODY CASES</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: D</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 3 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_31">
+          <num>31.</num>
+          <heading>NON CUSTODY CASES</heading>
+          <content>
+            <p>Case Type: NON CUSTODY CASES</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_32">
+          <num>32.</num>
+          <heading>SERVICE MATTERS</heading>
+          <content>
+            <p>Case Type: SERVICE MATTERS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_33">
+          <num>33.</num>
+          <heading>PETITONS UNDER THE GUARDIANS AND WARDS ACT</heading>
+          <content>
+            <p>Case Type: PETITONS UNDER THE GUARDIANS AND WARDS ACT</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_34">
+          <num>34.</num>
+          <heading>PETITONS UNDER THE HINDU MARRIAGE ACT</heading>
+          <content>
+            <p>Case Type: PETITONS UNDER THE HINDU MARRIAGE ACT</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_35">
+          <num>35.</num>
+          <heading>CASES UNDER THE PROTECTION OF CIVIL RIGHTS</heading>
+          <content>
+            <p>Case Type: CASES UNDER THE PROTECTION OF CIVIL RIGHTS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_36">
+          <num>36.</num>
+          <heading>DIRECTION BY THE APEX COURT OR THE HIGH COURT</heading>
+          <content>
+            <p>Case Type: DIRECTION BY THE APEX COURT OR THE HIGH COURT</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_37">
+          <num>37.</num>
+          <heading>SUITS FOR MAINTENANCE</heading>
+          <content>
+            <p>Case Type: SUITS FOR MAINTENANCE</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_38">
+          <num>38.</num>
+          <heading>DIVORCE AND CHILD CUSTODY AND VISITATION RIGHTS</heading>
+          <content>
+            <p>Case Type: DIVORCE AND CHILD CUSTODY AND VISITATION RIGHTS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_39">
+          <num>39.</num>
+          <heading>SIMPLE SUIT FOR RENT OR FOR EVICTION</heading>
+          <content>
+            <p>Case Type: SIMPLE SUIT FOR RENT OR FOR EVICTION</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_40">
+          <num>40.</num>
+          <heading>CASES OF SENIOR CITIZENS</heading>
+          <content>
+            <p>Case Type: CASES OF SENIOR CITIZENS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_41">
+          <num>41.</num>
+          <heading>RETIRAL BENEFIT</heading>
+          <content>
+            <p>Case Type: RETIRAL BENEFIT</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_42">
+          <num>42.</num>
+          <heading>PUBLIC REVENUE</heading>
+          <content>
+            <p>Case Type: PUBLIC REVENUE</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_43">
+          <num>43.</num>
+          <heading>SUITS SOLELY BASED ON NEGOTIABLE INSTRUMENTS</heading>
+          <content>
+            <p>Case Type: SUITS SOLELY BASED ON NEGOTIABLE INSTRUMENTS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_44">
+          <num>44.</num>
+          <heading>SUITS PERTAINING TO MOVABLE AS WELL AS IMMOVABLE PROPERTIES</heading>
+          <content>
+            <p>Case Type: SUITS PERTAINING TO MOVABLE AS WELL AS IMMOVABLE PROPERTIES</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_45">
+          <num>45.</num>
+          <heading>SUITS CONCERNING PARTITION</heading>
+          <content>
+            <p>Case Type: SUITS CONCERNING PARTITION</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: IV</p>
+            <p>SET VALVE: I</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 24 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_46">
+          <num>46.</num>
+          <heading>PROPERTY DISPUTES</heading>
+          <content>
+            <p>Case Type: PROPERTY DISPUTES</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: IV</p>
+            <p>SET VALVE: I</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 24 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_47">
+          <num>47.</num>
+          <heading>TRADEMARK, COPYRIGHTS AND OTHER INTELLECTUAL PROPERTY MATTERS</heading>
+          <content>
+            <p>Case Type: TRADEMARK, COPYRIGHTS AND OTHER INTELLECTUAL PROPERTY MATTERS</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: IV</p>
+            <p>SET VALVE: I</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 24 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_48">
+          <num>48.</num>
+          <heading>SUCH OTHER SUITS NOT INCLUDED IN TOACK-I, II, III</heading>
+          <content>
+            <p>Case Type: SUCH OTHER SUITS NOT INCLUDED IN TOACK-I, II, III</p>
+            <p>Nature of Suit: CIVIL</p>
+            <p>Track: IV</p>
+            <p>SET VALVE: I</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 24 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_49">
+          <num>49.</num>
+          <heading>CLAIM MISC APPLICATION</heading>
+          <content>
+            <p>Case Type: CLAIM MISC APPLICATION</p>
+            <p>Nature of Suit: MACP</p>
+            <p>Track: I</p>
+            <p>SET VALVE: A</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 30 DAYS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_50">
+          <num>50.</num>
+          <heading>MOTOR ACCIDENT CLAIM EXECUTION PETITION</heading>
+          <content>
+            <p>Case Type: MOTOR ACCIDENT CLAIM EXECUTION PETITION</p>
+            <p>Nature of Suit: MACP</p>
+            <p>Track: I</p>
+            <p>SET VALVE: C</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 2 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_51">
+          <num>51.</num>
+          <heading>MACP. REVIEW APPLICATION</heading>
+          <content>
+            <p>Case Type: MACP. REVIEW APPLICATION</p>
+            <p>Nature of Suit: MACP</p>
+            <p>Track: I</p>
+            <p>SET VALVE: A</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 30 DAYS</p>
+          </content>
+        </section>
+        <section eId="sch1_a_52">
+          <num>52.</num>
+          <heading>MAC PETITION</heading>
+          <content>
+            <p>Case Type: MAC PETITION</p>
+            <p>Nature of Suit: MACP</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+      </part>
+      <part eId="part_sch2">
+        <num>SCHEDULE - II</num>
+        <heading>[ PART- B- CRIMINAL ]</heading>
+        <section eId="sch2_b_1">
+          <num>1.</num>
+          <heading>CRIMINAL MISC.APPLICATION-JMFC</heading>
+          <content>
+            <p>Case Type: CRIMINAL MISC.APPLICATION-JMFC</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: A</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 30 DAYS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_2">
+          <num>2.</num>
+          <heading>CRIMINAL MISC.APPLICATION-SESSIONS</heading>
+          <content>
+            <p>Case Type: CRIMINAL MISC.APPLICATION-SESSIONS</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: A</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 30 DAYS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_3">
+          <num>3.</num>
+          <heading>CRIMINAL INQUIRY</heading>
+          <content>
+            <p>Case Type: CRIMINAL INQUIRY</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: B</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 WEEKS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_4">
+          <num>4.</num>
+          <heading>SUMMARIES(A,B,C)</heading>
+          <content>
+            <p>Case Type: SUMMARIES(A,B,C)</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: B</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 WEEKS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_5">
+          <num>5.</num>
+          <heading>CRIMINAL REVISION</heading>
+          <content>
+            <p>Case Type: CRIMINAL REVISION</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: B</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 WEEKS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_6">
+          <num>6.</num>
+          <heading>CRIMINAL CASE ON CHARGE SHEET</heading>
+          <content>
+            <p>Case Type: CRIMINAL CASE ON CHARGE SHEET</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_7">
+          <num>7.</num>
+          <heading>CRIMINAL CASE - PRIVATE COMPLAINT</heading>
+          <content>
+            <p>Case Type: CRIMINAL CASE - PRIVATE COMPLAINT</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_8">
+          <num>8.</num>
+          <heading>CASES UNDER THE PROTECTION OF CIVIL RIGHTS</heading>
+          <content>
+            <p>Case Type: CASES UNDER THE PROTECTION OF CIVIL RIGHTS</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_9">
+          <num>9.</num>
+          <heading>OFFENCES UNDER THE ESSENTIAL COMMODITIES ACT, 1955</heading>
+          <content>
+            <p>Case Type: OFFENCES UNDER THE ESSENTIAL COMMODITIES ACT, 1955</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_10">
+          <num>10.</num>
+          <heading>CASES UNDER THE SPECIAL ACTS, FOR BETTERMENT AND WELFARE OF THE LABOURERS AND EMPLOYEES</heading>
+          <content>
+            <p>Case Type: CASES UNDER THE SPECIAL ACTS, FOR BETTERMENT AND WELFARE OF THE LABOURERS AND EMPLOYEES</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_11">
+          <num>11.</num>
+          <heading>CASES UNDER THE FOOD ADULTERATION ACT</heading>
+          <content>
+            <p>Case Type: CASES UNDER THE FOOD ADULTERATION ACT</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_12">
+          <num>12.</num>
+          <heading>SESSIONS CASE</heading>
+          <content>
+            <p>Case Type: SESSIONS CASE</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_13">
+          <num>13.</num>
+          <heading>CRIMINAL APPEAL</heading>
+          <content>
+            <p>Case Type: CRIMINAL APPEAL</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_14">
+          <num>14.</num>
+          <heading>SPECIAL CASE-TADA</heading>
+          <content>
+            <p>Case Type: SPECIAL CASE-TADA</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_15">
+          <num>15.</num>
+          <heading>SPECIAL CASE -ATRO</heading>
+          <content>
+            <p>Case Type: SPECIAL CASE -ATRO</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_16">
+          <num>16.</num>
+          <heading>SPECIAL CASE - ELECTRICITY</heading>
+          <content>
+            <p>Case Type: SPECIAL CASE - ELECTRICITY</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_17">
+          <num>17.</num>
+          <heading>SPECIAL CASE - HUMAN RIGHTS</heading>
+          <content>
+            <p>Case Type: SPECIAL CASE - HUMAN RIGHTS</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_18">
+          <num>18.</num>
+          <heading>SPECIAL CASE - ESSENCIAL COMMODITY</heading>
+          <content>
+            <p>Case Type: SPECIAL CASE - ESSENCIAL COMMODITY</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_19">
+          <num>19.</num>
+          <heading>SPECIAL CASE-ACB</heading>
+          <content>
+            <p>Case Type: SPECIAL CASE-ACB</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_20">
+          <num>20.</num>
+          <heading>SPECIAL CASE -NDPS</heading>
+          <content>
+            <p>Case Type: SPECIAL CASE -NDPS</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_21">
+          <num>21.</num>
+          <heading>CBI CASE</heading>
+          <content>
+            <p>Case Type: CBI CASE</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_22">
+          <num>22.</num>
+          <heading>PROCEEDINGS UNDER SECTION 125 OF THE CODE OF CRIMINAL PROCEDURE</heading>
+          <content>
+            <p>Case Type: PROCEEDINGS UNDER SECTION 125 OF THE CODE OF CRIMINAL PROCEDURE</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: D</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 3 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_23">
+          <num>23.</num>
+          <heading>CASES OF PETTY OFFENCES SUCH AS GAMBLING, PROHIBITION, CASES UNDER THE MUNICIPAL ACT AND OTHER MINOR OFFENCES</heading>
+          <content>
+            <p>Case Type: CASES OF PETTY OFFENCES SUCH AS GAMBLING, PROHIBITION, CASES UNDER THE MUNICIPAL ACT AND OTHER MINOR OFFENCES</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_24">
+          <num>24.</num>
+          <heading>MISUSE OF PROCESS OF COURT</heading>
+          <content>
+            <p>Case Type: MISUSE OF PROCESS OF COURT</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: E</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 6 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_25">
+          <num>25.</num>
+          <heading>CAPITAL PUNISHMENTS</heading>
+          <content>
+            <p>Case Type: CAPITAL PUNISHMENTS</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_26">
+          <num>26.</num>
+          <heading>RAPE CASES</heading>
+          <content>
+            <p>Case Type: RAPE CASES</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_27">
+          <num>27.</num>
+          <heading>CASES INVOLVING SEXUAL OFFENCES</heading>
+          <content>
+            <p>Case Type: CASES INVOLVING SEXUAL OFFENCES</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_28">
+          <num>28.</num>
+          <heading>DOWERY DEATH</heading>
+          <content>
+            <p>Case Type: DOWERY DEATH</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_29">
+          <num>29.</num>
+          <heading>CASES OF SENIOR CITIZENS</heading>
+          <content>
+            <p>Case Type: CASES OF SENIOR CITIZENS</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: I</p>
+            <p>SET VALVE: F</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 9 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_30">
+          <num>30.</num>
+          <heading>CASES WHERE THE ACCUSED IS NOT GRANTED BAIL AND IS IN JAIL</heading>
+          <content>
+            <p>Case Type: CASES WHERE THE ACCUSED IS NOT GRANTED BAIL AND IS IN JAIL</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_31">
+          <num>31.</num>
+          <heading>CASES WHICH AFFECT A LARGE NUMBER OF PERSONS</heading>
+          <content>
+            <p>Case Type: CASES WHICH AFFECT A LARGE NUMBER OF PERSONS</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_32">
+          <num>32.</num>
+          <heading>CASES OF MASS CHEATING</heading>
+          <content>
+            <p>Case Type: CASES OF MASS CHEATING</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_33">
+          <num>33.</num>
+          <heading>ECONOMIC OFFENCES</heading>
+          <content>
+            <p>Case Type: ECONOMIC OFFENCES</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_34">
+          <num>34.</num>
+          <heading>ILLICIT LIQUOR TRAGEDY</heading>
+          <content>
+            <p>Case Type: ILLICIT LIQUOR TRAGEDY</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_35">
+          <num>35.</num>
+          <heading>FOOD ADULTERATION CASES</heading>
+          <content>
+            <p>Case Type: FOOD ADULTERATION CASES</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: II</p>
+            <p>SET VALVE: G</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 12 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_36">
+          <num>36.</num>
+          <heading>OFFENCES TRIED BY THE SPECIAL COURTS SUCH AS POTA, TADA, NDPS, PREVENTION OF CORRUPTION ACT, ETC.</heading>
+          <content>
+            <p>Case Type: OFFENCES TRIED BY THE SPECIAL COURTS SUCH AS POTA, TADA, NDPS, PREVENTION OF CORRUPTION ACT, ETC.</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: III</p>
+            <p>SET VALVE: H</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 15 MONTHS</p>
+          </content>
+        </section>
+        <section eId="sch2_b_37">
+          <num>37.</num>
+          <heading>ALL OTHER OFFENCES</heading>
+          <content>
+            <p>Case Type: ALL OTHER OFFENCES</p>
+            <p>Nature of Suit: CRIMINAL</p>
+            <p>Track: IV</p>
+            <p>SET VALVE: I</p>
+            <p>Prescribed time schedule for concluding the matter (outer limit): 24 MONTHS</p>
+          </content>
+        </section>
+        <section eId="value_relativity">
+          <heading>VALUE RELATIVITY</heading>
+          <content>
+            <blockList eId="value_relativity__list">
+              <item eId="value_relativity__i1"><num>TRACK-I</num><p>30 DAYS - A</p></item>
+              <item eId="value_relativity__i2"><num>TRACK-I</num><p>6 WEEKS - B</p></item>
+              <item eId="value_relativity__i3"><num>TRACK-I</num><p>2 MONTHS - C</p></item>
+              <item eId="value_relativity__i4"><num>TRACK-I</num><p>3 MONTHS - D</p></item>
+              <item eId="value_relativity__i5"><num>TRACK-I</num><p>6 MONTHS - E</p></item>
+              <item eId="value_relativity__i6"><num>TRACK-I</num><p>9 MONTHS - F</p></item>
+              <item eId="value_relativity__i7"><num>TRACK-II</num><p>12 MONTHS - G</p></item>
+              <item eId="value_relativity__i8"><num>TRACK-III</num><p>15 MONTHS - H</p></item>
+              <item eId="value_relativity__i9"><num>TRACK-IV</num><p>24 MONTHS - I</p></item>
+            </blockList>
+          </content>
+        </section>
+      </part>
+    </body>
+  </act>
+</akomaNtoso>

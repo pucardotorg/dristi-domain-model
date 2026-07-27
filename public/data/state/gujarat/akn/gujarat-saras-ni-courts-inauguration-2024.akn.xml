@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="pressRelease" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-gj/doc/2024/saras-ni-courts-inauguration/!main"/>
+          <FRBRuri value="/akn/in-gj/doc/2024/saras-ni-courts-inauguration"/>
+          <FRBRalias value="Inauguration of Remote Adjudication Magisterial Courts for e-filed cases of dishonour of cheques for the jurisdiction of Ahmedabad City as part of Statewide Access to Remote Adjudication System (SARAS)" name="shortTitle"/>
+          <FRBRdate date="2024-12-09" name="generation"/>
+          <FRBRauthor href="#gujarat-hc"/>
+          <FRBRcountry value="in-gj"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Inauguration of Remote Adjudication Magisterial Courts for e-filed cases of dishonour of cheques for the jurisdiction of Ahmedabad City as part of Statewide Access to Remote Adjudication System (SARAS)"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-gj/doc/2024/saras-ni-courts-inauguration/eng@/!main"/>
+          <FRBRuri value="/akn/in-gj/doc/2024/saras-ni-courts-inauguration/eng@"/>
+          <FRBRdate date="2024-12-09" name="generation"/>
+          <FRBRauthor href="#gujarat-hc"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-gj/doc/2024/saras-ni-courts-inauguration/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in-gj/doc/2024/saras-ni-courts-inauguration/eng@.akn"/>
+          <FRBRdate date="2026-07-27" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="gujarat-hc" href="/ontology/organization/in/gujarat-hc" showAs="High Court of Gujarat"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Structural conversion of the Press Release of the High Court of Gujarat dated 9 December 2024 recording the creation and inauguration of the SARAS Remote Adjudication Magisterial Courts for e-filed cheque cases of Ahmedabad City. This is a press release, not an operative instrument: it reports the Full Court resolution of 2 December 2024, the Government of Gujarat notification of 5 December 2024 extending magisterial jurisdiction, and the High Court notification of the same date nominating five presiding officers. Those two notifications are referred to as enclosures but are not part of the published file, so they are not in the corpus. Text is verbatim, split at the source's own paragraph breaks; the headings are editorial, since a press release carries none.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <longTitle><p>INAUGURATION OF REMOTE ADJUDICATION MAGISTERIAL COURTS FOR E-FILED CASES OF DISHONOUR OF CHEQUES FOR THE JURISDICTION OF AHMEDABAD CITY AS PART OF STATEWIDE ACCESS TO REMOTE ADJUDICATION SYSTEM (SARAS)</p></longTitle>
+      <p>THE HIGH COURT OF GUJARAT. PRESS RELEASE. Date: 09/12/2024.</p>
+      <p>Inauguration of Remote Adjudication Magisterial Courts for e-filed cases of dishonour of cheques for the jurisdiction of Ahmedabad City as part of Statewide Access to Remote Adjudication System (SARAS)</p>
+    </preface>
+    <mainBody>
+      <section eId="para_1">
+        <num>1.</num>
+        <heading>The inauguration</heading>
+        <content>
+          <p>Hon'ble Mr. Justice Surya Kant, Judge of the Supreme Court of India, and Shri Bhupendrabhai Patel, Chief Minister of Gujarat, inaugurated the Remote Adjudication Magisterial Courts for e-filed Negotiable Instruments (N.I.) Cases of Ahmedabad City. The inauguration ceremony took place at the Gujarat High Court Auditorium on 7th December 2024, in the presence of Hon'ble Mrs. Justice Sunita Agarwal, Chief Justice of the Gujarat High Court, Hon'ble Law Minister Shri Rushikeshbhai Patel, Hon'ble Sitting Judges of the Gujarat High Court, Advocate General Mr. Kamal B. Trivedi, and other dignitaries.</p>
+        </content>
+      </section>
+      <section eId="para_2">
+        <num>2.</num>
+        <heading>The Full Court resolution of 2 December 2024</heading>
+        <content>
+          <p>The High Court of Gujarat, in a Full Court meeting held on 02-12-2024 resolved to implement mandatory e-filing and Remote Adjudication with Video Conferencing for the cases of dishonour of cheques under Negotiable Instruments Act, 1881 being instituted by the Banks and Non-Banking Financial Companies (NBFCs) for jurisdiction of Chief Judicial Magistrates Courts of Ahmedabad City; and further recommended to the Government of Gujarat to accord jurisdiction and designate the Magisterial Courts across the State of Gujarat (including of Judicial Magistrates First Class and Chief / Additional Chief Judicial Magistrates) as &quot;Remote Adjudication Courts&quot; for entire State of Gujarat for adjudicating cases of dishonour of cheques under Negotiable Instruments Act, 1881 e-filed under the jurisdiction of Courts of Chief Judicial Magistrates, Ahmedabad City, with allocation of such cases to these 'Remote Adjudication Courts' from time to time, as a sub-establishment of C. J. M. Courts of Ahmedabad City to be created for e-filed cases of Negotiable Instruments Act, 1881.</p>
+        </content>
+      </section>
+      <section eId="para_3">
+        <num>3.</num>
+        <heading>The SARAS N.I. Court establishment and the 'eCriminal Case' case type</heading>
+        <content>
+          <p>For this Remote Adjudication Magisterial Courts, the High Court of Gujarat resolved to establish Statewide Access to Remote Adjudication System (SARAS) N. I. Court Establishment under C. J. M. Courts of Ahmedabad City; exclusively for institution and adjudication of Negotiable Instrument cases of dishonour of cheques e-filed by Banks and Non-Banking Financial Companies (NBFCs). These cases will be filed and instituted with case type 'eCriminal Case' in the SARAS N.I. Court establishment.</p>
+        </content>
+      </section>
+      <section eId="para_4">
+        <num>4.</num>
+        <heading>The State notification of 5 December 2024 and the nomination of presiding officers</heading>
+        <content>
+          <p>Accordingly, a Notification to that effect was issued on 5th December 2024 by the Government of Gujarat extending the jurisdiction of all the Magisterial Courts of the State to try, through Remote Adjudication, all the e-filed cases of Negotiable Instrument Act of the jurisdiction of C. J. M. Courts of Ahmedabad City. Accordingly, the High Court of Gujarat through a notification of the same date, nominated 5 Judicial Officers posted in Ahmedabad, Anand, Narmada and Gir Somnath as Presiding Officers of SARAS N. I. Courts for e-filed cases of Ahmedabad City. The place of work of these Judicial Officers would not change for presiding over these Remote Adjudication Courts. These two notifications are enclosed herewith for the information of all the stakeholders.</p>
+        </content>
+      </section>
+      <section eId="para_5">
+        <num>5.</num>
+        <heading>Magistrates posted anywhere in the State hear Ahmedabad City cheque cases</heading>
+        <content>
+          <p>Through these Remote Adjudication Courts, for the first time in the country, Judicial Officers of Magisterial cadre posted anywhere in the State of Gujarat would adjudicate through video conferencing the N. I. cases e-filed by Banks and NBFCs in the CJM Courts of Ahmedabad City.</p>
+        </content>
+      </section>
+      <section eId="para_6">
+        <num>6.</num>
+        <heading>What the courts are expected to do about arrears, and where parties appear from</heading>
+        <content>
+          <p>These Remote Adjudication Courts are expected to address the arrears arising due to the uneven availability of Judicial Officers for trying N. I. Act cases in Ahmedabad City. The video conferencing and digital enablement of the documentation of the case records brings about a solution for the justice delivery system of Gujarat State where the Judicial Officer, not having the sufficient burden of caseload but having optimum infrastructure, can adjudicate upon the cases using video conferencing and through ecasefile and digital authentication of the records and daily proceedings with auto transmission of digitally signed proceedings to the Ld. Advocates and the parties. The Advocates and Litigants would be able to visit the Court from a Video Conferencing enabled room in the same Court Complex where they have filed the case. This empowerment of the system with increased human resources of the Judicial Officers would result in a higher rate of disposal without having to wait for an increase in the Judicial Officers' strength to be available to be posted or new huge buildings to be constructed to house more Officers &amp; Courts.</p>
+        </content>
+      </section>
+      <section eId="para_7">
+        <num>7.</num>
+        <heading>The High Court's assessment of the model</heading>
+        <content>
+          <p>This novice method of employing judicial and infrastructural resources would drastically change the dynamics of the calculation of available judicial resources to handle the caseload thereby revolutionizing the whole discourse around the requirement of judge strength and judge population ratio. This Remote Adjudication coupled with mandatory e-filing and digital management &amp; transmission of e-case records has the potential of becoming a game changer in the present war on arrears already on our justice delivery system across the country. Under the dynamic visionary leadership of Hon'ble Mrs. Justice Sunita Agarwal, Hon'ble the Chief Justice, High Court of Gujarat; these Remote Adjudication Courts established for the cases of Ahmedabad City, are an unprecedented step ahead on the path of optimizing the utilization of resources at the hand of the justice delivery system. This first-ever initiative of its kind in the State of Gujarat would grow into a full-fledged arm of the system in combating the arrears and meeting the aspirations of the economic and commercial class of the litigants.</p>
+        </content>
+      </section>
+      <section eId="para_8">
+        <num>8.</num>
+        <heading>The inauguration address</heading>
+        <content>
+          <p>Hon'ble Mr. Justice Surya Kant, Judge, Supreme Court of India, while blessing the initiative in His Lordship's inauguration speech, emphasised the need for according to due importance, through means of technology, to expeditious adjudication of cases of commercial nature as such cases have potential and impact of affecting economic development as well as image of justice delivery system in the society and the world at large.</p>
+        </content>
+      </section>
+      <section eId="para_9">
+        <num>9.</num>
+        <heading>Live stream</heading>
+        <content>
+          <p>The inauguration function was live streamed at https://www.youtube.com/live/FGdIbHMSd6U?si=juK_hcHmtwNXz4Zd</p>
+        </content>
+      </section>
+    </mainBody>
+  </doc>
+</akomaNtoso>

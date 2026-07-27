@@ -299,8 +299,90 @@
       {
         "title": "SOP for e-Filing in the District Judiciary through the DCMS portal",
         "cite": "High Court of Kerala, 9 July 2025",
-        "note": "The current operating procedure for filing a complaint through the DCMS portal at filing.keralacourts.in. Source PDF only; not yet converted to structured text.",
-        "pdf": "state/kerala/sources/dcms-efiling-sop-kerala-2025.pdf"
+        "note": "The current operating procedure for filing a complaint through the DCMS portal at filing.keralacourts.in, circulated by the High Court on 9 July 2025 and now converted to structured text. Supplemental to the Electronic Filing Rules for Courts (Kerala), 2021, its thirteen clauses cover registration and role-based access, what may be e-filed and what stays optional, court fees paid online with a balance-payment route for deficits, scrutiny carried out on the e-filed documents without waiting for the physical file, and the rule that a hearing date is assigned only once the physical file is produced - a requirement the High Court records it is actively considering dispensing with after a pilot in Kalpetta. Limitation is computed under Rule 13 of the 2021 Rules, which is what decides whether a cheque complaint filed through the portal is within the month allowed by section 142(1)(b).",
+        "pdf": "state/kerala/sources/dcms-efiling-sop-kerala-2025.pdf",
+        "akn": "state/kerala/akn/dcms-efiling-sop-kerala-2025.akn.xml",
+        "alias": "dcms",
+        "key": [
+          {
+            "eId": "para_1",
+            "label": "DCMS e-Filing SOP, cl.1 - filing.keralacourts.in is the only e-filing portal",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "From the date DCMS is implemented in a court, e-filing shall only be through https://filing.keralacourts.in. The old national portal stops being the route. For a payee filing a cheque complaint in a DCMS court this is the address the complaint goes to, and the portal runs 24x7 subject to uptime.",
+            "edges": [
+              {
+                "rel": "is the channel for a complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "para_4",
+            "label": "DCMS e-Filing SOP, cl.4 - what may be e-filed, and exemption under Rule 10 of the 2021 Rules",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Lists the filings DCMS supports - main case, petitions, written statements and counters, vakalath and memos, relinquishments and caveats - and points exemption from e-filing back to Rule 10 of the Electronic Filing Rules for Courts (Kerala), 2021. It also settles the legacy question: a case e-filed on the old portal but not registered before DCMS rolled out need not be filed again, and is processed from the court end.",
+            "edges": [
+              {
+                "rel": "covers the filing of a complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "para_6",
+            "label": "DCMS e-Filing SOP, cl.6 - filing format, optional e-filing categories, and limitation under Rule 13",
+            "tier": "limitation",
+            "applies": "always",
+            "note": "The clause a complainant has to get right. Pleadings must conform to the 2021 Rules; OCR conversion is available through the High Court's own tool; a listed set of applications - exemption petitions, pleading-guilty petitions, advance and adjournment applications in criminal courts, warrant recall petitions, surety memos and affidavits, cheque applications, process memos - remain optional to e-file and may be presented physically with the stamp affixed. Computation of the period of limitation is governed by Rule 13 of the 2021 Rules, which is what fixes whether a cheque complaint filed through the portal is in time under section 142(1)(b).",
+            "edges": [
+              {
+                "rel": "governs limitation for a complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "para_8",
+            "label": "DCMS e-Filing SOP, cl.8 - court fees paid online, deficit fee paid through 'Balance Payment'",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "All fees including court fees are paid online in the ordinary course, and a deficiency is made good through the Balance Payment facility rather than by returning the filing. Where physical stamps are unavailable the scrutinising officer may accept an undertaking from the e-filer and proceed with registration, the fee following afterwards. That last sentence is the practical difference between a cheque complaint being registered on the day it is presented and waiting on a stamp.",
+            "edges": [
+              {
+                "rel": "prices the institution of a complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "para_11",
+            "label": "DCMS e-Filing SOP, cl.11 - scrutiny happens on the e-filed documents, without waiting for the physical file",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Acceptance is communicated to the e-filer by SMS or email with the e-filing number, and scrutiny is carried out on the e-filed documents without waiting for the physical file, in sequential order and with regard to urgency. This is the gate a cheque complaint passes through before it reaches the magistrate for examination of the complainant on oath and cognizance.",
+            "edges": [
+              {
+                "rel": "precedes examination of the complainant under",
+                "to": "bnss:sec_223"
+              }
+            ]
+          },
+          {
+            "eId": "para_12",
+            "label": "DCMS e-Filing SOP, cl.12 - a hearing date is assigned only on submission of the physical file",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The limit of Kerala's digital filing as of 2025. After registration the e-filer must produce the defect-free physical file with an undertaking that it matches what the CMO approved, ordinarily the same day, and except as provided the court will assign a hearing date only when the physical file arrives. The High Court records that it is actively considering dispensing with this, having piloted it in Kalpetta. For a cheque complaint it means the electronic filing starts the clock but the paper still has to follow before the case is listed.",
+            "edges": [
+              {
+                "rel": "conditions listing of a complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          }
+        ]
       }
     ]
   },

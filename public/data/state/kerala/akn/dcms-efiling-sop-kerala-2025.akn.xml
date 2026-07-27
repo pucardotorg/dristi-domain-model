@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="sop" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-kl/doc/2025/dcms-efiling-sop/!main"/>
+          <FRBRuri value="/akn/in-kl/doc/2025/dcms-efiling-sop"/>
+          <FRBRalias value="Standard Operating Procedure for e-Filing in the District Judiciary through the DCMS Portal" name="shortTitle"/>
+          <FRBRdate date="2025-07-09" name="generation"/>
+          <FRBRauthor href="#kerala-hc"/>
+          <FRBRcountry value="in-kl"/>
+          <FRBRnumber value="HCKL/6035/2024-IT-TC2"/>
+          <FRBRname value="Standard Operating Procedure for e-Filing in the District Judiciary through the DCMS Portal"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-kl/doc/2025/dcms-efiling-sop/eng@/!main"/>
+          <FRBRuri value="/akn/in-kl/doc/2025/dcms-efiling-sop/eng@"/>
+          <FRBRdate date="2025-07-09" name="generation"/>
+          <FRBRauthor href="#kerala-hc"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-kl/doc/2025/dcms-efiling-sop/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in-kl/doc/2025/dcms-efiling-sop/eng@.akn"/>
+          <FRBRdate date="2026-07-27" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="kerala-hc" href="/ontology/organization/in/kerala-hc" showAs="High Court of Kerala"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Structural conversion of the Standard Operating Procedure for e-Filing in the District Judiciary through the DCMS Portal, circulated by the High Court of Kerala under Notice HCKL/6035/2024-IT-TC2 dated 9 July 2025 over the signature of the Registrar (Computerisation)-cum-Director (IT). The thirteen numbered clauses and their bullets follow the source; the covering notice and the two opening paragraphs of the SOP are carried in the preface. Text is verbatim; the short headings are the source's own.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <longTitle><p>STANDARD OPERATING PROCEDURE FOR E-FILING IN THE DISTRICT JUDICIARY THROUGH THE DCMS PORTAL</p></longTitle>
+      <p>THE HIGH COURT OF KERALA, Kochi - 682031. HCKL/6035/2024-IT-TC2-HC KERALA. Date: 09-07-2025. NOTICE.</p>
+      <p>In connection with the implementation of DCMS, the Standard Operating Procedure (SOP) for e-Filing has been prepared by the IT Directorate of the High Court. This SOP is intended to serve as a comprehensive operational guideline for all stakeholders, including Judicial Officers, Court Staff, Advocates, Litigants, Government Departments, etc. and shall apply to all Courts and Tribunals where DCMS is in operation.</p>
+      <p>The SOP is supplemental to the provisions of the Electronic Filing Rules for Courts (Kerala), 2021 and outlines, inter alia, the procedures relating to: User registration and role-based access; Case filing, scrutiny, and registration workflows; Handling of legacy e-filed cases from the old portal (efiling.gov.in); Fee payment mechanisms and treatment of deficient court fees; Submission of physical files and scope of exemption; Case tracking, acknowledgement, kiosk display, and more.</p>
+      <p>The SOP comes into effect immediately in all DCMS-enabled courts and shall apply to all courts wherein DCMS is proposed to be implemented from the date of implementation, as decided by the High Court. The SOP shall be strictly adhered to.</p>
+      <p>All the District Judges are hereby requested to take steps to share this notice with the Office bearers of all the Bar Associations and Clerk Associations and other stakeholders, including Judicial Officers and staff in all the Courts under their respective jurisdiction, for information and necessary action.</p>
+      <p>The District Judges are also requested to take steps to upload the Notice on the District Court's website and publish the same on the Notice Board of all the Courts under them. (By Order) JOSEPH RAJESH K A, REGISTRAR(COMPUTERISATION)-CUM-DIRECTOR(IT).</p>
+      <p>This SOP applies to all courts and Tribunals where the District Court Case Management System (DCMS) has been implemented.</p>
+      <p>This SOP is supplemental to the Electronic Filing Rules for Courts (Kerala), 2021, hereinafter referred to as Rules, for brevity and all other applicable procedures.</p>
+    </preface>
+    <mainBody>
+      <section eId="para_1">
+        <num>1.</num>
+        <heading>Access to the DCMS e-Filing Portal</heading>
+        <content>
+          <p>The e-filing portal is available at https://filing.keralacourts.in, and e-filing from the date of implementation of DCMS shall only be through this portal. The portal operates 24x7, subject to server uptime, scheduled maintenance, or emergency downtimes.</p>
+        </content>
+      </section>
+      <section eId="para_2">
+        <num>2.</num>
+        <heading>Case Status and Cause List</heading>
+        <content>
+          <p>Due to limitations in the existing e-Courts case status system and mobile application, it is advisable to rely on DCMS for real-time information:</p>
+          <blockList eId="para_2__list">
+            <item eId="para_2__i1"><p>Case Status: https://filing.keralacourts.in/caseSearch</p></item>
+            <item eId="para_2__i2"><p>Cause List: https://filing.keralacourts.in/causeList</p></item>
+            <item eId="para_2__i3"><p>KIOSK Display: https://filing.keralacourts.in/kiosk</p></item>
+          </blockList>
+          <p>Courts shall provide kiosk access using the above links. These links may also be shared with Government Departments and Law Enforcement Agencies to enable broader access to court services.</p>
+        </content>
+      </section>
+      <section eId="para_3">
+        <num>3.</num>
+        <heading>User Registration on DCMS</heading>
+        <content>
+          <p>All users can register via the &quot;Register&quot; button or directly at: https://filing.keralacourts.in/signup</p>
+          <p>The DCMS portal supports registration for: Advocates; Litigants; Advocate Clerks; Public Users; Organizations (including Law Enforcement Agencies).</p>
+          <p>Advocate Registration. The advocates who are already registered in the old e-filing portal (https://filing.ecourts.gov.in) can log in to the DCMS by resetting their password using the Forget/Create Password provided on the Log in page (https://filing.keralacourts.in/resetaccount). The password can be reset by providing the mobile number registered with the old e-filing portal and using the OTP sent to that number.</p>
+          <p>The new user Advocates who are not registered on the old portal must register themselves in the DCMS portal and must upload: Enrollment Certificate issued by the Bar Council; Identity Proof; Passport-size Photograph.</p>
+          <p>Verification is conducted by the High Court. Once verified, login credentials will be enabled. For assistance, contact: 0484 256 2558.</p>
+          <p>Government Pleaders /Public Prosecutors. Government Pleaders and Public Prosecutors shall furnish their details to the Senior System Officer (SSO) in the district concerned. Their accounts shall be created by the SSO.</p>
+          <p>Litigant Registration. Litigants registering as party-in-person must upload a valid ID proof. Verification will be conducted by the District Court based on the applicant's native district.</p>
+          <p>Organization Registration. DCMS provides a facility for organizations such as Government Departments, Private Institutions, DLSAs, Law Enforcement Agencies, etc, to register for effective filing and case tracking.</p>
+          <blockList eId="para_3__list">
+            <item eId="para_3__i1"><p>These organizations can register themselves using the &quot;Register&quot; button available on the DCMS portal.</p></item>
+            <item eId="para_3__i2"><p>Once the registration is submitted, it will be verified and approved by the High Court after due verification.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="para_4">
+        <num>4.</num>
+        <heading>e-Filing Facility</heading>
+        <content>
+          <p>The facility for e-filing through the web portal shall be available twenty-four hours of a day, subject to uptime and maintenance downtime or other emergencies. Exemption from e-filing shall be as per Rule 10 of the Electronic Filing Rules for Courts (Kerala), 2021.</p>
+          <p>DCMS supports all types of e-filing, including: Main Case Filing; Petition Filing; Written Statement/Counter/Documents Filings; Vakalath / Memo Filing; Relinquishment Filings; Caveat Filings.</p>
+          <p>E-filing facilities are available for Advocates, Government Pleaders (GP), Public Prosecutors (PP), litigants, organisations, DLSAs, law enforcement agencies, advocate commissioners, receivers, third parties, victims, etc</p>
+          <p>In the case of files, which were filed using the old e-filing portal, but not registered before the rollout of DCMS, the e-filer need not file them again through the DCMS portal. Such cases will be processed from the Court end, as per the guidelines published in this regard.</p>
+        </content>
+      </section>
+      <section eId="para_5">
+        <num>5.</num>
+        <heading>Certified Copy Application</heading>
+        <content>
+          <p>Applicants can submit copy applications online with integrated payment options.</p>
+        </content>
+      </section>
+      <section eId="para_6">
+        <num>6.</num>
+        <heading>Filing Format, Exemptions and Limitation</heading>
+        <content>
+          <p>All pleadings, petitions, documents, and vakalaths must conform to the relevant procedural rules and the Electronic Filing Rules for Courts (Kerala), 2021.</p>
+          <p>To convert PDF documents into OCR format, E-filers may use the OCR tool developed by the High Court for uploading OCR-enabled files. Please visit the following link: https://ocr.keralacourts.in/digicourt/Ocr/</p>
+          <p>Exemptions from e-filing shall be in accordance with Rule 10 of the Rules.</p>
+          <p>The e-filing of the following applications/petitions/affidavits/memos shall be optional and not mandatory as per the SOP issued vide O.M. No. HCKL/1104/2022-ECC4 dated 04.08.2023.</p>
+          <p>Types of applications/ petitions/ affidavits/ memos in which e-filing is optional:</p>
+          <blockList eId="para_6__list">
+            <item eId="para_6__i1"><p>All exemption petitions (absent applications),</p></item>
+            <item eId="para_6__i2"><p>petitions for pleading guilty,</p></item>
+            <item eId="para_6__i3"><p>Vakalaths/Memorandum of Appearance filed in pleading guilty cases,</p></item>
+            <item eId="para_6__i4"><p>advance petitions and adjournment applications in criminal courts,</p></item>
+            <item eId="para_6__i5"><p>warrant recall petitions,</p></item>
+            <item eId="para_6__i6"><p>memos/lists of sureties,</p></item>
+            <item eId="para_6__i7"><p>affidavits of sureties for bail/release of properties,</p></item>
+            <item eId="para_6__i8"><p>lists of documents,</p></item>
+            <item eId="para_6__i9"><p>summons/notice forms,</p></item>
+            <item eId="para_6__i10"><p>Witness batta deposit memos,</p></item>
+            <item eId="para_6__i11"><p>other memos,</p></item>
+            <item eId="para_6__i12"><p>cheque applications, and</p></item>
+            <item eId="para_6__i13"><p>process memos.</p></item>
+          </blockList>
+          <p>In the case of physical filing of the above category of applications/petitions, it may be submitted with the physical stamp affixed. The Court officials shall update the details using the offline module provided and enter the physical stamp details in the designated 'Fee' tab.</p>
+          <p>The computation of the period of limitation shall be as per Rule 13 of the Rules.</p>
+        </content>
+      </section>
+      <section eId="para_7">
+        <num>7.</num>
+        <heading>Applications filed during the crime/investigation stage</heading>
+        <content>
+          <p>All the applications like bail applications, applications to get interim custody of properties, etc., to be filed during the crime/investigation stage can be filed in DCMS by selecting the respective Crime Number/FIR Number under &quot;Filing Number&quot; in the &quot;Petition Filing&quot; Module. However, such Crime Number details will be available only after the FIR is verified and accepted at the court end. In cases where the FIR is pending verification at the Court-end, in case of urgency, such applications can be filed using the &quot;Case Filing&quot; module (https://filing.keralacourts.in/dashboard/onlinefiling/case) and selecting &quot;Crl.MP&quot; as the Case Type.</p>
+        </content>
+      </section>
+      <section eId="para_8">
+        <num>8.</num>
+        <heading>Court Fees and Payment of Deficient/Balance Court Fees</heading>
+        <content>
+          <p>In the ordinary course, all fees, including Court fees, shall be paid online. In case of any deficiency in the fee, the deficit/balance amount may be paid using the &quot;Balance Payment&quot; facility in DCMS.</p>
+          <p>In the case of an exemption granted under Rule 10 of the Rules, the advocate/litigant may submit the physical file with the physical stamp affixed. The Court officials shall update the details using the offline module provided and enter the physical stamp details in the designated 'Fee' tab.</p>
+          <p>In cases where physical court fees/other stamps are unavailable, the officer scrutinising the pleadings may accept an undertaking from the e-filer and proceed with case registration. However, in such a scenario, the e-filer shall pay the requisite fee through the balance/deficit court fee payment option in DCMS.</p>
+        </content>
+      </section>
+      <section eId="para_9">
+        <num>9.</num>
+        <heading>Payments made for Cases filed using the old e-filing portal</heading>
+        <content>
+          <p>The payments successfully made for cases which were filed using the old e-filing portal, but not registered before rolling out of DCMS will be accounted against the respective cases. No further payment is required in such cases.</p>
+        </content>
+      </section>
+      <section eId="para_10">
+        <num>10.</num>
+        <heading>Production of GRN Receipt and Defacement Not Required in DCMS</heading>
+        <content>
+          <blockList eId="para_10__list">
+            <item eId="para_10__i1"><p>While using DCMS for e-filing and making e-payment through it, the physical copy of the GRN receipt need not be produced by the e-filer for payment verification.</p></item>
+            <item eId="para_10__i2"><p>Defacement of court fee receipts is not required in DCMS because it supports portal-to-portal payment through integration.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="para_11">
+        <num>11.</num>
+        <heading>Acknowledgement and Scrutiny</heading>
+        <content>
+          <blockList eId="para_11__list">
+            <item eId="para_11__i1"><p>Upon acceptance, the e-filing number will be communicated to the advocate(e-filer) or litigant via SMS and/or email.</p></item>
+            <item eId="para_11__i2"><p>Scrutiny shall be done with the e-filed documents without waiting for the submission of the physical files.</p></item>
+            <item eId="para_11__i3"><p>The CMO or the designated officer shall complete the e-file scrutiny on time and without delay, and it must be carried out in sequential order and considering the urgency of the matter.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="para_12">
+        <num>12.</num>
+        <heading>Submission of Physical Files</heading>
+        <content>
+          <blockList eId="para_12__list">
+            <item eId="para_12__i1"><p>After registration of the file, the e-Filer shall produce the defect-free case files/petitions/documents in physical form along with an undertaking that the case files/petitions/documents/vakalaths filed in the Court are the same as the case files/petitions/documents/vakalaths approved by the CMO.</p></item>
+            <item eId="para_12__i2"><p>To the extent possible, such submissions shall be made on the same day and within the time frame fixed for conventional physical filing, as per the applicable rules. In appropriate cases, the Judicial Officer/Judge concerned may extend the time for the production of physical documents and pleadings.</p></item>
+            <item eId="para_12__i3"><p>Except as provided above, the Court will assign a hearing date only on submission of the physical file.</p></item>
+            <item eId="para_12__i4"><p>The High Court is actively considering dispensing with the submission of physical files of e-filed cases. And, after implementing the same in pilot locations in the Kalpetta judicial district, the High Court may, subject to such conditions, extend it to other districts as well.</p></item>
+          </blockList>
+        </content>
+      </section>
+      <section eId="para_13">
+        <num>13.</num>
+        <heading>My Case and Favourite Cases</heading>
+        <content>
+          <blockList eId="para_13__list">
+            <item eId="para_13__i1"><p>The cases in which the advocate holds vakalaths and were updated in CIS will appear under &quot;My Case&quot; in the user dashboard.</p></item>
+            <item eId="para_13__i2"><p>If any old e-filed case is missing, the user may request for database update using the Request Case Access Module available in the dashboard. (https://filing.keralacourts.in/dashboard/requestcaseaccess).</p></item>
+            <item eId="para_13__i3"><p>The CMO of the Court concerned shall verify the case and shall enable access to the advocate if he has filed a vakalath. The CMO shall take utmost care while updating the Vakalath details in the DCMS system. Any error in the data entry, such as an incorrect Enrollment Number, may result in providing unauthorised access to the case file by a person who has not filed a Vakalath. Therefore, the Enrollment Number must be thoroughly verified before updating.</p></item>
+            <item eId="para_13__i4"><p>Users may also mark &quot;Favourite Cases&quot; to track public metadata of cases in which they do not have vakalath. However, case file access will not be available under this feature.</p></item>
+          </blockList>
+        </content>
+      </section>
+    </mainBody>
+  </doc>
+</akomaNtoso>

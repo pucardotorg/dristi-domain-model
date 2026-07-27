@@ -615,15 +615,191 @@
     "items": [
       {
         "title": "Implementation of e-filing 3.0 in the District Courts of Punjab, Haryana and U.T. Chandigarh",
-        "cite": "Registrar General, Punjab and Haryana High Court, 13 February 2024",
-        "note": "The circular by which the district judiciary migrated from e-filing 1.0 to the national e-filing 3.0 software, addressed to every District and Sessions Judge in Punjab, Haryana and Chandigarh on the directions of the High Court's Computer Committee. It is the system the Panchkula filing branch works in when an advocate e-files a NACT case, and the reason an e-filed case has to be released by the computer room before the branch can edit and submit it. Source PDF only; not converted to structured text.",
-        "pdf": "state/haryana/sources/efiling-3-0-district-courts-punjab-haryana-2024.pdf"
+        "cite": "Registrar General, Punjab and Haryana High Court, 12 February 2024",
+        "note": "The circular by which the district judiciary migrated from e-filing 1.0 to the national e-filing 3.0 software, addressed to every District and Sessions Judge in Punjab, Haryana and Chandigarh on the directions of the High Court's Computer Committee and approved by the Acting Chief Justice. Its five directions set the changeover calendar: e-filing of fresh cases accepted only till 14 February 2024, physical filing only from 15 to 22 February, four days of migration downtime from 19 to 22 February, e-filing resuming on the 3.0 portal from 23 February, and compulsory e-filing from 15 March 2024. Direction (iii) is the one that bites on a litigant: pending drafts and cases left under objection in the 'Not Accepted' folder were not migrated and their history was erased, expressly causing loss of exemption of limitation and of delay days. It is the system the Panchkula filing branch works in when an advocate e-files a NACT case, and the reason an e-filed case has to be released by the computer room before the branch can edit and submit it.",
+        "pdf": "state/haryana/sources/efiling-3-0-district-courts-punjab-haryana-2024.pdf",
+        "akn": "state/haryana/akn/efiling-3-0-district-courts-punjab-haryana-2024.akn.xml",
+        "alias": "ef30",
+        "key": [
+          {
+            "eId": "para_2",
+            "label": "e-filing 3.0 circular, direction (ii) - physical filing only, 15 to 22 February 2024",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "For eight days the e-filing channel was shut and a fresh complaint could only be presented across the counter. It is the concrete reason a Panchkula cheque complaint instituted in that window exists on paper rather than in the portal, and it fixes the boundary between the two filing regimes.",
+            "edges": [
+              {
+                "rel": "governs the institution of a complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "para_3",
+            "label": "e-filing 3.0 circular, direction (iii) - clear drafts and objected filings by 17 February 2024 or lose them",
+            "tier": "limitation",
+            "applies": "always",
+            "note": "The direction with real consequences for a complainant. Anything left in the 'Drafts' folder, and any case sitting under objection in the 'Not Accepted' folder, was not migrated: the data was erased and the case history lost, expressly 'leading to loss of exemption of limitation and delay of days also'. For a cheque complaint that turns on the one-month window in section 142(1)(b) and any condonation sought under its proviso, an erased filing history is the difference between a complaint in time and one that has to be re-filed with an application to condone.",
+            "edges": [
+              {
+                "rel": "affects the limitation for cognizance under",
+                "to": "ni:sec_142"
+              },
+              {
+                "rel": "bears on condonation of delay under",
+                "to": "limitation:sec_5"
+              }
+            ]
+          },
+          {
+            "eId": "para_5",
+            "label": "e-filing 3.0 circular, direction (v) - compulsory e-filing resumes 15 March 2024",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Fixes the date from which e-filing became compulsory again on the new software, after a fifteen-working-day settling period for live testing and advocate training. It is the point from which a cheque complaint in these districts is expected to arrive through the portal rather than the counter.",
+            "edges": [
+              {
+                "rel": "governs the institution of a complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          }
+        ]
       },
       {
         "title": "Court Fee Table, Punjab and Haryana High Court",
         "cite": "High Court of Punjab and Haryana · court fee schedule",
-        "note": "The fee payable on each case type at the High Court, including a criminal revision (CRR) and a criminal miscellaneous petition (CRM) at Rs.2.65 - the price of taking a s.138 conviction up in revision, or asking the High Court to quash the complaint. The trial court side is governed by the Court-Fees Act, 1870 as amended in its application to Haryana, whose Schedule II Article 1(b) fixes ten rupees on a complaint presented to a criminal court. Source PDF only; not converted to structured text.",
-        "pdf": "state/haryana/sources/punjab-haryana-hc-court-fee-table.pdf"
+        "note": "The fee payable on each case type at the High Court, now browsable as structured text: a row for every case type across the civil writ, civil, company, criminal, Letters Patent and common-documents tables, plus the full Table of Rates of ad valorem fees leviable on the institution of suits under the Court-fees Act, 1870. On the criminal side a criminal revision (CRR), a quashing or transfer petition (CRM-M), an appeal against acquittal (CRM-A) and a criminal miscellaneous application (CRM) all cost Rs.2.65 - the price of taking a s.138 conviction up in revision, or asking the High Court to quash the complaint - and no fee at all is charged where the petitioner is in custody. Annexures are charged at Rs.0.65 a page and a power of attorney at Rs.2.65, which is what a bank or NBFC complainant actually pays on the paper of a cheque case. Note 1 records that fees are still received under the un-amended Court Fees Act, 1870 because Schedules I and II of the Court Fees (Punjab Second Amendment) Act, 2009 stand stayed since 27 November 2013 in RSA No.3311 of 2013, so the chart is expressly provisional. The trial court side is governed by the Court-Fees Act, 1870 as amended in its application to Haryana, whose Schedule II Article 1(b) fixes ten rupees on a complaint presented to a criminal court.",
+        "pdf": "state/haryana/sources/punjab-haryana-hc-court-fee-table.pdf",
+        "akn": "state/haryana/akn/punjab-haryana-hc-court-fee-table.akn.xml",
+        "alias": "phft",
+        "key": [
+          {
+            "eId": "crim_3_crm_m",
+            "label": "Court Fee Table - Quashing Petition (CRM-M): Rs. 2.65",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "What an accused pays to ask the High Court to quash a cheque complaint: two rupees sixty-five paise. The fee is not the obstacle; the threshold is. This is the price of the inherent-powers route that a s.138 accused most often tries before facing trial.",
+            "edges": [
+              {
+                "rel": "fee for a petition under",
+                "to": "bnss:sec_528"
+              },
+              {
+                "rel": "fee for a petition under",
+                "to": "crpc:sec_482"
+              }
+            ]
+          },
+          {
+            "eId": "crim_5_crr",
+            "label": "Court Fee Table - Criminal Revision (CRR): Rs. 2.65, nil if the petitioner is in custody",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The fee on taking a s.138 conviction or sentence up in revision to the High Court, and nil where the petitioner is in custody. Revision is the ordinary route against a magistrate's or sessions court's order in a cheque case that is not appealable, so this row is the actual out-of-pocket cost of that remedy.",
+            "edges": [
+              {
+                "rel": "fee for a revision under",
+                "to": "bnss:sec_442"
+              },
+              {
+                "rel": "fee for a revision under",
+                "to": "crpc:sec_397"
+              }
+            ]
+          },
+          {
+            "eId": "crim_7_cra_s",
+            "label": "Court Fee Table - Criminal Appeal, Single Bench (CRA-S): Rs. 2.65 on bail, nil in custody",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The fee a convicted drawer pays to appeal a s.138 conviction where the appeal lies to the High Court, with no fee at all if the appellant is in custody. It is the second half of the picture the trial-court fee gives: cheap to appeal, and free if the sentence has already put the appellant inside.",
+            "edges": [
+              {
+                "rel": "fee for an appeal under",
+                "to": "bnss:sec_415"
+              }
+            ]
+          },
+          {
+            "eId": "crim_9_crm_a",
+            "label": "Court Fee Table - Criminal Appeal against Acquittal (CRM-A): Rs. 2.65",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The complainant's side of the ledger. When a cheque complaint ends in acquittal, the payee's remedy is an appeal against acquittal to the High Court with special leave, and this row prices it at two rupees sixty-five paise. Cost is not what deters a complainant from appealing; leave is.",
+            "edges": [
+              {
+                "rel": "fee for an appeal against acquittal under",
+                "to": "bnss:sec_419"
+              }
+            ]
+          },
+          {
+            "eId": "crim_14_crm",
+            "label": "Court Fee Table - Criminal Misc. Application (CRM): Rs. 2.65",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The catch-all interlocutory application in the High Court's criminal side - exemption from personal appearance, stay of proceedings, condonation, placing documents on record. In a cheque matter a party usually files several of these for every substantive petition, and each carries this fee.",
+            "edges": [
+              {
+                "rel": "fee for an application in proceedings under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "crim_note",
+            "label": "Court Fee Table - no court fee where the appellant, applicant or petitioner is in custody",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The one distributive rule in the criminal table: custody waives the fee outright. A drawer already serving the sentence imposed for dishonour of a cheque pays nothing to move the High Court. It removes the fee as a barrier at exactly the point where a person is least able to pay it.",
+            "edges": [
+              {
+                "rel": "applies to sentences imposed under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "com_12_x",
+            "label": "Court Fee Table - Annexures: Rs. 0.65 per page",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The per-page charge that actually adds up in a cheque matter. The paper a s.138 case travels on - the cheque, the return memo, the demand notice, the postal receipts, the account statement, the complaint and the trial court's order - is all annexure, and each page is charged separately from the fee on the petition itself.",
+            "edges": [
+              {
+                "rel": "charged on documents proving an offence under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "com_13_x",
+            "label": "Court Fee Table - Power of Attorney: Rs. 2.65",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Cheque complaints are overwhelmingly filed by banks, non-banking financial companies and companies acting through an authorised representative, so the power of attorney is a standing annexure in this case type and carries its own fee.",
+            "edges": [
+              {
+                "rel": "authorises the complainant under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "com_notes",
+            "label": "Court Fee Table - Note 1: fee charged under the un-amended Court Fees Act, 1870, the 2009 Punjab amendment being stayed",
+            "tier": "supporting",
+            "applies": "always",
+            "note": "Why the figures in this table are in rupees and paise rather than modern amounts. Fees are received by the DRR Section under the Court Fees Act, 1870 as un-amended, because Schedules I and II of the Court Fees (Punjab Second Amendment) Act, 2009 were stayed by order dated 27 November 2013 in RSA No. 3311 of 2013 - and the whole chart is expressly subject to the final decision in that case. Anyone relying on these amounts should know the schedule is provisional.",
+            "edges": [
+              {
+                "rel": "prices proceedings under",
+                "to": "ni:sec_138"
+              }
+            ]
+          }
+        ]
       }
     ]
   },

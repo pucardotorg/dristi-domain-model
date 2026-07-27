@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="feeTable" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in-hr/doc/court-fee-table/!main"/>
+          <FRBRuri value="/akn/in-hr/doc/court-fee-table"/>
+          <FRBRalias value="Court Fee Table, Punjab and Haryana High Court" name="shortTitle"/>
+          <FRBRdate date="2013-11-27" name="generation"/>
+          <FRBRauthor href="#phhc"/>
+          <FRBRcountry value="in-hr"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Court Fee Table, Punjab and Haryana High Court"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in-hr/doc/court-fee-table/eng@/!main"/>
+          <FRBRuri value="/akn/in-hr/doc/court-fee-table/eng@"/>
+          <FRBRdate date="2013-11-27" name="generation"/>
+          <FRBRauthor href="#phhc"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in-hr/doc/court-fee-table/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in-hr/doc/court-fee-table/eng@.akn"/>
+          <FRBRdate date="2026-07-27" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="phhc" href="/ontology/organization/in/phhc" showAs="High Court of Punjab and Haryana at Chandigarh"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_source"><p>Structural conversion of the Court Fee Table published by the High Court of Punjab and Haryana (issued over the signature of the Joint Registrar (Judicial-II)), together with the annexed Table of Rates of ad valorem fees leviable on the institution of suits as prescribed in the Court-fees Act, 1870. Each case-type row of the table is a separately addressable unit carrying its case type, nomenclature and fee, and each ad valorem slab is an item under its band. Text, figures and the source's own typography are reproduced verbatim, including the source's apparent slips at the Rs. 8,000-8,250 slab (printed 995.20 where the arithmetic of the surrounding slabs gives 955.20) and the doubled comma in the Rs. 2,800-2,900 row. The table carries no date of its own; the FRBR date is that of the stay order it records in Note 1.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <longTitle><p>COURT FEE TABLE, PUNJAB AND HARYANA HIGH COURT</p></longTitle>
+      <p>COURT FEE TABLE</p>
+      <p>High Court of Punjab and Haryana. The fee payable on the institution of each case type at the High Court, followed by the Table of Rates of ad valorem fees leviable on the institution of suits as prescribed in the Court-fees Act, 1870.</p>
+    </preface>
+    <mainBody>
+      <part eId="part_cwp">
+        <num>CIVIL WRIT PETITION</num>
+        <section eId="cwp_1_cwp">
+          <num>1.</num>
+          <heading>Civil Writ Petition (CWP)</heading>
+          <content>
+            <p>Case Type: Civil Writ Petition</p>
+            <p>Nomenclature: CWP</p>
+            <p>Court Fee (In Rupees): Rs. 50 per Petitioner</p>
+          </content>
+        </section>
+      </part>
+      <part eId="part_civil">
+        <num>CIVIL CASES</num>
+        <section eId="civ_1_rfa">
+          <num>1.</num>
+          <heading>Regular First Appeal (RFA)</heading>
+          <content>
+            <p>Case Type: Regular First Appeal</p>
+            <p>Nomenclature: RFA</p>
+            <p>Court Fee (In Rupees): Rs. 100 (In Land Acquisition Case) (In rest of Cases, Court Fee is as per Value under the provisions of Court Fees Act, 1870 (Un-amended Court Fees Act) as applicable to State of Punjab)</p>
+          </content>
+        </section>
+        <section eId="civ_2_efa">
+          <num>2.</num>
+          <heading>Execution First Appeal (EFA)</heading>
+          <content>
+            <p>Case Type: Execution First Appeal</p>
+            <p>Nomenclature: EFA</p>
+            <p>Court Fee (In Rupees): Rs. 25</p>
+          </content>
+        </section>
+        <section eId="civ_3_rsa">
+          <num>3.</num>
+          <heading>Regular Second Appeal (RSA)</heading>
+          <content>
+            <p>Case Type: Regular Second Appeal</p>
+            <p>Nomenclature: RSA</p>
+            <p>Court Fee (In Rupees): As per the provisions of Court Fees Act, 1870 (Un-amended Court Fees Act) as applicable to State of Punjab i) Fixed Court Fee as prescribed. ii) Ad-valorem Court Fees-As per value assessed</p>
+          </content>
+        </section>
+        <section eId="civ_4_esa">
+          <num>4.</num>
+          <heading>Execution Second Appeal (ESA)</heading>
+          <content>
+            <p>Case Type: Execution Second Appeal</p>
+            <p>Nomenclature: ESA</p>
+            <p>Court Fee (In Rupees): Rs. 5.25</p>
+          </content>
+        </section>
+        <section eId="civ_5_sao">
+          <num>5.</num>
+          <heading>Second Appeal Against Order (SAO)</heading>
+          <content>
+            <p>Case Type: Second Appeal Against Order</p>
+            <p>Nomenclature: SAO</p>
+            <p>Court Fee (In Rupees): Rs. 5.25</p>
+          </content>
+        </section>
+        <section eId="civ_6_cr">
+          <num>6.</num>
+          <heading>Civil Revision (CR)</heading>
+          <content>
+            <p>Case Type: Civil Revision</p>
+            <p>Nomenclature: CR</p>
+            <p>Court Fee (In Rupees): Rs. 2.65 (filed under Article 227 of the Constitution of India) Rs. 13 in Punjab and UT Rs. 15 in Haryana (filed under Rent Restrict Act) Rs. 5.25 Revision filed u/s 115 CPC. Half of the Court fee as affixed in Court below in Revision Petition filed against the judgment and decree passed u/S 6 of the Specific Relief Act.</p>
+          </content>
+        </section>
+        <section eId="civ_7_ta">
+          <num>7.</num>
+          <heading>Transfer Appeal (TA)</heading>
+          <content>
+            <p>Case Type: Transfer Appeal</p>
+            <p>Nomenclature: TA</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="civ_8_co">
+          <num>8.</num>
+          <heading>Civil Original (CO)</heading>
+          <content>
+            <p>Case Type: Civil Original</p>
+            <p>Nomenclature: CO</p>
+            <p>Court Fee (In Rupees): As prescribed under the Court Fee Act</p>
+          </content>
+        </section>
+        <section eId="civ_9_cocp">
+          <num>9.</num>
+          <heading>Contempt Petition (COCP)</heading>
+          <content>
+            <p>Case Type: Contempt Petition</p>
+            <p>Nomenclature: COCP</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="civ_10_cacp">
+          <num>10.</num>
+          <heading>Contempt Appeal (CACP)</heading>
+          <content>
+            <p>Case Type: Contempt Appeal</p>
+            <p>Nomenclature: CACP</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="civ_11_fao">
+          <num>11.</num>
+          <heading>First Appeal from Order against Arbitration (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order against Arbitration</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Court Fee is leviable as per Circular /Correction Slip No. 45 Rule/IID.4 dated 8.9.2003 of Volume V of High Court Rules and Orders or as per Notification issued time to time</p>
+          </content>
+        </section>
+        <section eId="civ_12_fao_mact">
+          <num>12.</num>
+          <heading>First Appeal from Order (Mact) (FAO-MACT)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (Mact)</p>
+            <p>Nomenclature: FAO-MACT</p>
+            <p>Court Fee (In Rupees): Rs. 5.25</p>
+          </content>
+        </section>
+        <section eId="civ_13_arb">
+          <num>13.</num>
+          <heading>Arbitration Case (ARB)</heading>
+          <content>
+            <p>Case Type: Arbitration Case</p>
+            <p>Nomenclature: ARB</p>
+            <p>Court Fee (In Rupees): Court Fee is leviable as per Circular /Correction Slip No. 45 Rule/IID.4 dated 8.9.2003 of Volume V of High Court Rules and Orders or as per Notification issued time to time</p>
+          </content>
+        </section>
+        <section eId="civ_14_fao">
+          <num>14.</num>
+          <heading>First Appeal from Order (under the provisions of (i) Indian Succession Act (ii) u/s 299 (PBT) (iii) against State Financial Corporation (iv) against FEMA (v) against Central Electricity (vi) Pb/Hry. Electricity (vii) against O 43 Rule 1 (viii) against ESI (ix) Pb. State Election Commission/Tribunal (x) Workmen Compensation Act (xi) Indian Lunancy Act (xii) Intellectual property (xiii) Misc. Matters (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (under the provisions of (i) Indian Succession Act (ii) u/s 299 (PBT) (iii) against State Financial Corporation (iv) against FEMA (v) against Central Electricity (vi) Pb/Hry. Electricity (vii) against O 43 Rule 1 (viii) against ESI (ix) Pb. State Election Commission/Tribunal (x) Workmen Compensation Act (xi) Indian Lunancy Act (xii) Intellectual property (xiii) Misc. Matters</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Rs. 5.25</p>
+          </content>
+        </section>
+        <section eId="civ_15_fao">
+          <num>15.</num>
+          <heading>First Appeal from Order (filed against Indian Divorce Act) (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (filed against Indian Divorce Act)</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Rs. 39</p>
+          </content>
+        </section>
+        <section eId="civ_16_fao">
+          <num>16.</num>
+          <heading>First Appeal from Order (Railway Claim Tribunal) (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (Railway Claim Tribunal)</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Rs.5.25 (In Accidental Cases) or Court Fee is leviable as per Schedule II of Railway Claims Tribunal Act, 1987 for other than accidental cases.</p>
+          </content>
+        </section>
+        <section eId="civ_17_fao">
+          <num>17.</num>
+          <heading>First Appeal from Order (against Land Acquisition) (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (against Land Acquisition)</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Rs. 100</p>
+          </content>
+        </section>
+        <section eId="civ_18_fao">
+          <num>18.</num>
+          <heading>First Appeal from Order (filed against SGPC (Single Bench Appeal) (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (filed against SGPC (Single Bench Appeal)</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Rs. 25</p>
+          </content>
+        </section>
+        <section eId="civ_19_fao">
+          <num>19.</num>
+          <heading>First Appeal from Order (filed against SGPC (Division Bench Appeal) (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (filed against SGPC (Division Bench Appeal)</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Rs. 10</p>
+          </content>
+        </section>
+        <section eId="civ_20_fao_m">
+          <num>20.</num>
+          <heading>First Appeal from order (Matrimonial Cases) (FAO-M)</heading>
+          <content>
+            <p>Case Type: First Appeal from order (Matrimonial Cases)</p>
+            <p>Nomenclature: FAO-M</p>
+            <p>Court Fee (In Rupees): Rs. 19.50 (Punjab, UT, Chd.) Rs. 24.50 (Haryana)</p>
+          </content>
+        </section>
+        <section eId="civ_21_fao">
+          <num>21.</num>
+          <heading>First Appeal from Order (Against Family Court in matrimonial matters) (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (Against Family Court in matrimonial matters)</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Rs. 19.50 (Punjab, UT, Chd.) Rs. 24.50 (Haryana)</p>
+          </content>
+        </section>
+        <section eId="civ_22_fao">
+          <num>22.</num>
+          <heading>First Appeal from Order (Against Family Court in the matter of Guardian and Ward Act) (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (Against Family Court in the matter of Guardian and Ward Act)</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): Rs. 5.25</p>
+          </content>
+        </section>
+        <section eId="civ_23_fao">
+          <num>23.</num>
+          <heading>First Appeal from Order (Against Family Court in Misc. Matters) (FAO)</heading>
+          <content>
+            <p>Case Type: First Appeal from Order (Against Family Court in Misc. Matters)</p>
+            <p>Nomenclature: FAO</p>
+            <p>Court Fee (In Rupees): As prescribed in the as per the Court of Act, 1870</p>
+          </content>
+        </section>
+        <section eId="civ_24_ita">
+          <num>24.</num>
+          <heading>Income Tax Appeal (ITA)</heading>
+          <content>
+            <p>Case Type: Income Tax Appeal</p>
+            <p>Nomenclature: ITA</p>
+            <p>Court Fee (In Rupees): Rs. 5.25</p>
+          </content>
+        </section>
+        <section eId="civ_25_vat">
+          <num>25.</num>
+          <heading>Value added Tax Appeal (VAT)</heading>
+          <content>
+            <p>Case Type: Value added Tax Appeal</p>
+            <p>Nomenclature: VAT</p>
+            <p>Court Fee (In Rupees): Rs.100</p>
+          </content>
+        </section>
+        <section eId="civ_26_sta">
+          <num>26.</num>
+          <heading>Service Tax Appeal, Central Excise Appeal, Custom Appeal (STA, CEA, CUSAP)</heading>
+          <content>
+            <p>Case Type: Service Tax Appeal, Central Excise Appeal, Custom Appeal</p>
+            <p>Nomenclature: STA, CEA, CUSAP</p>
+            <p>Court Fee (In Rupees): Rs. 200 (for private party) Rs. 5.25 (for Govt. Departments)</p>
+          </content>
+        </section>
+        <section eId="civ_27_pbt">
+          <num>27.</num>
+          <heading>Probate Case (PBT)</heading>
+          <content>
+            <p>Case Type: Probate Case</p>
+            <p>Nomenclature: PBT</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+      </part>
+      <part eId="part_company">
+        <num>COMPANY CASES</num>
+        <section eId="co_1_cp">
+          <num>1.</num>
+          <heading>Company Petition (s) (Winding Up) (CP)</heading>
+          <content>
+            <p>Case Type: Company Petition (s) (Winding Up)</p>
+            <p>Nomenclature: CP</p>
+            <p>Court Fee (In Rupees): Rs. 260</p>
+          </content>
+        </section>
+        <section eId="co_2_cp">
+          <num>2.</num>
+          <heading>Company Petition (s) (ii) Merger/De-merger/Arrangement (CP)</heading>
+          <content>
+            <p>Case Type: Company Petition (s) (ii) Merger/De-merger/Arrangement</p>
+            <p>Nomenclature: CP</p>
+            <p>Court Fee (In Rupees): Rs. 13</p>
+          </content>
+        </section>
+        <section eId="co_3_capp">
+          <num>3.</num>
+          <heading>Company Appeal (SB) (CAPP)</heading>
+          <content>
+            <p>Case Type: Company Appeal (SB)</p>
+            <p>Nomenclature: CAPP</p>
+            <p>Court Fee (In Rupees): Rs. 13</p>
+          </content>
+        </section>
+        <section eId="co_4_capp">
+          <num>4.</num>
+          <heading>Company Appeal (DB) (CAPP)</heading>
+          <content>
+            <p>Case Type: Company Appeal (DB)</p>
+            <p>Nomenclature: CAPP</p>
+            <p>Court Fee (In Rupees): Rs. 13</p>
+          </content>
+        </section>
+        <section eId="co_5_ca">
+          <num>5.</num>
+          <heading>Company Application (CA)</heading>
+          <content>
+            <p>Case Type: Company Application</p>
+            <p>Nomenclature: CA</p>
+            <p>Court Fee (In Rupees): Rs. 13</p>
+          </content>
+        </section>
+      </part>
+      <part eId="part_criminal">
+        <num>CRIMINAL CASES</num>
+        <section eId="crim_1_crm_m">
+          <num>1.</num>
+          <heading>Anticipatory Bail (CRM-M)</heading>
+          <content>
+            <p>Case Type: Anticipatory Bail</p>
+            <p>Nomenclature: CRM-M</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="crim_2_crm_m">
+          <num>2.</num>
+          <heading>Regular Bail (CRM-M)</heading>
+          <content>
+            <p>Case Type: Regular Bail</p>
+            <p>Nomenclature: CRM-M</p>
+            <p>Court Fee (In Rupees): NIL</p>
+          </content>
+        </section>
+        <section eId="crim_3_crm_m">
+          <num>3.</num>
+          <heading>Quashing Petition (CRM-M)</heading>
+          <content>
+            <p>Case Type: Quashing Petition</p>
+            <p>Nomenclature: CRM-M</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="crim_4_crm_m">
+          <num>4.</num>
+          <heading>Direction Petition (Including Marriage Direction) (CRM-M)</heading>
+          <content>
+            <p>Case Type: Direction Petition (Including Marriage Direction)</p>
+            <p>Nomenclature: CRM-M</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="crim_5_crr">
+          <num>5.</num>
+          <heading>Criminal Revision (CRR)</heading>
+          <content>
+            <p>Case Type: Criminal Revision</p>
+            <p>Nomenclature: CRR</p>
+            <p>Court Fee (In Rupees): Rs. 2.65. NIL (IN CASE PETITIONER IS IN CUSTODY)</p>
+          </content>
+        </section>
+        <section eId="crim_6_crr_f">
+          <num>6.</num>
+          <heading>Criminal Revision (Family Court) (CRR-F)</heading>
+          <content>
+            <p>Case Type: Criminal Revision (Family Court)</p>
+            <p>Nomenclature: CRR-F</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="crim_7_cra_s">
+          <num>7.</num>
+          <heading>Criminal Appeal (SB) (CRA-S)</heading>
+          <content>
+            <p>Case Type: Criminal Appeal (SB)</p>
+            <p>Nomenclature: CRA-S</p>
+            <p>Court Fee (In Rupees): Rs. 2.65 (IN CASE OF BAIL) NIL (IN CASE PETITIONER IS IN CUSTODY)</p>
+          </content>
+        </section>
+        <section eId="crim_8_cra_d">
+          <num>8.</num>
+          <heading>Criminal Appeal (DB) (CRA-D)</heading>
+          <content>
+            <p>Case Type: Criminal Appeal (DB)</p>
+            <p>Nomenclature: CRA-D</p>
+            <p>Court Fee (In Rupees): Rs. 2.65 (IN CASE OF BAIL) NIL (IN CASE OF CONVICTION)</p>
+          </content>
+        </section>
+        <section eId="crim_9_crm_a">
+          <num>9.</num>
+          <heading>Criminal Appeal against Acquittal (CRM-A)</heading>
+          <content>
+            <p>Case Type: Criminal Appeal against Acquittal</p>
+            <p>Nomenclature: CRM-A</p>
+            <p>Court Fee (In Rupees): Rs. 2.65 (IN CASE OF BAIL) NIL (IN CASE OF CONVICTION)</p>
+          </content>
+        </section>
+        <section eId="crim_10_crwp">
+          <num>10.</num>
+          <heading>Criminal Writ Petition (Parole and Habeaus Corpus) (CRWP)</heading>
+          <content>
+            <p>Case Type: Criminal Writ Petition (Parole and Habeaus Corpus)</p>
+            <p>Nomenclature: CRWP</p>
+            <p>Court Fee (In Rupees): Rs. 2.65 (IN CASE OF BAIL) NIL (IN CASE PETITIONER IS IN CUSTODY)</p>
+          </content>
+        </section>
+        <section eId="crim_11_mrc">
+          <num>11.</num>
+          <heading>Murder Reference (MRC)</heading>
+          <content>
+            <p>Case Type: Murder Reference</p>
+            <p>Nomenclature: MRC</p>
+            <p>Court Fee (In Rupees): NIL</p>
+          </content>
+        </section>
+        <section eId="crim_12_crocop">
+          <num>12.</num>
+          <heading>Criminal Contempt Petition (CROCOP)</heading>
+          <content>
+            <p>Case Type: Criminal Contempt Petition</p>
+            <p>Nomenclature: CROCOP</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="crim_13_crm_m">
+          <num>13.</num>
+          <heading>Transfer Petition (CRM-M)</heading>
+          <content>
+            <p>Case Type: Transfer Petition</p>
+            <p>Nomenclature: CRM-M</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="crim_14_crm">
+          <num>14.</num>
+          <heading>Criminal Misc. Application (CRM)</heading>
+          <content>
+            <p>Case Type: Criminal Misc. Application</p>
+            <p>Nomenclature: CRM</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="crim_note">
+          <heading>Note to the criminal table</heading>
+          <content>
+            <p>Note: Where the Appellant/Applicant/Petitioner is in custody, Court Fee is not required.</p>
+          </content>
+        </section>
+      </part>
+      <part eId="part_lpa">
+        <num>LETTERS PATENT APPEAL</num>
+        <section eId="lpa_1_lpa">
+          <num>1.</num>
+          <heading>Letters Patent Appeal (LPA)</heading>
+          <content>
+            <p>Case Type: Letters Patent Appeal</p>
+            <p>Nomenclature: LPA</p>
+            <p>Court Fee (In Rupees): 5.25</p>
+          </content>
+        </section>
+      </part>
+      <part eId="part_common">
+        <num>COMMON DOCUMENTS IN CWP AND CIVIL CASES/CRIMINAL CASES</num>
+        <section eId="com_1_x">
+          <num>1.</num>
+          <heading>Caveat Petition</heading>
+          <content>
+            <p>Case Type: Caveat Petition</p>
+            <p>Nomenclature: ---</p>
+            <p>Court Fee (In Rupees): 6.50</p>
+          </content>
+        </section>
+        <section eId="com_2_xobj_s">
+          <num>2.</num>
+          <heading>Cross Objection in RSA (XOBJ-S)</heading>
+          <content>
+            <p>Case Type: Cross Objection in RSA</p>
+            <p>Nomenclature: XOBJ-S</p>
+            <p>Court Fee (In Rupees): As affixed in RSA / As per prayer or value</p>
+          </content>
+        </section>
+        <section eId="com_3_xobj_c">
+          <num>3.</num>
+          <heading>Cross Objection in FAO (XOBJ-C)</heading>
+          <content>
+            <p>Case Type: Cross Objection in FAO</p>
+            <p>Nomenclature: XOBJ-C</p>
+            <p>Court Fee (In Rupees): As affixed in FAO</p>
+          </content>
+        </section>
+        <section eId="com_4_xobj_r">
+          <num>4.</num>
+          <heading>Cross Objection in RFA (XOBJ-R)</heading>
+          <content>
+            <p>Case Type: Cross Objection in RFA</p>
+            <p>Nomenclature: XOBJ-R</p>
+            <p>Court Fee (In Rupees): As affixed in RFA/ As per prayer or value</p>
+          </content>
+        </section>
+        <section eId="com_5_xobj_l">
+          <num>5.</num>
+          <heading>Cross Objection in LPA (XOBJ-L)</heading>
+          <content>
+            <p>Case Type: Cross Objection in LPA</p>
+            <p>Nomenclature: XOBJ-L</p>
+            <p>Court Fee (In Rupees): As affixed in LPA</p>
+          </content>
+        </section>
+        <section eId="com_6_ra_cw">
+          <num>6.</num>
+          <heading>Review Application (In CWP/Civil Cases) (RA-CW, RA-CR, RA-RS, RA-RF, RA-LP, RA-CP, RA-CA)</heading>
+          <content>
+            <p>Case Type: Review Application (In CWP/Civil Cases)</p>
+            <p>Nomenclature: RA-CW, RA-CR, RA-RS, RA-RF, RA-LP, RA-CP, RA-CA</p>
+            <p>Court Fee (In Rupees): Half Court Fee if within 90 days from date of order. Full Court Fee if above 90 Days from date of order</p>
+          </content>
+        </section>
+        <section eId="com_7_cm">
+          <num>7.</num>
+          <heading>Civil Misc. Application (CM)</heading>
+          <content>
+            <p>Case Type: Civil Misc. Application</p>
+            <p>Nomenclature: CM</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="com_8_ea">
+          <num>8.</num>
+          <heading>Execution Application (In original matters) (EA)</heading>
+          <content>
+            <p>Case Type: Execution Application (In original matters)</p>
+            <p>Nomenclature: EA</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="com_9_x">
+          <num>9.</num>
+          <heading>Supreme Court Order</heading>
+          <content>
+            <p>Case Type: Supreme Court Order</p>
+            <p>Nomenclature: ---</p>
+            <p>Court Fee (In Rupees): Rs. 5.25</p>
+          </content>
+        </section>
+        <section eId="com_10_x">
+          <num>10.</num>
+          <heading>High Court Order</heading>
+          <content>
+            <p>Case Type: High Court Order</p>
+            <p>Nomenclature: ---</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="com_11_x">
+          <num>11.</num>
+          <heading>Lower Court Order</heading>
+          <content>
+            <p>Case Type: Lower Court Order</p>
+            <p>Nomenclature: ---</p>
+            <p>Court Fee (In Rupees): Rs. 2.65/Rs. 1.25 as the case may be</p>
+          </content>
+        </section>
+        <section eId="com_12_x">
+          <num>12.</num>
+          <heading>Annexures</heading>
+          <content>
+            <p>Case Type: Annexures</p>
+            <p>Nomenclature: ---</p>
+            <p>Court Fee (In Rupees): Rs. 0.65 per page</p>
+          </content>
+        </section>
+        <section eId="com_13_x">
+          <num>13.</num>
+          <heading>Power of Attorney</heading>
+          <content>
+            <p>Case Type: Power of Attorney</p>
+            <p>Nomenclature: ---</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="com_14_x">
+          <num>14.</num>
+          <heading>Decree Sheet in Civil Appeals</heading>
+          <content>
+            <p>Case Type: Decree Sheet in Civil Appeals</p>
+            <p>Nomenclature: ---</p>
+            <p>Court Fee (In Rupees): Rs. 2.65</p>
+          </content>
+        </section>
+        <section eId="com_notes">
+          <heading>Notes to the Court Fee Table</heading>
+          <content>
+            <blockList eId="com_notes__list">
+              <item eId="com_notes__i1"><num>1.</num><p>Court Fees in the cases is being received by DRR Section/Registry as per the Court Fees Act, 1870 (Un-amended)/Notifications issued from time to time and the Court fee is being calculated as per the Court Fee Chart provided in the DRR Section. It is also submitted that Schedule I and II of Court Fees (Punjab Second Amendment) Act, 2009 has been stayed vide order dated 27.11.2013 passed by Hon'ble Mr. Justice Rakesh Kumar Garg (as His Lordship then was) in RSA No. 3311 of 2013. The Court Fees chart/schedule is subject to change at any time without any notification/publication by this Hon'ble Court in case any amendment/instructions are issued/received in this behalf by the appropriate Government and subject to the final decision of RSA No. 3311 of 2013.</p></item>
+              <item eId="com_notes__i2"><num>2.</num><p>Please also go through the relevant Statutes of the Gazette Notifications with regard to the payment of Court Fees in judicial matters/cases issued by the concerned State Governments from time to time.</p></item>
+            </blockList>
+            <p>Sd/- Joint Registrar(Judicial-II)</p>
+          </content>
+        </section>
+      </part>
+      <part eId="part_advalorem">
+        <num>TABLE OF RATES OF AD VALOREM FEES</num>
+        <heading>leviable on the Institution of Suits, as prescribed in the Court-fees Act, 1870</heading>
+        <section eId="adv_upto_500">
+          <num>1.</num>
+          <heading>Where the subject-matter does not exceed Rs. 500</heading>
+          <content>
+            <p>When the amount or value of subject-matter exceeds the first figure but does not exceed the second, the proper fee is as shown.</p>
+            <blockList eId="adv_upto_500__list">
+              <item eId="adv_upto_500__i1"><num>Rs. -- to Rs. 5</num><p>Proper fee: Rs. 0.50</p></item>
+              <item eId="adv_upto_500__i2"><num>Rs. 5 to Rs. 10</num><p>Proper fee: Rs. 1.00</p></item>
+              <item eId="adv_upto_500__i3"><num>Rs. 10 to Rs. 15</num><p>Proper fee: Rs. 1.50</p></item>
+              <item eId="adv_upto_500__i4"><num>Rs. 15 to Rs. 20</num><p>Proper fee: Rs. 2.00</p></item>
+              <item eId="adv_upto_500__i5"><num>Rs. 20 to Rs. 25</num><p>Proper fee: Rs. 2.50</p></item>
+              <item eId="adv_upto_500__i6"><num>Rs. 25 to Rs. 30</num><p>Proper fee: Rs. 3.00</p></item>
+              <item eId="adv_upto_500__i7"><num>Rs. 30 to Rs. 35</num><p>Proper fee: Rs. 3.50</p></item>
+              <item eId="adv_upto_500__i8"><num>Rs. 35 to Rs. 40</num><p>Proper fee: Rs. 4.00</p></item>
+              <item eId="adv_upto_500__i9"><num>Rs. 40 to Rs. 45</num><p>Proper fee: Rs. 4.50</p></item>
+              <item eId="adv_upto_500__i10"><num>Rs. 45 to Rs. 50</num><p>Proper fee: Rs. 5.00</p></item>
+              <item eId="adv_upto_500__i11"><num>Rs. 50 to Rs. 55</num><p>Proper fee: Rs. 5.50</p></item>
+              <item eId="adv_upto_500__i12"><num>Rs. 55 to Rs. 60</num><p>Proper fee: Rs. 6.00</p></item>
+              <item eId="adv_upto_500__i13"><num>Rs. 60 to Rs. 65</num><p>Proper fee: Rs. 6.50</p></item>
+              <item eId="adv_upto_500__i14"><num>Rs. 65 to Rs. 70</num><p>Proper fee: Rs. 7.00</p></item>
+              <item eId="adv_upto_500__i15"><num>Rs. 70 to Rs. 75</num><p>Proper fee: Rs. 7.50</p></item>
+              <item eId="adv_upto_500__i16"><num>Rs. 75 to Rs. 80</num><p>Proper fee: Rs. 8.00</p></item>
+              <item eId="adv_upto_500__i17"><num>Rs. 80 to Rs. 85</num><p>Proper fee: Rs. 8.50</p></item>
+              <item eId="adv_upto_500__i18"><num>Rs. 85 to Rs. 90</num><p>Proper fee: Rs. 9.00</p></item>
+              <item eId="adv_upto_500__i19"><num>Rs. 90 to Rs. 95</num><p>Proper fee: Rs. 9.50</p></item>
+              <item eId="adv_upto_500__i20"><num>Rs. 95 to Rs. 100</num><p>Proper fee: Rs. 10.00</p></item>
+              <item eId="adv_upto_500__i21"><num>Rs. 100 to Rs. 110</num><p>Proper fee: Rs. 11.00</p></item>
+              <item eId="adv_upto_500__i22"><num>Rs. 110 to Rs. 120</num><p>Proper fee: Rs. 12.00</p></item>
+              <item eId="adv_upto_500__i23"><num>Rs. 120 to Rs. 130</num><p>Proper fee: Rs. 13.00</p></item>
+              <item eId="adv_upto_500__i24"><num>Rs. 130 to Rs. 140</num><p>Proper fee: Rs. 14.00</p></item>
+              <item eId="adv_upto_500__i25"><num>Rs. 140 to Rs. 150</num><p>Proper fee: Rs. 15.00</p></item>
+              <item eId="adv_upto_500__i26"><num>Rs. 150 to Rs. 160</num><p>Proper fee: Rs. 16.00</p></item>
+              <item eId="adv_upto_500__i27"><num>Rs. 160 to Rs. 170</num><p>Proper fee: Rs. 17.00</p></item>
+              <item eId="adv_upto_500__i28"><num>Rs. 170 to Rs. 180</num><p>Proper fee: Rs. 18.00</p></item>
+              <item eId="adv_upto_500__i29"><num>Rs. 180 to Rs. 190</num><p>Proper fee: Rs. 19.00</p></item>
+              <item eId="adv_upto_500__i30"><num>Rs. 190 to Rs. 200</num><p>Proper fee: Rs. 20.00</p></item>
+              <item eId="adv_upto_500__i31"><num>Rs. 200 to Rs. 210</num><p>Proper fee: Rs. 21.00</p></item>
+              <item eId="adv_upto_500__i32"><num>Rs. 210 to Rs. 220</num><p>Proper fee: Rs. 22.00</p></item>
+              <item eId="adv_upto_500__i33"><num>Rs. 220 to Rs. 230</num><p>Proper fee: Rs. 23.00</p></item>
+              <item eId="adv_upto_500__i34"><num>Rs. 230 to Rs. 240</num><p>Proper fee: Rs. 24.00</p></item>
+              <item eId="adv_upto_500__i35"><num>Rs. 240 to Rs. 250</num><p>Proper fee: Rs. 25.00</p></item>
+              <item eId="adv_upto_500__i36"><num>Rs. 250 to Rs. 260</num><p>Proper fee: Rs. 26.00</p></item>
+              <item eId="adv_upto_500__i37"><num>Rs. 260 to Rs. 270</num><p>Proper fee: Rs. 27.00</p></item>
+              <item eId="adv_upto_500__i38"><num>Rs. 270 to Rs. 280</num><p>Proper fee: Rs. 28.00</p></item>
+              <item eId="adv_upto_500__i39"><num>Rs. 280 to Rs. 290</num><p>Proper fee: Rs. 29.00</p></item>
+              <item eId="adv_upto_500__i40"><num>Rs. 290 to Rs. 300</num><p>Proper fee: Rs. 30.00</p></item>
+              <item eId="adv_upto_500__i41"><num>Rs. 300 to Rs. 310</num><p>Proper fee: Rs. 31.00</p></item>
+              <item eId="adv_upto_500__i42"><num>Rs. 310 to Rs. 320</num><p>Proper fee: Rs. 32.00</p></item>
+              <item eId="adv_upto_500__i43"><num>Rs. 320 to Rs. 330</num><p>Proper fee: Rs. 33.00</p></item>
+              <item eId="adv_upto_500__i44"><num>Rs. 330 to Rs. 340</num><p>Proper fee: Rs. 34.00</p></item>
+              <item eId="adv_upto_500__i45"><num>Rs. 340 to Rs. 350</num><p>Proper fee: Rs. 35.00</p></item>
+              <item eId="adv_upto_500__i46"><num>Rs. 350 to Rs. 360</num><p>Proper fee: Rs. 36.00</p></item>
+              <item eId="adv_upto_500__i47"><num>Rs. 360 to Rs. 370</num><p>Proper fee: Rs. 37.00</p></item>
+              <item eId="adv_upto_500__i48"><num>Rs. 370 to Rs. 380</num><p>Proper fee: Rs. 38.00</p></item>
+              <item eId="adv_upto_500__i49"><num>Rs. 380 to Rs. 390</num><p>Proper fee: Rs. 39.00</p></item>
+              <item eId="adv_upto_500__i50"><num>Rs. 390 to Rs. 400</num><p>Proper fee: Rs. 40.00</p></item>
+              <item eId="adv_upto_500__i51"><num>Rs. 400 to Rs. 410</num><p>Proper fee: Rs. 41.00</p></item>
+              <item eId="adv_upto_500__i52"><num>Rs. 410 to Rs. 420</num><p>Proper fee: Rs. 42.00</p></item>
+              <item eId="adv_upto_500__i53"><num>Rs. 420 to Rs. 430</num><p>Proper fee: Rs. 43.00</p></item>
+              <item eId="adv_upto_500__i54"><num>Rs. 430 to Rs. 440</num><p>Proper fee: Rs. 44.00</p></item>
+              <item eId="adv_upto_500__i55"><num>Rs. 440 to Rs. 450</num><p>Proper fee: Rs. 45.00</p></item>
+              <item eId="adv_upto_500__i56"><num>Rs. 450 to Rs. 460</num><p>Proper fee: Rs. 46.00</p></item>
+              <item eId="adv_upto_500__i57"><num>Rs. 460 to Rs. 470</num><p>Proper fee: Rs. 47.00</p></item>
+              <item eId="adv_upto_500__i58"><num>Rs. 470 to Rs. 480</num><p>Proper fee: Rs. 48.00</p></item>
+              <item eId="adv_upto_500__i59"><num>Rs. 480 to Rs. 490</num><p>Proper fee: Rs. 49.00</p></item>
+              <item eId="adv_upto_500__i60"><num>Rs. 490 to Rs. 500</num><p>Proper fee: Rs. 50.00</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="adv_500_1000">
+          <num>2.</num>
+          <heading>Where the subject-matter exceeds Rs. 500 but does not exceed Rs. 1,000</heading>
+          <content>
+            <p>When the amount or value of subject-matter exceeds the first figure but does not exceed the second, the proper fee is as shown.</p>
+            <blockList eId="adv_500_1000__list">
+              <item eId="adv_500_1000__i1"><num>Rs. 500 to Rs. 510</num><p>Proper fee: Rs. 76.50</p></item>
+              <item eId="adv_500_1000__i2"><num>Rs. 510 to Rs. 520</num><p>Proper fee: Rs. 78.00</p></item>
+              <item eId="adv_500_1000__i3"><num>Rs. 520 to Rs. 530</num><p>Proper fee: Rs. 79.50</p></item>
+              <item eId="adv_500_1000__i4"><num>Rs. 530 to Rs. 540</num><p>Proper fee: Rs. 81.00</p></item>
+              <item eId="adv_500_1000__i5"><num>Rs. 540 to Rs. 550</num><p>Proper fee: Rs. 82.50</p></item>
+              <item eId="adv_500_1000__i6"><num>Rs. 550 to Rs. 560</num><p>Proper fee: Rs. 84.00</p></item>
+              <item eId="adv_500_1000__i7"><num>Rs. 560 to Rs. 570</num><p>Proper fee: Rs. 85.50</p></item>
+              <item eId="adv_500_1000__i8"><num>Rs. 570 to Rs. 580</num><p>Proper fee: Rs. 87.00</p></item>
+              <item eId="adv_500_1000__i9"><num>Rs. 580 to Rs. 590</num><p>Proper fee: Rs. 88.50</p></item>
+              <item eId="adv_500_1000__i10"><num>Rs. 590 to Rs. 600</num><p>Proper fee: Rs. 90.00</p></item>
+              <item eId="adv_500_1000__i11"><num>Rs. 600 to Rs. 610</num><p>Proper fee: Rs. 91.50</p></item>
+              <item eId="adv_500_1000__i12"><num>Rs. 610 to Rs. 620</num><p>Proper fee: Rs. 93.00</p></item>
+              <item eId="adv_500_1000__i13"><num>Rs. 620 to Rs. 630</num><p>Proper fee: Rs. 94.50</p></item>
+              <item eId="adv_500_1000__i14"><num>Rs. 630 to Rs. 640</num><p>Proper fee: Rs. 96.00</p></item>
+              <item eId="adv_500_1000__i15"><num>Rs. 640 to Rs. 650</num><p>Proper fee: Rs. 97.50</p></item>
+              <item eId="adv_500_1000__i16"><num>Rs. 650 to Rs. 660</num><p>Proper fee: Rs. 99.00</p></item>
+              <item eId="adv_500_1000__i17"><num>Rs. 660 to Rs. 670</num><p>Proper fee: Rs. 100.50</p></item>
+              <item eId="adv_500_1000__i18"><num>Rs. 670 to Rs. 680</num><p>Proper fee: Rs. 102.00</p></item>
+              <item eId="adv_500_1000__i19"><num>Rs. 680 to Rs. 690</num><p>Proper fee: Rs. 103.50</p></item>
+              <item eId="adv_500_1000__i20"><num>Rs. 690 to Rs. 700</num><p>Proper fee: Rs. 105.00</p></item>
+              <item eId="adv_500_1000__i21"><num>Rs. 700 to Rs. 710</num><p>Proper fee: Rs. 106.50</p></item>
+              <item eId="adv_500_1000__i22"><num>Rs. 710 to Rs. 720</num><p>Proper fee: Rs. 108.00</p></item>
+              <item eId="adv_500_1000__i23"><num>Rs. 720 to Rs. 730</num><p>Proper fee: Rs. 109.50</p></item>
+              <item eId="adv_500_1000__i24"><num>Rs. 730 to Rs. 740</num><p>Proper fee: Rs. 111.00</p></item>
+              <item eId="adv_500_1000__i25"><num>Rs. 740 to Rs. 750</num><p>Proper fee: Rs. 112.50</p></item>
+              <item eId="adv_500_1000__i26"><num>Rs. 750 to Rs. 760</num><p>Proper fee: Rs. 114.00</p></item>
+              <item eId="adv_500_1000__i27"><num>Rs. 760 to Rs. 770</num><p>Proper fee: Rs. 115.50</p></item>
+              <item eId="adv_500_1000__i28"><num>Rs. 770 to Rs. 780</num><p>Proper fee: Rs. 117.00</p></item>
+              <item eId="adv_500_1000__i29"><num>Rs. 780 to Rs. 790</num><p>Proper fee: Rs. 118.50</p></item>
+              <item eId="adv_500_1000__i30"><num>Rs. 790 to Rs. 800</num><p>Proper fee: Rs. 120.00</p></item>
+              <item eId="adv_500_1000__i31"><num>Rs. 800 to Rs. 810</num><p>Proper fee: Rs. 121.50</p></item>
+              <item eId="adv_500_1000__i32"><num>Rs. 810 to Rs. 820</num><p>Proper fee: Rs. 123.00</p></item>
+              <item eId="adv_500_1000__i33"><num>Rs. 820 to Rs. 830</num><p>Proper fee: Rs. 124.50</p></item>
+              <item eId="adv_500_1000__i34"><num>Rs. 830 to Rs. 840</num><p>Proper fee: Rs. 126.00</p></item>
+              <item eId="adv_500_1000__i35"><num>Rs. 840 to Rs. 850</num><p>Proper fee: Rs. 127.50</p></item>
+              <item eId="adv_500_1000__i36"><num>Rs. 850 to Rs. 860</num><p>Proper fee: Rs. 129.00</p></item>
+              <item eId="adv_500_1000__i37"><num>Rs. 860 to Rs. 870</num><p>Proper fee: Rs. 130.50</p></item>
+              <item eId="adv_500_1000__i38"><num>Rs. 870 to Rs. 880</num><p>Proper fee: Rs. 132.00</p></item>
+              <item eId="adv_500_1000__i39"><num>Rs. 880 to Rs. 890</num><p>Proper fee: Rs. 133.50</p></item>
+              <item eId="adv_500_1000__i40"><num>Rs. 890 to Rs. 900</num><p>Proper fee: Rs. 135.00</p></item>
+              <item eId="adv_500_1000__i41"><num>Rs. 900 to Rs. 910</num><p>Proper fee: Rs. 136.50</p></item>
+              <item eId="adv_500_1000__i42"><num>Rs. 910 to Rs. 920</num><p>Proper fee: Rs. 138.00</p></item>
+              <item eId="adv_500_1000__i43"><num>Rs. 920 to Rs. 930</num><p>Proper fee: Rs. 139.50</p></item>
+              <item eId="adv_500_1000__i44"><num>Rs. 930 to Rs. 940</num><p>Proper fee: Rs. 141.00</p></item>
+              <item eId="adv_500_1000__i45"><num>Rs. 940 to Rs. 950</num><p>Proper fee: Rs. 142.50</p></item>
+              <item eId="adv_500_1000__i46"><num>Rs. 950 to Rs. 960</num><p>Proper fee: Rs. 144.00</p></item>
+              <item eId="adv_500_1000__i47"><num>Rs. 960 to Rs. 970</num><p>Proper fee: Rs. 145.50</p></item>
+              <item eId="adv_500_1000__i48"><num>Rs. 970 to Rs. 980</num><p>Proper fee: Rs. 147.00</p></item>
+              <item eId="adv_500_1000__i49"><num>Rs. 980 to Rs. 990</num><p>Proper fee: Rs. 148.50</p></item>
+              <item eId="adv_500_1000__i50"><num>Rs. 990 to Rs. 1,000</num><p>Proper fee: Rs. 150.00</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="adv_1000_5000">
+          <num>3.</num>
+          <heading>Where the subject-matter exceeds Rs. 1,000 but does not exceed Rs. 5,000</heading>
+          <content>
+            <p>When the amount or value of subject-matter exceeds the first figure but does not exceed the second, the proper fee is as shown.</p>
+            <blockList eId="adv_1000_5000__list">
+              <item eId="adv_1000_5000__i1"><num>Rs. 1,000 to Rs. 1,100</num><p>Proper fee: Rs. 162.20</p></item>
+              <item eId="adv_1000_5000__i2"><num>Rs. 1,100 to Rs. 1,200</num><p>Proper fee: Rs. 174.40</p></item>
+              <item eId="adv_1000_5000__i3"><num>Rs. 1,200 to Rs. 1,300</num><p>Proper fee: Rs. 186.60</p></item>
+              <item eId="adv_1000_5000__i4"><num>Rs. 1,300 to Rs. 1,400</num><p>Proper fee: Rs. 198.80</p></item>
+              <item eId="adv_1000_5000__i5"><num>Rs. 1,400 to Rs. 1,500</num><p>Proper fee: Rs. 211.00</p></item>
+              <item eId="adv_1000_5000__i6"><num>Rs. 1,500 to Rs. 1,600</num><p>Proper fee: Rs. 223.20</p></item>
+              <item eId="adv_1000_5000__i7"><num>Rs. 1,600 to Rs. 1,700</num><p>Proper fee: Rs. 235.40</p></item>
+              <item eId="adv_1000_5000__i8"><num>Rs. 1,700 to Rs. 1,800</num><p>Proper fee: Rs. 247.60</p></item>
+              <item eId="adv_1000_5000__i9"><num>Rs. 1,800 to Rs. 1,900</num><p>Proper fee: Rs. 259.80</p></item>
+              <item eId="adv_1000_5000__i10"><num>Rs. 1,900 to Rs. 2,000</num><p>Proper fee: Rs. 272.00</p></item>
+              <item eId="adv_1000_5000__i11"><num>Rs. 2,000 to Rs. 2,100</num><p>Proper fee: Rs. 284.20</p></item>
+              <item eId="adv_1000_5000__i12"><num>Rs. 2,100 to Rs. 2,200</num><p>Proper fee: Rs. 296.40</p></item>
+              <item eId="adv_1000_5000__i13"><num>Rs. 2,200 to Rs. 2,300</num><p>Proper fee: Rs. 308.60</p></item>
+              <item eId="adv_1000_5000__i14"><num>Rs. 2,300 to Rs. 2,400</num><p>Proper fee: Rs. 320.80</p></item>
+              <item eId="adv_1000_5000__i15"><num>Rs. 2,400 to Rs. 2,500</num><p>Proper fee: Rs. 333.00</p></item>
+              <item eId="adv_1000_5000__i16"><num>Rs. 2,500 to Rs. 2,600</num><p>Proper fee: Rs. 345.20</p></item>
+              <item eId="adv_1000_5000__i17"><num>Rs. 2,600 to Rs. 2,700</num><p>Proper fee: Rs. 357.40</p></item>
+              <item eId="adv_1000_5000__i18"><num>Rs. 2,700 to Rs. 2,800</num><p>Proper fee: Rs. 369.60</p></item>
+              <item eId="adv_1000_5000__i19"><num>Rs. 2,800 to Rs. 2,,900</num><p>Proper fee: Rs. 381.80</p></item>
+              <item eId="adv_1000_5000__i20"><num>Rs. 2,900 to Rs. 3,000</num><p>Proper fee: Rs. 394.00</p></item>
+              <item eId="adv_1000_5000__i21"><num>Rs. 3,000 to Rs. 3,100</num><p>Proper fee: Rs. 406.20</p></item>
+              <item eId="adv_1000_5000__i22"><num>Rs. 3,100 to Rs. 3,200</num><p>Proper fee: Rs. 418.40</p></item>
+              <item eId="adv_1000_5000__i23"><num>Rs. 3,200 to Rs. 3,300</num><p>Proper fee: Rs. 430.60</p></item>
+              <item eId="adv_1000_5000__i24"><num>Rs. 3,300 to Rs. 3,400</num><p>Proper fee: Rs. 442.80</p></item>
+              <item eId="adv_1000_5000__i25"><num>Rs. 3,400 to Rs. 3,500</num><p>Proper fee: Rs. 455.00</p></item>
+              <item eId="adv_1000_5000__i26"><num>Rs. 3,500 to Rs. 3,600</num><p>Proper fee: Rs. 467.20</p></item>
+              <item eId="adv_1000_5000__i27"><num>Rs. 3,600 to Rs. 3,700</num><p>Proper fee: Rs. 479.40</p></item>
+              <item eId="adv_1000_5000__i28"><num>Rs. 3,700 to Rs. 3,800</num><p>Proper fee: Rs. 491.60</p></item>
+              <item eId="adv_1000_5000__i29"><num>Rs. 3,800 to Rs. 3,900</num><p>Proper fee: Rs. 503.80</p></item>
+              <item eId="adv_1000_5000__i30"><num>Rs. 3,900 to Rs. 4,000</num><p>Proper fee: Rs. 516.00</p></item>
+              <item eId="adv_1000_5000__i31"><num>Rs. 4,000 to Rs. 4,100</num><p>Proper fee: Rs. 528.20</p></item>
+              <item eId="adv_1000_5000__i32"><num>Rs. 4,100 to Rs. 4,200</num><p>Proper fee: Rs. 540.40</p></item>
+              <item eId="adv_1000_5000__i33"><num>Rs. 4,200 to Rs. 4,300</num><p>Proper fee: Rs. 552.60</p></item>
+              <item eId="adv_1000_5000__i34"><num>Rs. 4,300 to Rs. 4,400</num><p>Proper fee: Rs. 564.80</p></item>
+              <item eId="adv_1000_5000__i35"><num>Rs. 4,400 to Rs. 4,500</num><p>Proper fee: Rs. 577.00</p></item>
+              <item eId="adv_1000_5000__i36"><num>Rs. 4,500 to Rs. 4,600</num><p>Proper fee: Rs. 589.20</p></item>
+              <item eId="adv_1000_5000__i37"><num>Rs. 4,600 to Rs. 4,700</num><p>Proper fee: Rs. 601.40</p></item>
+              <item eId="adv_1000_5000__i38"><num>Rs. 4,700 to Rs. 4,800</num><p>Proper fee: Rs. 613.60</p></item>
+              <item eId="adv_1000_5000__i39"><num>Rs. 4,800 to Rs. 4,900</num><p>Proper fee: Rs. 625.80</p></item>
+              <item eId="adv_1000_5000__i40"><num>Rs. 4,900 to Rs. 5,000</num><p>Proper fee: Rs. 638.00</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="adv_5000_20000">
+          <num>4.</num>
+          <heading>Where the subject-matter exceeds Rs. 5,000 but does not exceed Rs. 20,000</heading>
+          <content>
+            <p>When the amount or value of subject-matter exceeds the first figure but does not exceed the second, the proper fee is as shown.</p>
+            <blockList eId="adv_5000_20000__list">
+              <item eId="adv_5000_20000__i1"><num>Rs. 5,000 to Rs. 5,250</num><p>Proper fee: Rs. 662.40</p></item>
+              <item eId="adv_5000_20000__i2"><num>Rs. 5,250 to Rs. 5,500</num><p>Proper fee: Rs. 686.80</p></item>
+              <item eId="adv_5000_20000__i3"><num>Rs. 5,500 to Rs. 5,750</num><p>Proper fee: Rs. 711.20</p></item>
+              <item eId="adv_5000_20000__i4"><num>Rs. 5,750 to Rs. 6,000</num><p>Proper fee: Rs. 735.60</p></item>
+              <item eId="adv_5000_20000__i5"><num>Rs. 6,000 to Rs. 6,250</num><p>Proper fee: Rs. 760.00</p></item>
+              <item eId="adv_5000_20000__i6"><num>Rs. 6,250 to Rs. 6,500</num><p>Proper fee: Rs. 784.40</p></item>
+              <item eId="adv_5000_20000__i7"><num>Rs. 6,500 to Rs. 6,750</num><p>Proper fee: Rs. 808.80</p></item>
+              <item eId="adv_5000_20000__i8"><num>Rs. 6,750 to Rs. 7,000</num><p>Proper fee: Rs. 833.20</p></item>
+              <item eId="adv_5000_20000__i9"><num>Rs. 7,000 to Rs. 7,250</num><p>Proper fee: Rs. 857.60</p></item>
+              <item eId="adv_5000_20000__i10"><num>Rs. 7,250 to Rs. 7,500</num><p>Proper fee: Rs. 882.00</p></item>
+              <item eId="adv_5000_20000__i11"><num>Rs. 7,500 to Rs. 7,750</num><p>Proper fee: Rs. 906.40</p></item>
+              <item eId="adv_5000_20000__i12"><num>Rs. 7,750 to Rs. 8,000</num><p>Proper fee: Rs. 930.80</p></item>
+              <item eId="adv_5000_20000__i13"><num>Rs. 8,000 to Rs. 8,250</num><p>Proper fee: Rs. 995.20</p></item>
+              <item eId="adv_5000_20000__i14"><num>Rs. 8,250 to Rs. 8,500</num><p>Proper fee: Rs. 979.60</p></item>
+              <item eId="adv_5000_20000__i15"><num>Rs. 8,500 to Rs. 8,750</num><p>Proper fee: Rs. 1,004.00</p></item>
+              <item eId="adv_5000_20000__i16"><num>Rs. 8,750 to Rs. 9,000</num><p>Proper fee: Rs. 1,028.40</p></item>
+              <item eId="adv_5000_20000__i17"><num>Rs. 9,000 to Rs. 9,250</num><p>Proper fee: Rs. 1,052.80</p></item>
+              <item eId="adv_5000_20000__i18"><num>Rs. 9,250 to Rs. 9,500</num><p>Proper fee: Rs. 1,077.20</p></item>
+              <item eId="adv_5000_20000__i19"><num>Rs. 9,500 to Rs. 9,750</num><p>Proper fee: Rs. 1,101.60</p></item>
+              <item eId="adv_5000_20000__i20"><num>Rs. 9,750 to Rs. 10,000</num><p>Proper fee: Rs. 1,126.00</p></item>
+              <item eId="adv_5000_20000__i21"><num>Rs. 10,000 to Rs. 10,500</num><p>Proper fee: Rs. 1,162.50</p></item>
+              <item eId="adv_5000_20000__i22"><num>Rs. 10,500 to Rs. 11,000</num><p>Proper fee: Rs. 1,199.00</p></item>
+              <item eId="adv_5000_20000__i23"><num>Rs. 11,000 to Rs. 11,500</num><p>Proper fee: Rs. 1,235.50</p></item>
+              <item eId="adv_5000_20000__i24"><num>Rs. 11,500 to Rs. 12,000</num><p>Proper fee: Rs. 1,272.00</p></item>
+              <item eId="adv_5000_20000__i25"><num>Rs. 12,000 to Rs. 12,500</num><p>Proper fee: Rs. 1,308.50</p></item>
+              <item eId="adv_5000_20000__i26"><num>Rs. 12,500 to Rs. 13,000</num><p>Proper fee: Rs. 1,345.00</p></item>
+              <item eId="adv_5000_20000__i27"><num>Rs. 13,000 to Rs. 13,500</num><p>Proper fee: Rs. 1,381.50</p></item>
+              <item eId="adv_5000_20000__i28"><num>Rs. 13,500 to Rs. 14,000</num><p>Proper fee: Rs. 1,418.00</p></item>
+              <item eId="adv_5000_20000__i29"><num>Rs. 14,000 to Rs. 14,500</num><p>Proper fee: Rs. 1,454.50</p></item>
+              <item eId="adv_5000_20000__i30"><num>Rs. 14,500 to Rs. 15,000</num><p>Proper fee: Rs. 1,491.00</p></item>
+              <item eId="adv_5000_20000__i31"><num>Rs. 15,000 to Rs. 15,500</num><p>Proper fee: Rs. 1,527.50</p></item>
+              <item eId="adv_5000_20000__i32"><num>Rs. 15,500 to Rs. 16,000</num><p>Proper fee: Rs. 1,564.00</p></item>
+              <item eId="adv_5000_20000__i33"><num>Rs. 16,000 to Rs. 16,500</num><p>Proper fee: Rs. 1,600.50</p></item>
+              <item eId="adv_5000_20000__i34"><num>Rs. 16,500 to Rs. 17,000</num><p>Proper fee: Rs. 1,637.00</p></item>
+              <item eId="adv_5000_20000__i35"><num>Rs. 17,000 to Rs. 17,500</num><p>Proper fee: Rs. 1,673.50</p></item>
+              <item eId="adv_5000_20000__i36"><num>Rs. 17,500 to Rs. 18,000</num><p>Proper fee: Rs. 1,710.00</p></item>
+              <item eId="adv_5000_20000__i37"><num>Rs. 18,000 to Rs. 18,500</num><p>Proper fee: Rs. 1,746.50</p></item>
+              <item eId="adv_5000_20000__i38"><num>Rs. 18,500 to Rs. 19,000</num><p>Proper fee: Rs. 1,783.00</p></item>
+              <item eId="adv_5000_20000__i39"><num>Rs. 19,000 to Rs. 19,500</num><p>Proper fee: Rs. 1,819.50</p></item>
+              <item eId="adv_5000_20000__i40"><num>Rs. 19,500 to Rs. 20,000</num><p>Proper fee: Rs. 1,856.00</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="adv_20000_100000">
+          <num>5.</num>
+          <heading>Where the subject-matter exceeds Rs. 20,000 but does not exceed Rs. 1,00,000</heading>
+          <content>
+            <p>When the amount or value of subject-matter exceeds the first figure but does not exceed the second, the proper fee is as shown.</p>
+            <blockList eId="adv_20000_100000__list">
+              <item eId="adv_20000_100000__i1"><num>Rs. 20,000 to Rs. 21,000</num><p>Proper fee: Rs. 1,904.80</p></item>
+              <item eId="adv_20000_100000__i2"><num>Rs. 21,000 to Rs. 22,000</num><p>Proper fee: Rs. 1,953.60</p></item>
+              <item eId="adv_20000_100000__i3"><num>Rs. 22,000 to Rs. 23,000</num><p>Proper fee: Rs. 2,002.40</p></item>
+              <item eId="adv_20000_100000__i4"><num>Rs. 23,000 to Rs. 24,000</num><p>Proper fee: Rs. 2,051.20</p></item>
+              <item eId="adv_20000_100000__i5"><num>Rs. 24,000 to Rs. 25,000</num><p>Proper fee: Rs. 2,100.00</p></item>
+              <item eId="adv_20000_100000__i6"><num>Rs. 25,000 to Rs. 26,000</num><p>Proper fee: Rs. 2,148.80</p></item>
+              <item eId="adv_20000_100000__i7"><num>Rs. 26,000 to Rs. 27,000</num><p>Proper fee: Rs. 2,197.60</p></item>
+              <item eId="adv_20000_100000__i8"><num>Rs. 27,000 to Rs. 28,000</num><p>Proper fee: Rs. 2,246.40</p></item>
+              <item eId="adv_20000_100000__i9"><num>Rs. 28,000 to Rs. 29,000</num><p>Proper fee: Rs. 2,295.20</p></item>
+              <item eId="adv_20000_100000__i10"><num>Rs. 29,000 to Rs. 30,000</num><p>Proper fee: Rs. 2,344.00</p></item>
+              <item eId="adv_20000_100000__i11"><num>Rs. 30,000 to Rs. 32,000</num><p>Proper fee: Rs. 2,392.80</p></item>
+              <item eId="adv_20000_100000__i12"><num>Rs. 32,000 to Rs. 34,000</num><p>Proper fee: Rs. 2,441.60</p></item>
+              <item eId="adv_20000_100000__i13"><num>Rs. 34,000 to Rs. 36,000</num><p>Proper fee: Rs. 2,490.40</p></item>
+              <item eId="adv_20000_100000__i14"><num>Rs. 36,000 to Rs. 38,000</num><p>Proper fee: Rs. 2,539.20</p></item>
+              <item eId="adv_20000_100000__i15"><num>Rs. 38,000 to Rs. 40,000</num><p>Proper fee: Rs. 2,588.00</p></item>
+              <item eId="adv_20000_100000__i16"><num>Rs. 40,000 to Rs. 42,000</num><p>Proper fee: Rs. 2,636.80</p></item>
+              <item eId="adv_20000_100000__i17"><num>Rs. 42,000 to Rs. 44,000</num><p>Proper fee: Rs. 2,685.60</p></item>
+              <item eId="adv_20000_100000__i18"><num>Rs. 44,000 to Rs. 46,000</num><p>Proper fee: Rs. 2,734.40</p></item>
+              <item eId="adv_20000_100000__i19"><num>Rs. 46,000 to Rs. 48,000</num><p>Proper fee: Rs. 2,783.20</p></item>
+              <item eId="adv_20000_100000__i20"><num>Rs. 48,000 to Rs. 50,000</num><p>Proper fee: Rs. 2,832.00</p></item>
+              <item eId="adv_20000_100000__i21"><num>Rs. 50,000 to Rs. 55,000</num><p>Proper fee: Rs. 2,880.80</p></item>
+              <item eId="adv_20000_100000__i22"><num>Rs. 55,000 to Rs. 60,000</num><p>Proper fee: Rs. 2,929.60</p></item>
+              <item eId="adv_20000_100000__i23"><num>Rs. 60,000 to Rs. 65,000</num><p>Proper fee: Rs. 2,978.40</p></item>
+              <item eId="adv_20000_100000__i24"><num>Rs. 65,000 to Rs. 70,000</num><p>Proper fee: Rs. 3,027.20</p></item>
+              <item eId="adv_20000_100000__i25"><num>Rs. 70,000 to Rs. 75,000</num><p>Proper fee: Rs. 3,076.00</p></item>
+              <item eId="adv_20000_100000__i26"><num>Rs. 75,000 to Rs. 80,000</num><p>Proper fee: Rs. 3,124.80</p></item>
+              <item eId="adv_20000_100000__i27"><num>Rs. 80,000 to Rs. 85,000</num><p>Proper fee: Rs. 3,173.60</p></item>
+              <item eId="adv_20000_100000__i28"><num>Rs. 85,000 to Rs. 90,000</num><p>Proper fee: Rs. 3,222.40</p></item>
+              <item eId="adv_20000_100000__i29"><num>Rs. 90,000 to Rs. 95,000</num><p>Proper fee: Rs. 3,271.20</p></item>
+              <item eId="adv_20000_100000__i30"><num>Rs. 95,000 to Rs. 1,00,000</num><p>Proper fee: Rs. 3,320.00</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="adv_100000_400000">
+          <num>6.</num>
+          <heading>Where the subject-matter exceeds Rs. 1,00,000 but does not exceed Rs. 4,00,000</heading>
+          <content>
+            <p>When the amount or value of subject-matter exceeds the first figure but does not exceed the second, the proper fee is as shown.</p>
+            <blockList eId="adv_100000_400000__list">
+              <item eId="adv_100000_400000__i1"><num>Rs. 1,00,000 to Rs. 1,05,000</num><p>Proper fee: Rs. 3,368.80</p></item>
+              <item eId="adv_100000_400000__i2"><num>Rs. 1,05,000 to Rs. 1,10,000</num><p>Proper fee: Rs. 3,417.60</p></item>
+              <item eId="adv_100000_400000__i3"><num>Rs. 1,10,000 to Rs. 1,15,000</num><p>Proper fee: Rs. 3,466.40</p></item>
+              <item eId="adv_100000_400000__i4"><num>Rs. 1,15,000 to Rs. 1,20,000</num><p>Proper fee: Rs. 3,515.20</p></item>
+              <item eId="adv_100000_400000__i5"><num>Rs. 1,20,000 to Rs. 1,25,000</num><p>Proper fee: Rs. 3,564.00</p></item>
+              <item eId="adv_100000_400000__i6"><num>Rs. 1,25,000 to Rs. 1,30,000</num><p>Proper fee: Rs. 3,612.80</p></item>
+              <item eId="adv_100000_400000__i7"><num>Rs. 1,30,000 to Rs. 1,35,000</num><p>Proper fee: Rs. 3,661.60</p></item>
+              <item eId="adv_100000_400000__i8"><num>Rs. 1,35,000 to Rs. 1,40,000</num><p>Proper fee: Rs. 3,710.40</p></item>
+              <item eId="adv_100000_400000__i9"><num>Rs. 1,40,000 to Rs. 1,45,000</num><p>Proper fee: Rs. 3,759.20</p></item>
+              <item eId="adv_100000_400000__i10"><num>Rs. 1,45,000 to Rs. 1,50,000</num><p>Proper fee: Rs. 3,808.00</p></item>
+              <item eId="adv_100000_400000__i11"><num>Rs. 1,50,000 to Rs. 1,55,000</num><p>Proper fee: Rs. 3,856.80</p></item>
+              <item eId="adv_100000_400000__i12"><num>Rs. 1,55,000 to Rs. 1,60,000</num><p>Proper fee: Rs. 3,905.60</p></item>
+              <item eId="adv_100000_400000__i13"><num>Rs. 1,60,000 to Rs. 1,65,000</num><p>Proper fee: Rs. 3,954.40</p></item>
+              <item eId="adv_100000_400000__i14"><num>Rs. 1,65,000 to Rs. 1,70,000</num><p>Proper fee: Rs. 4,003.20</p></item>
+              <item eId="adv_100000_400000__i15"><num>Rs. 1,70,000 to Rs. 1,75,000</num><p>Proper fee: Rs. 4,052.00</p></item>
+              <item eId="adv_100000_400000__i16"><num>Rs. 1,75,000 to Rs. 1,80,000</num><p>Proper fee: Rs. 4,100.80</p></item>
+              <item eId="adv_100000_400000__i17"><num>Rs. 1,80,000 to Rs. 1,85,000</num><p>Proper fee: Rs. 4,149.60</p></item>
+              <item eId="adv_100000_400000__i18"><num>Rs. 1,85,000 to Rs. 1,90,000</num><p>Proper fee: Rs. 4,198.40</p></item>
+              <item eId="adv_100000_400000__i19"><num>Rs. 1,90,000 to Rs. 1,95,000</num><p>Proper fee: Rs. 4,247.20</p></item>
+              <item eId="adv_100000_400000__i20"><num>Rs. 1,95,000 to Rs. 2,00,000</num><p>Proper fee: Rs. 4,296.00</p></item>
+              <item eId="adv_100000_400000__i21"><num>Rs. 2,00,000 to Rs. 2,05,000</num><p>Proper fee: Rs. 4,344.80</p></item>
+              <item eId="adv_100000_400000__i22"><num>Rs. 2,05,000 to Rs. 2,10,000</num><p>Proper fee: Rs. 4,393.60</p></item>
+              <item eId="adv_100000_400000__i23"><num>Rs. 2,10,000 to Rs. 2,15,000</num><p>Proper fee: Rs. 4,442.40</p></item>
+              <item eId="adv_100000_400000__i24"><num>Rs. 2,15,000 to Rs. 2,20,000</num><p>Proper fee: Rs. 4,491.20</p></item>
+              <item eId="adv_100000_400000__i25"><num>Rs. 2,20,000 to Rs. 2,25,000</num><p>Proper fee: Rs. 4,540.00</p></item>
+              <item eId="adv_100000_400000__i26"><num>Rs. 2,25,000 to Rs. 2,30,000</num><p>Proper fee: Rs. 4,588.80</p></item>
+              <item eId="adv_100000_400000__i27"><num>Rs. 2,30,000 to Rs. 2,35,000</num><p>Proper fee: Rs. 4,637.60</p></item>
+              <item eId="adv_100000_400000__i28"><num>Rs. 2,35,000 to Rs. 2,40,000</num><p>Proper fee: Rs. 4,686.40</p></item>
+              <item eId="adv_100000_400000__i29"><num>Rs. 2,40,000 to Rs. 2,45,000</num><p>Proper fee: Rs. 4,735.20</p></item>
+              <item eId="adv_100000_400000__i30"><num>Rs. 2,45,000 to Rs. 2,50,000</num><p>Proper fee: Rs. 4,784.00</p></item>
+              <item eId="adv_100000_400000__i31"><num>Rs. 2,50,000 to Rs. 2,55,000</num><p>Proper fee: Rs. 4,832.80</p></item>
+              <item eId="adv_100000_400000__i32"><num>Rs. 2,55,000 to Rs. 2,60,000</num><p>Proper fee: Rs. 4,881.60</p></item>
+              <item eId="adv_100000_400000__i33"><num>Rs. 2,60,000 to Rs. 2,65,000</num><p>Proper fee: Rs. 4,930.40</p></item>
+              <item eId="adv_100000_400000__i34"><num>Rs. 2,65,000 to Rs. 2,70,000</num><p>Proper fee: Rs. 4,979.20</p></item>
+              <item eId="adv_100000_400000__i35"><num>Rs. 2,70,000 to Rs. 2,75,000</num><p>Proper fee: Rs. 5,028.00</p></item>
+              <item eId="adv_100000_400000__i36"><num>Rs. 2,75,000 to Rs. 2,80,000</num><p>Proper fee: Rs. 5,076.80</p></item>
+              <item eId="adv_100000_400000__i37"><num>Rs. 2,80,000 to Rs. 2,85,000</num><p>Proper fee: Rs. 5,125.60</p></item>
+              <item eId="adv_100000_400000__i38"><num>Rs. 2,85,000 to Rs. 2,90,000</num><p>Proper fee: Rs. 5,174.40</p></item>
+              <item eId="adv_100000_400000__i39"><num>Rs. 2,90,000 to Rs. 2,95,000</num><p>Proper fee: Rs. 5,223.20</p></item>
+              <item eId="adv_100000_400000__i40"><num>Rs. 2,95,000 to Rs. 3,00,000</num><p>Proper fee: Rs. 5,272.00</p></item>
+              <item eId="adv_100000_400000__i41"><num>Rs. 3,00,000 to Rs. 3,05,000</num><p>Proper fee: Rs. 5,320.80</p></item>
+              <item eId="adv_100000_400000__i42"><num>Rs. 3,05,000 to Rs. 3,10,000</num><p>Proper fee: Rs. 5,369.60</p></item>
+              <item eId="adv_100000_400000__i43"><num>Rs. 3,10,000 to Rs. 3,15,000</num><p>Proper fee: Rs. 5,418.40</p></item>
+              <item eId="adv_100000_400000__i44"><num>Rs. 3,15,000 to Rs. 3,20,000</num><p>Proper fee: Rs. 5,467.20</p></item>
+              <item eId="adv_100000_400000__i45"><num>Rs. 3,20,000 to Rs. 3,25,000</num><p>Proper fee: Rs. 5,516.00</p></item>
+              <item eId="adv_100000_400000__i46"><num>Rs. 3,25,000 to Rs. 3,30,000</num><p>Proper fee: Rs. 5,564.80</p></item>
+              <item eId="adv_100000_400000__i47"><num>Rs. 3,30,000 to Rs. 3,35,000</num><p>Proper fee: Rs. 5,613.60</p></item>
+              <item eId="adv_100000_400000__i48"><num>Rs. 3,35,000 to Rs. 3,40,000</num><p>Proper fee: Rs. 5,662.40</p></item>
+              <item eId="adv_100000_400000__i49"><num>Rs. 3,40,000 to Rs. 3,45,000</num><p>Proper fee: Rs. 5,711.20</p></item>
+              <item eId="adv_100000_400000__i50"><num>Rs. 3,45,000 to Rs. 3,50,000</num><p>Proper fee: Rs. 5,760.00</p></item>
+              <item eId="adv_100000_400000__i51"><num>Rs. 3,50,000 to Rs. 3,55,000</num><p>Proper fee: Rs. 5,808.80</p></item>
+              <item eId="adv_100000_400000__i52"><num>Rs. 3,55,000 to Rs. 3,60,000</num><p>Proper fee: Rs. 5,857.60</p></item>
+              <item eId="adv_100000_400000__i53"><num>Rs. 3,60,000 to Rs. 3,65,000</num><p>Proper fee: Rs. 5,906.40</p></item>
+              <item eId="adv_100000_400000__i54"><num>Rs. 3,65,000 to Rs. 3,70,000</num><p>Proper fee: Rs. 5,955.20</p></item>
+              <item eId="adv_100000_400000__i55"><num>Rs. 3,70,000 to Rs. 3,75,000</num><p>Proper fee: Rs. 6,004.00</p></item>
+              <item eId="adv_100000_400000__i56"><num>Rs. 3,75,000 to Rs. 3,80,000</num><p>Proper fee: Rs. 6,052.80</p></item>
+              <item eId="adv_100000_400000__i57"><num>Rs. 3,80,000 to Rs. 3,85,000</num><p>Proper fee: Rs. 6,101.60</p></item>
+              <item eId="adv_100000_400000__i58"><num>Rs. 3,85,000 to Rs. 3,90,000</num><p>Proper fee: Rs. 6,150.40</p></item>
+              <item eId="adv_100000_400000__i59"><num>Rs. 3,90,000 to Rs. 3,95,000</num><p>Proper fee: Rs. 6,199.20</p></item>
+              <item eId="adv_100000_400000__i60"><num>Rs. 3,95,000 to Rs. 4,00,000</num><p>Proper fee: Rs. 6,248.00</p></item>
+            </blockList>
+          </content>
+        </section>
+        <section eId="adv_above_400000">
+          <num>7.</num>
+          <heading>Where the subject-matter exceeds Rs. 4,00,000</heading>
+          <content>
+            <p>Note:- And when the amount or value of the subject matter exceeds Rs. 4,00,000/- (four lacs) the proper fee leviable shall be Rs. 6248 (six thousand two hundred and forty-eight) plus forty-eight rupees eighty naye paise for each five thousand or part thereof, in excess of Rs. 4,00,000 (four lacs).</p>
+          </content>
+        </section>
+      </part>
+    </mainBody>
+  </doc>
+</akomaNtoso>

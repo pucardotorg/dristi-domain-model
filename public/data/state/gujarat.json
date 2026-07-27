@@ -866,8 +866,115 @@
       {
         "title": "The Gujarat High Court Case Flow Management (Subordinate Courts) Rules, 2016",
         "cite": "Notification No. C.3002/2016 · gazetted 28 July 2016",
-        "note": "The case-flow rules for every court subordinate to the High Court of Gujarat, made under Part X of the Civil Procedure Code, Article 227 and section 477(1)(d) of the Code of Criminal Procedure. They sort cases into four colour-coded tracks with outer time limits of nine, twelve, fifteen and twenty-four months, and rule 21 applies the same scheme to criminal trials and appeals in the subordinate courts. Schedule II Part B places a criminal case on a private complaint, which is what a §138 case is, in Track I with a prescribed outer limit of six months for concluding the matter - the same horizon the NI Act itself sets for a summary cheque trial. Source PDF only: the official gazette copy is a low-quality scan and OCR of it was not clean enough to convert without misreporting the rule text.",
-        "pdf": "state/gujarat/sources/gujarat-hc-case-flow-management-subordinate-courts-rules-2016.pdf"
+        "note": "The case-flow rules for every court subordinate to the High Court of Gujarat, made under Part X of the Civil Procedure Code, Article 227 and section 477(1)(d) of the Code of Criminal Procedure, and now converted in full from the gazette scan. They sort cases into four colour-coded tracks with outer time limits of nine, twelve, fifteen and twenty-four months, subject always to any different time limit prescribed by the Codes. Rule 21 applies the same scheme to criminal trials and appeals in the subordinate courts, and rule 21(B) carries the whole rule-set - listing, summons, interim applications, day-to-day evidence with chief-examination on affidavit, written submissions - across to the criminal side. Schedule II Part B item 7 places a criminal case on a private complaint, which is what a s.138 case is, in Track I with a prescribed outer limit of six months for concluding the matter, the same horizon the NI Act itself sets for a summary cheque trial; Schedule I Part A item 43 gives the civil suit on a negotiable instrument twelve months. Rule 19 permits institution by e-filing, the seed of the later e-Filing SOP and the SARAS rules. Converted from the Gujarat Government Gazette Part IV-C of 28 July 2016, which is a scan with no text layer: the text was transcribed by reading the page images and cross-checking each line against OCR, and the source's own misprints are reproduced as printed.",
+        "pdf": "state/gujarat/sources/gujarat-hc-case-flow-management-subordinate-courts-rules-2016.pdf",
+        "akn": "state/gujarat/akn/gujarat-hc-case-flow-management-subordinate-courts-rules-2016.akn.xml",
+        "alias": "gcfm",
+        "key": [
+          {
+            "eId": "rule_3",
+            "label": "Case Flow Management Rules 2016, r.3 - four colour-coded tracks with outer limits of 9, 12, 15 and 24 months",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The engine of the whole scheme. The ministerial officer sorts every case into Track I to Track IV as per Schedule I, the judicial officer confirms the sorting, the file physically takes the track's colour, and the track carries a maximum time limit. Sub-rule (v) subordinates all of it to the Codes: where the Code of Civil Procedure or the Code of Criminal Procedure prescribes a different time limit, the Code prevails - which is why the NI Act's own six-month endeavour is not displaced by these rules. Sub-rule (vi) lets the presiding judge extend the limit or move a case between tracks for recorded reasons.",
+            "edges": [
+              {
+                "rel": "yields to the time limit under",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "rule_5",
+            "label": "Case Flow Management Rules 2016, r.5 - summons, courier service, and deemed service by digitally signed e-communication",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Read with r.21(B), which applies the same norms to criminal trials, this is the Gujarat answer to the single biggest cause of delay in a cheque case: getting the accused served. It permits service preferentially through digitally signed electronic communication with deemed service on acknowledgement within five working days, requires an affidavit of service where the complainant or a registered courier serves, allows a courier agency to be black-listed for a false endorsement of refusal, and requires the court to order bailiff service and substituted service simultaneously the moment a summons is reported unserved.",
+            "edges": [
+              {
+                "rel": "serves process in proceedings under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "rule_9",
+            "label": "Case Flow Management Rules 2016, r.9 - day-to-day evidence, chief-examination on affidavit, and evidence on commission",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "Applies to a cheque trial through r.21(B). Evidence must be continued day-to-day until all witnesses are examined, with every witness in attendance; the chief examination of each witness is by affidavit kept ready for when the witness is taken up, and cross-examination follows immediately - the same shape that section 145 of the NI Act gives the complainant's evidence. Sub-rule (12) allows a commissioner to record evidence by video conferencing, and sub-rule (13) requires the case to be listed for arguments immediately after evidence, within seven days.",
+            "edges": [
+              {
+                "rel": "parallels evidence on affidavit under",
+                "to": "ni:sec_145"
+              },
+              {
+                "rel": "supports the summary trial under",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "rule_19",
+            "label": "Case Flow Management Rules 2016, r.19 - suits and proceedings may be instituted by e-filing",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "A single sentence in 2016 that is the seed of everything Gujarat later built for cheque cases: e-filing of proceedings on a predefined template. The 2024 e-Filing SOP and the 2026 SARAS rules are the working-out of this permission.",
+            "edges": [
+              {
+                "rel": "permits e-filing of a complaint under",
+                "to": "ni:sec_142"
+              }
+            ]
+          },
+          {
+            "eId": "rule_21",
+            "label": "Case Flow Management Rules 2016, r.21 - criminal trials and appeals in the subordinate courts are tracked on the same scheme",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The rule that pulls a s.138 trial into the case-flow scheme. The presiding officer classifies criminal trials as per the Schedule, classifying on offence, sentence and whether the accused is on bail or in jail; Track I to Track IV cases are to be completed in nine, twelve, fifteen and twenty-four months; and clause (B) applies the whole body of these Rules - listing, summons, interim applications, day-to-day evidence, written submissions - to criminal trials and appeals with the changes the Code of Criminal Procedure requires. Without this rule the rest of the rule-set would be civil-only.",
+            "edges": [
+              {
+                "rel": "tracks trials of the offence under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "runs alongside the summary trial under",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "sch2_b_7",
+            "label": "Case Flow Management Rules 2016, Sch.II Part B item 7 - criminal case on private complaint: Track I, outer limit six months",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The single most s.138-specific line in these rules. A cheque case is a criminal case on a private complaint, and this row places it in Track I with a prescribed outer limit of six months for concluding the matter - the same horizon section 143(3) of the NI Act sets for a summary cheque trial. It is the administrative expression, in Gujarat's own case-flow scheme, of the statutory endeavour to finish a cheque trial in six months.",
+            "edges": [
+              {
+                "rel": "sets the outer limit for a complaint under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "mirrors the six-month endeavour under",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "sch1_a_43",
+            "label": "Case Flow Management Rules 2016, Sch.I Part A item 43 - suit solely on a negotiable instrument: Track II, twelve months",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The civil counterpart. A payee who sues on the dishonoured cheque instead of, or alongside, prosecuting under s.138 lands in Track II with a twelve-month outer limit - twice the six months the criminal complaint gets. Set beside Schedule II item 7 it shows what Gujarat's case-flow scheme expects each of the two routes on the same cheque to take.",
+            "edges": [
+              {
+                "rel": "tracks the civil suit on the instrument dishonoured under",
+                "to": "ni:sec_138"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -877,8 +984,68 @@
       {
         "title": "SARAS Remote Adjudication Magisterial Courts for e-filed cheque cases, Ahmedabad City",
         "cite": "High Court of Gujarat · Full Court resolution 2 December 2024; State notification 5 December 2024; inaugurated 7 December 2024",
-        "note": "The official High Court press release recording how the SARAS cheque courts were created and what they do. The Full Court resolved on 2 December 2024 to implement mandatory e-filing and remote adjudication with video conferencing for cases of dishonour of cheques under the Negotiable Instruments Act instituted by banks and NBFCs in the C.J.M. courts of Ahmedabad City, and to establish the SARAS N.I. Court establishment as a sub-establishment of those courts, with the case type 'eCriminal Case'. The Government of Gujarat issued the notification extending the jurisdiction of all magisterial courts in the State on 5 December 2024, and the High Court nominated five judicial officers posted at Ahmedabad, Anand, Narmada and Gir Somnath as presiding officers the same day. Source PDF only: the two underlying notifications are referred to as enclosures but are not in the published file, and the High Court's own link to the nomination notification is broken.",
-        "pdf": "state/gujarat/sources/gujarat-saras-ni-courts-inauguration-2024.pdf"
+        "note": "The official High Court press release recording how the SARAS cheque courts were created and what they do, now converted to structured text. The Full Court resolved on 2 December 2024 to implement mandatory e-filing and remote adjudication with video conferencing for cases of dishonour of cheques under the Negotiable Instruments Act instituted by banks and NBFCs in the C.J.M. courts of Ahmedabad City, and to establish the SARAS N.I. Court establishment as a sub-establishment of those courts, with the case type 'eCriminal Case'. The Government of Gujarat issued the notification extending the jurisdiction of all magisterial courts in the State on 5 December 2024, and the High Court nominated five judicial officers posted at Ahmedabad, Anand, Narmada and Gir Somnath as presiding officers the same day, without changing their place of work. The courts were inaugurated on 7 December 2024. This is a press release rather than an operative instrument: the two underlying notifications are referred to as enclosures but are not in the published file, and the High Court's own link to the nomination notification is broken, so this record is the only account of them in the corpus.",
+        "pdf": "state/gujarat/sources/gujarat-saras-ni-courts-inauguration-2024.pdf",
+        "akn": "state/gujarat/akn/gujarat-saras-ni-courts-inauguration-2024.akn.xml",
+        "alias": "sarpr",
+        "key": [
+          {
+            "eId": "para_2",
+            "label": "SARAS press release, para 2 - Full Court resolution of 2 December 2024 making e-filing and remote adjudication mandatory for bank and NBFC cheque cases",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The founding decision. The Full Court resolved to implement mandatory e-filing and remote adjudication with video conferencing for cases of dishonour of cheques under the Negotiable Instruments Act instituted by banks and NBFCs in the C.J.M. courts of Ahmedabad City, and recommended that the State designate magisterial courts across Gujarat as 'Remote Adjudication Courts' for those cases. Everything the SARAS rules later formalise starts here, and the class of case is defined by who files it as much as by what it is.",
+            "edges": [
+              {
+                "rel": "covers complaints under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "para_3",
+            "label": "SARAS press release, para 3 - the SARAS N.I. Court establishment and the 'eCriminal Case' case type",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Names the forum and the docket entry. The SARAS N.I. Court Establishment sits under the C.J.M. courts of Ahmedabad City exclusively for cheque cases e-filed by banks and NBFCs, and such cases are instituted with the case type 'eCriminal Case'. If you are looking for a Gujarat cheque case in the record, that string is what it is filed as.",
+            "edges": [
+              {
+                "rel": "institutes complaints under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "para_4",
+            "label": "SARAS press release, para 4 - State notification of 5 December 2024 extending magisterial jurisdiction statewide, and the nomination of five presiding officers",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The jurisdictional step. On 5 December 2024 the Government of Gujarat notified the extension of the jurisdiction of all magisterial courts in the State to try, through remote adjudication, e-filed NI Act cases belonging to the C.J.M. courts of Ahmedabad City, and the High Court the same day nominated five judicial officers posted at Ahmedabad, Anand, Narmada and Gir Somnath as presiding officers without moving them. This is the answer to where a Gujarat cheque case is actually heard. Note that the two notifications are referred to as enclosures but are not in the published file, so this press release is the only record of them in the corpus.",
+            "edges": [
+              {
+                "rel": "confers jurisdiction to try offences under",
+                "to": "ni:sec_138"
+              }
+            ]
+          },
+          {
+            "eId": "para_5",
+            "label": "SARAS press release, para 5 - magistrates posted anywhere in Gujarat hear Ahmedabad City cheque cases by video conferencing",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "States the mechanism plainly: for the first time judicial officers of magisterial cadre posted anywhere in the State adjudicate, through video conferencing, the NI cases e-filed by banks and NBFCs in the CJM courts of Ahmedabad City. The court is decoupled from the courtroom, which is what makes the arrears argument work and what the electronic-mode provisions of the Sanhita permit.",
+            "edges": [
+              {
+                "rel": "proceeds in electronic mode under",
+                "to": "bnss:sec_530"
+              },
+              {
+                "rel": "tries the offence under",
+                "to": "ni:sec_138"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
