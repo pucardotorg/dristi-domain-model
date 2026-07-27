@@ -26,6 +26,6 @@ Generated from the data - the field meanings and the **enumerations are derived 
 - `terms[].role` - `document`, `actor`, `procedure`, `doctrine`, `remedy`, `forum`
 - `story.roles.items[].cat` - `litigant`, `bank`, `witness`, `advocate`, `advclerk`, `judge`, `staff`, `police`
 - `verification.claims[].status` - `corroborated`, `contradicted`, `reported-allegation`, `needs-check`, `reported-practice`
-- `compare[].relation` - `similar`
+- `compare[].relation` - `similar`, `diverges`
 - national vocab `group` - `The cheque & the instrument`, `Parties & liability`, `The offence (§138)`, `Presumptions & evidence`, `Procedure & process`, `Notice, limitation & disposal`, `Constitutional & powers`
 - `sources[].domain` / `domain_labels` - `substantive`, `procedure`, `representation`, `policing`, `penal`, `evidence`, `interpretation`, `limitation`, `sentencing`, `electronic`, `banking`, `constitutional`, `authentication`, `settlement`, `access`

@@ -860,7 +860,7 @@
       },
       {
         "word": "CIS",
-        "gloss": "The Case Information System - the national e-Courts case-management software the filing branch works in. The assistant logs in, opens the filing counter, chooses Criminal and then the NACT case type, and enters the party, court-fee and Act details; the system then issues the case numbers. A known pain point is that civil and criminal columns appear together, inviting mis-clicks. It belongs to NIC, not to the High Court: the versions reported were 1.0 from 2011, 2.0 from 2014, 3.0 from 2017 and 4.0 from 2025, and each district court location runs its own instance on its own server, syncing case data to the NJDG in real time while orders and judgments are pushed each evening. A High Court cannot change the core - a suggestion goes to NIC and moves only if the Supreme Court eCommittee approves - so anything a court needs for itself is built beside CIS as a read-only peripheral application.",
+        "gloss": "The Case Information System - the national e-Courts case-management software the court works in from filing to judgment. The filing assistant logs in, opens the filing counter, chooses Criminal and then the NACT case type, and enters the party, court-fee and Act details; the system then issues the case numbers. A known pain point is that civil and criminal columns appear together, inviting mis-clicks. At the far end of the case the judgment writer logs in to lift the judgment template, the CNR number and the registration and institution dates, then uploads and e-signs the judgment and runs the reporting that shows which of his orders are still pending upload; orders can be uploaded in a batch but each has to be selected one at a time, and there is no bulk download. It belongs to NIC, not to the High Court: the versions reported were 1.0 from 2011, 2.0 from 2014, 3.0 from 2017 and 4.0 from 2025, and each district court location runs its own instance on its own server, syncing case data to the NJDG in real time while orders and judgments are pushed each evening. A High Court cannot change the core - a suggestion goes to NIC and moves only if the Supreme Court eCommittee approves - so anything a court needs for itself is built beside CIS as a read-only peripheral application.",
         "source": "e-Courts Project, Supreme Court e-Committee - Case Information System (CIS)",
         "group": "Systems & records",
         "pos": "noun",
@@ -872,7 +872,8 @@
         ],
         "sourceNotes": [
           "hr-filing-assistant-2026-06",
-          "hr-hc-it-systems-2026-06"
+          "hr-hc-it-systems-2026-06",
+          "hr-judgment-writer-2026-06"
         ]
       },
       {
@@ -1062,7 +1063,7 @@
       },
       {
         "word": "Substance of the evidence",
-        "gloss": "The lighter record a summons case and a summary trial get. In a summons case the record is ordinarily a memorandum of the substance of the evidence and no more; in a summary case in which no appeal lies no evidence need be recorded at all, only the prescribed particulars in the summary register, but where an appeal does lie the magistrate must record the substance of the evidence and the particulars, and write a judgment before passing sentence. Since a cheque case is tried summarily and carries an appeal, this is the shape of the trial record a s.138 file actually ends up with.",
+        "gloss": "The lighter record a summons case and a summary trial get. In a summons case the record is ordinarily a memorandum of the substance of the evidence and no more; in a summary case in which no appeal lies no evidence need be recorded at all, only the prescribed particulars in the summary register, but where an appeal does lie the magistrate must record the substance of the evidence and the particulars, and write a judgment before passing sentence. Since a cheque case is tried summarily and carries an appeal, this is the shape of the trial record a s.138 file actually ends up with. It is also what the judgment writer has to reconstruct from the file: what the complainant tendered, under which exhibit number, and the date on which the evidence was closed - Volume III r.1-H.1(i-b) requires exhibits to be referred to by their number and not only by name, and BNSS s.286 lists the particulars a summary record must carry.",
         "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-E.8",
         "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
         "eId": "rule_1-E.8",
@@ -1072,6 +1073,9 @@
         "aka": [
           "memorandum of the substance of the evidence",
           "substance of evidence"
+        ],
+        "sourceNotes": [
+          "hr-judgment-writer-2026-06"
         ]
       },
       {
@@ -1532,7 +1536,8 @@
           "reader of the court"
         ],
         "sourceNotes": [
-          "hr-ahlmad-2026-06"
+          "hr-ahlmad-2026-06",
+          "hr-judgment-writer-2026-06"
         ]
       },
       {
@@ -1727,6 +1732,147 @@
         ],
         "sourceNotes": [
           "hr-ahlmad-2026-06"
+        ]
+      },
+      {
+        "word": "Judgment Writer",
+        "gloss": "The court official who prepares the written judgment. At Panchkula he is a stenographer-cadre post working inside the courtroom and chambers, distinct from the stenographer outside who takes the daily orders: the steno outside does daily orders, the judgment writer does judgments. He reads the decided file end to end, lifts the case metadata and the template out of CIS, copies the cause title, the parties, the appearances and the facts off the paper file, records the proceedings and the evidence, takes the judge's dictation of the arguments and conclusion in shorthand, types the transcript, and then uploads and e-signs it. Volume III r.25-G.8 recognises the function - stenographers typing evidence and judgments from dictation, and duplicating the free copies in advance - and BNSS s.288(2) allows a summary-trial record or judgment to be prepared by an officer appointed for the purpose, the magistrate signing it. The title itself, and the split between daily-order and judgment stenographers, are establishment practice and appear in no rule.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 25-G.8; the post and the split of duties described firsthand by a judgment writer at the Panchkula district courts (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_25-G.8",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "judgement writer",
+          "judgment stenographer",
+          "judgment branch steno"
+        ],
+        "sourceNotes": [
+          "hr-judgment-writer-2026-06"
+        ],
+        "themes": [
+          "judgment-and-disposal"
+        ]
+      },
+      {
+        "word": "Daily order",
+        "gloss": "The order recorded for a case on each date of hearing - the running order sheet of the file. It is where the court records who appeared and who represented whom, which is why the judgment writer reads the previous daily orders back to build the appearance block of the judgment, cross-checking them against the power of attorney pinned at the back of the file. The daily orders are the stenographer-outside's work; the judgment is the judgment writer's. Nothing about appearance reaches the case record in a queryable form, so it has to be read off the sheet. Staff at Panchkula were heard to call these the 'zimni' orders, the Punjab and Haryana word for the running order sheet.",
+        "source": "Court practice, Punjab and Haryana district courts; described firsthand by a judgment writer at the Panchkula district courts (PUCAR interview, June 2026). The word 'zimni' is from the machine transcript of the Hindi audio and is recorded as heard; the uploader's own English subtitles render the same thing as 'daily orders'.",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "zimni order",
+          "zimni",
+          "daily order sheet"
+        ],
+        "sourceNotes": [
+          "hr-judgment-writer-2026-06"
+        ],
+        "themes": [
+          "judgment-and-disposal",
+          "records-and-registers"
+        ]
+      },
+      {
+        "word": "Conviction register",
+        "gloss": "The physical register in which a convicting court records its convictions and takes the convict's acknowledgment for the free copy of the judgment. The convict signs 'copy received' in the corner, and against it the entry has to carry the case and registration number, the accused's name, the sentence and the compensation or fine. It is kept on paper and is not held in CIS. Volume III does not itself prescribe it - the numbered criminal registers sit in Rules and Orders Volumes IV and VI-B, which are not yet in this corpus, and Volume III's own conviction-reporting duty in Chapter 11 Part G covers a listed set of Penal Code and special-Act offences that does not include the Negotiable Instruments Act. At Panchkula it is no longer handwritten: the details are copied out of the judgment into MS Word, shortened, printed, cut and pasted in, a whole month at a time.",
+        "source": "Court register kept by the judgment writer, Panchkula district courts, described firsthand (PUCAR interview, June 2026). The register series itself is prescribed in Rules and Orders Volumes IV and VI-B, which are not in this corpus; Volume III rule 2.3 and rule 26-B.2 show how it refers registers out.",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "register of convictions",
+          "criminal conviction register"
+        ],
+        "sourceNotes": [
+          "hr-judgment-writer-2026-06"
+        ],
+        "themes": [
+          "records-and-registers",
+          "informal-digital-workaround"
+        ]
+      },
+      {
+        "word": "Free copy of the judgment",
+        "gloss": "The copy of the judgment a convicted accused gets without paying for it, so that he can appeal. Volume III r.1-H.1(vi) requires that whenever an accused is sentenced to imprisonment a copy of the finding and sentence be given to him free of cost soon after the delivery of the judgment, and BNSS s.404(1) says the same of the judgment itself, immediately after pronouncement; s.404(2) makes a certified copy free of cost in every case where the judgment is appealable by the accused, on his application. It matters because BNSS s.423 requires a petition of appeal to be accompanied by a copy of the judgment appealed against. At Panchkula it is treated as a right that needs no request and is handed over the same day, the convict signing for it in the conviction register - which is wider than the letter of s.404(2), and is the shape Volume III r.25-G.2 to r.25-G.4 give the free supply for appeal and revision.",
+        "source": "Rules and Orders of the Punjab and Haryana High Court, Volume III (Instructions to Criminal Courts), rule 1-H.1(vi) and rules 25-G.2 to 25-G.4, read with BNSS s.404 (formerly CrPC s.363); the same-day handover practice described firsthand by a judgment writer at the Panchkula district courts (PUCAR interview, June 2026)",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-H.1",
+        "group": "Court process & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "free of cost copy",
+          "free copy to the convict"
+        ],
+        "sourceNotes": [
+          "hr-judgment-writer-2026-06"
+        ],
+        "themes": [
+          "judgment-and-disposal"
+        ]
+      },
+      {
+        "word": "Upload certificate",
+        "gloss": "The monthly assurance a court official signs and sends to the main office of the establishment, stating that for the preceding month all the orders and judgments have been uploaded. It is a single printed format carrying no case numbers and no counts, only the blanket statement, and at Panchkula it goes down around the third of the month. No rule in the corpus creates it; it belongs to the e-Courts era and sits alongside the older periodical statements Volume III requires - the monthly statement of criminal cases pending over a year, and the monthly statement of summary cases received and disposed of. CIS already reports which orders are still pending upload, which is the report the writer runs for himself before signing.",
+        "source": "District court reporting practice, Panchkula, described firsthand by a judgment writer (PUCAR interview, June 2026). No provision in this corpus prescribes it; its rule-level ancestors are Rules and Orders Volume III rules 1-A.12 and 2.6.",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "document",
+        "aka": [
+          "certificate of uploading",
+          "monthly upload certificate",
+          "orders uploaded certificate"
+        ],
+        "sourceNotes": [
+          "hr-judgment-writer-2026-06"
+        ],
+        "themes": [
+          "records-and-registers",
+          "court-technology-systems"
+        ]
+      },
+      {
+        "word": "Duty magistrate",
+        "gloss": "The magistrate on the duty roster, before whom work is put up that cannot wait for the court it belongs to. The month is divided among the judges of the establishment in blocks of a few days each, and whatever arises for a court that is on leave goes to whoever holds duty - police remands, bail applications and miscellaneous applications. It is a court-administration arrangement created by no rule in this corpus, but the work it brings is governed: Volume III requires the reasons for a remand to police custody to be recorded and a copy sent to the District Magistrate, and BNSS s.187 is the live custody provision. None of it is cheque-case work; it reaches the s.138 court's staff through the roster, not the case type.",
+        "source": "District court duty roster, Panchkula, described firsthand by a judgment writer (PUCAR interview, June 2026). No rule in this corpus creates the roster; the remand duty it carries is in Rules and Orders Volume III rule 11-B.9, read with BNSS s.187.",
+        "group": "Court staff",
+        "pos": "noun",
+        "role": "actor",
+        "aka": [
+          "duty court",
+          "magistrate on duty",
+          "duty roster"
+        ],
+        "sourceNotes": [
+          "hr-judgment-writer-2026-06"
+        ],
+        "themes": [
+          "judgment-and-disposal"
+        ]
+      },
+      {
+        "word": "e-signing (CIS)",
+        "gloss": "Signing a judgment or order inside CIS with a digital signature held on a pen-drive token, so that it can be uploaded as a signed document. Orders can be signed and uploaded in a batch, but each one still has to be selected individually, and there is no bulk download. The obligation behind it is old: Volume III r.1-H.1(ii) and (iii) and BNSS s.392(3) require the judgment to be dated and signed by the presiding officer, and every page of it where it was not written in his own hand; IT Act s.5 and s.6 give an electronic signature the same legal effect and authorise its use by courts and government. This is not the same as the digital signature or Aadhaar-based e-Sign the E-Filing Rules require of a party or advocate on an e-filed document.",
+        "source": "CIS judgment and order workflow, described firsthand by a judgment writer at the Panchkula district courts (PUCAR interview, June 2026); the signature requirement it satisfies is in Rules and Orders Volume III rule 1-H.1 and BNSS s.392, and its legal effect in IT Act sections 5 and 6",
+        "akn": "state/haryana/akn/punjab-haryana-hc-rules-orders-vol-iii.akn.xml",
+        "eId": "rule_1-H.1",
+        "group": "Systems & records",
+        "pos": "noun",
+        "role": "procedure",
+        "aka": [
+          "digital signature token",
+          "pen-drive token",
+          "bulk signing"
+        ],
+        "sourceNotes": [
+          "hr-judgment-writer-2026-06"
+        ],
+        "themes": [
+          "court-technology-systems",
+          "judgment-and-disposal"
         ]
       }
     ]
@@ -2616,6 +2762,29 @@
                   "n": "probation:sec_4"
                 }
               ]
+            },
+            {
+              "t": "Who actually produces the document is a separate desk. The judge dictates the arguments and the conclusion; a judgment writer of the stenographer cadre assembles, types, uploads and e-signs the judgment, and the presiding officer signs every page of it. Stage 12a follows that work through.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.25-G.8",
+                  "s": "phhc3",
+                  "e": "rule_25-G.8"
+                },
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                },
+                {
+                  "l": "BNSS §288",
+                  "n": "bnss:sec_288"
+                },
+                {
+                  "l": "BNSS §392",
+                  "n": "bnss:sec_392"
+                }
+              ]
             }
           ]
         },
@@ -2720,6 +2889,22 @@
             },
             {
               "t": "Personal Excel returns: the High Court's action plan and its twenty to thirty statements are rebuilt by each ahlmad in his own spreadsheet with VLOOKUP and date formulas, because CIS gives pendency but not disposal and its reports are not aligned with the High Court's format. Explicitly informal, unversioned and untrained - the same shape of private artefact HR-01 found at the filing window."
+            },
+            {
+              "t": "Conviction register by cut-and-paste: the conviction details are copied out of the judgment into MS Word, shortened, printed, cut and pasted into the physical conviction register, and a whole month is done in a day or two at month end because daily entry is not possible. The register is not on CIS. It is the same print-and-paste answer the ahlmad's desk uses for the institution register, but with no database behind it."
+            },
+            {
+              "t": "Retyping the complaint: the facts of the complaint are typed out again in full into every judgment, months after the same complaint was captured at the filing window. The judgment writer, asked twice whether anything he does is repetitive enough to be taken off him, named this and nothing else - and said that if the complaint were digitised at scanning, the judgment would come down to the arguments and the operative part, with the evidence a further candidate since it is complete by the time the file reaches him."
+            },
+            {
+              "t": "The blanket upload certificate: around the third of each month a signed paper certificate goes down to the main office saying that for the previous month all orders and judgments have been uploaded. It carries no case numbers and no counts, while CIS already reports which orders are pending upload - a monthly assurance that could be computed rather than certified.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-A.12",
+                  "s": "phhc3",
+                  "e": "rule_1-A.12"
+                }
+              ]
             }
           ]
         },
@@ -3071,6 +3256,245 @@
               "c": []
             }
           ]
+        },
+        {
+          "stage": "12a · Writing the judgment: dictation, transcript and upload",
+          "id": "judgment-writing",
+          "sourceNotes": [
+            "hr-judgment-writer-2026-06"
+          ],
+          "themes": [
+            "judgment-and-disposal",
+            "court-technology-systems",
+            "system-data-gap"
+          ],
+          "steps": [
+            {
+              "t": "The judgment is not written by the judge's own hand. It is prepared by the judgment writer, a stenographer-cadre desk inside the court, and signed by the presiding officer - every page of it, because it was not written by him. Volume III has recognised this since long before CIS, and for a summary trial BNSS goes further: the High Court may authorise the record or the judgment, or both, to be prepared by an officer appointed for the purpose, the magistrate signing what is prepared.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.25-G.8",
+                  "s": "phhc3",
+                  "e": "rule_25-G.8"
+                },
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                },
+                {
+                  "l": "BNSS §288",
+                  "n": "bnss:sec_288"
+                },
+                {
+                  "l": "BNSS §392",
+                  "n": "bnss:sec_392"
+                }
+              ]
+            },
+            {
+              "t": "The file reaches the writer after pronouncement, usually the next day, and he reads the whole proceeding from start to end before writing. He assembles the document in a fixed order: title, then CIS for the template, the CNR number and the registration and institution dates, then the cause title and the parties off the paper file, then the appearances, then the facts out of the complaint, then the proceedings - summons, notice of accusation, plea of defence, evidence - and last the arguments and the conclusion. No rule prescribes that order; what the rules prescribe is the shape of the finished thing."
+            },
+            {
+              "t": "That shape is exact. Since correction slip no.40 of December 2021 every judgment must open with a preface naming the parties in FORM A, carry a tabular statement of dates in FORM B, and close with an appendix listing the witnesses, the exhibits and the material objects in FORM C, referring to each by number and not only by name; and it must state the point or points for determination, the decision and the reasons, and on conviction the offence and the punishment separately.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                },
+                {
+                  "l": "BNSS §393",
+                  "n": "bnss:sec_393"
+                }
+              ]
+            },
+            {
+              "t": "So the writer's day goes on recovering exact data from paper: the summons date, the date of the notice of accusation, what the complainant tendered and under which exhibit number, the date evidence was closed. BNSS fixes the particulars a summary record must carry, and Volume III requires the substance of the evidence in a summary case that is appealable, which a cheque case is. A wrong cheque number, address or advocate in the judgment is treated at the desk as unfixable, and the Sanhita agrees: once signed, a judgment cannot be altered except to correct a clerical or arithmetical error.",
+              "c": [
+                {
+                  "l": "BNSS §286",
+                  "n": "bnss:sec_286"
+                },
+                {
+                  "l": "BNSS §287",
+                  "n": "bnss:sec_287"
+                },
+                {
+                  "l": "R&O Vol.III r.1-E.8",
+                  "s": "phhc3",
+                  "e": "rule_1-E.8"
+                },
+                {
+                  "l": "R&O Vol.III r.2.3",
+                  "s": "phhc3",
+                  "e": "rule_2.3"
+                },
+                {
+                  "l": "BNSS §403",
+                  "n": "bnss:sec_403"
+                }
+              ]
+            },
+            {
+              "t": "Who represented whom is read back off the previous daily orders and cross-checked against the power of attorney pinned at the back of the file, page by page. Nothing about appearance is queryable, so the whole check is manual - and the daily orders themselves belong to a different desk, the stenographer outside the courtroom who does the daily orders while this desk does the judgments.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-A.10",
+                  "s": "phhc3",
+                  "e": "rule_1-A.10"
+                }
+              ]
+            },
+            {
+              "t": "The judge dictates the arguments and the conclusion; the writer takes it in shorthand, in chambers after the court has risen, and types it the following day. This is the route the Sanhita itself lays down for a judgment delivered in full - taken down in shorthand, the transcript signed page by page as soon as it is ready and marked with the date of delivery in open court. Volume III adds only that judgments are not to be written at home during court hours.",
+              "c": [
+                {
+                  "l": "BNSS §392",
+                  "n": "bnss:sec_392"
+                },
+                {
+                  "l": "R&O Vol.III r.25-G.8",
+                  "s": "phhc3",
+                  "e": "rule_25-G.8"
+                },
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                }
+              ]
+            },
+            {
+              "t": "The typed judgment is uploaded to CIS and e-signed with a digital signature held on a pen-drive token. Orders can be uploaded in a batch, but each still has to be selected one at a time, and there is no bulk download. The writer also runs the CIS reporting to see which of his own orders are still pending upload, and around the third of each month signs a paper certificate for the main office saying that for the previous month all orders and judgments have been uploaded - a single format with no case numbers and no counts on it.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                },
+                {
+                  "l": "BNSS §392",
+                  "n": "bnss:sec_392"
+                },
+                {
+                  "l": "IT Act §5",
+                  "n": "itact:sec_5"
+                },
+                {
+                  "l": "IT Act §6",
+                  "n": "itact:sec_6"
+                }
+              ]
+            },
+            {
+              "t": "The workload behind all this, as reported: two or three judgments a day, about an hour for a simple file and considerably longer for one with lengthy cross-examination and many documents, and about fifteen pages to a judgment. Almost nothing repeats between judgments except the conclusion, some standard sentences and two or three authorities in the observations. The same desk also takes the applications and, when the roster falls to its court, duty-magistrate work - police remands and bail applications, none of it cheque-case work.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.11-B.9",
+                  "s": "phhc3",
+                  "e": "rule_11-B.9"
+                },
+                {
+                  "l": "BNSS §187",
+                  "n": "bnss:sec_187"
+                },
+                {
+                  "l": "BNSS §348",
+                  "n": "bnss:sec_348"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "12b · The free copy and the conviction register",
+          "id": "free-copy-conviction-register",
+          "sourceNotes": [
+            "hr-judgment-writer-2026-06"
+          ],
+          "themes": [
+            "judgment-and-disposal",
+            "records-and-registers",
+            "informal-digital-workaround"
+          ],
+          "steps": [
+            {
+              "t": "On a conviction the accused gets a copy of the judgment free of cost, so that he can appeal. Volume III requires it soon after delivery wherever the accused is sentenced to imprisonment, and the Sanhita says the same immediately after pronouncement; where the judgment is appealable but no imprisonment is passed - the ordinary s.138 outcome of fine and compensation - the free certified copy comes on the accused's application. At Panchkula it is treated as a right that needs no request.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                },
+                {
+                  "l": "BNSS §404",
+                  "n": "bnss:sec_404"
+                }
+              ]
+            },
+            {
+              "t": "It is handed over the same day, on the footing that the convict is physically present for the pronouncement. That holds most of the time but not always: Volume III itself allows the accused to be absent at pronouncement where his attendance has been dispensed with and the sentence is one of fine only.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.1-H.1",
+                  "s": "phhc3",
+                  "e": "rule_1-H.1"
+                }
+              ]
+            },
+            {
+              "t": "The copy is what makes the appeal possible. A petition of appeal must be accompanied by a copy of the judgment appealed against, and Volume III works the free supply out for appeals and revisions, including for summons cases where the accused is in jail.",
+              "c": [
+                {
+                  "l": "BNSS §423",
+                  "n": "bnss:sec_423"
+                },
+                {
+                  "l": "R&O Vol.III r.25-G.2",
+                  "s": "phhc3",
+                  "e": "rule_25-G.2"
+                },
+                {
+                  "l": "R&O Vol.III r.25-G.3",
+                  "s": "phhc3",
+                  "e": "rule_25-G.3"
+                },
+                {
+                  "l": "R&O Vol.III r.25-G.4",
+                  "s": "phhc3",
+                  "e": "rule_25-G.4"
+                },
+                {
+                  "l": "BNSS §415",
+                  "n": "bnss:sec_415"
+                }
+              ]
+            },
+            {
+              "t": "The handover is acknowledged in a physical conviction register: the convict signs 'copy received' in the corner, and against it the entry carries the case and registration number, the accused's name, the sentence and the compensation or fine - the same figures Volume III requires to be settled with regard to the offender's means. The register itself is prescribed outside Volume III, in the Rules and Orders volumes that hold the numbered criminal registers and are not yet in this corpus; Volume III's own conviction-reporting duty covers a listed set of Penal Code and special-Act offences and does not reach the NI Act.",
+              "c": [
+                {
+                  "l": "R&O Vol.III r.19-B.1",
+                  "s": "phhc3",
+                  "e": "rule_19-B.1"
+                },
+                {
+                  "l": "R&O Vol.III r.2.3",
+                  "s": "phhc3",
+                  "e": "rule_2.3"
+                },
+                {
+                  "l": "R&O Vol.III r.26-B.2",
+                  "s": "phhc3",
+                  "e": "rule_26-B.2"
+                }
+              ]
+            },
+            {
+              "t": "It used to be handwritten. It now runs on a workaround: the details are copied out of the judgment into MS Word, shortened, printed, cut and pasted into the paper register, and because daily entry is impossible a whole month is done in a day or two at the end of the month. The register is not held in CIS at all, so the acknowledgment taken on the day of conviction and the entry recording it are made weeks apart."
+            }
+          ]
         }
       ],
       "timing_note": "Only the prescribed period is modelled for Haryana, and only where a provision actually fixes one. The filing stages carry no timing at all: Panchkula does same-day filing, with the window open until 12:00 PM and the file reaching the court the same day. There is no ON Court in Haryana, and no field data yet on how long a regular Haryana court takes at each stage, so those two lenses are empty."
@@ -3176,7 +3600,7 @@
           "id": "magistrate-jmfc",
           "role": "Magistrate (JMFC)",
           "cat": "judge",
-          "who": "The judicial magistrate who tries the NACT case. He examines the complainant on cognizance, decides between a summons and an e-summons, dispenses with the accused's personal attendance, holds the summary trial, and passes the judgment and sentence. Only a magistrate of the first class specially empowered, or a Bench so empowered, may hold a summary trial, which is the trial s.143 of the NI Act directs for a cheque case.",
+          "who": "The judicial magistrate who tries the NACT case. He examines the complainant on cognizance, decides between a summons and an e-summons, dispenses with the accused's personal attendance, holds the summary trial, and passes the judgment and sentence. Only a magistrate of the first class specially empowered, or a Bench so empowered, may hold a summary trial, which is the trial s.143 of the NI Act directs for a cheque case. He does not usually write the judgment himself: he dictates the arguments and the conclusion to the judgment writer in shorthand, in chambers after the court rises, and signs the transcript - every page of it, since it is not written in his own hand - and the judgment must be dated and signed at the time it is pronounced and cannot be altered afterwards except to correct a clerical error.",
           "basis": "Rules and Orders Vol.III, Chapter 2 and Chapter 1 Parts B, C(i) and H",
           "cite": [
             {
@@ -3190,13 +3614,37 @@
               "e": "rule_1-B.4"
             },
             {
+              "l": "R&O Vol.III r.1-H.1",
+              "s": "phhc3",
+              "e": "rule_1-H.1"
+            },
+            {
+              "l": "R&O Vol.III r.1-H.2",
+              "s": "phhc3",
+              "e": "rule_1-H.2"
+            },
+            {
               "l": "NI Act §142",
               "n": "ni:sec_142"
             },
             {
               "l": "NI Act §143",
               "n": "ni:sec_143"
+            },
+            {
+              "l": "BNSS §392",
+              "n": "bnss:sec_392"
+            },
+            {
+              "l": "BNSS §403",
+              "n": "bnss:sec_403"
             }
+          ],
+          "sourceNotes": [
+            "hr-judgment-writer-2026-06"
+          ],
+          "themes": [
+            "judgment-and-disposal"
           ]
         },
         {
@@ -3427,6 +3875,84 @@
           "themes": [
             "process-and-service",
             "system-data-gap"
+          ]
+        },
+        {
+          "id": "judgment-writer",
+          "role": "Judgment Writer",
+          "cat": "staff",
+          "term": "judgment-writer",
+          "who": "The desk that produces the written judgment. Once the judge has pronounced a file it comes to him, usually the next day, and he reads the whole proceeding from beginning to end before writing a word. He titles the file, logs into CIS for the template, the CNR number and the registration and institution dates, copies the cause title and the parties off the paper file, establishes who represented whom from the previous daily orders and the power of attorney at the back of the file, lifts the facts out of the complaint, records the proceedings and the evidence with their dates and exhibit numbers, takes the judge's dictation of the arguments and the conclusion in shorthand in chambers after the court rises, types the transcript the next day, and then uploads and e-signs it. He also keeps the conviction register and hands the convict his free copy, does the applications, and takes duty-magistrate work when the roster falls to his court. He is distinct from the stenographer outside the courtroom, who does the daily orders.",
+          "basis": "Rules and Orders Vol.III r.25-G.8 and Chapter 1 Part H, read with BNSS s.288(2) and s.392; the post and its daily content described firsthand by a judgment writer at the Panchkula district courts (June 2026)",
+          "cite": [
+            {
+              "l": "R&O Vol.III r.25-G.8",
+              "s": "phhc3",
+              "e": "rule_25-G.8"
+            },
+            {
+              "l": "R&O Vol.III r.1-H.1",
+              "s": "phhc3",
+              "e": "rule_1-H.1"
+            },
+            {
+              "l": "R&O Vol.III r.1-H.2",
+              "s": "phhc3",
+              "e": "rule_1-H.2"
+            },
+            {
+              "l": "BNSS §288",
+              "n": "bnss:sec_288"
+            },
+            {
+              "l": "BNSS §392",
+              "n": "bnss:sec_392"
+            },
+            {
+              "l": "BNSS §393",
+              "n": "bnss:sec_393"
+            }
+          ],
+          "informal": {
+            "title": "'Judgment Writer' is a functional label on a stenographer-cadre post. No instrument in the corpus uses the title, or allocates daily orders to one stenographer and judgments to another - Volume III r.25-G.8 knows only 'stenographers'.",
+            "practice": "Much of the day rests on no rule: the facts of the complaint are retyped in full into every judgment even though the complaint has been on the file since it was filed; the conviction register is filled by copying details into MS Word, printing, cutting and pasting them into the paper book, a month at a time because daily entry is not possible; and a signed paper certificate goes to the main office each month saying all orders and judgments were uploaded, carrying no case numbers."
+          },
+          "sourceNotes": [
+            "hr-judgment-writer-2026-06"
+          ],
+          "themes": [
+            "judgment-and-disposal",
+            "records-and-registers",
+            "informal-digital-workaround",
+            "system-data-gap"
+          ]
+        },
+        {
+          "id": "duty-magistrate",
+          "role": "Duty magistrate",
+          "cat": "judge",
+          "term": "duty-magistrate",
+          "who": "The magistrate holding the duty roster, before whom work is put up that cannot wait for the court it belongs to. The month is divided among the judges of the establishment in blocks of a few days, and whatever arises for a court on leave goes to whoever is on duty - police remands, bail applications and miscellaneous applications. None of it is cheque-case work; it reaches the s.138 court and its staff through the roster, not the case type, and it is a real and unremarked call on the same people's time.",
+          "basis": "District court duty roster - court administration, created by no rule in this corpus; the remand work it carries is governed by Rules and Orders Vol.III r.11-B.9 and BNSS s.187. Described firsthand by a judgment writer at the Panchkula district courts (June 2026)",
+          "cite": [
+            {
+              "l": "R&O Vol.III r.11-B.9",
+              "s": "phhc3",
+              "e": "rule_11-B.9"
+            },
+            {
+              "l": "BNSS §187",
+              "n": "bnss:sec_187"
+            }
+          ],
+          "informal": {
+            "title": "The roster and its division of the month are establishment practice; no instrument in the corpus creates a 'duty magistrate'."
+          },
+          "sourceNotes": [
+            "hr-judgment-writer-2026-06"
+          ],
+          "themes": [
+            "judgment-and-disposal"
           ]
         }
       ]

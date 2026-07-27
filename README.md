@@ -711,10 +711,10 @@ Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the N
 - `vocab_role`: document, actor, procedure, doctrine, remedy, forum
 - `story_role_cat`: litigant, bank, witness, advocate, advclerk, judge, staff, police
 - `verification_status`: corroborated, contradicted, reported-allegation, needs-check, reported-practice
-- `compare_relation`: similar
+- `compare_relation`: similar, diverges
 - `vocab_group_national`: The cheque & the instrument, Parties & liability, The offence (§138), Presumptions & evidence, Procedure & process, Notice, limitation & disposal, Constitutional & powers
 - `domain`: substantive, procedure, representation, policing, penal, evidence, interpretation, limitation, sentencing, electronic, banking, constitutional, authentication, settlement, access
 
-**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (36 terms), Kerala (33 terms); 2 field notes.
+**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes.
 
 <!-- AUTO-DATA-MODEL:END -->
