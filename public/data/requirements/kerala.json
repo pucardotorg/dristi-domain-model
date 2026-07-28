@@ -1,0 +1,3182 @@
+{
+  "scope": "kerala",
+  "title": "Normative requirements derived from Kerala's own instruments",
+  "note": "Only what Kerala's own instruments require, or where a Kerala instrument tightens a national obligation. Nothing here restates central law: the offence, the presumptions, the notice period, limitation and compounding are uniform national requirements and live in national.json. Two things run through this file that a national-only model cannot see. The first is language: the court language in Kerala's subordinate courts is Malayalam, so process crossing into a court of another official language carries an authorised English translation, an affidavit or vakalatnama put to a deponent who does not read its language carries a read-and-explained certificate, the interpreter is sworn in her own prescribed form and named in the deposition heading, and a local-language pleading must be filed as Unicode text. The second is the Kollam 24x7 ON Court, designated to try only s.138 cases and to sit round the clock against a general rule of 11 a.m. to 5 p.m., which forces sitting hours and case-type allocation to be court-level data rather than constants. Every 'tightens' is null; where a requirement tightens a national obligation, 'tightens_hint' describes the national requirement it tightens, to be resolved when the national file is merged.",
+  "requirements": [
+    {
+      "id": "REQ-KL-LIM-001",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST take the date of e-filing, for limitation, as the moment the complaint is electronically received in the Registry in Indian Standard Time, and not the moment the e-filer began or uploaded the submission.",
+      "why": "A Kerala payee who starts a DCMS submission at 23.50 on the last day of the month and whose upload lands in the Registry at 00.06 has filed on the next day. If the system stamps the complaint with the browser's clock, the client's timezone or the start of the session, it will show an out-of-time complaint as in time, and the defect surfaces only when the Magistrate computes the month under NI Act s.142(1)(b) and the complaint is dismissed as barred.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.13(2)",
+          "s": "kefr",
+          "e": "rule_13"
+        },
+        {
+          "l": "DCMS e-Filing SOP, cl.6",
+          "s": "dcms",
+          "e": "para_6"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complaint - date and time of electronic receipt in the Registry"
+      },
+      "how": "The rule fixes the moment: receipt in the Registry, within the time prescribed under the relevant Act, Rules and orders, reckoned in Indian Standard Time.",
+      "test": "Submit an e-filing whose client clock is set to a different timezone and whose upload completes after midnight IST; the stored filing date is the Registry receipt date in IST, and the limitation computation uses that date.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-LIM-007",
+      "relatedTo": [
+        "REQ-KL-LIM-002",
+        "REQ-KL-LIM-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-LIM-002",
+      "category": "LIM",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT offer, compute or record any extension of limitation on the ground that the electronic filing facility failed.",
+      "why": "The Kerala rule is explicit that an e-filer cannot claim exemption from limitation because e-filing failed. A portal outage on the last day of the month is exactly when a cheque complainant will ask the software for relief, and a system that quietly rolls the filing date forward, or offers a 'portal down' reason code that suppresses the limitation warning, manufactures a defence-free record of a complaint that is in fact time-barred.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.13(5)",
+          "s": "kefr",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "limitation computation - excluded grounds"
+      },
+      "how": null,
+      "test": "With the portal recorded as unavailable across the last day of the limitation period, the limitation calculation is unchanged and the complaint is still flagged out of time; no reason code suppresses the flag.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-LIM-008",
+      "relatedTo": [
+        "REQ-KL-LIM-001",
+        "REQ-KL-LIM-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-LIM-003",
+      "category": "LIM",
+      "level": "MAY",
+      "statement": "The system MAY accept a filing presented at a Designated Counter of the court during court working hours where electronic filing on the portal is not possible because of technical failure, system maintenance or other exigency.",
+      "why": "This is the only route left to a Kerala complainant on the last day when the portal is down, because the rules refuse any extension of limitation for portal failure. If the counter route is invisible in the software, the complainant loses the one lawful escape and the complaint is dismissed on limitation for an outage he did not cause.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.13(4)",
+          "s": "kefr",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "filing - Designated Counter fallback"
+      },
+      "how": "Electronic filing through the Designated Counters of the court, during the working hours of the court, where filing on the Electronic Filing Web Portal is not possible due to any technical failure or system maintenance or other exigencies.",
+      "test": "With the portal marked unavailable, a Designated Counter presentation can be recorded against the case, is offered only inside the court's working hours, and names which of the three grounds is relied on; with the portal available the route is not offered.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-LIM-002",
+        "REQ-KL-LIM-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-LIM-004",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "Where the Rules of the High Court of Kerala prescribe a number of days, the system MUST reckon them exclusive of the first day and inclusive of the last, and where the last day falls on a day the court office is closed MUST roll the period past that day and any following days on which the office remains closed.",
+      "why": "Every High Court deadline in a cheque case - the 15 days to re-present a returned revision, the 90 days to file one, the time allowed to supply a deficiency - is computed under this rule. A generic date-arithmetic helper that counts calendar days will make a re-presentation due on a Saturday of a court vacation look late, and the Registry will reject a filing the rules treat as in time.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.6",
+          "s": "khcr",
+          "e": "rule_6"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "High Court deadline computation"
+      },
+      "how": "Where the number of days is not expressed to be clear days: exclusive of the first day, inclusive of the last, and if the last day falls on a day the court office is closed, exclusive of that day and of any following days during which the office continues to be closed.",
+      "test": "Set a 15-day re-presentation period whose last day is the first of three consecutive days on which the court office is closed; the computed due date is the first day the office reopens.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-010"
+      ]
+    },
+    {
+      "id": "REQ-KL-LIM-005",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST record a filing made at a Designated Counter as filed on the date of that presentation, and MUST NOT date it from the failed upload or from the day the portal returned.",
+      "why": "The counter route only saves the complainant if the date it carries is the date he stood at the counter. The rules fix the filing date as the date the Action is electronically received in the Registry, and at a Designated Counter that is the moment of presentation; the rule does not spell that consequence out, which is why a system is free to get it wrong. A back-dated counter filing invents a date the Registry cannot vouch for, and a forward-dated one costs the complainant the very days the counter existed to save.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.13(2)",
+          "s": "kefr",
+          "e": "rule_13"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.13(4)",
+          "s": "kefr",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "counter presentation - filing date"
+      },
+      "how": null,
+      "test": "Record a counter presentation on a day after a failed upload; the stored filing date is the counter presentation date, and neither the upload attempt date nor the portal restoration date can be selected as the filing date.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-LIM-003",
+        "REQ-KL-LIM-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-001",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST compute the court fee on a s.138 complaint from the amount of the dishonoured cheque, applying the flat fee below the statutory threshold and the ad valorem percentage above it subject to the statutory ceiling.",
+      "why": "Kerala prices a cheque complaint on the cheque itself: a flat fee where the cheque does not exceed ten thousand rupees, otherwise five per cent of the whole cheque amount capped at three lakh rupees. A system that carries a single flat filing fee, or that applies the percentage to the claimed amount rather than the cheque amount, produces a deficit that the Registry catches at scrutiny and the complaint sits unnumbered while the fee is made good.",
+      "authority": [
+        {
+          "l": "Kerala Court Fees Act Art.21(a)",
+          "s": "kcf",
+          "e": "art_21"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "complaint - court fee computation"
+      },
+      "how": "Article 21(a): flat fee where the dishonoured cheque does not exceed ten thousand rupees; otherwise five per cent of the entire cheque amount subject to the statutory maximum.",
+      "test": "Fee computed for a cheque at, just below and far above the threshold matches the Article 21 slab, is derived from the cheque amount field, and never exceeds the ceiling.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "tightens_hint": "the national requirement that the court fee payable on the institution of a complaint be recorded",
+      "relatedTo": [
+        "REQ-KL-FIL-002",
+        "REQ-KL-FIL-019"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-002",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST hold the Article 21 fee slabs as effective-dated data, so that the fee on a complaint is computed on the schedule in force on the date of presentation.",
+      "why": "Article 21 was inserted by the Kerala Finance Act, 2024 and its slabs were revised again by the Finance Act, 2025. A hard-coded percentage or ceiling silently mis-prices every complaint filed after the next Finance Act, and mis-prices in the other direction any older case whose fee has to be recomputed on remand or refund. The failure is invisible until an audit of the fee register.",
+      "authority": [
+        {
+          "l": "Kerala Court Fees Act Art.21",
+          "s": "kcf",
+          "e": "art_21"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "court fee schedule - effective from and effective to dates"
+      },
+      "how": null,
+      "test": "Two Article 21 schedules with different effective dates can coexist; a complaint presented under the earlier schedule is priced on it, and one presented after the later date is priced on the later schedule.",
+      "derivedFrom": "act",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-003",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST levy process fees at the rates prescribed from time to time under the Kerala Court Fees and Suits Valuation Act, 1959.",
+      "why": "The process fee is not a figure the Criminal Rules fix: they point at a scale the Court Fees Act revises. A system that hard-codes a per-summons amount under-levies from the day the scale moves, and the shortfall surfaces as an unissued summons in a cheque case where every service cycle costs a hearing.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.273",
+          "s": "crp",
+          "e": "rule_273"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case fee ledger - process fee head"
+      },
+      "how": null,
+      "test": "The process fee charged on an issue of summons is read from a dated rate table rather than a constant, and revising the table changes the fee on a subsequent issue without a code change.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-001",
+        "REQ-KL-FIL-032"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-004",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST require, as a condition of accepting a written complaint, as many copies of the complaint as there are accused.",
+      "why": "Kerala's rule is not directory: a complaint not accompanied by a copy for each accused shall be returned. In a cheque case against a company under NI Act s.141 the accused are the company and each director in charge, so the count is not one, and a filing screen that asks for a single copy sends the complainant back from the counter and loses days against the one-month limitation period.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.24(1)",
+          "s": "crp",
+          "e": "rule_24"
+        },
+        {
+          "l": "Criminal Rules r.24(2)",
+          "s": "crp",
+          "e": "rule_24"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "complaint intake - copies per accused"
+      },
+      "how": "As many copies on plain paper of the complaint as there are accused, filed along with the complaint.",
+      "test": "Add a second and third accused to a complaint; the required copy count rises with them, and acceptance is blocked until that many copies are attached.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-FIL-001",
+      "relatedTo": [
+        "REQ-KL-FIL-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-005",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record, for each copy of the complaint filed for an accused, that it has been verified and certified to be a true copy of the original by the complainant or by the pleader appearing for the complainant.",
+      "why": "An uncertified copy is the same defect as a missing copy under the Kerala rule, and attracts the same return. A system that counts attachments without capturing who certified them lets a bundle of unsigned photocopies through the filing screen, and the return comes from the Registry after the complaint has already been sitting in the queue.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.24(1)",
+          "s": "crp",
+          "e": "rule_24"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complaint copy - certification by complainant or pleader"
+      },
+      "how": "Verified and certified to be a true copy of the original by the complainant, or by his pleader or advocate where he is represented.",
+      "test": "Each copy record names the certifying person and their capacity; a copy with no certifier blocks acceptance.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-004"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-006",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST accept a complaint, petition, application, affidavit, memorandum of appeal or other proceeding only in English or in the language of the court.",
+      "why": "The court language in Kerala's subordinate courts is Malayalam, and the rule admits only that or English. A filing interface that accepts free text in any script will let through a complaint in a third language that the Registry must return, and a system that does not store the language of the document cannot later tell whether a translation is owed when the process or the record travels to a court of a different official language.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.27(1)",
+          "s": "crp",
+          "e": "rule_27"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "filed document - language"
+      },
+      "how": "All petitions, applications, affidavits, memoranda of appeal, revision petitions and other proceedings presented to a court shall be in English or in the language of the court.",
+      "test": "A document offered in a language that is neither English nor the court's own language is refused at presentation; the same document in the court's language is accepted.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-SRV-003",
+        "REQ-KL-FIL-021",
+        "REQ-KL-FIL-033"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-007",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST docket every filed proceeding with the name of the court, the number and year of the proceeding it relates to, the name of the person presenting it and the date of presentation.",
+      "why": "This docket is what identifies a loose paper once it is separated from the file, and the date of presentation on it is the date a limitation dispute turns on. A generated PDF that carries no docket block leaves the Registry writing it by hand, and a scanned copy filed later cannot be tied back to who presented it or when.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.27(2)",
+          "s": "crp",
+          "e": "rule_27"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "filed proceeding - docket endorsement"
+      },
+      "how": "Docketed on the reverse of the final page, endorsing the name of the court, the number and year of the proceedings to which it relates, the name of the person presenting the same and the date of presentation in court.",
+      "test": "Every generated filing carries all four docket particulars, and the date of presentation on the docket equals the stored presentation date.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-008"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-008",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record the date on which a paper was received in court, stamped at the moment of receipt, as a field distinct from the date the case is numbered.",
+      "why": "Kerala requires the date stamp immediately on receipt, and that date - not the numbering date - is the date of institution. In a cheque case the two can be weeks apart, because a defective complaint is returned unnumbered and re-presented. A system that carries only a numbering date will show a complaint presented inside the month as instituted outside it, and there is nothing in the record to prove otherwise.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.28(1)",
+          "s": "crp",
+          "e": "rule_28"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complaint - date of receipt in court, separate from date of numbering"
+      },
+      "how": "All papers presented in court shall be sealed with the date stamp of the court immediately they are received.",
+      "test": "The complaint record holds a receipt date and a numbering date as separate populated fields, and the receipt date is never derived from the numbering date.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-JUR-006",
+      "relatedTo": [
+        "REQ-KL-FIL-007",
+        "REQ-KL-LIM-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-009",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT allocate a case number to a complaint, petition or other proceeding that does not comply with the prescribed requirements or is otherwise defective.",
+      "why": "Numbering is the act that puts a case on the register, and Kerala withholds it until the defect is cured. A system that assigns a number on receipt and then flags defects has already created a case that must be un-created, corrupts the register and the pendency count, and gives the complainant a number to quote for a filing the court has not accepted.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.68",
+          "s": "crp",
+          "e": "rule_68"
+        },
+        {
+          "l": "Criminal Rules r.67",
+          "s": "crp",
+          "e": "rule_67"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "numbering - gated on a defect-free complaint"
+      },
+      "how": null,
+      "test": "A complaint with an open defect has no case number; the number is issued only once every defect is cleared, and the e-filing number is visibly not a case number.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-010",
+        "REQ-KL-FIL-012"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-010",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record, on the return of a defective proceeding, the time specified for its amendment and representation.",
+      "why": "The Kerala rule returns a defective complaint 'for amendment and representation within a specified time', and that time is what decides whether the re-presentation needs a petition to excuse delay. A return that records only 'defective' leaves nobody able to say whether the complaint came back in time, and the complainant discovers the point when the re-presentation is itself objected to.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.68",
+          "s": "crp",
+          "e": "rule_68"
+        },
+        {
+          "l": "Criminal Rules r.104",
+          "s": "crp",
+          "e": "rule_104"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "return of a defective proceeding - time specified for representation"
+      },
+      "how": "Returned to the party, the pleader or the officer concerned for amendment and representation within a specified time.",
+      "test": "Every return record carries a specified representation deadline; a re-presentation after it is flagged as requiring a petition to excuse the delay.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-009",
+        "REQ-KL-APL-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-011",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST notify the e-filer, at their registered electronic mail address or other registered electronic mode, of every objection the Registry notes on scrutiny.",
+      "why": "The e-filer cannot cure what they have not been told. Kerala puts the objection back to the e-filer electronically, and a complaint whose objections sit only on an internal scrutiny screen simply stops moving - which is precisely the file-holding that the Kerala field note reports at the scrutiny desk. Notification is the auditable event that shows the file was not held.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.17(1)",
+          "s": "kefr",
+          "e": "rule_17"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.17(2)",
+          "s": "kefr",
+          "e": "rule_17"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "scrutiny - communication of objections to the e-filer"
+      },
+      "how": "Objections noted on scrutiny of the pleadings or documents shall be informed to the e-filer at the electronic mail address or through any other electronic mode.",
+      "test": "Noting an objection despatches a notification to the e-filer's registered address and records the despatch time against the objection; an objection with no despatch record is reportable.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-012",
+        "REQ-KL-FIL-009"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-012",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT list an e-filed complaint before the court until every objection noted by the Registry has been cured.",
+      "why": "Kerala posts a matter before the court only after the noted objections are cured. A system that lists an objected complaint puts the Magistrate in front of a file the Registry has not passed, and the hearing is wasted on a defect that should never have reached the bench - which in a summary cheque trial is a whole cycle of the cause list.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.17(3)",
+          "s": "kefr",
+          "e": "rule_17"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.17(4)",
+          "s": "kefr",
+          "e": "rule_17"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "listing - gated on cured objections"
+      },
+      "how": null,
+      "test": "A complaint with an uncured objection cannot be added to a cause list; clearing the last objection makes it listable.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-011"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-013",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "In a court where the District Court Case Management System is in operation, the system MUST direct electronic filing of a complaint to the DCMS portal at filing.keralacourts.in and MUST NOT direct it to the national e-filing portal.",
+      "why": "From the date DCMS is implemented in a court, that portal is the only e-filing route. A complainant sent to the old national portal files into a queue the court no longer works, and the SOP's own remedy - processing legacy filings from the court end - applies only to what was filed before the rollout, not to a fresh cheque complaint filed to the wrong address after it.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.1",
+          "s": "dcms",
+          "e": "para_1"
+        },
+        {
+          "l": "DCMS e-Filing SOP, cl.4",
+          "s": "dcms",
+          "e": "para_4"
+        }
+      ],
+      "binds": {
+        "artifact": "screen",
+        "target": "e-filing entry point for a DCMS court"
+      },
+      "how": "E-filing from the date of implementation of DCMS shall only be through https://filing.keralacourts.in.",
+      "test": "For a court flagged DCMS-enabled, the filing route resolves to the DCMS portal and the national portal is not offered.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-014"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-014",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST communicate acceptance of an e-filing, with the e-filing number, to the advocate or litigant by SMS or email.",
+      "why": "The e-filing number is the complainant's only proof that the court holds the complaint, in the window before it is numbered. Without the acknowledgement the complainant cannot track the case, cannot answer an objection against a reference they do not have, and cannot show, if the limitation point is taken, that the complaint reached the Registry when they say it did.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.11",
+          "s": "dcms",
+          "e": "para_11"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.12",
+          "s": "kefr",
+          "e": "rule_12"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "acceptance of e-filing - acknowledgement to the e-filer"
+      },
+      "how": "Upon acceptance the e-filing number is communicated to the advocate or litigant via SMS and/or email.",
+      "test": "Acceptance despatches an SMS or email carrying the e-filing number and stores the despatch against the filing.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-013"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-015",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT make scrutiny of an e-filed complaint conditional on the arrival of the physical file.",
+      "why": "Kerala's SOP is deliberate on this: scrutiny is done on the e-filed documents without waiting for the physical file, in sequential order and having regard to urgency. A workflow that opens the scrutiny task only after the paper is logged converts every filing into a paper-speed filing, and stacks days on to a cheque complaint that the one-month limitation and the six-month summary trial target cannot afford.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.11",
+          "s": "dcms",
+          "e": "para_11"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "scrutiny - independent of physical file submission"
+      },
+      "how": "Scrutiny shall be done with the e-filed documents without waiting for the submission of the physical files, completed on time, in sequential order and considering the urgency of the matter.",
+      "test": "The scrutiny task for an e-filed complaint becomes actionable on acceptance, with no physical-file precondition, and the scrutiny queue is ordered by receipt with an urgency override.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-016"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-016",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST withhold a hearing date until the physical file has been submitted, except where the Judicial Officer has extended the time for its production.",
+      "why": "This is the outer limit of Kerala's digital filing as it stands, and modelling it wrongly in either direction hurts. A system that assigns a hearing date on e-filing alone produces a listing the court will not honour; one that has no extension path blocks a complainant whom the Judge has expressly allowed more time. The High Court records that it is considering dispensing with the physical file after the Kalpetta pilot, so the condition must be a court-level setting and not an assumption baked into the listing code.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.12",
+          "s": "dcms",
+          "e": "para_12"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "listing - gated on submission of the physical file"
+      },
+      "how": "Except as provided, the court will assign a hearing date only on submission of the physical file; in appropriate cases the Judicial Officer or Judge concerned may extend the time for production.",
+      "test": "No hearing date can be assigned before the physical file is logged, unless an extension order is recorded against the case; the requirement can be switched off for a court where the High Court has dispensed with it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-015",
+        "REQ-KL-FIL-017"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-017",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST capture, with the physical file, the e-filer's undertaking that the files, petitions, documents and vakalaths produced in court are the same as those approved by the Chief Ministerial Officer.",
+      "why": "The undertaking is what makes the two records one case. Without it, nothing detects a physical bundle that differs from the approved electronic set - a substituted annexure, a differently worded complaint, a vakalath that was never scrutinised - and the trial proceeds on a paper file the digital record does not support.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.12",
+          "s": "dcms",
+          "e": "para_12"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "physical file submission - undertaking of identity with the approved e-filing"
+      },
+      "how": "An undertaking that the case files, petitions, documents and vakalaths filed in court are the same as those approved by the CMO.",
+      "test": "Logging a physical file requires the undertaking and stores who gave it and when; a physical file logged without it is reportable.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-016"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-018",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "Where the court fee paid on an e-filed complaint is deficient, the system MUST offer payment of the balance through the balance payment facility rather than returning the filing.",
+      "why": "Kerala's answer to a short-paid fee is to take the balance: the SOP gives the deficit its own payment facility in DCMS. Returning the filing costs the complainant the days between return and re-presentation, and those days are counted against a one-month limitation period. The SOP provides the facility and says the balance may be paid through it; that the Registry is therefore not to return the filing for the shortfall is the reading of it rather than its words.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.8",
+          "s": "dcms",
+          "e": "para_8"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "court fee - payment of a deficit"
+      },
+      "how": "The deficit or balance amount may be paid using the Balance Payment facility in DCMS.",
+      "test": "A complaint with a fee shortfall shows a balance-payment action, and paying the balance clears the deficiency without a new filing or a new filing date.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-001",
+        "REQ-KL-FIL-019"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-019",
+      "category": "FIL",
+      "level": "MAY",
+      "statement": "Where physical court fee or other stamps are unavailable, the system MAY allow the scrutinising officer to accept an undertaking from the e-filer and proceed with registration, with the fee payable afterwards through the balance payment route.",
+      "why": "This is the difference, in a Kerala cheque case, between a complaint registered on the day it was presented and one that waits on a stamp that the treasury has run out of. If the software makes payment an unconditional precondition of registration, the discretion the SOP gives the scrutinising officer cannot be exercised at all, and the filing date slips for a reason that has nothing to do with the complainant.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.8",
+          "s": "dcms",
+          "e": "para_8"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "registration on an undertaking in lieu of unavailable stamps"
+      },
+      "how": "The officer scrutinising the pleadings may accept an undertaking from the e-filer and proceed with case registration; the e-filer shall then pay the fee through the balance or deficit court fee payment option.",
+      "test": "Registration can proceed with an undertaking recorded in place of the stamp, the case carries an outstanding fee flag, and the flag clears only on balance payment.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-018"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-020",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "Where the fee is paid by court fee stamps physically affixed, the system MUST record the cancellation of those stamps and the total stamp value noted on the document.",
+      "why": "Kerala still takes physical stamps on the categories the SOP leaves optional to e-file - exemption petitions, adjournment applications, surety affidavits, process memos - and on those the stamp must be cancelled by punching the insignia, initialled and dated, with the total value noted on top. DCMS dispenses with defacement only for portal-to-portal payment, so a system that assumes the DCMS position everywhere leaves live stamps on the physical file, re-usable and unaccounted.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.29",
+          "s": "crp",
+          "e": "rule_29"
+        },
+        {
+          "l": "DCMS e-Filing SOP, cl.10",
+          "s": "dcms",
+          "e": "para_10"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "physically affixed court fee stamps - cancellation"
+      },
+      "how": "Cancelled with the initials and date of the Presiding Officer or the Chief Ministerial Officer, the total stamp value noted on the top of the document, and the insignia of the State punched out leaving the designated amount untouched.",
+      "test": "A filing recorded as paid by physical stamps requires a cancellation entry naming the officer and the date and the total value; a filing paid through the portal requires none.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-018"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-021",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST require a pleading typed in the local language of the court to be Unicode text at the prescribed size, and MUST NOT accept it as an image or in a legacy non-Unicode font.",
+      "why": "Kerala's e-filing rules name Unicode for local-language typing precisely because a Malayalam pleading in a legacy ASCII-mapped font is unsearchable, unindexable and renders as nonsense on any machine without that font installed. In a cheque case that is the complaint itself: it cannot be found by search, its text cannot be extracted for the cause list, and the copy the accused receives may be unreadable.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.5(2)",
+          "s": "kefr",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "pleading in the local language - Unicode encoding"
+      },
+      "how": "A document to be typed in the local language of the court shall be typed using UNICODE font at 12 point.",
+      "test": "Upload a Malayalam pleading in a legacy non-Unicode font and as a scanned image; both are rejected, and a Unicode Malayalam pleading is accepted and its text is extractable.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-006",
+        "REQ-KL-FIL-022"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-022",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST require every e-filed pleading and supporting document to be an OCR-searchable PDF or PDF/A, non-text documents being scanned at 300 DPI in OCR-searchable mode.",
+      "why": "The cheque, the bank return memo and the demand notice all reach the file as scans. If they go in as flat images, no part of the case record is searchable, the Registry cannot verify the cheque number or the return reason without opening every page, and the High Court's own OCR tool exists precisely because this fails so often. Rule 5(3) states the PDF or PDF/A and OCR obligation for pleadings filed in the High Court; rule 5(5) states the 300 DPI OCR-searchable scan requirement generally for non-text documents enclosed with pleadings, and the DCMS SOP requires all e-filed pleadings and documents to conform to these Rules. Applying the pleading format to a district court cheque complaint is that reading rather than the letter of rule 5(3).",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.5(3)",
+          "s": "kefr",
+          "e": "rule_5"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.5(5)",
+          "s": "kefr",
+          "e": "rule_5"
+        },
+        {
+          "l": "DCMS e-Filing SOP, cl.6",
+          "s": "dcms",
+          "e": "para_6"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filed document - format and resolution"
+      },
+      "how": "PDF or PDF/A, converted into an OCR-searchable document; a non-text document scanned at an image resolution of 300 DPI in OCR-searchable mode.",
+      "test": "Upload a 150 DPI image-only PDF of a cheque; it is rejected with the OCR requirement stated, and a 300 DPI OCR-searchable scan is accepted.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-021",
+        "REQ-KL-EVI-019"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-023",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record which of the permitted authentication modes was used to sign each electronically filed document.",
+      "why": "Kerala allows a descending ladder - digital signature, Aadhaar-based e-signature, email or mobile OTP verification, and failing all three a wet-signed print that is scanned back in. The rule prescribes the ladder but does not in terms require the system to store which rung was used; that follows from the modes not being equivalent in evidential weight. If the record does not say which was used, no one can answer a challenge to the authenticity of a vakalath or an affidavit of evidence months later at trial.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.6",
+          "s": "kefr",
+          "e": "rule_6"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "e-filed document - authentication mode and signatory"
+      },
+      "how": "Digital signature of the advocate or party-in-person; failing that Aadhaar-based electronic signature with OTP; failing that email or mobile number OTP verification; failing all three, a physically signed print scanned and uploaded.",
+      "test": "Every e-filed document stores an authentication mode from the closed set and the identity of the signatory; a document with no mode cannot be submitted.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-024"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-024",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST render the vakalatnama in the prescribed judicial form, with the name or names of the pleader inserted before it is executed and both the date of execution and the date of acceptance recorded.",
+      "why": "A vakalatnama with the advocate's name filled in after execution is not a valid authority in Kerala, and the rule says so twice. In a cheque case the point surfaces when the accused challenges the complainant's power to act through counsel, and an undated or blank-name vakalath taken from a generated template cannot be repaired retrospectively.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.32(1)",
+          "s": "crp",
+          "e": "rule_32"
+        },
+        {
+          "l": "Kerala HC Rules r.19(1)",
+          "s": "khcr",
+          "e": "rule_19"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "vakalatnama - form, named pleader, dates"
+      },
+      "how": "Judicial Form No. 57 in the subordinate courts and Form No. 1 in the High Court, unless the Court otherwise permits; the pleader's name inserted before execution; dated at the time of execution and of acceptance.",
+      "test": "The generated vakalatnama carries the prescribed form reference, refuses to render without a named pleader, and captures execution and acceptance dates separately.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-025",
+        "REQ-KL-FIL-026"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-025",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record the attestation of a vakalatnama by one of the authorities the rules permit, who certifies that it was executed in their presence and subscribes their signature over their name and designation.",
+      "why": "Kerala closes the list of attesting authorities - judicial officers, registrars, the Chief Ministerial Officer, legislators, local authority office-bearers, village officers, gazetted officers, commissioned officers, and an advocate other than the one accepting it. A free-text attestation field lets any signature through, and the defect is found at the moment the accused disputes the complainant's representation, deep into a summary trial.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.32(2)",
+          "s": "crp",
+          "e": "rule_32"
+        },
+        {
+          "l": "Criminal Rules r.32(3)",
+          "s": "crp",
+          "e": "rule_32"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "vakalatnama - attesting authority and certificate"
+      },
+      "how": "Attested by an authority from the list in the rule, certifying due execution in his presence and subscribing his signature over his name and designation; where the executant is in custody, authenticated by the Jailor, Station House Officer or other officer-in-charge; where the pleader accepting it personally knows the executant, he may attest with an endorsement to that effect.",
+      "test": "The attesting authority is chosen from the enumerated list, the certificate text and the designation are captured, and a vakalatnama with no attestation record cannot be filed.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-024"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-026",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "Where the executant of a vakalatnama is illiterate, blind or unacquainted with the language in which it is written, the system MUST capture the attestor's certificate that it was read, translated and explained in their presence to the executant, who appeared to understand it and signed or made a mark before them.",
+      "why": "This is the court-language rule biting on the complainant's own authority to act. A Malayalam-speaking payee handed an English vakalath, or an out-of-state complainant handed a Malayalam one, is exactly the case the rule is written for, and a system with a single attestation checkbox produces a vakalath that is voidable on a point nobody recorded at the counter.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.32(2)",
+          "s": "crp",
+          "e": "rule_32"
+        },
+        {
+          "l": "Kerala HC Rules r.19(2)",
+          "s": "khcr",
+          "e": "rule_19"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "vakalatnama - read, translated and explained certificate"
+      },
+      "how": "The attesting person certifies that the vakalatnama was read, translated and explained in his presence to the executant, that the executant seemed to understand it, and that he made his signature or thumb mark in his presence.",
+      "test": "Marking the executant as illiterate, blind or unacquainted with the document language makes the read-and-explained certificate mandatory before the vakalatnama can be filed.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-025",
+        "REQ-KL-EVI-007"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-027",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST capture, on a pleader's memorandum of appearance, the declaration that he is duly instructed, the number and year of the proceeding, the names of the parties, the name and position of the party he appears for, his roll number and his address.",
+      "why": "The roll number and address were added to this rule by amendment for a reason: they are what ties an appearance to a real enrolled advocate and give the court an address for service. A memorandum generated without them cannot be checked against the Bar Council roll, and every notice the court issues to counsel in the cheque case has nowhere to go.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.31",
+          "s": "crp",
+          "e": "rule_31"
+        },
+        {
+          "l": "Kerala HC Rules r.18",
+          "s": "khcr",
+          "e": "rule_18"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "memorandum of appearance - particulars"
+      },
+      "how": "A declaration that the pleader is duly instructed by or on behalf of the party he claims to represent, the number and year of the proceedings, the names of the parties to the proceedings, the name and position in the proceeding of the party for whom he appears, his roll number and his address.",
+      "test": "The generated memorandum carries all six particulars and cannot be filed with the roll number or address blank.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-TRL-004"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-028",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST require, before recording a new pleader for a party who already has one on record, either the written consent of the pleader on record or the special permission of the court.",
+      "why": "Nothing in a cheque case wastes a hearing more reliably than two advocates each believing they hold the file. Kerala resolves it at the point of entry: consent or leave. A system that lets a fresh vakalath silently displace the one on record leaves notices going to the previous address and the previous advocate unaware that he has been replaced.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.34",
+          "s": "crp",
+          "e": "rule_34"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "change of pleader - consent or leave"
+      },
+      "how": "The written consent of the pleader already on record, or, where he refuses, the special permission of the court.",
+      "test": "Filing a second vakalatnama for a party who has a pleader on record is blocked until either a consent record or a court permission record is attached.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-024"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-029",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record each scrutiny objection as an itemised defect attached to the specific document or requirement it relates to, and MUST NOT permit a filing to be objected to without one.",
+      "why": "The Kerala field note (KL-01) reports that defects are often not marked properly, so the advocate cannot tell what is wrong and has to approach the officer to find out. The rules give no licence for that: the Registry is to note the objections regarding non-compliance with named rules or practice directions. An objection recorded as a bare status, with no defect and no document, is unactionable by the e-filer, and the complaint stalls for a reason that exists nowhere in the record. The obligation is the rule's; the note is what shows where it fails.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.17(1)",
+          "s": "kefr",
+          "e": "rule_17"
+        },
+        {
+          "l": "Criminal Rules r.68",
+          "s": "crp",
+          "e": "rule_68"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "scrutiny objection - itemised defect and the document it attaches to"
+      },
+      "how": "The Registry shall, on scrutiny of the pleadings or documents filed, note the objections regarding the non-compliance with these Rules or Practice Directions or any other law for the time being in force.",
+      "test": "A filing cannot be moved to objected without at least one objection record naming a document and a specific non-compliance; an objection with an empty defect cannot be saved.",
+      "derivedFrom": "practice-note",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-011",
+        "REQ-KL-FIL-030",
+        "REQ-KL-FIL-031"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-030",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST present the scrutiny queue in sequential order of receipt, allow departure from that order only on a recorded ground of urgency, and expose the time each filing has been awaiting scrutiny.",
+      "why": "The SOP requires scrutiny to be completed on time and without delay, in sequential order and having regard to urgency. The Kerala field note (KL-01) reports files being held at this exact step so that the advocate approaches the officer. Whether or not that allegation is made out, a queue with no order, no urgency reason and no visible waiting time makes holding a file indistinguishable from working through a backlog, and neither the District Judge nor the complainant can tell the difference.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.11",
+          "s": "dcms",
+          "e": "para_11"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.17(1)",
+          "s": "kefr",
+          "e": "rule_17"
+        }
+      ],
+      "binds": {
+        "artifact": "screen",
+        "target": "scrutiny queue - order, urgency override and age"
+      },
+      "how": "Scrutiny carried out in sequential order and considering the urgency of the matter, completed on time and without delay.",
+      "test": "The scrutiny queue defaults to receipt order, taking an item out of order requires a recorded urgency ground, and each item shows the elapsed time since acceptance.",
+      "derivedFrom": "practice-note",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-029",
+        "REQ-KL-FIL-015"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-031",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record the identity of the officer who noted each scrutiny objection and of the officer who cleared it.",
+      "why": "The SOP puts the duty on the Chief Ministerial Officer or the designated officer by name, and the Kerala field note (KL-01) records that 'scrutiny officer' is a functional title the rules never use. Attribution is what turns an anonymous registry step into an accountable one: without it there is no way to see that a single desk is holding a set of files, and no way to answer the allegation either.",
+      "authority": [
+        {
+          "l": "DCMS e-Filing SOP, cl.11",
+          "s": "dcms",
+          "e": "para_11"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.17(1)",
+          "s": "kefr",
+          "e": "rule_17"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "scrutiny action - attributed officer"
+      },
+      "how": null,
+      "test": "Every objection and every clearance stores the acting officer, and scrutiny actions can be reported by officer and by elapsed time.",
+      "derivedFrom": "practice-note",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-029",
+        "REQ-KL-FIL-030"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-032",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST raise the fee and batta for the issue of process as a separate charge on each application for process, distinct from the fee paid on the complaint.",
+      "why": "The fee to file and the fee to issue process are two heads in Kerala, and the second recurs every time process reissues to an accused who has not been served: the party applying for process files a batta memo carrying the addressee's particulars together with the fees for that service. The rules do not say in terms that the two heads are held apart, but a ledger that folds process fees into the filing fee cannot show why summons was not issued when the process fee was unpaid, and cannot account for a reissue to a second accused.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.274",
+          "s": "crp",
+          "e": "rule_274"
+        },
+        {
+          "l": "Criminal Rules r.273",
+          "s": "crp",
+          "e": "rule_273"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case fee ledger - process fee head"
+      },
+      "how": "A batta memo containing the name, residence and full address of the persons on whom the process is to be served, together with the fees for such service and the batta, if any, prescribed.",
+      "test": "Issuing process twice against the same accused creates two process fee entries, each tied to its own batta memo and addressee, and neither entry alters the fee recorded on the complaint.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-003",
+        "REQ-KL-FIL-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-FIL-033",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record, against every filed proceeding, which of the two permitted languages it is written in.",
+      "why": "The rule permits two languages, and which one a document is in decides what has to happen next: process leaving a Malayalam court for a court of another official language carries an authorised English translation, and an affidavit or vakalatnama put to a party who does not read its language carries a read-and-explained certificate. The rule prescribes the permitted languages without requiring the choice to be stored; a record that does not store it cannot raise either downstream obligation, and the omission is found when the process comes back unserved or the attestation is challenged.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.27(1)",
+          "s": "crp",
+          "e": "rule_27"
+        },
+        {
+          "l": "Criminal Rules r.14",
+          "s": "crp",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "filed document - language"
+      },
+      "how": null,
+      "test": "Every filed document carries a stored language value from the closed set; issuing that document to a court of a different official language raises the translation requirement from the stored value rather than from a manual choice.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-006",
+        "REQ-KL-SRV-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-SRV-001",
+      "category": "SRV",
+      "level": "SHOULD",
+      "statement": "The system SHOULD record the Chief Ministerial Officer of the court as the signatory of a summons issued to an accused or a witness.",
+      "why": "In Kerala the summons is ordinarily signed by the court's Chief Ministerial Officer, not by the Magistrate. The rule says ordinarily, so the signatory has to be a default the court can depart from rather than a constant. A template that hard-codes the Magistrate's signature block, or an unattributed 'signed by the court', produces process that does not answer the rule, and an accused in a cheque case who does not want to appear will take the point on the first return.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.7(1)",
+          "s": "crp",
+          "e": "rule_7"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "summons - signatory"
+      },
+      "how": "Summonses issued to accused and witnesses shall ordinarily be signed by the Chief Ministerial Officer of the court.",
+      "test": "A generated summons defaults to the Chief Ministerial Officer as signatory and stores the identity of the officer who signed; another signatory can be recorded only as a departure from that default, and the process shows who signed it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-SRV-003",
+      "relatedTo": [
+        "REQ-KL-SRV-002"
+      ]
+    },
+    {
+      "id": "REQ-KL-SRV-002",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST prefix the words 'By order of the Court' to the ministerial officer's signature on a summons.",
+      "why": "The formula is what makes a ministerial officer's signature the court's act rather than his own, and the rule says it shall invariably appear. Its absence is a facial defect on the process, and in a cheque case where the accused is contesting service it hands the defence a clean objection before the merits are reached.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.7(2)",
+          "s": "crp",
+          "e": "rule_7"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "summons - words preceding the ministerial signature"
+      },
+      "how": "The words 'By order of the Court' shall invariably be prefixed to the signature of the ministerial officer.",
+      "test": "The rendered summons carries the exact words immediately above the signature block, and the words cannot be edited out of the template.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-SRV-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-SRV-003",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "Where process is issued in a language other than the official language of the receiving court, the system MUST accompany it with an authorised English translation.",
+      "why": "A Kollam court issuing a Malayalam summons to an accused resident in another state sends it to a court whose official language is not Malayalam. Without the English translation the receiving court cannot serve it, the process comes back unserved after weeks, and the cheque case sits at the service stage while the warrant ladder starts for a reason that was avoidable at issue.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.14",
+          "s": "crp",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "process for a court of a different official language - English translation"
+      },
+      "how": "Such process shall be accompanied by an authorised English translation thereof.",
+      "test": "Issuing process to a court whose official language differs from the language of the process requires an attached English translation and records who authorised it; the issue is blocked without one.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "tightens_hint": "the national requirement that summons be served through the court within whose jurisdiction the person resides",
+      "relatedTo": [
+        "REQ-KL-SRV-004",
+        "REQ-KL-FIL-006"
+      ]
+    },
+    {
+      "id": "REQ-KL-SRV-004",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST require an authorised English translation of the receiving court's report of service or non-service, where that report is neither in English nor in the language of the issuing court.",
+      "why": "The return is the evidence of service, and in a contested cheque case it is the document the Magistrate reads before issuing a warrant or proceeding in absence. A Malayalam issuing court that receives an untranslated report in a third language cannot act on it, and the case adjourns for a translation that should have travelled with the return.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.14",
+          "s": "crp",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "service return - authorised English translation"
+      },
+      "how": "The report from the receiving court shall be accompanied by an authorised English translation, if the report is not in English or in the language of the court which issued the summons.",
+      "test": "A service return recorded in a language that is neither English nor the issuing court's language cannot be accepted without an attached authorised translation.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-SRV-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-SRV-005",
+      "category": "SRV",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT treat electronic service under the Kerala e-filing regime as discharging the mode of service prescribed by the governing Act or Rules; it MUST record electronic service as in addition to it.",
+      "why": "Both sub-rules say the electronic mode is in addition to the prescribed mode of service under the relevant Acts and Rules. A workflow that marks the accused served once the summons is emailed will proceed to a warrant on a service that is not good in law, and the whole ladder from that point - warrant, proclamation, attachment - is liable to be set aside.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.11(1)",
+          "s": "kefr",
+          "e": "rule_11"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.11(2)",
+          "s": "kefr",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "service status - electronic service as an additional mode"
+      },
+      "how": null,
+      "test": "Recording electronic service alone leaves the accused's service status incomplete; the status turns served only when a prescribed mode is also recorded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-SRV-012",
+      "relatedTo": [
+        "REQ-KL-SRV-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-SRV-006",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "Where a police officer is summoned as a witness, the system MUST route the summons through his superior officer.",
+      "why": "A cheque case rarely calls a police witness, but when it does - to prove an address, or a connected complaint - a summons sent to the officer directly is not served in the way the Kerala rule requires, and the department will not release him. The rule also allows a direct postal intimation of the date so the officer knows to expect it, which is what actually secures attendance.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.10(1)",
+          "s": "crp",
+          "e": "rule_10"
+        },
+        {
+          "l": "Criminal Rules r.10(2)",
+          "s": "crp",
+          "e": "rule_10"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "summons to a police officer witness - routing"
+      },
+      "how": "Issued through their superior officers, with the court free to send the witness a direct postal notice of the date of appearance stating that the summons is being sent through proper channel, allowing sufficient time.",
+      "test": "Marking a witness as a police officer changes the addressee of the summons to the superior officer and offers the direct intimation as a second despatch.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-KL-SRV-007",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST resolve the police station within whose notified area of jurisdiction the address for service falls, and MUST name the Station House Officer of that station as the officer to execute the process.",
+      "why": "Kerala police jurisdiction is notified station by station, and the Station House Officer is the designated officer in charge of each. Process directed to the wrong station is returned unexecuted, and in a cheque case that is the difference between an accused appearing on the first date and a warrant issuing against someone who was never reached. The Act names the office rather than the process routing, so this states the consequence rather than the letter.",
+      "authority": [
+        {
+          "l": "Kerala Police Act §5(3)",
+          "s": "kpa",
+          "e": "sec_5"
+        },
+        {
+          "l": "Kerala Police Act §4(n)",
+          "s": "kpa",
+          "e": "sec_4"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "process for execution - police station and Station House Officer"
+      },
+      "how": null,
+      "test": "Two addresses for service falling in different notified station jurisdictions produce different executing stations on the process; an address that resolves to no notified station cannot be issued against, and the executing officer stored is the Station House Officer of the resolved station rather than free text.",
+      "derivedFrom": "act",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-KL-EVI-001",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST render an affidavit in the first person and in consecutively numbered paragraphs, each paragraph confined as nearly as may be to a distinct portion of the subject matter.",
+      "why": "In a Kerala cheque trial the complainant's evidence in chief arrives as an affidavit, and it is cross-examined paragraph by paragraph. An affidavit template that emits unnumbered running prose, or that slips into the third person because it was generated from case data, cannot be put to the deponent paragraph by paragraph and invites an objection to the whole document.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.37",
+          "s": "crp",
+          "e": "rule_37"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "affidavit - structure"
+      },
+      "how": "Drawn up in the first person and divided into paragraphs numbered consecutively, each paragraph confined as nearly as may be to a distinct portion of the subject matter.",
+      "test": "The generated affidavit is in the first person with consecutively numbered paragraphs, and paragraph numbers are stable references usable in a cross-examination note.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-001",
+      "relatedTo": [
+        "REQ-KL-EVI-002",
+        "REQ-KL-EVI-011"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-002",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST capture the deponent's full name, age, description and place of abode on every affidavit, the description including the father's, karanavan's, husband's or mother's name and any further particulars needed to identify the person.",
+      "why": "Kerala names the relations expressly, including the karanavan, because identifying a deponent by name alone is unsafe where names repeat. In a cheque case the affidavit of evidence is the complainant's whole examination in chief; if the deponent cannot be identified from the document, the affidavit is worth nothing when the accused disputes who deposed to it.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.38",
+          "s": "crp",
+          "e": "rule_38"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "affidavit - deponent particulars"
+      },
+      "how": "The full name, age, description and place of abode of the deponent, the description including the father's or karanavan's or husband's or mother's name and such other particulars as may be necessary to identify the person.",
+      "test": "The affidavit cannot be generated without name, age, place of abode and at least one of the named relations; the rendered document shows all of them.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-001",
+      "relatedTo": [
+        "REQ-KL-EVI-001",
+        "REQ-KL-EVI-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-003",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "Where an affidavit runs to more than one page, the system MUST require the deponent's signature on every page.",
+      "why": "A single signature on the last page leaves the earlier pages substitutable, which is why Kerala requires each one signed. An affidavit of evidence in a cheque case runs to several pages of the transaction history, and an unsigned interior page is the first thing the defence looks for when it wants the affidavit excluded.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.38",
+          "s": "crp",
+          "e": "rule_38"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "affidavit - signature on every page"
+      },
+      "how": "Where the affidavit covers more than one page, the deponent shall sign every page.",
+      "test": "A multi-page affidavit uploaded with signatures on only the last page is rejected; the signature count must equal the page count.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-002"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-004",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST require every alteration, erasure or interlineation in an affidavit to be authenticated by the person before whom it is signed, before it is sworn or affirmed, and MUST NOT allow an unauthenticated one to be filed or used without the leave of the court.",
+      "why": "A cheque figure or a date changed by hand on an affidavit, with nothing to show who changed it or when, is precisely the document this rule exists to keep out. If the system accepts an amended affidavit without recording the authentication, the correction looks like a forgery on the face of the record and the complainant's own evidence becomes the weak point in the case.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.39",
+          "s": "crp",
+          "e": "rule_39"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "affidavit - authenticated corrections"
+      },
+      "how": "Alterations, erasures and interlineations authenticated, before the affidavit is sworn or affirmed, by the person before whom it is signed.",
+      "test": "An affidavit recorded as carrying a correction cannot be filed unless the authentication is recorded, or a leave of court order is attached.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-005",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST restrict the person before whom an affidavit is sworn or affirmed to one of the authorities the rules enumerate.",
+      "why": "The list is closed - judicial officers, District or Sub-Registrars, the Chief Ministerial Officer of any civil or criminal court in Kerala, legislators, named local authority office-bearers, gazetted officers, commissioned officers, and advocates. An affidavit of evidence sworn before someone outside it is not an affidavit for these rules at all, and in a summary cheque trial the complainant discovers this only when the document is refused at the point it is tendered.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.40(1)",
+          "s": "crp",
+          "e": "rule_40"
+        },
+        {
+          "l": "Kerala HC Rules r.76",
+          "s": "khcr",
+          "e": "rule_76"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "affidavit - permitted authenticating authority"
+      },
+      "how": "Sworn or affirmed before a judicial officer, a District Registrar or Sub-Registrar, the Chief Ministerial Officer of any civil or criminal court in the State of Kerala, a Member of Parliament or of a State Legislature, the Mayor, Chairman, President, Executive Authority or a Member of a Municipal Corporation, Municipal Council or other local authority in India, a gazetted officer, a Commissioned Officer in the Defence Forces of India, or an advocate.",
+      "test": "The authenticating authority is selected from the enumerated list; a free-text or out-of-list authority cannot be saved against an affidavit.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-006"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-006",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST render, at the foot of every affidavit, a jurat in the prescribed judicial form stating the date on which and the place where it was sworn or affirmed, signed by the authenticating person over his name and designation.",
+      "why": "Without the date and place the affidavit cannot be placed in time, which matters directly in a cheque case where an affidavit sworn before the demand notice was even served would be worthless. Kerala prescribes the form of the jurat, so it is not a free-text block a template may improvise.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.40(2)",
+          "s": "crp",
+          "e": "rule_40"
+        },
+        {
+          "l": "Kerala HC Rules r.77",
+          "s": "khcr",
+          "e": "rule_77"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "affidavit - jurat"
+      },
+      "how": "As in Judicial Form No. 58 in the subordinate courts and Form No. 4 in the High Court: the date on which and the place where the affidavit was made, signed by the person before whom it was sworn or affirmed under his name and designation.",
+      "test": "The rendered affidavit carries the prescribed jurat with date, place, signature, name and designation, and the affidavit record stores each as a field.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-007",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "Where the deponent appears to be illiterate, blind or unacquainted with the language in which the affidavit is written, the system MUST capture the authenticating person's certificate that the affidavit was read, explained and translated to the deponent, who seemed to understand it and signed or made his mark in that person's presence.",
+      "why": "The complainant in a Kerala cheque case may speak only Malayalam while the affidavit of evidence is drafted in English by counsel. The rule turns that gap into a recorded certificate rather than a later allegation that the deponent never knew what he swore to. A system with one generic attestation field cannot produce this certificate, and the point is taken in cross-examination when it can no longer be cured.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.41",
+          "s": "crp",
+          "e": "rule_41"
+        },
+        {
+          "l": "Kerala HC Rules r.78",
+          "s": "khcr",
+          "e": "rule_78"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "affidavit - read, explained and translated certificate"
+      },
+      "how": "Certified by the person authenticating the affidavit that it was read, explained and translated by him or in his presence to the deponent, that the deponent seemed to understand it, and that he made his signature or mark in the presence of the person authenticating it.",
+      "test": "Flagging the deponent as illiterate, blind or unacquainted with the affidavit's language makes the certificate mandatory and prints it on the document.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-FIL-026",
+        "REQ-KL-EVI-015"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-008",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST require every affidavit to express how much of it is a statement of the deponent's knowledge and how much a statement of his belief, and to state the grounds of belief with sufficient particularity.",
+      "why": "A complainant's affidavit that asserts the accused's intention, or the state of the accused's bank account, is stating belief and must say so. In a cheque case where the presumption under NI Act s.139 is being rebutted, an affidavit that blurs knowledge into belief gives the accused an easy line of cross-examination and can cost the complainant the presumption's benefit.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.45",
+          "s": "crp",
+          "e": "rule_45"
+        },
+        {
+          "l": "Kerala HC Rules r.82",
+          "s": "khcr",
+          "e": "rule_82"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "affidavit - separation of knowledge from belief"
+      },
+      "how": "The grounds of belief stated with sufficient particularity to enable the Court to judge whether it would be safe to act upon the deponent's belief; in the High Court, as in Form No. 7.",
+      "test": "The affidavit structure distinguishes statements on knowledge from statements on belief, and a belief statement requires an accompanying ground.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-009",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST mark documents accompanying an affidavit as exhibits in the same manner as exhibits admitted by the court, and MUST attach to each the prescribed certificate signed by the officer before whom the affidavit was taken.",
+      "why": "The cheque, the return memo and the demand notice travel with the complainant's affidavit of evidence. If they are attached as loose annexures with no exhibit mark and no certificate, the court has to re-identify each of them through the witness when it comes to marking, and the summary trial that NI Act s.143 contemplates turns into an ordinary one.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.43",
+          "s": "crp",
+          "e": "rule_43"
+        },
+        {
+          "l": "Kerala HC Rules r.80",
+          "s": "khcr",
+          "e": "rule_80"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "affidavit exhibit - marking and certificate"
+      },
+      "how": "Referred to as exhibits, marked in the same manner as exhibits admitted by the court, and bearing a certificate as in Judicial Form No. 59 in the subordinate courts and Form No. 6 in the High Court, signed by the officer before whom the affidavit is taken.",
+      "test": "Each document attached to an affidavit gets an exhibit mark and a rendered certificate naming the officer; an attachment without both is reportable.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-012"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-010",
+      "category": "EVI",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT allow an affidavit to be used at a hearing unless it has been filed in court and a copy given to the opposite side at least three days before that hearing, save with the leave of the court.",
+      "why": "This is a hard state deadline sitting on top of the national permission to lead evidence on affidavit. A complainant who uploads the affidavit of evidence on the morning of the hearing cannot use it, and the hearing is lost. A system that lets an affidavit be tendered the same day, with no service-on-the-other-side timestamp, will schedule hearings that cannot proceed.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.46",
+          "s": "crp",
+          "e": "rule_46"
+        },
+        {
+          "l": "Kerala HC Rules r.83",
+          "s": "khcr",
+          "e": "rule_83"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "affidavit - three day filing and service window"
+      },
+      "how": "Filed in court and a copy given to the opposite side at least three days before the hearing, unless the court grants leave.",
+      "test": "An affidavit whose filing or service on the opposite party is less than three days before the listed hearing is flagged unusable, and can only be used with a recorded leave order.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-001",
+      "relatedTo": [
+        "REQ-KL-EVI-011"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-011",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record the date on which a copy of each affidavit was given to the opposite party, separately from the date the affidavit was filed in court.",
+      "why": "The rule requires both events - filing in court, and giving a copy to the opposite side - to have happened three days before the hearing, so the usable date is the later of the two; counter-affidavits are keyed to the day the copy was given. The rule does not in terms say the two dates are to be stored separately, but a record that carries only the filing date cannot show whether the accused had the complainant's evidence in time, and every dispute about it becomes oral.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.46",
+          "s": "crp",
+          "e": "rule_46"
+        },
+        {
+          "l": "Criminal Rules r.48",
+          "s": "crp",
+          "e": "rule_48"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "affidavit - date copy given to the opposite party"
+      },
+      "how": null,
+      "test": "The affidavit record holds a filing date and a service-on-opposite-party date as distinct populated fields, and the three-day check uses the later of them.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-010"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-012",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST mark exhibits by the party who filed them, using the prescribed capital letter and a continuing numeral, and MUST run the numerals consecutively across exhibits marked by several accused.",
+      "why": "P, D and C with running numerals is how a Kerala record is read on appeal. A system that marks exhibits by upload order, or restarts numbering per accused where the rule requires exhibits marked by several accused to run consecutively, produces a record in which the judgment's references do not resolve to the documents.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.62(1)",
+          "s": "crp",
+          "e": "rule_62"
+        },
+        {
+          "l": "Criminal Rules r.62(2)",
+          "s": "crp",
+          "e": "rule_62"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "exhibit mark"
+      },
+      "how": "Prosecution exhibits P1, P2, P3; defence exhibits D1, D2, D3; court exhibits C1, C2, C3; exhibits marked by several accused numbered consecutively.",
+      "test": "Mark documents for the complainant, for two separate accused and by the court; the marks take the prescribed letters and the defence numerals run consecutively across both accused rather than restarting at D1.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-009",
+        "REQ-KL-EVI-023"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-013",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record that an interpreter took an oath or made an affirmation before being called upon to interpret, in the form the rules prescribe for an interpreter.",
+      "why": "The interpreter's oath is a separate oath from the witness's, in different words - to well and truly interpret and explain all questions put and evidence given. Kerala's court language is Malayalam, so a bank official or an out-of-state accused giving evidence through an interpreter is ordinary in a cheque case. If the record does not show the interpreter was sworn, the evidence taken through him is open to challenge in its entirety.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.52",
+          "s": "crp",
+          "e": "rule_52"
+        },
+        {
+          "l": "Criminal Rules r.49",
+          "s": "crp",
+          "e": "rule_49"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "interpreter - oath or affirmation record"
+      },
+      "how": "The prescribed form: to well and truly interpret and explain all questions put to and evidence given by witnesses.",
+      "test": "Assigning an interpreter to an examination requires an oath record for that interpreter before evidence can be recorded in the session.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-007",
+      "relatedTo": [
+        "REQ-KL-EVI-014",
+        "REQ-KL-EVI-015",
+        "REQ-KL-EVI-017"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-014",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record that the oath to a witness or interpreter was administered in open court by the Presiding Officer or by a person he has empowered in that behalf, or by the Commissioner where the witness is examined on commission.",
+      "why": "Who administered the oath, and whether it happened in open court, are the facts that make the deposition admissible. A record that simply carries a sworn flag cannot answer a challenge that the oath was administered in chambers or by a clerk with no authority, and in a cheque trial conducted partly over video the question is a live one.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.50",
+          "s": "crp",
+          "e": "rule_50"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "oath - administering officer and setting"
+      },
+      "how": "Administered in open court by the Presiding Officer or by such other person as he has empowered in that behalf, or, where the witness is examined on commission, by the Commissioner.",
+      "test": "Every oath record names the officer who administered it and the authority under which he did so; a sworn flag with no administering officer cannot be saved.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-006",
+      "relatedTo": [
+        "REQ-KL-EVI-013"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-015",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "Where a witness cannot understand the language in which the oath or affirmation is administered, the system MUST record that it was translated by the interpreter, put to the witness, and taken by the witness in a language known to him.",
+      "why": "An oath the witness did not understand binds nobody. In Kerala the oath is put in Malayalam, so a non-Malayalam-speaking accused giving evidence, or a bank witness from outside the state, must be sworn through the interpreter and in his own language. A system that captures a single sworn flag erases the whole event and leaves the deposition's foundation unproved.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.53",
+          "s": "crp",
+          "e": "rule_53"
+        },
+        {
+          "l": "Criminal Rules r.51",
+          "s": "crp",
+          "e": "rule_51"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "oath - language of administration and translation"
+      },
+      "how": "The oath or affirmation is translated by the interpreter and put to the witness, and the witness is allowed to take it in the language known to him.",
+      "test": "Where the witness's language differs from the language of the oath, the oath record captures the translating interpreter and the language in which the oath was actually taken.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-013",
+        "REQ-KL-EVI-007"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-016",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record, in the heading of a deposition, the witness's full name including the family name, the father's, mother's or husband's name, and the age, profession and residence of the witness.",
+      "why": "The deposition heading is how a witness is identified years later on appeal or in a connected case, when the same common name appears on several files. A deposition captured under a display name and a case-party role cannot be tied to a person, and where the witness is a bank officer proving the return memo, the profession and place are the very particulars that establish his competence to prove it.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.56",
+          "s": "crp",
+          "e": "rule_56"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "deposition - heading particulars"
+      },
+      "how": "The full name including the family name of the deponent, his or her father's or mother's or husband's name, and the age, profession and residence of the witness.",
+      "test": "The rendered deposition heading carries all the listed particulars, drawn from stored fields rather than free text.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-017"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-017",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "Where a witness is examined through an interpreter, the system MUST print the interpreter's name in the deposition heading, below the witness's particulars.",
+      "why": "Kerala puts the interpreter on the face of the deposition because the accuracy of the evidence is only as good as the interpretation, and a challenge to the evidence is a challenge to a named person. A deposition that records the interpretation as an internal attribute leaves the appellate court unable to see, from the document, that the evidence was interpreted at all.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.56",
+          "s": "crp",
+          "e": "rule_56"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "deposition - interpreter named in the heading"
+      },
+      "how": "The name of the interpreter, if any, written below the witness's name, age, profession and residence.",
+      "test": "Assigning an interpreter to an examination causes the interpreter's name to appear in the rendered deposition heading below the witness particulars.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-013",
+        "REQ-KL-EVI-016"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-018",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST require a deposition to be read over to the witness and signed in full by him on its last page, and MUST require the Judge to initial every page not recorded in his own hand.",
+      "why": "A cheque trial's cross-examination is typed by a stenographer, so every page is a page not in the Judge's hand. Unless each is initialled and the witness signs the last page after the read-over, there is nothing distinguishing the record from a transcript typed afterwards, and the deposition can be disputed page by page.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.57",
+          "s": "crp",
+          "e": "rule_57"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "deposition - read over, signed and initialled"
+      },
+      "how": "After the deposition has been read over to the witness, the last page is signed in full by him, and the Judge initials every page if the deposition is not recorded in his hand.",
+      "test": "Closing a deposition requires a witness signature on the final page and a judicial initial on every page recorded by a stenographer.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-019"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-019",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST append to every deposition the prescribed certificate, signed by the Judge over his name, stating whether it was taken down by him or before him and whether it was interpreted or read over to the witness and admitted by him to be correct.",
+      "why": "The certificate is where the interpretation and the read-over are proved. Kerala prescribes its words, and the alternatives in it are not decorative - a deposition certified as read over when it was in fact interpreted misdescribes what happened at the hearing, and that is the first thing tested when the accused says the witness never said what the record shows.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.57",
+          "s": "crp",
+          "e": "rule_57"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "deposition - Judge's certificate"
+      },
+      "how": "The certificate in the prescribed words, with the alternatives resolved: taken down by me or before me in open court, interpreted or read over to the witness and admitted by him to be correct, signed by the Judge over his name.",
+      "test": "The rendered certificate resolves each alternative from stored facts rather than printing both, and cannot be produced without the Judge's name.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-018",
+        "REQ-KL-EVI-017"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-020",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "Where a document produced with a pleading is not the original, the system MUST carry the producing advocate's or party's endorsement on the top of its first page stating that it is a certified copy or a photocopy and not the original.",
+      "why": "The cheque and the bank return memo are the case. Kerala requires the party who produces a copy to say on the face of it that it is a copy, and a system that uploads scans with no such endorsement leaves the court unable to tell a scanned original from a scanned photocopy - which is exactly the confusion that lets a disputed cheque be treated as proved.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.5(6)",
+          "s": "kefr",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "e-filed document that is not the original - endorsement"
+      },
+      "how": "Endorsed on the top of the first page by the advocate or party-in-person producing it, that the document is not the original and is only a certified copy or a photocopy.",
+      "test": "Marking an uploaded document as a copy stamps the endorsement on the first page of the stored PDF; a document marked as a copy without the endorsement cannot be filed.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-003",
+      "relatedTo": [
+        "REQ-KL-EVI-021",
+        "REQ-KL-FIL-022"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-021",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "Where the original of an e-filed document is not clearly legible, the system MUST require a typed copy certified by the advocate or party-in-person to be scanned and uploaded alongside it.",
+      "why": "A handwritten cheque, a faint bank stamp on a return memo and a carbon-copy acknowledgement of a demand notice are all routinely illegible once scanned. Kerala's answer is a certified typed copy filed with the original. Without it the Registry cannot read the cheque number or the return reason at scrutiny, and the objection comes back to the complainant days later.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.5(5)",
+          "s": "kefr",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "illegible original - certified typed copy"
+      },
+      "how": "A typed copy of the document, duly certified by the advocate or party-in-person, scanned and uploaded along with the original.",
+      "test": "Flagging an uploaded document as not clearly legible requires a second file recorded as the certified typed copy before the filing can be submitted.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-020"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-022",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record, against every scanned document, the person who electronically filed it as the person responsible for producing the original when the court directs.",
+      "why": "The Kerala rule puts that responsibility on the e-filer by name. When the accused disputes the cheque and the court calls for the original, the case stalls if nobody can say who holds it - and the complainant's advocate, the clerk who uploaded it and the litigant will each point at the others.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.8(1)",
+          "s": "kefr",
+          "e": "rule_8"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.8(3)",
+          "s": "kefr",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "scanned document - person responsible for the original"
+      },
+      "how": null,
+      "test": "Every scanned document stores the e-filer responsible for its original, and a call for production resolves to that person.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-REC-008"
+      ]
+    },
+    {
+      "id": "REQ-KL-EVI-023",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST number material objects in a single continuous Arabic series, whether they are exhibited for the prosecution, the defence or the court.",
+      "why": "The material object series is deliberately not split by party, so that M.O. 3 identifies one thing in the case and not three. A store that numbers material objects inside each party's own sequence produces a record in which a judgment's reference to a material object is ambiguous, and the object cannot be traced through the record on appeal.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.62(3)",
+          "s": "crp",
+          "e": "rule_62"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "material object number"
+      },
+      "how": "All material objects marked in Arabic numbers in continuous series, whether exhibited for the prosecution or the defence or the Court, as M.O. 1, M.O. 2, M.O. 3.",
+      "test": "Material objects produced by the complainant, by the accused and by the court take numbers from one shared counter, and no two objects in the case carry the same number.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-012"
+      ]
+    },
+    {
+      "id": "REQ-KL-TRL-001",
+      "category": "TRL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT schedule or record a judicial act on a holiday unless a case of absolute urgency has been recorded.",
+      "why": "Kerala's rule is that no case shall be heard and no judicial act formally announced or done on a holiday save in a case of absolute urgency. A listing engine that treats a 24x7 court as having no calendar will put a cheque case's evidence or judgment on a gazetted holiday, and the order is open to challenge for a reason that has nothing to do with its merits.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.5(2)",
+          "s": "crp",
+          "e": "rule_5"
+        },
+        {
+          "l": "Criminal Rules r.5(3)",
+          "s": "crp",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "listing - judicial acts on a holiday"
+      },
+      "how": null,
+      "test": "Listing a hearing on a court holiday is blocked unless an absolute-urgency reason is recorded against it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-TRL-002",
+        "REQ-KL-JUR-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-TRL-002",
+      "category": "TRL",
+      "level": "SHOULD",
+      "statement": "The system SHOULD default a court's sitting window to 11:00 to 17:00 with an interval not exceeding one hour.",
+      "why": "The rule says courts shall ordinarily sit in that window, which is a default and not an absolute. A scheduler with no default will spread a cheque case's hearings across hours when nobody is sitting; one that hard-codes the window cannot express the Kollam ON Court, which is designated to run round the clock. It has to be a default that a court record can override.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.5(1)",
+          "s": "crp",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "court - sitting hours and interval"
+      },
+      "how": "Ordinarily from 11.00 a.m. to 5.00 p.m. with an interval not exceeding one hour.",
+      "test": "A newly created court inherits the 11:00 to 17:00 window and the interval cap, and the values can be overridden on the court record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-JUR-003",
+        "REQ-KL-TRL-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-TRL-003",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "Where an accused before a subordinate criminal court has been exempted from personal appearance, the system MUST require the pleader appearing for him to file a vakalatnama in the prescribed form, and MUST NOT accept a memorandum of appearance in its place.",
+      "why": "Exemption from personal appearance is the ordinary course in a Kerala cheque case, and this is the rule that pairs with it: the pleader who appears for an absent accused must hold a vakalath, not merely a memo. A system that offers the memo route to every criminal accused will let a case run to judgment against an accused who never appeared and whose counsel never held a written authority.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.33",
+          "s": "crp",
+          "e": "rule_33"
+        },
+        {
+          "l": "Criminal Rules r.32(1)",
+          "s": "crp",
+          "e": "rule_32"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "appearance for an exempted accused - vakalatnama required"
+      },
+      "how": "A vakalath as prescribed by Rule 32, in Judicial Form No. 57.",
+      "test": "Recording an exemption from personal appearance against an accused makes the memorandum of appearance route unavailable for that accused's pleader.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-TRL-015",
+      "relatedTo": [
+        "REQ-KL-FIL-024",
+        "REQ-KL-TRL-004"
+      ]
+    },
+    {
+      "id": "REQ-KL-TRL-004",
+      "category": "TRL",
+      "level": "MAY",
+      "statement": "In the High Court, an advocate appearing for an accused in a criminal proceeding MAY file a memorandum of appearance instead of a vakalatnama.",
+      "why": "The High Court rules make the memo an alternative on the criminal side, and a great deal of Kerala cheque litigation is at that level in quashing and revision. A system that demands a vakalath from every advocate blocks an appearance the rules expressly allow, and counsel is turned away at the Registry on a requirement that does not apply to him.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.17(1)",
+          "s": "khcr",
+          "e": "rule_17"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "appearance record - vakalatnama or memorandum of appearance"
+      },
+      "how": "A memorandum of appearance containing a declaration that the advocate has been duly instructed to appear by or on behalf of the accused.",
+      "test": "A High Court criminal appearance can be completed on a memorandum of appearance alone, with no vakalatnama demanded; the same route is not offered on the civil side except for the Government and public servants.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-TRL-003",
+        "REQ-KL-TRL-005",
+        "REQ-KL-FIL-027"
+      ]
+    },
+    {
+      "id": "REQ-KL-TRL-005",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record which instrument an advocate's authority to act rests on, as either a vakalatnama or a memorandum of appearance, and MUST NOT default the value.",
+      "why": "The two instruments are not interchangeable across courts: a subordinate court pleader appearing for an exempted accused must hold a vakalath, while a High Court criminal advocate may act on a memorandum. The rules prescribe both instruments without saying the record must name which was used, so a system will happily hold neither. If the appearance record does not name the instrument, the court cannot tell whether counsel is authorised to act at all, and the point is taken when an order is challenged for having been made against a party nobody was authorised to represent.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.17(1)",
+          "s": "khcr",
+          "e": "rule_17"
+        },
+        {
+          "l": "Criminal Rules r.31",
+          "s": "crp",
+          "e": "rule_31"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "appearance record - instrument of authority"
+      },
+      "how": null,
+      "test": "Every appearance stores the instrument it rests on and links to that document; an appearance saved with no instrument is rejected, and the value is never populated by default.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-TRL-004",
+        "REQ-KL-FIL-024"
+      ]
+    },
+    {
+      "id": "REQ-KL-JUR-001",
+      "category": "JUR",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT allocate to the Special Court of Judicial Magistrate of the First Class at Kollam any case other than one under section 138 of the Negotiable Instruments Act.",
+      "why": "The notification establishes that court to try cases under section 138 of the Negotiable Instruments Act. It confers the designation rather than expressly forbidding other work, so the exclusion is the reading of it. A case-allocation rule that treats the court as an ordinary additional JMFC will route unrelated criminal work to it, defeating the point of the designation and diluting the disposal rate the pilot exists to demonstrate.",
+      "authority": [
+        {
+          "l": "G.O. 241/2024 §1",
+          "s": "go241",
+          "e": "sec_1"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "case allocation to the Kollam Special Court"
+      },
+      "how": null,
+      "test": "Attempting to allocate a case of any type other than NI Act s.138 to the Kollam Special Court is refused.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-JUR-002",
+        "REQ-KL-JUR-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-JUR-002",
+      "category": "JUR",
+      "level": "MUST",
+      "statement": "The system MUST hold the Kollam Special Court's Sessions Division and place of sitting as recorded in the notification, and MUST hold the date from which its designation takes effect.",
+      "why": "The notification names the Sessions Division of Kollam, the court and the place of sitting, with effect from 20 November 2024. A system that carries the court but not its effective date will show cheque cases instituted before that date as having been within its designation, and a system that carries no division cannot decide whether a complaint filed elsewhere in the division belongs to it.",
+      "authority": [
+        {
+          "l": "G.O. 241/2024 §1",
+          "s": "go241",
+          "e": "sec_1"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "Kollam Special Court - sessions division, place of sitting, effective date"
+      },
+      "how": null,
+      "test": "The court record carries the sessions division, the place of sitting and the effective date; a case instituted before that date does not resolve to this court.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-JUR-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-JUR-003",
+      "category": "JUR",
+      "level": "MUST",
+      "statement": "The system MUST hold a court's operating hours as data on the court record, so that a court designated to function round the clock is not constrained by the ordinary sitting hours.",
+      "why": "The Kollam court was started as a digital court on a pilot basis as the 24x7 ON Court, against a general rule that courts ordinarily sit from 11.00 a.m. to 5.00 p.m. Neither instrument says operating hours are to be held as court-level data; that is what follows from a designated court departing from the general rule. If the sitting window is a constant in the scheduling code, the one court in Kerala designated for cheque cases cannot list a hearing at the hours it was created to work, and the pilot's central feature is unrepresentable.",
+      "authority": [
+        {
+          "l": "G.O. 241/2024 §1",
+          "s": "go241",
+          "e": "sec_1"
+        },
+        {
+          "l": "Criminal Rules r.5(1)",
+          "s": "crp",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "court - operating hours as court-level configuration"
+      },
+      "how": null,
+      "test": "The Kollam Special Court record carries a round-the-clock operating window, an ordinary JMFC carries the 11:00 to 17:00 default, and the scheduler reads both from the court record.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-TRL-002",
+        "REQ-KL-JUR-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-REC-001",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST maintain the court diary in the prescribed administrative form, with the entries for a day signed by the Presiding Officer on the day to which they relate.",
+      "why": "The diary is signed same-day precisely so it cannot be reconstructed afterwards. A digital diary that lets a Magistrate sign off a week of a cheque case's entries at the end of the month produces a record that is not evidence of what happened on any of those days, and the register the High Court inspects is worthless.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.72(1)",
+          "s": "crp",
+          "e": "rule_72"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "court diary - Administrative Form No. 10"
+      },
+      "how": "Administrative Form No. 10; entries signed by the Presiding Officer on the day to which they relate.",
+      "test": "Diary entries carry the date they relate to and the date they were signed; signing an entry on a later date is flagged.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-REC-002",
+        "REQ-KL-REC-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-REC-002",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST maintain a hearing book in the prescribed administrative form, distinct from the court diary.",
+      "why": "Kerala keeps two records - the diary of the court's day and the hearing book. A system that collapses them into one activity log cannot produce either in the form the rules require, and when a cheque case's history is questioned, neither register exists to answer with.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.72(2)",
+          "s": "crp",
+          "e": "rule_72"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "hearing book - Administrative Form No. 11"
+      },
+      "how": "Administrative Form No. 11.",
+      "test": "A day's sittings produce entries in both registers; the hearing book renders in Administrative Form No. 11 and the diary in Administrative Form No. 10, and neither is produced by relabelling the other's entries.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-REC-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-REC-003",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST maintain a proceedings paper in the prescribed judicial form recording each judicial step in the case, including the reasons for every adjournment, and MUST record that it was initialled by the Judge or Magistrate in open court.",
+      "why": "The rule names the reasons for adjournments first among the steps to be recorded, and in a cheque case the adjournment history is the whole explanation for why a trial the NI Act expects to close in six months has not. A proceedings record that logs 'adjourned' with no reason and no initial cannot answer the delay, and the Kerala field note's picture of files that simply stop moving is invisible in it.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.73(1)",
+          "s": "crp",
+          "e": "rule_73"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "proceedings paper - Judicial Form No. 61"
+      },
+      "how": "Judicial Form No. 61, furnishing full information as to the judicial steps taken - reasons for adjournments, issue of warrants to the accused or witnesses, marking of documents, examination of witnesses, framing of charges, questioning of the accused, hearing arguments and pronouncing judgment or order - initialled by the Judge or Magistrate in open court.",
+      "test": "Every adjournment entry requires a recorded reason, and each proceedings paper entry stores the initialling judicial officer.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-REC-001",
+        "REQ-KL-REC-004"
+      ]
+    },
+    {
+      "id": "REQ-KL-REC-004",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "When the record is sent to a court of appeal or revision, or forwarded on transfer, the system MUST place a typed or neatly written copy of the proceedings paper with the records.",
+      "why": "The appellate court reading a cheque appeal needs the running history of the trial, and the original proceedings paper stays with the trial court. If the transmitted bundle carries only the judgment and the exhibits, the Sessions Court cannot see the adjournment history or when the accused was questioned, and remits the case for a record that should have travelled with it.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.73(2)",
+          "s": "crp",
+          "e": "rule_73"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "transmission of records - copy of the proceedings paper"
+      },
+      "how": "A typed or neatly written copy of the proceedings paper placed with the records.",
+      "test": "Generating a record bundle for appeal, revision or transfer includes a proceedings paper copy; a bundle without one is blocked.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-REC-003"
+      ]
+    },
+    {
+      "id": "REQ-KL-REC-005",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST store electronically filed pleadings and documents on a server under the control and supervision of the courts.",
+      "why": "The rule places custody with the courts, not with a filing vendor or a general-purpose cloud account. A cheque case file holds the cheque image, the parties' addresses and their bank details, and if it sits on infrastructure the court does not control, the court cannot answer for its integrity or for who has read it.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.15(1)",
+          "s": "kefr",
+          "e": "rule_15"
+        },
+        {
+          "l": "Kerala E-Filing Rules r.15(3)",
+          "s": "kefr",
+          "e": "rule_15"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "e-filing store - custody and control"
+      },
+      "how": "An exclusive server under the control and supervision of the courts.",
+      "test": "The document store's ownership and access policy resolve to the court, and access to a case's documents is governed by the rules rather than by the hosting provider.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-REC-006",
+        "REQ-KL-REC-007"
+      ]
+    },
+    {
+      "id": "REQ-KL-REC-006",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST label and encrypt each electronically filed case separately, so that it can be identified and retrieved on its own.",
+      "why": "Per-case encryption is what stops a single credential from opening every cheque file in the district. It is also what makes retrieval possible when the accused applies for a copy of the record: a store that is encrypted as one volume cannot release one case without exposing the rest.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.15(2)",
+          "s": "kefr",
+          "e": "rule_15"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "e-filed case - separate labelling and encryption"
+      },
+      "how": "The Registry shall separately label and encrypt each Action for facilitating identification and retrieval.",
+      "test": "Each case's stored documents carry a case-level label and are encrypted with a key scoped to that case; retrieval of one case does not require decrypting another.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-REC-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-REC-007",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST preserve a backup copy of every electronically filed case.",
+      "why": "Where the electronic file is the file, its loss is the loss of the case. In a cheque matter the scanned cheque and the bank memo may be the only images of documents whose originals are with a party, and a court that cannot restore them cannot try the case at all.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.15(4)",
+          "s": "kefr",
+          "e": "rule_15"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "e-filing store - backup"
+      },
+      "how": null,
+      "test": "A backup of every case's documents exists, is restorable, and its currency is reportable.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-REC-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-REC-008",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST retain the signed vakalatnama, notarised or attested affidavits, and any original document whose authenticity is disputed, for at least three years after the final disposal of the case including any appeal.",
+      "why": "The retention clock runs from the end of the appeals, not from the trial court's judgment, and in a cheque case the appeal and a further revision can add years. A retention policy keyed to the date of judgment will destroy the disputed cheque and the affidavit of evidence while the case is still alive on the criminal side of the High Court.",
+      "authority": [
+        {
+          "l": "Kerala E-Filing Rules r.8(2)",
+          "s": "kefr",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document retention - clock from final disposal including appeals"
+      },
+      "how": "Preserved at least for three years after the final disposal of the Action including appeals, if any.",
+      "test": "A case with a pending appeal shows no document as eligible for destruction; the three-year clock starts only when the last appeal is disposed of.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-EVI-022"
+      ]
+    },
+    {
+      "id": "REQ-KL-CPY-001",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST capture, on an application for a copy, the applicant's name, his position in the proceedings if any, the name of his pleader if any, and a description of the proceeding or document of which a copy is required.",
+      "why": "A copy application that does not describe the document cannot be worked, and Kerala returns it. In a cheque case the accused typically wants the complaint, the affidavit of evidence or the deposition of a particular witness, and an application that just says 'case papers' comes back to the applicant after days in the copy queue.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.222",
+          "s": "crp",
+          "e": "rule_222"
+        },
+        {
+          "l": "Kerala HC Rules r.128(1)",
+          "s": "khcr",
+          "e": "rule_128"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "copy application - particulars"
+      },
+      "how": "Presented by the applicant or his pleader, setting out the name of the applicant, his position in the proceedings, the name of his pleader and a description of the proceeding or document of which a copy is required.",
+      "test": "The copy application form requires each particular and identifies the target document by reference rather than free text.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-CPY-002"
+      ]
+    },
+    {
+      "id": "REQ-KL-CPY-002",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST return a defective copy application for representation after rectification within a period not exceeding seven days.",
+      "why": "Kerala caps the time at seven days, and the cap is what stops a copy application from being held indefinitely at the copying section. A return with no deadline, or with a deadline the office sets at will, reproduces on the copy side the file-holding the Kerala field note reports at scrutiny, and the accused's appeal time runs while he waits for the certified judgment.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.223",
+          "s": "crp",
+          "e": "rule_223"
+        },
+        {
+          "l": "Criminal Rules r.228",
+          "s": "crp",
+          "e": "rule_228"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "returned copy application - representation deadline"
+      },
+      "how": "Returned for being represented after rectifying the defects within a period not exceeding seven days.",
+      "test": "A returned copy application carries a representation deadline that cannot be set beyond seven days from the return.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-CPY-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-CPY-003",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST require an application for an urgent copy to be a separate application setting forth the grounds of urgency.",
+      "why": "Urgency in a cheque case is usually the appeal period running against a convicted accused, and Kerala makes him say so in a separate application. A single application form with an urgency toggle lets every applicant claim priority, and the copying section loses the ordering the rules give it.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.224",
+          "s": "crp",
+          "e": "rule_224"
+        },
+        {
+          "l": "Criminal Rules r.232",
+          "s": "crp",
+          "e": "rule_232"
+        }
+      ],
+      "binds": {
+        "artifact": "screen",
+        "target": "urgent copy application - separate application and grounds"
+      },
+      "how": "By a separate urgent application setting forth the grounds of urgency; copies are otherwise prepared in the serial order of application.",
+      "test": "An urgent copy is applied for on its own application that cannot be submitted without stated grounds of urgency.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-CPY-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-CPY-004",
+      "category": "CPY",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT issue a copy of any proceeding or document other than a judgment to a person who is a stranger to the proceeding, except on an order of the court made on a duly verified petition setting forth the purpose for which the copy is required.",
+      "why": "A cheque case file carries the parties' bank particulars, addresses and the cheque image itself. Kerala opens judgments to anyone and everything else only by judicial order on a verified petition. A copy service that treats the whole record as public will release a scanned cheque, complete with account number and signature, to whoever asks for it.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.226",
+          "s": "crp",
+          "e": "rule_226"
+        },
+        {
+          "l": "Kerala HC Rules r.129",
+          "s": "khcr",
+          "e": "rule_129"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "copies to a stranger to the proceeding"
+      },
+      "how": "Allowed only by order of the court obtained on a petition duly verified setting forth the purpose for which the copy is required; judgments are excepted.",
+      "test": "A non-party can obtain a judgment; any other document requires a recorded court order made on a verified petition stating the purpose.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-CPY-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-CPY-005",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST have every copy furnished by the court certified to be a true copy by the Head Clerk or the officer appointed for the purpose, and sealed with the seal of the court.",
+      "why": "A certified copy of the judgment is what an appeal in a cheque case must be accompanied by, and an uncertified or unsealed print is not one. If the copy the system issues carries no certifying officer and no seal, the appellate registry returns the appeal and the appellant loses the days it takes to get a proper copy.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.239",
+          "s": "crp",
+          "e": "rule_239"
+        },
+        {
+          "l": "Kerala HC Rules r.143",
+          "s": "khcr",
+          "e": "rule_143"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "certified copy - certification and seal"
+      },
+      "how": "Certified to be a true copy by the Head Clerk or officer appointed for the purpose and sealed with the seal of the court.",
+      "test": "Every issued copy names the certifying officer and bears the court seal; a copy issued without either is not producible as a certified copy.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-CPY-006",
+        "REQ-KL-APL-002"
+      ]
+    },
+    {
+      "id": "REQ-KL-CPY-006",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST endorse on every copy the particulars the rules enumerate, including the dates on which stamp papers were called for and produced, the date the copy was made ready, the date notified for its receipt and the date of delivery.",
+      "why": "These dates are how the time taken for obtaining a copy is excluded when limitation for an appeal is computed. A certified copy of a cheque conviction that shows only the date of delivery leaves the appellant unable to prove the exclusion, and an appeal that was in time is dismissed as barred.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.240",
+          "s": "crp",
+          "e": "rule_240"
+        },
+        {
+          "l": "Kerala HC Rules r.144",
+          "s": "khcr",
+          "e": "rule_144"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "certified copy - endorsement particulars"
+      },
+      "how": "Court, year and number of the case, applicant, number and date of application, dates of calling for and producing stamp papers and additional stamp papers, date the copy was made ready, date notified for appearance to receive it, and date of delivery, initialled by the Head Clerk or officer appointed.",
+      "test": "The issued copy's endorsement carries every enumerated particular from stored fields, and the appeal limitation calculation can consume them.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-CPY-005",
+        "REQ-KL-CPY-007"
+      ]
+    },
+    {
+      "id": "REQ-KL-CPY-007",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST fix and notify a date for the applicant to receive a copy, and where the copy is not ready on that date MUST fix and notify another on or before the date originally fixed.",
+      "why": "The applicant is expected to attend on the notified date, and Kerala requires the court to move the date in advance rather than leave him to discover on arrival that the copy is not ready. A copy workflow with no notified date, or one that re-notifies after the date has passed, wastes the applicant's attendance and stretches the period he can claim to exclude from his appeal time.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.241",
+          "s": "crp",
+          "e": "rule_241"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "certified copy - notified delivery date"
+      },
+      "how": "The Head Clerk fixes a date for the appearance of the applicant to receive the copy and notifies it on the notice board of the court or his section; if the copy is not ready, he fixes and notifies another day on or before the date originally fixed.",
+      "test": "Every copy application carries a notified delivery date; re-notification is only permitted on or before the current date, and each notification is stored.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-CPY-006"
+      ]
+    },
+    {
+      "id": "REQ-KL-CPY-008",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The High Court copy workflow MUST refuse a copy of a document forming part of a subordinate court's record except on the order of the Deputy Registrar, obtained on a duly verified petition stating why the copy was not obtained from the lower court.",
+      "why": "A quashing or revision petitioner in a cheque case will ask the High Court for copies of the trial court's papers because it is quicker. Kerala requires him to explain why he did not go to the court that holds them. A copy service that supplies them freely pulls the subordinate court's record into the High Court copy queue and loses the endorsement history that the trial court's own copy would have carried.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.130",
+          "s": "khcr",
+          "e": "rule_130"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "High Court copies of subordinate court documents"
+      },
+      "how": "Granted only on the orders of the Deputy Registrar obtained on a duly verified petition setting forth the necessity for the copy and the reason why it was not obtained from the lower court.",
+      "test": "A copy request against a subordinate court document filed in the High Court requires a recorded Deputy Registrar order and a petition stating the reason.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-CPY-004"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-001",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST head a memorandum of criminal appeal or a revision petition with a cause title setting out the provision of law under which it is preferred, the name of the court, the names of the appellants and respondents, and the full cause title of the case in the lower court.",
+      "why": "Without the lower court cause title the appellate registry cannot tie the appeal to the trial record it has to call for, and a cheque appeal sits unnumbered while the office writes to the trial court to identify the case. Naming the provision matters too: an appeal filed under the wrong provision is returned rather than converted.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.100(1)",
+          "s": "crp",
+          "e": "rule_100"
+        },
+        {
+          "l": "Criminal Rules r.100(3)",
+          "s": "crp",
+          "e": "rule_100"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "memorandum of appeal or revision - cause title"
+      },
+      "how": "A cause title setting out the provisions of law under which it is preferred, the name of the Court, the names of the appellants and respondents in the Court of appeal, and the full cause title of the case or matter in the lower Court or Courts; the same applies so far as may be to revision petitions.",
+      "test": "The generated memorandum carries the provision of law, the court, both sets of party names and the full lower court cause title, drawn from the linked trial case record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-002"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-002",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST require a memorandum of appeal or a revision petition to be accompanied by a certified copy of the judgment or order appealed against or sought to be revised.",
+      "why": "An appeal against a s.138 conviction cannot be numbered without the certified copy, and obtaining it is itself a queue. A system that accepts an appeal on an uploaded uncertified print gives the appellant a false filing, and the return arrives after the thirty days for appealing have run.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.102",
+          "s": "crp",
+          "e": "rule_102"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "appeal or revision - certified copy enclosure"
+      },
+      "how": null,
+      "test": "An appeal or revision cannot be submitted without a document recorded as a certified copy of the impugned judgment or order.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "tightens_hint": "the national right of an accused convicted under NI Act s.138 to appeal, and the conditions on which an appeal is entertained",
+      "relatedTo": [
+        "REQ-KL-APL-003",
+        "REQ-KL-CPY-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-003",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST require a memorandum of appeal or a revision petition, where a pleader is engaged, to be accompanied by a duly signed vakalatnama or memorandum of appearance.",
+      "why": "The appellate court will not act on a memorandum filed by counsel with no authority on record. In a cheque appeal filed at the end of the thirty days, a missing vakalath is a defect that sends the whole appeal back, and the delay petition it then needs is a further hurdle the appellant did not have to face.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.102",
+          "s": "crp",
+          "e": "rule_102"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "appeal or revision - authority of the pleader"
+      },
+      "how": null,
+      "test": "Where a pleader is named on an appeal or revision, submission requires an attached signed vakalatnama or memorandum of appearance.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-002",
+        "REQ-KL-FIL-024"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-004",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "Where an appeal or revision petition is presented after the prescribed period of limitation, the system MUST require a petition to excuse the delay, supported by an affidavit explaining the circumstances, to be filed along with it.",
+      "why": "Kerala requires the delay petition to travel with the appeal, not to follow it. An appellate registry receiving a late cheque appeal on its own will return it, and by the time the delay petition is drafted the appellant has added further delay to the delay he has to explain.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.103",
+          "s": "crp",
+          "e": "rule_103"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "out of time appeal or revision - delay petition"
+      },
+      "how": "A petition to excuse the delay supported by an affidavit explaining the circumstances of the delay, filed along with the appeal or revision petition.",
+      "test": "Where the computed presentation date is past the limitation period, submission requires an attached delay petition and a supporting affidavit.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-005"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-005",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST require a petition or appeal re-presented after the time allowed on its return to be accompanied by a petition to excuse the delay, supported by an affidavit explaining it.",
+      "why": "The return of a defective appeal starts its own clock, and Kerala treats a late re-presentation as a fresh delay to be excused. A system that records the return without the allowed time, or that accepts a re-presentation silently whenever it arrives, hides a defect that the registry will raise at scrutiny and that the appellant can no longer explain from memory.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.105",
+          "s": "crp",
+          "e": "rule_105"
+        },
+        {
+          "l": "Criminal Rules r.104",
+          "s": "crp",
+          "e": "rule_104"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "late re-presentation - delay petition"
+      },
+      "how": "A petition to excuse the delay supported by an affidavit explaining the delay, filed with the re-presentation.",
+      "test": "A re-presentation after the recorded representation deadline requires an attached delay petition and affidavit before it can be accepted.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-004",
+        "REQ-KL-FIL-010"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-006",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "Where a criminal appeal or revision is remanded, re-admitted or transferred from one court to another, the system MUST compute its period of pendency from the date of its original institution.",
+      "why": "Kerala fixes the date so that pendency cannot be reset by a procedural event. A system that restarts the clock on transfer will report a cheque appeal that has been alive for three years as newly instituted, and the delay disappears from every statement the court sends up.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.140",
+          "s": "crp",
+          "e": "rule_140"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "pendency computation on remand, re-admission or transfer"
+      },
+      "how": "The date for the purpose of calculating the period of pendency shall be the date of original institution.",
+      "test": "Remand, re-admission or transfer of an appeal leaves its pendency computed from the original institution date, and the age reported does not fall.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-KL-APL-007",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "Where no period of limitation is prescribed by any other law, the system MUST require a revision petition to the High Court to be presented within ninety days of the order complained of.",
+      "why": "This is the High Court's residual rule, and it is what applies to the interlocutory orders in a cheque case for which no other period is fixed. A system with no default period will let a revision be filed years after the order and numbered without objection, and the point surfaces only when the respondent takes it at admission.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.44",
+          "s": "khcr",
+          "e": "rule_44"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "revision petition - residual ninety day period"
+      },
+      "how": "Ninety days of the order complained of, the provisions of sections 5 and 12 of the Limitation Act, 1963 applying.",
+      "test": "A revision petition against an order for which no other law prescribes a period is flagged out of time beyond ninety days, computed with the benefit of sections 5 and 12 of the Limitation Act.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-004",
+        "REQ-KL-LIM-004"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-008",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST assemble, with a revision petition to the High Court, the full set of enclosures the rules require, including certified copies of the order sought to be revised and of the judgments below, an additional typed set, an authenticated copy for each respondent, two further copies for the court, and the prescribed service fees.",
+      "why": "A revision against a s.138 conviction is returned for any one of these being short, and the enclosure list is long enough that it is routinely got wrong. A filing screen that checks only for the impugned order lets an incomplete revision through, and the Registrar's return costs the petitioner the fifteen days he then has to re-present within.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.45",
+          "s": "khcr",
+          "e": "rule_45"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "revision petition - enclosure set"
+      },
+      "how": "Certified copy of the order or decree sought to be revised, certified copy of the judgment on which it is based, certified copy of the judgment or order of the court of first instance, one additional typewritten or printed set of those judgments and orders, as many authenticated copies of the revision petition as there are respondents, two additional copies for the use of the court, and the prescribed fees for service of notice.",
+      "test": "The revision filing checklist enumerates every item, scales the respondent copies with the number of respondents, and blocks submission until each is attached.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-009",
+        "REQ-KL-APL-010"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-009",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST require a petition to quash filed under the High Court's inherent jurisdiction to be accompanied by a copy of the proceeding it is directed against, certified as true by the petitioner's advocate or by the petitioner appearing in person.",
+      "why": "A large share of Kerala cheque litigation is the petition to quash the complaint, and the rule expressly counts a complaint as a proceeding for this purpose. Without the certified copy of the complaint the High Court cannot see what it is being asked to quash, and the petition is returned at the Registrar's stage before any judge reads it.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules rr.45 and 45A",
+          "s": "khcr",
+          "e": "rule_45"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "quashing petition - certified copy of the complaint"
+      },
+      "how": "A copy of the proceeding against which the petition is directed, certified as true by the advocate of the petitioner or by the petitioner when the petition is filed in person; proceeding includes a complaint.",
+      "test": "A quashing petition against a s.138 complaint cannot be submitted without an attached copy of the complaint recorded as certified true by the advocate or the party in person.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-008"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-010",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST record, on the Registrar's return of an insufficiently stamped or defective presentation, a re-presentation period that does not exceed fifteen days.",
+      "why": "Fifteen days is the outer limit the Registrar may allow, and a return that names no period leaves the petitioner guessing while the period runs. In a cheque revision that has already been filed near the end of its limitation, a re-presentation a day beyond the allowed time turns a curable defect into a delay that has to be excused on affidavit.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.15(2)",
+          "s": "khcr",
+          "e": "rule_15"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "Registrar's return - re-presentation period"
+      },
+      "how": "To be re-presented within a period not exceeding 15 days after supplying the deficiency, curing the defect or making the amendment.",
+      "test": "A Registrar's return records a re-presentation deadline that cannot be set more than fifteen days out, and a re-presentation after it is flagged for a delay petition.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-005",
+        "REQ-KL-LIM-004"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-011",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST record that a proceeding presented to the High Court was presented in person by the party, his advocate or the advocate's registered clerk, and MUST NOT accept one received by post or telegram unless the court has otherwise ordered.",
+      "why": "Kerala's High Court rules exclude postal presentation outright. A revision or quashing petition in a cheque case that arrives by post is not presented at all, and if the software records it as filed, the petitioner is relying on a date the Registry will not accept when the objection is finally raised.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.32",
+          "s": "khcr",
+          "e": "rule_32"
+        },
+        {
+          "l": "Kerala HC Rules r.33",
+          "s": "khcr",
+          "e": "rule_33"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "High Court presentation - presenter and mode"
+      },
+      "how": "Presented in person by the party, his advocate or the advocate's registered clerk.",
+      "test": "Every High Court presentation names the presenter and their capacity from the permitted set; a postal or telegraphic receipt cannot be recorded as a presentation without a recorded court order.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-012"
+      ]
+    },
+    {
+      "id": "REQ-KL-APL-012",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST return for rectification any paper presented to the High Court that is couched in improper language, illegible or unnecessarily prolix, treating a paper written in pencil as illegible unless it is an original received by the party.",
+      "why": "The rule gives the Registry an express ground of return that has nothing to do with the merits, and it is used. A quashing petition in a cheque case drafted in intemperate terms about the complainant, or a scanned pencil annexure, will come back, and a system that has no way to record this ground of return will log it as an unexplained delay.",
+      "authority": [
+        {
+          "l": "Kerala HC Rules r.50",
+          "s": "khcr",
+          "e": "rule_50"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "High Court scrutiny - return for improper language or illegibility"
+      },
+      "how": "Papers written in pencil are deemed illegible unless they are the originals received by the party.",
+      "test": "Improper language, illegibility and prolixity are available as recorded grounds of return, and a returned paper carries the ground it was returned on.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-APL-011",
+        "REQ-KL-FIL-006"
+      ]
+    },
+    {
+      "id": "REQ-KL-SEN-001",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST direct a warrant for the levy of a fine by attachment and sale to a Police Officer, in the form the Code prescribes.",
+      "why": "The fine and the compensation in a cheque conviction are recovered on this warrant, and it must be directed to a police officer in the prescribed form. A warrant generated to the court's own process server, or on a locally drafted form, will not be executed, and the complainant who has waited through the trial recovers nothing.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.190(1)",
+          "s": "crp",
+          "e": "rule_190"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "warrant for levy of fine - addressee and form"
+      },
+      "how": "Directed to a Police Officer and in Form No. 43 of Schedule II to the Code.",
+      "test": "The generated levy warrant names a police officer as the executing authority and cites the prescribed form.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-SEN-002"
+      ]
+    },
+    {
+      "id": "REQ-KL-SEN-002",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST record, on a warrant for the levy of a fine, the time limit specified by the issuing authority for the sale of the attached property and for the return of the warrant.",
+      "why": "Without a specified return date the warrant has no deadline and nothing brings it back to the court. In a cheque case the compensation cannot be paid out until the levy is accounted for, so an open-ended warrant leaves the complainant's money in limbo and the case shown as disposed while the recovery is unresolved.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.190(2)",
+          "s": "crp",
+          "e": "rule_190"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "levy warrant - time limit for sale and return"
+      },
+      "how": null,
+      "test": "A levy warrant cannot be issued without a specified sale and return date, and an overdue warrant is reportable.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-SEN-001"
+      ]
+    },
+    {
+      "id": "REQ-KL-SEN-003",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "Where a claim is preferred to property attached under a levy warrant within one month of the attachment, the system MUST record a summary enquiry and a decision with reasons, communicated forthwith to the executing police officer.",
+      "why": "A third party claiming the attached property stops the sale, and Kerala gives the claim a one-month window, a summary enquiry and a final reasoned decision. A system with no claim workflow leaves the police officer selling property the court has been asked to release, and the reversal of that sale is a far worse problem than the delay of deciding the claim.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.190(9)",
+          "s": "crp",
+          "e": "rule_190"
+        },
+        {
+          "l": "Criminal Rules r.190(12)",
+          "s": "crp",
+          "e": "rule_190"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "claim to attached property - summary enquiry and decision"
+      },
+      "how": "Preferred within one month of the date of attachment, enquired into summarily, decided with reasons recorded, the decision being final and communicated forthwith to the police officer executing the warrant.",
+      "test": "A claim recorded within one month of attachment blocks the sale, requires a reasoned decision, and on decision despatches it to the executing officer.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-SEN-002"
+      ]
+    },
+    {
+      "id": "REQ-KL-SEN-004",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST maintain the account of fines imposed, levied and refunded in the prescribed administrative form.",
+      "why": "The fine register is the court's cash record, and in a cheque case the fine and the compensation out of it are the substance of the relief. If the system tracks a sentence but not the register, nobody can reconcile what was imposed against what was collected, and a fine recorded as paid in the case file may never have reached the treasury.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.191",
+          "s": "crp",
+          "e": "rule_191"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "register of fines - Administrative Form No. 20"
+      },
+      "how": "Administrative Form No. 20.",
+      "test": "The fine register is generable in the prescribed form and reconciles to the sentence and receipt records of each case.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-SEN-007"
+      ]
+    },
+    {
+      "id": "REQ-KL-SEN-006",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST include, in an order for payment of compensation to the treasury, a certificate in one of the three forms the rules prescribe as to the appeal and revision position.",
+      "why": "The Treasury Officer pays on the certificate, not on the judgment. If the payment order carries no certificate, or one that does not match the actual position - unappealable, confirmed on appeal, or the appeal time expired with no appeal - the treasury refuses payment and the complainant makes a second round of the court for a document that should have been right the first time.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.200(1)",
+          "s": "crp",
+          "e": "rule_200"
+        },
+        {
+          "l": "Criminal Rules r.201",
+          "s": "crp",
+          "e": "rule_201"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "compensation payment order - certificate"
+      },
+      "how": "One of: the sentence and award are not subject to appeal or have been confirmed on appeal and no revisional order modifying or reversing the compensation has been received; or the payment order conforms to a modification made in appeal or revision; or the appeal time has expired, no appeal has been preferred and no revisional order has been received.",
+      "test": "The generated payment order carries exactly one of the three certificates, selected from the case's recorded appeal and revision history rather than chosen by hand.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-KL-SEN-007",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST hold compensation awarded out of a fine as an amount retained in deposit in the treasury, payable to the party only against a payment order issued by the court, and MUST NOT show it as paid to the complainant before that.",
+      "why": "Money awarded, money in the treasury and money in the complainant's hands are three different states, and Kerala keeps them distinct through the fine register and the payment order. A case view that collapses them will tell a cheque complainant his compensation has been paid when it is sitting in deposit, and he will not apply for the payment order that is the only way to get it.",
+      "authority": [
+        {
+          "l": "Criminal Rules r.203(2)",
+          "s": "crp",
+          "e": "rule_203"
+        },
+        {
+          "l": "Criminal Rules r.203(3)",
+          "s": "crp",
+          "e": "rule_203"
+        },
+        {
+          "l": "Criminal Rules r.202",
+          "s": "crp",
+          "e": "rule_202"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "compensation - awarded, in deposit and paid as distinct states"
+      },
+      "how": "Retained in deposit in the treasury subject to the order of the court awarding compensation or of the court of appeal or revision, and paid to the party on production before the Treasury Officer of a payment order issued under Rule 200.",
+      "test": "The compensation record moves through awarded, in deposit and paid as separate states, and the paid state can only be reached from a recorded payment order.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-KL-SEN-006"
+      ]
+    }
+  ]
+}

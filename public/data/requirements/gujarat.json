@@ -1,0 +1,3626 @@
+{
+  "scope": "gujarat",
+  "title": "Normative requirements derived from Gujarat's own instruments",
+  "note": "Holds only what Gujarat's own instruments require of a system running a cheque case, or where a Gujarat instrument tightens a national obligation. Nothing here restates central law. The SARAS Courts Rules, 2026 are the deepest source, because they are written for cheque cases alone: the electronic record on the designated portal is the primary and authoritative judicial record, the original cheque is retained through trial and returned only on an endorsement, chief examination is tendered by e-filed affidavit while cross-examination stays physical, and the whole regime sits on the 2024 e-Filing SOP and the 2025 video conferencing rules. Where a requirement tightens a national one, tightens is left null and tightens_hint describes the national obligation for resolution once the national file is merged. Two caveats on sources: the Criminal Manual, 1977 AKN is OCR'd from a scan of the first edition and is rough in places, so requirements drawn from it stay with passages that read cleanly, and its process-fee and search-fee figures are the 1977 table and are flagged as such; and the SARAS press release is a record of two notifications that are not themselves in the corpus, so requirements resting on it are marked derivedFrom practice-note.",
+  "requirements": [
+    {
+      "id": "REQ-GJ-JUR-001",
+      "category": "JUR",
+      "level": "MUST",
+      "statement": "The system MUST institute a cheque case e-filed by a bank or an NBFC in the SARAS N.I. Court establishment under the case type 'eCriminal Case'.",
+      "why": "The SARAS establishment is a sub-establishment of the C.J.M. courts of Ahmedabad City and its docket is identified by that exact case-type string. A system that files the same complaint as an ordinary 'Criminal Case' puts it on the conventional C.J.M. board, where it is neither allocated to a nominated remote-adjudication presiding officer nor picked up by the SARAS cause list, and the filer discovers the misrouting only when the matter fails to appear.",
+      "authority": [
+        {
+          "l": "SARAS press release, para 3",
+          "s": "sarpr",
+          "e": "para_3"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.1(c)",
+          "s": "saras",
+          "e": "rule_1"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - case type of a SARAS N.I. cheque case"
+      },
+      "how": "The case type is recorded as the literal string 'eCriminal Case'.",
+      "test": "Case instituted through the SARAS route carries case type 'eCriminal Case'; a case with any other case type is not allocated to a SARAS presiding officer.",
+      "derivedFrom": "practice-note",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-JUR-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-JUR-002",
+      "category": "JUR",
+      "level": "MUST",
+      "statement": "The system MUST record the court that has jurisdiction over a SARAS cheque case separately from the place at which the presiding officer is posted.",
+      "why": "SARAS cases belong to the jurisdiction of the C.J.M. courts of Ahmedabad City, but the nominated presiding officers sit at Ahmedabad, Anand, Narmada and Gir Somnath and their place of work does not change. A system that derives the court from the officer's station will address summonses, cause lists and certified copies to the wrong district and will report the case under the wrong establishment in the statistics.",
+      "authority": [
+        {
+          "l": "SARAS press release, para 4",
+          "s": "sarpr",
+          "e": "para_4"
+        },
+        {
+          "l": "SARAS press release, para 5",
+          "s": "sarpr",
+          "e": "para_5"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.9.1",
+          "s": "saras",
+          "e": "rule_9"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - court of jurisdiction and station of the presiding officer as two fields"
+      },
+      "how": null,
+      "test": "Two distinct fields exist; a case whose presiding officer is posted at Narmada still reports its court of jurisdiction as the C.J.M. courts of Ahmedabad City.",
+      "derivedFrom": "practice-note",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-JUR-004"
+      ]
+    },
+    {
+      "id": "REQ-GJ-JUR-003",
+      "category": "JUR",
+      "level": "MUST",
+      "statement": "The system MUST record whether the complainant in a cheque case is a bank or a Non-Banking Financial Company.",
+      "why": "The SARAS establishment was created exclusively for cheque cases instituted by banks and NBFCs; the class of case is defined by who files it as much as by what it is. Without that attribute on the complaint the registry cannot decide at scrutiny whether the case belongs to the SARAS docket or to the ordinary magisterial docket, and an individual payee's complaint can be routed into an establishment that is not open to it.",
+      "authority": [
+        {
+          "l": "SARAS press release, para 2",
+          "s": "sarpr",
+          "e": "para_2"
+        },
+        {
+          "l": "SARAS press release, para 3",
+          "s": "sarpr",
+          "e": "para_3"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complainant record - institutional class (bank / NBFC / other)"
+      },
+      "how": null,
+      "test": "The complainant record carries an institutional-class attribute; SARAS routing is driven by that attribute and rejects a complaint whose complainant is not a bank or an NBFC.",
+      "derivedFrom": "practice-note",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-JUR-001"
+      ]
+    },
+    {
+      "id": "REQ-GJ-JUR-004",
+      "category": "JUR",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT treat the physical presence of the presiding officer at the court point as a condition of a valid hearing in a SARAS court.",
+      "why": "Rule 9.1 declares adjudication through audio-video electronic means a valid mode notwithstanding that the presiding judicial officer is stationed at a remote location. A workflow that blocks the recording of an order, or marks a hearing irregular, because the officer's location does not match the court's location will stall every SARAS hearing, since by design the officer never sits at Ahmedabad.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.9.1",
+          "s": "saras",
+          "e": "rule_9"
+        },
+        {
+          "l": "Gujarat VC Rules 2025, r.5",
+          "s": "gvcr",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "hearing record - validity of a hearing conducted by audio-video means"
+      },
+      "how": null,
+      "test": "A hearing recorded with the presiding officer at a station other than the court's location is accepted and produces a signed order without a warning or override.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-JUR-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-JUR-005",
+      "category": "JUR",
+      "level": "MUST",
+      "statement": "The system MUST allow the governing statute of a SARAS case to be recorded as either the Negotiable Instruments Act, 1881 or the Payment and Settlement Systems Act, 2007.",
+      "why": "The SARAS rules apply both to NI Act cheque cases and to e-filed cases under section 25 of the Payment and Settlement Systems Act, and the definition of 'Act' in rule 2 covers both. A system that hard-codes the NI Act as the only statute for the SARAS docket cannot institute a section 25 case at all, and forces it into the conventional docket where these rules do not apply.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.1(c)",
+          "s": "saras",
+          "e": "rule_1"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.2(1)(a)",
+          "s": "saras",
+          "e": "rule_2"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - governing statute of a SARAS case"
+      },
+      "how": null,
+      "test": "Both the NI Act, 1881 and the Payment and Settlement Systems Act, 2007 are selectable as the governing statute on a SARAS case, and both route to the same establishment.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-LIM-001",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST stamp an e-filed complaint with the date and time at which it was electronically received in the Registry, expressed in Indian Standard Time.",
+      "why": "The date of e-filing, not the date the advocate assembled the papers or the date of the payment gateway receipt, is what the Gujarat SOP treats as the date of filing. A system that records only a client-side or gateway timestamp cannot show, on a limitation objection, that the complaint reached the Registry inside the period the NI Act allows, and the complaint is liable to be thrown out as time-barred on a record the filer cannot contradict.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.14.1",
+          "s": "gefr",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "filing record - receipt timestamp in the Registry"
+      },
+      "how": "The timestamp is taken when the Action is electronically received in the Registry and is expressed in IST.",
+      "test": "The filing record carries a Registry-receipt timestamp in IST that is distinct from any client-side or payment timestamp, and the limitation computation uses only that timestamp.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-LIM-007",
+      "relatedTo": [
+        "REQ-GJ-LIM-002",
+        "REQ-GJ-LIM-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-LIM-002",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST treat an online e-filing carried out after 1600 hours as filed on the next court working day.",
+      "why": "This is the sharpest limitation trap in Gujarat. The portal accepts filings twenty-four hours a day, so a bulk filer uploading a batch at 1830 hours on the last day of the NI Act period believes it is filed in time; the SOP moves that filing to the following working day, which is outside the period. A system that shows the upload date as the filing date will report a whole batch as timely and each of them will be met with a limitation objection.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.14.2",
+          "s": "gefr",
+          "e": "rule_14"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.14.3",
+          "s": "gefr",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "filing record - effective date of filing for limitation"
+      },
+      "how": "Filing at a Designated Counter is permissible up to 1600 hours on a court working day; an online filing after 1600 hours takes the date which follows, provided that is a court working day.",
+      "test": "A complaint uploaded at 1601 hours reports an effective filing date of the next court working day, and the limitation display warns before submission when the cut-off has passed.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-LIM-007",
+      "relatedTo": [
+        "REQ-GJ-LIM-001"
+      ]
+    },
+    {
+      "id": "REQ-GJ-LIM-003",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST treat a filing made on a gazetted holiday or on a day the court is closed as filed on the next working day.",
+      "why": "A bank filing a batch over a long weekend gets an acknowledgement immediately but no filing date until the court reopens. If the system dates the complaint to the upload day, its own limitation arithmetic is a day or more optimistic than the court's, and the error is invisible until the objection is taken.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.14.2",
+          "s": "gefr",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "filing record - effective date of filing on a non-working day"
+      },
+      "how": null,
+      "test": "A complaint uploaded on a declared holiday reports an effective filing date equal to the next court working day, drawn from the court calendar rather than a generic weekday rule.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-LIM-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-LIM-004",
+      "category": "LIM",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT offer or record an extension of limitation on the ground that the e-filing portal was unavailable.",
+      "why": "The SOP is explicit that no exemption from limitation is permitted for a failure of the web-based e-filing facility; the filer is expected to move to a Designated Counter or to physical filing. A system that presents 'portal down' as a condonation reason teaches bulk filers to rely on a defence that does not exist and delays the fallback to counter filing until the period has run out.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.14.3",
+          "s": "gefr",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "screen",
+        "target": "limitation screen - reasons available for delay"
+      },
+      "how": null,
+      "test": "Portal unavailability is not an available reason for delay anywhere in the limitation workflow; the unavailability path instead surfaces the Designated Counter and physical-filing options.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-001",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST compute the court fee on a complaint presented to a criminal court in Gujarat as the fixed amount under Schedule II Article 1(c), independent of the cheque amount.",
+      "why": "Gujarat prices a criminal complaint at three rupees whatever the instrument is worth. A system carrying an ad valorem fee model from another state will demand a fee proportionate to the cheque, and a bank filing several thousand cheque cases a year will either over-collect from its own customers or have every filing stopped at scrutiny for a fee that does not match the Schedule.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, Sch.II Art.1(c)",
+          "s": "gcf",
+          "e": "art_1"
+        },
+        {
+          "l": "Gujarat Court-Fees Act 2004, s.4",
+          "s": "gcf",
+          "e": "sec_4"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "court fee calculation - complaint to a criminal court"
+      },
+      "how": "Schedule II Article 1(c): three rupees on a writing containing a complaint or charge of any offence presented to any criminal court.",
+      "test": "The fee computed for a complaint is the fixed Schedule II Article 1(c) amount and does not vary with the cheque amount across a sample of cases from a few thousand to several crore rupees.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-002",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT allow a chargeable document to be filed, exhibited or recorded until the proper fee has been paid.",
+      "why": "Section 4 is the gate the registry applies before it numbers a cheque complaint. A system that registers a complaint and only later reconciles the fee produces numbered cases whose filing was void at the outset, and the defect surfaces at the worst moment, when limitation has already run.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, s.4",
+          "s": "gcf",
+          "e": "sec_4"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "registration workflow - court fee gate before numbering"
+      },
+      "how": null,
+      "test": "Registration of a complaint is blocked until a fee payment of at least the Schedule amount is recorded against it.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-003",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT prevent a criminal court from filing or exhibiting a document on which the proper fee has not been paid where the presiding judge is of opinion that admission is necessary to prevent a failure of justice.",
+      "why": "Section 44 is the safety valve on the criminal side: where the presiding judge is of opinion that filing or exhibition is necessary to prevent a failure of justice, section 4 does not prohibit it. If the fee gate is absolute in software, a short-paid vakalatnama or list of documents can shut out the cheque, the return memo or the demand notice themselves, and the complainant loses the case on an accounting defect rather than on the merits. The section fixes who may open the gate and on what ground; it prescribes no form for doing so, which is why how is left null.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, s.44",
+          "s": "gcf",
+          "e": "sec_44"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "exhibit workflow - judicial override of the court fee gate"
+      },
+      "how": null,
+      "test": "A presiding-officer role can admit and exhibit a document on which the proper fee has not been paid; the fee gate yields only to that role, and the admission is visible on the case record and in the rojnama.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-004",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST raise the fixed fee under section 19 when the complainant's first or only examination is reduced to writing and no fee has already been levied on a petition presented by that complainant.",
+      "why": "Section 19 attaches a further ten-rupee fee when the examination of a complainant is reduced to writing at the cognizance stage, but it does so on two conditions: the offence must be one for which a police officer may not arrest without a warrant, which a section 138 offence is, and the complainant must not already have presented a petition on which a fee has been levied under the Act. In a cheque case the complaint itself normally bears the Schedule II Article 1(c) fee, so the section 19 fee usually does not attach. A system that raises the fee unconditionally over-collects on every complaint in a bulk batch, and one that never raises it under-collects wherever the complaint carried no fee. The condition, not the amount, is what has to be held on the case.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, s.19",
+          "s": "gcf",
+          "e": "sec_19"
+        },
+        {
+          "l": "Criminal Manual 1977, r.74",
+          "s": "gcrm",
+          "e": "rule_74"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "fee ledger - fee raised when the complainant's examination is reduced to writing"
+      },
+      "how": "Ten rupees under section 19, unless the court thinks fit to remit the payment.",
+      "test": "Recording the complainant's examination raises a section 19 fee entry only where no earlier fee-bearing petition by that complainant is on the case; a complaint on which the Article 1(c) fee was levied raises none. The entry can be remitted by the court with the remission recorded.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-005",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST require a vakalatnama on record for every pleader appearing for a party, subject to the exceptions the Criminal Manual states.",
+      "why": "Bulk cheque filings are run by panel advocates who change between hearings. Without a vakalatnama check at appearance, the record shows submissions and cross-examination conducted by an advocate with no authority on file, and the accused can attack the whole proceeding on that ground at the revision stage.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.135",
+          "s": "gcrm",
+          "e": "rule_135"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "appearance record - vakalatnama required before a pleader is recorded"
+      },
+      "how": "Rule 135 excepts the Public Prosecutor appearing for Government, a pleader appointed by the court for an accused without means, a pleader appearing as amicus curiae, and a pleader engaged by another duly appointed pleader.",
+      "test": "An advocate cannot be attached to a case without a vakalatnama document on record, except under one of the four recorded exceptions.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-006"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-006",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST levy the fixed vakalatnama fee for the level of court to which the vakalatnama is presented.",
+      "why": "The fee differs by court: two rupees to a criminal court other than a Sessions Court or the High Court, three rupees to a District or Sessions Court, five rupees to the High Court. A system charging one flat figure across a bulk filer's magistrate, sessions and High Court appearances will short-pay or over-pay every vakalatnama it files at the wrong level.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, Sch.II Art.12",
+          "s": "gcf",
+          "e": "art_12"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "court fee calculation - vakalatnama"
+      },
+      "how": "Schedule II Article 12: two rupees to a criminal court other than a District Court, Court of Session or the High Court; three rupees to a District or Sessions Court; five rupees to the High Court.",
+      "test": "The vakalatnama fee produced for a magistrate's court, a Sessions Court and the High Court differ and match the three Article 12 rates.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-005"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-007",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST accept payment of court fees by e-payment.",
+      "why": "Gujarat amended the Court-Fees Act in 2015 to allow fees to be collected by e-payment, and that is the precondition for e-filing at all. A system that can only record a physical stamp forces a bank filing thousands of complaints on the portal to send a clerk to a treasury for each one, which defeats the whole SARAS design.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, s.37(1)",
+          "s": "gcf",
+          "e": "sec_37"
+        },
+        {
+          "l": "Gujarat Court-Fees Act 2004, s.2(bb)",
+          "s": "gcf",
+          "e": "sec_2"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.9",
+          "s": "gefr",
+          "e": "rule_9"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "fee payment - electronic mode"
+      },
+      "how": null,
+      "test": "A complaint can be filed end to end with the court fee paid electronically, and the payment reference is stored on the filing record.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-008",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST route all complaints, interlocutory applications, affidavits and pleadings in a SARAS case through the designated e-filing portal.",
+      "why": "Rule 4.1 names the portal, and the SARAS rules make reference to the e-Filing SOP mandatory for avoiding objections and defects. A parallel intake path, such as email to the registry or a counter deposit of paper, produces a document that is not on the portal and therefore is not part of the primary judicial record at all.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.1",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.4.2",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.3.1",
+          "s": "gefr",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "filing intake - the designated e-filing portal"
+      },
+      "how": "Rule 4.1 names https://filing.ecourts.gov.in/pdedev/ as the designated portal; a person unable to access it may use a designated e-filing counter.",
+      "test": "No path exists to create a case document in a SARAS case other than through the portal, a designated e-filing counter, or a Bench exemption recorded under the e-filing exemption requirement; every document on the record carries a portal filing reference or an exemption reference.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-021"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-009",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST present a newly e-filed complaint to the Registry for scrutiny on the next working day after filing.",
+      "why": "Rule 4.11 fixes a next-working-day scrutiny. Where a bank uploads a batch of several hundred complaints, a queue without that deadline lets the batch sit unscrutinised while the accused remains unserved and the six-month track clock runs from institution.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.11",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "registry queue - scrutiny due date on a new complaint"
+      },
+      "how": null,
+      "test": "Every newly e-filed complaint appears in the Registry scrutiny queue with a due date of the next working day, and the queue reports items past that date.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-010",
+        "REQ-GJ-FIL-012"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-010",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record Registry objections to an e-filed complaint in writing against the filing and communicate them to the e-filer.",
+      "why": "An objection conveyed by a phone call or a counter conversation leaves no record of what was wrong or when it was raised. In a bulk filing, the filer cannot tell which of three hundred complaints was objected to, and the rectification cycle stretches until the complaint is out of time on re-presentation.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.11",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.18.3",
+          "s": "gefr",
+          "e": "rule_18"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.2.12",
+          "s": "gefr",
+          "e": "rule_2"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "objection record - written objections against an e-filed complaint"
+      },
+      "how": "The Registry communicates objections by email, SMS or web hosting to the concerned advocate or litigant in person.",
+      "test": "Each objection is stored as text against the filing with its date, and the filer receives it on at least one of email, SMS or the portal; the objection history survives after clearance.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-009",
+        "REQ-GJ-FIL-012"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-011",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT register a complaint under a case type until all Registry objections against it have been cleared.",
+      "why": "Rule 4.11 registers the matter only if the filing is found in order or after clearance of all objections. Registration with objections outstanding produces a numbered cheque case whose papers are defective, and the defect resurfaces when the accused takes the point at the framing or plea stage, by which time the complaint cannot be refiled within time.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.11",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "registration workflow - objection clearance gate"
+      },
+      "how": null,
+      "test": "Registration is blocked while any objection against the filing is open; clearing the last objection makes registration available.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-010"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-012",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST restrict scrutiny of e-filed complaints and documents for technical compliance to users holding a Registry role.",
+      "why": "Rule 3.10 keeps technical scrutiny within the exclusive domain of the Registry. If a bench clerk or the presiding officer's own staff can clear defects, the separation between the ministerial gate and the judicial record breaks down, and a case can reach the presiding officer having never been checked by the office answerable for it.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.3.10",
+          "s": "saras",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "scrutiny function - restricted to the Registry role"
+      },
+      "how": null,
+      "test": "A user without the Registry role cannot record, clear or waive a technical-compliance objection; the attempt is refused and logged.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-009"
+      ]
+    },
+    {
+      "id": "REQ-GJ-FIL-013",
+      "category": "FIL",
+      "level": "SHOULD",
+      "statement": "The system SHOULD reject an online e-file whose size exceeds twenty megabytes and direct the filer to a Designated Counter.",
+      "why": "The Gujarat SOP says the size of an e-file should not exceed twenty megabytes and that a filer whose file is larger should visit a Designated Counter; it directs rather than commands, which is why this is a SHOULD. Cheque-case bundles carrying scanned statements of account and a long series of return memos routinely exceed that. A system that lets the upload begin and fails at the end wastes the filer's cut-off window, and on the last day of the NI Act period that is the difference between a filed and a time-barred complaint.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.3.4",
+          "s": "gefr",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "upload control - twenty megabyte ceiling on an online e-file"
+      },
+      "how": null,
+      "test": "An e-file over twenty megabytes is refused before upload starts, with the Designated Counter route offered in the same message.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-014",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST produce every e-filed document as an OCR-searchable PDF, with OCR enablement for Gujarati text.",
+      "why": "The record of a Gujarat cheque case is routinely part Gujarati. A scanned image PDF without a Gujarati OCR layer cannot be searched by the presiding officer, cannot be indexed for exhibit assignment, and defeats the purpose of making the electronic record the primary judicial record.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.6.2",
+          "s": "gefr",
+          "e": "rule_6"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.6.3",
+          "s": "gefr",
+          "e": "rule_6"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.3.7",
+          "s": "saras",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "document conversion - OCR-searchable PDF, PDF/A preferred"
+      },
+      "how": "PDF/A is the preferred format; a non-text document is scanned at 300 dpi in OCR-searchable mode. Local-language text uses LOHIT Gujarati Unicode font 13.",
+      "test": "A document uploaded without a text layer is refused; a Gujarati document uploaded through the workflow yields searchable Gujarati text.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-015",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST prepare every e-filed document in A4 size except where the original paper size does not permit it.",
+      "why": "Both the SOP formatting clause and SARAS rule 4.8 fix A4. A bundle mixing legal and A4 pages breaks pagination in the merged PDF, which in turn breaks the exhibit and bookmark references that the rojnama and the certified copy depend on.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.8",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.6.1",
+          "s": "gefr",
+          "e": "rule_6"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "document conversion - page size"
+      },
+      "how": null,
+      "test": "Generated and converted documents are A4; a non-A4 page is flagged at upload with the original-size exception available and recorded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-016",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST reject a filing whose document file name uses a disallowed character or exceeds forty-five characters including spaces.",
+      "why": "The SOP lists the characters a document binary file name may not contain and caps the name at forty-five characters. An institutional filer generating names automatically from a loan account reference will produce names with slashes, ampersands and hundreds of characters, and the whole batch is bounced at the counter for a reason nothing on the screen explained.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.8.6",
+          "s": "gefr",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "upload control - document file name"
+      },
+      "how": "Disallowed characters: quotation mark, number sign, per cent, ampersand, asterisk, colon, angle brackets, question mark, backslash, forward slash, braces, pipe, tilde, and a period used consecutively or at the start or end of the name.",
+      "test": "A file named with any listed character, or longer than forty-five characters, is refused at selection with the offending character named.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-017",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT submit an e-filed document that is watermarked, encrypted, or carries markings, track changes or annotations.",
+      "why": "The SOP forbids all of these on an e-filing. A bank's document management system commonly stamps a confidentiality watermark and password-protects statements as a matter of policy; if that reaches the portal the filing is defective and the defect is invisible to the person uploading it.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.8.7",
+          "s": "gefr",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "upload control - document hygiene"
+      },
+      "how": null,
+      "test": "An encrypted PDF, a PDF with tracked changes, and a PDF with annotation objects are each refused at upload with the reason stated.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-018",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST merge the text and scanned documents of a filing into a single OCR-searchable PDF bookmarked in accordance with the Master Index approved by the Registry.",
+      "why": "Bookmarking to the Master Index is what lets the Registry, and later the presiding officer, find the cheque, the return memo and the notice inside a hundred-page bundle. A filing uploaded as a heap of separate unbookmarked files is objected to at scrutiny, and in a bulk batch that objection repeats across every case in the batch.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.8.1",
+          "s": "gefr",
+          "e": "rule_8"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.8.2",
+          "s": "gefr",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "filing bundle - merged bookmarked PDF"
+      },
+      "how": null,
+      "test": "The submitted bundle is one PDF whose bookmark tree matches the Master Index, and each bookmark resolves to the correct first page.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-019",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST upload a document that originates in electronic form directly, without scanning it.",
+      "why": "Rule 4.5 confines scanning to documents that inherently originate in physical form. A bank that prints an electronically generated statement of account in order to scan it destroys the text layer, produces a larger file that risks the twenty megabyte ceiling, and reduces a natively authentic document to an image whose authenticity can be questioned.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.5",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.4.6",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "document intake - native electronic documents"
+      },
+      "how": null,
+      "test": "The filing workflow distinguishes natively electronic documents from physical originals and offers no scan step for the former.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-020",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST notify the filing or registration number to the e-filer once the e-filing is accepted.",
+      "why": "Without a number returned to the filer, an institutional filer cannot reconcile a batch of uploads against its own case management records, and a complaint that silently failed to register is indistinguishable from one that succeeded until the limitation period has passed.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.8.3",
+          "s": "gefr",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "filing acknowledgement - number returned to the filer"
+      },
+      "how": null,
+      "test": "Acceptance of an e-filing returns a filing or registration number to the filer's account and by the notification channel on record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-FIL-021",
+      "category": "FIL",
+      "level": "MAY",
+      "statement": "The system MAY record an exemption from e-filing granted by the Bench on an application stating one of the permitted grounds.",
+      "why": "The SOP permits exemption where e-filing is not feasible, where confidentiality or privacy is in issue, where the document cannot be scanned because of its size, shape or condition, where the portal is unavailable, or for just and sufficient cause. A cheque case can involve an instrument in a condition that will not scan; with no way to record the exemption the document simply never enters the record.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.12",
+          "s": "gefr",
+          "e": "rule_12"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "exemption record - Bench order exempting a document from e-filing"
+      },
+      "how": null,
+      "test": "An exemption can be applied for, granted by a judicial role against one of the five listed grounds, and is visible on the case record against the document it covers.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-FIL-008"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-003",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST record service as deemed effected where a summons sent by digitally signed electronic communication is acknowledged within five working days.",
+      "why": "Service is the single biggest cause of delay in a Gujarat cheque case. Rule 5(iv) makes digitally signed electronic communication a preferential mode with deemed service on acknowledgement; the deeming reaches a criminal trial through rule 21(B), which applies the same norms to criminal trials with the changes the Code requires. A system that treats an acknowledged e-summons as merely informal keeps the case in the bailiff queue for months after service was in law complete.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.5(iv)",
+          "s": "gcfm",
+          "e": "rule_5"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "service record - deemed service by acknowledged e-communication"
+      },
+      "how": "Service is deemed made on acknowledgement of receipt by the other side, the acknowledgement being within five working days.",
+      "test": "An acknowledged digitally signed e-summons sets the service status to served with the acknowledgement date stored; the five-working-day window is computed on court working days.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": "REQ-SRV-006",
+      "relatedTo": [
+        "REQ-GJ-SRV-007"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-004",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST require an affidavit of service on the record where service of summons is effected by the complainant or by a certified or registered courier.",
+      "why": "Institutional cheque filers serve through their own courier arrangements as a matter of course. Rule 5(v) makes the affidavit of service the proof, and without it on the record the court cannot proceed against an absent accused; the complainant loses the hearing and the case is adjourned for the affidavit that should have accompanied the return.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.5(v)",
+          "s": "gcfm",
+          "e": "rule_5"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "service record - affidavit of service for complainant or courier service"
+      },
+      "how": null,
+      "test": "A service return entered as complainant service or courier service cannot be accepted without an affidavit-of-service document attached.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": "REQ-SRV-014",
+      "relatedTo": [
+        "REQ-GJ-SRV-005"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-005",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST require a signed declaration verifying a return of refusal made by the complainant or by a courier agency.",
+      "why": "Rule 5(vi) requires the return endorsed 'refused' to be accompanied by a declaration signed by the complainant or a responsible person of the courier agency that the endorsement is correct, on pain of perjury. A refusal accepted without it cannot support an ex parte order, and the accused reopens the proceeding years later on the ground that he was never served.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.5(vi)",
+          "s": "gcfm",
+          "e": "rule_5"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "service record - declaration supporting a refusal endorsement"
+      },
+      "how": "The declaration states that the endorsement made is correct and acknowledges that a false endorsement is punishable for perjury or as an abuse of the Code.",
+      "test": "A return with outcome 'refused' cannot be saved without an attached signed declaration naming the declarant and his capacity.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-SRV-004",
+        "REQ-GJ-SRV-006"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-006",
+      "category": "SRV",
+      "level": "SHOULD",
+      "statement": "The system SHOULD prevent a black-listed courier agency from being selected to effect service.",
+      "why": "Rule 5(vi) allows a courier agency to be black-listed for a false endorsement of refusal. The rule states the consequence but not the machinery; the system consequence is inferred. If the black-list exists only on a circular, a bulk filer with a national courier contract will keep serving through a black-listed agency, and every one of those returns is open to attack.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.5(vi)",
+          "s": "gcfm",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "service record - courier agency selection"
+      },
+      "how": null,
+      "test": "A courier agency marked black-listed is not selectable on a new service instruction, and existing instructions to it are reported.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-SRV-005"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-007",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST order issue of summons through the bailiff and substituted service simultaneously when a summons sent by post or courier is reported unserved.",
+      "why": "Rule 5(vii) is emphatic that the two go out together. The common practice of trying bailiff service first and only then applying for substituted service adds a full cycle of six to eight weeks to a cheque case that is meant to conclude in six months, and it is exactly the pattern a workflow that offers the two steps in sequence will produce.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.5(vii)",
+          "s": "gcfm",
+          "e": "rule_5"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "service escalation - simultaneous bailiff and substituted service"
+      },
+      "how": null,
+      "test": "Recording a postal or courier return of non-service raises a single escalation action that creates both a bailiff process and a substituted service process; neither can be created alone from that trigger.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-SRV-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-008",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST list a case for dismissal for non-prosecution where the process fee for service is not paid within three days of the order.",
+      "why": "Rule 5(iii) attaches a three-day clock to the process fee, and rule 21(B) carries it to the criminal side. A bank filing in bulk pays process fees on a monthly reconciliation cycle; without this clock exposed on the case, the first the filer learns of the default is when its complaint appears on the dismissal list.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.5(iii)",
+          "s": "gcfm",
+          "e": "rule_5"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "process fee - three day clock and dismissal listing"
+      },
+      "how": null,
+      "test": "An order for process starts a three-day fee clock on the case; on expiry without payment the case appears on the non-prosecution cause list and the filer is notified.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-SRV-009"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-009",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST price each process issued in a cheque case according to the current table of process fees published for the court.",
+      "why": "The process fee is charged per process, and differently for a summons, a warrant of arrest, a proclamation and a warrant of attachment; section 33 requires the table of the fees chargeable for service and execution to be exposed to view in a conspicuous part of every court, which makes the published table and not a figure in code the source of the rate. A system carrying a single hard-coded process fee will under-recover on the warrant stage of every contested cheque case. Two cautions on the rate: the figures in Criminal Manual rule 41 are the 1977 table, made under section 32 of the repealed Bombay Court Fees Act, 1959; and the corresponding rule-making power in section 32 of the Gujarat Court-Fees Act, 2004 was itself deleted by Gujarat 14 of 2016, so the current rates must be taken from the table published for the court and not reconstructed from rule 41.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, s.33",
+          "s": "gcf",
+          "e": "sec_33"
+        },
+        {
+          "l": "Criminal Manual 1977, r.41",
+          "s": "gcrm",
+          "e": "rule_41"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "fee ledger - process fee per process type"
+      },
+      "how": "Rule 41 charges a distinct fee for every summons or notice, every warrant of arrest, every proclamation and every warrant of attachment; no fee is levied on a process issued on the complaint of a police officer acting as such, nor on the re-issue of a process; and the court may remit the process fees in whole or in part where the complainant or the accused has not the means to pay them.",
+      "test": "Issuing a summons, a warrant of arrest, a proclamation and a warrant of attachment each raise a distinct fee entry at the rate held for that process type, and the rate table is editable without a code change.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-SRV-008"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-010",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST state on a process issued to a witness who is to be examined by video conferencing the date, time and venue of the designated place, and direct the witness to attend in person with proof of identity.",
+      "why": "In a cheque case the witness summoned this way is usually the bank officer who proves the dishonour. A summons that gives only a hearing date and no designated place leaves the officer with nowhere to go; he attends his own branch, the deposition does not happen, and the return memo goes unproved for another hearing.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.12",
+          "s": "gvcr",
+          "e": "rule_12"
+        },
+        {
+          "l": "Gujarat VC Rules 2025, r.6",
+          "s": "gvcr",
+          "e": "rule_6"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "witness summons for video conferencing - designated place and identity direction"
+      },
+      "how": "The process states the date, time and venue of the concerned designated place and directs the witness to attend in person along with proof of identity.",
+      "test": "A witness summons generated for a video-conferencing examination carries a designated place with its address, the time, and the identity direction; it cannot be generated without a designated place selected.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-SRV-011"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-011",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST accompany a process issued to a witness with a copy of any document with reference to which the witness is to be examined.",
+      "why": "Rule 12 requires the document to travel with the process. A bank officer summoned to prove a return memo he has not seen since it was generated cannot depose to it from memory; the examination collapses and has to be listed again, and the cheque case loses a hearing over a missing enclosure.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.12",
+          "s": "gvcr",
+          "e": "rule_12"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "witness summons - enclosed copy of the document of examination"
+      },
+      "how": null,
+      "test": "Where a witness is linked to one or more documents on the case, the generated process packet includes copies of exactly those documents.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-SRV-010"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SRV-012",
+      "category": "SRV",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT treat service by a Registry official's designated e-mail address as a substitute for the prescribed mode of service.",
+      "why": "Clause 13 makes electronic service by Registry e-mail an addition to the prescribed mode, not a replacement, and publishes the Registry e-mail IDs on the court website only so that a recipient can verify the source. A system that closes the service task when the Registry e-mail is sent will show an accused as served who has not been served in law, and the ex parte order that follows will not survive a challenge. The clause prescribes no method for keeping the two apart, so how is null.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.13",
+          "s": "gefr",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "service record - status of electronic service by the Registry"
+      },
+      "how": null,
+      "test": "Dispatch by Registry e-mail is recorded as an additional service event and does not by itself move the accused's service status to served.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-SRV-013",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST identify on the face of a process served through the police the court that issued it and the authentication under which it was issued.",
+      "why": "The police officer's duty under section 64(a) is to serve promptly every summons and execute every warrant lawfully issued to him by a competent authority. A digitally issued process that does not show its issuing court and authentication gives the constable no basis to act on it, and in a SARAS case, where the presiding officer sits in another district, that objection is easy to raise and hard to answer. The Act imposes the duty on the officer and the requirement on the document is inferred from what the duty attaches to.",
+      "authority": [
+        {
+          "l": "Gujarat Police Act 1951, s.64(a)",
+          "s": "gpa",
+          "e": "sec_64"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.4.18",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "process for police service - issuing court and authentication"
+      },
+      "how": null,
+      "test": "A printed or transmitted process shows the issuing court, the presiding officer's digital signature and a verifiable reference back to the portal record.",
+      "derivedFrom": "act",
+      "status": "inferred",
+      "tightens": "REQ-SRV-003",
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-EVI-001",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST accept the examination-in-chief of a complainant's witness as an affidavit tendered through electronic filing.",
+      "why": "Rule 6.1 makes the affidavit through the portal the ordinary mode in a SARAS cheque case. A workflow that can only record oral chief examination in the courtroom forces every bank officer to travel to a physical court, which is precisely the cost the remote-adjudication design exists to remove, and the six-month track limit will not survive it.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.6.1",
+          "s": "saras",
+          "e": "rule_6"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "evidence recording - chief examination tendered by e-filed affidavit"
+      },
+      "how": null,
+      "test": "A chief-examination affidavit can be e-filed against a named witness, exhibited, and closed as the chief examination without any physical hearing event.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-001",
+      "relatedTo": [
+        "REQ-GJ-EVI-002",
+        "REQ-GJ-EVI-013"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-002",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST schedule cross-examination, the examination-in-chief of the accused and the evidence of a defence witness for physical presence before the court, at a notified Formal Witness Deposition Centre, or at a notified Remote Point.",
+      "why": "Rule 6.2 keeps these physical by default. A system that defaults every evidence event to a video link will list cross-examination remotely without the judicial permission rule 6.3 requires, and the resulting deposition is open to attack on the ground that it was recorded in a mode the rules do not allow as the ordinary course.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.6.2",
+          "s": "saras",
+          "e": "rule_6"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "evidence scheduling - venue for cross-examination and defence evidence"
+      },
+      "how": "The venue is the court, a Formal Witness Deposition Centre notified by the High Court and published on its website, or a Remote Point Location notified by the Government.",
+      "test": "Scheduling a cross-examination requires a venue chosen from the court, a notified FWDC or a notified Remote Point; a video-conferencing venue requires the permission recorded under the audio-video requirement.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-002",
+      "relatedTo": [
+        "REQ-GJ-EVI-001",
+        "REQ-GJ-EVI-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-003",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST store on the case record the court's permission before evidence is recorded by audio-video electronic means.",
+      "why": "Rule 6.3 makes audio-video recording of evidence a matter of judicial discretion exercised under the 2025 rules. If the permission is not on the record, the deposition looks on its face like an ordinary remote hearing, and on appeal there is nothing to show the discretion was exercised at all.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.6.3",
+          "s": "saras",
+          "e": "rule_6"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "evidence record - judicial permission for audio-video recording"
+      },
+      "how": null,
+      "test": "An evidence event with an audio-video venue carries a reference to the order permitting it; without that reference the event cannot be marked complete.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-004",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST retain the original cheque, return memo and demand notice in physical custody for the duration of the trial notwithstanding that they have been scanned and e-filed.",
+      "why": "The Gujarat e-Filing SOP lists the documents to be preserved permanently and expressly excludes a cheque from the negotiable instruments in that list. SARAS rule 3.11 closes the gap: the originals are retained during trial for evidentiary purposes. A system that treats the scan as the whole record and releases the physical bundle at registration leaves the complainant unable to produce the instrument when the accused disputes the signature, which is the one issue on which a cheque case is actually fought.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.3.11",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.10.3",
+          "s": "gefr",
+          "e": "rule_10"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document record - physical custody status of the original instrument"
+      },
+      "how": "After trial the originals are preserved and dealt with in accordance with final judicial directions, or until the dispute attains finality in appeal or revision.",
+      "test": "Each of the cheque, return memo and demand notice carries a physical-custody status; the case cannot be marked ready for evidence while any of them is recorded as neither in court custody nor returned on endorsement.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-017",
+      "relatedTo": [
+        "REQ-GJ-EVI-005",
+        "REQ-GJ-EVI-006"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-005",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record an endorsement naming the case number, the exhibit number and the date when an original document is returned to the complainant.",
+      "why": "Rule 3.9 permits the cheque, return memo, notice, bills and invoices to go back to the complainant on request, on condition of producing them whenever ordered and on that endorsement. Without the endorsement stored against the exhibit, the record shows an exhibit with no document behind it and no trace of who holds it, and the court cannot recall the instrument when the accused finally disputes it.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.3.9",
+          "s": "saras",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "return of original - endorsement on the returned document"
+      },
+      "how": "The endorsement reads that the document is produced in Case No. ____ at Exhibit No. ____ dated ____, and the return is conditional on the complainant producing the document whenever ordered to do so.",
+      "test": "Returning an original requires the case number, exhibit number and date; the generated endorsement carries all three and the exhibit shows the document as returned with the holder recorded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-004"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-006",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record the sealed cover marking, carrying the case particulars, for every document produced or signed physically in a SARAS case.",
+      "why": "Rules 3.8 and 3.12 require physically signed originals and physically produced documents to be kept in sealed and appropriately marked covers, marked with the particulars of the case they belong to. In a remote-adjudication court where the presiding officer is in another district, an unmarked cover cannot be matched back to a case at all, and the bundle is found only by opening every envelope in the room.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.3.8",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.3.12",
+          "s": "saras",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document record - sealed cover marking"
+      },
+      "how": "The Bench Clerk or other designated ministerial staff places the physically produced documents of each case file in a sealed envelope duly marked with the case particulars.",
+      "test": "Every physically held document carries a cover marking bearing the case particulars, and a query by case number returns the marking of the cover holding that case's documents.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-004",
+        "REQ-GJ-EVI-016"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-007",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST preserve the signed vakalatnama, a notarised or attested affidavit, and any document whose authenticity is likely to be questioned, for at least two years after final disposal including disposal by the superior appellate court.",
+      "why": "Clause 10.2 of the e-Filing SOP fixes the retention floor, and SARAS rule 13.2 sends retention of originals back to it. A cheque whose signature is disputed is exactly a document whose authenticity is likely to be questioned. A retention clock that starts at trial-court judgment will destroy the original while the appeal is still alive.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.10.2",
+          "s": "gefr",
+          "e": "rule_10"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.13.2",
+          "s": "saras",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "retention record - two year floor running from final disposal"
+      },
+      "how": null,
+      "test": "The retention clock for these classes of document starts at final disposal including appellate disposal, not at trial judgment, and no destruction action is available before the floor expires.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-016"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-008",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST attribute the responsibility for producing the original and proving its genuineness to the party that electronically filed the scanned copy.",
+      "why": "Clause 10.4 places that duty on the e-filer. Where a bank's panel advocate uploads the scan and the bank holds the original in a branch strong room, nobody on the record is named as answerable for it. When the court calls for the instrument, the advocate points at the bank and the bank at the advocate, and the case is adjourned while the cheque is traced.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.10.4",
+          "s": "gefr",
+          "e": "rule_10"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document record - party answerable for the original"
+      },
+      "how": null,
+      "test": "Each scanned document records the filing party, and a call for the original is addressed to that party by name.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-009"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-009",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record an undertaking by the person uploading a scanned document that the physical original will be preserved in its original condition until produced before the court or dealt with under judicial directions.",
+      "why": "The proviso to rule 4.10 makes the scanned document the record of the court notwithstanding that the original stays with the person producing it, and puts on every person uploading a scanned PDF the duty to ensure that the corresponding physical original is preserved in its original condition until produced on demand or dealt with under judicial directions. The proviso states the duty; that the duty be captured as a recorded undertaking at the moment of upload is the reading and not the text, which is why this is inferred. In a bulk filing the originals are warehoused by the filer; without the undertaking captured at upload there is no recorded obligation on any named person to keep them intact, and a cheque returned to a recovery agent for parallel civil action is gone from the criminal case.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.10",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "filing record - undertaking to preserve the physical original"
+      },
+      "how": null,
+      "test": "Uploading a scanned document requires the undertaking to be affirmed, and the affirmation with its actor and timestamp is stored on the document record.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-008"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-010",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST support each of the prescribed modes of showing a document to a person being examined at a remote point.",
+      "why": "A cheque case is fought over three documents. If the only way to put the cheque to a remote witness is to read it out, the examination is worthless. Rule 14 sets out exactly how the document travels in each direction, and a video platform without a document channel cannot comply.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.14",
+          "s": "gvcr",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "remote examination - showing a document to the person examined"
+      },
+      "how": "Where the document is at the Court Point, by document visualizer, or if none is available by transmitting a copy or image through the designated video conferencing software or official e-mail; where the document is at the remote point, by transmitting a copy or image to the Court Point.",
+      "test": "All three modes are available during a remote examination, and the document transmitted is logged against the examination event.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-011"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-011",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record the dispatch to the Court Point of the hard copy of a document held at the remote point, countersigned by the witness and by the coordinator at the designated place.",
+      "why": "Rule 14(c) requires the paper copy to follow the transmitted image. If only the image reaches the record, the document the witness actually looked at and signed is nowhere in the file, and its identity can be disputed on appeal.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.14",
+          "s": "gvcr",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "remote examination - dispatch of the countersigned hard copy"
+      },
+      "how": null,
+      "test": "An examination on a document held at the remote point cannot be closed without a dispatch entry for the countersigned hard copy.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-010"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-012",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST place on the judicial record the transcript of a remotely recorded examination, read over and explained to the person examined and bearing that person's signature.",
+      "why": "Rule 13(3) makes the signed transcript part of the record, and prescribes both a digital and a print-and-scan route depending on what is available at the remote point. A system that stores only the video recording or an unsigned machine transcript produces evidence the accused can refuse to be bound by, and the bank officer has to be recalled.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.13(3)",
+          "s": "gvcr",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "deposition transcript from a remote examination"
+      },
+      "how": "Where digital signatures exist at both points, the transcript digitally signed by the presiding officer goes to the remote coordinator, is printed and signed by the person examined, and the scanned copy digitally signed by the coordinator returns to the Court Point. Where they do not, the printout signed by the presiding judge is sent in non-editable scanned form, signed by the person examined and countersigned by the coordinator, and returned to the Court Point where a printout is taken onto the record.",
+      "test": "A remote examination cannot be closed without a signed transcript on the record; both prescribed routes are available and the route used is recorded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-EVI-013",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST head an affidavit used in a Gujarat criminal court in the form the Criminal Manual prescribes.",
+      "why": "The chief examination in a SARAS cheque case is tendered as an affidavit, and a bulk filer generates those from a template. A template with the wrong heading produces the same defect on every affidavit in a batch, and each is objected to at scrutiny.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.236",
+          "s": "gcrm",
+          "e": "rule_236"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "affidavit template - heading and title"
+      },
+      "how": "The heading is 'In the Court ........ at ........' naming the court. Where a case is pending it also begins with 'In the matter of case of ........'; where no case is pending, 'In the matter of the application of ........'.",
+      "test": "An affidavit generated by the system carries the court heading and the matter heading, populated from the case record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-001",
+        "REQ-GJ-EVI-014"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-014",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST draw an affidavit in the first person and in consecutively numbered paragraphs, each confined as far as may be to a distinct subject.",
+      "why": "Rule 237 governs the form. A chief-examination affidavit generated as continuous prose cannot be cross-examined paragraph by paragraph, and the court cannot record which averment was put to the witness; the deposition becomes hard to use in the judgment.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.237",
+          "s": "gcrm",
+          "e": "rule_237"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "affidavit template - paragraphing and person"
+      },
+      "how": null,
+      "test": "A generated affidavit is in the first person with consecutively numbered paragraphs, and the numbering is stable when the affidavit is exhibited.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-013"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-015",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST require the chief-examination affidavit of a witness to be on record before that witness is listed for evidence.",
+      "why": "Rule 9(5) requires the parties to keep the affidavit in chief examination ready whenever the witness's examination is taken up, and rule 9(4) requires evidence to run day to day with all witnesses in attendance; rule 21(B) carries both to a criminal trial. Listing a bank witness without his affidavit on file guarantees an adjournment, and in a case with a six-month outer limit a handful of such adjournments consumes the whole allowance.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.9(4)",
+          "s": "gcfm",
+          "e": "rule_9"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.9(5)",
+          "s": "gcfm",
+          "e": "rule_9"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "cause list - witness listing precondition"
+      },
+      "how": null,
+      "test": "A witness without a chief-examination affidavit on record cannot be added to an evidence listing, and the block names the missing affidavit.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-018"
+      ]
+    },
+    {
+      "id": "REQ-GJ-EVI-016",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record the named custodian holding the physical documents of a SARAS case.",
+      "why": "Rule 13.1 places physical documents in the custody of the Superintendent or Board Clerk or as the Presiding Officer of the Court decides, and rule 3.12 requires them to be maintained so as to ensure ready and prompt access whenever the Court requires them. In a court where the presiding officer is in another district, a bundle whose custodian is not on the record cannot be produced when he asks for it, and the hearing is lost.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.13.1",
+          "s": "saras",
+          "e": "rule_13"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.3.12",
+          "s": "saras",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document record - named custodian of the physical documents"
+      },
+      "how": "Custody lies with the Superintendent or the Board Clerk, or as the Presiding Officer of the Court decides.",
+      "test": "Every physically held document names a custodian drawn from the roles the rule permits; a query by case number returns the custodian, and a custody handover changes the name on the record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-006",
+        "REQ-GJ-EVI-004"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-001",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST require the accused to be present physically at the SARAS Court or at a Remote Point Location when the plea is recorded.",
+      "why": "Rule 5.1 does not permit the plea to be taken from wherever the accused happens to be. A workflow that opens a video link to the accused's own phone and records a plea from it produces a plea the accused can disown, and in a cheque case the plea is the hinge on which a summary trial either concludes quickly or turns into a full contest.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.5.1",
+          "s": "saras",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "plea recording - place of the accused"
+      },
+      "how": null,
+      "test": "Recording a plea requires the accused's location to be the SARAS Court or a notified Remote Point Location, or a place directed by the presiding officer with that direction recorded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-TRL-007",
+      "relatedTo": [
+        "REQ-GJ-TRL-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-002",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST capture the plea as a physically signed document, scanned and uploaded with a self-attested copy of an accepted proof of identity.",
+      "why": "Rule 5.2 routes the plea through the physical-signature mode of rule 3.5. A plea recorded only as a screen entry by a clerk has no signature attributable to the accused; when he later resiles from it, there is nothing on the record to hold him to.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.5.2",
+          "s": "saras",
+          "e": "rule_5"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.3.5",
+          "s": "saras",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "plea recording - signature and identity proof"
+      },
+      "how": "The signed plea is scanned with a self-attested copy of a driving licence, election card, passport, PAN card, Aadhaar card or other identity proof the court permits, and uploaded to the record.",
+      "test": "A plea cannot be marked recorded without a scanned signed plea document and an identity proof attached.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-001",
+        "REQ-GJ-REC-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-003",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST furnish the copies due to the accused in electronic form by one of the prescribed electronic modes.",
+      "why": "Rule 5.3 makes electronic supply the ordinary course in a SARAS case. Where the court's workflow can only print and hand over, the accused in a remote-adjudication case, who may be answering from a video-enabled room in a district court hundreds of kilometres from Ahmedabad, has no way to receive his papers, and the trial cannot move past the supply stage.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.5.3",
+          "s": "saras",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "supply of copies to the accused - electronic modes"
+      },
+      "how": "By electronic mail, by a recognised electronic messaging service, or on a digital storage device procured at the cost of the accused.",
+      "test": "All three electronic modes are selectable when supplying copies, and the mode used with its date is recorded on the case.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-SRV-001",
+      "relatedTo": [
+        "REQ-GJ-TRL-004",
+        "REQ-GJ-TRL-005"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-004",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record supply of the accused's copies to a person nominated by the accused, or to the pleader appearing for him, as valid compliance where the accused does not possess the facility to receive electronic copies.",
+      "why": "Rule 5.4 is cast as a 'shall': where the accused does not possess the necessary facility, the electronic copies shall be furnished to his nominee or to his pleader, and such supply shall be deemed valid compliance with the statutory requirement. Without the nominee or pleader recorded as the recipient, the supply appears on the record as never made to the accused, and the defence can take the point at the plea stage and force a fresh supply.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.5.4",
+          "s": "saras",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "supply record - nominee or pleader as recipient"
+      },
+      "how": null,
+      "test": "The supply record accepts a nominee or the pleader as the recipient with the relationship stated, and the supply is reported as compliant.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-005",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST supply printed copies to the accused free of cost where he is unable to access or receive copies in electronic mode.",
+      "why": "Rule 5.5 preserves the statutory mandate for the accused who has no electronic facility, and makes the free printed supply a direction of the presiding officer. A digital-only workflow silently excludes the individual drawer of a dishonoured cheque, who is often the least equipped party in the case, and the conviction that follows is open to attack for want of supply.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.5.5",
+          "s": "saras",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "supply of copies to the accused - free printed fallback"
+      },
+      "how": "The printed copies are supplied free of cost as directed by the Presiding Officer of the Court.",
+      "test": "Where the accused is recorded as unable to receive electronic copies, a free printed supply can be directed and fulfilled, with no charge raised against the accused.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-006",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST require a party filing a document during the hearing to furnish a copy to the opposite party forthwith.",
+      "why": "Rules 4.22 and 4.23 place the duty on the filing party, ordinarily in electronic mode. In a remote hearing the opposite party cannot see what was handed up; without a served copy on the record the document is effectively filed behind his back, and any order made on it is vulnerable.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.22",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.4.23",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "in-hearing filing - supply to the opposite party"
+      },
+      "how": "Supply is by electronic mail, a recognised electronic messaging service or another feasible electronic mode; where the opposite party cannot receive electronically, in physical form as the court directs.",
+      "test": "A document filed during a hearing raises a supply task on the filing party that must be completed before the hearing is closed.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-TRL-007",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST conduct video-conferencing hearings only on a High Court or Government approved platform with end-to-end encryption.",
+      "why": "Both SARAS rule 4.21 and the 2025 rules require it. A SARAS hearing carries the accused's identity documents, the cheque and the bank's account particulars; conducted over a consumer meeting link it exposes all of that, and the unauthorised access the rules require to be reported becomes a routine risk.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.21",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "Gujarat VC Rules 2025, r.5(iv)",
+          "s": "gvcr",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "hearing platform - approved and encrypted"
+      },
+      "how": null,
+      "test": "The hearing can be joined only through an approved platform held in configuration; an arbitrary meeting URL cannot be attached to a hearing.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-011"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-008",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record the identity proof furnished to the court point coordinator by a person appearing through video conferencing, or the court's satisfaction dispensing with it.",
+      "why": "Rule 6 is how the court knows who is on the screen. In a cheque case that means the accused answering summons and the bank witness proving the return memo. Without the identity proof or the recorded dispensation on the file, an accused can later say the person who appeared and pleaded was not him.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.6",
+          "s": "gvcr",
+          "e": "rule_6"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "appearance record - identity proof of a remote participant"
+      },
+      "how": "The identity proof is one recognised by the Government of India or the State Government and is sent to the court point coordinator by electronic communication; where it is not readily available the court may allow participation on its own satisfaction.",
+      "test": "Each remote appearance carries either an identity-proof reference or a recorded dispensation by the court.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-009",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST provide the accused an opportunity to consult his advocate before and after an examination conducted by video conferencing.",
+      "why": "Rule 13(2) makes it the court's duty. In a remote cheque trial the accused and his advocate are often at different points, so unless the hearing schedule creates a private channel for them, the consultation simply does not happen and the accused is examined without advice, which is a ground of challenge that costs the complainant the judgment.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.13(2)",
+          "s": "gvcr",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "remote examination - private consultation with the advocate"
+      },
+      "how": null,
+      "test": "A remote examination of an accused offers a private consultation channel before and after the examination, and the fact that it was offered is recorded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-TRL-010",
+      "category": "TRL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT admit any person to a remote point during an examination other than the person being examined and those whose presence the coordinator deems administratively necessary.",
+      "why": "Rule 13(5) puts the duty on the coordinator. Where the remote point is a room in a bank branch or a recovery office, the risk that a bank officer stands behind the witness is real, and a deposition taken with the complainant's employees present is worth nothing on appeal.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.13(5)",
+          "s": "gvcr",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "remote point - persons admitted during an examination"
+      },
+      "how": null,
+      "test": "The remote-point session records who was admitted, restricts joining to the person examined and the coordinator's listed necessary persons, and refuses others.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-TRL-011",
+      "category": "TRL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT permit recording or publication of proceedings conducted by video conferencing except where the court has expressly permitted it.",
+      "why": "Rule 5(vii) and 5(viii) forbid unauthorised recording by any person at any point. A platform whose default toolbar offers a record button to every participant makes contempt trivially easy in a hearing where the accused's identity documents and the complainant's account particulars are on screen.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.5(vii)",
+          "s": "gvcr",
+          "e": "rule_5"
+        },
+        {
+          "l": "Gujarat VC Rules 2025, r.5(viii)",
+          "s": "gvcr",
+          "e": "rule_5"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "hearing platform - recording and publication controls"
+      },
+      "how": null,
+      "test": "Participant-side recording is disabled by default; enabling it requires a recorded court permission tied to the hearing.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-007"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-012",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record a request by a party or witness for appearance through video conferencing in a criminal case.",
+      "why": "Rule 11(1) puts the initiative on the party or the witness in a criminal case, save where the proceedings are initiated at the instance of the Court or on the request of the public prosecutor. With no request on the record, a remote appearance rests on nothing, and the accused's absence from the physical court looks like non-appearance, which in a cheque case leads to a warrant.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.11(1)",
+          "s": "gvcr",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "appearance record - request for video conferencing"
+      },
+      "how": null,
+      "test": "Every remote appearance in a criminal case carries either a request record naming its mover or a marker that the proceeding was initiated by the Court or on the public prosecutor's request; an appearance with neither cannot be listed.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-021"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-013",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST classify a criminal case instituted on a private complaint in Track I.",
+      "why": "Schedule II Part B item 7 puts a criminal case on a private complaint, which is what a cheque case is, in Track I. The track drives the listing priority and the outer limit; a case sitting in the wrong track is scheduled against the wrong horizon, and in Gujarat's own scheme that is how a cheque case quietly becomes a three-year case.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, Sch.II Part B item 7",
+          "s": "gcfm",
+          "e": "sch2_b_7"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(A)(1)",
+          "s": "gcfm",
+          "e": "rule_21"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.3(i)",
+          "s": "gcfm",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - case flow track"
+      },
+      "how": "The ministerial officer categorises the case and the judicial officer confirms the categorisation; the physical file takes the track colour, Track I being violet or indigo.",
+      "test": "A case instituted on a private complaint is created in Track I, and the classification carries both the ministerial entry and the judicial confirmation.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-014"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-014",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST compute and expose an outer date for concluding a criminal case on a private complaint at six months from institution.",
+      "why": "Schedule II Part B item 7 prescribes six months as the outer limit for concluding a criminal case on a private complaint, the same horizon the NI Act sets for a summary cheque trial. Rule 3(iv) of the same rules gives Track I a maximum of nine months, and rule 21(A)(2) repeats nine months for Track I criminal cases, so the instrument divides against itself. A system that adopts the nine-month figure gives every cheque case three months of slack that the Schedule does not allow, and the monthly progress report will show the case as on time when it is already over.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, Sch.II Part B item 7",
+          "s": "gcfm",
+          "e": "sch2_b_7"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.3(iv)",
+          "s": "gcfm",
+          "e": "rule_3"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(A)(2)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - prescribed outer date for conclusion"
+      },
+      "how": null,
+      "test": "A private-complaint criminal case shows an outer date six months from institution; the nine-month Track I figure is not used for this case type, and the divergence is surfaced rather than silently resolved.",
+      "derivedFrom": "rule",
+      "status": "contested",
+      "tightens": "REQ-TRL-006",
+      "relatedTo": [
+        "REQ-GJ-TRL-013",
+        "REQ-GJ-TRL-015",
+        "REQ-GJ-CMP-001"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-015",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST require a written reason from the presiding judge before the track outer limit is extended or the case is moved to another track.",
+      "why": "Rule 3(vi) allows the extension or shift only for valid reason recorded in writing. Without that constraint the outer date becomes an editable field, and the six-month horizon that gives a cheque case its priority is quietly reset by whoever holds the case.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.3(vi)",
+          "s": "gcfm",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "case record - amendment of the track or the outer date"
+      },
+      "how": null,
+      "test": "The track and outer date cannot be changed without a reason text and a presiding-officer actor; the change and the reason appear on the case history.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-014"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-016",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST produce a monthly report on the stage and progress of the cases scheduled to be listed in the next month, on the last working day of the third week of each month or five working days before the end of the business period, whichever is earlier.",
+      "why": "Rule 3(vii) makes the report the mechanism by which the track scheme is actually enforced. Where the report has to be assembled by hand from a docket of several thousand cheque cases, it is not produced, and nothing else in the scheme notices a case running past its outer date.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.3(vii)",
+          "s": "gcfm",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "monthly case flow progress report"
+      },
+      "how": "The report is prepared by the ministerial officer and placed before the court concerned.",
+      "test": "The report generates on the prescribed date, covers the cases listed in the following month, and shows each case against its track and outer date.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-014"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-017",
+      "category": "TRL",
+      "level": "SHOULD",
+      "statement": "The system SHOULD list a case for arguments within seven days of the completion of evidence.",
+      "why": "Rule 9(13)(a) requires the case to be listed immediately after evidence is completed, and fixes seven days as the outer figure 'as far as possible' - it directs rather than commands, which is why this is a SHOULD; rule 21(B) carries the norm to a criminal trial. The gap between the close of evidence and arguments is where a cheque case with a six-month horizon loses months, because nothing triggers the listing.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.9(13)",
+          "s": "gcfm",
+          "e": "rule_9"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "cause list - listing for arguments after evidence"
+      },
+      "how": null,
+      "test": "Closing evidence on a case creates an arguments listing within seven days; a case with evidence closed and no arguments date inside seven days is reported as overdue.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-015"
+      ]
+    },
+    {
+      "id": "REQ-GJ-TRL-018",
+      "category": "TRL",
+      "level": "SHOULD",
+      "statement": "The system SHOULD record the magistrate's decision to try a case summarily before the trial commences.",
+      "why": "Rule 102(1) says magistrates should consider the appropriateness and desirability of the summary procedure before commencing the trial, and rule 102(2) lists the cases in which it is not appropriate, including those prima facie likely to be long and complicated. The Manual directs the consideration; it does not in terms require the decision to be recorded, so both the level and the recording are a reading of the rule rather than its words. A system that infers summary trial from the offence alone leaves no trace that the discretion was exercised, and a defended cheque case that should have gone to summons procedure is tried summarily and has to be tried again.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.102",
+          "s": "gcrm",
+          "e": "rule_102"
+        },
+        {
+          "l": "Criminal Manual 1977, r.101",
+          "s": "gcrm",
+          "e": "rule_101"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - decision to try summarily"
+      },
+      "how": null,
+      "test": "The case carries a summary-trial decision with its date and actor, recorded before the first evidence event; the decision cannot be back-dated after evidence has begun.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": "REQ-TRL-001",
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-TRL-019",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST raise the fixed bail bond fee when the accused is released on bond.",
+      "why": "Schedule II Article 10 charges a fixed fee on a bail bond in a criminal case and on a recognizance for personal appearance. In a cheque case the accused who answers summons is released on a bond at his first appearance, so this fee attaches in every contested case; a system that does not raise it leaves a short-paid record that the office must reconcile case by case.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, Sch.II Art.10",
+          "s": "gcf",
+          "e": "art_10"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "fee ledger - bail bond fee at first appearance"
+      },
+      "how": "Schedule II Article 10: two rupees on a bail-bond in a criminal case and on a recognizance to prosecute, to appear or otherwise.",
+      "test": "Recording the accused's release on bond raises the Article 10 fee entry against the case.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-TRL-020",
+      "category": "TRL",
+      "level": "MAY",
+      "statement": "The system MAY record an order apportioning or waiving the costs of video conferencing between the parties.",
+      "why": "Rule 22 lets the court decide who bears the cost of the facility, of preparing and transmitting soft or certified copies to the remote coordinator, and of the translator, interpreter, special educator and remote coordinator, and lets it waive those costs. In a cheque case where the complainant is a bank and the accused an individual, an unrecorded cost order silently lands on whichever party the workflow bills by default.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.22",
+          "s": "gvcr",
+          "e": "rule_22"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - order as to video conferencing costs"
+      },
+      "how": null,
+      "test": "A video-conferencing cost order can be recorded against a party or waived, and the billing follows the order rather than a default.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-TRL-021",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST store the schedule the court fixes when it allows a request for appearance through video conferencing.",
+      "why": "Rule 11(3) lets the court fix the schedule for convening the video conferencing at the moment it allows the request. The rule states the court's power; that the schedule be held as data on the appearance rather than left in the prose of the order is the reading, not the text. Where it lives only in the order text, the hearing is listed off the ordinary board and the parties, the coordinator and the remote point are given different times, so the bank officer and the accused connect on different days.",
+      "authority": [
+        {
+          "l": "Gujarat VC Rules 2025, r.11(3)",
+          "s": "gvcr",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "appearance record - schedule fixed for the video conferencing"
+      },
+      "how": null,
+      "test": "An order allowing video conferencing captures the schedule as a dated, timed field on the appearance, and the hearing listing for that appearance is generated from it rather than entered separately.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-012"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CMP-001",
+      "category": "CMP",
+      "level": "MUST",
+      "statement": "The system MUST set off the time spent in mediation, conciliation or Lok Adalat against the track time limit and extend the outer date proportionately.",
+      "why": "Rule 9(2) requires the time to be set off and the track limit proportionately extended, and rule 21(B) carries the norm to the criminal side. A cheque case is the case most often sent to the Lok Adalat, since it is compoundable and the parties usually want money rather than a conviction. If the clock keeps running through the reference, a case that settles late but fails comes back already past its outer date and is treated as delayed when it was not.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.9(2)",
+          "s": "gcfm",
+          "e": "rule_9"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - outer date adjusted for time in alternative dispute resolution"
+      },
+      "how": null,
+      "test": "Referring a case to mediation, conciliation or the Lok Adalat pauses the outer-date clock; on the failure report the outer date is extended by the elapsed period and the adjustment is visible on the case.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-TRL-014",
+        "REQ-GJ-CMP-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CMP-002",
+      "category": "CMP",
+      "level": "SHOULD",
+      "statement": "The system SHOULD relist a case within three days of the report that the alternative dispute resolution process has failed.",
+      "why": "Rule 9(1) requires the matter to be listed within three days of the report, and rule 9(3) warns courts not to let the forum be used to prolong the case. The rule is written in civil terms, so its application to a criminal complaint runs through rule 21(B). Without the relisting trigger, a failed Lok Adalat reference leaves a cheque case dormant in the record room while its outer date runs.",
+      "authority": [
+        {
+          "l": "Case Flow Management Rules 2016, r.9(1)",
+          "s": "gcfm",
+          "e": "rule_9"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.9(3)",
+          "s": "gcfm",
+          "e": "rule_9"
+        },
+        {
+          "l": "Case Flow Management Rules 2016, r.21(B)",
+          "s": "gcfm",
+          "e": "rule_21"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "cause list - relisting after a failed settlement reference"
+      },
+      "how": null,
+      "test": "Recording a failure report creates a listing within three days, and a case with a failure report and no listing inside three days is reported.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CMP-001"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SEN-001",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST require the accused to be personally present at the SARAS Court when judgment is pronounced.",
+      "why": "Rule 10.1 makes personal presence at pronouncement a distinct requirement from presence at the plea. A remote-adjudication workflow that treats pronouncement as one more video hearing will pronounce a conviction on a cheque case with the accused on a screen in another district, and the conviction warrant that follows cannot be executed against a person who was never before the court.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.10.1",
+          "s": "saras",
+          "e": "rule_10"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "judgment pronouncement - presence of the accused"
+      },
+      "how": "The accused remains personally present at the SARAS Court at the time of pronouncement, or as and when the Presiding Officer directs.",
+      "test": "A judgment cannot be marked pronounced unless the accused's presence at the SARAS Court is recorded, or a direction of the presiding officer to the contrary is on the record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-TRL-018",
+      "relatedTo": [
+        "REQ-GJ-SEN-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-SEN-002",
+      "category": "SEN",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT make e-payment the only mode by which a fine, penalty or compensation can be paid.",
+      "why": "Rule 12 permits e-payment once the facility is enabled for the court, and until then payment by cash or another permissible mode. Compensation is the relief a cheque complainant actually came for. In a court where the facility is not yet live, a payment screen that offers only the electronic route leaves the accused unable to pay, the complainant unpaid, and the case unable to close.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.12.1",
+          "s": "saras",
+          "e": "rule_12"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.12.2",
+          "s": "saras",
+          "e": "rule_12"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "payment of fine and compensation - available modes"
+      },
+      "how": null,
+      "test": "Where e-payment is not enabled for the court, cash and other permissible modes remain selectable, and the mode used is recorded against the payment.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-SEN-003",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST route the issue and execution of a conviction warrant through the ordinary procedure established by law rather than through the remote-adjudication workflow.",
+      "why": "Rule 10.2 is the point at which a remote cheque case returns to the physical world. A warrant generated and treated as served inside the electronic workflow commits a person to prison on a record that no physical authority has acted on, which is the one step in a cheque case where the electronic record cannot stand alone.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.10.2",
+          "s": "saras",
+          "e": "rule_10"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "conviction warrant - issue, execution and compliance"
+      },
+      "how": null,
+      "test": "A conviction warrant is produced as a signed instrument for execution through the ordinary process channel, and its execution is recorded from a physical return rather than closed inside the portal.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-SEN-001"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-001",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST treat the electronic record maintained on the designated portal as the primary and authoritative judicial record of a SARAS case.",
+      "why": "Rule 3.1 is the doctrinal core of the SARAS regime. Where a system keeps a parallel physical file as the authoritative one and the portal as a copy, the two diverge, and a cheque case is decided on whichever version the officer happens to be holding. The whole design of remote adjudication, in which the officer is never in the same building as the paper, depends on this being settled the other way.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.3.1",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.3.2",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.4.10",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - the portal record as the authoritative record"
+      },
+      "how": null,
+      "test": "Every document, order and rojnama entry of a SARAS case exists on the portal record, and no case artifact exists only outside it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-004",
+        "REQ-GJ-REC-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-002",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST authenticate a document required to be signed by a token-based Digital Signature Certificate where the signatory holds one.",
+      "why": "Rules 3.3, 3.4 and 4.19 require authentication that ensures verifiability, integrity and attribution, and discourage physical signing where a token or Aadhaar e-sign is available. A bank filing in bulk holds tokens for its authorised signatories; letting those filings through on a scanned wet signature loses the attribution that makes the electronic record authoritative in the first place.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.3.3",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.3.4",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.4.19",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.7.1",
+          "s": "gefr",
+          "e": "rule_7"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "document authentication - token-based digital signature"
+      },
+      "how": null,
+      "test": "A signatory with a registered token is offered only the token route, and a document signed with it records the certificate details on the record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-003",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST capture, where authentication is by physical signature, the scanned signed document together with a self-attested copy of an accepted proof of identity.",
+      "why": "Rule 3.5 is the fallback for a person without a token. An individual accused, and the small payee who files without an advocate, will always use it. If the identity proof is not captured with the signed page, the signature on the record is attributable to nobody, and the document fails the verifiability that rule 3.3 requires.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.3.5",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.3.6",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.7.1",
+          "s": "gefr",
+          "e": "rule_7"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "document authentication - physical signature route"
+      },
+      "how": "The person physically signs, and the signed document accompanied by a self-attested copy of a driving licence, election card, passport, PAN card, Aadhaar card or other identity proof the court permits is scanned and uploaded to form part of the judicial record.",
+      "test": "A physically signed upload cannot be completed without an identity proof attached, and both pages land on the same document record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-002",
+        "REQ-GJ-TRL-002"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-004",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST require the Presiding Officer to digitally sign a document scanned at the Remote Adjudication Point before it forms part of the official record.",
+      "why": "Rule 3.7 makes the officer's digital signature the act that admits a scanned document to the record, after the ministerial staff have scanned, OCR-enabled, checked and verified it. Without that step, anything a clerk uploads is on the file, and in a court where the officer is in another district there is no other moment at which he sees what has been added.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.3.7",
+          "s": "saras",
+          "e": "rule_3"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.4.15",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "document intake - presiding officer's digital signature on scanned documents"
+      },
+      "how": "The ministerial staff of the Remote Adjudication Point scan, OCR-enable, check and verify the document per the High Court's scanning and digitisation SOP, and send it to the SARAS Court, where the Presiding Officer digitally signs it.",
+      "test": "A scanned document sits in a pending state until the presiding officer signs it; only then does it appear as part of the official record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-011"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-005",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST assign exhibit numbers to the documents of a SARAS case in conformity with rule 76 of the Criminal Manual.",
+      "why": "SARAS rule 4.13 sends exhibit and bookmark assignment straight back to Criminal Manual rule 76, under which each document bears an exhibit number and a serial number as it comes before the court. An independent numbering scheme invented by the portal produces a record whose exhibit numbers do not match the Roznama, the deposition or the judgment, and a certified copy taken from it is unusable on appeal.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.13",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "Criminal Manual 1977, r.76",
+          "s": "gcrm",
+          "e": "rule_76"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "exhibit assignment - conformity with Criminal Manual rule 76"
+      },
+      "how": "The designated staff member assigns bookmarks, exhibits or marks promptly and correctly according to the nature of the document; each document bears an exhibit number and a serial number as it comes before the court.",
+      "test": "Exhibit numbers run in the order documents come before the court, and the exhibit list on the rojnama matches the exhibit numbers on the documents themselves.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-008",
+        "REQ-GJ-REC-006"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-006",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST record the rojnama in the Case Information System at the conclusion of proceedings on each date of hearing and place it for the Presiding Officer's digital authentication.",
+      "why": "Rule 4.20 fixes both the moment and the authentication. A rojnama written up days later from memory, or never authenticated, is not the faithful history of the case that Criminal Manual rule 76 requires; and in a remote court the rojnama is the only account of what happened, since no party and no officer shares a room.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.20",
+          "s": "saras",
+          "e": "rule_4"
+        },
+        {
+          "l": "Criminal Manual 1977, r.76",
+          "s": "gcrm",
+          "e": "rule_76"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "rojnama entry for a date of hearing"
+      },
+      "how": "The designated staff member records the rojnama in the Case Information System under the Case Proceedings or Business block; it is then placed for the Presiding Officer's digital signature and on signature forms part of the official record.",
+      "test": "Closing a hearing creates a rojnama entry dated that day, which cannot become part of the record until digitally signed by the presiding officer.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-007",
+        "REQ-GJ-REC-005"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-007",
+      "category": "REC",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT record ministerial acts such as the receipt of process fees or the preparation of summonses in the Roznama.",
+      "why": "Rule 76 excludes them expressly and requires the Roznama to be as concise as possible while remaining a faithful history. A system that writes every event of its own audit log into the rojnama buries the judicial history of a cheque case under fee receipts and process-generation entries, and the officer reading the file cannot see what was actually done in court.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.76",
+          "s": "gcrm",
+          "e": "rule_76"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "rojnama content - exclusion of ministerial events"
+      },
+      "how": null,
+      "test": "Fee receipts, process generation and similar ministerial events appear in the audit trail but not in the rojnama; the rojnama for a typical cheque hearing is a handful of lines.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-006"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-008",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST sub-number an order on an interlocutory application, or a document filed in continuation of an existing exhibit, below the parent exhibit rather than assigning it an independent exhibit number.",
+      "why": "Rule 4.17 gives the example: an order below Exhibit-5 is Exhibit-5/1. Assigning a fresh number breaks the link between the application and the order on it, and in a cheque case with a long series of applications for exemption from personal appearance the record becomes impossible to follow at the appellate stage.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.17",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "exhibit numbering - sub-numbering below a parent exhibit"
+      },
+      "how": "An order passed below Exhibit-5 is marked Exhibit-5/1 and is not assigned an independent exhibit number.",
+      "test": "An order recorded against an application exhibited as 5 is numbered 5/1, and the next independent document takes the next whole number.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-005"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-009",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST generate orders, judgments and depositions directly in PDF rather than by printing, signing and scanning them.",
+      "why": "Rule 4.18 requires direct generation, not a print-sign-scan cycle. A scanned judgment has no text layer, cannot be searched, quoted or indexed, and is a poor thing to send to an appellate court that receives the record electronically under rule 14.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.18",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "orders, judgments and depositions as natively generated signed PDFs"
+      },
+      "how": null,
+      "test": "A judgment, an order and a deposition produced by the system are each PDFs with a selectable text layer, and no page in them is a scanned image.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-010",
+        "REQ-GJ-REC-022",
+        "REQ-GJ-APL-001"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-010",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST require an order sheet typed by a stenographer to be digitally signed by the magistrate before it is uploaded to the Case Information System.",
+      "why": "Rule 8.1 allows magistrates to dictate order sheets to stenographers online during or after the hearing, and requires the signature before upload. An unsigned order sheet on the CIS is indistinguishable from a signed one to anyone reading the case, and in a remote court where nobody sees the officer sign, that is how an undictated or altered order enters the record.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.8.1",
+          "s": "saras",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "order sheet - signature before upload"
+      },
+      "how": null,
+      "test": "An order sheet cannot be uploaded to the CIS in an unsigned state; the upload action requires the signature in the same step.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-009"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-011",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST make a registered matter available first in the Presiding Officer's account and only after his verification route it to the designated court staff.",
+      "why": "Rule 4.12 fixes the order. If a newly registered cheque case goes straight to ministerial processing, the exhibits and bookmarks are assigned before the officer has seen the matter at all, and the first judicial look at the file happens after the record has already been shaped.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.12",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "case routing after registration - presiding officer before court staff"
+      },
+      "how": null,
+      "test": "A newly registered matter appears only in the presiding officer's queue; the staff queue receives it after his verification is recorded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-004"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-012",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST govern the maintenance, classification, retention and destruction of the electronic record on the designated portal by rules 361 to 367 of the Criminal Manual.",
+      "why": "Rule 7.1 applies the 1977 record rules to the electronic record so far as they can apply. A digital archive run on a storage-management policy of its own will destroy or migrate the record of a cheque case on a schedule the court never adopted, and the classification the Criminal Manual requires will not exist to argue about.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.7.1",
+          "s": "saras",
+          "e": "rule_7"
+        },
+        {
+          "l": "Criminal Manual 1977, r.361",
+          "s": "gcrm",
+          "e": "rule_361"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "electronic record - retention policy derived from the Criminal Manual"
+      },
+      "how": null,
+      "test": "Every electronic case record carries a Criminal Manual classification and the retention period that attaches to it, and no destruction runs outside that policy.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-013",
+        "REQ-GJ-REC-014",
+        "REQ-GJ-REC-015"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-013",
+      "category": "REC",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT despatch the record of a substantive criminal proceeding to the record room until the period for appeal or revision has expired, or where an appeal or revision has been instituted, until it is disposed of.",
+      "why": "Rule 361 sets the condition and adds, as a precaution, that records be kept intact in the sequence of institution serial numbers for two months beyond that period before filing orders are taken. A cheque case record archived on judgment cannot be produced when the appellate court calls for it under SARAS rule 14, and the appeal stalls on the record's absence.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.361",
+          "s": "gcrm",
+          "e": "rule_361"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "record room - despatch precondition"
+      },
+      "how": null,
+      "test": "The despatch action is unavailable while the appeal or revision period is running or an appeal or revision is pending, and the two-month precautionary hold is applied before filing orders are sought.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-012",
+        "REQ-GJ-APL-001"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-014",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST classify every paper on the record into file A, B, C or D immediately after the filing order is passed.",
+      "why": "Rule 362 requires the arrangement into four files, and rule 363 attaches the retention period to the class. Without the classification recorded per document, the retention period cannot be applied at all, and either everything is kept for ever or the retention run picks a single period for the whole case.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.362",
+          "s": "gcrm",
+          "e": "rule_362"
+        },
+        {
+          "l": "Criminal Manual 1977, r.363",
+          "s": "gcrm",
+          "e": "rule_363"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document record - Criminal Manual file classification"
+      },
+      "how": "Papers to be preserved permanently go to file A; semi-permanent papers such as judgments of a court other than the Sessions Court to file B; papers bearing on the merits such as depositions and documents produced in evidence not to be returned to the parties to file C; papers with no bearing on the merits such as vakalatnamas and remand orders to file D.",
+      "test": "Passing the filing order requires each document to carry an A, B, C or D classification, and an unclassified document blocks the filing order.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-015"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-015",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST compute the destruction date of a paper from the class it was given, running from the final decision of the case in the trial court where no appeal or revision was filed and from the final decision of the appellate or revisional court where one was.",
+      "why": "Rule 363 fixes the periods and the starting point. A retention engine that runs from the date the document was created will destroy a deposition in a cheque case five years after it was recorded rather than five years after the case ended, which in a contested case can be while the appeal is still pending.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.363",
+          "s": "gcrm",
+          "e": "rule_363"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document record - destruction date by class"
+      },
+      "how": "File A permanently; file B destroyed after thirty years; file C after five years; file D after six months. The period is computed from the date of the final decision of the case in the trial court where no appeal or revision application has been filed, and from the date of the final decision of the appellate or revisional court where one has been filed.",
+      "test": "The destruction date on a document equals its class period added to the case's final-decision date - the appellate or revisional decision date where an appeal or revision was filed - and never to the document's own date.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-014",
+        "REQ-GJ-REC-016"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-016",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST apply the longer of the two retention periods prescribed for a signed vakalatnama.",
+      "why": "The sources divide. Criminal Manual rule 363 puts vakalatnamas in file D, destroyed after six months. Clause 10.2 of the Gujarat e-Filing SOP requires the signed vakalatnama to be preserved for at least two years after final disposal, including disposal by the superior appellate court, and SARAS rule 13.2 adopts that clause for retention of originals in a SARAS case. A system that follows the Criminal Manual alone destroys the very document whose authenticity the SOP anticipates being questioned, while the appeal in the cheque case is still running.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.363",
+          "s": "gcrm",
+          "e": "rule_363"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.10.2",
+          "s": "gefr",
+          "e": "rule_10"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.13.2",
+          "s": "saras",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "retention policy - vakalatnama"
+      },
+      "how": null,
+      "test": "A signed vakalatnama in a SARAS case is retained until at least two years after final appellate disposal, and the six-month file D period does not trigger its destruction.",
+      "derivedFrom": "rule",
+      "status": "contested",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-EVI-007",
+        "REQ-GJ-REC-015"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-017",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST preserve the register of cases before Judicial Magistrates and Metropolitan Magistrates for thirty years from the expiry of the last year in the volume.",
+      "why": "Rule 364 sets the period for the registers, as distinct from the case papers. In a court hearing cheque cases in bulk the register is the only index by which an old case can be found once the papers have gone to the record room, and a register purged with the case files leaves the record unsearchable.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.364",
+          "s": "gcrm",
+          "e": "rule_364"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "register retention - registers of cases before magistrates"
+      },
+      "how": null,
+      "test": "The case register carries a thirty-year retention computed from the expiry of the last year in the volume, independent of the retention on the case papers it indexes.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-012"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-018",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST restrict access to the pleadings and documents filed electronically in a case to the advocates for the parties and to the party-in-person.",
+      "why": "Clause 11.1 confines access to them. A SARAS cheque case file holds the accused's identity documents and the complainant's account particulars for thousands of borrowers; a portal that lets any logged-in advocate open any case turns the docket into a source of personal data at scale.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.11.1",
+          "s": "gefr",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "case file access - parties' advocates and the party-in-person"
+      },
+      "how": null,
+      "test": "An advocate not on record for a party cannot open the pleadings or documents of that case; the attempt is refused and logged.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-010"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-019",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST store e-filings on a server under the control and directions of the court, with each filing separately labelled and encrypted.",
+      "why": "Clause 17 requires it. An institutional filer's cheque bundles carry account numbers, addresses and signatures; held on a shared or vendor-controlled store, or unencrypted, they are outside the court's control while remaining the primary judicial record under SARAS rule 3.1.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.17",
+          "s": "gefr",
+          "e": "rule_17"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "storage - court-controlled, labelled and encrypted e-filing store"
+      },
+      "how": null,
+      "test": "Filings are held encrypted at rest on court-controlled infrastructure, each with its own label, and access is only through the court's own access-control path.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-001",
+        "REQ-GJ-REC-020"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-020",
+      "category": "REC",
+      "level": "SHOULD",
+      "statement": "The system SHOULD maintain a mirror image of the e-filings on servers at a different geographical location for continuity of operations.",
+      "why": "Clause 17 provides that a mirror image of the e-filings may be maintained on servers at different geographical locations for continuity of operations in case of disaster, natural calamity or breakdown. The clause is permissive on its face; treating the mirror as something a system ought to have is a reading of it in the light of SARAS rule 3.1, which makes the electronic record the primary and authoritative judicial record. On that footing the loss of the store is the loss of the case, and a court trying tens of thousands of cheque cases has no paper file to fall back on.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.17",
+          "s": "gefr",
+          "e": "rule_17"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "storage - geographically separate mirror"
+      },
+      "how": null,
+      "test": "A restore from the mirror reproduces the portal record of a sample case in full, including its digital signatures.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-019"
+      ]
+    },
+    {
+      "id": "REQ-GJ-REC-021",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST generate a hash value for an audio or video file included in an e-filing.",
+      "why": "Clause 8.4 puts that duty on the Administrator. Where a cheque case turns on a recorded conversation or a video of a handover, a file on the record with no hash cannot be shown to be the file that was filed, and its integrity is open to challenge at the very point it matters.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.8.4",
+          "s": "gefr",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document record - hash value of an audio or video filing"
+      },
+      "how": null,
+      "test": "An audio or video upload records a hash value against the document; recomputing the hash on the stored file reproduces it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-REC-022",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST have every order, judgment and deposition digitally signed by the Presiding Officer through the designated portal.",
+      "why": "Rule 4.18 puts the signature on the same footing as the generation. An unsigned judgment sitting on the portal is indistinguishable from a signed one to anyone reading the case, and in a court where nobody is in the room when the officer signs, an image of a signature is not a verifiable one when the appellate court receives the record electronically under rule 14.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.4.18",
+          "s": "saras",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "orders, judgments and depositions - presiding officer's digital signature"
+      },
+      "how": null,
+      "test": "A judgment carries a verifiable digital signature of the presiding officer applied on the portal; a judgment without one cannot be released to the parties or transmitted on appeal.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-009",
+        "REQ-GJ-REC-004"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-001",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST treat a digitally signed electronic copy generated from the record on the designated portal as a certified copy for all legal purposes.",
+      "why": "Rule 11.2 says so expressly. Where the system offers only a printed and manually attested copy, a party in a SARAS cheque case has to travel to Ahmedabad for the judgment he needs to file an appeal, in a case that was tried entirely at a distance, and the appeal period runs while he does.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.11.1",
+          "s": "saras",
+          "e": "rule_11"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.11.2",
+          "s": "saras",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "certified copy generated from the digitally signed electronic record"
+      },
+      "how": "Issuance is governed by Chapter XXII of the Criminal Manual; copies are generated from the digitally signed electronic record on the designated portal.",
+      "test": "A certified copy of a judgment can be obtained as a digitally signed electronic file, and it is accepted as a certified copy without a further physical attestation.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-002",
+        "REQ-GJ-APL-006"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-002",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST carry on a certified copy of a digitally converted document a statement that the copy is generated from the digitally converted document filed in court.",
+      "why": "Rule 11.3 requires the statement. Without it a certified copy of a scanned cheque looks like a certified copy of the instrument itself, and a party relying on it in another proceeding, a civil suit on the same cheque for instance, misrepresents what the court actually holds.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.11.3",
+          "s": "saras",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "certified copy - provenance statement"
+      },
+      "how": null,
+      "test": "A certified copy of a scanned document carries the statement on its face; a certified copy of a natively electronic order does not.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-001"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-003",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST supply a certified copy through the medium the applicant specified in the application.",
+      "why": "Rule 11.4 makes the medium the applicant's choice, subject only to the device not being obsolete. A workflow that always emails will fail the applicant who needs the copy on a storage device because the record is too large for mail, and one that always uses a device makes an applicant in another district travel to collect it.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.11.4",
+          "s": "saras",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "certified copy application - medium of supply"
+      },
+      "how": "The medium is electronic mail, a recognised electronic messaging service, or a digital storage device that has not become obsolete.",
+      "test": "The application captures the medium; the supply record shows the copy went out by that medium.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-004"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-004",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST compute the charge for a certified copy supplied by electronic means on the prescribed per-megabyte scale.",
+      "why": "Rule 11.5 fixes a minimum of fifty rupees for up to twenty-five megabytes and fifty rupees for each further twenty-five megabytes, with the cost of the storage device borne by the applicant in addition. A cheque case record with scanned bank statements runs to hundreds of megabytes, so a system charging a single flat copying fee will under-recover on every large record and cannot reconcile its copy account.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.11.5",
+          "s": "saras",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "certified copy - charge computation"
+      },
+      "how": "A minimum of fifty rupees for up to twenty-five megabytes as handling charges, and fifty rupees for each additional twenty-five megabytes; where supply is on a digital storage device, the actual cost of the device is borne by the applicant in addition.",
+      "test": "A copy of sixty megabytes is charged for three blocks; supply on a device adds the device cost as a separate line.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-005",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST produce, with a certified copy supplied in electronic form, a digitally signed endorsement page stating the date of the application, the date it was granted and the date the copy was ready for delivery.",
+      "why": "Rule 11.7 prescribes the endorsement, and it is what the appellate court uses to exclude the copying time from the limitation for the appeal. Without those three dates on the copy, a convicted drawer in a cheque case cannot show why his appeal was filed when it was.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.11.7",
+          "s": "saras",
+          "e": "rule_11"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.11.6",
+          "s": "saras",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "certified copy - endorsement page"
+      },
+      "how": "The endorsement is made on a separate page by the concerned ministerial staff and is digitally signed by the staff member supplying the copy; compliance with the Criminal Manual is ensured through digital endorsements and digital signatures.",
+      "test": "Every electronically supplied certified copy carries an endorsement page with the three dates and a verifiable staff signature.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-006",
+        "REQ-GJ-APL-006"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-006",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST furnish a certified copy within ten days of a complete application.",
+      "why": "Rule 384 sets the period, running from the day the application is presented where it is complete, and from the date it is granted in other cases. In a cheque case the copy of the judgment is the document an appeal cannot be filed without, so a copy queue with no service clock silently eats into the appeal period.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.384",
+          "s": "gcrm",
+          "e": "rule_384"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "certified copy queue - ten day service clock"
+      },
+      "how": "The ten days run from the day on which the application is presented where the application is complete, and in other cases from the date on which the application is granted.",
+      "test": "A complete copy application carries a due date ten days out, and the queue reports applications past it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-007"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-007",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST endorse the cause of delay on a certified copy furnished after the ten day period.",
+      "why": "Rule 384 requires the cause of delay to be endorsed on the copy where further delay is unavoidable. That endorsement is the applicant's evidence when the appellate court asks why the appeal is late; a copy delivered late with nothing on its face leaves him unable to explain the gap.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.384",
+          "s": "gcrm",
+          "e": "rule_384"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "certified copy - endorsement of the cause of delay"
+      },
+      "how": null,
+      "test": "A copy delivered after the due date cannot be issued without a cause-of-delay text, and the text appears on the copy.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-006"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-008",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST estimate the cost of a certified copy, including postage where the copy is to be sent by post, before the copying work is undertaken.",
+      "why": "Rules 380 and 381 require the estimate first and the deposit of the estimated cost before the work is taken on hand. Copying begun before the estimate produces work nobody has paid for, and in a busy magistrate's copy section that is how a copy application sits for weeks with the file already extracted from the record room.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.380",
+          "s": "gcrm",
+          "e": "rule_380"
+        },
+        {
+          "l": "Criminal Manual 1977, r.381",
+          "s": "gcrm",
+          "e": "rule_381"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "certified copy - cost estimate before copying"
+      },
+      "how": "The estimate covers all probable costs of the copies including postage where they are to be sent by post; an applicant not entitled to a free copy is called on to deposit the estimated cost and make up any other deficiency.",
+      "test": "The copy workflow produces an estimate and takes a deposit before the copying task can be started.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-CPY-009",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST raise a search fee where the description of the document in a copy application is incorrect or deficient and the record has to be searched to find it.",
+      "why": "Rule 382 makes the fee payable per year of records searched, whether or not the document is found and whether or not the copy is granted. In a court with tens of thousands of cheque cases a search across years is real work. Note that the rate in rule 382, one rupee for each year searched, is the 1977 figure taken from an OCR of the first edition of the Manual, and the current rate must be verified against the official text and the fee tables in force.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.382",
+          "s": "gcrm",
+          "e": "rule_382"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "certified copy application - search fee"
+      },
+      "how": null,
+      "test": "A copy application marked as requiring a search raises a fee computed per year searched, at a rate held as data rather than hard-coded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-CPY-010",
+      "category": "CPY",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT refuse a certified copy to a person who is a stranger to the case where the application is made in accordance with the rules for the grant of certified copies.",
+      "why": "Clause 11.3 of the SOP preserves the stranger's entitlement alongside the access restriction in clause 11.1. A system that implements the access restriction as a blanket rule will also block the certified-copy route, and a guarantor or a subsequent endorsee of the same cheque, who has no access to the file but a real interest in the judgment, cannot obtain it at all.",
+      "authority": [
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.11.3",
+          "s": "gefr",
+          "e": "rule_11"
+        },
+        {
+          "l": "Gujarat e-Filing SOP 2024, cl.11.2",
+          "s": "gefr",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "certified copy application - applicant who is a stranger to the case"
+      },
+      "how": null,
+      "test": "A user with no association to the case can lodge a certified-copy application and receive the copy on the ordinary terms, while remaining unable to browse the case file.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-REC-018"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-011",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST route a complete certified-copy application to the officer designated for the level of court in which it is made.",
+      "why": "Rule 383 names a different officer for each court: the Registrar or Clerk of the Court in the Sessions Court, the Clerk of the Court before a Judicial Magistrate, the Sheristedar before a Metropolitan Magistrate, and a specially authorised junior clerk where no senior clerk is appointed. An application for a free copy goes instead to the presiding officer for orders. A queue that sends everything to one role either overloads it or puts the decision with someone the rule does not empower.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.383",
+          "s": "gcrm",
+          "e": "rule_383"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "certified copy application - officer competent to grant or refuse"
+      },
+      "how": "An application for a copy free of costs is placed before the presiding officer for orders; all others go to the officer designated for that court.",
+      "test": "The application queue for a case in a Judicial Magistrate's court is addressed to the Clerk of the Court, and an application for a free copy is addressed to the presiding officer.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-012"
+      ]
+    },
+    {
+      "id": "REQ-GJ-CPY-012",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST communicate a refusal of a certified-copy application, and the grounds of the refusal, to the applicant in writing.",
+      "why": "Rule 383 requires both the refusal and its grounds to be communicated in writing. A refusal shown only as a status change leaves the applicant with nothing to correct and nothing to challenge, and in a cheque case where the copy is needed for an appeal the time lost is time out of the appeal period.",
+      "authority": [
+        {
+          "l": "Criminal Manual 1977, r.383",
+          "s": "gcrm",
+          "e": "rule_383"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "certified copy application - written refusal with grounds"
+      },
+      "how": null,
+      "test": "The refuse action is unavailable until a grounds text is entered; the applicant's record then shows a written refusal document carrying that text, with the date it was despatched and the channel it went by.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-011"
+      ]
+    },
+    {
+      "id": "REQ-GJ-APL-001",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST transmit the record and proceedings of a SARAS case to the appellate or revisional court in electronic form on that court's direction.",
+      "why": "Rule 14.1 makes electronic transmission the ordinary route. Where the trial record exists only on the portal, a system that can only produce a paper paging of the record either sends up a reconstruction or holds the appeal until one is made, and the appellant in a cheque case waits on an administrative task rather than a judicial one.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.14.1",
+          "s": "saras",
+          "e": "rule_14"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "record transmission on appeal or revision"
+      },
+      "how": null,
+      "test": "A direction from an appellate or revisional court produces an electronic transmission of the complete record and proceedings, with the transmission logged on the case.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-APL-002",
+        "REQ-GJ-REC-013"
+      ]
+    },
+    {
+      "id": "REQ-GJ-APL-002",
+      "category": "APL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT transmit the original record or hard copies of the electronically maintained case record except as the appellate or revisional court directs.",
+      "why": "Rule 14.2 keeps the originals where they are unless the higher court asks for them. Sending up the original cheque with the appeal record removes from the trial court the very instrument SARAS rule 3.11 requires to be retained until the dispute attains finality, and it can be lost in transit between two courts neither of which is now responsible for it.",
+      "authority": [
+        {
+          "l": "SARAS Courts Rules 2026, r.14.2",
+          "s": "saras",
+          "e": "rule_14"
+        },
+        {
+          "l": "SARAS Courts Rules 2026, r.3.11",
+          "s": "saras",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "record transmission - originals and hard copies"
+      },
+      "how": null,
+      "test": "Transmission of originals or hard copies requires a recorded direction of the appellate or revisional court; the default transmission carries only the electronic record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-APL-001",
+        "REQ-GJ-EVI-004"
+      ]
+    },
+    {
+      "id": "REQ-GJ-APL-003",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST give a criminal matter presented in the High Court a filing number on presentation, and a registration number only when there is no office objection.",
+      "why": "Rule 333 makes them two distinct numbers with different meanings. A system with a single number cannot express a quashing petition against a cheque complaint that has been presented but not registered, and the petitioner cannot tell whether his matter is before the court or still with the office.",
+      "authority": [
+        {
+          "l": "Gujarat High Court Rules 1993, r.333",
+          "s": "ghcr",
+          "e": "rule_333"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "High Court criminal matter - filing number and registration number"
+      },
+      "how": null,
+      "test": "A presented matter shows a filing number and no registration number; clearing the last office objection assigns the registration number and both remain on the record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-APL-004",
+        "REQ-GJ-APL-005"
+      ]
+    },
+    {
+      "id": "REQ-GJ-APL-004",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST complete the office examination of a criminal appeal or application in the High Court within six days of filing.",
+      "why": "Rule 339 fixes six days, shortened to the next day where the sentence is six months or less and the accused is in custody. A revision against a cheque conviction that sits unscrutinised past that period delays the point at which the accused can even ask for suspension of sentence, and the shortened track exists precisely for the case where he is in custody.",
+      "authority": [
+        {
+          "l": "Gujarat High Court Rules 1993, r.339",
+          "s": "ghcr",
+          "e": "rule_339"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "High Court scrutiny - six day examination clock"
+      },
+      "how": "The examination is completed within six days of filing, except where the sentence is six months or less and the accused is in custody, in which case not later than the day after presentation or receipt.",
+      "test": "A filed criminal application carries a scrutiny due date six days out, and one with a custody flag and a sentence of six months or less carries a next-day due date.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-APL-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-APL-005",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST place a criminal appeal or application before the Court for orders where the office objections are not removed within fourteen days of their notification.",
+      "why": "Rule 340 gives the advocate or applicant fourteen days and then requires the matter to go before the Court without delay. Without that trigger, a quashing petition in a cheque case can sit in the objection state indefinitely while the trial below proceeds, which is exactly the outcome the petitioner filed to prevent.",
+      "authority": [
+        {
+          "l": "Gujarat High Court Rules 1993, r.340",
+          "s": "ghcr",
+          "e": "rule_340"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "High Court objections - fourteen day removal clock"
+      },
+      "how": "The office notifies objections on a special notice board and an entry of the date of notification is made on the presentation form; the fourteen days run from that notification.",
+      "test": "Notification of objections starts a fourteen-day clock recorded on the matter, and on expiry without removal the matter appears on a list for orders.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-APL-003"
+      ]
+    },
+    {
+      "id": "REQ-GJ-APL-006",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST require a criminal appeal or application in the High Court to be accompanied by a certified copy of the judgment or order challenged.",
+      "why": "Rule 345 requires every criminal appeal and application to be accompanied by the certified copy of the judgment or order challenged, and additionally by the certified copy of the trial court judgment where the challenge is to an appellate or revisional order of the Sessions Judge. A revision against a cheque conviction filed without the trial judgment is objected to at scrutiny, and the fourteen-day objection clock consumes the time the applicant needed for the certified copy in the first place. The rule says what must accompany the memorandum and leaves the manner of production open, so how is null.",
+      "authority": [
+        {
+          "l": "Gujarat High Court Rules 1993, r.345",
+          "s": "ghcr",
+          "e": "rule_345"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "High Court filing - accompanying certified copies"
+      },
+      "how": null,
+      "test": "A criminal application cannot be presented without a certified copy of the order challenged, and a challenge to a revisional order additionally requires the trial court judgment.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-CPY-001",
+        "REQ-GJ-CPY-005",
+        "REQ-GJ-APL-010"
+      ]
+    },
+    {
+      "id": "REQ-GJ-APL-007",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST list an application to quash a complaint and a criminal revision before a Single Judge.",
+      "why": "Rule 2 assigns to a Single Judge applications under section 482 of the Code of Criminal Procedure, now section 528 of the Sanhita, revisional jurisdiction under section 401, and applications to transfer or stay proceedings pending in a criminal court. Most cheque litigation that reaches the High Court arrives by one of those routes; listing it before a Division Bench wastes a board and returns the matter for relisting.",
+      "authority": [
+        {
+          "l": "Gujarat High Court Rules 1993, r.2",
+          "s": "ghcr",
+          "e": "rule_2"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "High Court listing - Single Judge jurisdiction"
+      },
+      "how": null,
+      "test": "A quashing petition and a criminal revision arising out of a cheque case are listed before a Single Judge by default, and a Division Bench listing requires an express override.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-APL-008",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST charge the fixed fee prescribed for an application to the High Court for the exercise of its jurisdiction under Article 227 of the Constitution.",
+      "why": "Schedule II Article 1(f)(ii) puts fifty rupees on an Article 227 application, against one hundred rupees for an Article 226 petition not concerning fundamental rights and twenty rupees in any other case. The supervisory route under Article 227 is how an accused in a cheque case seeks to have the complaint quashed or the proceedings stayed, so the wrong entry is applied at scale.",
+      "authority": [
+        {
+          "l": "Gujarat Court-Fees Act 2004, Sch.II Art.1(f)",
+          "s": "gcf",
+          "e": "art_1"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "court fee calculation - High Court application under Article 227"
+      },
+      "how": "Schedule II Article 1(f)(ii): fifty rupees on an application to the High Court for the exercise of its jurisdiction under article 227, as against one hundred rupees under Article 1(f)(i) on an article 226 petition for any purpose other than the enforcement of fundamental rights and twenty rupees under Article 1(f)(iii) in any other case.",
+      "test": "An Article 227 application is charged the Article 1(f)(ii) amount, distinct from the Article 226 and residual entries.",
+      "derivedFrom": "act",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-APL-009",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST accept a receipt of payment made through the e-payment system in place of a stamp when the sufficiency of court fees on an appeal is inquired into.",
+      "why": "Section 37(1) makes e-payment a lawful mode of collecting court fees, and rule 64 was amended to contemplate the e-payment receipt being produced where a stamp of a different amount would otherwise be required. Accepting it is therefore not a matter of the office's choice. Where the office can only accept a physical stamp, the electronic payment made at the trial court, which is how the fee is paid in an e-filed cheque case, cannot be carried into the appeal record, and the appeal is objected to for a fee that was in fact paid.",
+      "authority": [
+        {
+          "l": "Gujarat High Court Rules 1993, r.64",
+          "s": "ghcr",
+          "e": "rule_64"
+        },
+        {
+          "l": "Gujarat Court-Fees Act 2004, s.37(1)",
+          "s": "gcf",
+          "e": "sec_37"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "High Court scrutiny - proof of court fee paid electronically"
+      },
+      "how": null,
+      "test": "An e-payment receipt reference satisfies the court-fee sufficiency check on an appeal without a physical stamp.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-GJ-APL-010",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST show, on the memorandum of a criminal proceeding in the High Court challenging an order of a Sessions Court whose jurisdiction covers more than one revenue district, the revenue district in which the original proceeding was instituted.",
+      "why": "Rule 345 requires it, and it is what the High Court office uses to place a matter arising out of a multi-district Sessions Court. A revision against a Sessions appellate order in a cheque case that does not name the revenue district of institution is objected to at scrutiny, and the fourteen-day objection clock runs while the memorandum is corrected.",
+      "authority": [
+        {
+          "l": "Gujarat High Court Rules 1993, r.345",
+          "s": "ghcr",
+          "e": "rule_345"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "High Court memorandum - revenue district in which the original proceeding was instituted"
+      },
+      "how": null,
+      "test": "A memorandum challenging an order of a Sessions Court held in the record as covering more than one revenue district cannot be presented without the revenue district of institution recorded, and that district appears on the generated memorandum.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-GJ-APL-006"
+      ]
+    }
+  ]
+}

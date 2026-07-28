@@ -1,0 +1,2529 @@
+{
+  "scope": "haryana",
+  "title": "Normative requirements added by Haryana's own instruments for a cheque-bounce case",
+  "note": "Haryana has not amended section 138 of the Negotiable Instruments Act, so nothing here restates the offence, the notice period, the presumptions, limitation or compounding. What is here is what the Punjab and Haryana High Court's own instruments require on top of central law, or where one of them tightens a national obligation: Rules and Orders Volume III (Instructions to Criminal Courts), the Electronic Filing Rules, the Rules for Video Conferencing for Courts, the e-filing 3.0 changeover circular, the High Court's Court Fee Table, and the Haryana Police Act, 2007. Volume III is pre-2024 and speaks in the Code of Criminal Procedure numbering; where that matters the live Sanhita provision is cited beside it so the code-switch is visible. Categories NOT (the statutory demand notice) and PRE (presumptions and burden of proof) are deliberately empty: no Haryana instrument in this corpus touches either, and everything on them belongs in the national file.",
+  "requirements": [
+    {
+      "id": "REQ-HR-LIM-001",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST fix the date of an e-filed complaint as the date the Action was electronically received in the Registry of the Punjab and Haryana court within the prescribed time on a working day, reckoned in Indian Standard Time.",
+      "why": "A cheque complaint dies on a day. If the portal stamps a filing with the advocate's local device clock, or with the date the Registry later opened it, a NACT complaint received at 23:50 IST on the last day of the one-month window under section 142(1)(b) will be recorded as filed the next day and rejected as time-barred, and a complaint received after the window will look in time. The Electronic Filing Rules fix one clock and one moment of receipt for the whole High Court jurisdiction.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.15.1 (Computation of Time)",
+          "s": "phef",
+          "e": "rule_15"
+        },
+        {
+          "l": "NI Act §142(1)(b)",
+          "n": "ni:sec_142"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complaint record - date of e-filing, stamped on receipt in the Registry"
+      },
+      "how": "The timestamp is the Registry's receipt time in Indian Standard Time, not the filer's device time and not the date of scrutiny or acceptance.",
+      "test": "Submit an Action from a client whose clock is set to a different timezone; the stored filing date is the Registry receipt date in IST, and it does not change when the Registry later accepts or objects to the filing.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-LIM-007",
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-HR-LIM-002",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST date an online e-filing carried out after 2400 hours as the day that follows the actual filing date, provided that following day is a court working day.",
+      "why": "Advocates file cheque complaints late at night on the last day of limitation. A system that simply stores the wall-clock date will treat a filing made at 00:20 as belonging to the day that has just begun, which is the day the Electronic Filing Rules also assign to it, but will get the working-day proviso wrong: if the following day is not a court working day the roll-forward has to continue. Getting that wrong by one day is the whole case.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.15.2 (Computation of Time)",
+          "s": "phef",
+          "e": "rule_15"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filing date roll-forward across midnight"
+      },
+      "how": "The rule states the roll-forward and its working-day condition; the court calendar published under E-Filing Rules r.3.22 supplies the working days.",
+      "test": "File at 00:20 IST on a court working day and the recorded date is that day; file at 00:20 on a day that is not a court working day and the date rolls to the next working day.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-LIM-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-LIM-003",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST date an Action filed on a gazetted holiday, or on a day the Punjab and Haryana court is closed, as filed on the next working day.",
+      "why": "The e-filing portal is open twenty four hours. A payee who files a cheque complaint on a gazetted holiday because the one-month window expires that day gains nothing: the filing is dated to the next working day. A system that records the holiday date as the institution date will show the complaint as in time when the court will treat it as filed later, and no delay-condonation application will have been prepared.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.15.2 (Computation of Time)",
+          "s": "phef",
+          "e": "rule_15"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filing date on a gazetted holiday or court-closed day"
+      },
+      "how": "The next working day is taken from the calendar published for the court, or as directed by the court, under E-Filing Rules r.3.22.",
+      "test": "Submit an Action on a listed gazetted holiday; the stored institution date is the next working day and the filer is shown that date before submitting.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-LIM-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-LIM-004",
+      "category": "LIM",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT accept an e-filing at a Designated Counter after 1600 hours on a court working day.",
+      "why": "The counter route is the fallback a Panchkula advocate uses when the portal is down or the file is too large. It closes at four in the afternoon, two and a half hours before the portal's own midnight cut-off. A filer who is told at 1700 that the counter can still take a cheque complaint on the last day of limitation has been told something the rules do not allow, and the complaint will not be received that day at all.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.15.2 (Computation of Time)",
+          "s": "phef",
+          "e": "rule_15"
+        },
+        {
+          "l": "P&H HC E-Filing Rules r.4.3 (Designated Counters)",
+          "s": "phef",
+          "e": "rule_4"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "Designated Counter e-filing cut-off"
+      },
+      "how": null,
+      "test": "The counter intake screen refuses a new Action after 1600 hours on a court working day and states the cut-off; the online portal remains open until 2400 hours on the same day.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-LIM-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-LIM-005",
+      "category": "LIM",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT offer or record failure of the web-based e-filing facility as a ground of exemption from limitation.",
+      "why": "The Electronic Filing Rules say in terms that no exemption from limitation is permitted on the ground that the online facility failed, and direct the filer to a Designated Counter or to physical filing instead. A cheque complainant who is allowed to log a portal outage as a reason for filing late will present that reason to the magistrate, who cannot accept it, and will have spent the last day of the one-month window logging a defence instead of walking the file to the counter.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.15.3 (Computation of Time)",
+          "s": "phef",
+          "e": "rule_15"
+        },
+        {
+          "l": "NI Act §142(1)(b) proviso",
+          "n": "ni:sec_142"
+        }
+      ],
+      "binds": {
+        "artifact": "screen",
+        "target": "delay-condonation reasons offered to an e-filer"
+      },
+      "how": "Where the portal is unavailable the system directs the filer to a Designated Counter during working hours on a court working day, or to physical filing, rather than to a condonation application.",
+      "test": "The delay-condonation reason list contains no portal-failure option; simulating a portal outage produces a prompt to use the counter or physical filing, not an offer to record an exemption.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-LIM-008",
+      "relatedTo": [
+        "REQ-HR-LIM-001",
+        "REQ-HR-FIL-015"
+      ]
+    },
+    {
+      "id": "REQ-HR-LIM-006",
+      "category": "LIM",
+      "level": "MUST",
+      "statement": "The system MUST take the institution date of a complaint filed in a Haryana district court between 15 and 22 February 2024 from the physical filing endorsement, not from any electronic filing record.",
+      "why": "For those eight days the Registrar General shut e-filing of fresh cases across the district judiciary of Punjab, Haryana and U.T. Chandigarh and directed that cases be filed only in physical mode. A cheque complaint instituted in that window exists on paper. A system that reconstructs its institution date from the portal will find nothing, or will find the later date on which the file was keyed into the new software, and will mis-state limitation for every NACT case filed in that week.",
+      "authority": [
+        {
+          "l": "e-filing 3.0 circular (12 February 2024), direction (ii)",
+          "s": "ef30",
+          "e": "para_2"
+        },
+        {
+          "l": "R&O Vol.III r.1-B.3 (Complaints how to be dealt with)",
+          "s": "phhc3",
+          "e": "rule_1-B.3"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complaint record - institution date provenance for the February 2024 changeover window"
+      },
+      "how": "The endorsement of the date of presentation made on the complaint under Volume III r.1-B.3 is the source of the date.",
+      "test": "A case whose institution date falls between 15 and 22 February 2024 carries a provenance value of physical endorsement; the system refuses to derive that date from an electronic filing record.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-001",
+        "REQ-HR-FIL-018",
+        "REQ-HR-LIM-007"
+      ]
+    },
+    {
+      "id": "REQ-HR-LIM-007",
+      "category": "LIM",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT take the date of institution of a cheque complaint from the e-filing portal's own case history where that complaint was left in the Drafts, Not Accepted, New Filing, Re-Filing or Transfer to Section stage at the February 2024 migration to e-filing 3.0.",
+      "why": "The circular says that anything in those stages was not migrated, that the data and the history were erased, and that this led to 'loss of exemption of limitation and delay of days also'. A cheque complaint that had been e-filed, objected to and was awaiting re-filing lost the record of when it first reached the Registry. Reading the surviving portal history as the institution date will date those complaints to the day they were re-filed, months after the one-month window closed. The circular states the erasure; that the residue is therefore not evidence of the institution date is a reading of it rather than a line in it, and it does not touch a case that had already been assigned a CNR number.",
+      "authority": [
+        {
+          "l": "e-filing 3.0 circular (12 February 2024), direction (iii)",
+          "s": "ef30",
+          "e": "para_3"
+        },
+        {
+          "l": "NI Act §142(1)(b)",
+          "n": "ni:sec_142"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "provenance of the institution date for pre-migration e-filings"
+      },
+      "how": null,
+      "test": "A case whose e-filing record begins before 23 February 2024 and shows a re-filing after it is marked as having no reliable electronic institution date; the institution date on such a case can be saved only against a paper endorsement or an order of the court, and the portal history is refused as its source.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-LIM-006"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-001",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST endorse the date of presentation on the complaint itself immediately upon its institution.",
+      "why": "Volume III fixes the date at presentation, on the face of the complaint, and requires the endorsement to be made immediately. In a Panchkula court the file is given a filing number at the window and the reader then raises objections on court fee and condonation before the case is registered at all. An endorsement made later, or reconstructed from whatever the office did next, is not the date the rule fixes, and in a cheque case that date is the one the one-month window under section 142(1)(b) is measured against.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-B.3 (Complaints how to be dealt with)",
+          "s": "phhc3",
+          "e": "rule_1-B.3"
+        },
+        {
+          "l": "NI Act §142(1)(b)",
+          "n": "ni:sec_142"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complaint record - date of presentation, distinct from date of registration"
+      },
+      "how": "Volume III r.1-B.3 requires the date to be endorsed on the complaint itself upon institution, so the endorsement is made at the moment of presentation and is not derived later.",
+      "test": "Recording a complaint as presented writes the endorsement to the complaint document itself with that day's date; the endorsement cannot be created retrospectively and cannot be edited once made.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-JUR-006",
+      "relatedTo": [
+        "REQ-HR-FIL-002",
+        "REQ-HR-FIL-018",
+        "REQ-HR-LIM-006"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-002",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST record, as part of the endorsement made at presentation, the name of the magistrate to whom the complaint is sent for inquiry or trial.",
+      "why": "Volume III makes the destination magistrate part of the endorsement made when a complaint is received, because the complainant is then directed to appear before that magistrate the same day or one of the following days for examination. A cheque file that leaves the Panchkula filing window carrying a filing number but no named magistrate leaves the complainant with no date and no court to attend, and the examination of the complainant that turns the complaint into a case does not happen.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-B.3 (Complaints how to be dealt with)",
+          "s": "phhc3",
+          "e": "rule_1-B.3"
+        },
+        {
+          "l": "R&O Vol.III r.1-B.4 (Oral examination of complainant)",
+          "s": "phhc3",
+          "e": "rule_1-B.4"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complaint record - magistrate to whom the case is sent for inquiry or trial"
+      },
+      "how": null,
+      "test": "A complaint cannot be marked as presented without a named destination magistrate, and the complainant's first appearance date is issued against that magistrate.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-003",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT record a member of the ministerial establishment as having received a complaint, petition or other document presented direct by a lawyer, his clerk or a litigant, except while the Magistrate is on leave and no other Magistrate is in charge of his current duties.",
+      "why": "Volume III strictly forbids the ministerial establishment from receiving complaints, petitions or other documents direct from lawyers, their clerks or litigants, and carves out one exception: the Magistrate being on leave with no other Magistrate in charge. It requires the magistrate to initial every petition and pass orders. If a section 138 case management screen lets a filing assistant or an ahlmad be recorded as the person who accepted a complaint or an exemption application, the record shows a ministerial act where the rule requires a judicial one, and every order that follows can be attacked on it.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-A.4 (Petition box; ministerial staff not to receive petitions)",
+          "s": "phhc3",
+          "e": "rule_1-A.4"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "who may be recorded as receiving or disposing of a complaint or petition"
+      },
+      "how": "Volume III r.1-A.4(a) has the magistrate initial every petition and pass orders forthwith or fix a date; r.1-A.4(b) lets him receive urgent documents personally at any time.",
+      "test": "A user holding a ministerial role cannot be saved as the recipient of a complaint, petition or application unless the court record carries a magistrate-on-leave arrangement for that period; otherwise only a judicial-officer role can be saved, and only a judicial-officer role can be recorded as disposing of it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-SRV-006"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-004",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST convert every typed document in an e-filed cheque complaint into an optical-character-recognition searchable PDF/A before it is accepted.",
+      "why": "PDF/A is the archival format and OCR is what makes the file findable. A cheque complaint that goes in as a flat image PDF cannot be searched for the cheque number, the notice date or the account number by the reader, the ahlmad or the judgment writer, and the judgment writer at Panchkula already loses his day retyping the facts of the complaint out of the paper file. The rule is the point at which that cost is either avoided or locked in for the life of the case.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.7.1 and r.7.2 (Formatting)",
+          "s": "phef",
+          "e": "rule_7"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filed complaint - document format on upload"
+      },
+      "how": "The Electronic Filing Rules prescribe conversion into an OCR searchable PDF/A using any PDF converter or the conversion plug-in provided in the software.",
+      "test": "Upload a flat image PDF of a complaint; it is rejected with a format objection. Upload an OCR-searchable PDF/A and a text search for the cheque number returns a hit.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-005",
+        "REQ-HR-FIL-006"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-005",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST require a non-text document enclosed with the complaint to be scanned at 300 dots per inch in optical-character-recognition searchable mode.",
+      "why": "In a cheque case the non-text documents are the case: the cheque, the bank return memo, the postal receipts and the acknowledgement. Below 300 DPI a handwritten cheque number, a bank's dot-matrix reason code on a return memo or a postal stamp date becomes unreadable, and the court is asked to convict on a document it cannot make out. The Electronic Filing Rules set the floor.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.7.3 (Formatting)",
+          "s": "phef",
+          "e": "rule_7"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filed cheque, return memo and other scanned enclosures - scan resolution"
+      },
+      "how": "Image resolution of 300 DPI, in OCR searchable mode, saved as a PDF document.",
+      "test": "A scanned enclosure below 300 DPI is refused at upload with a resolution objection; the accepted file reports 300 DPI or better and carries a text layer.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-004"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-006",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST merge the text and scanned documents of an Action into a single optical-character-recognition searchable PDF bookmarked according to the Master Index approved by the Registry.",
+      "why": "The Panchkula filing window takes a physical NACT file assembled in a fixed order: CIS proformas, index, memo of parties, complaint, court-fee ticket, affidavit, cheque, power of attorney, copies per respondent. The Master Index bookmark structure is the electronic form of that order. A cheque complaint uploaded as a bundle of loose PDFs with no bookmarks cannot be scrutinised in that order, and the objection loop that follows costs the complainant days against the one-month window.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.9.1 (Dos and Don'ts)",
+          "s": "phef",
+          "e": "rule_9"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filed Action - single merged PDF with Master Index bookmarks"
+      },
+      "how": "Text documents and scanned documents are merged into one OCR searchable PDF and bookmarked as per the Master Index duly approved by the Registry.",
+      "test": "The upload produces one PDF whose bookmark tree matches the Master Index entries; a submission of several separate PDFs, or one without bookmarks, is rejected.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-004"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-007",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST reject an e-filed document whose file name exceeds 45 characters including spaces, or contains any character on the prohibited list in the Electronic Filing Rules.",
+      "why": "This is the commonest silent rejection at the Punjab and Haryana portal. Advocates name a cheque file after the parties and the instrument, so a name like 'M/s ABC & Co. vs Sharma - cheque no. 123456 (100%).pdf' contains an ampersand, a percent sign and a period in the middle, and is over length. The filing is rejected under the protocol rule, the advocate is told only that the filing was not accepted, and the file sits in the Not Accepted folder while limitation runs.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.9.6 (Document Binary File Name Standards)",
+          "s": "phef",
+          "e": "rule_9"
+        },
+        {
+          "l": "P&H HC E-Filing Rules r.19.1 (Residuary provisions)",
+          "s": "phef",
+          "e": "rule_19"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filed document file name"
+      },
+      "how": "Prohibited characters are the quotation mark, number sign, per cent, ampersand, asterisk, colon, angle brackets, question mark, backslash, forward slash, braces, pipe, tilde, and the period used consecutively in the middle of a name or at its beginning or end.",
+      "test": "Attempt to upload a file named with each prohibited character and with a 46-character name; each is refused before submission with the offending character or the length named in the message.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-012"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-008",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT accept an e-filing that is watermarked or encrypted, or that carries markings, track changes or annotations.",
+      "why": "Cheque complaints are drafted from templates and carry the drafter's tracked changes and comment bubbles, and scanning software stamps its own watermark. The Electronic Filing Rules bar all of it, and an encrypted PDF also defeats the Registry's own storage and retrieval. If the system accepts such a file the complaint is on record with a visible track change against the cheque amount or the notice date, which the accused will put to the complainant in cross-examination.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.9.7 (Dos and Don'ts)",
+          "s": "phef",
+          "e": "rule_9"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filed document - watermark, encryption, track changes and annotations"
+      },
+      "how": null,
+      "test": "Upload a password-protected PDF, a watermarked PDF and a PDF with an accepted-changes-pending revision layer or PDF annotations; each is refused with the specific defect named.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-004"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-009",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST require the e-filed complaint PDF to carry the digital signature of the party or of the advocate at the places prescribed by the Rules and Orders.",
+      "why": "The Panchkula filing window checks a physical NACT file page by page for attestation before it takes it. The digital signature is the electronic form of that check. An unsigned cheque complaint that reaches the ahlmad has no authenticated author, and the accused can put the authority of the person who filed it in issue at the very point where a bank or non-banking financial company complainant is acting through an authorised representative.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.8.1 (Digital Signatures)",
+          "s": "phef",
+          "e": "rule_8"
+        },
+        {
+          "l": "P&H HC E-Filing Rules r.19.1 (Residuary provisions)",
+          "s": "phef",
+          "e": "rule_19"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "e-filed complaint - digital signature of the party or advocate"
+      },
+      "how": "The signature is appended on the PDF at the places prescribed under the extant rules; the list of recognised digital signature providers and the procedure for appending single or multiple signatures are set out in Appendix IV to the Rules.",
+      "test": "A PDF carrying no digital signature cannot be submitted, and the position of the signature block is validated against the prescribed places before the filing is accepted.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-FIL-001",
+      "relatedTo": [
+        "REQ-HR-FIL-010"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-010",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST provide a filer who holds no digital signature with the print, physically sign, scan and upload route, or with e-Sign based on Aadhaar authentication.",
+      "why": "A payee filing a cheque complaint in person, and many advocates outside the district headquarters, hold no digital signature certificate. If the portal has no fallback, the only remaining route is the counter, and a complainant who reaches the counter after 1600 hours on the last day of the one-month window loses the case on limitation rather than on merits. The Electronic Filing Rules provide two fallbacks precisely so that the absence of a token is not a bar to filing.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.8.1 and r.8.3 (Digital Signatures)",
+          "s": "phef",
+          "e": "rule_8"
+        },
+        {
+          "l": "IT Act §5 (electronic signature)",
+          "n": "itact:sec_5"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "authentication of an e-filing where the filer holds no digital signature certificate"
+      },
+      "how": "Either a printout of the Action physically signed by the party or advocate in accordance with the rules, then scanned and uploaded; or authentication by e-Sign based on Aadhaar authentication.",
+      "test": "A user account with no registered digital signature certificate can still complete a filing through the print-sign-scan path and through e-Sign, and the completed filing records which route was used.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-009"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-011",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST capture the court-fee transaction ID at the time of e-filing, in the field provided for it.",
+      "why": "The Rs.10 ticket on a complaint to a criminal court is the smallest sum in the case and the commonest objection raised on it at Panchkula, where the reader raises court fee and condonation on the file before it is registered. The Electronic Filing Rules make the transaction ID a field to be filled at the moment of filing, not afterwards. A cheque complaint submitted without it goes into the objection loop, and the days it spends there run against the one-month window.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.10 (Payment of Court Fees and Other Charges)",
+          "s": "phef",
+          "e": "rule_10"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "e-filed complaint - court fee transaction ID"
+      },
+      "how": "The fee may be paid electronically through the authorised agency, at a Designated Counter, or from an authorised court-fee vendor; the transaction ID that payment produces is entered in the appropriate field at the time of on-line e-filing.",
+      "test": "The submit action is blocked until a transaction ID is present, and the stored ID is the one issued by the payment route selected.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-017"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-012",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST communicate every Registry objection on an e-filed case to the advocate or litigant in person by e-mail, SMS or web hosting.",
+      "why": "At Panchkula the defect loop at the physical counter happens face to face, and an advocate is told verbally to attach a delay-condonation application. Electronically there is no counter. If objections sit unread in a portal folder, a cheque complaint under objection is a complaint not moving towards cognizance, and the February 2024 migration showed exactly what that costs when the Not Accepted folder was erased. The rule fixes an outbound channel so the clock the filer is running against is visible to him.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.19.3 (Residuary provisions)",
+          "s": "phef",
+          "e": "rule_19"
+        },
+        {
+          "l": "e-filing 3.0 circular (12 February 2024), direction (iii)",
+          "s": "ef30",
+          "e": "para_3"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "communication of Registry objections to the filer"
+      },
+      "how": "By e-mail, SMS or web hosting to the concerned advocate or litigant in person, and again by e-mail or SMS when the case is processed for listing after the objections are cleared.",
+      "test": "Raising an objection on a case emits an e-mail or an SMS to the registered contact, or posts it to that filer's own portal view, within the same session, and the notification that went out is recorded against the case.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-013"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-013",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT process an e-filed case for listing until the Registry objections on it have been cleared.",
+      "why": "This is the electronic form of the sequence the Panchkula ahlmad describes: the reader raises objections, they are argued out before the judge, and only then is the case registered and a main number issued. The rule states the sequence - after the objections are cleared the case will be processed for listing - rather than a bar, so the prohibition is a reading of it. If a portal lists a cheque complaint while an objection on court fee or on the absence of a delay-condonation application is still open, the magistrate is asked to take cognizance on a file the Registry has not passed, and the objection surfaces later as a ground of challenge to cognizance itself.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.19.3 (Residuary provisions)",
+          "s": "phef",
+          "e": "rule_19"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "listing of an e-filed case with open objections"
+      },
+      "how": null,
+      "test": "A case with at least one open objection cannot be added to a cause list; clearing the last objection makes it listable and notifies the filer.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-012"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-014",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST require the permission of the Administrator before the data of an Action is transferred from a litigant-in-person account to an advocate's account.",
+      "why": "In a district court the Administrator is the officer appointed by the District and Sessions Judge for e-filing matters, and the Panchkula filing assistants describe telephoning that office ten to fifteen times a day because only it can release an e-filed case into their queue. If the transfer of a cheque complaint between accounts can be done without that permission, the complaint can be moved out of the payee's control by anyone who has his credentials, and the litigant in person, who under the rules cannot modify the data after transfer, loses the file.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.5.2 (Steps for Registration)",
+          "s": "phef",
+          "e": "rule_5"
+        },
+        {
+          "l": "P&H HC E-Filing Rules r.3.2 (definition of Administrator)",
+          "s": "phef",
+          "e": "rule_3"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "transfer of an Action's data from a litigant-in-person account to an advocate account"
+      },
+      "how": "On an application by the litigant in person to the Administrator; once allowed, the litigant in person cannot modify the data of that Action without the Administrator's permission.",
+      "test": "A transfer request from a litigant-in-person account stays pending until an Administrator-role user allows it; after transfer the litigant-in-person account has read-only access.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-HR-FIL-015",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST accept a document filed outside the e-filing channel where the Bench has allowed an application for exemption from e-filing.",
+      "why": "The Panchkula assistants laminate the cheque so it survives the file. A laminated, folded or damaged cheque is exactly the document the Electronic Filing Rules contemplate as one that cannot be scanned because of its size, shape or condition, and the cheque is the whole case. A portal with no exemption route forces the complainant either to file a poor scan that the accused will attack, or not to file at all.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.13 (Exemption from e-filing)",
+          "s": "phef",
+          "e": "rule_13"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "exemption from e-filing for a document that cannot be scanned, or where the portal is unavailable"
+      },
+      "how": "On an application to the Bench, on one of the five grounds in r.13: e-filing not feasible for reasons set out, confidentiality and privacy, the size, shape or condition of the document, inaccessibility of the portal, or just and sufficient cause.",
+      "test": "An exemption application records one of the five grounds and, once allowed by a judicial-officer role, permits the named document to be recorded as filed physically against the same case.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-001",
+        "REQ-HR-LIM-005"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-016",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT write any part of a cheque complaint into the registers of First Information Reports.",
+      "why": "Volume III makes registers No. XXIII and XXIV registers of First Information Reports received by a magistrate under the police-report route, entered by serial number of the FIR, with the presiding officer signing them monthly. A section 138 case is a complaint offence with no FIR and no police investigation, so nothing about it belongs in that stream. The rule defines what the registers are for rather than forbidding anything, so the bar is a reading of it. A cheque amount or a made-up FIR number written into that stream corrupts a register the magistrate has to certify, and hides a real missing FIR behind a false entry.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.11-A.14 (registers of First Information Reports)",
+          "s": "phhc3",
+          "e": "rule_11-A.14"
+        },
+        {
+          "l": "NI Act §138",
+          "n": "ni:sec_138"
+        },
+        {
+          "l": "BNSS §223 (cognizance on complaint)",
+          "n": "bnss:sec_223"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "cheque complaint record - exclusion from the police-report registers"
+      },
+      "how": null,
+      "test": "No cheque complaint appears in Register No. XXIII or No. XXIV; every entry in those registers is keyed to a First Information Report received under the police-report route, and a complaint case cannot be selected as the subject of one.",
+      "derivedFrom": "practice-note",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-010",
+        "REQ-HR-FIL-019"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-017",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST hold the sums paid for the service of process by police officers separately from the court fee paid on the complaint.",
+      "why": "They are different moneys with different destinations. The court fee on a complaint to a criminal court is a court fee; the sums paid for service of processes by police officers are credited to the State Government under the Haryana Police Act. A cheque case pays both, and at Panchkula the talbana and stamped envelopes are received at a different desk from the fee ticket. The Act fixes where the process money goes but says nothing about how a court holds it, so holding the two apart is a reading of the two destinations rather than a line in either instrument. A system that adds them into one figure cannot answer the two questions that actually arise: has the court fee been paid so the complaint is in order, and has the process fee been paid so process can issue.",
+      "authority": [
+        {
+          "l": "Haryana Police Act 2007 §84 (sums paid for the service of processes)",
+          "s": "hpa",
+          "e": "sec_84"
+        },
+        {
+          "l": "R&O Vol.III r.1-Ci.2 (process fees payable before process issues)",
+          "s": "phhc3",
+          "e": "rule_1-Ci.2"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case fee record - court fee and process fee held as separate heads"
+      },
+      "how": null,
+      "test": "The fee record shows court fee and process fee as separate amounts with separate payment references; issuing process checks only the process fee, and scrutiny of the complaint checks only the court fee.",
+      "derivedFrom": "act",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-011"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-018",
+      "category": "FIL",
+      "level": "MUST",
+      "statement": "The system MUST hold the endorsed date of presentation of a complaint as a field distinct from the date on which the case is registered and numbered.",
+      "why": "Volume III fixes the date on the face of the complaint at presentation and says nothing about the date the case is later registered; that the two must be held apart is a reading of the rule against the way a file actually moves. In a Panchkula court the file is given a filing number at the window, the reader then raises objections on court fee and condonation, those are argued before the judge, and only after they are removed does the ahlmad register the case in CIS and the main case number issue. Weeks can pass. A system that carries only the registration date will show a cheque complaint presented inside the one-month window as instituted after it, and the payee will be arguing condonation for a delay that never happened.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-B.3 (Complaints how to be dealt with)",
+          "s": "phhc3",
+          "e": "rule_1-B.3"
+        },
+        {
+          "l": "NI Act §142(1)(b)",
+          "n": "ni:sec_142"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "complaint record - date of presentation held apart from date of registration"
+      },
+      "how": null,
+      "test": "Two distinct date fields exist on the complaint record, date of presentation and date of registration; limitation is computed from the presentation date, and registering the case leaves the presentation date untouched.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-001",
+        "REQ-HR-LIM-006"
+      ]
+    },
+    {
+      "id": "REQ-HR-FIL-019",
+      "category": "FIL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT require an FIR number on a cheque complaint.",
+      "why": "A section 138 case is a complaint offence with no FIR and no police investigation, but the shared criminal template carries an FIR field, and the Panchkula ahlmad types the cheque amount into it because there is no cheque-amount column, calling it 'our own innovation, which is wrong'. Volume III attaches the First Information Report to the police-report route and to the registers kept for it; nothing in it asks for an FIR on a complaint case, so the bar is a reading of the rule rather than a line in it. A mandatory FIR field on a cheque complaint forces the operator to invent a value, and the invented value travels with the case.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.11-A.14 (registers of First Information Reports)",
+          "s": "phhc3",
+          "e": "rule_11-A.14"
+        },
+        {
+          "l": "NI Act §138",
+          "n": "ni:sec_138"
+        },
+        {
+          "l": "BNSS §223 (cognizance on complaint)",
+          "n": "bnss:sec_223"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "cheque complaint record - FIR number field"
+      },
+      "how": null,
+      "test": "A cheque complaint saves and passes scrutiny with the FIR number empty; a cheque-amount field exists on the case record, so no user has a reason to put the cheque amount in the FIR field.",
+      "derivedFrom": "practice-note",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-016"
+      ]
+    },
+    {
+      "id": "REQ-HR-SRV-002",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST run and surface a clock from the date a process fee becomes payable in a cheque case, because default in paying it within a reasonable time exposes the complaint to dismissal.",
+      "why": "This is the rule that bites hardest on a cheque complainant and the one nobody watches. Volume III lets the magistrate dismiss the complaint on default of payment of process fees within a reasonable time. A payee whose complaint survived scrutiny, cognizance and the examination of the complainant can lose it because a talbana of a few hundred rupees was never paid, and the dismissal comes without a hearing on the cheque at all. The rule confers the power to dismiss and says nothing about running a clock; the clock is what makes a reasonable time visible to the people it can cost, and is a reading of the rule rather than a line in it.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-Ci.2 (dismissal for default in payment of process fees)",
+          "s": "phhc3",
+          "e": "rule_1-Ci.2"
+        },
+        {
+          "l": "BNSS §226 (dismissal of complaint)",
+          "n": "bnss:sec_226"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - date the process fee became payable, and days elapsed unpaid"
+      },
+      "how": null,
+      "test": "The case record stores the date the fee became payable and displays the days elapsed; the case appears in a list of complaints with process fee outstanding, visible to the court and to the complainant's advocate.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": "REQ-FIL-004",
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-HR-SRV-003",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST allow a magistrate to record the issue of an e-summons, as an alternative to a paper summons, in the first instance.",
+      "why": "Volume III was amended in November 2018 to put the e-summons on the same footing as the summons, in the magistrate's discretion. In a cheque case the accused is often out of station and the ordinary summons comes back unserved through the police for months. If the process-generation screen offers only the paper summons, the discretion the rule confers does not exist in practice, and the case joins the ladder of bailable warrant, non-bailable warrant, proclamation and attachment that the Panchkula ahlmad describes as the normal fate of an unserved cheque summons.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-Ci.2 (summons or e-summons in the magistrate's discretion)",
+          "s": "phhc3",
+          "e": "rule_1-Ci.2"
+        },
+        {
+          "l": "NI Act §144 (mode of service of summons)",
+          "n": "ni:sec_144"
+        },
+        {
+          "l": "BNSS §227 (issue of process)",
+          "n": "bnss:sec_227"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "process generation - e-summons offered alongside paper summons in the first instance"
+      },
+      "how": null,
+      "test": "The process list for a cheque case offers e-summons at the first issue of process; selecting it records the process type as e-summons on the case record and on the process itself.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-SRV-004"
+      ]
+    },
+    {
+      "id": "REQ-HR-SRV-004",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST require the magistrate's recorded reasons before a warrant issues in a cheque case, in which the law provides for a summons in the first instance.",
+      "why": "A s.138 case is a summons case. Volume III lets a warrant issue instead of a summons only after the magistrate has recorded his reasons for doing so. If the process screen lets a bailable or non-bailable warrant be generated against a drawer with a single click and no reasons field, the first coercive step against a person accused of a bailable, compoundable, fine-carrying offence is taken without the record the rule demands, and it is the step that most often ends with the drawer in custody.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-Ci.2 (reasons before a warrant in lieu of a summons)",
+          "s": "phhc3",
+          "e": "rule_1-Ci.2"
+        },
+        {
+          "l": "R&O Vol.III r.1-Ci.3 (warrant should not issue unless absolutely necessary)",
+          "s": "phhc3",
+          "e": "rule_1-Ci.3"
+        },
+        {
+          "l": "BNSS §90 (warrant in lieu of summons)",
+          "n": "bnss:sec_90"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "generation of a warrant in a summons case"
+      },
+      "how": "The reasons are recorded before the warrant issues, and are held against that warrant on the case record.",
+      "test": "The warrant-generation action in a case classified as a summons case cannot complete with an empty reasons field, and the recorded reasons appear on the case record against the warrant.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-SRV-016",
+      "relatedTo": [
+        "REQ-HR-SRV-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-SRV-005",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST issue a receipt for talbana and stamped postal envelopes filed by a litigant, whether or not a receipt is demanded.",
+      "why": "Volume III says the receipt is given whether demanded or not, because these are the only things a litigant hands directly to the court's staff rather than to the magistrate, and there is otherwise no trace of them. In a cheque case the talbana is what makes process issue, and default in paying it can get the complaint dismissed. A payee who has paid and holds no receipt cannot answer the objection, and cannot show the court that the process fee the record shows as outstanding was in fact paid.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-A.4(d) (talbana and stamped envelopes received against a receipt)",
+          "s": "phhc3",
+          "e": "rule_1-A.4"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "receipt for talbana and stamped postal envelopes"
+      },
+      "how": "The receipt is given whether or not it is demanded, so the system emits it on recording the receipt rather than on request.",
+      "test": "Recording talbana or stamped envelopes against a case produces a receipt document without any further user action, and the receipt is retrievable from the case record afterwards.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-SRV-006",
+        "REQ-HR-SRV-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-SRV-006",
+      "category": "SRV",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT permit any member of the ministerial establishment other than the Ahlmad or the Moharrir to record the receipt of talbana or stamped postal envelopes.",
+      "why": "Volume III carves talbana and stamped envelopes out of the general bar on ministerial staff receiving documents, and names the two offices that may take them. The carve-out is narrow on purpose: it is money and postage handed over a counter with no judicial officer present. If any user with a clerical role can record their receipt, the control the rule creates is gone, and the receipt trail on a cheque case leads to nobody in particular.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-A.4(c) and (d) (who may receive talbana and stamped envelopes)",
+          "s": "phhc3",
+          "e": "rule_1-A.4"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "recording receipt of talbana and stamped postal envelopes"
+      },
+      "how": null,
+      "test": "Only users holding the Ahlmad or Moharrir role can save a talbana or envelope receipt; other ministerial roles are refused, and the saved receipt names the officer who took it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-SRV-005",
+        "REQ-HR-FIL-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-SRV-007",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST record, against every process issued for service through the police, the police station to which it was sent, selected from the police stations constituted by notification under the Haryana Police Act.",
+      "why": "A cheque case reaches the police only when the court issues process. The Haryana Police Act creates a police station only by notification in the Official Gazette and puts a Station House Officer not below the rank of Sub-Inspector at the head of each one, so a station is a named office with an officer answerable for it. The Panchkula ahlmad's account is that process sent outside the district comes back on paper, nothing appears in the case management system, and for around ninety per cent of it there is no certainty of service until the person turns up. A destination held as free text names nobody. The Act says what a police station is; that the court's process record should name a constituted one is a reading of it and not a line in it.",
+      "authority": [
+        {
+          "l": "Haryana Police Act 2007 §12 (police stations and the Station House Officer)",
+          "s": "hpa",
+          "e": "sec_12"
+        },
+        {
+          "l": "BNSS §64 (summons served by a police officer)",
+          "n": "bnss:sec_64"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "process record - destination police station"
+      },
+      "how": null,
+      "test": "The destination of a process for police service is chosen from the list of police stations constituted under Haryana Police Act §12 and cannot be saved as free text; processes outstanding against a station can be listed by station and by the officer in charge of it.",
+      "derivedFrom": "act",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-FIL-017"
+      ]
+    },
+    {
+      "id": "REQ-HR-SRV-008",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST state on a summons to a witness who is to be examined by video conferencing the date, time and venue of the Remote Point at which he is to attend.",
+      "why": "The witness a cheque case needs from a distance is the bank official who proves the return memo. A summons that names only the trial court sends him to the wrong building on the right day, the examination does not happen, and the case is adjourned in a trial that section 143 of the NI Act requires to be summary. The Video Conferencing Rules fix the Remote Point, not the court room, as the place named in that summons.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.7 (Service of Summons)",
+          "s": "phvc",
+          "e": "rule_7"
+        },
+        {
+          "l": "R&O Vol.III r.1-BB.1 (video conferencing in criminal matters)",
+          "s": "phhc3",
+          "e": "rule_1-BB.1"
+        },
+        {
+          "l": "BNSS §71 (summons to witness)",
+          "n": "bnss:sec_71"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "summons to a witness to be examined by video conferencing"
+      },
+      "how": "The summons carries the date, time and venue of the concerned Remote Point, not those of the court room.",
+      "test": "Generating a witness summons for a video-conferenced examination requires a Remote Point with a date and a time, and all three print on the summons; the ordinary summons template cannot be used for it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-SRV-003",
+      "relatedTo": [
+        "REQ-HR-SRV-009",
+        "REQ-HR-SRV-010",
+        "REQ-HR-EVI-007"
+      ]
+    },
+    {
+      "id": "REQ-HR-SRV-009",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST attach a duly certified photocopy of the document to the summons where a person is to be examined by video conferencing with reference to that document.",
+      "why": "In a cheque case the person examined remotely is examined about the cheque and the return memo and about nothing else. If the summons goes out bare, the witness arrives at the Remote Point with no document in front of him, the court is reduced to holding the original up to a camera, and the deposition is worthless on the one thing it was called to prove.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.8.5 (Examination of persons)",
+          "s": "phvc",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "summons to a witness examined on a document by video conferencing"
+      },
+      "how": "A duly certified photocopy accompanies the summons; the original is separately exhibited at the Court Point.",
+      "test": "Selecting documents for a video-conferenced examination attaches certified copies to the generated summons, and the summons cannot be issued with documents selected but unattached.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-008"
+      ]
+    },
+    {
+      "id": "REQ-HR-SRV-010",
+      "category": "SRV",
+      "level": "MUST",
+      "statement": "The system MUST direct a witness who is to be examined by video conferencing to attend the Remote Point in person with proof of identity or an affidavit to that effect.",
+      "why": "The Video Conferencing Rules require identity to be established before the examination begins, so a summons that omits the direction produces a witness who has travelled to the Remote Point and cannot be examined there. In a cheque case that witness is typically the bank official who proves the return memo, and losing the date costs an adjournment in a trial section 143 of the NI Act requires to be summary.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.7 (Service of Summons)",
+          "s": "phvc",
+          "e": "rule_7"
+        },
+        {
+          "l": "P&H HC Video Conferencing Rules r.8.1 (proof of identity before examination)",
+          "s": "phvc",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "summons to a witness examined by video conferencing - direction to attend with proof of identity"
+      },
+      "how": "The direction is to attend in person with an identity document issued or recognised by the Government of India, a State Government or a Union Territory, or in its absence an affidavit to that effect.",
+      "test": "The witness summons generated for a video-conferenced examination prints the direction to attend in person with proof of identity, and the direction cannot be removed from the template.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-SRV-008",
+        "REQ-HR-TRL-009"
+      ]
+    },
+    {
+      "id": "REQ-HR-JUR-001",
+      "category": "JUR",
+      "level": "MUST",
+      "statement": "The system MUST disclose, on the record and on the final order in a cheque case, the criminal powers the presiding officer exercised in hearing or deciding it.",
+      "why": "Volume III makes every judicial officer personally responsible that the record and the final order disclose his criminal powers, and lists them from magistrate of the third class up to Sessions Judge. A s.138 judgment that names the officer but not the class of powers he exercised leaves the appellate or revisional court unable to see, from the judgment itself, whether the sentence was one the court could pass. That is a defect the judgment writer cannot repair afterwards, because no court can alter a judgment once signed.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-H.2 (criminal powers to be noted in the record and final order)",
+          "s": "phhc3",
+          "e": "rule_1-H.2"
+        },
+        {
+          "l": "R&O Vol.III r.1-H.3 (powers of the various criminal courts)",
+          "s": "phhc3",
+          "e": "rule_1-H.3"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "judgment and final order - the criminal powers exercised"
+      },
+      "how": "The powers are stated from the list in Volume III r.1-H.3.",
+      "test": "The judgment template carries a powers field populated from the presiding officer's recorded class of powers, and the judgment cannot be finalised with it empty.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-JUR-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-JUR-002",
+      "category": "JUR",
+      "level": "MUST",
+      "statement": "The system MUST disclose, on the record and on the final order of a cheque case tried summarily, that the officer is specially empowered to try cases summarily.",
+      "why": "Section 143 of the NI Act directs that a cheque case be tried summarily, and Volume III allows a summary trial only by a District Magistrate, a magistrate of the first class specially empowered in that behalf, or a Bench so empowered. Volume III then requires that where an officer exercises specially conferred powers, the record and the final order say so. If a Haryana s.138 judgment does not carry that statement, the accused's first ground in revision is that the trial was held by a court without power to hold it, and nothing in the file answers him.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-H.4 (special powers to be noted on the record and final order)",
+          "s": "phhc3",
+          "e": "rule_1-H.4"
+        },
+        {
+          "l": "R&O Vol.III r.2.1 (magistrates competent to hold a summary trial)",
+          "s": "phhc3",
+          "e": "rule_2.1"
+        },
+        {
+          "l": "NI Act §143",
+          "n": "ni:sec_143"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "judgment in a summarily tried cheque case - special empowerment of the magistrate"
+      },
+      "how": null,
+      "test": "A case marked as tried summarily cannot be assigned to an officer not flagged as specially empowered, and the judgment prints the special empowerment statement.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-TRL-001",
+      "relatedTo": [
+        "REQ-HR-JUR-001",
+        "REQ-HR-REC-005"
+      ]
+    },
+    {
+      "id": "REQ-HR-TRL-001",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST require reasons to be recorded before a cheque complaint is dismissed by reason of the complainant's absence.",
+      "why": "Part F of Volume III opens by warning that some magistrates are inclined to dismiss cases in default hastily, and directs the magistrate to consider whether the order is legal and whether it is justified, and always to record reasons. In a s.138 case, dismissal for the complainant's absence carries the acquittal of the accused with it, so the payee loses the cheque debt as a criminal matter on a single missed date. The recorded reasons are the whole material on which that dismissal is revived in revision.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-F.2 (reasons for dismissal in default should be recorded)",
+          "s": "phhc3",
+          "e": "rule_1-F.2"
+        },
+        {
+          "l": "R&O Vol.III r.1-D.5 (complainant's non-attendance in a summons case)",
+          "s": "phhc3",
+          "e": "rule_1-D.5"
+        },
+        {
+          "l": "BNSS §272 (non-appearance of complainant)",
+          "n": "bnss:sec_272"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "dismissal of a complaint for the complainant's absence"
+      },
+      "how": null,
+      "test": "The dismissal-in-default action cannot complete with an empty reasons field; the reasons are stored against the order and appear on the copy supplied to the complainant.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-TRL-016",
+      "relatedTo": [
+        "REQ-HR-TRL-002",
+        "REQ-HR-TRL-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-TRL-002",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record the time of day at which a complaint was dismissed for the complainant's absence.",
+      "why": "Volume III issued this instruction because applicants for revision kept saying that the case was dismissed very early in the day and the magistrates' records furnished no definite information on the point. In a cheque case where the complainant's counsel was held up in another court until noon, the time of dismissal is the fact that decides the revision. A record that carries only the date cannot answer the question the revisional court will ask.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-F.3(ii)(a) (the time of dismissal should always be noted on the record)",
+          "s": "phhc3",
+          "e": "rule_1-F.3"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "dismissal in default order - time of dismissal"
+      },
+      "how": null,
+      "test": "The order of dismissal in default stores and prints a time of day as well as a date, and it cannot be saved without one.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-TRL-001",
+        "REQ-HR-TRL-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-TRL-003",
+      "category": "TRL",
+      "level": "SHOULD",
+      "statement": "The system SHOULD record that the case was called on again later in the day before a complaint is dismissed for the complainant's absence.",
+      "why": "Volume III directs that a complainant who is absent when his case is first called should ordinarily have his case called again later, and that magistrates should not dismiss without giving complainants full opportunities for appearance. In a busy Panchkula magistrate's list a cheque case called at 10:15 and dismissed at 10:16 has had no opportunity at all. If the system offers dismissal as an option on the first call, it makes the hasty dismissal the rule warns against the path of least resistance.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-F.3(ii)(a) (case should be called on again later)",
+          "s": "phhc3",
+          "e": "rule_1-F.3"
+        },
+        {
+          "l": "R&O Vol.III r.1-F.0 (magistrates inclined to dismiss cases in default hastily)",
+          "s": "phhc3",
+          "e": "rule_1-F.0"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "second call of a case before dismissal in default"
+      },
+      "how": null,
+      "test": "The dismissal-in-default action requires a recorded second call, or an explicit override with reasons; the second call and its time appear on the order sheet.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-TRL-001",
+        "REQ-HR-TRL-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-TRL-004",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST state the amount of bail, and the offence charged with the section under which it is punishable, on the face of any order directing an accused to be detained in default of furnishing bail.",
+      "why": "Volume III requires all three on the face of that order because it is the document that puts a person in the lock-up. A drawer in a cheque case is accused of a bailable offence, and Volume III says in the same rule that for every bailable offence bail is a right and not a favour. An order sending him to the lock-up that does not say what sum he must find, or under what section he stands charged, gives him nothing to comply with and nothing to challenge.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.10.1 (principles governing the grant of bail)",
+          "s": "phhc3",
+          "e": "rule_10.1"
+        },
+        {
+          "l": "NI Act §138",
+          "n": "ni:sec_138"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "order directing detention in default of bail"
+      },
+      "how": null,
+      "test": "The detention-in-default order template carries the bail amount, the offence and the punishing section, and cannot be generated with any of the three empty.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-HR-TRL-007",
+      "category": "TRL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT fix the pronouncement of a judgment likely to end in a sentence of imprisonment within two days of the start of a spell of four or more holidays.",
+      "why": "Volume III requires such cases to be decided at least two days before the holidays begin, and copies to be supplied free of cost forthwith, so that the convicted person can apply for bail before the courts close. A drawer sentenced to imprisonment on the afternoon before a four-day break, with no copy of the judgment, spends the break in custody with no means of moving an appellate court. The scheduling screen is where that is prevented or caused.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-H.1(iv) (pronouncement of judgment before a spell of holidays)",
+          "s": "phhc3",
+          "e": "rule_1-H.1"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "listing of a judgment date before a spell of four or more holidays"
+      },
+      "how": "The case is decided at least two days before the holidays commence, and arrangements are made for free copies to be supplied to the convicted person forthwith.",
+      "test": "With a court calendar containing a run of four or more consecutive holidays, the system refuses or warns on a judgment date inside the two days before it for a case flagged as likely to carry imprisonment.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-CPY-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-TRL-008",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record on the order sheet that a proceeding in a cheque case was carried out by video conferencing.",
+      "why": "The Video Conferencing Rules require it to be mentioned specifically wherever any proceeding is carried out under them, because a proceeding conducted over a live link is a judicial proceeding for every purpose and has to be identifiable as such afterwards. If a s.138 order sheet does not say that the notice of accusation was put or the complainant examined over a link, nothing on the record distinguishes it from an in-person hearing, and a challenge to the mode of proceeding cannot be answered from the file.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.14.9 (Conduct of Proceedings)",
+          "s": "phvc",
+          "e": "rule_14"
+        },
+        {
+          "l": "P&H HC Video Conferencing Rules r.3(ii) (proceedings by video conferencing are judicial proceedings)",
+          "s": "phvc",
+          "e": "rule_3"
+        },
+        {
+          "l": "R&O Vol.III r.1-BB.1 (video conferencing in criminal matters)",
+          "s": "phhc3",
+          "e": "rule_1-BB.1"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "order sheet entry - mode of proceeding recorded as video conferencing"
+      },
+      "how": null,
+      "test": "Any hearing conducted over a link writes a mode flag to the order sheet entry, and that flag prints in the order sheet text.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-TRL-009",
+        "REQ-HR-TRL-010",
+        "REQ-HR-TRL-011"
+      ]
+    },
+    {
+      "id": "REQ-HR-TRL-009",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record on the order sheet the court's confirmation of the identity of a person examined by video conferencing.",
+      "why": "The Video Conferencing Rules require the identity of the person to be examined to be confirmed by the court with the assistance of the Remote Point Coordinator at the time the evidence is recorded, and to be reflected in the order sheet. In a cheque case the remote witness is typically a bank official proving the return memo, or the complainant's authorised representative. If the order sheet is silent on identity, the deposition can be attacked on the ground that the court never established who was speaking, and there is no second chance to establish it.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.12.3 (General Procedure)",
+          "s": "phvc",
+          "e": "rule_12"
+        },
+        {
+          "l": "P&H HC Video Conferencing Rules r.8.1 (proof of identity before examination)",
+          "s": "phvc",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "order sheet entry - confirmation of the identity of a remotely examined person"
+      },
+      "how": "Identity is proved by a government-issued or recognised identity document, or in its absence by an affidavit attested by an authority referred to in BNSS §297, a copy of which goes to the opposite party.",
+      "test": "Recording a remote deposition requires an identity confirmation entry naming the document or affidavit relied on, and that entry prints in the order sheet.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-TRL-008",
+        "REQ-HR-SRV-010"
+      ]
+    },
+    {
+      "id": "REQ-HR-TRL-010",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record the court's satisfaction as to clarity, sound and connectivity for both Court Users and Remote Users on the completion of a video conferencing proceeding.",
+      "why": "The Video Conferencing Rules give a Remote User who was prejudiced by poor video or audio the right to say so immediately, and let the court declare the hearing incomplete. That remedy only works if the court's own satisfaction is on the record. In a summarily tried cheque case a cross-examination of the complainant conducted over a dropping link, with nothing on the file about quality, is a deposition the accused will say he never properly heard, and the court has no contemporaneous answer.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.10.8 (Ensuring seamless video conferencing)",
+          "s": "phvc",
+          "e": "rule_10"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "order sheet entry - satisfaction as to clarity, sound and connectivity"
+      },
+      "how": null,
+      "test": "Closing a video-conferenced hearing requires a recorded satisfaction entry covering both Court Users and Remote Users before the order sheet entry can be finalised.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-TRL-008"
+      ]
+    },
+    {
+      "id": "REQ-HR-TRL-011",
+      "category": "TRL",
+      "level": "MUST",
+      "statement": "The system MUST record on the order sheet the video conferencing software used, where it is not the Designated Video Conferencing Software provided by the High Court.",
+      "why": "The Rules allow a departure from the designated software only for a technical glitch and only for reasons recorded, and then require the order sheet to name the software actually used. If a Panchkula court takes the evidence of a bank witness on a consumer meeting application because the designated platform failed, and the order sheet is silent, the record does not show that a departure occurred at all, and the reasons the rule demands were never recorded.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.10.7 (Ensuring seamless video conferencing)",
+          "s": "phvc",
+          "e": "rule_10"
+        },
+        {
+          "l": "P&H HC Video Conferencing Rules r.12.2 (General Procedure)",
+          "s": "phvc",
+          "e": "rule_12"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "order sheet entry - software used, time and duration of the video conferencing proceeding"
+      },
+      "how": "The order sheet also mentions the time and duration of the proceeding, the issues on which the court was addressed, and the documents produced and transmitted online.",
+      "test": "Selecting a non-designated platform on a hearing requires reasons and writes the platform name to the order sheet; using the designated platform requires neither.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-TRL-008"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-001",
+      "category": "EVI",
+      "level": "SHOULD",
+      "statement": "The system SHOULD capture the deposition of a witness in a cheque case in typed form, prepared on a computer from the dictation of the presiding officer.",
+      "why": "Volume III was amended to require exactly this, and the Panchkula ahlmad says evidence in his court is still written out by hand, which produces mixed hands and stretches nobody can read. The judgment writer then has to reconstruct from that record which document the complainant tendered and under which exhibit number, and a wrong exhibit number in a s.138 judgment cannot be repaired once the judgment is signed. An illegible deposition is also the record the appellate court will read.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.3(ii)(a) (procedure for recording evidence)",
+          "s": "phhc3",
+          "e": "rule_1-E.3"
+        },
+        {
+          "l": "R&O Vol.III r.1-E.11 (illegible record)",
+          "s": "phhc3",
+          "e": "rule_1-E.11"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "recording of a witness deposition"
+      },
+      "how": "The record is prepared on a computer in court on the dictation of the presiding officer; where the deposition is in a language other than English or the language of the State it is simultaneously translated into English, and recorded in both.",
+      "test": "The deposition screen produces a typed, searchable record attributed to the presiding officer's dictation; a scanned handwritten page is accepted only with a recorded reason.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-CPY-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-002",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST form the exhibit number of a document from its own serial number and the number of the witness through whom it was first introduced, in the form Exhibit P-1/PW1.",
+      "why": "Volume III adopted this composite identifier in December 2021 so that an exhibit can be traced back to the witness who proved it without reading the whole record. In a cheque case the exhibits are few and decisive, and the whole defence often turns on whether the return memo was introduced through the complainant or through a bank witness. A bare Exhibit P-3 loses that link, and the judgment writer who is hunting the file for what the complainant tendered and under which exhibit number has nothing to find it by.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.3(iv)(a) to (c) (exhibiting of material objects and evidence)",
+          "s": "phhc3",
+          "e": "rule_1-E.3"
+        },
+        {
+          "l": "R&O Vol.III r.1-H.1(i-a)(c) (FORM C appendix of exhibits)",
+          "s": "phhc3",
+          "e": "rule_1-H.1"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "exhibit record - composite exhibit number carrying the introducing witness"
+      },
+      "how": "Prosecution exhibits are marked P-1, P-2 in seriatim, defence exhibits D-1, D-2, court exhibits C-1, C-2, and material objects MO-1, MO-2; the exhibit number then shows the witness number after it, as in Exhibit P-1/PW1.",
+      "test": "Marking a document while a witness is under examination generates an exhibit number of the form P-n/PWn automatically; the composite number appears in the FORM C appendix of the judgment.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-003",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST mark an exhibit as '(subject to proof)' where it is exhibited without proper proof being offered at the time of marking.",
+      "why": "This is where cheque cases are won and lost. The return memo, the bank certificate and the postal acknowledgement are routinely put on the record through the complainant and marked before anyone proves them. Volume III requires the qualification to be carried in the marking itself. If the exhibit register shows a clean Exhibit P-2/PW1, the judgment will treat a document that was never proved as proved, and the conviction rests on it.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.3(iv)(b) and (c) (exhibit marked without proper proof)",
+          "s": "phhc3",
+          "e": "rule_1-E.3"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "exhibit record - subject-to-proof qualifier"
+      },
+      "how": "The qualifier is shown in brackets after the exhibit number, as Exhibit P-1/PW1 (subject to proof).",
+      "test": "An exhibit can be saved in a subject-to-proof state, the qualifier prints wherever the exhibit number appears, and a report lists exhibits still subject to proof at the close of evidence.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-004",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record separately, for each witness, the date of the examination-in-chief, the date of the cross-examination and the date of the re-examination.",
+      "why": "Volume III requires the record of depositions to indicate all three, and requires the witness's name and number to be restated on any later date where evidence is not concluded on the day it begins. The Panchkula judgment writer's day goes on hunting the file for exactly these dates, because the FORM B tabular statement in every judgment turns on the dates of commencement and closing of evidence. Where the dates are not recorded per stage, they have to be reconstructed from the order sheet, and a reconstructed date that is wrong is in the judgment for good.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.3(iii)(c) and (f) (format of recording evidence)",
+          "s": "phhc3",
+          "e": "rule_1-E.3"
+        },
+        {
+          "l": "R&O Vol.III r.1-H.1(i-a)(b) (FORM B tabular statement)",
+          "s": "phhc3",
+          "e": "rule_1-H.1"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "deposition record - dates of examination-in-chief, cross-examination and re-examination"
+      },
+      "how": null,
+      "test": "Each deposition stores three separately populated date fields; the FORM B statement in the judgment is generated from them and not typed by hand.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-005"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-005",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record, where a witness in a cheque case is not cross-examined, that the accused did not wish to cross-examine him.",
+      "why": "Volume III requires this in terms, and it is the commonest silence in a s.138 file: the complainant deposes on affidavit, the accused's counsel says nothing, and the record shows only that no cross-examination was taken. On appeal that reads as a denial of the opportunity to cross-examine, which is one of the two grounds Volume III says applicants for revision urge most often. The affirmative entry is what closes it.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.10 (cross-examination to be distinguished; record to show that the accused did not wish to cross-examine)",
+          "s": "phhc3",
+          "e": "rule_1-E.10"
+        },
+        {
+          "l": "NI Act §145 (evidence on affidavit)",
+          "n": "ni:sec_145"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "deposition record - absence of cross-examination"
+      },
+      "how": null,
+      "test": "A deposition with no cross-examination cannot be closed without an explicit entry that the accused did not wish to cross-examine, or that a further opportunity was refused for recorded reasons.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-004"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-006",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record, for every objection taken to the admissibility of evidence, the particular piece of evidence objected to, the objection, and the decision on it.",
+      "why": "Volume III requires the magistrate to decide an admissibility objection forthwith and to record all three elements clearly, and the 2021 amendment repeats it for objections during a deposition. In a cheque case the objections are to the bank certificate, to a photocopy of the cheque and to the mode of proof of the return memo. If the record shows only that an objection was taken, the appellate court cannot tell what was objected to or what was decided, and the exhibit stands or falls on nothing.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.1 (only relevant evidence should be recorded)",
+          "s": "phhc3",
+          "e": "rule_1-E.1"
+        },
+        {
+          "l": "R&O Vol.III r.1-E.3(iii)(e) (objections to be noted and decided)",
+          "s": "phhc3",
+          "e": "rule_1-E.3"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "objection record - evidence objected to, the objection and the ruling"
+      },
+      "how": "The objection is decided immediately in accordance with law or, at the judge's discretion, at the end of that witness's deposition.",
+      "test": "An objection record cannot be saved without all three elements populated and a link to the specific exhibit or answer objected to.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-007",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record an acknowledgement, filed with the court by the applicant, that the documents to be relied on were transmitted to a witness before he is examined by video conferencing.",
+      "why": "The Video Conferencing Rules require the documents to reach the witness in advance so that he acquires familiarity with them, and require the applicant to file an acknowledgement of it with the court. In a cheque case that means the cheque, the return memo and the demand notice reaching a bank official at a remote branch. Without the acknowledgement on the file the examination proceeds on documents the witness may be seeing for the first time on a screen, and the deposition on the very documents the case turns on is worth nothing.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.8.4 (Examination of persons)",
+          "s": "phvc",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "pre-transmission of documents to a remotely examined witness and the acknowledgement on file"
+      },
+      "how": null,
+      "test": "A remote examination cannot be started until an acknowledgement of transmission is recorded against the case, listing the documents transmitted.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-SRV-009",
+        "REQ-HR-EVI-008"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-008",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST record that the original document was exhibited at the Court Point, in accordance with the deposition of the person examined remotely.",
+      "why": "The Video Conferencing Rules send a certified photocopy to the Remote Point and keep the original at the Court Point, to be exhibited there as the deposition proceeds. In a cheque case the original is the cheque itself, and the Electronic Filing Rules expressly do not put a cheque in the class of instruments the Registry preserves permanently. If the record does not show the original being exhibited at the Court Point, the case has been proved on a photocopy shown down a camera and the whole of the complainant's evidence is open on that point.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.8.5 (original to be exhibited at the Court Point)",
+          "s": "phvc",
+          "e": "rule_8"
+        },
+        {
+          "l": "P&H HC Video Conferencing Rules r.9 (exhibiting documents to a witness at a Remote Point)",
+          "s": "phvc",
+          "e": "rule_9"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "exhibit record - original exhibited at the Court Point during a remote examination"
+      },
+      "how": "Where the document is at the Remote Point instead, the hard copy countersigned by the witness and the Remote Point Coordinator is dispatched to the Court Point by authorised courier or registered speed post.",
+      "test": "An exhibit marked during a remote deposition carries a flag showing whether the original was at the Court Point or the Remote Point, and in the latter case a dispatch record is required.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-007",
+        "REQ-HR-REC-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-009",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST retain an encrypted master copy of the audio-visual recording of a remotely examined person, with its hash value, as part of the record.",
+      "why": "The Video Conferencing Rules require the recording to be preserved and the master copy to be encrypted and carry a hash value. In a cheque case the remote deposition may be the only evidence of dishonour, and the accused's line of attack is often that the witness was prompted or was reading from a script, which the Rules also forbid. A recording held without a hash cannot answer that: it cannot be shown to be the recording that was made on the day.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.8.9 (Examination of persons)",
+          "s": "phvc",
+          "e": "rule_8"
+        },
+        {
+          "l": "P&H HC Video Conferencing Rules r.3(vi) (no unauthorised recording)",
+          "s": "phvc",
+          "e": "rule_3"
+        },
+        {
+          "l": "BSA §63 (admissibility of electronic records)",
+          "n": "bsa:sec_63"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "case record - audio-visual master recording, its encryption and hash value"
+      },
+      "how": null,
+      "test": "Ending a remote examination stores a master recording, its hash value and its encryption state against the case; the hash can be recomputed and matched on retrieval.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-010"
+      ]
+    },
+    {
+      "id": "REQ-HR-EVI-010",
+      "category": "EVI",
+      "level": "MUST",
+      "statement": "The system MUST obtain the signature of the person examined by video conferencing on the transcript of his examination, and make the signed transcript part of the record.",
+      "why": "The signed transcript, not the recording, is what forms part of the judicial record under the Video Conferencing Rules. A cheque case in which a bank witness deposes over a link and the transcript is never signed has an unsigned deposition in the file, which the accused will say was never read to or accepted by the witness. The Rules also set a three-day dispatch expectation for the hard copy, so a case management system that does not track it will not notice a transcript that never came back.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.8.8 (signature on the transcript)",
+          "s": "phvc",
+          "e": "rule_8"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "signature of the remotely examined person on the transcript"
+      },
+      "how": "Where digital signatures exist at both points, the transcript digitally signed by the presiding judge goes by official e-mail to the Remote Point, is printed and signed there, and a scanned copy signed by the Remote Point Coordinator returns by official e-mail. Where they do not, the printout is signed at the Court Point, sent in non-editable scanned form, signed by the person examined and countersigned by the Coordinator, and returned. In both routes the hard copy is dispatched, preferably within three days, by recognised courier or registered speed post.",
+      "test": "A remote deposition remains in an incomplete state until a signed transcript is attached, and the case shows the dispatch date and the days elapsed against the three-day expectation.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-009"
+      ]
+    },
+    {
+      "id": "REQ-HR-CMP-002",
+      "category": "CMP",
+      "level": "MUST",
+      "statement": "The system MUST record the statement of every party concerned before a cheque case is disposed of as compounded.",
+      "why": "Volume III dispenses with a judgment on facts when an offence is compounded but does not dispense with the statements: it requires the statement of all the parties concerned to be recorded. In a cheque case the parties are frequently a company acting through an authorised representative and a drawer who has paid part of the amount, and the settlement is often reached at a Lok Adalat. Without every party's recorded statement the court cannot show that the compounding was consensual, and the acquittal is exposed to a claim that the payee never agreed.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-H.10 (statements of all parties to be recorded)",
+          "s": "phhc3",
+          "e": "rule_1-H.10"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "recording the statement of each party on compounding"
+      },
+      "how": null,
+      "test": "The compounding action cannot complete until a statement is recorded against every party on the case record, complainant and each accused.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-HR-CMP-003",
+      "category": "CMP",
+      "level": "MUST",
+      "statement": "The system MUST record the reasons for granting permission to compound in the order directing the acquittal, wherever the permission of the court is necessary.",
+      "why": "Volume III requires the reasons to be stated in the order directing the acquittal, and repeats in the same Part that in every case in which a magistrate allows the parties to compromise his reasons should be recorded in his order. A s.138 compounding after cognizance, and any compounding at the appellate stage, needs the court's permission. An order of acquittal on compromise that carries no reasons is a bare order, and the guidance the High Court gives on when permission should be refused becomes unenforceable because nothing shows what the magistrate considered.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-H.10 (reasons for granting permission to compound)",
+          "s": "phhc3",
+          "e": "rule_1-H.10"
+        },
+        {
+          "l": "R&O Vol.III r.1-H.12 (reasons to be recorded where a compromise is permitted)",
+          "s": "phhc3",
+          "e": "rule_1-H.12"
+        },
+        {
+          "l": "BNSS §359 (compounding of offences)",
+          "n": "bnss:sec_359"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "order of acquittal on compounding - reasons for granting permission"
+      },
+      "how": null,
+      "test": "Where the case is flagged as requiring the court's permission to compound, the acquittal order cannot be generated with an empty reasons field.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-HR-CMP-004",
+      "category": "CMP",
+      "level": "MUST",
+      "statement": "The system MUST send a copy of the award or order, and the record of proceedings, to the Remote Point where a Lok Adalat or Jail Adalat is held over a live link.",
+      "why": "A large share of cheque cases settle in Lok Adalat, and the Video Conferencing Rules let a person at a remote point, including a person in jail, take part. The award has the same force as one passed by a regular Lok Adalat. If the award and the record never reach the Remote Point, the person who settled has no document of the settlement he agreed to, and cannot show a bank or a later court that the cheque debt was discharged.",
+      "authority": [
+        {
+          "l": "P&H HC Video Conferencing Rules r.15.3 (Access to Legal Aid Clinics, Camps, Lok Adalats and Jail Adalats)",
+          "s": "phvc",
+          "e": "rule_15"
+        },
+        {
+          "l": "Legal Services Authorities Act §21 (award of Lok Adalat)",
+          "n": "lsa:sec_21"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "transmission of a Lok Adalat award and record of proceedings to the Remote Point"
+      },
+      "how": null,
+      "test": "Recording an award in a remotely conducted Lok Adalat queues the award and the record of proceedings for transmission to the Remote Point and stores the date they were sent.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": []
+    },
+    {
+      "id": "REQ-HR-SEN-001",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST record the material on the offender's means that the court relied on when fixing a fine in a cheque case.",
+      "why": "On a s.138 conviction the fine may run to twice the amount of the cheque, and Volume III directs that a fine must not be excessive with reference to the means of the offender, warning that indiscriminate fines only waste the time of the courts and the police in trying to realise them and harass the convict and his dependants. If nothing on the record shows what the court knew about the drawer's means, a fine of twice a large cheque cannot be defended in appeal, and the default sentence attached to it converts a fine-only offence into imprisonment. The rule states the obligation; it does not prescribe how means are ascertained, so the requirement is that the material relied on be recorded.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.19-B.1 (fine to be in proportion to the offender's means)",
+          "s": "phhc3",
+          "e": "rule_19-B.1"
+        },
+        {
+          "l": "R&O Vol.III r.19-B.2 (limitations on imprisonment in default)",
+          "s": "phhc3",
+          "e": "rule_19-B.2"
+        },
+        {
+          "l": "NI Act §138",
+          "n": "ni:sec_138"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "sentencing record - material on the offender's means"
+      },
+      "how": null,
+      "test": "A sentence that includes a fine cannot be finalised without a recorded means entry, and that entry is reproduced in the sentencing part of the judgment.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-SEN-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-SEN-002",
+      "category": "SEN",
+      "level": "MUST",
+      "statement": "The system MUST allow the court to order that a fine imposed in a cheque case be paid within a stated period or in instalments.",
+      "why": "The ordinary outcome of a s.138 conviction is a fine, with imprisonment in default, and the fine is rarely paid across the counter on the day. Volume III recognises the power to order payment within a period or by instalments precisely so that a convict who intends to pay is not sent to prison because he could not pay at once. A sentencing screen that offers only paid or unpaid pushes every such case straight to the default sentence.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.19-B.3 (instalments or postponement of realisation of fine)",
+          "s": "phhc3",
+          "e": "rule_19-B.3"
+        },
+        {
+          "l": "R&O Vol.III r.19-B.1 (fine in proportion to means)",
+          "s": "phhc3",
+          "e": "rule_19-B.1"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "order for payment of a fine within a period or by instalments"
+      },
+      "how": null,
+      "test": "The sentencing screen offers a payment schedule for a fine-only sentence, stores the instalment dates, and tracks payments against them before any default warrant can issue.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-SEN-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-SEN-003",
+      "category": "SEN",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT release compensation out of a fine to the complainant until the period for appeal has elapsed or an appeal has been decided, and the court has satisfied itself by examining the record and referring to the appellate court that no appeal or revision has been lodged.",
+      "why": "This is the payee's money in a cheque case, and Volume III records why the check exists: lower courts have paid compensation in ignorance of a pending appeal, and when the amount was later reduced or remitted it proved impossible to get it back from the complainant. A system that releases compensation the moment the fine is realised recreates exactly that. The rule requires two things before release, elapse of the appeal period and a positive check with the appellate court, and a release button with neither is a rule breach on every convicted file.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-H.8 (application of fine towards costs and compensation)",
+          "s": "phhc3",
+          "e": "rule_1-H.8"
+        },
+        {
+          "l": "BNSS §395 (order to pay compensation)",
+          "n": "bnss:sec_395"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "release of compensation out of a realised fine to the complainant"
+      },
+      "how": "The court examines the record of the case and makes a reference to the appellate court to satisfy itself that no appeal or revision has been lodged, before payment.",
+      "test": "The compensation release action is blocked until the appeal period has elapsed and a recorded no-appeal confirmation from the appellate court is attached to the case.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-SEN-006",
+      "relatedTo": [
+        "REQ-HR-SEN-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-001",
+      "category": "REC",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT classify the cheque in an e-filed cheque case as a document to be preserved permanently by the Registry.",
+      "why": "The Electronic Filing Rules list the documents that must be preserved permanently and put a negotiable instrument on that list, but expressly except a cheque. The cheque therefore falls back to the general rule: the party who filed the scan keeps the original for production or inspection as the Bench directs. A system that quietly puts the cheque in the permanent-preservation class tells the complainant the court is holding it, and the original stops being produced. In a s.138 case that is the one document the court will call for.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.11.3(a) (permanent preservation, negotiable instrument other than a cheque)",
+          "s": "phef",
+          "e": "rule_11"
+        },
+        {
+          "l": "NI Act §138",
+          "n": "ni:sec_138"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document retention class of the cheque in an e-filed complaint"
+      },
+      "how": null,
+      "test": "The retention class assigned to a document typed as a cheque is the general class under r.11.1, never the permanent class under r.11.3; a power of attorney filed in the same case does take the permanent class.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": "REQ-EVI-017",
+      "relatedTo": [
+        "REQ-HR-REC-002",
+        "REQ-HR-FIL-015"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-002",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST record, against each scanned document in an e-filed cheque case, the party that filed it, as the party responsible for producing the original and proving its genuineness.",
+      "why": "The Electronic Filing Rules put that responsibility on the party that electronically filed the scanned copy. In a cheque case the scans include the cheque, the return memo and the demand notice, and they may be filed by the complainant, by a co-complainant company or later by the accused. When the Bench calls for an original, the court has to know from the file who has to produce it. If the record shows only that a document is on file, the direction goes to nobody and the hearing is adjourned.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.11.1 and r.11.4 (Retention of Originals)",
+          "s": "phef",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "document record - filing party responsible for the original"
+      },
+      "how": null,
+      "test": "Every scanned document stores a filing party; a direction to produce an original is addressed to that party and appears on that party's task list.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-003",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST hold the retention clock on a signed vakalatnama and an attested affidavit in a cheque case open for at least two years after final disposal, counting final disposal as disposal by the superior appellate court.",
+      "why": "The Electronic Filing Rules define final disposal for this purpose to include disposal by the superior appellate court, so a retention clock started at the trial court's judgment is wrong by the length of the appeal. In a s.138 case the vakalatnama and the affidavit of the authorised representative are the documents whose authenticity is most often questioned, because bank and company complainants act through representatives. Destroying them two years after conviction, while an appeal is pending, destroys the answer to that question.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.11.2 (Retention of Originals)",
+          "s": "phef",
+          "e": "rule_11"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "retention clock for the vakalatnama and attested affidavit"
+      },
+      "how": null,
+      "test": "The retention date on the vakalatnama and affidavit is computed from the latest disposal across the trial and appellate proceedings, and moves outward when an appeal is filed.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-004",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST enter a summarily triable cheque case in the institution register as soon as it is received in court, before any appearance of the accused is recorded.",
+      "why": "The High Court issued this instruction because summary cases were being entered in the registers only when the accused appeared, with the result that a large number of them escaped the notice of the courts. A s.138 case is tried summarily, and the gap between institution and the accused's first appearance is often the longest phase of the case, filled with unserved summonses and warrants. A case not in the register in that period is not in anyone's pendency, and nobody is watching it.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.2.6 (summary cases to be entered in Register No. 1 on receipt)",
+          "s": "phhc3",
+          "e": "rule_2.6"
+        },
+        {
+          "l": "R&O Vol.III r.2.1 (summary trial procedure)",
+          "s": "phhc3",
+          "e": "rule_2.1"
+        },
+        {
+          "l": "NI Act §143",
+          "n": "ni:sec_143"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "entry of a summary case in the institution register on receipt"
+      },
+      "how": "On receipt the case goes into the institution register; a separate entry is made in the register of summary cases when the accused appears.",
+      "test": "A cheque case appears in the institution register and in pendency counts from the date it is received in court, before any appearance is recorded.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-005"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-005",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST restrict the entry of columns 7 to 14 of the register of summary cases to the magistrate himself.",
+      "why": "Volume III says these columns are to be filled in by the magistrate himself, because in a summary trial where no appeal lies they are the record: the nature of the offence alleged and proved, the plea of the accused, the finding, the sentence and the final order. In a cheque case tried summarily those columns carry the conviction. If a case management system lets an ahlmad or a data-entry operator complete them, the substantive record of a criminal conviction has been made by a ministerial officer.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.2.3 (evidence in summary trials; columns 7 to 14 of Register No. XVII)",
+          "s": "phhc3",
+          "e": "rule_2.3"
+        },
+        {
+          "l": "R&O Vol.III r.1-E.8 (evidence and judgments in summary trials)",
+          "s": "phhc3",
+          "e": "rule_1-E.8"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "entry of columns 7 to 14 of the register of summary cases"
+      },
+      "how": null,
+      "test": "Only a judicial-officer role can write to those columns; a ministerial role sees them read-only, and the saved entry names the magistrate who made it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-004",
+        "REQ-HR-JUR-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-006",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST record every order of adjournment in a cheque case with its date, and make apparent the date on which the inquiry or trial was resumed.",
+      "why": "Volume III requires a short note of every material order with its date, and requires every adjournment to be entered so that the date of resumption is apparent. A s.138 case is meant to be summary, and adjournments are the thing that defeats that. If the record shows only a chain of dates with no orders of adjournment, neither the High Court's monthly returns nor a revisional court can see who asked for the delay, and the Volume III direction that adjournments be as short as possible cannot be checked against anything.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.14 (record to contain a brief note of all material orders passed)",
+          "s": "phhc3",
+          "e": "rule_1-E.14"
+        },
+        {
+          "l": "R&O Vol.III r.1-A.6 (speedy disposal of cases)",
+          "s": "phhc3",
+          "e": "rule_1-A.6"
+        },
+        {
+          "l": "NI Act §143",
+          "n": "ni:sec_143"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "order sheet - adjournment orders and the date of resumption"
+      },
+      "how": "A short note of the order is entered in the record in its proper place, with the date on which it was made.",
+      "test": "Every date change on a case writes an adjournment order with its own date and the resumed date; the order sheet can be read end to end with no unexplained gap between dates.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-007"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-007",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST support Hindi in Devanagari script as the language of a Haryana subordinate criminal court's record and judgment, alongside English.",
+      "why": "The notification reproduced in Volume III determines the language of the courts subordinate to the High Court to be Hindi in Devanagari script in the Hindi Region, and Volume III requires the judgment to be written in the language of the court or in English. It is a 1962 Punjab notification framed for the Hindi and Punjabi Regions of undivided Punjab; that the Hindi Region is now Haryana follows from the reorganisation and not from the text, so the requirement is a reading of the notification. The Panchkula judgment writer takes the judge's dictation in the language of the court. A system that stores only ASCII, or that mangles Devanagari in a generated FORM A preface or in a summons, produces a record in a language the court does not use and a name it cannot print.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.14 (notification regarding court language)",
+          "s": "phhc3",
+          "e": "rule_1-E.14"
+        },
+        {
+          "l": "R&O Vol.III r.1-H.1(ii) (judgment in the language of the court or in English)",
+          "s": "phhc3",
+          "e": "rule_1-H.1"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "record and judgment text - language and script"
+      },
+      "how": null,
+      "test": "Party names, order text and judgment text entered in Devanagari round-trip unchanged through storage, generated documents and printed process; the record stores which language was used.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-EVI-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-008",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST accept an e-authenticated copy of an interim order, stay order, bail order or record of proceedings transmitted through the FASTER system as valid for compliance with the directions it contains.",
+      "why": "Volume III was amended in September 2022 to say so in terms. In a cheque case the order that matters most urgently is a bail order or a stay of proceedings, and the drawer is often at a different court or in custody in a different district. If the system requires a physically certified copy before it will act, a person entitled to release under an order already transmitted electronically stays where he is until paper arrives, which is precisely the delay the FASTER system was created to remove.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-A.14 (Fast and Secured Transmission of Electronic Records)",
+          "s": "phhc3",
+          "e": "rule_1-A.14"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "acceptance of a FASTER e-authenticated order for compliance"
+      },
+      "how": null,
+      "test": "An order received through FASTER can be actioned without a physical certified copy, and the case record shows the FASTER transmission as its source.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-CPY-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-009",
+      "category": "REC",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT permit a copy of an e-filed case record to be stored outside the exclusive server maintained under the control and directions of the court.",
+      "why": "The Electronic Filing Rules require e-filings to be held on an exclusive court-controlled server, separately labelled, encrypted and with access restricted, and permit a mirror only at a location decided by the court. They do not in terms forbid a copy held elsewhere, so the prohibition is a reading of that scheme. The Panchkula filing assistants describe a self-started habit of e-mailing a PDF of each file to an office inbox and keeping it in a desktop folder; the rules also caution that e-mail is not a secure medium. A cheque file contains an account number, a cheque image with a signature and the parties' addresses, and a copy of it sitting on an unmanaged desktop is outside every control the rules create.",
+      "authority": [
+        {
+          "l": "P&H HC E-Filing Rules r.18 (Storage and Retrieval of e-filed Documents and Pleadings)",
+          "s": "phef",
+          "e": "rule_18"
+        },
+        {
+          "l": "P&H HC E-Filing Rules r.20 (General Caution on e-mail)",
+          "s": "phef",
+          "e": "rule_20"
+        }
+      ],
+      "binds": {
+        "artifact": "access-control",
+        "target": "storage location of e-filed case records and any copy of them"
+      },
+      "how": "Filings are stored on the exclusive server, separately labelled and encrypted; a mirror image may be held at a different geographical location as decided by the court, and nowhere else.",
+      "test": "The system offers no bulk export or e-mail-a-copy path for a case file to an address outside the court's controlled domain, and any such attempt is refused and logged.",
+      "derivedFrom": "practice-note",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-010"
+      ]
+    },
+    {
+      "id": "REQ-HR-REC-010",
+      "category": "REC",
+      "level": "MUST",
+      "statement": "The system MUST record the presiding officer's monthly inspection and signature on each register maintained by the Ahlmad attached to his court.",
+      "why": "Volume III requires the registers kept by the Ahlmad attached to a magistrate's court to be inspected by the presiding officer at least once a month to ensure their proper maintenance, and to be signed by him in token of having done so. The rule says this of registers No. XXIII and XXIV; extending it to the other registers that same ahlmad keeps is a reading of it. The Panchkula ahlmad prints the month's institution register out of the case management system and pastes it in. If the system produces the register but records no inspection and no signature, the only control over the accuracy of the court's own registers is absent, and the monthly returns built on top of them rest on nothing.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.11-A.14 (registers to be inspected monthly and signed by the presiding officer)",
+          "s": "phhc3",
+          "e": "rule_11-A.14"
+        },
+        {
+          "l": "R&O Vol.III r.1-A.12 (monthly statement of old cases to the High Court)",
+          "s": "phhc3",
+          "e": "rule_1-A.12"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "monthly inspection and signature of the court's registers"
+      },
+      "how": "The presiding officer signs the register in token of having inspected it, at least once in the month.",
+      "test": "Each register carries at most one inspection record per month, naming the presiding officer and the date he signed it; a month closing with no inspection record on a register is flagged on the court's dashboard.",
+      "derivedFrom": "rule",
+      "status": "inferred",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-REC-004",
+        "REQ-HR-FIL-016"
+      ]
+    },
+    {
+      "id": "REQ-HR-CPY-001",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST supply a hard copy of the testimony recorded, certified a true copy by the presiding officer or court officer, free of cost and against receipt, to the accused or his advocate, to the witness and to the prosecutor, on the date of recording.",
+      "why": "Volume III fixes the day: the date of recording, not on application and not later. In a cheque case the complainant's evidence is often tendered on affidavit and then cross-examined in one sitting, and the accused's counsel has to prepare his next step from what was actually said. If the copy comes weeks afterwards, or only on a copying application, the accused is defending a summary trial on his memory of a deposition he has not read, and the receipt the rule requires is what shows whether he got it at all.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-E.3(ii)(c) (procedure for recording evidence)",
+          "s": "phhc3",
+          "e": "rule_1-E.3"
+        },
+        {
+          "l": "NI Act §145 (evidence on affidavit)",
+          "n": "ni:sec_145"
+        }
+      ],
+      "binds": {
+        "artifact": "output-document",
+        "target": "certified true copy of a deposition supplied on the date of recording"
+      },
+      "how": "The copy is certified a true copy by the presiding officer or the court officer, given free of cost, and a receipt is taken from each recipient.",
+      "test": "Closing a deposition generates three certified copies with receipt slips for the accused or his advocate, the witness and the prosecutor, dated the day of recording; the receipts are stored against the case.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "tightens_hint": "The national requirement governing the supply of copies of the evidence and the record to the accused.",
+      "relatedTo": [
+        "REQ-HR-EVI-001"
+      ]
+    },
+    {
+      "id": "REQ-HR-CPY-002",
+      "category": "CPY",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT hold an application for revision for more than a week for the purpose of granting a copy of the judgment impeached.",
+      "why": "Volume III sets a hard one-week ceiling and tells the court what to do when it cannot meet it: forward the application to the High Court without the copy, with an explanation of why the copy was not granted. A drawer convicted in a cheque case whose revision sits in the copying branch for a month is a person whose remedy has been delayed by the court's own office, and the ceiling exists so that the delay is either cured or disclosed.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.25-G.3 (application for revision to be accompanied by copy of judgment)",
+          "s": "phhc3",
+          "e": "rule_25-G.3"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "detention of a revision application pending supply of a copy of the judgment"
+      },
+      "how": "If the copy cannot be given within the week, the application is forwarded without it, accompanied by an explanation of the cause of not granting a copy.",
+      "test": "A revision application pending a copy for seven days raises an escalation and offers the forward-without-copy path, which requires an explanation before it completes.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-CPY-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-CPY-003",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST treat an application for a copy made by a person sentenced to imprisonment on a working day preceding a holiday as urgent.",
+      "why": "Volume III makes it urgent because a copy is what an appeal has to be accompanied by, and a convict who does not get one before the courts close cannot move for bail over the break. A s.138 sentence can run to two years. A copying queue that works first in, first out will hand the copy over after the holidays, by which time the person has served part of a sentence he was trying to appeal.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.25-G.3 (applications for copies before a holiday to be treated as urgent)",
+          "s": "phhc3",
+          "e": "rule_25-G.3"
+        },
+        {
+          "l": "R&O Vol.III r.1-H.1(iv) (pronouncement before a spell of holidays)",
+          "s": "phhc3",
+          "e": "rule_1-H.1"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "priority of a copy application made before a holiday by a person sentenced to imprisonment"
+      },
+      "how": "Such copies are supplied on the same day as far as possible, and if that is not practicable at least on the next day.",
+      "test": "An application flagged with a custodial sentence made on the working day before a holiday is placed at the head of the copying queue and its target date is the same day, failing which the next day.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-TRL-007",
+        "REQ-HR-CPY-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-CPY-004",
+      "category": "CPY",
+      "level": "MUST",
+      "statement": "The system MUST prompt for the convicted person's application for a free copy of the judgment where a cheque conviction ends in fine only, because the automatic free copy under Volume III is engaged only by a sentence of imprisonment.",
+      "why": "Volume III r.1-H.1(vi) attaches the free copy of the finding and sentence to a sentence of imprisonment, and BNSS §404(1) does the same for the judgment. The commonest s.138 outcome is fine and compensation with no imprisonment, and in that case the free copy comes instead under BNSS §404(2), which is expressed as being on the application of the accused. The Panchkula practice of handing it over on every conviction is more generous than the letter of the rule. If a system instead follows the letter and issues no copy and no prompt, a drawer fined twice the cheque amount holds no copy of the judgment his appeal has to be accompanied by, and does not know he must ask.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.1-H.1(vi) (free copy where the accused is sentenced to imprisonment)",
+          "s": "phhc3",
+          "e": "rule_1-H.1"
+        },
+        {
+          "l": "R&O Vol.III r.25-G.2 (appeal to be accompanied by a copy of the judgment)",
+          "s": "phhc3",
+          "e": "rule_25-G.2"
+        },
+        {
+          "l": "BNSS §404 (copy of judgment)",
+          "n": "bnss:sec_404"
+        }
+      ],
+      "binds": {
+        "artifact": "workflow-step",
+        "target": "supply of a free copy of the judgment on a fine-only cheque conviction"
+      },
+      "how": null,
+      "test": "A conviction with imprisonment issues the free copy without any application; a fine-only conviction raises a prompt to the convicted person or his advocate to apply, and the copy is then supplied free of cost.",
+      "derivedFrom": "practice-note",
+      "status": "inferred",
+      "tightens": "REQ-CPY-004",
+      "relatedTo": [
+        "REQ-HR-APL-005"
+      ]
+    },
+    {
+      "id": "REQ-HR-APL-001",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST record on the vakalatnama, memo of appearance or written authorisation the advocate's residential or office address, telephone or cell number, enrolment number and, where available, e-mail and fax number.",
+      "why": "The Punjab and Haryana High Court made these particulars an express requirement on the instrument by which an advocate accepts an engagement. In an appeal or revision from a cheque conviction the file often moves between the trial court, the copying branch and the High Court, and an advocate identified only by name cannot be reached by any of them. The enrolment number is what distinguishes him from another advocate of the same name on the same cause list.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.25-A.4 (pleader engaged by agent; particulars on the vakalatnama)",
+          "s": "phhc3",
+          "e": "rule_25-A.4"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "vakalatnama or memo of appearance - advocate contact particulars and address for service"
+      },
+      "how": null,
+      "test": "A vakalatnama, memo of appearance or written authorisation cannot be saved without an address, a telephone or cell number and an enrolment number; the e-mail and fax fields save empty.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-APL-002",
+        "REQ-HR-APL-008"
+      ]
+    },
+    {
+      "id": "REQ-HR-APL-002",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST require the Advocate Welfare Fund Stamp to be affixed on every vakalatnama, memo of appearance or written authorisation, including one filed for a respondent.",
+      "why": "Volume III requires it on both sides, appellant and respondent, and the requirement is easy to miss because the stamp is not a court fee and is not part of the fee table. A cheque appeal filed without it, or a caveat entered by the payee's counsel without it, is accepted only on an undertaking, and the matter does not move until the undertaking is met. A filing screen that validates the court fee but not the welfare fund stamp will produce that stall on every second file.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.25-A.4 (Advocate Welfare Fund Stamp)",
+          "s": "phhc3",
+          "e": "rule_25-A.4"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "Advocate Welfare Fund Stamp on a vakalatnama or memo of appearance"
+      },
+      "how": "In a case of urgency, where the stamp is not available, the filing is accepted subject to an undertaking by counsel that the requisite stamp will be affixed.",
+      "test": "Filing a vakalatnama with no stamp recorded is refused unless an urgency undertaking is captured; the same check applies to a respondent's vakalatnama.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-APL-001",
+        "REQ-HR-APL-003"
+      ]
+    },
+    {
+      "id": "REQ-HR-APL-003",
+      "category": "APL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT list a matter accepted on an undertaking to affix the Advocate Welfare Fund Stamp until that undertaking has been complied with, unless the court orders otherwise.",
+      "why": "Volume III says the matter shall be listed only after compliance unless otherwise ordered. The undertaking exists so that an urgent cheque appeal or stay application is not turned away at the counter; the listing bar exists so that the undertaking is honoured. If the system lists the matter anyway, the undertaking is never redeemed, and the file carries a defect nobody will notice until an office objection surfaces at a hearing.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.25-A.4 (matter to be listed only after compliance with the undertaking)",
+          "s": "phhc3",
+          "e": "rule_25-A.4"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "listing of a matter with an outstanding welfare fund stamp undertaking"
+      },
+      "how": "The bar lifts on compliance, or on an order of the court directing listing notwithstanding.",
+      "test": "A matter with an open stamp undertaking cannot be added to a cause list without a recorded court order; recording compliance releases it automatically.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-APL-002"
+      ]
+    },
+    {
+      "id": "REQ-HR-APL-004",
+      "category": "APL",
+      "level": "MUST NOT",
+      "statement": "The system MUST NOT admit a petition for revision by the complainant in a cheque case unless it is presented by the complainant himself or by a person authorised by a duly stamped power of attorney.",
+      "why": "Volume III states the bar for a complainant's revision separately from the bar for a convict's appeal, and cheque complainants are overwhelmingly banks, non-banking financial companies and companies acting through a representative. The power of attorney carries its own fee in the High Court's table, and it is what shows that the person moving the revision speaks for the payee. A revision admitted from an unauthorised officer of the complainant company is liable to be thrown out on that ground alone, after the period for filing it has run.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.25-A.1 (persons competent to lodge a petition)",
+          "s": "phhc3",
+          "e": "rule_25-A.1"
+        },
+        {
+          "l": "Court Fee Table, common documents - Power of Attorney",
+          "s": "phft",
+          "e": "com_13_x"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "admission of a complainant's revision petition"
+      },
+      "how": null,
+      "test": "A revision filed by anyone other than the named complainant requires a duly stamped power of attorney on record before it can be admitted; the check runs before numbering.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-APL-005"
+      ]
+    },
+    {
+      "id": "REQ-HR-APL-005",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST charge no court fee on a criminal appeal, application or petition in the High Court where the appellant, applicant or petitioner is in custody.",
+      "why": "This is the one distributive rule in the High Court's criminal fee table, and it removes the fee at exactly the point where a person is least able to pay it. A drawer already serving the sentence imposed for dishonour of a cheque pays nothing to move the High Court. If a fee calculator applies the flat Rs. 2.65 regardless of custody, a person in jail is asked for money he cannot send, and the appeal or revision is held at the counter for want of it.",
+      "authority": [
+        {
+          "l": "Court Fee Table, criminal - no fee where the party is in custody",
+          "s": "phft",
+          "e": "crim_note"
+        },
+        {
+          "l": "Court Fee Table, criminal - Criminal Appeal, Single Bench (CRA-S)",
+          "s": "phft",
+          "e": "crim_7_cra_s"
+        },
+        {
+          "l": "R&O Vol.III r.25-A.5 (no court fees on appeals preferred on behalf of a prisoner)",
+          "s": "phhc3",
+          "e": "rule_25-A.5"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "court fee computation where the party is in custody"
+      },
+      "how": null,
+      "test": "Setting the custody flag on the appellant reduces the computed fee to nil for a criminal appeal, revision or miscellaneous application, and the nil fee is shown with the custody ground stated.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-APL-006",
+        "REQ-HR-CPY-004"
+      ]
+    },
+    {
+      "id": "REQ-HR-APL-006",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST charge annexures at Rs. 0.65 per page, separately from the fee on the petition itself.",
+      "why": "This is the charge that actually adds up in a cheque matter, because the paper a s.138 case travels on is all annexure: the cheque, the return memo, the demand notice, the postal receipts, the account statement, the complaint and the trial court's order. A calculator that quotes only the Rs. 2.65 on a revision or a quashing petition understates what the filer will be asked to pay, and the shortfall becomes an office objection at the counter.",
+      "authority": [
+        {
+          "l": "Court Fee Table, common documents - Annexures per page",
+          "s": "phft",
+          "e": "com_12_x"
+        },
+        {
+          "l": "Court Fee Table, criminal - Quashing Petition (CRM-M)",
+          "s": "phft",
+          "e": "crim_3_crm_m"
+        }
+      ],
+      "binds": {
+        "artifact": "validation-rule",
+        "target": "court fee computation - per-page charge on annexures"
+      },
+      "how": null,
+      "test": "The computed fee for a petition equals the case-type fee plus Rs. 0.65 multiplied by the annexure page count, and the two components are shown separately.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-APL-005",
+        "REQ-HR-APL-007"
+      ]
+    },
+    {
+      "id": "REQ-HR-APL-007",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST present the High Court criminal court-fee amounts as provisional, subject to the final decision in RSA No. 3311 of 2013.",
+      "why": "The fee table itself says so in Note 1: fees are received under the Court Fees Act, 1870 as un-amended, because Schedules I and II of the Court Fees (Punjab Second Amendment) Act, 2009 have stood stayed since 27 November 2013, and the whole chart is expressly subject to the final decision in that case. A system that quotes Rs. 2.65 as a settled figure will be wrong the day the stay is vacated, on every criminal filing in the jurisdiction at once, and users who relied on it will have budgeted and paid on a superseded schedule.",
+      "authority": [
+        {
+          "l": "Court Fee Table, common documents - Note 1 on the stayed 2009 amendment",
+          "s": "phft",
+          "e": "com_notes"
+        }
+      ],
+      "binds": {
+        "artifact": "screen",
+        "target": "display of High Court criminal court-fee amounts"
+      },
+      "how": null,
+      "test": "Any screen quoting a High Court criminal fee shows the provisional status and the reason, and the fee values are held as data that can be replaced without a code change.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-APL-006"
+      ]
+    },
+    {
+      "id": "REQ-HR-APL-008",
+      "category": "APL",
+      "level": "MUST",
+      "statement": "The system MUST treat the address recorded by the advocate on the vakalatnama, memo of appearance or written authorisation as the address for service.",
+      "why": "Volume III makes the recorded address the address for service within the meaning of Order 3 rule 5 of the Code of Civil Procedure. In an appeal or revision from a cheque conviction, notice sent anywhere else is notice the appellant's counsel never sees, and the matter is decided or dismissed in his absence. Where more than one advocate is engaged one address suffices, so the record has to show which of them is the address for service rather than leaving a notice clerk to choose.",
+      "authority": [
+        {
+          "l": "R&O Vol.III r.25-A.4 (address for service)",
+          "s": "phhc3",
+          "e": "rule_25-A.4"
+        }
+      ],
+      "binds": {
+        "artifact": "schema-field",
+        "target": "vakalatnama - the address flagged as the address for service"
+      },
+      "how": "Where more than one advocate accepts the engagement it is sufficient for one of them to record his address, and that recorded address is the address for service.",
+      "test": "Where several advocates are recorded for a party, exactly one address is flagged as the address for service, and every notice the system generates for that party is addressed to it.",
+      "derivedFrom": "rule",
+      "status": "firm",
+      "tightens": null,
+      "relatedTo": [
+        "REQ-HR-APL-001"
+      ]
+    }
+  ]
+}
