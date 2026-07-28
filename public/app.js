@@ -24,6 +24,7 @@ let currentView = "overview";
 let processLens = "prescribed";   // which lens the story "process" is viewed through
 let vocabScrollTo = null;         // a vocab word to scroll to when the Vocabulary view next renders
 let practiceScrollTo = null;      // a field-note id to scroll to when the Local practice view next renders
+let reqScrollTo = null;           // a requirement id to land on when the Requirements view next renders
 let _extra = {};                  // deep-link query params for the current position (sec/term/note/act/eid)
 let pendingAnchor = null;         // a DOM id to scroll to after the next view renders (from a deep link)
 let _lastHash = null;             // the hash we last wrote, so our own writes don't re-trigger the router
@@ -141,6 +142,23 @@ async function loadAllStates(){
   _aliasCache={};
   STATE_DATA=STATES_DATA[activeState]||null;
 }
+/* the normative layer: one file of requirements for the centre and one per state.
+   Fetched once at boot, in parallel with the state layers, and tagged with the scope
+   the requirement came from - a state cite carries an alias that only resolves against
+   its own state's instruments, so the scope has to travel with the requirement. A file
+   that is missing is simply a scope that is not there. */
+let REQS=[];
+async function loadRequirements(){
+  const scopes=["national", ...(JURISDICTIONS||[]).map(s=>s.id)];
+  const loaded=await Promise.all(scopes.map(id=>
+    fetchText((DATA_BASE||"")+"requirements/"+id+".json").then(t=>JSON.parse(t)).catch(()=>null)));
+  REQS=[];
+  scopes.forEach((id,i)=>{
+    const d=loaded[i]; if(!d) return;
+    (d.requirements||[]).forEach(r=>{ r.scope=id; REQS.push(r); });
+  });
+}
+const reqById = id => REQS.find(r=>r.id===id);
 /* re-point STATE_DATA at the active state. Kept async, and kept as the name every
    state-selector calls, so switching state is now just a pointer move. */
 async function loadStateData(){
@@ -594,6 +612,168 @@ V.words=()=>{
   return m;
 };
 
+/* ============================================================ REQUIREMENTS
+   The normative layer. Everything else in the corpus describes the law; these
+   statements bind a system, cite the provision they come from and carry a test.
+   Same shape as Vocabulary: state is a filter, not a switch - the view opens on
+   the national layer plus the state the app is set to, and every other state is
+   one chip away. Colour carries exactly one signal here: status. */
+const REQ_CAT_LABEL={LIM:"Limitation and time",NOT:"The demand notice",FIL:"Filing, fee and scrutiny",SRV:"Service of process",EVI:"Evidence and documents",PRE:"Presumptions and burden",JUR:"Jurisdiction and cognizance",TRL:"Trial conduct",CMP:"Compounding and settlement",SEN:"Sentence and compensation",APL:"Appeal and revision",REC:"The court record",CPY:"Copies"};
+const REQ_CAT_ORDER=["LIM","NOT","FIL","SRV","EVI","PRE","JUR","TRL","CMP","SEN","APL","REC","CPY"];
+const REQ_LEVEL_ORDER=["MUST","MUST NOT","SHOULD","MAY"];
+const REQ_STATUS_ORDER=["firm","inferred","contested"];
+const REQ_STATUS_NOTE={firm:"the instrument says so in terms",inferred:"a reading, reasoned in the why",contested:"the authorities divide"};
+const REQ_ARTIFACT_LABEL={"schema-field":"Schema field","validation-rule":"Validation rule","workflow-step":"Workflow step","output-document":"Output document","access-control":"Access control","screen":"Screen"};
+const reqCatLabel = c => REQ_CAT_LABEL[c] || c;
+const reqArtifact = a => REQ_ARTIFACT_LABEL[a] || String(a||"").replace(/-/g," ");
+const reqScopeName = k => k==="national" ? "National" : ((stateById(k)||{}).name || k);
+/* what the sidebar counts: the layer actually in force for this reader - national plus
+   the state the app is set to. */
+const reqNavCount = () => REQS.filter(r=>r.scope==="national"||r.scope===activeState).length;
+V.requirements=()=>{
+  if(!isModelled()) return notModelled();
+  const stName=stateById(activeState).name;
+  const m=el("div"); m.appendChild(scopeBar());
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title">Requirements</h1>
+    <p class="lede">What a system must do to run a ${caseById(activeCase).name.toLowerCase()} case lawfully - each statement derived from a provision that opens, and each one testable. It opens on National and ${esc(stName)}; use Show to see All, or any other state.</p>`;
+  m.appendChild(head);
+  if(!REQS.length){ m.appendChild(el("div","empty","No requirements dataset is linked from this profile.")); return m; }
+  const controls=el("div","controls");
+  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="r-search" placeholder="Search a requirement - receipt, summons, compounding, REQ-LIM-004…"></div>`;
+  m.appendChild(controls);
+  const facets=el("div","vfacets"); m.appendChild(facets);
+  const list=el("div"); list.id="r-list"; list.style.marginTop="10px"; m.appendChild(list);
+
+  const items=REQS.map(r=>({r, scope:r.scope, cat:r.category||"", level:r.level||"", status:r.status||"",
+    hay:((r.id||"")+" "+(r.statement||"")+" "+(r.why||"")+" "+(r.test||"")).toLowerCase()}));
+  const scopes=["national", ...(JURISDICTIONS||[]).map(s=>s.id)].filter(k=>items.some(i=>i.scope===k));
+  const state={q:"", sel:new Set(["national"]), cat:"", level:"", status:""};
+  if(scopes.includes(activeState)) state.sel.add(activeState);
+  const allScopes=()=>scopes.every(k=>state.sel.has(k));
+
+  const trim=(s,n)=>{ s=String(s||""); return s.length>n ? s.slice(0,n).replace(/\s+\S*$/,"")+"…" : s; };
+  const reqLink=id=>{ const t=reqById(id); if(!t) return `<span class="rq-plain">${esc(id)}</span>`;
+    return `<a class="rq-jump" data-req="${esc(id)}"><span class="rq-jid">${esc(id)}</span> ${esc(trim(t.statement,96))}</a>`; };
+  function reqCardHTML(it){
+    const r=it.r;
+    // a state cite resolves only against its own state's alias map; a national one needs none
+    const amap = r.scope==="national" ? {} : stateAliasMap(r.scope);
+    const cites=(r.authority||[]).map(c=>citeChip(c,amap)).join("");
+    const rows=[];
+    rows.push(`<div class="rq-row"><span class="rq-l">Authority</span><div class="rq-v"><span class="cites">${cites}</span></div></div>`);
+    rows.push(r.how
+      ? `<div class="rq-row"><span class="rq-l">How</span><div class="rq-v">${esc(r.how)}</div></div>`
+      : `<div class="rq-row"><span class="rq-l">How</span><div class="rq-v rq-open">The law fixes the obligation and leaves the method open.</div></div>`);
+    if(r.test) rows.push(`<div class="rq-row"><span class="rq-l">Test</span><div class="rq-v">${esc(r.test)}</div></div>`);
+    if(r.tightens) rows.push(`<div class="rq-row"><span class="rq-l">Tightens</span><div class="rq-v">${reqLink(r.tightens)}</div></div>`);
+    if(r.relatedTo && r.relatedTo.length) rows.push(`<div class="rq-row"><span class="rq-l">Related</span><div class="rq-v rq-rel">${r.relatedTo.map(reqLink).join("")}</div></div>`);
+    const status=(r.status||"firm");
+    return `<div class="req" id="req-${esc(r.id)}" data-req="${esc(r.id)}">
+      <div class="rq-h"><span class="rq-lvl">${esc(r.level||"")}</span><span class="rq-stmt">${esc(r.statement||"")}</span><span class="caret">${ic('chevron-right')}</span></div>
+      ${r.why?`<div class="rq-why">${esc(r.why)}</div>`:""}
+      <div class="rq-meta">
+        <span class="rq-id">${esc(r.id)}</span>
+        <span class="rq-binds">${esc(reqArtifact((r.binds||{}).artifact))}: ${esc((r.binds||{}).target||"")}</span>
+        <span class="rq-status s-${esc(status)}" title="${esc(REQ_STATUS_NOTE[status]||"")}"><span class="rq-dot"></span>${esc(status)}</span>
+      </div>
+      <div class="rq-full">${rows.join("")}</div>
+    </div>`;
+  }
+  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
+  function redraw(){
+    const bySearch=items.filter(it=> !state.q || it.hay.includes(state.q));
+    const base=bySearch.filter(it=> state.sel.has(it.scope));
+    // cross-filtered counts: each facet counts what the other two would leave standing
+    const count=(arr,key)=>{ const o={}; arr.forEach(it=>{ if(it[key]) o[it[key]]=(o[it[key]]||0)+1; }); return o; };
+    const catC=count(base.filter(it=>(!state.level||it.level===state.level)&&(!state.status||it.status===state.status)),"cat");
+    const lvlC=count(base.filter(it=>(!state.cat||it.cat===state.cat)&&(!state.status||it.status===state.status)),"level");
+    const stC =count(base.filter(it=>(!state.cat||it.cat===state.cat)&&(!state.level||it.level===state.level)),"status");
+    const scopeCount={}; scopes.forEach(k=>{ scopeCount[k]=bySearch.filter(i=>i.scope===k).length; });
+
+    let fh=`<div class="vfacet-row"><span class="vfacet-lbl">Show</span><div class="chips">`
+      +pill("scope","all","All",bySearch.length,allScopes())
+      +scopes.map(k=>pill("scope",k,reqScopeName(k),scopeCount[k],state.sel.has(k))).join("")
+      +`</div></div>`;
+    const cats=REQ_CAT_ORDER.filter(c=>catC[c]);
+    if(cats.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Area</span><div class="chips">`+cats.map(c=>pill("cat",c,reqCatLabel(c),catC[c],state.cat===c)).join("")+`</div></div>`;
+    const lvls=REQ_LEVEL_ORDER.filter(l=>lvlC[l]);
+    if(lvls.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Level</span><div class="chips">`+lvls.map(l=>pill("level",l,l,lvlC[l],state.level===l)).join("")+`</div></div>`;
+    const sts=REQ_STATUS_ORDER.filter(s=>stC[s]);
+    if(sts.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Status</span><div class="chips">`+sts.map(s=>pill("status",s,s,stC[s],state.status===s)).join("")+`</div></div>`;
+    facets.innerHTML=fh;
+
+    const final=base.filter(it=> (!state.cat||it.cat===state.cat) && (!state.level||it.level===state.level) && (!state.status||it.status===state.status));
+    if(!final.length){ list.innerHTML=""; list.appendChild(el("div","empty","No requirement matches these filters.")); return; }
+    // national first, then state by state; inside each, the README's category order
+    let html="";
+    scopes.forEach(k=>{
+      const rows=final.filter(i=>i.scope===k); if(!rows.length) return;
+      const sub=k==="national" ? `binds every state · ${rows.length}` : `state layer · ${rows.length}`;
+      html+=`<div class="grouphead">${esc(reqScopeName(k))} requirements <span class="gh-status">${esc(sub)}</span></div>`;
+      const cats2=[...REQ_CAT_ORDER, ...new Set(rows.map(i=>i.cat))].filter((c,i,a)=>a.indexOf(c)===i);
+      cats2.forEach(c=>{
+        const gr=rows.filter(i=>i.cat===c); if(!gr.length) return;
+        html+=`<div class="vsub">${esc(reqCatLabel(c))} · ${gr.length}</div>`;
+        gr.forEach(it=>{ html+=reqCardHTML(it); });
+      });
+    });
+    list.innerHTML=html;
+    // the cards are rebuilt on every filter change, so they are re-linked here rather
+    // than relying on the single pass go() makes over the page
+    try{ linkifyVocab(list); }catch(e){}
+  }
+  facets.addEventListener("click",e=>{
+    const p=e.target.closest(".chip"); if(!p) return;
+    const fg=p.dataset.fg, fv=p.dataset.fv;
+    if(fg==="scope"){
+      // same interaction as Vocabulary: All selects everything, a click from All narrows
+      // to one scope, otherwise a click adds or removes one; emptying falls back to All.
+      if(fv==="all") state.sel=new Set(scopes);
+      else if(allScopes()) state.sel=new Set([fv]);
+      else if(state.sel.has(fv)){ state.sel.delete(fv); if(!state.sel.size) state.sel=new Set(scopes); }
+      else state.sel.add(fv);
+    }
+    else if(fg==="cat") state.cat=(state.cat===fv?"":fv);
+    else if(fg==="level") state.level=(state.level===fv?"":fv);
+    else if(fg==="status") state.status=(state.status===fv?"":fv);
+    redraw();
+  });
+  // land on one requirement: clear the filters, make sure its scope is showing, open it
+  function jumpTo(id, push){
+    const t=reqById(id); if(!t) return;
+    state.q=""; state.cat=""; state.level=""; state.status="";
+    if(!state.sel.has(t.scope)) state.sel.add(t.scope);
+    const inp=$("#r-search"); if(inp) inp.value="";
+    redraw();
+    _extra={req:id}; if(push!==false) writeHash(true);
+    // two passes, like scrollToId: a fresh boot can still be settling when the first
+    // scroll lands, and the second pass puts the card where it belongs
+    const land=()=>{
+      const card=list.querySelector('.req[data-req="'+id+'"]'); if(!card) return null;
+      card.classList.add("open");
+      const y=card.getBoundingClientRect().top+window.scrollY-70;
+      window.scrollTo({top:Math.max(0,y), behavior:"auto"});
+      return card;
+    };
+    setTimeout(()=>{
+      if(!land()) return;
+      setTimeout(()=>{ const card=land(); if(!card) return;
+        card.classList.add("word-flash"); setTimeout(()=>card.classList.remove("word-flash"),1500); },340);
+    },40);
+  }
+  list.addEventListener("click",e=>{
+    const j=e.target.closest(".rq-jump");
+    if(j && j.dataset.req){ e.stopPropagation(); jumpTo(j.dataset.req); return; }
+    if(e.target.closest(".cite")) return;                       // a citation opens the provision
+    const h=e.target.closest(".rq-h"); if(!h) return;
+    h.closest(".req").classList.toggle("open");
+  });
+  setTimeout(()=>{const inp=$("#r-search"); if(inp)inp.oninput=e=>{ state.q=e.target.value.toLowerCase().trim(); redraw(); };},0);
+  redraw();
+  if(reqScrollTo){ const wanted=reqScrollTo; reqScrollTo=null; setTimeout(()=>jumpTo(wanted,false),60); }
+  return m;
+};
 V.practice=()=>{
   if(!isModelled()) return notModelled();
   const m=el("div"); m.appendChild(scopeBar());
@@ -1294,7 +1474,7 @@ function vocabMatcher(){
   _vocabMState=key; return _vocabM;
 }
 const VOCAB_SKIP_TAGS=new Set(["A","CODE","INPUT","TEXTAREA","SCRIPT","STYLE","BUTTON","SELECT","H1"]);
-const VOCAB_SKIP_CLASS=/(^|\s)(cite|cchip|stedge|vocab-term|statute|st-num|st-h|st-src|badge|wtag|chip|tl-marker|proc-tab|caret|mag|role-name|court-name|tl-stage-title|fee-stage|clabel|page-title|grouphead|vsub|vp-word|vp-gloss)($|\s)/;
+const VOCAB_SKIP_CLASS=/(^|\s)(cite|cchip|stedge|vocab-term|statute|st-num|st-h|st-src|badge|wtag|chip|tl-marker|proc-tab|caret|mag|role-name|court-name|tl-stage-title|fee-stage|clabel|page-title|grouphead|vsub|rq-stmt|vp-word|vp-gloss)($|\s)/;
 function linkifyVocab(root){
   if(!root) return;
   const M=vocabMatcher(); if(!M.re) return; const {map,re}=M;
@@ -1930,6 +2110,10 @@ function buildNav(){
         <a data-view="practice"><span class="ico">${ic('messages-square')}</span> Local practice <span class="count">${isModelled()?PRACTICE_NOTES.length:'-'}</span></a>
         <a data-view="words"><span class="ico">${ic('type')}</span> Vocabulary <span class="count">${isModelled()?(Object.keys(TERMS).length+(((STATE_DATA||{}).vocabulary||{}).terms||[]).length):'-'}</span></a>
       </div>
+      <div class="nav-group scoped">Design</div>
+      <div class="nav-scoped">
+        <a data-view="requirements"><span class="ico">${ic('file-text')}</span> Requirements <span class="count">${isModelled()?(reqNavCount()||'-'):'-'}</span></a>
+      </div>
     </div>`;
   // Overview lives subtly in the sidebar footer, not at the top
   const ov=$("#ovNav");
@@ -2006,7 +2190,7 @@ function scrollToId(id, offset, flash){
 }
 
 /* ---- deep-link router: the URL hash carries view + state + position ----
-   #<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&act=<a>&eid=<e> */
+   #<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&req=<id>&act=<a>&eid=<e> */
 function buildHash(){
   const p=new URLSearchParams();
   if(activeState) p.set("state",activeState);
@@ -2030,9 +2214,10 @@ function applyHash(raw, push){
   const run=()=>{
     if(p.get("lens")) processLens=p.get("lens");
     _extra={}; pendingAnchor=null;
-    const term=p.get("term"), note=p.get("note"), sec=p.get("sec"), act=p.get("act"), eid=p.get("eid");
+    const term=p.get("term"), note=p.get("note"), sec=p.get("sec"), act=p.get("act"), eid=p.get("eid"), req=p.get("req");
     if(term){ vocabScrollTo=term; _extra.term=term; }
     if(note){ practiceScrollTo=note; _extra.note=note; }
+    if(req){ reqScrollTo=req; _extra.req=req; }
     if(sec){ pendingAnchor=sec; _extra.sec=sec; }
     if(act){ _extra.act=act; if(eid) _extra.eid=eid; }
     go(view, !!push);
@@ -2118,7 +2303,8 @@ function showLoadError(err){
   try{
     await loadConfig();
     await loadProfile();
-    await loadAllStates();   // every state layer, in parallel - state is a filter, not a switch
+    // every state layer and the whole normative layer, in parallel - state is a filter, not a switch
+    await Promise.all([loadAllStates(), loadRequirements()]);
     buildNav();
     // the Map ("graph") is hidden for now; keep V.graph defined but never land on it.
     // Restore where the user last was: an explicit URL hash (a shared deep link) wins;

@@ -39,7 +39,7 @@
     {
       "id": "REQ-APL-002",
       "category": "APL",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT permit an order under section 148 directing a deposit of less than twenty per cent of the fine or compensation awarded by the trial court.",
       "why": "Section 148 sets a floor, not a ceiling. An appellate court that orders ten per cent has passed an order below the statutory minimum, and the complainant is deprived of money Parliament intended to reach him while the appeal runs.",
       "authority": [
@@ -325,7 +325,7 @@
     {
       "id": "REQ-CMP-003",
       "category": "CMP",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "Where the accused has been convicted and an appeal is pending, the system MUST NOT allow the composition to be completed without the leave of the court before which the appeal is to be heard.",
       "why": "Composition after conviction requires leave of the appellate court. A build that treats compounding as a purely bilateral act lets a settled matter be closed by the trial court while an appeal is live, leaving a conviction on the record and an appeal with no respondent.",
       "authority": [
@@ -354,7 +354,7 @@
     {
       "id": "REQ-CMP-004",
       "category": "CMP",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT refer a section 138 case to a Lok Adalat without recording either the agreement of both parties, or an application by one party with the court's prima facie satisfaction that there are chances of settlement, or the court's own satisfaction that the matter is appropriate.",
       "why": "The Act permits reference only on one of these bases, and in every case except mutual agreement only after a reasonable opportunity of being heard. Bulk referral of section 138 files to a Lok Adalat date without any of this recorded produces references that a party can undo, and the settlement drive loses the very cases it lists.",
       "authority": [
@@ -383,7 +383,7 @@
     {
       "id": "REQ-CMP-005",
       "category": "CMP",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT offer an appeal against an award of a Lok Adalat in a section 138 case.",
       "why": "Every award of a Lok Adalat is deemed a decree and no appeal lies against it. A disposal screen that offers the ordinary appeal route after a Lok Adalat award invites an appeal that no court can entertain, and the parties spend the limitation period discovering it.",
       "authority": [
@@ -945,7 +945,7 @@
     {
       "id": "REQ-EVI-008",
       "category": "EVI",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT treat a missing or irregular oath entry as invalidating a deposition or as a ground to reject it from the record.",
       "why": "The Oaths Act says in terms that no omission to take an oath and no irregularity in administering it invalidates the proceeding or renders the evidence inadmissible. A validation rule that voids or blocks a deposition for a missing oath field creates a defect the law expressly refuses to create, and does so silently in every court that uses the build.",
       "authority": [
@@ -970,7 +970,7 @@
     {
       "id": "REQ-EVI-009",
       "category": "EVI",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT put the accused in a section 138 case on oath unless the accused is being examined as a witness for the defence.",
       "why": "The Oaths Act forbids administering an oath to the accused in a criminal proceeding except where he offers himself as a defence witness. A generic hearing screen that swears everyone who speaks turns the accused's statement into sworn testimony and touches the protection against self-incrimination.",
       "authority": [
@@ -1803,7 +1803,7 @@
     {
       "id": "REQ-JUR-004",
       "category": "JUR",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT allot a section 138 case to any court inferior to a Judicial Magistrate of the first class or a Metropolitan Magistrate.",
       "why": "The statute forbids trial by a court inferior to a first class magistrate. An allocation engine that balances load across all magistrate courts will occasionally place a section 138 file before a second class magistrate, and everything done in that court is without jurisdiction.",
       "authority": [
@@ -1830,7 +1830,7 @@
     {
       "id": "REQ-JUR-005",
       "category": "JUR",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT permit cognizance of a section 138 offence to be taken on a police report, on information from a person other than the payee, or on the court's own knowledge.",
       "why": "The general power of a magistrate to take cognizance offers three routes. Section 138 closes two of them: cognizance can only be on the complaint of the payee or holder in due course. A generic cognizance screen that offers all three routes for every offence invites a magistrate to take cognizance on a police report, which no court can do here.",
       "authority": [
@@ -2074,7 +2074,7 @@
     {
       "id": "REQ-LIM-001",
       "category": "LIM",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT treat a dishonour as actionable under section 138 unless the cheque was presented to the bank within six months of the date it bears, or within its validity period, whichever expires earlier.",
       "why": "Presentment inside the validity window is the first condition of the offence. A system that accepts a dishonour memo without testing the presentment date against the cheque date lets a stale cheque found in a drawer become a criminal complaint, and the defect surfaces only at trial after summons has issued against the drawer.",
       "authority": [
@@ -2174,7 +2174,7 @@
     {
       "id": "REQ-LIM-005",
       "category": "LIM",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT permit a section 138 complaint to be presented before the fifteen days allowed to the drawer from receipt of the demand notice have expired.",
       "why": "A complaint filed on day fifteen or earlier is premature and is liable to be dismissed outright, because the offence is not complete until the drawer has failed to pay within the full fifteen days. A portal that accepts the filing on the day the payee is angry rather than the day the law permits produces a complaint that must be filed again from scratch, by which time the one-month period may have run.",
       "authority": [
@@ -2263,7 +2263,7 @@
     {
       "id": "REQ-LIM-008",
       "category": "LIM",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT allow cognizance of a complaint presented after the one-month period until an application showing sufficient cause and the court's order on it are both on the record.",
       "why": "The proviso to section 142(1)(b) permits cognizance out of time only if the complainant satisfies the court of sufficient cause; it is a self-contained power and does not borrow from the Limitation Act. Without a recorded application and a recorded order, the file shows a late complaint taken on file with no explanation, and neither the appellate court nor the magistrate's own successor can tell whether the delay was ever considered.",
       "authority": [
@@ -2700,7 +2700,7 @@
     {
       "id": "REQ-NOT-009",
       "category": "NOT",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT treat the cause of action as extinguished by a payment within the notice period that is less than the amount of the cheque.",
       "why": "The offence is complete unless the drawer pays the said amount of money, which is the amount of the cheque. A build that closes the case on any payment inside the window shuts down live prosecutions on a part payment made precisely to buy time, and the payee has no route back because the one-month period runs on regardless.",
       "authority": [
@@ -2819,7 +2819,7 @@
     {
       "id": "REQ-PRE-001",
       "category": "PRE",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "Once the bank's slip or memo bearing the official mark is on the record, the system MUST NOT require proof of the fact of dishonour as a precondition to any step in the case.",
       "why": "The court shall presume dishonour on production of the memo. A workflow that lists proof of dishonour as an outstanding item until a bank witness is examined creates a step the statute removed, and every case waits on a bank officer who need never have been summoned.",
       "authority": [
@@ -2900,7 +2900,7 @@
     {
       "id": "REQ-PRE-004",
       "category": "PRE",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT offer, as an available defence ground, that the drawer had no reason to believe when he issued the cheque that it might be dishonoured.",
       "why": "Section 140 shuts this defence out in terms. Where the defence-grounds list carries it as a selectable option, a defence is pleaded that cannot succeed, evidence is led on it, and the judgment has to deal with a plea Parliament has already refused.",
       "authority": [
@@ -3423,7 +3423,7 @@
     {
       "id": "REQ-SEN-001",
       "category": "SEN",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT permit a fine under section 138 that exceeds twice the amount of the cheque.",
       "why": "The section caps the fine at twice the cheque amount. Fines are commonly set to cover the cheque plus interest and costs, and in a large-interest case that arithmetic can cross the cap without anyone noticing, producing a sentence the trial court had no power to pass.",
       "authority": [
@@ -3587,7 +3587,7 @@
     {
       "id": "REQ-SEN-006",
       "category": "SEN",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT release any part of a fine to the complainant before the appeal period has elapsed, or, where an appeal is filed, before it is decided.",
       "why": "The bar is express. A disbursement flow that pays out on the day the fine is deposited defeats the appeal, because the money is gone before the appellate court can consider whether the conviction stands.",
       "authority": [
@@ -3668,7 +3668,7 @@
     {
       "id": "REQ-SEN-010",
       "category": "SEN",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT allow an order of interim compensation before the accused has pleaded not guilty, in a summary trial or summons case, or before charge has been framed in any other case.",
       "why": "The power arises only at that point. An order made at the first appearance, before the accused has pleaded, is passed without jurisdiction, and it is enforced as a fine against a person the court has not yet put to plea.",
       "authority": [
@@ -3695,7 +3695,7 @@
     {
       "id": "REQ-SEN-011",
       "category": "SEN",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT permit an order of interim compensation exceeding twenty per cent of the amount of the cheque.",
       "why": "The cap is absolute. An order above it is void to the extent of the excess and is recoverable as a fine in the meantime, so the drawer pays money the court could not order before anyone tests the figure.",
       "authority": [
@@ -4054,7 +4054,7 @@
     {
       "id": "REQ-SRV-002",
       "category": "SRV",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT issue a summons or warrant in a section 138 case until the list of prosecution witnesses has been filed.",
       "why": "The bar is expressed as a prohibition on issuing process. A workflow that lets the magistrate issue summons on the day of cognizance and collects the witness list later produces process issued in breach of an express bar, and the point is available to the accused on the first date.",
       "authority": [
@@ -4156,7 +4156,7 @@
     {
       "id": "REQ-SRV-006",
       "category": "SRV",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT allow the court to declare a summons duly served under section 144 unless an acknowledgment purporting to be signed by the accused or witness, or an endorsement of refusal by the postal or courier service, is on the record.",
       "why": "The declaration of due service is what lets the case proceed in the drawer's absence and is the foundation for coercive process against him. Section 144(2) makes one of those two documents the condition for it. A declaration made on a tracking status or a returned envelope with no endorsement puts the whole subsequent proceeding at risk.",
       "authority": [
@@ -4428,7 +4428,7 @@
     {
       "id": "REQ-SRV-016",
       "category": "SRV",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT issue a warrant in place of or in addition to a summons in a section 138 case without recorded reasons and one of the two statutory grounds.",
       "why": "A section 138 case is a summons case and the drawer is not an absconder merely because a postal article came back. The power to issue a warrant is conditioned on reasons in writing and on either a belief that the person has absconded or will not obey the summons, or a failure to appear on a summons proved to have been duly served in time. A build that offers a warrant as the next escalation after any failed service produces arrest warrants against drawers who were never served, and the order is unsustainable on the face of the record.",
       "authority": [
@@ -4496,7 +4496,7 @@
     {
       "id": "REQ-TRL-002",
       "category": "TRL",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT allow a section 138 case to be converted from summary trial to the ordinary procedure without an order recording the reason, made after hearing the parties.",
       "why": "Conversion is what turns a six-month case into a three-year one. The second proviso to section 143 allows it only on a recorded order after hearing the parties. Where the system lets the mode be switched as a field edit, conversion happens for docket reasons and the record shows no reason at all.",
       "authority": [
@@ -4548,7 +4548,7 @@
     {
       "id": "REQ-TRL-004",
       "category": "TRL",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "Where a section 138 case is converted out of summary trial, the system MUST NOT carry forward the depositions recorded in the summary trial as evidence in the converted trial.",
       "why": "The second proviso to section 143(1) requires the magistrate to recall any witness already examined and to hear or rehear the case in the manner provided by the Code. It does not say in terms that the earlier depositions cease to be evidence; that follows from the direction to rehear, and is recorded here as a reading. A build that leaves those depositions on the evidence list as though nothing had changed produces a judgment resting partly on evidence recorded under a procedure the court has abandoned, and the defect is invisible because the evidence list looks complete.",
       "authority": [
@@ -4573,7 +4573,7 @@
     {
       "id": "REQ-TRL-005",
       "category": "TRL",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT permit an adjournment of a section 138 trial beyond the following day without a written reason recorded on the order.",
       "why": "Section 143(2) requires the trial to continue from day to day so far as practicable, and permits a longer adjournment only for reasons recorded in writing. A cause-list tool that offers a next-date picker with no reason field makes the statutory condition invisible, and the six-week adjournment becomes the norm because nothing in the screen asks why.",
       "authority": [
@@ -4905,7 +4905,7 @@
     {
       "id": "REQ-TRL-016",
       "category": "TRL",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "Where the complainant does not appear on a day fixed for the hearing of a section 138 case governed by the Sanhita, the system MUST NOT allow an acquittal for non-appearance until thirty days have been given to the complainant to be present.",
       "why": "The Sanhita added the thirty-day grace that the Code did not have. A build carried over from the Code will acquit the drawer on the day the complainant misses a hearing, and because composition and acquittal both end the case, the payee's only route back is an appeal against acquittal. The difference between the two codes is decisive and turns on which code governs the case.",
       "authority": [
@@ -4965,7 +4965,7 @@
     {
       "id": "REQ-TRL-018",
       "category": "TRL",
-      "level": "MUST",
+      "level": "MUST NOT",
       "statement": "The system MUST NOT record the pronouncement of judgment in the absence of the accused unless his personal attendance during the trial had been dispensed with and the sentence is one of fine only, or he is acquitted.",
       "why": "Both limbs of the exception are cumulative, and both are ordinary in a section 138 case: the drawer is usually permitted to appear through counsel and the sentence is usually fine and compensation. A build that treats the dispensation alone as enough will pronounce a sentence of imprisonment on a drawer who is not there, and the judgment is bad on the face of the record. Where there are several accused and one does not attend, the presiding officer may still pronounce to avoid delay, so a rule that simply blocks pronouncement on any absence is wrong in the other direction.",
       "authority": [

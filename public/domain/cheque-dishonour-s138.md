@@ -12,7 +12,7 @@ Everything else here is descriptive: it says what the law provides, and a descri
 
 **493 requirements**: 172 national (binding every state), plus 127 Gujarat, 84 Haryana, 110 Kerala. A state file never restates a national requirement - it adds only what its own instruments require, or where it makes a national one stricter, and then it names that requirement in `tightens`.
 
-By level: MUST 425 · MUST NOT 47 · MAY 8 · SHOULD 13. By status: firm 426 · contested 6 · inferred 61. Derived from: act 129 · caselaw 58 · practice-note 10 · rule 296.
+By level: MUST 399 · MUST NOT 73 · MAY 8 · SHOULD 13. By status: firm 426 · contested 6 · inferred 61. Derived from: act 129 · caselaw 58 · practice-note 10 · rule 296.
 
 ### National - binds every state (172)
 
@@ -20,7 +20,7 @@ Binds every state. A state file adds only what its own instruments require, or t
 
 #### LIM - limitation, cause of action, computation of time (15)
 
-**REQ-LIM-001** · MUST · firm · from act
+**REQ-LIM-001** · MUST NOT · firm · from act
 
 The system MUST NOT treat a dishonour as actionable under section 138 unless the cheque was presented to the bank within six months of the date it bears, or within its validity period, whichever expires earlier.
 
@@ -60,7 +60,7 @@ The system MUST record the date the drawer received the demand notice, separatel
 - *binds* - schema-field: demand notice - date of receipt by the drawer
 - *test* - Two distinct date fields exist on the notice record and are separately populated; the cause-of-action date is computed from the receipt date, never from the dispatch date.
 
-**REQ-LIM-005** · MUST · firm · from act
+**REQ-LIM-005** · MUST NOT · firm · from act
 
 The system MUST NOT permit a section 138 complaint to be presented before the fifteen days allowed to the drawer from receipt of the demand notice have expired.
 
@@ -93,7 +93,7 @@ The system MUST compute the limitation for taking cognizance as one month from t
 - *test* - For a cause-of-action date of 17 March, the system treats 17 April as the last day for a complaint without condonation, and flags 18 April as out of time.
 - *related* - REQ-LIM-006, REQ-LIM-008
 
-**REQ-LIM-008** · MUST · firm · from act
+**REQ-LIM-008** · MUST NOT · firm · from act
 
 The system MUST NOT allow cognizance of a complaint presented after the one-month period until an application showing sufficient cause and the court's order on it are both on the record.
 
@@ -260,7 +260,7 @@ The system MUST record any payment made by the drawer within the fifteen days af
 - *test* - A payment inside the notice period can be recorded with a date and an amount, and appears on the case record against the notice.
 - *related* - REQ-NOT-009
 
-**REQ-NOT-009** · MUST · firm · from act
+**REQ-NOT-009** · MUST NOT · firm · from act
 
 The system MUST NOT treat the cause of action as extinguished by a payment within the notice period that is less than the amount of the cheque.
 
@@ -504,7 +504,7 @@ The system MUST attach a copy of the complaint to every summons or warrant issue
 - *test* - Generate a summons: the produced packet contains the complaint copy, there is no path that produces a summons without it, and the service record notes that the complaint copy accompanied it.
 - *related* - REQ-NOT-011, REQ-CMP-008
 
-**REQ-SRV-002** · MUST · firm · from act
+**REQ-SRV-002** · MUST NOT · firm · from act
 
 The system MUST NOT issue a summons or warrant in a section 138 case until the list of prosecution witnesses has been filed.
 
@@ -546,7 +546,7 @@ Where service is by an approved courier, the system MUST record which Court of S
 - *test* - A courier cannot be selected as a service mode unless it is on the approved list, and the service record shows the approving Court of Session.
 - *related* - REQ-SRV-004
 
-**REQ-SRV-006** · MUST · firm · from act
+**REQ-SRV-006** · MUST NOT · firm · from act
 
 The system MUST NOT allow the court to declare a summons duly served under section 144 unless an acknowledgment purporting to be signed by the accused or witness, or an endorsement of refusal by the postal or courier service, is on the record.
 
@@ -650,7 +650,7 @@ In a section 138 complaint the system MUST NOT make a pre-cognizance notice or s
 - *test* - On a BNSS-governed section 138 complaint the cognizance step follows scrutiny directly: no pre-cognizance notice task is generated, none is required to close the step, and the cognizance order records the section 223 proviso as displaced for these complaints.
 - *related* - REQ-FIL-010, REQ-JUR-007
 
-**REQ-SRV-016** · MUST · firm · from act
+**REQ-SRV-016** · MUST NOT · firm · from act
 
 The system MUST NOT issue a warrant in place of or in addition to a summons in a section 138 case without recorded reasons and one of the two statutory grounds.
 
@@ -741,7 +741,7 @@ Where a witness deposes through an interpreter, the system MUST record the inter
 - *binds* - schema-field: deposition - interpreter identity and oath
 - *test* - Marking a deposition as interpreted requires the interpreter's name and the oath or affirmation record before the deposition can be closed.
 
-**REQ-EVI-008** · MUST · firm · from act
+**REQ-EVI-008** · MUST NOT · firm · from act
 
 The system MUST NOT treat a missing or irregular oath entry as invalidating a deposition or as a ground to reject it from the record.
 
@@ -751,7 +751,7 @@ The system MUST NOT treat a missing or irregular oath entry as invalidating a de
 - *test* - Save a deposition with the oath field empty: the record is retained with the gap visible as a warning, and the deposition is neither voided nor excluded from the evidence list.
 - *related* - REQ-EVI-006
 
-**REQ-EVI-009** · MUST · firm · from act
+**REQ-EVI-009** · MUST NOT · firm · from act
 
 The system MUST NOT put the accused in a section 138 case on oath unless the accused is being examined as a witness for the defence.
 
@@ -852,7 +852,7 @@ The system MUST record the custody of the original cheque and the original retur
 
 #### PRE - presumptions and the burden of proof (15)
 
-**REQ-PRE-001** · MUST · firm · from act
+**REQ-PRE-001** · MUST NOT · firm · from act
 
 Once the bank's slip or memo bearing the official mark is on the record, the system MUST NOT require proof of the fact of dishonour as a precondition to any step in the case.
 
@@ -883,7 +883,7 @@ The system MUST treat the cheque as presumed to have been drawn for consideratio
 - *test* - Consideration appears in the issues list as presumed, separately from the section 139 presumption, and each can be recorded as rebutted independently.
 - *related* - REQ-PRE-002
 
-**REQ-PRE-004** · MUST · firm · from act
+**REQ-PRE-004** · MUST NOT · firm · from act
 
 The system MUST NOT offer, as an available defence ground, that the drawer had no reason to believe when he issued the cheque that it might be dishonoured.
 
@@ -1053,7 +1053,7 @@ Where a cheque is delivered for collection at a branch other than the one where 
 - *test* - Enter a deposit branch different from the account branch: the jurisdiction proposal follows the account branch.
 - *related* - REQ-JUR-001
 
-**REQ-JUR-004** · MUST · firm · from act
+**REQ-JUR-004** · MUST NOT · firm · from act
 
 The system MUST NOT allot a section 138 case to any court inferior to a Judicial Magistrate of the first class or a Metropolitan Magistrate.
 
@@ -1063,7 +1063,7 @@ The system MUST NOT allot a section 138 case to any court inferior to a Judicial
 - *binds* - validation-rule: case allocation - eligible court types for section 138
 - *test* - Attempt to allot a section 138 case to a second class magistrate: the allocation is refused and the reason names section 142(1)(c).
 
-**REQ-JUR-005** · MUST · firm · from act
+**REQ-JUR-005** · MUST NOT · firm · from act
 
 The system MUST NOT permit cognizance of a section 138 offence to be taken on a police report, on information from a person other than the payee, or on the court's own knowledge.
 
@@ -1167,7 +1167,7 @@ The system MUST record the mode of trial of a section 138 case as summary unless
 - *test* - A newly numbered section 138 case shows mode of trial as summary without any user action, and the value can change only through a recorded conversion order.
 - *related* - REQ-TRL-002
 
-**REQ-TRL-002** · MUST · firm · from act
+**REQ-TRL-002** · MUST NOT · firm · from act
 
 The system MUST NOT allow a section 138 case to be converted from summary trial to the ordinary procedure without an order recording the reason, made after hearing the parties.
 
@@ -1188,7 +1188,7 @@ Where a section 138 case is converted out of summary trial, the system MUST plac
 - *test* - After conversion, every witness examined before the order appears on a recall list on the case record.
 - *related* - REQ-TRL-002, REQ-TRL-004
 
-**REQ-TRL-004** · MUST · inferred · from act
+**REQ-TRL-004** · MUST NOT · inferred · from act
 
 Where a section 138 case is converted out of summary trial, the system MUST NOT carry forward the depositions recorded in the summary trial as evidence in the converted trial.
 
@@ -1198,7 +1198,7 @@ Where a section 138 case is converted out of summary trial, the system MUST NOT 
 - *test* - After conversion, the summary-trial depositions are marked as not evidence in the converted trial and the judgment template will not cite them.
 - *related* - REQ-TRL-003
 
-**REQ-TRL-005** · MUST · firm · from act
+**REQ-TRL-005** · MUST NOT · firm · from act
 
 The system MUST NOT permit an adjournment of a section 138 trial beyond the following day without a written reason recorded on the order.
 
@@ -1321,7 +1321,7 @@ The system MAY record an order dispensing with the personal attendance of the ac
 - *test* - An exemption order sets a state on the accused record with its date; the attendance list distinguishes exempted from absent; and a later order directing personal attendance clears the state rather than being recorded only as text.
 - *related* - REQ-TRL-014, REQ-SRV-016
 
-**REQ-TRL-016** · MUST · firm · from act
+**REQ-TRL-016** · MUST NOT · firm · from act
 
 Where the complainant does not appear on a day fixed for the hearing of a section 138 case governed by the Sanhita, the system MUST NOT allow an acquittal for non-appearance until thirty days have been given to the complainant to be present.
 
@@ -1345,7 +1345,7 @@ The system MUST record the pronouncement of judgment in a section 138 case as an
 - *test* - Closing the evidence sets a judgment-due date; on a Sanhita-governed case a pronouncement date beyond forty-five days from that event is refused, and the notice to the parties is generated from the fixed date.
 - *related* - REQ-REC-004, REQ-TRL-006
 
-**REQ-TRL-018** · MUST · firm · from act
+**REQ-TRL-018** · MUST NOT · firm · from act
 
 The system MUST NOT record the pronouncement of judgment in the absence of the accused unless his personal attendance during the trial had been dispensed with and the sentence is one of fine only, or he is acquitted.
 
@@ -1394,7 +1394,7 @@ The system MUST record the composition of a section 138 offence as having the ef
 - *test* - Completing a compounding produces a disposal of acquittal on composition; the disposal list offers no withdrawal outcome for a compounded case.
 - *related* - REQ-CMP-001
 
-**REQ-CMP-003** · MUST · firm · from act
+**REQ-CMP-003** · MUST NOT · firm · from act
 
 Where the accused has been convicted and an appeal is pending, the system MUST NOT allow the composition to be completed without the leave of the court before which the appeal is to be heard.
 
@@ -1405,7 +1405,7 @@ Where the accused has been convicted and an appeal is pending, the system MUST N
 - *test* - On a case with a pending appeal, compounding requires an order granting leave to be attached before it can be completed.
 - *related* - REQ-CMP-001
 
-**REQ-CMP-004** · MUST · firm · from act
+**REQ-CMP-004** · MUST NOT · firm · from act
 
 The system MUST NOT refer a section 138 case to a Lok Adalat without recording either the agreement of both parties, or an application by one party with the court's prima facie satisfaction that there are chances of settlement, or the court's own satisfaction that the matter is appropriate.
 
@@ -1417,7 +1417,7 @@ The system MUST NOT refer a section 138 case to a Lok Adalat without recording e
 - *test* - A reference cannot be created without one of the three bases selected, and selecting either of the last two requires a hearing record.
 - *related* - REQ-CMP-005
 
-**REQ-CMP-005** · MUST · firm · from act
+**REQ-CMP-005** · MUST NOT · firm · from act
 
 The system MUST NOT offer an appeal against an award of a Lok Adalat in a section 138 case.
 
@@ -1521,7 +1521,7 @@ Where the accused tenders the cheque amount but the complainant demands more, th
 
 #### SEN - sentence, fine, compensation (20)
 
-**REQ-SEN-001** · MUST · firm · from act
+**REQ-SEN-001** · MUST NOT · firm · from act
 
 The system MUST NOT permit a fine under section 138 that exceeds twice the amount of the cheque.
 
@@ -1580,7 +1580,7 @@ The system MUST compute the fine or compensation payable under the sentence net 
 - *test* - With interim compensation of 20000 paid, entering a fine of 100000 produces a net payable of 80000 on the sentence record, with the set-off shown.
 - *related* - REQ-SEN-011, REQ-APL-003
 
-**REQ-SEN-006** · MUST · firm · from act
+**REQ-SEN-006** · MUST NOT · firm · from act
 
 The system MUST NOT release any part of a fine to the complainant before the appeal period has elapsed, or, where an appeal is filed, before it is decided.
 
@@ -1611,7 +1611,7 @@ Where an offender is released after admonition or on probation, the system MUST 
 - *test* - The probation or admonition release step offers compensation and costs fields in the same order, not as a separate later application.
 - *related* - REQ-SEN-008
 
-**REQ-SEN-010** · MUST · firm · from act
+**REQ-SEN-010** · MUST NOT · firm · from act
 
 The system MUST NOT allow an order of interim compensation before the accused has pleaded not guilty, in a summary trial or summons case, or before charge has been framed in any other case.
 
@@ -1622,7 +1622,7 @@ The system MUST NOT allow an order of interim compensation before the accused ha
 - *test* - The interim compensation action is unavailable until a plea of not guilty is recorded on a summary or summons case, and until charge is framed in any other case.
 - *related* - REQ-TRL-007, REQ-SEN-011, REQ-SEN-020
 
-**REQ-SEN-011** · MUST · firm · from act
+**REQ-SEN-011** · MUST NOT · firm · from act
 
 The system MUST NOT permit an order of interim compensation exceeding twenty per cent of the amount of the cheque.
 
@@ -1759,7 +1759,7 @@ The system MUST route an appeal against a conviction by a Judicial Magistrate of
 - *test* - Filing an appeal against a section 138 conviction proposes the Court of Session, and selecting the High Court raises a blocking message naming section 415(3)(a).
 - *related* - REQ-JUR-004
 
-**REQ-APL-002** · MUST · firm · from act
+**REQ-APL-002** · MUST NOT · firm · from act
 
 The system MUST NOT permit an order under section 148 directing a deposit of less than twenty per cent of the fine or compensation awarded by the trial court.
 
