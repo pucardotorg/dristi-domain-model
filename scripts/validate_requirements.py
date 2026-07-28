@@ -32,9 +32,15 @@ REQUIRED = ["id","category","level","statement","why","authority","binds","test"
 def load(p):
     with open(p, encoding="utf-8") as f: return json.load(f)
 
-def main():
+def check():
+    """Validate every requirements file.
+
+    Returns (counts_by_file, errors). counts_by_file is None when there is no
+    requirements directory yet. Importable, so the artifact generator can gate the
+    build on the same checks the CLI runs.
+    """
     if not os.path.isdir(REQ):
-        print("no requirements directory yet - nothing to validate"); return 0
+        return None, []
     prof = load(glob.glob(os.path.join(DATA, "profiles", "*.profile.json"))[0])
     sources = prof["sources"]
 
@@ -135,6 +141,13 @@ def main():
             t = r.get("tightens")
             if t and t not in national_ids:
                 errors.append(f"{name}/{rid}: tightens '{t}' is not a national requirement")
+
+    return counts, errors
+
+def main():
+    counts, errors = check()
+    if counts is None:
+        print("no requirements directory yet - nothing to validate"); return 0
 
     total = sum(counts.values())
     if "--summary" not in sys.argv:

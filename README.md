@@ -699,8 +699,18 @@ The domain is data. For agents and tools, generated artifacts join and describe 
 | `public/domain/cheque-dishonour-s138.json` | denormalized bundle - profile + state layers + field notes + resolved AKN text, with deep links |
 | `public/domain/cheque-dishonour-s138.md` | the same as a readable digest |
 | `public/domain/data-dictionary.md` | field meanings + enumerations (derived from the data) |
-| `public/data/schema/*.schema.json` | JSON Schemas (profile, state, field note) |
+| `public/data/schema/*.schema.json` | JSON Schemas (profile, state, field note, requirement) |
 | `public/llms.txt` | site-root map for agents |
+
+The **normative layer** is source data, not generated, and is joined into the bundle (`requirements`) and the digest:
+
+| source | what |
+|---|---|
+| `public/data/requirements/national.json` | 172 requirements derived from central law and Supreme Court case law - binds every state |
+| `public/data/requirements/gujarat.json` | 127 requirements added by Gujarat's own instruments, or tightening a national one |
+| `public/data/requirements/haryana.json` | 84 requirements added by Haryana's own instruments, or tightening a national one |
+| `public/data/requirements/kerala.json` | 110 requirements added by Kerala's own instruments, or tightening a national one |
+| `public/data/requirements/README.md` | the spec: every field, the category codes, the id grammar |
 
 Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the Netlify build, so deploys never drift).
 
@@ -714,7 +724,12 @@ Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the N
 - `compare_relation`: similar, diverges
 - `vocab_group_national`: The cheque & the instrument, Parties & liability, The offence (§138), Presumptions & evidence, Procedure & process, Notice, limitation & disposal, Constitutional & powers
 - `domain`: substantive, procedure, representation, policing, penal, evidence, interpretation, limitation, sentencing, electronic, banking, constitutional, authentication, settlement, access
+- `requirement_category`: LIM, NOT, FIL, SRV, EVI, PRE, JUR, TRL, CMP, SEN, APL, REC, CPY
+- `requirement_level`: MUST, MUST NOT, MAY, SHOULD
+- `requirement_status`: firm, contested, inferred
+- `requirement_derived_from`: act, caselaw, practice-note, rule
+- `requirement_binds_artifact`: validation-rule, workflow-step, schema-field, screen, output-document, access-control
 
-**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes.
+**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes; 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala).
 
 <!-- AUTO-DATA-MODEL:END -->

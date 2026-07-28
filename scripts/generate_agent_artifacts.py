@@ -6,7 +6,8 @@ layers, the config/field-notes, the case-law dataset, and the Akoma Ntoso corpus
 This script joins them and writes, under public/ (so they deploy) and the repo:
 
   public/domain/<profile>.json     denormalized bundle - everything joined, with
-                                   resolved statute text and app deep-links
+                                   resolved statute text, the normative requirements
+                                   layer and app deep-links
   public/domain/<profile>.md       the same as a human/agent-readable digest
   public/domain/data-dictionary.md field dictionary + enums, derived from the data
   public/data/schema/*.schema.json JSON Schemas (structure fixed, enums data-driven)
@@ -63,6 +64,39 @@ jur_name = {j["id"]: j["name"] for j in cfg.get("jurisdictions", [])}
 notes = cfg.get("practice_notes", [])
 SRC = prof["sources"]
 
+# ---------------------------------------------------------------- requirements layer
+# The normative layer: national.json binds every state; a <state>.json adds only what
+# that state's own instruments require, or where it tightens a national requirement.
+REQ_DIR = rel("requirements")
+req_docs = {os.path.basename(f)[:-5]: load(f)
+            for f in sorted(glob.glob(os.path.join(REQ_DIR, "*.json")))}
+req_state_docs = {k: v for k, v in req_docs.items() if k != "national"}
+
+def _category_labels():
+    """Category code -> what it covers, read from the layer's own spec so it cannot drift."""
+    out = {}
+    try: spec = open(os.path.join(REQ_DIR, "README.md"), encoding="utf-8").read()
+    except OSError: return out
+    for m in re.finditer(r"^\|\s*`([A-Z]{3})`\s*\|\s*(.+?)\s*\|\s*$", spec, re.M):
+        out[m.group(1)] = m.group(2)
+    return out
+CAT_LABEL = _category_labels()
+CAT_ORDER = list(CAT_LABEL)          # lifecycle order as the spec states it
+
+def all_reqs():
+    for name in ["national"] + sorted(req_state_docs):
+        for r in req_docs.get(name, {}).get("requirements", []):
+            yield name, r
+
+# state-instrument alias -> {akn path, title}, per state (a cite's alias is state-local)
+state_alias = {}
+for _sid, _s in states.items():
+    state_alias[_sid] = {}
+    for _cat in ("amendments", "rules", "notifications"):
+        for _it in _s.get(_cat, {}).get("items", []):
+            if _it.get("alias") and _it.get("akn"):
+                state_alias[_sid][_it["alias"]] = {"akn": _it["akn"], "title": _it.get("title")}
+
 def dl_provision(ref):
     a, e = ref.split(":", 1); return "#law?act=%s&eid=%s" % (a, e)
 def dl_term(state, word): return "#words?state=%s&term=%s" % (state, word.lower())
@@ -89,6 +123,12 @@ ENUMS = {
   "compare_relation": uniq([c.get("relation") for n in notes for c in n.get("compare",[])]),
   "vocab_group_national": uniq([v.get("group") for v in prof["terms"].values()]),
   "domain": list((cfg.get("domain_labels") or {}).keys()),
+  "requirement_category": [c for c in CAT_ORDER if any(r.get("category") == c for _, r in all_reqs())]
+                          + uniq([r.get("category") for _, r in all_reqs() if r.get("category") not in CAT_ORDER]),
+  "requirement_level": uniq([r.get("level") for _, r in all_reqs()]),
+  "requirement_status": uniq([r.get("status") for _, r in all_reqs()]),
+  "requirement_derived_from": uniq([r.get("derivedFrom") for _, r in all_reqs()]),
+  "requirement_binds_artifact": uniq([(r.get("binds") or {}).get("artifact") for _, r in all_reqs()]),
 }
 
 # ---------------------------------------------------------------- denormalized bundle
@@ -151,13 +191,103 @@ def resolve_state(sid, s):
     if s.get("institutions"): out["institutions"] = s["institutions"]   # police + courts (grounded)
     return out
 
+_stale_authority = []      # cites that did not resolve to a provision; these fail the build
+
+def resolve_authority(scope, c, rid=None):
+    """Resolve one authority cite to the provision it names.
+
+    A cite is either national - {l, n} where n is `<alias>:<eId>` in the profile
+    sources - or state - {l, s, e} where s is an instrument alias declared in that
+    state's layer. Either way it comes back with the same keys, so an agent reads
+    one shape: where the obligation is written, and what that provision is called.
+    """
+    out = {"cite": c.get("l"), "scope": None, "ref": None, "instrument": None,
+           "num": None, "heading": None, "akn": None, "deep_link": None}
+    if c.get("n"):
+        a, _, eid = c["n"].partition(":")
+        src = SRC.get(a, {})
+        out.update(scope="national", ref=c["n"], instrument=src.get("title"),
+                   akn=src.get("file"), deep_link=dl_provision(c["n"]))
+        sec = akn_text(src.get("file", ""), eid) if src.get("file") else None
+    elif c.get("s"):
+        inst = state_alias.get(scope, {}).get(c["s"], {})
+        out.update(scope=scope, ref="%s:%s" % (c["s"], c.get("e") or ""),
+                   instrument=inst.get("title"), akn=inst.get("akn"))
+        sec = akn_text(inst.get("akn", ""), c.get("e") or "") if inst.get("akn") else None
+    else:
+        sec = None
+    if sec: out.update(num=sec.get("num"), heading=sec.get("heading"))
+    else:
+        _stale_authority.append("%s: authority %r (%s) does not resolve to a provision in %s"
+                                % (rid, c.get("l"), out["ref"] or "?", out["akn"] or "?"))
+    return out
+
+def resolve_requirement(scope, r):
+    return {"id": r.get("id"), "category": r.get("category"),
+            "category_label": CAT_LABEL.get(r.get("category")),
+            "level": r.get("level"), "statement": r.get("statement"), "why": r.get("why"),
+            "authority": [resolve_authority(scope, c, r.get("id")) for c in r.get("authority", [])],
+            "binds": r.get("binds"), "how": r.get("how"), "test": r.get("test"),
+            "derivedFrom": r.get("derivedFrom"), "status": r.get("status"),
+            "tightens": r.get("tightens"), "tightens_hint": r.get("tightens_hint"),
+            "relatedTo": r.get("relatedTo", [])}
+
+def resolve_req_doc(scope):
+    d = req_docs[scope]
+    items = [resolve_requirement(scope, r) for r in d.get("requirements", [])]
+    return {"scope": d.get("scope", scope), "title": d.get("title"), "note": d.get("note"),
+            "count": len(items),
+            "by_category": {c: sum(1 for i in items if i["category"] == c)
+                            for c in ENUMS["requirement_category"]
+                            if any(i["category"] == c for i in items)},
+            "requirements": items}
+
+def requirements_layer():
+    if not req_docs: return None
+    every = [r for _, r in all_reqs()]
+    def tally(key):
+        return {v: sum(1 for r in every if (r.get(key) == v)) for v in ENUMS["requirement_" + key.lower()]}
+    return {
+      "_about": "The normative layer. Everything else in this bundle is descriptive - it says what "
+                "the law provides. These are statements that BIND a system, each derived from a "
+                "provision that is named and resolved in `authority`, each with a `test` you can "
+                "run against a screen, a schema or a workflow. `national` binds every state; a "
+                "state entry adds only what that state's own instruments require, or where it "
+                "makes a national requirement stricter (named in `tightens`). The layering is kept "
+                "rather than flattened, because a rule from central law is stated once.",
+      "counts": {"total": len(every), "national": len(req_docs.get("national", {}).get("requirements", [])),
+                 "by_state": {s: len(req_docs[s].get("requirements", [])) for s in sorted(req_state_docs)},
+                 "by_level": tally("level"), "by_status": tally("status"),
+                 "by_derived_from": {v: sum(1 for r in every if r.get("derivedFrom") == v)
+                                     for v in ENUMS["requirement_derived_from"]},
+                 "by_category": {c: sum(1 for r in every if r.get("category") == c)
+                                 for c in ENUMS["requirement_category"]}},
+      "categories": [{"code": c, "covers": CAT_LABEL.get(c),
+                      "count": sum(1 for r in every if r.get("category") == c)}
+                     for c in ENUMS["requirement_category"]],
+      "levels": {"_about": "RFC 2119. One obligation per requirement.", "values": ENUMS["requirement_level"]},
+      "statuses": {"firm": "the instrument says so explicitly",
+                   "inferred": "a reasonable reading; the reasoning is in `why`",
+                   "contested": "the authorities divide, and the division is stated",
+                   "withdrawn": "no longer asserted; the number is never reused"},
+      "national": resolve_req_doc("national") if "national" in req_docs else None,
+      "states": {s: resolve_req_doc(s) for s in sorted(req_state_docs)},
+    }
+
+REQUIREMENTS = requirements_layer()
+
 def relationships():
     t2p = [{"term": w, "provision": v.get("ref")} for w, v in prof["terms"].items() if v.get("ref")]
     n2u = [{"note": n["id"], "changed": n.get("impact", {}).get("changed"),
             "changes": n.get("impact", {}).get("changes", [])} for n in notes]
     xs  = [{"from_note": n["id"], "to_note": c.get("noteId"), "relation": c.get("relation"),
             "note": c.get("note")} for n in notes for c in n.get("compare", [])]
-    return {"term_to_provision": t2p, "note_to_units": n2u, "cross_state_compare": xs}
+    r2p = [{"requirement": r["id"], "scope": scope, "provision": c["n"]}
+           for scope, r in all_reqs() for c in r.get("authority", []) if c.get("n")]
+    tgt = [{"requirement": r["id"], "scope": scope, "tightens": r["tightens"]}
+           for scope, r in all_reqs() if r.get("tightens")]
+    return {"term_to_provision": t2p, "note_to_units": n2u, "cross_state_compare": xs,
+            "requirement_to_provision": r2p, "requirement_tightens_national": tgt}
 
 bundle = {
   "_about": "Denormalized, agent-facing bundle of the DRISTI domain model for one case type. "
@@ -174,6 +304,7 @@ bundle = {
                      "process_source": "own" if (states.get(j["id"], {}).get("story", {}).get("process")) else "national (inherited)"}
                     for j in cfg.get("jurisdictions", [])],
   "states": {sid: resolve_state(sid, s) for sid, s in states.items()},
+  "requirements": REQUIREMENTS,
   "practice_notes": notes,
   "case_law": {"topics": caselaw.get("topics", []), "cases": caselaw.get("cases", [])},
   "enumerations": ENUMS,
@@ -187,6 +318,64 @@ json.dump(bundle, open(os.path.join(OUT, PROFILE + ".json"), "w", encoding="utf-
 open(os.path.join(OUT, PROFILE + ".json"), "a").write("\n")
 
 # ---------------------------------------------------------------- markdown digest
+def md_requirements(w):
+    """The normative layer, grouped by scope then category."""
+    R = REQUIREMENTS
+    if not R: return
+    c = R["counts"]
+    w("")
+    w("## Normative requirements - what a system MUST do")
+    w("")
+    w("Everything else here is descriptive: it says what the law provides, and a description "
+      "validates nothing. This section is normative. Each requirement binds a system, names the "
+      "provision it comes from, and carries a test you can run against a screen, a schema or a "
+      "workflow. Full records, with the authority resolved to its section number and heading, are "
+      "in `%s.json` under `requirements`; the source files are `data/requirements/*.json`." % PROFILE)
+    w("")
+    w("**%d requirements**: %d national (binding every state), plus %s. A state file never restates "
+      "a national requirement - it adds only what its own instruments require, or where it makes a "
+      "national one stricter, and then it names that requirement in `tightens`." %
+      (c["total"], c["national"],
+       ", ".join("%d %s" % (n, bundle["states"].get(s, {}).get("name", s))
+                 for s, n in c["by_state"].items())))
+    w("")
+    w("By level: " + " · ".join("%s %d" % (k, v) for k, v in c["by_level"].items() if v) +
+      ". By status: " + " · ".join("%s %d" % (k, v) for k, v in c["by_status"].items() if v) +
+      ". Derived from: " + " · ".join("%s %d" % (k, v) for k, v in c["by_derived_from"].items() if v) + ".")
+
+    def block(doc, title):
+        w(""); w("### %s" % title)
+        if doc.get("note"): w(""); w(doc["note"])
+        for cat, n in doc["by_category"].items():
+            w(""); w("#### %s - %s (%d)" % (cat, CAT_LABEL.get(cat, ""), n))
+            for r in doc["requirements"]:
+                if r["category"] != cat: continue
+                w("")
+                w("**%s** · %s · %s · from %s" % (r["id"], r["level"], r["status"], r["derivedFrom"]))
+                w("")
+                w("%s" % r["statement"])
+                w("")
+                w("- *why* - %s" % (r["why"] or ""))
+                for a in r["authority"]:
+                    place = " ".join(x for x in [a.get("num"), a.get("heading")] if x)
+                    link = " [open](%s)" % a["deep_link"] if a.get("deep_link") else ""
+                    w("- *authority* - %s (`%s`%s)%s" %
+                      (a.get("cite") or "", a.get("ref") or "",
+                       " - " + place if place else "", link))
+                b = r.get("binds") or {}
+                w("- *binds* - %s: %s" % (b.get("artifact") or "", b.get("target") or ""))
+                if r.get("how"): w("- *how* - %s" % r["how"])
+                w("- *test* - %s" % (r["test"] or ""))
+                if r.get("tightens"): w("- *tightens* - %s" % r["tightens"])
+                elif r.get("tightens_hint"): w("- *tightens* - (national requirement not yet numbered) %s" % r["tightens_hint"])
+                if r.get("relatedTo"): w("- *related* - %s" % ", ".join(r["relatedTo"]))
+
+    if R.get("national"):
+        block(R["national"], "National - binds every state (%d)" % R["national"]["count"])
+    for sid, doc in R["states"].items():
+        block(doc, "%s - added by its own instruments (%d)" %
+              (bundle["states"].get(sid, {}).get("name", sid), doc["count"]))
+
 def md_digest():
     L=[]; w=L.append
     ct=bundle["case_type"]
@@ -201,6 +390,7 @@ def md_digest():
       "layers, the field notes and the Akoma Ntoso corpus. Each item carries a **deep link** "
       "(a URL fragment for the viewer) and a `ref` into the machine-readable bundle "
       "`%s.json`. Do not edit by hand." % PROFILE)
+    md_requirements(w)
     w("")
     w("## National law - Acts and pinned provisions")
     for a in bundle["national"]["acts"]:
@@ -318,6 +508,8 @@ def data_dictionary():
     w("| `data/state/<state>.json` | a state layer: `vocabulary.terms`, `story.roles`, `story.process` |")
     w("| `data/config/app.config.json` | `case_types`, `jurisdictions`, `practice_notes` (field notes), `domain_labels` |")
     w("| `data/caselaw/%s.caselaw.json` | the case-law dataset |" % PROFILE)
+    w("| `data/requirements/national.json` | the normative layer, central: what a system MUST do, binding every state |")
+    w("| `data/requirements/<state>.json` | the normative layer, per state: only what that state's own instruments add, or tighten |")
     w("| `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId` |")
     w("| `domain/%s.json` / `.md` | the denormalized join of all of the above |" % PROFILE)
     w("")
@@ -328,11 +520,50 @@ def data_dictionary():
     w("- **Field-note impact ref**: `<state>:<unit>:<id>` (unit = term|role|process); the created unit carries the same trailing `id`.")
     w("- **App deep link**: `#<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&act=<a>&eid=<e>` - append to the site root.")
     w("")
+    R = REQUIREMENTS
+    if R:
+        c = R["counts"]
+        w("## Requirements - the normative layer")
+        w("")
+        w("**%d requirements** across %d files: %d in `national.json`, %s. Every field is described "
+          "in `data/requirements/README.md`; the structure is fixed by "
+          "`data/schema/requirement.schema.json`; all of them, with each `authority` cite resolved "
+          "to its section number and heading, are joined into `domain/%s.json` under `requirements`." %
+          (c["total"], 1 + len(c["by_state"]), c["national"],
+           ", ".join("%d in `%s.json`" % (n, s) for s, n in c["by_state"].items()), PROFILE))
+        w("")
+        w("| field | meaning |")
+        w("|---|---|")
+        w("| `id` | `REQ-<CAT>-<NNN>` national, `REQ-<STATE>-<CAT>-<NNN>` state. Stable, never renumbered. |")
+        w("| `level` | RFC 2119 force of the obligation. One obligation per requirement. |")
+        w("| `statement` | what the system must do, in one sentence. |")
+        w("| `why` | the failure mode: what goes wrong in a real case if the system does not do this. |")
+        w("| `authority` | the provision it is derived from: `{l,n}` national, `{l,s,e}` state instrument. A requirement with no resolvable authority is not a requirement. |")
+        w("| `binds` | `{artifact, target}` - the thing in a system this constrains. |")
+        w("| `how` | populated only where the law prescribes the method; `null` marks where a designer is free. |")
+        w("| `test` | the acceptance criterion - how you would check a screen, a schema or a workflow. |")
+        w("| `derivedFrom` | the kind of source it came from. |")
+        w("| `status` | how firmly it is asserted. |")
+        w("| `tightens` | for a state requirement, the national requirement it makes stricter. |")
+        w("| `relatedTo` | other requirement ids that bear on the same point. |")
+        w("")
+        w("Categories in use:")
+        w("")
+        w("| code | covers | count |")
+        w("|---|---|---|")
+        for cat in R["categories"]:
+            w("| `%s` | %s | %d |" % (cat["code"], cat.get("covers") or "", cat["count"]))
+        w("")
+        w("Status: " + " · ".join("`%s` %s" % (k, R["statuses"].get(k, "")) for k in ENUMS["requirement_status"]) + ".")
+        w("")
     w("## Enumerations (as used in the data)")
     labels={"provision_tier":"`provisions[].tier`","vocab_pos":"`terms[].pos`",
             "vocab_role":"`terms[].role`","story_role_cat":"`story.roles.items[].cat`",
             "verification_status":"`verification.claims[].status`","compare_relation":"`compare[].relation`",
-            "vocab_group_national":"national vocab `group`","domain":"`sources[].domain` / `domain_labels`"}
+            "vocab_group_national":"national vocab `group`","domain":"`sources[].domain` / `domain_labels`",
+            "requirement_category":"requirements `category`","requirement_level":"requirements `level`",
+            "requirement_status":"requirements `status`","requirement_derived_from":"requirements `derivedFrom`",
+            "requirement_binds_artifact":"requirements `binds.artifact`"}
     for k, vals in ENUMS.items():
         w("- %s - %s" % (labels.get(k, "`"+k+"`"), ", ".join("`%s`" % x for x in vals)))
     w("")
@@ -419,6 +650,40 @@ schemas = {
      "compare": {"type": "array", "items": {"type": "object", "properties": {
         "place": {"type": "string"}, "noteId": {"type": "string"},
         "relation": enum("compare_relation"), "note": {"type": "string"}}}}}},
+ "requirement.schema.json": {
+   "$schema": D, "title": "DRISTI requirements file (data/requirements/*.json)",
+   "description": "The normative layer: statements that bind a system, each derived from a named "
+                  "provision and each with a test. national.json binds every state; a state file "
+                  "adds only what its own instruments require, or tightens.",
+   "type": "object", "required": ["scope", "title", "requirements"],
+   "properties": {
+     "scope": {"type": "string", "description": "'national' or the state id"},
+     "title": {"type": "string"}, "note": {"type": "string"},
+     "requirements": {"type": "array", "items": {"type": "object",
+        "required": ["id", "category", "level", "statement", "why", "authority", "binds",
+                     "test", "derivedFrom", "status"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^REQ-([A-Z]{2}-)?[A-Z]{3}-[0-9]{3}$"},
+          "category": enum("requirement_category"),
+          "level": enum("requirement_level"),
+          "statement": {"type": "string"}, "why": {"type": "string"},
+          "authority": {"type": "array", "items": {"type": "object",
+             "required": ["l"], "properties": {
+               "l": {"type": "string", "description": "the cite as a reader would write it"},
+               "n": {"type": "string", "pattern": "^[a-z0-9]+:[A-Za-z0-9_]+$",
+                     "description": "national provision, <alias>:<eId>"},
+               "s": {"type": "string", "description": "state-instrument alias"},
+               "e": {"type": "string", "description": "eId within that instrument"}},
+             "anyOf": [{"required": ["n"]}, {"required": ["s"]}]}},
+          "binds": {"type": "object", "required": ["artifact", "target"], "properties": {
+             "artifact": enum("requirement_binds_artifact"), "target": {"type": "string"}}},
+          "how": {"type": ["string", "null"]},
+          "test": {"type": "string"},
+          "derivedFrom": enum("requirement_derived_from"),
+          "status": enum("requirement_status"),
+          "tightens": {"type": ["string", "null"]},
+          "tightens_hint": {"type": ["string", "null"]},
+          "relatedTo": {"type": "array", "items": {"type": "string"}}}}}}},
 }
 for name, sch in schemas.items():
     json.dump(sch, open(os.path.join(SCHEMA, name), "w", encoding="utf-8"), indent=2, ensure_ascii=False)
@@ -427,6 +692,32 @@ for name, sch in schemas.items():
 # ---------------------------------------------------------------- llms.txt
 def llms_txt():
     st_files = " · ".join("[/data/state/%s.json](/data/state/%s.json)" % (s, s) for s in states)
+    R = REQUIREMENTS or {}
+    rc = R.get("counts", {})
+    req_lines = []
+    if R:
+        req_lines = [
+          "## The normative layer - what a system MUST do (%d requirements)" % rc["total"],
+          "",
+          "The rest of the corpus is descriptive: it says what the law provides, and a description "
+          "validates nothing. These are statements that BIND a system - each derived from a named "
+          "provision, each with a `test` you can run against a screen, a schema or a workflow. If "
+          "you are building or auditing a system for this case type, start here.",
+          "",
+          "- [/data/requirements/national.json](/data/requirements/national.json): %d requirements "
+          "derived from central law and Supreme Court case law. **Binds every state.**" % rc["national"],
+        ] + [
+          "- [/data/requirements/%s.json](/data/requirements/%s.json): %d requirements added by %s's "
+          "own instruments, or where one of them tightens a national requirement." %
+          (s, s, n, bundle["states"].get(s, {}).get("name", s)) for s, n in rc["by_state"].items()
+        ] + [
+          "- [/data/requirements/README.md](/data/requirements/README.md): the spec - every field, "
+          "the category codes, the id grammar.",
+          "- [/data/schema/requirement.schema.json](/data/schema/requirement.schema.json): the schema.",
+          "- All of them, with each `authority` cite resolved to its section number and heading, are "
+          "in the bundle under `requirements`, and in the digest under \"Normative requirements\".",
+          "",
+        ]
     return "\n".join([
       "# DRISTI 2.0 - Domain Model",
       "",
@@ -435,15 +726,17 @@ def llms_txt():
       "at runtime; every data file is fetchable directly." % (bundle["case_type"]["name"], bundle["case_type"]["act"]),
       "",
       "For agents: start with the denormalized bundle - it joins the profile, the state layers, "
-      "the field notes and the Akoma Ntoso statute text into one document, each node carrying a "
-      "shareable deep link (a `#...` URL fragment). Then use the schemas and data dictionary to "
-      "read the raw files directly.",
+      "the field notes, the normative requirements and the Akoma Ntoso statute text into one "
+      "document, each node carrying a shareable deep link (a `#...` URL fragment). Then use the "
+      "schemas and data dictionary to read the raw files directly. If you are building a system "
+      "rather than reading about the law, go to the normative layer below.",
       "",
       "## Start here (denormalized, everything joined)",
       "- [/domain/%s.json](/domain/%s.json): the full domain bundle as JSON." % (PROFILE, PROFILE),
       "- [/domain/%s.md](/domain/%s.md): the same as a readable digest." % (PROFILE, PROFILE),
       "- [/domain/data-dictionary.md](/domain/data-dictionary.md): field meanings and enumerations.",
       "",
+      ] + req_lines + [
       "## Raw data (source of truth)",
       "- [/data/profiles/%s.profile.json](/data/profiles/%s.profile.json): national provisions + vocabulary." % (PROFILE, PROFILE),
       "- [/data/config/app.config.json](/data/config/app.config.json): case types, jurisdictions, field notes.",
@@ -455,6 +748,7 @@ def llms_txt():
       "- [/data/schema/profile.schema.json](/data/schema/profile.schema.json)",
       "- [/data/schema/state.schema.json](/data/schema/state.schema.json)",
       "- [/data/schema/practice-note.schema.json](/data/schema/practice-note.schema.json)",
+      "- [/data/schema/requirement.schema.json](/data/schema/requirement.schema.json)",
       "",
       "## Deep links",
       "Append a fragment to the site root, e.g. `/#law?act=ni&eid=sec_138`, "
@@ -478,9 +772,22 @@ def readme_block():
     w("| `public/domain/%s.json` | denormalized bundle - profile + state layers + field notes + resolved AKN text, with deep links |" % PROFILE)
     w("| `public/domain/%s.md` | the same as a readable digest |" % PROFILE)
     w("| `public/domain/data-dictionary.md` | field meanings + enumerations (derived from the data) |")
-    w("| `public/data/schema/*.schema.json` | JSON Schemas (profile, state, field note) |")
+    w("| `public/data/schema/*.schema.json` | JSON Schemas (profile, state, field note, requirement) |")
     w("| `public/llms.txt` | site-root map for agents |")
     w("")
+    if REQUIREMENTS:
+        c = REQUIREMENTS["counts"]
+        w("The **normative layer** is source data, not generated, and is joined into the bundle "
+          "(`requirements`) and the digest:")
+        w("")
+        w("| source | what |")
+        w("|---|---|")
+        w("| `public/data/requirements/national.json` | %d requirements derived from central law and Supreme Court case law - binds every state |" % c["national"])
+        for s, n in c["by_state"].items():
+            w("| `public/data/requirements/%s.json` | %d requirements added by %s's own instruments, or tightening a national one |"
+              % (s, n, bundle["states"].get(s, {}).get("name", s)))
+        w("| `public/data/requirements/README.md` | the spec: every field, the category codes, the id grammar |")
+        w("")
     w("Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the Netlify build, so deploys never drift).")
     w("")
     w("**Enumerations in use** (data-derived):")
@@ -488,10 +795,14 @@ def readme_block():
     for k, vals in ENUMS.items():
         w("- `%s`: %s" % (k, ", ".join(vals)))
     w("")
-    w("**Counts:** %d Acts, %d provisions, %d national terms; states: %s; %d field notes." % (
+    w("**Counts:** %d Acts, %d provisions, %d national terms; states: %s; %d field notes%s." % (
         len({p['act'] for p in prof['provisions']}), len(prof['provisions']), len(prof['terms']),
         ", ".join("%s (%d terms)" % (st['name'], len(st['vocabulary'])) for st in bundle['states'].values()),
-        len(notes)))
+        len(notes),
+        ("; %d requirements (%d national + %s)" % (
+            REQUIREMENTS["counts"]["total"], REQUIREMENTS["counts"]["national"],
+            " + ".join("%d %s" % (n, s) for s, n in REQUIREMENTS["counts"]["by_state"].items()))
+         ) if REQUIREMENTS else ""))
     w("")
     w("<!-- AUTO-DATA-MODEL:END -->")
     return "\n".join(L)
@@ -544,10 +855,42 @@ except SystemExit:
 except ImportError as e:
     print("self-check: AKN validation skipped (%s) - run scripts/validate_akn.py" % e)
 
+# ------------------------------------------- self-validate the requirements layer
+# The normative layer is only worth anything if every requirement still points at a
+# live provision. Run the same checks the CLI validator runs (ids, enums, tightens,
+# no state file restating a national one, every authority resolving), and additionally
+# insist that each cite resolved here to a real section/article - a requirement whose
+# authority has gone stale must stop the build, not ship silently.
+if REQUIREMENTS:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import validate_requirements as _vr
+    _rcounts, _rerrors = _vr.check()
+    _cites = [a for doc in [REQUIREMENTS["national"]] + list(REQUIREMENTS["states"].values())
+              if doc for r in doc["requirements"] for a in r["authority"]]
+    _rerrors = list(_rerrors) + _stale_authority
+    if _rerrors:
+        for e in _rerrors[:40]: print("  " + e)
+        if len(_rerrors) > 40: print("  ... and %d more" % (len(_rerrors) - 40))
+        raise SystemExit("REQUIREMENTS VALIDATION FAILED: %d problem(s). "
+                         "Run python3 scripts/validate_requirements.py for detail." % len(_rerrors))
+    try:
+        import jsonschema
+        for _name, _doc in req_docs.items():
+            jsonschema.validate(_doc, schemas["requirement.schema.json"])
+    except ImportError:
+        pass
+    except Exception as e:
+        raise SystemExit("SCHEMA VIOLATION: requirements/%s: %s: %s"
+                         % (_name, type(e).__name__, str(e)[:300]))
+    print("self-check: %d requirements across %d files conform to requirement.schema.json, "
+          "%d authority cites resolve to a live provision"
+          % (REQUIREMENTS["counts"]["total"], len(req_docs), len(_cites)))
+
 print("generated:")
-print("  public/domain/%s.json (%d acts, %d nat terms, %d states, %d notes)" %
+print("  public/domain/%s.json (%d acts, %d nat terms, %d states, %d notes, %d requirements)" %
       (PROFILE, len(bundle["national"]["acts"]), len(bundle["national"]["vocabulary"]),
-       len(bundle["states"]), len(notes)))
+       len(bundle["states"]), len(notes),
+       REQUIREMENTS["counts"]["total"] if REQUIREMENTS else 0))
 print("  public/domain/%s.md, data-dictionary.md" % PROFILE)
 print("  public/data/schema/*.schema.json (%d)" % len(schemas))
 print("  public/llms.txt ; README AUTO-DATA-MODEL block")

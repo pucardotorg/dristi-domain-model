@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DRISTI requirements file (data/requirements/*.json)",
+  "description": "The normative layer: statements that bind a system, each derived from a named provision and each with a test. national.json binds every state; a state file adds only what its own instruments require, or tightens.",
+  "type": "object",
+  "required": [
+    "scope",
+    "title",
+    "requirements"
+  ],
+  "properties": {
+    "scope": {
+      "type": "string",
+      "description": "'national' or the state id"
+    },
+    "title": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "level",
+          "statement",
+          "why",
+          "authority",
+          "binds",
+          "test",
+          "derivedFrom",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^REQ-([A-Z]{2}-)?[A-Z]{3}-[0-9]{3}$"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "LIM",
+              "NOT",
+              "FIL",
+              "SRV",
+              "EVI",
+              "PRE",
+              "JUR",
+              "TRL",
+              "CMP",
+              "SEN",
+              "APL",
+              "REC",
+              "CPY"
+            ]
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "MUST",
+              "MUST NOT",
+              "MAY",
+              "SHOULD"
+            ]
+          },
+          "statement": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          },
+          "authority": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "l"
+              ],
+              "properties": {
+                "l": {
+                  "type": "string",
+                  "description": "the cite as a reader would write it"
+                },
+                "n": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+:[A-Za-z0-9_]+$",
+                  "description": "national provision, <alias>:<eId>"
+                },
+                "s": {
+                  "type": "string",
+                  "description": "state-instrument alias"
+                },
+                "e": {
+                  "type": "string",
+                  "description": "eId within that instrument"
+                }
+              },
+              "anyOf": [
+                {
+                  "required": [
+                    "n"
+                  ]
+                },
+                {
+                  "required": [
+                    "s"
+                  ]
+                }
+              ]
+            }
+          },
+          "binds": {
+            "type": "object",
+            "required": [
+              "artifact",
+              "target"
+            ],
+            "properties": {
+              "artifact": {
+                "type": "string",
+                "enum": [
+                  "validation-rule",
+                  "workflow-step",
+                  "schema-field",
+                  "screen",
+                  "output-document",
+                  "access-control"
+                ]
+              },
+              "target": {
+                "type": "string"
+              }
+            }
+          },
+          "how": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "test": {
+            "type": "string"
+          },
+          "derivedFrom": {
+            "type": "string",
+            "enum": [
+              "act",
+              "caselaw",
+              "practice-note",
+              "rule"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "firm",
+              "contested",
+              "inferred"
+            ]
+          },
+          "tightens": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tightens_hint": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "relatedTo": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
