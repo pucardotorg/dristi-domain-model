@@ -767,39 +767,80 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   @media(max-width:880px){ .view-graph{height:calc(100dvh - 118px)} .flow-bar-hint{display:none} }
 
   /* ---------- REQUIREMENTS (the normative layer) ----------
-     Same card family as .word: hairline card, statement as the headline, the failure
-     mode under it, everything else behind the caret. Colour carries one signal only -
-     status - and it is carried by a dot, never by an edge or a fill. */
-  .req{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 16px; margin-bottom:9px}
-  .req .rq-h{display:flex; align-items:baseline; gap:10px; cursor:pointer}
-  .rq-lvl{flex:none; font-size:10px; letter-spacing:.09em; text-transform:uppercase; font-weight:700; color:var(--ink-3); white-space:nowrap; padding-top:2px}
-  .rq-stmt{font-size:15.5px; font-weight:650; color:var(--ink); letter-spacing:-.01em; line-height:1.4}
-  .req .caret{color:var(--ink-3); margin-left:auto; align-self:flex-start; transition:transform .15s; display:inline-flex; flex:none}
+     One card, one left edge, one measure. Every line - eyebrow, statement, failure
+     mode, binding, footer, and every block behind either disclosure - starts at the
+     same x and wraps at the same width, so the card reads as a single column rather
+     than three. The id leads, because it is what a reader scans for and cites out
+     loud. Colour carries one signal only - status - and a dot carries it, never an
+     edge or a fill. */
+  /* one measure for the whole card, in px not ch - a ch resolves against each element's
+     own font size, which is exactly how the statement, the why and the meta ended up
+     wrapping at three different right edges */
+  .req{--rq-measure:620px; border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 18px 13px; margin-bottom:9px}
+  .req .rq-h{cursor:pointer}
+  .rq-eyebrow{display:flex; align-items:center; gap:13px; margin-bottom:6px}
+  .rq-id{font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--ink-2); letter-spacing:.01em}
+  .rq-lvl{flex:none; font-size:10px; letter-spacing:.09em; text-transform:uppercase; font-weight:700; color:var(--ink-3); white-space:nowrap}
+  .rq-stmt{font-size:15.5px; font-weight:650; color:var(--ink); letter-spacing:-.01em; line-height:1.45; max-width:var(--rq-measure)}
+  .req .caret{color:var(--ink-3); margin-left:auto; transition:transform .15s; display:inline-flex; flex:none}
+  .req .rq-h:hover .caret{color:var(--ink-2)}
   .req.open .caret{transform:rotate(90deg)}
-  .rq-why{color:var(--ink-2); font-size:13.5px; margin:7px 0 9px; max-width:82ch}
-  .rq-meta{display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; font-size:12px; color:var(--ink-3)}
-  .rq-id{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3)}
-  .rq-binds{color:var(--ink-3)}
-  .rq-status{display:inline-flex; align-items:center; gap:6px; color:var(--ink-3)}
-  .rq-dot{width:7px; height:7px; border-radius:50%; flex:none; background:var(--line-2)}
-  .rq-status.s-inferred .rq-dot{background:var(--amber)}
-  .rq-status.s-contested{color:var(--red); font-weight:600}
-  .rq-status.s-contested .rq-dot{background:var(--red)}
-  .rq-full{display:none; margin-top:13px; padding-top:12px; border-top:1px solid var(--line)}
+  .rq-why{color:var(--ink-2); font-size:13.5px; line-height:1.6; margin:8px 0 0; max-width:var(--rq-measure)}
+  .rq-meta{font-size:12px; color:var(--ink-3); margin-top:9px; max-width:var(--rq-measure)}
+
+  /* the two disclosures. The caret opens the build detail; the status line opens the
+     grounds. Both stack their label above their value, so nothing indents. */
+  .rq-full{display:none; margin-top:14px; padding-top:13px; border-top:1px solid var(--line)}
   .req.open .rq-full{display:block}
-  .rq-row{display:grid; grid-template-columns:78px 1fr; gap:12px; align-items:baseline; margin-bottom:10px}
-  .rq-row:last-child{margin-bottom:0}
-  .rq-l{font-size:10px; letter-spacing:.07em; text-transform:uppercase; font-weight:700; color:var(--ink-3); padding-top:2px}
-  .rq-v{font-size:13.5px; color:var(--ink-2); max-width:82ch}
+  .rq-block{margin-bottom:12px; max-width:var(--rq-measure)}
+  .rq-block:last-child{margin-bottom:0}
+  .rq-l{display:block; font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; color:var(--ink-3); margin-bottom:4px}
+  .rq-v{font-size:13.5px; line-height:1.6; color:var(--ink-2)}
   .rq-v.rq-open{color:var(--ink-3); font-style:italic}
   .rq-rel{display:flex; flex-direction:column; gap:5px}
+
+  /* the status footer: the word, what the word means, and the way in to the grounds */
+  .rq-basis-bar{display:flex; align-items:center; flex-wrap:wrap; gap:4px 9px; margin-top:14px; padding-top:11px;
+    border-top:1px solid var(--line); font-size:12px; line-height:1.5}
+  .rq-basis-bar.has{cursor:pointer}
+  .rq-status{display:inline-flex; align-items:center; gap:6px; color:var(--ink-2); font-weight:600}
+  .rq-dot{width:7px; height:7px; border-radius:50%; flex:none; background:var(--line-2)}
+  .rq-status.s-inferred .rq-dot{background:var(--amber)}
+  .rq-status.s-contested{color:var(--red)}
+  .rq-status.s-contested .rq-dot{background:var(--red)}
+  .rq-status-gloss{color:var(--ink-3)}
+  .rq-more{margin-left:auto; display:inline-flex; align-items:center; gap:5px; color:var(--ink-3); white-space:nowrap; transition:color .12s}
+  .rq-more svg{width:13px; height:13px; transition:transform .15s}
+  .rq-basis-bar.has:hover .rq-more{color:var(--brand-hi)}
+  .rq-basis-bar.open .rq-more{color:var(--ink-2)}
+  .rq-basis-bar.has:hover .rq-status-gloss{color:var(--ink-2)}
+  .rq-basis-bar.open .rq-more svg{transform:rotate(180deg)}
+  .rq-basis{display:none; padding-top:12px}
+  .rq-basis.open{display:block}
+  /* the grounds read as a list of sources, so the citations are plain underlined
+     links here rather than the boxed chips the law views use */
+  .rq-basis .cites{flex-direction:column; align-items:flex-start; gap:6px}
+  .rq-basis .cite{font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--brand);
+    background:none; border:0; border-radius:0; padding:0; text-decoration:underline;
+    text-decoration-color:color-mix(in srgb,var(--brand) 35%,transparent); text-underline-offset:3px}
+  .rq-basis .cite:hover{color:var(--brand-hi); text-decoration-color:var(--brand)}
+  .rq-basis .cite-plain{color:var(--ink-3); text-decoration:none; cursor:default}
+  .rq-reason{font-size:13.5px; line-height:1.65; color:var(--ink-2); max-width:var(--rq-measure); margin:0 0 13px}
+  .rq-reason:last-child{margin-bottom:0}
+  .rq-srcs{display:flex; flex-direction:column; gap:6px; align-items:flex-start}
+  .rq-src{cursor:pointer; color:var(--ink-2); transition:color .12s}
+  .rq-src .rq-src-n{text-decoration:underline; text-decoration-color:color-mix(in srgb,var(--ink-3) 40%,transparent); text-underline-offset:2px; transition:text-decoration-color .12s}
+  .rq-src:hover{color:var(--brand-hi)}
+  .rq-src:hover .rq-src-n{text-decoration-color:var(--brand)}
+  .rq-src-sub{color:var(--ink-3); font-size:12px; margin-left:7px}
+
   .rq-jump{color:var(--ink-2); cursor:pointer; text-decoration:underline; text-decoration-color:color-mix(in srgb,var(--ink-3) 40%,transparent); text-underline-offset:2px; transition:color .12s, text-decoration-color .12s}
   .rq-jump:hover{color:var(--brand-hi); text-decoration-color:var(--brand)}
   .rq-jid{font-family:var(--font-mono); font-size:11.5px}
   .rq-plain{color:var(--ink-3)}
   @media(max-width:640px){
-    .rq-row{grid-template-columns:1fr; gap:3px}
-    .req .rq-h{flex-wrap:wrap}
+    .req{padding:13px 15px 12px}
+    .rq-more{margin-left:0}
   }
 
   /* ===================== UNIVERSAL SEARCH =====================

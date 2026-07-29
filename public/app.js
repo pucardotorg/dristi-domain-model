@@ -617,7 +617,10 @@ V.words=()=>{
    statements bind a system, cite the provision they come from and carry a test.
    Same shape as Vocabulary: state is a filter, not a switch - the view opens on
    the national layer plus the state the app is set to, and every other state is
-   one chip away. Colour carries exactly one signal here: status. */
+   one chip away. Colour carries exactly one signal here: status - and a dot carries
+   it. The status is never a bare word: its plain-English meaning sits beside it on
+   every card, and the same line opens the grounds - the reasoning, the provisions,
+   the judgments and the field notes the statement stands on. */
 const REQ_CAT_LABEL={LIM:"Limitation and time",NOT:"The demand notice",FIL:"Filing, fee and scrutiny",SRV:"Service of process",EVI:"Evidence and documents",PRE:"Presumptions and burden",JUR:"Jurisdiction and cognizance",TRL:"Trial conduct",CMP:"Compounding and settlement",SEN:"Sentence and compensation",APL:"Appeal and revision",REC:"The court record",CPY:"Copies"};
 const REQ_CAT_ORDER=["LIM","NOT","FIL","SRV","EVI","PRE","JUR","TRL","CMP","SEN","APL","REC","CPY"];
 const REQ_LEVEL_ORDER=["MUST","MUST NOT","SHOULD","MAY"];
@@ -655,29 +658,67 @@ V.requirements=()=>{
   const trim=(s,n)=>{ s=String(s||""); return s.length>n ? s.slice(0,n).replace(/\s+\S*$/,"")+"…" : s; };
   const reqLink=id=>{ const t=reqById(id); if(!t) return `<span class="rq-plain">${esc(id)}</span>`;
     return `<a class="rq-jump" data-req="${esc(id)}"><span class="rq-jid">${esc(id)}</span> ${esc(trim(t.statement,96))}</a>`; };
+  /* a judgment the requirement rests on. Opens the judgment itself where the corpus
+     has the text; where it does not, it lands on the case in Case law. */
+  const reqCaseLink=id=>{
+    const c=caseById2(id);
+    if(!c) return `<span class="rq-plain">${esc(id)}</span>`;
+    const sub=[c.citation, c.bench?benchShort(c.bench):""].filter(Boolean).join(" · ");
+    return `<a class="rq-src" data-caseid="${esc(c.id)}"><span class="rq-src-n">${esc(c.name)}</span>${sub?`<span class="rq-src-sub">${esc(sub)}</span>`:""}</a>`;
+  };
+  /* a field note the requirement rests on - the same note the Local practice view holds */
+  const reqNoteLink=id=>{
+    const n=(PRACTICE_NOTES||[]).find(x=>x.id===id);
+    if(!n) return `<span class="rq-plain">${esc(id)}</span>`;
+    const nm=n.serial ? "Field note "+n.serial : "Field note";
+    const sub=[n.place?reqScopeName(n.place):"", (n.attribution||{}).heardFrom?"heard from "+n.attribution.heardFrom:""].filter(Boolean).join(" · ");
+    return `<a class="rq-src" data-note="${esc(n.id)}"><span class="rq-src-n">${esc(nm)}</span>${sub?`<span class="rq-src-sub">${esc(sub)}</span>`:""}</a>`;
+  };
+  const reqBlock=(l,v,cls)=>`<div class="rq-block"><span class="rq-l">${esc(l)}</span><div class="rq-v${cls?" "+cls:""}">${v}</div></div>`;
+  /* One card, one left edge, one measure, read top to bottom: the id a reader cites,
+     the statement, the failure it prevents, what it binds, and last a footer that
+     says how firm the statement is and opens the grounds it stands on. Every field
+     below the statement is optional - a scope still filling in its evidence simply
+     renders fewer blocks. */
   function reqCardHTML(it){
     const r=it.r;
     // a state cite resolves only against its own state's alias map; a national one needs none
     const amap = r.scope==="national" ? {} : stateAliasMap(r.scope);
     const cites=(r.authority||[]).map(c=>citeChip(c,amap)).join("");
+    const caseIds=(r.cases||[]).filter(Boolean);
+    const noteIds=(r.notes||[]).filter(Boolean);
+    const reason=String(r.statusReason||"").trim();
+    const status=r.status||"firm";
+    const gloss=REQ_STATUS_NOTE[status]||"";
+    // the grounds: why the status is what it is, and every source it rests on
+    const grounds=[];
+    if(reason) grounds.push(`<p class="rq-reason">${esc(reason)}</p>`);
+    if(cites) grounds.push(reqBlock("Authority",`<span class="cites">${cites}</span>`));
+    if(caseIds.length) grounds.push(reqBlock(caseIds.length>1?"Judgments":"Judgment",`<div class="rq-srcs">${caseIds.map(reqCaseLink).join("")}</div>`));
+    if(noteIds.length) grounds.push(reqBlock("Local practice",`<div class="rq-srcs">${noteIds.map(reqNoteLink).join("")}</div>`));
+    const hasG=grounds.length>0;
+    // the detail behind the caret: what a builder needs once the statement is accepted
     const rows=[];
-    rows.push(`<div class="rq-row"><span class="rq-l">Authority</span><div class="rq-v"><span class="cites">${cites}</span></div></div>`);
-    rows.push(r.how
-      ? `<div class="rq-row"><span class="rq-l">How</span><div class="rq-v">${esc(r.how)}</div></div>`
-      : `<div class="rq-row"><span class="rq-l">How</span><div class="rq-v rq-open">The law fixes the obligation and leaves the method open.</div></div>`);
-    if(r.test) rows.push(`<div class="rq-row"><span class="rq-l">Test</span><div class="rq-v">${esc(r.test)}</div></div>`);
-    if(r.tightens) rows.push(`<div class="rq-row"><span class="rq-l">Tightens</span><div class="rq-v">${reqLink(r.tightens)}</div></div>`);
-    if(r.relatedTo && r.relatedTo.length) rows.push(`<div class="rq-row"><span class="rq-l">Related</span><div class="rq-v rq-rel">${r.relatedTo.map(reqLink).join("")}</div></div>`);
-    const status=(r.status||"firm");
+    rows.push(reqBlock("How", r.how?esc(r.how):"The law fixes the obligation and leaves the method open.", r.how?"":"rq-open"));
+    if(r.test) rows.push(reqBlock("Test",esc(r.test)));
+    if(r.tightens) rows.push(reqBlock("Tightens",reqLink(r.tightens)));
+    if(r.relatedTo && r.relatedTo.length) rows.push(reqBlock("Related",`<div class="rq-rel">${r.relatedTo.map(reqLink).join("")}</div>`));
+    const b=r.binds||{};
+    const binds=[reqArtifact(b.artifact), b.target].filter(Boolean).join(" · ");
     return `<div class="req" id="req-${esc(r.id)}" data-req="${esc(r.id)}">
-      <div class="rq-h"><span class="rq-lvl">${esc(r.level||"")}</span><span class="rq-stmt">${esc(r.statement||"")}</span><span class="caret">${ic('chevron-right')}</span></div>
-      ${r.why?`<div class="rq-why">${esc(r.why)}</div>`:""}
-      <div class="rq-meta">
-        <span class="rq-id">${esc(r.id)}</span>
-        <span class="rq-binds">${esc(reqArtifact((r.binds||{}).artifact))}: ${esc((r.binds||{}).target||"")}</span>
-        <span class="rq-status s-${esc(status)}" title="${esc(REQ_STATUS_NOTE[status]||"")}"><span class="rq-dot"></span>${esc(status)}</span>
+      <div class="rq-h">
+        <div class="rq-eyebrow"><span class="rq-id">${esc(r.id)}</span>${r.level?`<span class="rq-lvl">${esc(r.level)}</span>`:""}<span class="caret">${ic('chevron-right')}</span></div>
+        <div class="rq-stmt">${esc(r.statement||"")}</div>
       </div>
+      ${r.why?`<div class="rq-why">${esc(r.why)}</div>`:""}
+      ${binds?`<div class="rq-meta">${esc(binds)}</div>`:""}
       <div class="rq-full">${rows.join("")}</div>
+      <div class="rq-basis-bar${hasG?" has":""}">
+        <span class="rq-status s-${esc(status)}"><span class="rq-dot"></span>${esc(status)}</span>
+        ${gloss?`<span class="rq-status-gloss">- ${esc(gloss)}</span>`:""}
+        ${hasG?`<span class="rq-more">Grounds ${ic('chevron-down')}</span>`:""}
+      </div>
+      ${hasG?`<div class="rq-basis">${grounds.join("")}</div>`:""}
     </div>`;
   }
   const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
@@ -739,6 +780,12 @@ V.requirements=()=>{
     else if(fg==="status") state.status=(state.status===fv?"":fv);
     redraw();
   });
+  // the grounds panel is the bar's next sibling, so the bar carries the open state for both
+  function openBasis(bar, on){
+    bar.classList.toggle("open", on);
+    const p=bar.nextElementSibling;
+    if(p && p.classList.contains("rq-basis")) p.classList.toggle("open", on);
+  }
   // land on one requirement: clear the filters, make sure its scope is showing, open it
   function jumpTo(id, push){
     const t=reqById(id); if(!t) return;
@@ -752,6 +799,8 @@ V.requirements=()=>{
     const land=()=>{
       const card=list.querySelector('.req[data-req="'+id+'"]'); if(!card) return null;
       card.classList.add("open");
+      // a reader who came for this one requirement gets its grounds open too
+      const bar=card.querySelector(".rq-basis-bar.has"); if(bar) openBasis(bar,true);
       const y=card.getBoundingClientRect().top+window.scrollY-70;
       window.scrollTo({top:Math.max(0,y), behavior:"auto"});
       return card;
@@ -765,6 +814,15 @@ V.requirements=()=>{
   list.addEventListener("click",e=>{
     const j=e.target.closest(".rq-jump");
     if(j && j.dataset.req){ e.stopPropagation(); jumpTo(j.dataset.req); return; }
+    // a source in the grounds hands off to the route that already exists for it
+    const src=e.target.closest(".rq-src");
+    if(src){ e.stopPropagation();
+      if(src.dataset.caseid){ const c=caseById2(src.dataset.caseid);
+        if(c && c.akn) openJudgmentModal(c.id); else jumpToCase(src.dataset.caseid); }
+      else if(src.dataset.note) goPracticeNote(src.dataset.note);
+      return; }
+    const bb=e.target.closest(".rq-basis-bar");
+    if(bb){ e.stopPropagation(); if(bb.classList.contains("has")) openBasis(bb, !bb.classList.contains("open")); return; }
     if(e.target.closest(".cite")) return;                       // a citation opens the provision
     const h=e.target.closest(".rq-h"); if(!h) return;
     h.closest(".req").classList.toggle("open");
@@ -1474,7 +1532,11 @@ function vocabMatcher(){
   _vocabMState=key; return _vocabM;
 }
 const VOCAB_SKIP_TAGS=new Set(["A","CODE","INPUT","TEXTAREA","SCRIPT","STYLE","BUTTON","SELECT","H1"]);
-const VOCAB_SKIP_CLASS=/(^|\s)(cite|cchip|stedge|vocab-term|statute|st-num|st-h|st-src|badge|wtag|chip|tl-marker|proc-tab|caret|mag|role-name|court-name|tl-stage-title|fee-stage|clabel|page-title|grouphead|vsub|rq-stmt|vp-word|vp-gloss)($|\s)/;
+/* the reading surface of a requirement card - the statement, the failure it prevents,
+   what it binds and the reasoning behind its status - stays plain prose. Auto-linking
+   every vocabulary word there turned most of a dense sentence into links and the
+   reader lost the sentence; the term links belong in the detail rows below. */
+const VOCAB_SKIP_CLASS=/(^|\s)(cite|cchip|stedge|vocab-term|statute|st-num|st-h|st-src|badge|wtag|chip|tl-marker|proc-tab|caret|mag|role-name|court-name|tl-stage-title|fee-stage|clabel|page-title|grouphead|vsub|rq-stmt|rq-why|rq-meta|rq-basis|rq-basis-bar|vp-word|vp-gloss)($|\s)/;
 function linkifyVocab(root){
   if(!root) return;
   const M=vocabMatcher(); if(!M.re) return; const {map,re}=M;
@@ -2073,6 +2135,84 @@ function goPracticeChange(unit, ref, label){
   if(unit==="term"){ if(label) goVocabWord(label); return; }
   if(unit==="role"||unit==="process"){ goStoryUnit(unit, id); return; }
 }
+
+/* ---- the pages the app offers, declared once ----------------------------
+   buildNav renders these and the universal search indexes them, so the labels,
+   the sections and the set of pages can never drift apart.
+     section  the sidebar group the page sits in - also the context line in search
+     scoped   the page reads the active state layer
+     special  buildNav renders this one itself (The story carries its accordion)
+     under    the story sub-nav renders the link; the label comes from storySections()
+     alias    extra words a person may reasonably type for the page
+     tag      the trailing count or badge in the sidebar */
+const NAV_PAGES=[
+  {view:"law", label:"Acts & provisions", icon:"library", section:"National objects",
+   desc:"Every national Act in the corpus, with the provisions pinned to this case type.",
+   alias:["acts","provisions","sections","bare act","statute","central act","national acts"],
+   tag:()=>`<span class="count">${isModelled()?PROVISIONS.length:'-'}</span>`},
+  {view:"caselaw", label:"Case law", icon:"scale", section:"National objects",
+   desc:"The judgments that fix how the provisions are read.",
+   alias:["judgments","judgements","cases","precedent","rulings","citations"],
+   tag:()=>`<span class="count">${isModelled()?(CASES.length||'-'):'-'}</span>`},
+  {view:"story", label:"The story", icon:"book-open", section:"", scoped:true, special:true,
+   desc:"How a case actually moves, stage by stage, and the roles around it.",
+   alias:["process","stages","journey","the story","roles","lifecycle"]},
+  {view:"police", label:"Police", section:"The story", scoped:true, under:"story",
+   desc:"The police ladder - ranks, units and oversight - in this state.",
+   alias:["thana","police station","ranks","investigating officer"]},
+  {view:"courts", label:"Courts", section:"The story", scoped:true, under:"story",
+   desc:"The court tiers and the people who staff them, in this state.",
+   alias:["judiciary","judges","bench","forum","court staff"]},
+  {view:"amendments", label:"Acts & Provisions", icon:"file-pen", section:"", scoped:true,
+   desc:"State Acts and amendments, with the provisions pinned from them.",
+   alias:["state acts","state amendments","amendments","state law","state provisions"],
+   tag:()=>stateBadge('amendments')},
+  {view:"staterules", label:"State rules", icon:"clipboard", section:"", scoped:true,
+   desc:"Rules made by the state and its High Court.",
+   alias:["rules","high court rules","criminal rules of practice","subordinate legislation"],
+   tag:()=>stateBadge('rules')},
+  {view:"notifications", label:"Notifications", icon:"bell", section:"", scoped:true,
+   desc:"Government orders, SOPs and circulars in force in this state.",
+   alias:["orders","government orders","g.o.","sop","circulars","notification"],
+   tag:()=>stateBadge('notifications')},
+  {view:"practice", label:"Local practice", icon:"messages-square", section:"Domain & culture", scoped:true,
+   desc:"Field notes on how the process really runs on the ground.",
+   alias:["field notes","practice","ground reality","interviews","informal"],
+   tag:()=>`<span class="count">${isModelled()?PRACTICE_NOTES.length:'-'}</span>`},
+  {view:"words", label:"Vocabulary", icon:"type", section:"Domain & culture", scoped:true,
+   desc:"The words the system uses, national and local, and what each one means.",
+   alias:["vocab","words","terms","glossary","dictionary","terminology"],
+   tag:()=>`<span class="count">${isModelled()?(Object.keys(TERMS).length+(((STATE_DATA||{}).vocabulary||{}).terms||[]).length):'-'}</span>`},
+  {view:"requirements", label:"Requirements", icon:"file-text", section:"Design", scoped:true,
+   desc:"The normative layer - what a system must do, each statement drawn from a provision.",
+   alias:["reqs","req","normative","design requirements","must"],
+   tag:()=>`<span class="count">${isModelled()?(reqNavCount()||'-'):'-'}</span>`},
+  {view:"overview", label:"Overview", icon:"compass", section:"Overview",
+   desc:"Where the model starts: what is modelled, and how to read it.",
+   alias:["home","start","summary","introduction"]},
+  {view:"structure", label:"The structure", icon:"layers", section:"Overview",
+   desc:"How the model is put together - the rules, the systems and the context.",
+   alias:["structure","layers","architecture","shape"]},
+  {view:"split", label:"National vs State", icon:"arrow-left-right", section:"Overview",
+   desc:"What is national and identical everywhere, and what each state adds on top.",
+   alias:["national vs state","state vs national","split","division of law"]},
+  {view:"time", label:"The 2024 code switch", icon:"history", section:"Overview",
+   desc:"The 2023 Sanhitas replacing the old codes, and which set is live for a case.",
+   alias:["code switch","bns","bnss","bsa","sanhita","crpc","ipc","new codes","transition"]}
+];
+const navLink=(p,cls)=>`<a data-view="${p.view}"${cls?` class="${cls}"`:""}><span class="ico">${ic(p.icon)}</span> ${esc(p.label)}${p.tag?" "+p.tag():""}</a>`;
+const navPagesIn=sec=>NAV_PAGES.filter(p=>p.section===sec && !p.under && !p.special);
+const navLinks=(sec,cls)=>navPagesIn(sec).map(p=>navLink(p,cls)).join("");
+/* the same list as the sidebar offers right now: the pages nested under The story
+   only exist where this state's layer carries that institution, so they are taken
+   from storySections() - label included - exactly as the sub-nav takes them. */
+function navPages(){
+  const kids={};
+  storySections().forEach(s=>{ if(s.view) kids[s.view]=s.label;
+    (s.children||[]).forEach(k=>{ if(k.view) kids[k.view]=k.label; }); });
+  return NAV_PAGES.filter(p=>p.under!=="story" || kids[p.view])
+    .map(p=> kids[p.view] ? Object.assign({},p,{label:kids[p.view]}) : p);
+}
 function buildNav(){
   const c=caseById(activeCase);
   const nav=$("#nav");
@@ -2089,10 +2229,7 @@ function buildNav(){
       </div>
     </div>
     <div class="nav-group">National objects</div>
-    <div class="nav-scoped">
-      <a data-view="law"><span class="ico">${ic('library')}</span> Acts &amp; provisions <span class="count">${isModelled()?PROVISIONS.length:'-'}</span></a>
-      <a data-view="caselaw"><span class="ico">${ic('scale')}</span> Case law <span class="count">${isModelled()?(CASES.length||'-'):'-'}</span></a>
-    </div>
+    <div class="nav-scoped">${navLinks("National objects")}</div>
     <div class="nav-divider"></div>
     <div class="state-layer nav-scroll">
       <div class="statedd-wrap nav-group">${stateInlineSelectHTML()}</div>
@@ -2101,30 +2238,19 @@ function buildNav(){
           <a class="ov-toggle" data-view="story"><span class="ico">${ic('book-open')}</span> The story <span class="nav-chev">${ic('chevron-down')}</span></a>
           <div class="nav-sub"><div class="nav-sub-inner">${storyNavHTML()}</div></div>
         </div>
-        <a data-view="amendments"><span class="ico">${ic('file-pen')}</span> Acts &amp; Provisions ${stateBadge('amendments')}</a>
-        <a data-view="staterules"><span class="ico">${ic('clipboard')}</span> State rules ${stateBadge('rules')}</a>
-        <a data-view="notifications"><span class="ico">${ic('bell')}</span> Notifications ${stateBadge('notifications')}</a>
+        ${navLinks("")}
       </div>
       <div class="nav-group scoped">Domain &amp; culture</div>
-      <div class="nav-scoped">
-        <a data-view="practice"><span class="ico">${ic('messages-square')}</span> Local practice <span class="count">${isModelled()?PRACTICE_NOTES.length:'-'}</span></a>
-        <a data-view="words"><span class="ico">${ic('type')}</span> Vocabulary <span class="count">${isModelled()?(Object.keys(TERMS).length+(((STATE_DATA||{}).vocabulary||{}).terms||[]).length):'-'}</span></a>
-      </div>
+      <div class="nav-scoped">${navLinks("Domain & culture")}</div>
       <div class="nav-group scoped">Design</div>
-      <div class="nav-scoped">
-        <a data-view="requirements"><span class="ico">${ic('file-text')}</span> Requirements <span class="count">${isModelled()?(reqNavCount()||'-'):'-'}</span></a>
-      </div>
+      <div class="nav-scoped">${navLinks("Design")}</div>
     </div>`;
   // Overview lives subtly in the sidebar footer, not at the top
   const ov=$("#ovNav");
   if(ov) ov.innerHTML=`
     <div class="ov-menu" id="ovMenu">
       <div class="ov-pop">
-        <a data-view="overview" class="ov-pop-item"><span class="ico">${ic('compass')}</span> Overview</a>
-        <div class="ov-pop-sep"></div>
-        <a data-view="structure" class="ov-pop-item"><span class="ico">${ic('layers')}</span> The structure</a>
-        <a data-view="split" class="ov-pop-item"><span class="ico">${ic('arrow-left-right')}</span> National vs State</a>
-        <a data-view="time" class="ov-pop-item"><span class="ico">${ic('history')}</span> The 2024 code switch</a>
+        ${navPagesIn("Overview").map((p,i)=>(i===1?`<div class="ov-pop-sep"></div>`:"")+navLink(p,"ov-pop-item")).join("")}
       </div>
       <button class="ov-trigger" id="ovTrigger"><span class="ico">${ic('compass')}</span> Overview <span class="nav-chev">${ic('chevron-down')}</span></button>
     </div>`;
@@ -2297,7 +2423,8 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeModal(); con
    Every result hands off to the navigation that already exists (openActModal,
    goVocabWord, goPracticeNote, the #requirements?req= deep link, …) - the
    overlay never invents a route of its own. */
-const GS_TYPES=[["provision","Provisions"],["vocab","Vocabulary"],["req","Requirements"],["case","Case law"],
+const GS_TYPES=[["page","Pages"],
+                ["provision","Provisions"],["vocab","Vocabulary"],["req","Requirements"],["case","Case law"],
                 ["note","Local practice"],["story","Story"],["inst","Institutions"],["act","Acts"]];
 const GS_LABEL={}; GS_TYPES.forEach(([k,v])=>{GS_LABEL[k]=v;});
 const GS_CAP=6;                     // rows shown per group; the total is always stated
@@ -2308,7 +2435,8 @@ const gsIsMac=()=>/Mac|iPhone|iPad|iPod/.test((navigator.platform||"")+" "+(navi
 /* ---- the index ---------------------------------------------------------- */
 let GS_INDEX=null, _gsKey="";
 function gsKey(){ return [PROVISIONS.length,Object.keys(TERMS).length,REQS.length,CASES.length,
-  PRACTICE_NOTES.length,Object.keys(STATES_DATA).length,Object.keys(SOURCES).length].join("|"); }
+  PRACTICE_NOTES.length,Object.keys(STATES_DATA).length,Object.keys(SOURCES).length,
+  activeState].join("|"); }   // activeState: the page rows carry the state layer they open on
 /* one entry: display strings, the weighted fields it is matched on, and how to open it.
    f is [text, weight] - the weight says how identifying that field is, so a hit on a
    term's word outranks a hit buried in some requirement's why. */
@@ -2335,6 +2463,18 @@ function gsGoReq(r){
 }
 function gsBuildIndex(){
   const L=[];
+
+  /* The pages themselves - taken from the sidebar's own list, so every tab the app
+     offers is findable by name. A state-scoped page opens on the active state layer,
+     exactly as clicking its nav link does; the state is named on the row. */
+  const stNow=(stateById(activeState)||{}).name||"";
+  navPages().forEach(p=>{
+    const ctx=p.section||"";
+    gsPush(L,{type:"page", state:p.scoped?activeState:null, title:p.label,
+      sub:"Page"+(ctx?" · "+ctx:""), snip:p.desc||"",
+      f:[[p.label,1], ...((p.alias||[]).map(a=>[a,.92])), [ctx,.35], [p.scoped?stNow:"",.3]],
+      open:()=>gsGo(p.view, p.scoped?activeState:null, null)});
+  });
 
   /* Acts - the national sources, then every state instrument (Act, rules, notification) */
   Object.entries(SOURCES).forEach(([id,s])=>{
@@ -2497,10 +2637,21 @@ function gsSearch(raw){
   const byType={};
   hits.forEach(h=>{ (byType[h.e.type]=byType[h.e.type]||[]).push(h); });
   /* groups lead with whichever type holds the strongest hit, so an exact id or
-     section number puts its own type at the top of the list */
+     section number puts its own type at the top of the list. Pages get one step of
+     priority on top of that: when the query names a page - an exact, prefix or
+     word-start hit on its label or an alias, the word-boundary class or better - the
+     Pages group is pinned first, because a person typing a page name wants the page.
+     Two brakes keep that honest. A page that only matches mid-word, or only on its
+     section or its state name, never pins - it sorts on score like any other group.
+     And an exact-class hit elsewhere (a section number, a requirement id, a whole
+     vocabulary word) that scores above the page's own match still leads. */
   const groups=GS_TYPES.filter(([k])=>byType[k]&&byType[k].length)
-    .map(([k,label])=>({key:k, label, rows:byType[k], total:byType[k].length, best:byType[k][0].s}))
-    .sort((a,b)=> b.best-a.best);
+    .map(([k,label])=>({key:k, label, rows:byType[k], total:byType[k].length, best:byType[k][0].s}));
+  const pg=groups.find(g=>g.key==="page");
+  const other=groups.reduce((m,g)=>g.key==="page"?m:Math.max(m,g.best),0);
+  const pin=!!(pg && pg.best>=400 && !(other>=900 && other>pg.best));
+  const pagePin=g=>(pin && g.key==="page") ? 1 : 0;
+  groups.sort((a,b)=> pagePin(b)-pagePin(a) || b.best-a.best);
   return {q, groups, total:hits.length};
 }
 
@@ -2532,7 +2683,7 @@ function gsIdle(){
     .filter(b=>b[0]).map(b=>`<b>${b[0]}</b> ${b[1]}`).join(", ");
   return `<div class="gs-idle">
     <p>Search everything at once - ${bits}, plus the story, the roles, the police and court ladders and the Acts, across all ${nStates} state layers.</p>
-    <p class="gs-idle-eg">Try a section number (<b>138</b>), a requirement id (<b>REQ-LIM-004</b>), a word (<b>roznama</b>), or a case (<b>Rangappa</b>).</p>
+    <p class="gs-idle-eg">Try a section number (<b>138</b>), a requirement id (<b>REQ-LIM-004</b>), a word (<b>roznama</b>), a case (<b>Rangappa</b>), or a page (<b>vocabulary</b>).</p>
   </div>`;
 }
 function gsBuildOverlay(){
