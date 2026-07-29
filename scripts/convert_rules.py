@@ -69,11 +69,35 @@ DOCS = {
 def esc(s): return html.escape(s, quote=False)
 def clean(s): return re.sub(r'\s+', ' ', s).strip()
 
+# ---------- page furniture ----------
+# The sources interleave per-page furniture with the body text: a running head,
+# a print-time footer, a lone page number. parse_content joins body lines with a
+# space, so anything left behind lands mid-sentence inside a rule.
+FURNITURE = (
+    re.compile(r'^\(?\s*Page\s+\d+\s+of\s+\d+\s*\)?[.,]?$', re.I),   # (Page 11 of 58)
+    re.compile(r'^Printed\s+For\s*:', re.I),                          # Printed For: 25-07-2026 at 12:59:PM
+    re.compile(r'^\d{1,4}$'),                                         # a lone page number
+)
+
+def strip_furniture(text, title):
+    """Drop running heads and page furniture. A running head is the document title
+    on a line of its own; no rule or chapter marker ever looks like one."""
+    head = re.compile(r'^' + re.escape(title) + r'\s*[.,]?$', re.I)
+    keep = []
+    for l in text.split('\n'):
+        s = l.strip()
+        if s and (head.match(s) or any(p.match(s) for p in FURNITURE)):
+            continue
+        keep.append(l)
+    return '\n'.join(keep)
+
 def raw_text(cfg, slug):
     if cfg.get("text_file"):
-        return (SRC / cfg["text_file"]).read_text()
-    with pdfplumber.open(SRC / f"{slug}.pdf") as pdf:
-        return "\n".join(p.extract_text() or "" for p in pdf.pages)
+        text = (SRC / cfg["text_file"]).read_text()
+    else:
+        with pdfplumber.open(SRC / f"{slug}.pdf") as pdf:
+            text = "\n".join(p.extract_text() or "" for p in pdf.pages)
+    return strip_furniture(text, cfg["title"])
 
 # ---------- sub-rule / clause parsing (blockList INSIDE item = schema-valid) ----------
 def rankof(mark):
