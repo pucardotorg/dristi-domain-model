@@ -31,6 +31,7 @@
       "test": "Filing an appeal against a section 138 conviction proposes the Court of Session, and selecting the High Court raises a blocking message naming section 415(3)(a).",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 415(3)(a) of the Sanhita, and section 374(3)(a) of the Code before it, name the Court of Session as the forum for a person convicted on a trial held by a magistrate of the first class, and section 142(1)(c) fixes that class of magistrate as the trial court for section 138. The only exception, in sub-section (2), is a sentence of more than seven years, which section 138 cannot carry. Nothing has to be read in for the forum rule to follow.",
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-004"
@@ -56,6 +57,7 @@
       "test": "With a fine of 500000, a deposit order below 100000 is refused and the message names the floor.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 148(1) describes the deposit as a sum which shall be a minimum of twenty per cent of the fine or compensation awarded by the trial court. The floor is stated as a minimum in the text itself, so an order below it falls outside the power the sub-section confers. No construction is involved.",
       "tightens": null,
       "relatedTo": [
         "REQ-APL-003"
@@ -85,6 +87,7 @@
       "test": "With interim compensation of 100000 paid and a fine of 500000, the section 148 deposit is computed on 500000, not on 400000.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The proviso to section 148(1) says the amount payable under that sub-section is in addition to any interim compensation already paid under section 143A. That is an express direction against set-off at the appellate stage, and it is the opposite of the set-off section 143A(6) requires at sentencing, which is why the two must not share one rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-APL-002",
@@ -111,6 +114,7 @@
       "test": "The deposit due date is sixty days from the order; an extension requires an order capturing the cause and cannot exceed thirty days.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 148(2) states both periods in terms: sixty days from the date of the order, and a further period not exceeding thirty days that the court may direct on sufficient cause shown by the appellant. The requirement adds nothing beyond keeping those two periods apart rather than summing them.",
       "tightens": null,
       "relatedTo": [
         "REQ-APL-002",
@@ -137,6 +141,7 @@
       "test": "Recording an acquittal on an appeal where the deposit was released produces a repayment order stating the principal released, the rate, the financial year and the due date.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The proviso to section 148(3) directs the court, on acquittal, to order the complainant to repay the amount released, with interest at the Reserve Bank bank rate prevalent at the beginning of the relevant financial year, and fixes sixty days for it. The trigger, the rate and the reference year are all in the sub-section; the requirement only makes the acquittal disposal raise the order.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-013"
@@ -166,6 +171,11 @@
       "test": "A suspension of sentence order cannot be issued without an accompanying deposit order, whether directing, varying or waiving the deposit.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Surinder Singh Deswal reads the may in section 148 as a rule from which departure needs special reasons, and it does so in the setting of an application under section 389 to suspend sentence, which is where the deposit question arises. Jamboo Bhandari puts it directly: when the appellate court considers the section 389 prayer of a person convicted under section 138, it is for that court to consider the deposit and any exception to it. Both are good law and the later case refines rather than contradicts the earlier, so the coupling of the deposit order to the suspension order comes from the judgments and is not supplied here.",
+      "cases": [
+        "surinder-deswal-2019",
+        "jamboo-bhandari-2023"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-APL-007",
@@ -192,6 +202,10 @@
       "test": "The deposit order offers waive as an option; selecting it requires recorded reasons, and the reasons print in the order.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Jamboo Bhandari holds expressly that where the appellate court is satisfied that a twenty per cent deposit would be unjust or would amount to depriving the appellant of the right of appeal, an exception can be made for reasons specifically recorded. Both the waiver and the recorded reasons are in the judgment, and it was allowed precisely because the courts below had proceeded on the footing that no exception existed. The requirement does not extend the holding.",
+      "cases": [
+        "jamboo-bhandari-2023"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-APL-006"
@@ -221,6 +235,10 @@
       "test": "A deposit condition carries a due date and a paid status; expiry without payment raises a task before the appellate court with vacate suspension available.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Surinder Singh Deswal holds that where suspension of sentence was granted on a condition, non-compliance with that condition is sufficient to declare the suspension vacated, and it upheld the Sessions Judge who had so held. What the judgment states is the power; the due-date monitoring the requirement adds is the means of exercising it, since a condition nobody watches cannot be found to have been broken.",
+      "cases": [
+        "surinder-deswal-2019"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-APL-006"
@@ -250,6 +268,11 @@
       "test": "An appeal in a case whose cause of action predates 1 September 2018 still requires a section 148 deposit order, while the same case shows interim compensation as unavailable.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "The different treatment of the two provisions is stated in the judgments rather than inferred. G.J. Raja holds section 143A prospective because it creates a fresh disability before any finding of guilt, and expressly distinguishes section 148 as depending on recovery machinery that already existed. Surinder Singh Deswal applies section 148 to appeals even where the complaint predates the amendment. Each bench considered the other, so this is settled and not a division of authority.",
+      "cases": [
+        "surinder-deswal-2019",
+        "gj-raja-2019"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-020",
@@ -284,6 +307,7 @@
       "test": "Open compounding on a section 138 case at any stage from cognizance to appeal: it is offered, and no message refers to the offence being absent from the table.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 147 says every offence punishable under the Negotiable Instruments Act shall be compoundable, and opens with a non obstante clause against the Code. The table in section 359 of the Sanhita and section 320 of the Code lists offences under the penal law only, so it can never reach section 138; the point of the requirement is that the table must not be consulted as a gate at all. The express words carry it.",
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-002"
@@ -317,6 +341,7 @@
       "test": "Completing a compounding produces a disposal of acquittal on composition; the disposal list offers no withdrawal outcome for a compounded case.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 359(8) of the Sanhita and section 320(8) of the Code both say that composition has the effect of an acquittal of the accused with whom the offence was compounded. Those sub-sections reach a section 138 compounding because section 147 makes the offence compoundable while, on JIK Industries, leaving the Code's compounding machinery in place. The consequence is stated in the text, so how the disposal is described in practice cannot change it.",
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-001"
@@ -346,6 +371,7 @@
       "test": "On a case with a pending appeal, compounding requires an order granting leave to be attached before it can be completed.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 359(5) of the Sanhita and section 320(5) of the Code both say that where the accused has been convicted and an appeal is pending, no composition shall be allowed without the leave of the court before which the appeal is to be heard. The only step of reasoning is that section 147 makes the offence compoundable without displacing that machinery, which is what JIK Industries decided; the leave requirement itself is express.",
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-001"
@@ -375,6 +401,7 @@
       "test": "A reference cannot be created without one of the three bases selected, and selecting either of the last two requires a hearing record.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 20(1) of the Legal Services Authorities Act sets out three bases for a reference and no others, and its proviso requires a reasonable opportunity of being heard in the two that are not mutual agreement. Section 19(5) confirms that a Lok Adalat may take a compoundable offence, which section 138 is by force of section 147. The requirement restates the sub-section's own conditions.",
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-005"
@@ -404,6 +431,7 @@
       "test": "After a Lok Adalat award, no appeal action is offered on the case, and the disposal states that the award is final and binding.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 21(2) says every award of a Lok Adalat is final and binding on all parties and that no appeal shall lie to any court against it, and section 21(1) deems the award a decree. The bar is absolute on the face of the sub-section, so offering an appeal route offers a remedy the statute has removed.",
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-004",
@@ -434,6 +462,7 @@
       "test": "Mark a referred case as unsettled: it returns to the referring court showing the same stage, next step and recorded evidence as before the reference.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 20(5) directs that where no award is made the record be returned to the referring court, and section 20(7) directs that court to deal with the case from the stage reached before the reference. Both the return and the preservation of the stage are stated; the requirement adds only that the software must not lose the stage in the process.",
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-004"
@@ -459,6 +488,7 @@
       "test": "A settled case produces a refund entry naming the amount and the entitled party, retrievable from the disposal.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 21(1) directs that where a Lok Adalat arrives at a settlement in a case referred to it under section 20(1), the court fee paid in that case shall be refunded in the manner provided by the Court-fees Act. The entitlement is express. Identifying the person entitled is the record of that entitlement, not a separate legal claim.",
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-005"
@@ -492,6 +522,12 @@
       "test": "Every generated section 138 summons carries the compounding paragraph; it cannot be suppressed by the issuing officer.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Damodar S. Prabhu directs in terms that the writ of summons be modified to tell the accused he may move to compound at the first or second hearing and that compounding at that stage attracts no costs, and Indian Bank Association repeats the direction. Both are good law and both are directions to courts rather than observations. New Win Export restates the compounding policy without disturbing the summons direction.",
+      "cases": [
+        "damodar-prabhu-2010",
+        "indian-bank-assn-2014",
+        "new-win-export-2024"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-009",
@@ -526,6 +562,11 @@
       "test": "The scale in force is held as effective-dated data with its source judgment, so changing it is a data change and not a release; a compounding order names the scale version applied, and an order made across the transition date records on its face which scale was chosen and why.",
       "derivedFrom": "caselaw",
       "status": "contested",
+      "statusReason": "Damodar S. Prabhu and Sanjabij Tari both fix costs scales under Article 142, but they key them to different events, the stage at which the compounding application is made in the first and the stage at which the cheque amount is paid in the second, and at different rates. Sanjabij Tari modifies the earlier guidelines rather than confining them to past cases, and says nothing about applications already pending when the new scale takes effect, so which scale governs a case straddling that date is genuinely open. The requirement therefore holds the scale as effective-dated data carrying its source judgment, instead of fixing a percentage table that would decide the transition by accident.",
+      "cases": [
+        "sanjabij-tari-2025",
+        "damodar-prabhu-2010"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-008",
@@ -556,6 +597,11 @@
       "test": "The payee of the compounding costs is derived from the court's level and cannot be edited to the complainant or to the court's own fee head.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Damodar S. Prabhu names the payee of the costs by the level of the court, the District Authority for a magistrate or Sessions Court, the State Authority for a High Court and the National Authority for the Supreme Court, and Sanjabij Tari leaves that destination undisturbed. Because the destination is stated in the direction itself, this is not a reading of some general power to award costs.",
+      "cases": [
+        "damodar-prabhu-2010",
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-009"
@@ -589,6 +635,14 @@
       "test": "A compounding order cannot be made without a recorded consent from the complainant or the complainant's authorised representative; a disposal on payment without consent is available only as a distinct mode marked as an Article 142 order of the Supreme Court.",
       "derivedFrom": "caselaw",
       "status": "contested",
+      "statusReason": "JIK Industries holds that section 147 makes the offence compoundable without dispensing with the complainant's consent that the Code's compounding machinery requires. Against that, Meters and Instruments treated the offence as compensatory and allowed proceedings to be closed on payment without consent, and the Constitution Bench in the expeditious-trial reference disapproved the route it used; Raj Reddy Kallem reaches a comparable result but expressly as a quashing under Article 142, a power no court below the Supreme Court has. The requirement does not pick a winner: it makes recorded consent a condition of a compounding order and puts disposal on payment without consent on a separate track marked as an Article 142 order.",
+      "cases": [
+        "jik-industries-2012",
+        "meters-instruments-2018",
+        "expeditious-trial-2021",
+        "raj-reddy-kallem-2024",
+        "damodar-prabhu-2010"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-013",
@@ -619,6 +673,10 @@
       "test": "The summons carries a working payment reference; a payment against it is attributed to the case, notified to the complainant, and raises the compounding or closure decision before the court.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari directs each Principal District and Sessions Judge to create and operationalise a dedicated secure QR or UPI payment facility, and directs that the summons expressly mention the accused's option to pay through it. Both limbs are directions to named officers with an implementation date, not observations, and the case is good law and the most recent word on the point.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-008",
@@ -649,6 +707,10 @@
       "test": "Where a tender of the cheque amount is recorded and consent is refused, the court is offered the plea-and-sentence branch alongside continue trial, and the tender remains on the record.",
       "derivedFrom": "caselaw",
       "status": "inferred",
+      "statusReason": "Sanjabij Tari says the magistrate may suggest that the accused plead guilty, and may then use the powers in section 255(2) or 255(3) of the Code or section 278 of the Sanhita, or extend the benefit of the Probation Act, where the complainant asks for more than the cheque amount. What the judgment gives is a permission to the magistrate; it does not direct that a distinct workflow branch exist or that it be raised at the point where consent fails. Turning that permission into an offered route at that moment is the reading taken here, which is why the level is MAY and the status is not firm.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-011",
@@ -679,6 +741,7 @@
       "test": "Making a supervision order generates three addressed copies and records their delivery; the order cannot be closed with a recipient unserved.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 4(5) of the Probation of Offenders Act directs the court making a supervision order to furnish one copy forthwith to each of the offender, the sureties if any, and the probation officer concerned, and section 4(3) is what creates the supervision order in the first place. All three recipients and the immediacy are named. The requirement only refuses to treat the order as complete while a named recipient is unserved.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-008"
@@ -708,6 +771,7 @@
       "test": "A copy supplied through the portal carries a text layer or a structured text alternative, and a screen reader can read the operative part.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 12(4)(a) directs the appropriate Government to take steps to ensure that its public documents are in accessible formats. It addresses the Government and speaks of public documents; it does not in terms say that a copy a court issues to a party must be machine-readable. The step taken here is to read that duty with the general access-to-justice obligation in section 12(1) and apply it to the court's own copying channel, and a reader may fairly say the provision stops short of that.",
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-007"
@@ -741,6 +805,7 @@
       "test": "A conviction with imprisonment issues the copy with no application recorded; a fine-only conviction raises a prompt to the accused or his advocate to apply, and the copy issues free of cost with no fee entry.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 404(1) of the Sanhita, and section 363(1) of the Code, require a free copy immediately on pronouncement where the sentence is imprisonment, and sub-section (2) requires a certified copy without delay, free of cost, on the accused's application in every case in which the judgment is appealable by him. Both limbs are express. The requirement's contribution is to refuse to treat the first as covering the fine-only case, which on the text it does not.",
       "tightens": null,
       "relatedTo": [
         "REQ-CPY-002",
@@ -768,6 +833,7 @@
       "test": "An affidavit filed by the complainant appears in the evidence record as examination-in-chief and the case can move to cross-examination without a deposition being recorded.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 145(1) says the evidence of the complainant may be given on affidavit and may, subject to all just exceptions, be read in evidence in any enquiry, trial or other proceeding, notwithstanding the Code. That the affidavit stands as the examination-in-chief follows from the words read in evidence rather than from any gloss on them.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-002"
@@ -793,6 +859,7 @@
       "test": "An application by the accused to summon the affidavit deponent produces a summons; the workflow offers no allow or refuse decision on a party's application, only on the court's own motion.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 145(2) itself draws the distinction the requirement encodes: the court may summon a deponent if it thinks fit, and shall summon on the application of the prosecution or the accused. The shall attaches to a party's application, so modelling that application as a matter for judicial discretion contradicts the sub-section rather than merely departing from good practice.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-001"
@@ -818,6 +885,7 @@
       "test": "The dishonour record cannot be saved on a reason code alone; the memo document is required and is retrievable as an exhibit.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 146 attaches the presumption of dishonour to the production of the bank's slip or memo having on it the official mark denoting dishonour. The object of production named by the section is the document, so a record holding only a coded return reason has nothing for the section to operate on. The step from that to storing the memo itself is mechanical rather than interpretive.",
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-001"
@@ -847,6 +915,7 @@
       "test": "A banker's book entry cannot be marked as an exhibit without the certificate attached, and the certificate capture records the name and official title of the signatory.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 4 of the Bankers' Books Evidence Act makes a certified copy prima facie evidence of the entry, and section 2(8) defines certified copy by the certificate, its contents and the officer who subscribes it. Admissibility is conditioned on the certificate inside the definition itself, so a copy without it is not within section 4 at all.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-005"
@@ -880,6 +949,7 @@
       "test": "Tender the same truncated cheque image at two hearings: the system requires a certificate at each tender and records both.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 63(4) of the Adhiniyam requires the certificate to be submitted along with the electronic record at each instance where it is submitted for admission, and section 65B(4) of the Evidence Act is to the same effect for cases still governed by it. The words at each instance are what carry the requirement; a single certificate captured once at upload does not answer them.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-004",
@@ -914,6 +984,7 @@
       "test": "The deposition header carries an enumerated value of oath or affirmation; there is no single sworn checkbox.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 4(1)(a) of the Oaths Act requires an oath or affirmation of every witness, and section 5 gives the witness the right to make an affirmation instead of an oath. The statute therefore creates two distinct things rather than one, and section 3(1)(a) says who may administer them. Recording which was administered is the record of compliance rather than a separate statutory duty, but the two-value distinction comes straight from the sections.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-008"
@@ -939,6 +1010,7 @@
       "test": "Marking a deposition as interpreted requires the interpreter's name and the oath or affirmation record before the deposition can be closed.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 4(1)(b) of the Oaths Act puts the interpreter of the questions put to and the evidence given by a witness under the same obligation to be sworn or affirmed as the witness. That obligation is express. Naming the interpreter is the record of compliance and is not itself directed by the clause, so the strength of this requirement lies in the oath limb rather than the identity limb.",
       "tightens": null,
       "relatedTo": []
     },
@@ -962,6 +1034,7 @@
       "test": "Save a deposition with the oath field empty: the record is retained with the gap visible as a warning, and the deposition is neither voided nor excluded from the evidence list.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 7 of the Oaths Act says that no omission to take an oath, no substitution of one for another and no irregularity in the administration shall invalidate any proceeding or render any evidence inadmissible. The provision is a saving in express terms, so a validation rule that voids a deposition for a missing oath field creates the very consequence the section refuses to create.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-006"
@@ -991,6 +1064,7 @@
       "test": "The oath action is unavailable against a person recorded as the accused unless that person has been entered as a defence witness.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 4(2) of the Oaths Act says that nothing in the section makes it lawful to administer an oath to the accused in a criminal proceeding unless he is examined as a witness for the defence. The prohibition and its single exception are both in the sub-section, and article 20(3) explains why it exists rather than being the source of the rule.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1017,7 +1091,8 @@
       "how": null,
       "test": "An affidavit record captures the attesting authority and the class of empowerment, and an affidavit attested by an authority empowered only for non-judicial affidavits is flagged.",
       "derivedFrom": "act",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Section 3(2)(a) says that a court, judge, magistrate or person may administer oaths for the purpose of affidavits if empowered in that behalf by the High Court in respect of affidavits for judicial proceedings, and section 3(1)(a) covers those who take evidence. What the section does is confer power on a class of persons; it does not say that an affidavit sworn before someone outside that class is bad, nor does it direct that the attesting authority be recorded. Treating attestation by an authority empowered only for non-judicial affidavits as a defect in the section 145 affidavit is the inference, and it is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-001"
@@ -1047,6 +1122,7 @@
       "test": "The defence grounds list includes delivery of a blank or incomplete instrument, and selecting it opens fields for what is alleged to have been filled in and by whom.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 20 states a substantive rule about inchoate stamped instruments: delivery of a signed blank or incomplete paper gives prima facie authority to complete it, bounded by the stamp and, against anyone other than a holder in due course, by the amount intended. Section 118(g) supplies the related presumption. Neither says anything about how a case record should be organised; concluding that the defence must be recordable as its own issue, with the extent alleged to have been filled in later, is the reading taken here.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-012"
@@ -1072,6 +1148,7 @@
       "test": "Selecting material alteration as a defence opens a consent field, and the judgment template requires a finding on both the alteration and the consent.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 87 makes a material alteration void against a party who did not consent to it, unless it was made to carry out the common intention of the original parties. Consent is therefore an element of the rule, but the section does not direct that it be pleaded, recorded, or found on separately from the alteration. Making consent its own field, and requiring the judgment to find on it, is our reading of what the section makes decisive.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-011"
@@ -1105,6 +1182,7 @@
       "test": "An electronic cheque record carries an enumerated signature type; the case view states whether the section 86 presumption is available and why.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Explanation I(a) to section 6 defines a cheque in the electronic form by reference to signing in a secure system with a digital or electronic signature, and section 86 of the Adhiniyam gives presumptions that run only to secure records and secure signatures. Neither says the signature type must be stored, and the definitions of secure record and secure signature sit elsewhere in the Information Technology Act rather than in section 3A, which is about when a signature is reliable. The chain from those provisions to a recorded signature-type field is a construction, which is why this is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-005"
@@ -1134,6 +1212,11 @@
       "test": "After the accused appears, the complainant's affidavit already on record is marked as evidence without a new filing; a recall step exists but is not on the default path.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Indian Bank Association directs that the affidavit and documents filed with the complaint serve at the pre-summoning and the post-summoning stages alike, and that the complainant need not be recalled and re-examined after summoning unless the magistrate passes a specific order. A.C. Narayanan is to the same effect on the evidentiary standing of the section 145 affidavit. Both are good law, and the direction is on its face about those two stages.",
+      "cases": [
+        "indian-bank-assn-2014",
+        "ac-narayanan-2014"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-016",
@@ -1160,6 +1243,10 @@
       "test": "The defence evidence step offers oral examination as the mode; affidavit evidence for the accused is available only under a recorded order of the court, not as a self-service option.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Mandvi Cooperative Bank holds that section 145(1) provides for the complainant's evidence on affidavit and that the accused cannot be read into it, and it set aside a High Court direction that had allowed the accused to tender evidence on affidavit on request. The negative proposition is the ratio rather than an observation, and the case is good law.",
+      "cases": [
+        "mandvi-coop-2010"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-014"
@@ -1189,6 +1276,11 @@
       "test": "Recall cannot be scheduled without either a linked section 145(2) application or a recorded reason; both appear in the order sheet.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Indian Bank Association makes recall of a deponent depend on a specific order of the magistrate, whether on the accused's application under section 145(2) or on the court's own motion, and Mandvi Cooperative Bank construes the same sub-section. Both the application route and the recorded-reasons route are stated in the directions, so treating recall as an ordinary listing action departs from them.",
+      "cases": [
+        "indian-bank-assn-2014",
+        "mandvi-coop-2010"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-014"
@@ -1226,6 +1318,7 @@
       "test": "The cheque record carries a custody value naming who holds the original and where, populated independently of the uploaded image; marking the cheque as an exhibit is blocked while custody is unrecorded.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Sections 57 and 58 of the Adhiniyam, and section 62 of the Evidence Act, define primary evidence as the document itself produced for inspection and place copies in the secondary class. They do not say that the custody of the original must be recorded, or that it must be held apart from an uploaded image. The requirement reasons from the primary and secondary distinction to a custody field, on the footing that the court cannot know which class it is dealing with unless the record says where the original is; that step is ours.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-003",
@@ -1252,6 +1345,7 @@
       "test": "Attempt to number a case from form fields alone with no complaint document attached: the build refuses and names section 142(1)(a).",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142(1)(a) bars any court from taking cognizance of a section 138 offence except upon a complaint in writing made by the payee or the holder in due course. The writing is a condition of the court's power rather than a matter of form, so a filing flow that produces no signed complaint leaves nothing on which cognizance can be taken.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1283,6 +1377,7 @@
       "test": "The complainant record carries an enumerated capacity field; it is mandatory; the complaint cannot be numbered without it.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142(1)(a) confines the right to complain to the payee or the holder in due course, and sections 8 and 9 define those two capacities differently. Competence therefore turns on which capacity is claimed, which is what makes it a field rather than a description of a party. The eligibility rule is express; only its storage as an enumerated value is design.",
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-002",
@@ -1313,6 +1408,7 @@
       "test": "With process fee unpaid, the issue-summons action is unavailable and the case appears in a list of complaints awaiting process fee with the elapsed time shown.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 227(4) of the Sanhita and section 204(4) of the Code both say that where process fees are payable no process shall be issued until they are paid, and both allow the complaint to be dismissed if they are not paid within a reasonable time. The prohibition on issuing process is in express terms, so it is a gate rather than office practice.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1340,6 +1436,7 @@
       "test": "A claim can be attached to either party from the filing screen and from any later hearing screen; the ground is chosen from an enumerated list drawn from section 12, free text is not accepted as a ground, and the claim is visible on the case record to the court and to the legal services authority.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 12 of the Legal Services Authorities Act says every person who has to file or defend a case shall be entitled to legal services if he falls within one of the listed categories, and section 13 adds only a prima facie case condition. The entitlement is expressed without reference to any stage of the proceeding, so confining the claim to a filing screen would narrow a statutory right.",
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-006"
@@ -1369,6 +1466,7 @@
       "test": "An income-based claim can be completed with an affidavit alone; no revenue-issued certificate is required as a precondition.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 13(2) says an affidavit made by a person as to his income may be regarded as sufficient for eligibility unless the concerned Authority has reason to disbelieve it, and section 12(h) is the income criterion it serves. Both the sufficiency of the affidavit and the single exception are in the sub-section, so demanding a revenue certificate imposes a condition the statute does not.",
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-005"
@@ -1397,7 +1495,8 @@
       "how": null,
       "test": "A text-layer PDF or tagged document can be filed and is retrievable in that form; the registry does not flatten filings into images without a text layer.",
       "derivedFrom": "act",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Section 12(4)(b) directs the appropriate Government to ensure that filing departments, registries and offices of record are supplied with the equipment needed to file, store and refer to documents and evidence in accessible formats. The duty falls on the Government and is a duty to equip; it is not framed as a rule about what a filing portal must accept or how it must store what it accepts. Reading it, with the access-to-justice duty in section 12(1), as binding the system's own intake is the inference, and it is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1421,6 +1520,10 @@
       "test": "A complaint cannot be accepted without the affidavit; the answer is stored as a structured yes/no with court and case particulars where yes, not as prose.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Damodar S. Prabhu directs that the complainant file an affidavit at the time of filing disclosing whether any other complaint on the same transaction is pending, and treats a false disclosure as attracting consequences. The direction is in mandatory terms and is addressed to the filing stage itself, so it is not a matter for local practice.",
+      "cases": [
+        "damodar-prabhu-2010"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-013",
@@ -1451,6 +1554,10 @@
       "test": "The generated complaint bundle opens with a synopsis containing all seven heads; every field is populated from structured data, not typed prose, and any field left blank is reported at scrutiny.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari prescribes the synopsis, sets out its heads, fixes its position in the paper book and directs High Courts and District Courts to implement it. The content is not left to the drafter, which is what makes this firm rather than a reading of some general power over forms. The case is good law and is the most recent direction on the point.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-008",
@@ -1483,6 +1590,10 @@
       "test": "The interval between the filing timestamp and the scrutiny listing is zero days by default, and the cognizance action offers issue summons without an intervening step.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "The first of the directions in Indian Bank Association is that the magistrate scrutinise the complaint on the day it is presented and, if the affidavit and documents are in order, take cognizance and direct the issue of summons. The same-day sequence and the single step are both stated in the direction. What the requirement adds is only that the default interval be zero rather than a registry queue.",
+      "cases": [
+        "indian-bank-assn-2014"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-014",
@@ -1513,6 +1624,10 @@
       "test": "Selecting a juristic complainant makes the representative record mandatory, with name, designation and the authorisation document; replacing the representative does not alter the complainant of record.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "TRL Krosaki holds that where the payee is a company the company is the complainant and the authorised employee acts for it, and that a change in the individual does not change the complainant of record. Section 142(1)(a) supplies the eligibility rule and the Explanation to section 141 supplies the definition of company. The two-party structure is the holding rather than a design preference.",
+      "cases": [
+        "trl-krosaki-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-012",
@@ -1544,6 +1659,10 @@
       "test": "Selecting filed through representative makes the knowledge averment a required field, and the averment appears verbatim in the generated complaint.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "A.C. Narayanan, a three-judge bench, holds that the attorney holder's personal knowledge of the transaction must be asserted explicitly in the complaint, and that an attorney holder without such knowledge cannot be examined as a witness. The requirement of an explicit averment is part of the answer the Court gave to the referred questions, so it is a rule rather than guidance.",
+      "cases": [
+        "ac-narayanan-2014"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-011",
@@ -1570,6 +1689,10 @@
       "test": "The representative record links to an uploaded authority document with a sub-delegation permitted yes/no; a representative appointed by sub-delegation cannot be recorded where the answer is no.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "A.C. Narayanan holds that a power of attorney holder may delegate further only where the deed expressly permits it, and that sub-delegation without that permission is invalid in law. Whether the instrument permits sub-delegation is therefore a legal condition of the signatory's competence, which is why the deed and that clause have to be on the record rather than merely asserted.",
+      "cases": [
+        "ac-narayanan-2014"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-012"
@@ -1595,6 +1718,10 @@
       "test": "A complaint carrying the averment but no supporting resolution is accepted and numbered; the absence is recorded as an issue for trial, not as a scrutiny defect.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "TRL Krosaki holds that an averment of authorisation with prima facie material suffices at the cognizance stage, that dismissal at the threshold on that ground is not justified, and that a genuine dispute about it is an issue for trial. The negative direction is express, so a scrutiny rule demanding documentary proof at the counter does the very thing the judgment says must not be done.",
+      "cases": [
+        "trl-krosaki-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-011",
@@ -1625,6 +1752,11 @@
       "test": "Adding an accused whose liability is stated to arise under section 141 is blocked unless the company or firm is already on the array of accused; removing the entity flags every dependent accused.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Aneeta Hada, a three-judge bench, holds that the company must be arraigned as an accused for vicarious liability under section 141 to arise, and Dilip Hariramani applies the same rule to a firm and set aside a partner's conviction where the firm had not been prosecuted. Both are good law and the proposition is the ratio in each, so the arraignment condition is not read in from the section alone.",
+      "cases": [
+        "aneeta-hada-2012",
+        "dilip-hariramani-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-016",
@@ -1659,6 +1791,12 @@
       "test": "The role averment is a per-accused field; two accused cannot be saved with byte-identical averment text, and the field is not pre-filled with the statutory wording.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "S.M.S. Pharmaceuticals, a three-judge bench, holds the averment of charge and responsibility to be an essential requirement of section 141, Siby Thomas holds that a bare reproduction of the statutory words will not do, and S.P. Mani applies the same standard to a partner. The per-accused character of the averment follows from what those cases say a complaint must contain, so it is not inferred from the section alone.",
+      "cases": [
+        "sms-pharma-2005",
+        "siby-thomas-2023",
+        "sp-mani-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-015",
@@ -1690,6 +1828,11 @@
       "test": "Each section 141 accused carries a liability-basis value; the role averment is required only where the basis is averred charge and responsibility.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "S.M.S. Pharmaceuticals answered the referred questions by distinguishing the signatory, reached by section 141(2) for the incriminating act, from a managing or joint managing director, who is in charge by virtue of the office, from every other director, who must be brought in by averment. National Small Industries Corporation restates the same three-way distinction. The categories are in the judgments; the requirement only makes them a stored value.",
+      "cases": [
+        "sms-pharma-2005",
+        "nsic-harmeet-2010"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-016"
@@ -1719,6 +1862,11 @@
       "test": "Marking an accused as non-executive or independent makes a supporting-material field mandatory; the field is reproduced in the complaint against that accused.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sunita Palita holds that a non-executive or independent director cannot be roped in without specific averments and material showing a part in the conduct of the business, and Gunmala Sales sets out when a High Court will quash on that footing. The additional-material requirement for this class of director is the holding, not a gloss on section 141 generally.",
+      "cases": [
+        "sunita-palita-2022",
+        "gunmala-sales-2015"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-016"
@@ -1744,6 +1892,7 @@
       "test": "Enter a collecting branch in one district and a complainant address in another: the system proposes the court for the collecting branch and states the basis.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142(2)(a) fixes jurisdiction, where the cheque is delivered for collection through an account, at the branch where the payee or holder in due course maintains that account. The connecting factor is named in the clause and no other is offered, so routing by any party's address departs from the sub-section rather than merely from convention.",
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-002",
@@ -1770,6 +1919,7 @@
       "test": "Mark a cheque as presented at the counter: the jurisdiction proposal switches to the drawee branch and cites clause (b).",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142(2)(b) is the second limb and applies where the cheque is presented for payment otherwise than through an account, fixing jurisdiction at the branch of the drawee bank where the drawer maintains the account. The two clauses are alternatives on the face of the sub-section, so a build that knows only clause (a) has no rule at all for counter presentation.",
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-001"
@@ -1795,6 +1945,7 @@
       "test": "Enter a deposit branch different from the account branch: the jurisdiction proposal follows the account branch.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The Explanation to section 142(2) states the deeming rule in terms: where a cheque is delivered for collection at any branch of the payee's bank, it is deemed delivered to the branch at which the payee maintains the account. The Explanation exists precisely to stop the deposit counter fixing the forum, so applying it is following the text rather than reading anything into it.",
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-001"
@@ -1824,6 +1975,7 @@
       "test": "Attempt to allot a section 138 case to a second class magistrate: the allocation is refused and the reason names section 142(1)(c).",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142(1)(c) says no court inferior to a Metropolitan Magistrate or a Judicial Magistrate of the first class shall try an offence punishable under section 138, and section 143(1) names the same courts in the summary trial power. The bar is on trial, so an allotment below that level is not merely irregular.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1855,6 +2007,7 @@
       "test": "Open the cognizance screen on a section 138 case: only the complaint route is offered, and the police report and information routes are absent rather than merely disabled.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 210(1) of the Sanhita and section 190(1) of the Code offer three routes to cognizance, and section 142(1)(a) closes two of them for section 138 by permitting cognizance only upon a complaint by the payee or holder in due course, behind a non obstante clause against the Code. The exclusion is express, which is why the other routes should be absent rather than merely disabled.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1886,6 +2039,7 @@
       "test": "The case record shows a presentation date and a cognizance date as separate fields, and the limitation computation reads the cognizance date.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 142(1)(b) bars the court from taking cognizance of a complaint made more than a month after the cause of action arose, and sections 210 of the Sanhita and 190 of the Code describe cognizance as the court's own act. Neither says the date of cognizance must be stored as a field distinct from the date of presentation. The requirement infers that from the fact that the bar operates on cognizance, so a record keyed only to presentation cannot show whether the bar was crossed or when the court applied its mind.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-007",
@@ -1924,6 +2078,7 @@
       "test": "The cognizance step cannot be completed unless either the complainant's section 145 affidavit or a signed record of oral examination is on the file; it does not require both, and it does not generate an oral examination task by default.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 223(1) of the Sanhita and section 200 of the Code require the magistrate to examine the complainant on oath and reduce the substance to writing, and section 145(1) of the NI Act permits the complainant's evidence to be given on affidavit and read in any enquiry. Neither text says that in a section 138 case the affidavit stands in place of the oral examination; that reading comes from putting section 145(1) together with the direction in Indian Bank Association that the affidavit and documents are what the magistrate scrutinises. Because the substitution is constructed rather than stated, the status is inferred even though each component provision is clear.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-010",
@@ -1956,6 +2111,7 @@
       "test": "File a second complaint by the same payee against the same drawer with a different collecting branch: the system proposes the court where the first complaint is pending and states section 142A(2) as the basis.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142A(2) says that where the payee has filed a complaint against the drawer in a court having jurisdiction under section 142(2) and it is pending, all subsequent section 138 complaints against the same drawer shall be filed before that same court, irrespective of where the later cheques were delivered or presented. The displacement of the ordinary rule is stated, including the irrespective clause.",
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-001",
@@ -1981,7 +2137,8 @@
       "how": null,
       "test": "Presenting a complaint where two others between the same parties are pending in different courts shows both, with their court, number and filing date, on the filing screen.",
       "derivedFrom": "act",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Section 142A(3) directs a court to transfer a case to the court first seised upon the fact of multiple pending prosecutions being brought to its notice. The duty is conditioned on notice and is addressed to the court; the sub-section says nothing about who must look for the other cases, and imposes no search obligation on the registry or on any system. Requiring the system to surface them is the step that makes the duty operable, and a reader may fairly say the statute leaves the discovery to the parties, which is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-009"
@@ -2007,6 +2164,10 @@
       "test": "The complaint holds both bank branches as distinct fields, and the jurisdiction check is computed from the payee's collecting branch.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Bridgestone upholds the 2015 amendment and states that jurisdiction lies where the payee's or holder's bank branch is situated rather than where the drawee bank is. The fact that anchors jurisdiction is therefore identified in the judgment as well as in section 142(2), and the case is good law.",
+      "cases": [
+        "bridgestone-2016"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-012",
@@ -2037,6 +2198,11 @@
       "test": "A pending complaint can be transferred to another court with the record, history and cause-of-action dates preserved and the transfer order on file; the receiving court does not restart the case.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Section 142A(1) gives section 142(2) effect as if it had been in force at all material times, and Bridgestone applied it to a complaint instituted long before the amendment, treating the seat of a pending case as movable. Dashrath Rupsingh, which had fixed jurisdiction at the drawee bank, is recorded in this corpus as legislatively superseded and is cited here only as the position that has been displaced, never as support for the requirement.",
+      "cases": [
+        "bridgestone-2016",
+        "dashrath-rupsingh-2014"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-JUR-011"
@@ -2066,6 +2232,11 @@
       "test": "Given a drawer and a transaction reference, the registry returns all linked complaints across courts, with the first-instituted one marked, and offers a consolidation action.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Damodar S. Prabhu directs that where several cheques from a single transaction have generated complaints in different jurisdictions the complaints be tried together before the court first seised, and the Constitution Bench in the expeditious-trial reference dealt with a single inquiry for multiple complaints against the same accused. Both are directions to courts, and both presuppose that the related complaints can be identified, which is the capability this requirement names.",
+      "cases": [
+        "damodar-prabhu-2010",
+        "expeditious-trial-2021"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-008"
@@ -2091,6 +2262,7 @@
       "test": "Enter a cheque dated more than six months before the presentment date: the build refuses to create a section 138 cause of action and states the reason. Enter a cheque marked valid for three months and presented on day 100: the build refuses on the validity period, not on the six-month rule.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (a) to section 138 states the condition in terms: the cheque must have been presented to the bank within six months of the date it bears or within the period of its validity, whichever is earlier. Because it is a proviso to the deeming of an offence, presentment outside the window means there is no offence at all rather than a weak case.",
       "tightens": null,
       "relatedTo": []
     },
@@ -2114,6 +2286,7 @@
       "test": "The dishonour record carries a memo date and a payee-informed date as separate populated fields; the thirty-day notice deadline is computed from the payee-informed date.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (b) runs the thirty days from the receipt by the payee of information from the bank regarding the return of the cheque as unpaid, not from the date the bank wrote its memo. The section names that event, so a record holding only the memo date measures the period from a point the proviso does not use.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-003"
@@ -2139,6 +2312,7 @@
       "test": "Set the payee-informed date and a notice date thirty-one days later: the build refuses to record the document as the statutory notice and names the proviso.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (b) makes a notice given within thirty days of the payee's receipt of the bank's information a condition of the offence. A demand made outside that window is therefore not the statutory notice at all, which is why the requirement refuses the document that character rather than merely warning about it.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-002"
@@ -2168,6 +2342,7 @@
       "test": "Two distinct date fields exist on the notice record and are separately populated; the cause-of-action date is computed from the receipt date, never from the dispatch date.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (c) runs the fifteen days from the receipt of the said notice by the drawer, and section 142(1)(b) then measures the complaint period from the cause of action clause (c) generates. Receipt is the named event; despatch is not mentioned anywhere in the proviso.",
       "tightens": null,
       "relatedTo": []
     },
@@ -2195,6 +2370,7 @@
       "test": "With a notice receipt date of 1 March, the filing screen rejects presentation on any date up to and including 16 March and permits it from 17 March.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (c) makes the drawer's failure to pay within fifteen days of receiving the notice part of what constitutes the offence, so before that period has run there is no offence for a complaint to allege, and section 142(1)(b) confirms the sequence by dating the complaint period from the cause of action under clause (c). The prematurity rule is therefore a consequence of the structure of the section rather than a judicial addition, although Yogendra Pratap Singh is what settles its effect and is carried separately at REQ-LIM-012.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-006"
@@ -2224,6 +2400,7 @@
       "test": "The cause-of-action date is not directly editable; changing the notice receipt date changes it; it is always exactly sixteen days after the receipt date.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142(1)(b) refers to the date on which the cause of action arises under clause (c) of the proviso, and clause (c) fixes that by the expiry of fifteen days from receipt of the notice. The statute names both the event and the provision that generates it, so the date is derived rather than a matter of judgment, which is why it should not be hand-entered.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-005",
@@ -2254,6 +2431,7 @@
       "test": "For a cause-of-action date of 17 March, the system treats 17 April as the last day for a complaint without condonation, and flags 18 April as out of time.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142(1)(b) requires the complaint to be made within one month of the date on which the cause of action arises under clause (c) of the proviso to section 138. Both the length of the period and its starting point are stated in the clause, and every error the requirement guards against uses a start date the clause does not name.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-006",
@@ -2280,6 +2458,7 @@
       "test": "A complaint presented one day beyond the month cannot reach the cognizance step until a condonation application is attached and an order allowing or refusing it is recorded.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The proviso to section 142(1)(b) permits cognizance after the period only if the complainant satisfies the court that he had sufficient cause for not making the complaint in time. The condition is a satisfaction of the court, so there must be something for the court to be satisfied by and an order recording the outcome; that is the structure of the proviso, not a records policy imposed on it.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-007"
@@ -2309,6 +2488,7 @@
       "test": "Inspect the limitation rule the engine applies to offence type section 138: it resolves to one month from the cause of action, not to the general period for an offence punishable with imprisonment up to two years.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 142 opens with a non obstante clause against the Code, and section 142(1)(b) then fixes one month. Section 514 of the Sanhita would otherwise give an offence punishable with up to two years a much longer period. The displacement is express, so applying the general table applies a provision the NI Act has excluded.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-007"
@@ -2342,6 +2522,7 @@
       "test": "Record two presentations of the same cheque with different return dates: both survive on the record with their own dates and outcomes.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "The proviso to section 138 speaks of the cheque being presented, of the return, and of a notice, each in the singular, and says nothing about repeated presentation or about how presentations should be stored. The requirement reasons that because each return can generate its own notice and its own cause of action, the presentations must survive as separate dated events rather than one overwritable field. That is a reading of the singular language; MSR Leathers supplies the legal foundation and is carried at REQ-NOT-012.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-011"
@@ -2375,6 +2556,7 @@
       "test": "Record two returns, issue the notice on the second: the cause-of-action date is computed from the notice tied to the second return, not from the first return.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Provisos (b) and (c) tie the notice to the return of which the payee was informed, and section 142(1)(b) dates the complaint period from the cause of action that notice generates. The sections do not say which return the cause of action attaches to where a cheque has been returned more than once. That pairing is our reading of the singular language, and it is the reason the status is not firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-010",
@@ -2405,6 +2587,10 @@
       "test": "With a recorded notice receipt date, the cognizance action is unavailable until the sixteenth day, and the screen states the earliest permissible date.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Yogendra Pratap Singh, a three-judge bench, holds that a complaint filed before the fifteen-day period expires is not maintainable and that cognizance cannot be taken on it. The defect goes to the court's power rather than to procedure, so it operates as a bar, and the case is good law.",
+      "cases": [
+        "yogendra-pratap-2014"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-013",
@@ -2435,6 +2621,11 @@
       "test": "The premature-filing disposal path offers only file fresh complaint, links the new number to the old, and no re-present action exists on the closed record.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Yogendra Pratap Singh holds that the very same complaint cannot be presented again at any later stage and that the payee's only course is a fresh complaint, and Gajanand Burange applies that where a premature complaint had already been entertained. Both state the consequence for the original complaint, which is what makes the prohibition on re-presentation firm rather than a registry convention.",
+      "cases": [
+        "yogendra-pratap-2014",
+        "gajanand-burange-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-012",
@@ -2465,6 +2656,11 @@
       "test": "A fresh complaint linked to a premature-filing dismissal within one month of that order is accepted without a separate condonation application; every other late filing requires a recorded condonation order with reasons.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Yogendra Pratap Singh directs that where a complaint fails for prematurity, a fresh complaint filed within one month of that decision be treated as one in which the delay stands condoned, and Gajanand Burange applies the section 142(1)(b) proviso to the same situation. The relief and its one-month window are both stated in the judgment, so this is not a reading of the condonation power at large.",
+      "cases": [
+        "yogendra-pratap-2014",
+        "gajanand-burange-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-013"
@@ -2494,6 +2690,10 @@
       "test": "Part payments between drawing and presentment can be entered with dates and an endorsed yes/no; where an unendorsed part payment is recorded, the case view shows the enforceable sum at maturity as different from the cheque amount.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Dashrathbhai holds that the cheque must represent a legally enforceable debt at maturity, that a part payment made after issuance must be endorsed on the instrument under section 56, and that dishonour of the unendorsed cheque does not attract section 138. The endorsement point is the ratio and the case is good law. What the requirement stores is exactly the two facts the holding turns on.",
+      "cases": [
+        "dashrathbhai-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-015"
@@ -2519,6 +2719,7 @@
       "test": "The notice record cannot be saved without an attached document; opening the case shows the notice text or image, not only its date.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (b) requires the demand to be made by giving a notice in writing. Whether a particular document answers that description is decided on its contents, so the writing itself is the operative object of the proviso; a flag recording that a notice was sent records nothing the proviso is concerned with.",
       "tightens": null,
       "relatedTo": []
     },
@@ -2554,6 +2755,7 @@
       "test": "Enter a notice issued by a party other than the complainant: the build raises a blocking flag naming the mismatch before the complaint can be numbered.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (b) confines the demand to the payee or the holder in due course, section 142(1)(a) confines the complaint to the same two capacities, and sections 8 and 9 define them. Reading the two provisions together, the person who demands and the person who complains must answer the same description, so a mismatch is a defect visible on the papers rather than a matter for evidence.",
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-002"
@@ -2579,6 +2781,7 @@
       "test": "Enter a cheque of 100000 and a notice demanding 118000: the notice record holds both numbers independently.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Proviso (b) requires a demand for the said amount of money, which the operative part of the section identifies as the amount of the dishonoured cheque. The proviso does not say that a notice demanding more is bad, and it says nothing about how the demand should be stored. Keeping the demanded amount as its own field is our reading of the said amount, made so that the question can be seen at all; whether an excess matters is handled separately at REQ-NOT-004 and is contested.",
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-004"
@@ -2608,6 +2811,10 @@
       "test": "Enter a notice demanding more than the cheque amount: the case shows a non-blocking flag naming the excess and the proviso, the filing is not refused, and the difference is displayed on the case view rather than silently overwritten.",
       "derivedFrom": "act",
       "status": "contested",
+      "statusReason": "The competing readings both start from the words the said amount of money in proviso (b). One treats a notice that rolls interest, legal charges or damages into a single undivided demand as failing to make the statutory demand at all; the other treats the excess as surplusage so long as the cheque amount is demanded and identifiable. Dashrathbhai canvasses the High Court decisions on both sides and expressly declines to decide the point, so the Supreme Court has left it open. The requirement therefore flags the excess and keeps both figures, rather than blocking the filing or silently equating them, either of which would decide the open question by implementation.",
+      "cases": [
+        "dashrathbhai-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-003",
@@ -2638,6 +2845,7 @@
       "test": "The despatch record captures the address used, the mode as registered post, and the pre-payment or receipt reference; a despatch recorded as ordinary post does not raise the deemed-service presumption in the case view.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 27 of the General Clauses Act attaches deemed service to a letter properly addressed, pre-paid and posted by registered post. All three conditions are named in the section, so the presumption is available only where the record can show them; a bare fact of posting is not what the section operates on.",
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-011"
@@ -2667,6 +2875,7 @@
       "test": "Record the outcome as refused: a cause-of-action date is computed from deemed receipt, and fields exist for the drawer's rebuttal and the court's finding on it.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 27 deems service effected at the time the letter would be delivered in the ordinary course of post, unless the contrary is proved, so the rebuttability is express. What the section does not do is say how the postal endorsements refused, unclaimed and returned undelivered map onto that deeming. That mapping is the reading taken here, and it is what turns a returned envelope into a served notice rather than a failed one; C.C. Alavi Haji supports the mapping and is carried at REQ-NOT-011.",
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-011"
@@ -2692,6 +2901,7 @@
       "test": "A payment inside the notice period can be recorded with a date and an amount, and appears on the case record against the notice.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (c) makes the offence turn on the drawer's failure to pay the said amount of money within fifteen days of receiving the notice, so what was paid and when is the very fact the clause operates on. The section does not need to direct that payments be recorded; it makes the payment decisive, which for this purpose is the same thing.",
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-009"
@@ -2717,6 +2927,7 @@
       "test": "Record a payment of half the cheque amount on day ten: the cause of action still arises on day sixteen and the recorded balance is the cheque amount less the payment.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Proviso (c) speaks of payment of the said amount of money, being the amount of the cheque, so anything less does not answer the condition and the offence is complete on the expiry of the fifteen days. The requirement is a direct reading of said amount, which the operative part of section 138 defines as the amount of the dishonoured cheque.",
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-008"
@@ -2746,6 +2957,11 @@
       "test": "The notice record can be completed and the complaint filed where despatch particulars are present and proof of delivery is absent; the four fields are separately queryable.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "C.C. Alavi Haji, a three-judge bench, holds that a notice correctly addressed and sent by registered post is deemed served under section 27 of the General Clauses Act, so the facts that matter are the address used and the mode of despatch rather than proof of delivery. K. Bhaskaran identifies the giving of notice as one of the five component acts of the cause of action. Separating despatch from delivery is what the deemed-service rule requires, which is why this is firm.",
+      "cases": [
+        "cc-alavi-haji-2007",
+        "k-bhaskaran-1999"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-011",
@@ -2776,6 +2992,10 @@
       "test": "The outcome field offers delivered, refused, uncollected and returned undelivered as distinct values; no binary served or not served control appears, and a complaint carrying any of the last three passes the cause-of-action check.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "C.C. Alavi Haji holds that the presumption of service arises on correct addressing and registered post, drawing on section 114 of the Evidence Act, and that it is then for the drawer to rebut it. A binary served or not served field cannot express that, because refusal and non-collection are outcomes on which the notice is nonetheless treated as served. The case is good law and is a three-judge bench.",
+      "cases": [
+        "cc-alavi-haji-2007"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-005",
@@ -2809,6 +3029,10 @@
       "test": "A complaint founded on the second or a later dishonour of the same cheque passes the cause-of-action check; no rule refuses it on the ground that an earlier dishonour of that cheque was already recorded or already noticed.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "MSR Leathers, a three-judge bench, overruled Sadanandan Bhadran and holds that a payee may present the cheque again and issue a fresh notice, and that a prosecution may be founded on any subsequent dishonour. The overruled case is recorded as such in this corpus, so the position the requirement encodes is the one that survives.",
+      "cases": [
+        "msr-leathers-2013"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-010",
@@ -2836,6 +3060,7 @@
       "test": "With the memo on record, the evidence checklist shows dishonour as presumed and no step is blocked for want of proof of it.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 146 says the court shall presume the fact of dishonour on production of the bank's slip or memo bearing the official mark, unless and until that fact is disproved. The presumption is mandatory in form, so listing proof of dishonour as an outstanding item once the memo is on record adds a step the section removes.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-003",
@@ -2866,6 +3091,7 @@
       "test": "The issue of debt or liability appears against the accused as a rebuttal, not against the complainant as a matter to be proved in the first instance.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 139 says it shall be presumed, unless the contrary is proved, that the holder received the cheque for the discharge of a debt or other liability, and the Explanation to section 138 defines that as a legally enforceable debt. The direction to presume is unqualified, so the party who must displace it is the accused. Rangappa's extension of the presumption to the enforceability of the debt is settled and is carried at REQ-PRE-010.",
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-003",
@@ -2892,6 +3118,7 @@
       "test": "Consideration appears in the issues list as presumed, separately from the section 139 presumption, and each can be recorded as rebutted independently.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 118(a) presumes that every negotiable instrument was made or drawn for consideration, until the contrary is proved. It is a separate presumption from section 139 and operates on a different fact, so it survives in a case where the debt is admitted and only consideration is disputed, which is exactly where modelling section 139 alone would lose it.",
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-002"
@@ -2917,6 +3144,7 @@
       "test": "The defence grounds list on a section 138 case does not contain absence of reason to believe the cheque would be dishonoured, and free-text pleading of it produces a notice citing section 140.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 140 says in terms that it shall not be a defence in a prosecution under section 138 that the drawer had no reason to believe the cheque might be dishonoured on presentment. The plea is excluded by the section itself, so carrying it in a defence-grounds list offers a ground Parliament has closed.",
       "tightens": null,
       "relatedTo": []
     },
@@ -2944,6 +3172,7 @@
       "test": "The cheque record holds an instrument date and, where known, a delivery date; the presentment window is computed from the instrument date.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 118(b) presumes that an instrument bearing a date was made or drawn on that date, and proviso (a) to section 138 measures the presentment window from the date the cheque bears. The date on the instrument is therefore the operative one; holding it apart from the date of delivery is what makes the presumption and the window computable for a post-dated cheque.",
       "tightens": null,
       "relatedTo": [
         "REQ-LIM-001"
@@ -2973,6 +3202,7 @@
       "test": "Recording an allegation that the cheque was obtained by fraud or by an offence moves the holder-in-due-course issue from presumed to be proved by the complainant.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 118(g) presumes the holder to be a holder in due course, and its proviso removes the presumption and puts the burden on the holder where the instrument was obtained by an offence or fraud or for unlawful consideration. Both the presumption and the single circumstance that reverses it are stated in the clause, and section 9 supplies the definition of the status.",
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-002"
@@ -3006,6 +3236,7 @@
       "test": "The disposal step lists every presumption in play and cannot be completed until each carries a finding of rebutted or not rebutted.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Sections 139, 118 and 146 each make their presumption operate unless the contrary is proved or until the fact is disproved, so rebuttability is built into each of them. None of them directs that a finding on rebuttal be recorded, or that a case not be disposed of without one. Requiring the finding is our reading, taken so that an appellate court can see whether the rebuttal evidence was weighed at all.",
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-001",
@@ -3041,6 +3272,7 @@
       "test": "The issues list on a section 138 case shows the five ingredients against the complainant and the presumed matters against the accused, and the disposal step requires a finding on each ingredient.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 104 of the Adhiniyam and section 101 of the Evidence Act state the general rule that whoever asserts a fact on which a right or liability depends must prove it, and section 138 sets out the ingredients of the offence. No provision lists which facts remain with the complainant once the presumptions are applied. Subtracting the presumed matters from the ingredients to produce that list is our reading, which is why this is inferred even though every component provision is express.",
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-002",
@@ -3071,6 +3303,10 @@
       "test": "The plea record carries a signature-admission field separate from the plea to the charge, and the case view shows whether the presumption stands triggered.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Rajesh Jain sets out the burden-shifting sequence under sections 118 and 139 and treats the admitted signature as what brings the presumption into play; it reversed concurrent acquittals reached after the signature had been admitted. The trigger is identified in the judgment, so recording it as its own fact follows from the holding rather than from a view about how pleas should be stored.",
+      "cases": [
+        "rajesh-jain-2023"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-010",
@@ -3114,6 +3350,14 @@
       "test": "After a recorded signature admission, the next actionable step offered to the court is the accused's rebuttal, and any step asking the complainant to prove the debt is available only after a recorded finding that the presumption stands rebutted.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Rangappa, a three-judge bench, holds that the section 139 presumption extends to the existence of a legally enforceable debt and places a reverse onus on the accused; Kumar Exports, Kalamani Tex and Oriental Bank state the rebuttal standard; and Rajesh Jain holds that framing the issue as one for the complainant to prove first is itself an error of law. The order of the evidentiary burden is the ratio in these cases rather than a description of usual practice.",
+      "cases": [
+        "rajesh-jain-2023",
+        "rangappa-2010",
+        "kumar-exports-2009",
+        "kalamani-tex-2021",
+        "oriental-bank-2022"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-009"
@@ -3143,6 +3387,10 @@
       "test": "Recording that the cheque was blank when signed produces no blocking error and no adverse eligibility flag; it is stored only as a defence pleaded, for the court to evaluate.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Bir Singh holds that a signed but blank or incomplete cheque voluntarily handed over attracts the section 139 presumption even if it was filled in by another person, read with the inchoate-instrument rule in section 20. The proposition is stated as a rule, so a validation that treats such a cheque as outside section 138 contradicts the judgment rather than merely being cautious.",
+      "cases": [
+        "bir-singh-2019"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-009"
@@ -3172,6 +3420,10 @@
       "test": "The notice record carries a reply field with a tri-state value (replied with date, no reply, not known) and it appears in the complaint synopsis.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari prescribes a complaint synopsis whose statutory-notice head includes the reply if any, and treats the absence of a reply as material to the defence later raised at trial. The reply is therefore a particular the court is directed to have before it, which is what makes the field firm rather than merely useful.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-009",
@@ -3202,6 +3454,11 @@
       "test": "The case record can answer, without reading the depositions, whether financial capacity was disputed in the reply notice, in cross-examination, or only in argument.",
       "derivedFrom": "caselaw",
       "status": "contested",
+      "statusReason": "Basalingappa holds that once the complainant's financial capacity is questioned on the evidence it becomes incumbent on him to explain the source of the funds, and it restored an acquittal on that footing. The line represented by Tedhi Singh, approved in Sanjabij Tari, holds that unless want of capacity was set up in the reply to the statutory notice the complainant need not lead capacity evidence at the outset. The two divide on the stage at which the point was taken, so the requirement captures the source of funds and that stage rather than choosing a rule. Tedhi Singh is not yet in this corpus, so only the two judgments that are appear in the links.",
+      "cases": [
+        "basalingappa-2019",
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-012"
@@ -3231,6 +3488,10 @@
       "test": "A complaint recording a cash loan above the threshold passes scrutiny with no error and no warning about enforceability.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari expressly sets aside the view that a cash transaction above the Income Tax Act threshold is not a legally enforceable debt, holding that a breach of section 269SS attracts a penalty and does not render the transaction void. The requirement is a prohibition on screening such complaints out, and the judgment overturns the very proposition that would justify screening, so the footing is firm.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-015"
@@ -3260,6 +3521,11 @@
       "test": "Recording the cheque purpose as security or as a future instalment produces no scrutiny defect and no eligibility warning; the purpose is stored for the court to evaluate against the position at maturity.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sampelly holds that a cheque issued towards a future instalment or as security can still answer a subsisting debt or liability, and Sunil Todi reads debt or other liability broadly enough to cover a liability that crystallises after the cheque is handed over. Both are good law. The requirement is negative, being a bar on rejecting such complaints at scrutiny, which is exactly what those holdings establish.",
+      "cases": [
+        "sampelly-2016",
+        "sunil-todi-2021"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-PRE-014",
@@ -3290,6 +3556,7 @@
       "test": "Create a case with an offence in 2023 and cognizance in 2025: the governing code is the Sanhita. Create a case pending trial in June 2024: the governing code remains the Code, and it does not change when the case is next listed.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 531(2)(a) of the Sanhita says that a trial, inquiry, appeal or application pending immediately before the commencement is to be disposed of under the Code as it stood, as if the Sanhita had not come into force, and section 531(1) is the repeal it saves against. The connecting fact is pendency at commencement, stated in the clause, so keying the governing code to the offence date uses a criterion the savings provision does not.",
       "tightens": null,
       "relatedTo": [
         "REQ-REC-002"
@@ -3330,7 +3597,8 @@
       "how": null,
       "test": "Generate the same order type on a Code-governed case and a Sanhita-governed case: the citations differ and each matches its governing code.",
       "derivedFrom": "act",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Section 531(2)(a) settles which code governs a given case; it says nothing about how orders should be drawn or cited, and neither do the paired sections on issue of process and compensation. The requirement moves from the governing code to the citation on the face of the order, on the reasoning that an order cannot be made under a provision that does not apply to the case. That step is short but it is ours and the Sanhita nowhere addresses the form of citation, so this is not firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-REC-001"
@@ -3360,6 +3628,7 @@
       "test": "A disposed summary case produces a register entry containing all ten particulars, each populated from the case record rather than typed afresh.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 286 of the Sanhita and section 263 of the Code list the particulars a magistrate shall enter in every case tried summarily, and the list is closed and itemised. The requirement reproduces that list, so it stands or falls with the sections themselves.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-007",
@@ -3390,6 +3659,7 @@
       "test": "The judgment template for a contested summary case contains a substance-of-evidence section and a reasons section, and neither can be left empty.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 287 of the Sanhita and section 264 of the Code require, in every summarily tried case in which the accused does not plead guilty, that the magistrate record the substance of the evidence and a judgment containing a brief statement of the reasons for the finding. Both elements are named, so a template that omits either produces a document the sections do not permit.",
       "tightens": null,
       "relatedTo": [
         "REQ-REC-003"
@@ -3415,6 +3685,10 @@
       "test": "The dashboard renders all five measures from case data with no manual entry, and each figure drills through to the underlying case list.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari specifies the measures the district dashboard is to carry and directs monthly review by the District and Sessions Judge. The fields are enumerated in the direction rather than left as an implementation choice, which is why this is firm; the case is good law and is the most recent direction on section 138 case management.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-012"
@@ -3440,6 +3714,7 @@
       "test": "Enter a fine of more than twice the cheque amount: the sentence step refuses and states the cap and the cheque amount.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 138 sets the punishment as imprisonment which may extend to two years, or fine which may extend to twice the amount of the cheque, or both. The fine ceiling is stated as a multiple of the cheque amount, so a fine above it is beyond the court's power rather than merely severe.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-003"
@@ -3477,6 +3752,7 @@
       "test": "On a case marked summary, the sentence step accepts up to one year and refuses more; it does not refuse at three months.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The first proviso to section 143(1) makes it lawful, on a conviction in a summary trial under that section, to pass imprisonment for a term not exceeding one year and a fine above five thousand rupees, displacing the three-month ceiling in section 285(2) of the Sanhita and section 262(2) of the Code. Both the displaced ceiling and the substituted one are express, and the outer limit remains the two years in section 138.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-001"
@@ -3510,6 +3786,7 @@
       "test": "The sentence record carries fine and compensation as separate populated amounts, and neither is derived from the other.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 395(1)(b) of the Sanhita, and section 357(1)(b) of the Code, allow compensation to be paid out of a fine that is recovered, while section 395(3) creates a free-standing compensation power where fine forms no part of the sentence. They are two different powers in two different sub-sections, so merging them into one amount loses a distinction the statute itself draws.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-001",
@@ -3548,6 +3825,7 @@
       "test": "Every compensation order carries an enumerated source value, and a free-standing order cannot be created on a sentence that also imposes a fine intended to fund it.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The same two sub-sections carry different consequences: compensation out of the fine depends on recovery and is subject to the appeal hold in sub-section (2), while a free-standing order under sub-section (3) is not tied to any recovery. Because the source determines what may be collected and when, it is a legal characteristic of the order rather than a bookkeeping label.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-003",
@@ -3578,6 +3856,7 @@
       "test": "With interim compensation of 20000 paid, entering a fine of 100000 produces a net payable of 80000 on the sentence record, with the set-off shown.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 143A(6) says the fine imposed under section 138, or the compensation awarded under section 357 of the Code, shall be reduced by the amount paid or recovered as interim compensation. The set-off is directed in terms and is not discretionary, so a sentence entered without it states a figure the sub-section says is not payable.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-011",
@@ -3608,6 +3887,7 @@
       "test": "Disbursement of a fine-sourced compensation is unavailable until the appeal period has run with no appeal filed, or until a decided appeal is recorded.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 395(2) of the Sanhita and section 357(2) of the Code both say that where the fine is imposed in a case subject to appeal, no such payment shall be made before the period for presenting the appeal has elapsed or, if an appeal is presented, before it is decided. The prohibition is on making the payment, so releasing money earlier is not a matter of prudence.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-003",
@@ -3634,6 +3914,7 @@
       "test": "The probation release order step shows whether a probation officer's report exists and, where one does, requires it to be on the record before the order can be made.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 4(2) of the Probation of Offenders Act says the court shall take into consideration the report, if any, of the probation officer before making an order under sub-section (1). The obligation to consider is express, and it cannot operate unless the report is before the court, which is all the requirement secures.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-019",
@@ -3660,6 +3941,7 @@
       "test": "The probation or admonition release step offers compensation and costs fields in the same order, not as a separate later application.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 5(1) of the Probation of Offenders Act allows the court directing release under section 3 or section 4 to make, at the same time, a further order for compensation for the loss or injury caused and for the costs of the proceedings. The words at the same time are what make this a step inside the release order rather than a later application.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-008"
@@ -3685,6 +3967,7 @@
       "test": "The interim compensation action is unavailable until a plea of not guilty is recorded on a summary or summons case, and until charge is framed in any other case.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 143A(1) states the two stages at which the power arises: in a summary trial or a summons case, where the accused pleads not guilty, and in any other case, upon framing of charge. The power does not exist before then, so an order made at first appearance is made without jurisdiction rather than merely early.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-007",
@@ -3712,6 +3995,7 @@
       "test": "On a cheque of 500000, an interim compensation figure above 100000 is refused with the cap and the cheque amount shown.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 143A(2) says the interim compensation shall not exceed twenty per cent of the amount of the cheque. The cap is stated without qualification, and section 143A(5) makes the amount recoverable as if it were a fine, so an excessive order is enforced before anyone has a chance to test the figure.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-010",
@@ -3738,6 +4022,7 @@
       "test": "The due date is sixty days from the order; an extension can be recorded only through an order capturing the cause, and cannot exceed thirty days.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 143A(3) fixes sixty days from the date of the order and allows a further period not exceeding thirty days, and only on sufficient cause shown by the drawer and as directed by the court. The second period is expressly conditioned on a judicial act, which is why it cannot be folded into a single ninety-day clock.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-010",
@@ -3764,6 +4049,7 @@
       "test": "Recording an acquittal on a case with interim compensation paid produces a repayment order with the principal, the applicable bank rate, the financial year used and the due date.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 143A(4) directs the court, if the drawer is acquitted, to order repayment with interest at the Reserve Bank bank rate prevalent at the beginning of the relevant financial year, within sixty days extendable by up to thirty. The direction is mandatory and the rate and reference year are specified, so the acquittal disposal has to raise it rather than await an application.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-012",
@@ -3794,6 +4080,7 @@
       "test": "Every recovery entry names the order it enforces and its type as interim compensation, fine or compensation.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 143A(5) makes interim compensation recoverable as if it were a fine, and section 143A(6) requires what was paid or recovered as interim compensation to be set off against the fine or compensation finally awarded. Neither sub-section says anything about how recovery entries are to be kept. The requirement infers the link between a recovery and the order it enforces from the fact that the set-off cannot be computed without it, and that inference is ours.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-005"
@@ -3822,7 +4109,8 @@
       "how": null,
       "test": "A disposed case can produce a statement of every amount paid or recovered as compensation, with dates and the orders they were paid under.",
       "derivedFrom": "act",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Section 395(5) of the Sanhita and section 5(3) of the Probation of Offenders Act both direct a civil court trying a later suit on the same matter to take into account any sum already paid or recovered as compensation. The duty they impose falls on the civil court, not on the criminal court or on its record. Requiring the criminal record to be able to produce that figure is the step taken here so that the civil court's duty is capable of being performed, and a reader may reasonably say the provisions do not go that far, which is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-003",
@@ -3861,6 +4149,11 @@
       "test": "The sentencing screen shows the computed figure with its components before the court fixes the amount; the components are visible in the judgment.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "R. Vijayan states the measure the requirement computes: the cheque amount with simple interest at nine per cent as the reasonable quantification of loss, ordinarily awarded as compensation unless there are special circumstances, subject to the statutory ceiling of twice the cheque amount. Kaushalya Devi supports the compensatory character of the offence that the direction rests on. The figure and the rate are in the judgment, which is why the status is firm even though the level is SHOULD.",
+      "cases": [
+        "r-vijayan-2012",
+        "kaushalya-devi-2011"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-018"
@@ -3890,6 +4183,11 @@
       "test": "An amount below the computed default cannot be saved without recorded special circumstances, and those circumstances print in the judgment.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "R. Vijayan permits departure from the measure only for special circumstances and rests the whole direction on uniformity between courts, and Suganthi Suresh Kumar holds that sentence and compensation should not be lightly reduced. A rule expressed as a norm with a stated exception carries the requirement to record the exception, so this does not depend on any view of good drafting.",
+      "cases": [
+        "r-vijayan-2012",
+        "suganthi-2002"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-017"
@@ -3923,6 +4221,10 @@
       "test": "The sentencing step cannot be completed without a recorded consideration of probation, whether granted or declined, and the reason appears in the judgment.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari holds that an accused convicted under section 138 is entitled to be considered for the benefit of the Probation of Offenders Act and sets aside the contrary High Court view, and sections 3 and 4 of that Act reach an offence punishable with not more than two years, which section 138 is. The requirement asks only that the consideration be recorded, which is the minimum the holding entails, and the case is good law.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-013",
@@ -3953,6 +4255,10 @@
       "test": "Where the cause-of-action date precedes 1 September 2018, the interim compensation action is unavailable and the screen states why.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "G.J. Raja holds section 143A to be prospective and confined to offences committed after 1 September 2018, reasoning that the provision creates a fresh disability enforceable before any finding of guilt and that article 20(1) forbids a penalty greater than that available under the law in force at the time of the offence. The date and the conclusion are both in the judgment, and it is good law.",
+      "cases": [
+        "gj-raja-2019"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-010",
@@ -3980,6 +4286,10 @@
       "test": "Relief sought is a structured value in the synopsis with interim compensation as a distinct yes/no head, queryable across the docket.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "The synopsis prescribed by Sanjabij Tari includes, under the head of relief sought, whether interim compensation under section 143A is sought. It is a prescribed head rather than an optional field, so making it a structured value on the complaint follows the direction rather than extending it.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-009",
@@ -4011,6 +4321,10 @@
       "test": "On a case where the relief is sought, recording a plea of not guilty raises an interim compensation decision task on the court's pending list, dated to that hearing.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari directs that where the trial court thinks it appropriate the interim deposit be ordered as early as possible, and section 143A(1) fixes the earliest point at which the power exists, namely the plea of not guilty. The judgment supplies the urgency and the statute supplies the stage, so the pairing is not constructed; the level is SHOULD because the order itself remains a matter for the court.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-010",
@@ -4045,6 +4359,10 @@
       "test": "Generate a summons: the produced packet contains the complaint copy, there is no path that produces a summons without it, and the service record notes that the complaint copy accompanied it.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 227(3) of the Sanhita and section 204(3) of the Code both say that in a proceeding instituted on a written complaint every summons or warrant shall be accompanied by a copy of the complaint. The obligation is absolute in the sub-section, with no exception for electronic issue. C.C. Alavi Haji explains why it matters here, because the drawer's chance to pay within fifteen days of the summons depends on his knowing from the complaint what is demanded.",
+      "cases": [
+        "cc-alavi-haji-2007"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-NOT-011",
@@ -4075,6 +4393,7 @@
       "test": "With no witness list on the file, the issue-summons action is unavailable and the reason names section 227(2).",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 227(2) of the Sanhita and section 204(2) of the Code both say that no summons or warrant shall be issued until a list of the prosecution witnesses has been filed. It is expressed as a prohibition on issuing process, so collecting the list afterwards does not cure the breach.",
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-004"
@@ -4100,6 +4419,7 @@
       "test": "The generated summons carries a visible seal and a signature or digital signature; a summons generated with an unconfigured seal or an absent signing credential is refused rather than produced unsealed.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 63 of the Sanhita sets out the two permitted forms: in writing, in duplicate, signed by the presiding officer or an officer the High Court directs by rule and bearing the seal of the court, or in an encrypted or other electronic form bearing the image of the seal or a digital signature. Both limbs are enumerated, so a summons lacking them is not in the statutory form at all.",
       "tightens": null,
       "relatedTo": []
     },
@@ -4123,6 +4443,7 @@
       "test": "The service mode list on a section 138 case includes speed post and approved courier; selecting courier requires a courier drawn from a list of services approved by the Court of Session.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 144(1) gives the section 138 court a mode of service the general law does not: speed post, or a courier service approved by a Court of Session, directed to the place where the person ordinarily resides, carries on business or personally works for gain. The modes and the places are both listed in the sub-section.",
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-005"
@@ -4148,6 +4469,7 @@
       "test": "A courier cannot be selected as a service mode unless it is on the approved list, and the service record shows the approving Court of Session.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 144(1) permits a courier only where the service is one approved by a Court of Session, so the approval is a condition of the mode rather than a procurement matter. Recording which court gave the approval is the record of that condition; the condition itself is express in the sub-section.",
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-004"
@@ -4173,6 +4495,7 @@
       "test": "With only a delivery status and no acknowledgment or refusal endorsement, the declare-duly-served action is unavailable; attaching either document enables it.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 144(2) allows the court to declare a summons duly served where an acknowledgment purporting to be signed by the accused or witness, or an endorsement of refusal purporting to be made by a person authorised by the postal department or the courier service, has been received. The sub-section names those two documents and no others, so a declaration made on a tracking status rests on nothing the provision recognises.",
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-004"
@@ -4198,6 +4521,7 @@
       "test": "Every process entry carries the address, email and telephone used for that attempt, and later attempts show their own values rather than overwriting the earlier ones.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The proviso to section 64(1) of the Sanhita requires the police station or the registrar in the court to maintain a register entering the address, email address, phone number and such further details as the State may prescribe. The register and its minimum contents are stated, so this is the statutory record rather than a design choice about contact data.",
       "tightens": null,
       "relatedTo": []
     },
@@ -4225,6 +4549,7 @@
       "test": "Recording personal service requires the signed duplicate to be attached; the serving officer's narrative alone does not complete the record.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 64(2) requires personal service by delivering or tendering one of the duplicates of the summons, and section 64(3) requires the person served, if so required by the serving officer, to sign a receipt on the back of the other duplicate. The signed duplicate is the proof the section constructs, so a record holding only the officer's narrative leaves that proof off the file.",
       "tightens": null,
       "relatedTo": []
     },
@@ -4252,6 +4577,7 @@
       "test": "Selecting electronic service requires a rule reference; in a State with no such rule configured, electronic service is not offered as a mode.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The proviso to section 64(2) permits service by electronic communication only in such form and in such manner as the State Government provides by rules, and section 63(ii) contemplates the electronic form of the summons itself. The enabling rule is a condition of the mode on the face of the proviso, so in a State that has made no rule the mode does not exist.",
       "tightens": null,
       "relatedTo": []
     },
@@ -4279,6 +4605,7 @@
       "test": "Every issued warrant shows an entrusted officer and either a return date with an outcome or an ageing counter since entrustment.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 23 of the Police Act makes it the duty of every police officer promptly to obey and execute all warrants lawfully issued to him, and section 29 makes a wilful breach or neglect of that duty punishable. The duty and its sanction are express, but neither section says a court must record to whom a warrant was entrusted or when it came back. That recording is the step taken here so that neglect can be told apart from impossibility, and it is our reading rather than the statute's direction.",
       "tightens": null,
       "relatedTo": []
     },
@@ -4306,6 +4633,10 @@
       "test": "Filing requires at least one electronic contact particular for each accused and an affidavit verifying that it belongs to that accused; the particulars flow into the summons issue step.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari directs the complainant to furnish the accused's email, mobile and messaging particulars on affidavit so that electronic service under the applicable rules is possible, and section 64 of the Sanhita is the provision that service then runs under. The affidavit and the particulars are both in the direction, which is what makes the field mandatory rather than merely advisable.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-012",
@@ -4336,6 +4667,11 @@
       "test": "One summons issue produces separate service attempts for post and electronic mode; each carries its own status and date, and the case view shows them together.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Indian Bank Association directs that summons be properly addressed and sent by post and to the email address obtained from the complainant, and Sanjabij Tari directs recourse to electronic service under section 530 of the Sanhita and the rules made under it. The plurality of modes is directed; keeping one row per mode with its own outcome is the minimum record that can show whether what was directed has been done.",
+      "cases": [
+        "indian-bank-assn-2014",
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-011"
@@ -4365,6 +4701,10 @@
       "test": "Every summons issue generates a dasti copy addressed to the complainant alongside the court-issued copies, without the court having to order it separately.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari directs that service not be confined to the usual modes and that summons also issue dasti, and it gives the reason, that institutional complainants file under section 142(2) in courts far from where the accused lives. The direction is in mandatory terms, so a workflow with no dasti issue cannot comply with it.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-014"
@@ -4390,6 +4730,10 @@
       "test": "Dasti service cannot be marked effected without an uploaded affidavit of service; the affidavit is retrievable from the service record and named in the order sheet.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari directs the complainant to file an affidavit of service where service was effected dasti, and reserves liberty to proceed against a complainant whose affidavit proves false. The affidavit is what the direction requires, and a status flag set by a party is not one, so the requirement follows the direction rather than extending it.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-013"
@@ -4419,6 +4763,10 @@
       "test": "On a BNSS-governed section 138 complaint the cognizance step follows scrutiny directly: no pre-cognizance notice task is generated, none is required to close the step, and the cognizance order records the section 223 proviso as displaced for these complaints.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "The first proviso to section 223(1) of the Sanhita bars cognizance without giving the accused an opportunity of being heard, and the Code contained no such bar. Sanjabij Tari, agreeing with the Karnataka High Court in Ashok v. Fayaz Aahmad, holds that the NI Act is a special enactment and directs that no summons need issue to the accused under section 223 at the pre-cognizance stage in a section 138 complaint. The displacement is stated in the judgment, so following the proviso literally here would depart from a binding direction rather than comply with the statute.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-FIL-010",
@@ -4453,6 +4801,7 @@
       "test": "The warrant action requires a ground selected from the two and free-text reasons; the ground of failure to appear is unavailable unless a declaration of due service under section 144(2) is on the record.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 90 of the Sanhita and section 87 of the Code permit a warrant in lieu of or in addition to a summons only after reasons are recorded in writing and only on one of two grounds, a reason to believe the person has absconded or will not obey the summons, or a failure to appear on a summons proved to have been duly served in time. Both the reasons requirement and the closed list of grounds are express, and section 144(2) supplies what counts as proof of due service in a section 138 case.",
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-006",
@@ -4488,6 +4837,7 @@
       "test": "A newly numbered section 138 case shows mode of trial as summary without any user action, and the value can change only through a recorded conversion order.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 143(1) directs that all offences under the Chapter be tried by a Judicial Magistrate of the first class or a Metropolitan Magistrate and that the summary trial provisions apply to such trials, subject only to the second proviso allowing conversion. Summary trial is therefore the position the section places the case in, not an election the magistrate makes case by case.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-002"
@@ -4513,6 +4863,7 @@
       "test": "Changing the mode of trial is available only through an order step that captures the hearing and a written reason; the field is not directly editable.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The second proviso to section 143(1) allows the magistrate to leave the summary procedure only after hearing the parties and recording an order to that effect. The hearing and the recorded order are both conditions in the proviso, so a field edit that changes the mode of trial bypasses the provision itself.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-001",
@@ -4539,6 +4890,7 @@
       "test": "After conversion, every witness examined before the order appears on a recall list on the case record.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The same proviso directs the magistrate, having made the order, to recall any witness who may have been examined and to proceed to hear or rehear the case in the manner provided by the Code. The recall is directed in terms, which is what makes the recall list firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-002",
@@ -4565,6 +4917,7 @@
       "test": "After conversion, the summary-trial depositions are marked as not evidence in the converted trial and the judgment template will not cite them.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "The second proviso to section 143(1) directs recall of witnesses already examined and a hearing or rehearing under the Code. It does not say that the depositions recorded in the summary trial cease to be evidence. That consequence is our reading of the direction to rehear, which is why this is inferred while the recall requirement at REQ-TRL-003 is firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-003"
@@ -4590,6 +4943,7 @@
       "test": "Select a next date more than one day ahead: the reason field becomes mandatory and the recorded reason appears on the order sheet.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 143(2) directs that the trial be continued from day to day so far as practicable and permits an adjournment beyond the following day only where the court finds it necessary for reasons to be recorded in writing. The reasons requirement attaches to the adjournment itself, so a date picker with no reason field omits a statutory condition rather than a good habit.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-006"
@@ -4618,7 +4972,8 @@
       "how": null,
       "test": "The pending section 138 list shows, per case, days since filing and whether the six-month period has been crossed, and can be sorted on it.",
       "derivedFrom": "act",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Section 143(3) says every trial shall be conducted as expeditiously as possible and that an endeavour shall be made to conclude it within six months from the date of filing. It states an endeavour rather than an outer limit, and directs nothing about measurement or display; article 21 is cited for the interest that sits behind it rather than as the source of the rule. Turning the endeavour into a computed age shown on every pending case is the step taken here, and a reader may fairly say the sub-section does not require it, which is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-005"
@@ -4652,6 +5007,7 @@
       "test": "The plea is stored as an enumerated value with its date; the interim compensation action and the summary trial register both read that field rather than the order text.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 286(g) of the Sanhita and section 263(g) of the Code make the plea of the accused and his examination a prescribed particular of the summary trial record, and section 143A(1)(a) makes the plea of not guilty the event that opens the interim compensation power. The plea is therefore an operative fact under two provisions, which is why it cannot live only as prose inside the order sheet.",
       "tightens": null,
       "relatedTo": [
         "REQ-SEN-010",
@@ -4682,6 +5038,7 @@
       "test": "A non-advocate cannot be attached as a representative without an order granting permission, and the order is visible on the case record.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 32 of the Advocates Act says that notwithstanding anything in the Chapter any court may permit a person not enrolled as an advocate to appear before it in any particular case, and section 30 states the right of enrolled advocates that it qualifies. Both the permission and its case-by-case character are in section 32, so the MAY level tracks the statute rather than softening it.",
       "tightens": null,
       "relatedTo": []
     },
@@ -4712,7 +5069,8 @@
       "how": null,
       "test": "A deposition record carries the language and the means of communication, and a support measure such as an interpreter or assistive equipment can be recorded against the hearing.",
       "derivedFrom": "act",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Section 12(4)(c) directs the appropriate Government to make available the facilities and equipment needed to facilitate recording of testimony, arguments or opinion in the person's preferred language and means of communication, and section 12(2) directs support measures generally. The duty is on the Government to provide the means; it is not framed as a rule about what a court's deposition record must permit or capture. Reading it as binding the hearing record is the inference, and it is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-EVI-007",
@@ -4743,6 +5101,11 @@
       "test": "A conversion order cannot be saved with an empty or boilerplate reason; the reason text is reproduced in the order sheet and the conversion with its reason is reportable at district level.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "The Constitution Bench in the expeditious-trial reference directs that the reasons for converting a summary trial to a summons trial be cogent and be recorded before the conversion, and Sanjabij Tari reiterates it. Section 143(1) already requires an order after hearing the parties; what the judgments add, and what this requirement encodes, is the quality and the timing of the reasons, and they say so expressly.",
+      "cases": [
+        "expeditious-trial-2021",
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-002",
@@ -4774,6 +5137,10 @@
       "test": "The notice-of-accusation screen presents all six questions, stores each answer against the accused, writes them into the order sheet, and feeds the summary-trial fitness decision and the compounding path.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari sets out the questions the trial court may put at the notice-of-accusation stage under section 251 of the Code or section 274 of the Sanhita, and directs that the responses be recorded in the order sheet and used in deciding whether the case is fit for summary trial. The questions and the recording are both inside the direction, so the structure is not supplied here.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-010",
@@ -4805,6 +5172,10 @@
       "test": "The court's working list can be filtered to cases where the complainant's evidence is incomplete more than three months after assignment, and the count is on the district dashboard.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Indian Bank Association directs the court to ensure that the complainant's examination-in-chief, cross-examination and re-examination are concluded within three months of the case being assigned. The period and the three stages are named in the direction, which is why the clock is firm rather than a management convention.",
+      "cases": [
+        "indian-bank-assn-2014"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-REC-005"
@@ -4838,6 +5209,10 @@
       "test": "On a section 138 case under either governing code, no disposal mode based on stopping proceedings exists; where payment is made, the available modes are compounding, acquittal on composition, or the plea-and-sentence route.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "The Constitution Bench held that section 258 of the Code has no application to a complaint case under section 138, disapproving Meters and Instruments on that point. The Sanhita limb needs no separate authority: section 281 applies by its own words only to a summons-case instituted otherwise than upon complaint, which a section 138 case never is. Both limbs therefore rest on express material rather than on an analogy between the two codes.",
+      "cases": [
+        "expeditious-trial-2021"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-CMP-011"
@@ -4863,6 +5238,10 @@
       "test": "Completing service flips the default listing mode to physical; a digital listing after service requires a recorded exemption order.",
       "derivedFrom": "caselaw",
       "status": "firm",
+      "statusReason": "Sanjabij Tari directs that after service of summons the matter be placed before a physical court, gives the reason that direct interaction encourages early resolution, and confines exemption from personal appearance to cases where the facts warrant it. The trigger, being completion of service, and the resulting default are both stated in the direction.",
+      "cases": [
+        "sanjabij-tari-2025"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-SRV-012"
@@ -4896,6 +5275,7 @@
       "test": "An exemption order sets a state on the accused record with its date; the attendance list distinguishes exempted from absent; and a later order directing personal attendance clears the state rather than being recorded only as text.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 228 of the Sanhita and section 205 of the Code permit the magistrate to dispense with the personal attendance of the accused and allow appearance by advocate, and expressly allow him to direct personal attendance again at any stage; section 355(1) covers the same ground during inquiry or trial. Both the power and its revocability are in the sections, which is why the requirement models the exemption as a dated state rather than a one-way flag.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-014",
@@ -4926,6 +5306,7 @@
       "test": "On a Sanhita-governed case, recording the complainant's absence offers dispensing with attendance and adjournment but not acquittal; acquittal for non-appearance becomes available only thirty days after the recorded absence. On a Code-governed case it is available at once.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 279(1) of the Sanhita requires thirty days' time to be given to the complainant to be present before the accused may be acquitted for non-appearance, where section 256(1) of the Code allowed acquittal at once. The difference between the two texts is on their face, and section 531(2)(a) decides which one applies to a given case.",
       "tightens": null,
       "relatedTo": [
         "REQ-REC-001",
@@ -4956,6 +5337,7 @@
       "test": "Closing the evidence sets a judgment-due date; on a Sanhita-governed case a pronouncement date beyond forty-five days from that event is refused, and the notice to the parties is generated from the fixed date.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 392(1) of the Sanhita requires the judgment to be pronounced in open court immediately after the termination of the trial or at some subsequent time not later than forty-five days, of which notice is to be given to the parties, where section 353(1) of the Code fixed no outer limit. The forty-five days are in the text, so the limit is not read in.",
       "tightens": null,
       "relatedTo": [
         "REQ-REC-004",
@@ -4990,6 +5372,7 @@
       "test": "Pronouncement with a sole accused marked absent is permitted only where a dispensation order is on the case and the sentence is fine only, or the finding is acquittal; adding imprisonment blocks it. With more than one accused, the absence of one does not block pronouncement.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 392(6) of the Sanhita and section 353(6) of the Code require the accused to attend to hear the judgment except where his personal attendance during the trial had been dispensed with and the sentence is one of fine only, or he is acquitted, and the proviso permits pronouncement where one of several accused does not attend. Both the cumulative exception and the several-accused proviso are express, which is why a blanket block on any absence would be as wrong as no block at all.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-015",
@@ -5017,6 +5400,7 @@
       "test": "A release order generates in a section 138 case with zero surety records where an indigence finding is recorded, and the order names the personal bond and the finding.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "The proviso to section 478(1) of the Sanhita says the officer or court shall, if the person is indigent and unable to furnish surety, discharge him on his executing a bond for his appearance instead of taking a bail bond, and the Explanation presumes indigence where he cannot give a bail bond within a week of arrest. The shall and the presumption are both in the text, so making a surety record a precondition to generating the release order would defeat a mandatory provision.",
       "tightens": null,
       "relatedTo": [
         "REQ-TRL-015"

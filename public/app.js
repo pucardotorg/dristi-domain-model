@@ -2129,6 +2129,7 @@ function buildNav(){
       <button class="ov-trigger" id="ovTrigger"><span class="ico">${ic('compass')}</span> Overview <span class="nav-chev">${ic('chevron-down')}</span></button>
     </div>`;
   const tb=$("#tbCase"); if(tb) tb.textContent=`${c.name} · ${c.act.split('·').pop().trim()}`;
+  gsMountTrigger();   // the icon set is loaded by now, so the search affordance can render
   document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.onclick=()=>{
     const ovm=$("#ovMenu"); if(ovm) ovm.classList.remove("open");
     // keep The story open when it, or anything under it (Police / Courts), is clicked
@@ -2287,6 +2288,411 @@ document.addEventListener("click",e=>{
   const ovm=$("#ovMenu"); if(ovm && !e.target.closest("#ovMenu")) ovm.classList.remove("open");
 });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeModal(); const ovm=$("#ovMenu"); if(ovm) ovm.classList.remove("open"); } });
+
+/* ============================================================ UNIVERSAL SEARCH
+   One overlay over everything the app already holds in memory - provisions,
+   vocabulary, requirements, judgments, field notes, story stages and roles,
+   the institution ladders and the Acts. Nothing is fetched: the index is built
+   once from the same arrays the views read, so typing is pure filtering.
+   Every result hands off to the navigation that already exists (openActModal,
+   goVocabWord, goPracticeNote, the #requirements?req= deep link, …) - the
+   overlay never invents a route of its own. */
+const GS_TYPES=[["provision","Provisions"],["vocab","Vocabulary"],["req","Requirements"],["case","Case law"],
+                ["note","Local practice"],["story","Story"],["inst","Institutions"],["act","Acts"]];
+const GS_LABEL={}; GS_TYPES.forEach(([k,v])=>{GS_LABEL[k]=v;});
+const GS_CAP=6;                     // rows shown per group; the total is always stated
+const gsStrip=s=>String(s==null?"":s).replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim();
+const gsTrim=(s,n)=>{ s=gsStrip(s); return s.length>n ? s.slice(0,n).replace(/\s+\S*$/,"")+"…" : s; };
+const gsIsMac=()=>/Mac|iPhone|iPad|iPod/.test((navigator.platform||"")+" "+(navigator.userAgent||""));
+
+/* ---- the index ---------------------------------------------------------- */
+let GS_INDEX=null, _gsKey="";
+function gsKey(){ return [PROVISIONS.length,Object.keys(TERMS).length,REQS.length,CASES.length,
+  PRACTICE_NOTES.length,Object.keys(STATES_DATA).length,Object.keys(SOURCES).length].join("|"); }
+/* one entry: display strings, the weighted fields it is matched on, and how to open it.
+   f is [text, weight] - the weight says how identifying that field is, so a hit on a
+   term's word outranks a hit buried in some requirement's why. */
+function gsPush(L,e){
+  const f=(e.f||[]).filter(x=>x&&x[0]!=null&&String(x[0]).trim()!=="");
+  e.f=f.map(x=>[gsStrip(x[0]).toLowerCase(),x[1]]);
+  e.hay=e.f.map(x=>x[0]).join("  ");
+  e.title=gsStrip(e.title); e.sub=gsStrip(e.sub); e.snip=gsStrip(e.snip||"");
+  if(e.title) L.push(e);
+}
+/* navigate through the existing deep-link router: it switches state when the target
+   layer differs from the active one, exactly as a shared link does. */
+function gsGo(view, stId, anchor){
+  const p=new URLSearchParams();
+  p.set("state", (stId && (JURISDICTIONS||[]).some(j=>j.id===stId)) ? stId : activeState);
+  if(anchor) p.set("sec", anchor);
+  applyHash(view+"?"+p.toString(), true);
+}
+function gsGoReq(r){
+  const p=new URLSearchParams();
+  p.set("state", r.scope==="national" ? activeState : r.scope);
+  p.set("req", r.id);
+  applyHash("requirements?"+p.toString(), true);
+}
+function gsBuildIndex(){
+  const L=[];
+
+  /* Acts - the national sources, then every state instrument (Act, rules, notification) */
+  Object.entries(SOURCES).forEach(([id,s])=>{
+    gsPush(L,{type:"act", title:s.title, sub:"Act · "+((DOMAINS[s.domain]||{}).label||s.domain), snip:s.status||"",
+      f:[[s.title,1],[id,.9],[s.status,.4]], open:()=>openActModal(id)});
+  });
+  const CATV={amendments:"amendments", rules:"staterules", notifications:"notifications"};
+  const CATL={amendments:"State Act", rules:"State rules", notifications:"Notification"};
+  (JURISDICTIONS||[]).forEach(j=>{
+    Object.keys(CATV).forEach(cat=>{
+      (((stateLayer(j.id)||{})[cat]||{}).items||[]).forEach(it=>{
+        const openDoc = it.akn ? ()=>openStateDocModal(it.akn,it.title,it.cite||"", it.pdf?(DATA_BASE+it.pdf):"")
+                       : it.pdf ? ()=>openPdf(DATA_BASE+it.pdf,it.title)
+                       : ()=>gsGo(CATV[cat], j.id, null);
+        gsPush(L,{type:"act", state:j.id, title:it.title, sub:CATL[cat]+(it.cite?" · "+it.cite:""), snip:it.note||"",
+          f:[[it.title,1],[it.cite,.7],[it.alias,.6],[it.note,.4]], open:openDoc});
+        /* the state's own pinned provisions read as provisions, like the national ones */
+        (it.key||[]).forEach(k=>{
+          const num=String(k.eId||"").replace(/^(sec|rule|art)_/,"").replace(/_/g," ");
+          gsPush(L,{type:"provision", state:j.id, title:stEidNum(k.eId)+" "+(k.label||""), sub:"Provision · "+it.title, snip:k.note||"",
+            f:[[num,1],["r."+num,1],["rule "+num,.95],[k.label,.85],[it.title,.6],[it.alias,.5],[k.note,.4]],
+            open: it.akn ? ()=>openStateDocModal(it.akn,it.title,it.cite||"", it.pdf?(DATA_BASE+it.pdf):"", k.eId)
+                         : ()=>gsGo(CATV[cat], j.id, null)});
+        });
+      });
+    });
+  });
+
+  /* Provisions - the national pins. A section number typed bare must land here. */
+  PROVISIONS.forEach(p=>{
+    const s=actOf(p.ref)||{title:p.act};
+    const num=String(p.eId||"").replace(/^(sec|art)_/,"").replace(/_/g," ");
+    const lbl=secNum(p.ref);
+    gsPush(L,{type:"provision", title:lbl+" · "+s.title.split(",")[0], sub:"Provision · "+s.title+" · "+p.role, snip:p.note||p.role,
+      f:[[num,1],["s."+num,1],["s "+num,1],[lbl,1],["section "+num,.9],[p.act+" "+num,.95],
+         [s.title,.8],[p.act,.7],[p.role,.7],[p.note,.45]],
+      rank:Math.max(0,TIER_ORDER.indexOf(p.tier)), open:()=>openActModal(p.act,p.eId)});
+  });
+
+  /* Vocabulary - national, then every state layer (all of them, not just the active one) */
+  Object.entries(TERMS).forEach(([w,v0])=>{
+    const v=(typeof v0==="string"?{ref:v0}:v0);
+    gsPush(L,{type:"vocab", title:w.charAt(0).toUpperCase()+w.slice(1), sub:"Vocabulary · national"+(v.group?" · "+v.group:""), snip:v.gloss||"",
+      f:[[w,1], ...((v.aka||[]).map(a=>[a,.85])), [v.group,.5],[v.role,.45],[v.gloss,.42]],
+      open:()=>goVocabWord(w)});
+  });
+  (JURISDICTIONS||[]).forEach(j=> stateVocabTerms(j.id).forEach(t=>{
+    if(!t.word) return;
+    gsPush(L,{type:"vocab", state:j.id, title:t.word, sub:"Vocabulary"+(t.group?" · "+t.group:""), snip:t.gloss||"",
+      f:[[t.word,1], ...((t.aka||[]).map(a=>[a,.85])), [t.group,.5],[t.role,.45],[t.gloss,.42],[t.source,.3]],
+      open:()=>goVocabWord(t.word)});
+  }));
+
+  /* Requirements - the id is the most identifying thing about one */
+  REQS.forEach(r=>{
+    gsPush(L,{type:"req", state:(r.scope&&r.scope!=="national")?r.scope:null,
+      title:gsTrim(r.statement,110), sub:"Requirement · "+r.id+" · "+reqCatLabel(r.category)+" · "+(r.level||""), snip:r.why||r.test||"",
+      f:[[r.id,1],[r.statement,.8],[(r.binds||{}).target,.55],[reqCatLabel(r.category),.5],[r.category,.6],
+         [r.level,.35],[r.why,.4],[r.test,.35]],
+      open:()=>gsGoReq(r)});
+  });
+
+  /* Case law */
+  CASES.forEach(c=>{
+    gsPush(L,{type:"case", title:c.name, sub:"Judgment · "+c.citation+(c.year?" · "+c.year:""), snip:c.holding||"",
+      f:[[c.name,1],[c.citation,.95],[c.neutral_citation,.9],[String(c.year||""),.45],
+         [(c.topics||[]).map(t=>CASE_TOPICS[t]||t).join(" · "),.5],[c.holding,.42]],
+      open:()=>jumpToCase(c.id)});
+  });
+
+  /* Local practice field notes */
+  (PRACTICE_NOTES||[]).forEach(n=>{
+    const stmt=n.statement||n.quote||"";
+    gsPush(L,{type:"note", state:n.place, title:(n.serial?n.serial+" · ":"")+gsTrim(stmt,100), sub:"Field note", snip:stmt,
+      f:[[n.serial,1],[n.id,.9],[(n.tags||[]).join(" · "),.55],[(n.themes||[]).join(" · "),.5],
+         [(n.attribution||{}).heardFrom,.5],[stmt,.45]],
+      open:()=>goPracticeNote(n.id)});
+  });
+
+  /* The story and the institutions, per state - each state gets whatever its own page
+     would render, which is its own layer or the national baseline it falls back to. */
+  (JURISDICTIONS||[]).forEach(j=>{
+    const D=stateLayer(j.id)||{};
+    const S=D.story||{};
+    const proc=S.process||NATIONAL_PROCESS;
+    (((proc||{}).stages)||[]).forEach(st=>{
+      const raw=String(st.stage||""); const title=raw.replace(/^\s*\d+\s*[·.\-]\s*/,"");
+      const text=(st.steps||[]).map(x=>x.t).join(" ");
+      gsPush(L,{type:"story", state:j.id, title:title, sub:"Process stage", snip:text,
+        f:[[title,1],[raw,.9],[text,.4]],
+        open:()=>gsGo("story", j.id, st.id?("procstage-"+st.id):"story-process")});
+    });
+    ((S.roles||{}).items||[]).forEach(r=>{
+      gsPush(L,{type:"story", state:j.id, title:r.role, sub:"Role", snip:r.who||"",
+        f:[[r.role,1],[(ROLE_CATS[r.cat]||{}).label,.5],[r.who,.42],[r.basis,.32]],
+        open:()=>gsGo("story", j.id, r.id?("role-"+r.id):"story-roles")});
+    });
+    const INST=D.institutions||NATIONAL_INSTITUTIONS||{};
+    [["police",(INST.police||{}).ranks,"Police rank"],["police",(INST.police||{}).units,"Police unit"],
+     ["police",(INST.police||{}).oversight,"Oversight body"],
+     ["courts",(INST.judiciary||{}).tiers,"Court"],["courts",(INST.judiciary||{}).roles,"Court role"]
+    ].forEach(([view,arr,lab])=>{
+      (arr||[]).forEach(it=>{
+        gsPush(L,{type:"inst", state:j.id, title:it.name, sub:lab, snip:it.who||it.role||it.head||"",
+          f:[[it.name,1], ...((it.aka||[]).map(a=>[a,.85])), [it.service,.5],[it.role,.45],[it.head,.45],[it.who,.38],[it.entry,.28]],
+          open:()=>gsGo(view, j.id, it.id?("inst-"+it.id):null)});
+      });
+    });
+  });
+  return L;
+}
+function gsIndex(){
+  const k=gsKey();
+  if(!GS_INDEX || _gsKey!==k){ const t0=performance.now(); GS_INDEX=gsBuildIndex(); _gsKey=k;
+    window.__gsPerf={entries:GS_INDEX.length, buildMs:+(performance.now()-t0).toFixed(2)}; }
+  return GS_INDEX;
+}
+
+/* ---- ranking ------------------------------------------------------------
+   exact > prefix > word-boundary > substring, each scaled by how identifying the
+   field is. A multi-word query that no single field carries whole still matches if
+   every token appears somewhere, but scores below any real field hit. */
+function gsFieldScore(v,q){
+  if(!v) return 0;
+  if(v===q) return 1000;
+  const i=v.indexOf(q); if(i<0) return 0;
+  if(i===0) return v.length<=q.length+2 ? 820 : 700;
+  const c=v.charCodeAt(i-1);
+  const word=!((c>=48&&c<=57)||(c>=97&&c<=122));   // preceded by a non-alphanumeric
+  return word?450:200;
+}
+function gsScoreEntry(e,alts,toks){
+  let best=0;
+  for(let i=0;i<e.f.length;i++){
+    const f=e.f[i];
+    for(let a=0;a<alts.length;a++){
+      const s=gsFieldScore(f[0],alts[a])*f[1]*(a?0.98:1);
+      if(s>best) best=s;
+    }
+  }
+  if(best) return best;
+  if(toks.length>1 && toks.every(t=>e.hay.indexOf(t)>=0)) return 140;
+  return 0;
+}
+function gsSearch(raw){
+  const q=String(raw||"").toLowerCase().replace(/\s+/g," ").trim();
+  if(!q) return null;
+  const alts=[q];
+  const m=q.match(/^(?:s\.?|sec\.?|section|§|r\.?|rule)\s*([0-9].*)$/);   // "s.138" / "§138" / "rule 7"
+  if(m && m[1]!==q) alts.push(m[1]);
+  const toks=q.split(" ").filter(Boolean);
+  const idx=gsIndex();
+  const hits=[];
+  for(let i=0;i<idx.length;i++){
+    const s=gsScoreEntry(idx[i],alts,toks);
+    if(s>0) hits.push({e:idx[i], s});
+  }
+  hits.sort((a,b)=> b.s-a.s || (a.e.rank||0)-(b.e.rank||0) || a.e.title.length-b.e.title.length
+                 || a.e.title.localeCompare(b.e.title));
+  const byType={};
+  hits.forEach(h=>{ (byType[h.e.type]=byType[h.e.type]||[]).push(h); });
+  /* groups lead with whichever type holds the strongest hit, so an exact id or
+     section number puts its own type at the top of the list */
+  const groups=GS_TYPES.filter(([k])=>byType[k]&&byType[k].length)
+    .map(([k,label])=>({key:k, label, rows:byType[k], total:byType[k].length, best:byType[k][0].s}))
+    .sort((a,b)=> b.best-a.best);
+  return {q, groups, total:hits.length};
+}
+
+/* ---- the overlay -------------------------------------------------------- */
+let _gsEl=null, _gsRows=[], _gsActive=-1, _gsOpener=null, _gsTimer=null, _gsLastQ=null;
+const gsOpen=()=>!!(_gsEl && _gsEl.classList.contains("show"));
+function gsHi(text,q){
+  const t=String(text||""); if(!t) return "";
+  const i=q?t.toLowerCase().indexOf(q):-1;
+  if(i<0) return esc(t);
+  return esc(t.slice(0,i))+"<mark>"+esc(t.slice(i,i+q.length))+"</mark>"+esc(t.slice(i+q.length));
+}
+/* a snippet window around the match, so the matched text is always visible */
+function gsSnippet(text,q){
+  const t=String(text||""); if(!t) return "";
+  const i=q?t.toLowerCase().indexOf(q):-1;
+  if(i<0) return esc(gsTrim(t,150));
+  const start=Math.max(0, i-56);
+  const cut=t.slice(start, start+180);
+  const lead=start>0?"…":"";
+  const tail=(start+180<t.length)?"…":"";
+  return lead+gsHi(cut,q)+tail;
+}
+function gsIdle(){
+  const nStates=(JURISDICTIONS||[]).length;
+  const nVocab=Object.keys(TERMS).length+(JURISDICTIONS||[]).reduce((n,j)=>n+stateVocabTerms(j.id).length,0);
+  const bits=[[PROVISIONS.length,"provisions"],[nVocab,"vocabulary words"],[REQS.length,"requirements"],
+              [CASES.length,"judgments"],[(PRACTICE_NOTES||[]).length,"field notes"]]
+    .filter(b=>b[0]).map(b=>`<b>${b[0]}</b> ${b[1]}`).join(", ");
+  return `<div class="gs-idle">
+    <p>Search everything at once - ${bits}, plus the story, the roles, the police and court ladders and the Acts, across all ${nStates} state layers.</p>
+    <p class="gs-idle-eg">Try a section number (<b>138</b>), a requirement id (<b>REQ-LIM-004</b>), a word (<b>roznama</b>), or a case (<b>Rangappa</b>).</p>
+  </div>`;
+}
+function gsBuildOverlay(){
+  if(_gsEl) return _gsEl;
+  const o=el("div","gs");
+  o.innerHTML=`<div class="gs-scrim" data-gs-close></div>
+    <div class="gs-panel" role="dialog" aria-modal="true" aria-label="Search the corpus">
+      <div class="gs-in">
+        <span class="gs-mag">${ic('search')}</span>
+        <input id="gsInput" class="gs-input" type="text" autocomplete="off" autocorrect="off" spellcheck="false"
+          aria-label="Search the corpus" role="combobox" aria-expanded="true" aria-controls="gsList" aria-autocomplete="list"
+          placeholder="Search a section, a word, a requirement, a judgment…">
+        <button class="gs-x" type="button" data-gs-close aria-label="Close search">Esc</button>
+      </div>
+      <div class="gs-list" id="gsList" role="listbox" aria-label="Search results"></div>
+      <div class="gs-foot">
+        <span class="gs-keys"><kbd>↑</kbd><kbd>↓</kbd> move &nbsp; <kbd>↵</kbd> open &nbsp; <kbd>esc</kbd> close</span>
+        <span class="gs-tally" aria-live="polite"></span>
+      </div>
+    </div>`;
+  document.body.appendChild(o);
+  _gsEl=o;
+  const list=o.querySelector("#gsList"), input=o.querySelector("#gsInput");
+  o.addEventListener("click",e=>{
+    if(e.target.closest("[data-gs-close]")){ gsClose(); return; }
+    const row=e.target.closest(".gs-row");
+    if(row){ gsSetActive(+row.dataset.i); gsOpenActive(); }
+  });
+  list.addEventListener("mousemove",e=>{
+    const row=e.target.closest(".gs-row"); if(!row) return;
+    const i=+row.dataset.i; if(i!==_gsActive) gsSetActive(i,true);
+  });
+  input.addEventListener("input",()=>{
+    clearTimeout(_gsTimer);
+    _gsTimer=setTimeout(gsRun, input.value.trim()?90:0);   // debounce typing; clearing is instant
+  });
+  return o;
+}
+function gsRun(){
+  const input=$("#gsInput"), list=$("#gsList"), tally=_gsEl.querySelector(".gs-tally");
+  const q=input.value;
+  if(q===_gsLastQ) return; _gsLastQ=q;
+  const t0=performance.now();
+  const res=gsSearch(q);
+  _gsRows=[];
+  if(!res){
+    list.innerHTML=gsIdle(); tally.textContent="";
+    input.removeAttribute("aria-activedescendant"); _gsActive=-1;
+    window.__gsPerf=Object.assign(window.__gsPerf||{},{lastQuery:"",queryMs:+(performance.now()-t0).toFixed(2)});
+    return;
+  }
+  if(!res.total){
+    list.innerHTML=`<div class="gs-none">Nothing matches “${esc(res.q)}”.</div>`;
+    tally.textContent="no matches";
+    input.removeAttribute("aria-activedescendant"); _gsActive=-1;
+    window.__gsPerf=Object.assign(window.__gsPerf||{},{lastQuery:res.q,hits:0,queryMs:+(performance.now()-t0).toFixed(2)});
+    return;
+  }
+  let html="", i=0;
+  res.groups.forEach(g=>{
+    const shown=g.rows.slice(0,GS_CAP);
+    html+=`<div class="gs-grp" role="group" aria-label="${esc(g.label)}">
+      <div class="gs-grp-h"><span class="gs-grp-l">${esc(g.label)}</span><span class="gs-grp-n">${g.total}</span></div>`;
+    shown.forEach(h=>{
+      const e=h.e; _gsRows.push(e);
+      const badge=e.state?`<span class="gs-st">${esc((stateById(e.state)||{}).name||e.state)}</span>`:"";
+      html+=`<div class="gs-row" role="option" id="gsR${i}" data-i="${i}" aria-selected="false">
+        <div class="gs-r-t">${gsHi(e.title,res.q)}</div>
+        <div class="gs-r-m">${gsHi(e.sub,res.q)}${badge}</div>
+        ${e.snip?`<div class="gs-r-s">${gsSnippet(e.snip,res.q)}</div>`:""}
+      </div>`;
+      i++;
+    });
+    if(g.total>shown.length) html+=`<div class="gs-more">${g.total-shown.length} more - keep typing to narrow</div>`;
+    html+=`</div>`;
+  });
+  list.innerHTML=html; list.scrollTop=0;
+  tally.textContent=res.total+" result"+(res.total>1?"s":"")+" in "+res.groups.length+" group"+(res.groups.length>1?"s":"");
+  gsSetActive(0);
+  window.__gsPerf=Object.assign(window.__gsPerf||{},{lastQuery:res.q,hits:res.total,queryMs:+(performance.now()-t0).toFixed(2)});
+}
+function gsSetActive(i,quiet){
+  const list=$("#gsList"), input=$("#gsInput"); if(!list) return;
+  const rows=list.querySelectorAll(".gs-row"); if(!rows.length){ _gsActive=-1; return; }
+  if(i<0) i=rows.length-1; if(i>=rows.length) i=0;
+  rows.forEach(r=>{ r.classList.remove("on"); r.setAttribute("aria-selected","false"); });
+  const r=rows[i]; r.classList.add("on"); r.setAttribute("aria-selected","true");
+  input.setAttribute("aria-activedescendant", r.id);
+  _gsActive=i;
+  if(!quiet) r.scrollIntoView({block:"nearest"});
+}
+function gsMove(d){ if(_gsRows.length) gsSetActive(_gsActive+d); }
+function gsOpenActive(){
+  const e=_gsRows[_gsActive]; if(!e||!e.open) return;
+  gsClose();
+  try{ e.open(); }catch(err){}
+}
+/* focus trap - only the input and the close button are focusable inside the panel */
+function gsTrapTab(ev){
+  const f=[..._gsEl.querySelectorAll("input, button")].filter(x=>!x.disabled && x.offsetParent!==null);
+  if(!f.length) return;
+  const i=f.indexOf(document.activeElement);
+  const n=ev.shiftKey ? (i<=0?f.length-1:i-1) : (i<0||i>=f.length-1?0:i+1);
+  f[n].focus();
+}
+function gsShow(){
+  gsBuildOverlay();
+  _gsOpener=(document.activeElement && document.activeElement!==document.body) ? document.activeElement : $("#gsTrigger");
+  setDrawer(false);
+  _gsEl.classList.add("show");
+  document.body.style.overflow="hidden";
+  const input=$("#gsInput");
+  input.value=""; _gsLastQ=null; _gsActive=-1; _gsRows=[];
+  gsIndex();          // warm the index while the panel is appearing
+  gsRun();
+  input.focus();
+}
+function gsClose(){
+  if(!gsOpen()) return;
+  _gsEl.classList.remove("show");
+  clearTimeout(_gsTimer);
+  // a full-Act modal may be open underneath - leave its scroll lock alone
+  document.body.style.overflow = ($("#modal")&&$("#modal").classList.contains("show")) ? "hidden" : "";
+  const o=_gsOpener; _gsOpener=null;
+  if(o && document.contains(o)) { try{ o.focus(); }catch(e){} }
+}
+function gsToggle(){ gsOpen()?gsClose():gsShow(); }
+window.gsShow=gsShow;
+
+/* the visible affordance: an icon button in the sidebar brand row. It sits inside
+   #brand, which itself navigates, so its click must not bubble. */
+function gsMountTrigger(){
+  const b=$("#gsTrigger"); if(!b || b.dataset.ready) return;
+  b.dataset.ready="1";
+  b.innerHTML=ic('search');
+  b.title="Search the corpus ("+(gsIsMac()?"⌘K":"Ctrl+K")+")";
+  b.onclick=e=>{ e.stopPropagation(); e.preventDefault(); gsToggle(); };
+}
+
+/* keyboard, in the capture phase: while the overlay is open it consumes Escape
+   before the document-level handler that closes the provision modal, so closing
+   search never closes a modal underneath. With search closed nothing is consumed
+   and the existing behaviour is exactly as it was. */
+const GS_FIELD=/^(INPUT|TEXTAREA|SELECT)$/;
+document.addEventListener("keydown",e=>{
+  if(gsOpen()){
+    if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); gsClose(); return; }
+    if(e.key==="ArrowDown"){ e.preventDefault(); e.stopPropagation(); gsMove(1); return; }
+    if(e.key==="ArrowUp"){ e.preventDefault(); e.stopPropagation(); gsMove(-1); return; }
+    if(e.key==="Enter"){ e.preventDefault(); e.stopPropagation(); gsOpenActive(); return; }
+    if(e.key==="Tab"){ e.preventDefault(); e.stopPropagation(); gsTrapTab(e); return; }
+    return;
+  }
+  if((e.metaKey||e.ctrlKey) && !e.altKey && (e.key==="k"||e.key==="K")){ e.preventDefault(); e.stopPropagation(); gsShow(); return; }
+  if(e.key==="/" && !e.metaKey && !e.ctrlKey && !e.altKey){
+    const t=e.target;
+    if(t && (GS_FIELD.test(t.tagName)||t.isContentEditable)) return;
+    e.preventDefault(); gsShow();
+  }
+}, true);
 
 /* boot: load the profile, then render */
 function showLoadError(err){
