@@ -625,6 +625,10 @@ const REQ_CAT_LABEL={LIM:"Limitation and time",NOT:"The demand notice",FIL:"Fili
 const REQ_CAT_ORDER=["LIM","NOT","FIL","SRV","EVI","PRE","JUR","TRL","CMP","SEN","APL","REC","CPY"];
 const REQ_LEVEL_ORDER=["MUST","MUST NOT","SHOULD","MAY"];
 const REQ_STATUS_ORDER=["firm","inferred","contested"];
+/* the two ends of the layering relation, as a facet: a national statement a state has
+   narrowed, and a state statement that narrows one. Nothing is both. */
+const REQ_TIE_ORDER=["tightened","tightens"];
+const REQ_TIE_LABEL={tightened:"Tightened by a state", tightens:"Tightens a national rule"};
 const REQ_STATUS_NOTE={firm:"the instrument says so in terms",inferred:"a reading, reasoned in the why",contested:"the authorities divide"};
 const REQ_ARTIFACT_LABEL={"schema-field":"Schema field","validation-rule":"Validation rule","workflow-step":"Workflow step","output-document":"Output document","access-control":"Access control","screen":"Screen"};
 const reqCatLabel = c => REQ_CAT_LABEL[c] || c;
@@ -649,10 +653,20 @@ V.requirements=()=>{
   const facets=el("div","vfacets"); m.appendChild(facets);
   const list=el("div"); list.id="r-list"; list.style.marginTop="10px"; m.appendChild(list);
 
+  /* The layering, read from the other end. A state requirement names the national one it
+     narrows in `tightens`; nothing pointed the other way, so a national statement read on
+     its own understated what a system in Kerala or Gujarat actually has to do. This index
+     inverts the field once, and both ends of the relation render off it. */
+  const tightenedBy={};
+  REQS.forEach(r=>{ if(r.tightens){ (tightenedBy[r.tightens]=tightenedBy[r.tightens]||[]).push(r); } });
+  const scopeRank=k=>{ const i=["national", ...(JURISDICTIONS||[]).map(s=>s.id)].indexOf(k); return i<0?99:i; };
+  Object.keys(tightenedBy).forEach(k=>tightenedBy[k].sort((a,b)=>scopeRank(a.scope)-scopeRank(b.scope)||String(a.id).localeCompare(b.id)));
+
   const items=REQS.map(r=>({r, scope:r.scope, cat:r.category||"", level:r.level||"", status:r.status||"",
+    tie: r.tightens ? "tightens" : ((tightenedBy[r.id]||[]).length ? "tightened" : ""),
     hay:((r.id||"")+" "+(r.statement||"")+" "+(r.why||"")+" "+(r.test||"")).toLowerCase()}));
   const scopes=["national", ...(JURISDICTIONS||[]).map(s=>s.id)].filter(k=>items.some(i=>i.scope===k));
-  const state={q:"", sel:new Set(["national"]), cat:"", level:"", status:""};
+  const state={q:"", sel:new Set(["national"]), cat:"", level:"", status:"", tie:""};
   if(scopes.includes(activeState)) state.sel.add(activeState);
   const allScopes=()=>scopes.every(k=>state.sel.has(k));
 
@@ -674,6 +688,15 @@ V.requirements=()=>{
     const nm=n.serial ? "Field note "+n.serial : "Field note";
     const sub=[n.place?reqScopeName(n.place):"", (n.attribution||{}).heardFrom?"heard from "+n.attribution.heardFrom:""].filter(Boolean).join(" · ");
     return `<a class="rq-src" data-note="${esc(n.id)}"><span class="rq-src-n">${esc(nm)}</span>${sub?`<span class="rq-src-sub">${esc(sub)}</span>`:""}</a>`;
+  };
+  /* The tighteners, grouped by the layer they come from: the state is the thing a reader
+     scans for and it is said once, the ids after it are what they cite and each one opens.
+     The statement rides along as the title, so the row stays a row. */
+  const reqTightenerRow=list=>{
+    const by=[]; list.forEach(r=>{ const g=by.find(x=>x.k===r.scope); (g||by[by.push({k:r.scope,rs:[]})-1]).rs.push(r); });
+    return `<div class="rq-ties-row">`+by.map(g=>`<span class="rq-tie-g"><span class="rq-tie-st">${esc(reqScopeName(g.k))}</span>`
+      +g.rs.map(r=>`<a class="rq-jump rq-jid" data-req="${esc(r.id)}" title="${esc(trim(r.statement,180))}">${esc(r.id)}</a>`).join("")
+      +`</span>`).join("")+`</div>`;
   };
   const reqBlock=(l,v,cls)=>`<div class="rq-block"><span class="rq-l">${esc(l)}</span><div class="rq-v${cls?" "+cls:""}">${v}</div></div>`;
   /* One card, one left edge, one measure, read top to bottom: the id a reader cites,
@@ -702,8 +725,16 @@ V.requirements=()=>{
     const rows=[];
     rows.push(reqBlock("How", r.how?esc(r.how):"The law fixes the obligation and leaves the method open.", r.how?"":"rq-open"));
     if(r.test) rows.push(reqBlock("Test",esc(r.test)));
-    if(r.tightens) rows.push(reqBlock("Tightens",reqLink(r.tightens)));
     if(r.relatedTo && r.relatedTo.length) rows.push(reqBlock("Related",`<div class="rq-rel">${r.relatedTo.map(reqLink).join("")}</div>`));
+    /* The layering stays out of both disclosures. The caret holds what a builder needs
+       once the statement is accepted; the status line holds how firm it is. Neither is
+       true of a tightening: it changes what the statement means for a reader in that
+       state, so a national rule that is narrowed somewhere must say so unopened, and the
+       state rule that narrows it must say what it narrows. Most cards carry neither. */
+    const ties=[];
+    if(r.tightens) ties.push(reqBlock("Tightens",reqLink(r.tightens)));
+    const tby=tightenedBy[r.id]||[];
+    if(tby.length) ties.push(reqBlock("Tightened by", reqTightenerRow(tby)));
     const b=r.binds||{};
     const binds=[reqArtifact(b.artifact), b.target].filter(Boolean).join(" · ");
     return `<div class="req" id="req-${esc(r.id)}" data-req="${esc(r.id)}">
@@ -713,6 +744,7 @@ V.requirements=()=>{
       </div>
       ${r.why?`<div class="rq-why">${esc(r.why)}</div>`:""}
       ${binds?`<div class="rq-meta">${esc(binds)}</div>`:""}
+      ${ties.length?`<div class="rq-ties">${ties.join("")}</div>`:""}
       <div class="rq-full">${rows.join("")}</div>
       <div class="rq-basis-bar${hasG?" has":""}">
         <span class="rq-status s-${esc(status)}"><span class="rq-dot"></span>${esc(status)}</span>
@@ -726,17 +758,26 @@ V.requirements=()=>{
   function redraw(){
     const bySearch=items.filter(it=> !state.q || it.hay.includes(state.q));
     const base=bySearch.filter(it=> state.sel.has(it.scope));
-    // cross-filtered counts: each facet counts what the other two would leave standing
+    // cross-filtered counts: each facet counts what the others would leave standing
     const count=(arr,key)=>{ const o={}; arr.forEach(it=>{ if(it[key]) o[it[key]]=(o[it[key]]||0)+1; }); return o; };
-    const catC=count(base.filter(it=>(!state.level||it.level===state.level)&&(!state.status||it.status===state.status)),"cat");
-    const lvlC=count(base.filter(it=>(!state.cat||it.cat===state.cat)&&(!state.status||it.status===state.status)),"level");
-    const stC =count(base.filter(it=>(!state.cat||it.cat===state.cat)&&(!state.level||it.level===state.level)),"status");
+    const ok=(it,skip)=>(skip==="cat"||!state.cat||it.cat===state.cat)
+      && (skip==="level"||!state.level||it.level===state.level)
+      && (skip==="status"||!state.status||it.status===state.status)
+      && (skip==="tie"||!state.tie||it.tie===state.tie);
+    const catC=count(base.filter(it=>ok(it,"cat")),"cat");
+    const lvlC=count(base.filter(it=>ok(it,"level")),"level");
+    const stC =count(base.filter(it=>ok(it,"status")),"status");
+    const tieC=count(base.filter(it=>ok(it,"tie")),"tie");
     const scopeCount={}; scopes.forEach(k=>{ scopeCount[k]=bySearch.filter(i=>i.scope===k).length; });
 
     let fh=`<div class="vfacet-row"><span class="vfacet-lbl">Show</span><div class="chips">`
       +pill("scope","all","All",bySearch.length,allScopes())
       +scopes.map(k=>pill("scope",k,reqScopeName(k),scopeCount[k],state.sel.has(k))).join("")
       +`</div></div>`;
+    /* the one relation in this dataset that crosses the layers, and the one a reader
+       cannot get at any other way: the Show chips separate the layers, this joins them. */
+    const ties=REQ_TIE_ORDER.filter(t=>tieC[t]);
+    if(ties.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Layering</span><div class="chips">`+ties.map(t=>pill("tie",t,REQ_TIE_LABEL[t],tieC[t],state.tie===t)).join("")+`</div></div>`;
     const cats=REQ_CAT_ORDER.filter(c=>catC[c]);
     if(cats.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Area</span><div class="chips">`+cats.map(c=>pill("cat",c,reqCatLabel(c),catC[c],state.cat===c)).join("")+`</div></div>`;
     const lvls=REQ_LEVEL_ORDER.filter(l=>lvlC[l]);
@@ -745,7 +786,7 @@ V.requirements=()=>{
     if(sts.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Status</span><div class="chips">`+sts.map(s=>pill("status",s,s,stC[s],state.status===s)).join("")+`</div></div>`;
     facets.innerHTML=fh;
 
-    const final=base.filter(it=> (!state.cat||it.cat===state.cat) && (!state.level||it.level===state.level) && (!state.status||it.status===state.status));
+    const final=base.filter(it=>ok(it,""));
     if(!final.length){ list.innerHTML=""; list.appendChild(el("div","empty","No requirement matches these filters.")); return; }
     // national first, then state by state; inside each, the README's category order
     let html="";
@@ -779,6 +820,12 @@ V.requirements=()=>{
     else if(fg==="cat") state.cat=(state.cat===fv?"":fv);
     else if(fg==="level") state.level=(state.level===fv?"":fv);
     else if(fg==="status") state.status=(state.status===fv?"":fv);
+    else if(fg==="tie"){
+      state.tie=(state.tie===fv?"":fv);
+      // both ends of the relation live in different files, so the layering facet is
+      // useless against a single layer: asking for it opens every scope.
+      if(state.tie) state.sel=new Set(scopes);
+    }
     redraw();
   });
   // the grounds panel is the bar's next sibling, so the bar carries the open state for both
@@ -790,7 +837,7 @@ V.requirements=()=>{
   // land on one requirement: clear the filters, make sure its scope is showing, open it
   function jumpTo(id, push){
     const t=reqById(id); if(!t) return;
-    state.q=""; state.cat=""; state.level=""; state.status="";
+    state.q=""; state.cat=""; state.level=""; state.status=""; state.tie="";
     if(!state.sel.has(t.scope)) state.sel.add(t.scope);
     const inp=$("#r-search"); if(inp) inp.value="";
     redraw();

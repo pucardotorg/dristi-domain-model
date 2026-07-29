@@ -796,6 +796,14 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .rq-why{color:var(--ink-2); font-size:13.5px; line-height:1.6; margin:8px 0 0; max-width:var(--rq-measure)}
   .rq-meta{font-size:12px; color:var(--ink-3); margin-top:9px; max-width:var(--rq-measure)}
 
+  /* the layering, in the open: a statement narrowed somewhere, or narrowing something,
+     does not mean what it appears to mean read alone, so it says so without being
+     opened. Same block, same left edge, same measure as everything else. */
+  .rq-ties{margin-top:13px}
+  .rq-ties-row{display:flex; flex-wrap:wrap; gap:5px 20px}
+  .rq-tie-g{display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 9px}
+  .rq-tie-st{font-weight:600; color:var(--ink-2)}
+
   /* the two disclosures. The caret opens the build detail; the status line opens the
      grounds. Both stack their label above their value, so nothing indents. */
   .rq-full{display:none; margin-top:14px; padding-top:13px; border-top:1px solid var(--line)}
