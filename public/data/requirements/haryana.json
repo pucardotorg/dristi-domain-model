@@ -28,6 +28,7 @@
       "test": "Submit an Action from a client whose clock is set to a different timezone; the stored filing date is the Registry receipt date in IST, and it does not change when the Registry later accepts or objects to the filing.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15.1 states both limbs the requirement needs: the date of e-filing is the date the Action is electronically received in the Registry within the prescribed time on a working day, and Indian Standard Time applies to computing the time of filing. Nothing is read in. The requirement only holds that moment of receipt apart from the filer's own clock and from the later date on which the Registry accepts or objects, which the rule already excludes by naming receipt.",
       "tightens": "REQ-LIM-007",
       "relatedTo": []
     },
@@ -52,6 +53,7 @@
       "test": "File at 00:20 IST on a court working day and the recorded date is that day; file at 00:20 on a day that is not a court working day and the date rolls to the next working day.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15.2 states the roll-forward and its condition in terms: an online e-filing carried out after 2400 hours will be treated as bearing the date which follows the actual filing date, provided that day is a court working day. The requirement adds only that the working-day proviso be applied rather than assumed, and the proviso is the rule's own.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-LIM-001"
@@ -78,6 +80,7 @@
       "test": "Submit an Action on a listed gazetted holiday; the stored institution date is the next working day and the filer is shown that date before submitting.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15.2 says that Actions filed on a day declared a gazetted holiday, or on a day when the court is closed, will be regarded as having been filed on the next working day. The consequence is stated; the requirement restates it and does no construction.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-LIM-001"
@@ -109,6 +112,7 @@
       "test": "The counter intake screen refuses a new Action after 1600 hours on a court working day and states the cut-off; the online portal remains open until 2400 hours on the same day.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15.2 makes e-filing through Designated Counters permissible up to 1600 hours on a court working day, and the same sub-rule keeps the online portal open past midnight, so the two cut-offs are stated side by side. Refusing a counter filing after 1600 reads a permission that stops there rather than adding anything to it.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-LIM-001"
@@ -139,6 +143,7 @@
       "test": "The delay-condonation reason list contains no portal-failure option; simulating a portal outage produces a prompt to use the counter or physical filing, not an offer to record an exemption.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15.3 says that no exemption from limitation shall be permitted on the ground of a failure of the web based online e-filing facility, and in the same sub-rule sends the filer to a Designated Counter or to physical filing instead. Both the prohibition and the alternative route are express.",
       "tightens": "REQ-LIM-008",
       "relatedTo": [
         "REQ-HR-LIM-001",
@@ -171,6 +176,7 @@
       "test": "A case whose institution date falls between 15 and 22 February 2024 carries a provenance value of physical endorsement; the system refuses to derive that date from an electronic filing record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Direction (ii) of the circular says that e-filing of fresh cases was to remain unavailable from 15 to 22 February 2024 and that cases shall only be filed through physical mode during those days, so for that window there is no electronic filing record from which a date could be taken. The endorsement the requirement falls back on is the one Volume III r.1-B.3 directs, though that rule speaks of what should be endorsed rather than what shall be.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-001",
@@ -203,6 +209,7 @@
       "test": "A case whose e-filing record begins before 23 February 2024 and shows a re-filing after it is marked as having no reliable electronic institution date; the institution date on such a case can be saved only against a paper endorsement or an order of the court, and the portal history is refused as its source.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Direction (iii) of the circular states the erasure: petitions left in the Drafts, Not Accepted, New Filing, Re-Filing or Transfer to Section stages were not migrated, their data and history were erased permanently, and it names loss of exemption of limitation and delay of days as the consequence. That the surviving portal history is therefore not evidence of when such a complaint first reached the Registry is a reading of the erasure rather than a line in the circular, and the circular itself leaves untouched a case that had already been assigned a CNR number.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-LIM-006"
@@ -232,7 +239,12 @@
       "how": "Volume III r.1-B.3 requires the date to be endorsed on the complaint itself upon institution, so the endorsement is made at the moment of presentation and is not derived later.",
       "test": "Recording a complaint as presented writes the endorsement to the complaint document itself with that day's date; the endorsement cannot be created retrospectively and cannot be edited once made.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.1-B.3 directs that upon the institution of a complaint the date of presentation should be immediately endorsed on it, so the content of the duty is stated but the verb is should rather than shall. The MUST level here reflects settled registry practice, and the fact that the section 142(1)(b) window is measured against that date, rather than mandatory language in the rule, which is why the status is inferred.",
+      "notes": [
+        "hr-filing-assistant-2026-06",
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": "REQ-JUR-006",
       "relatedTo": [
         "REQ-HR-FIL-002",
@@ -265,7 +277,11 @@
       "how": null,
       "test": "A complaint cannot be marked as presented without a named destination magistrate, and the complainant's first appearance date is issued against that magistrate.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "The same sentence of Volume III r.1-B.3 that carries the endorsement carries the name of the magistrate to whom the case is to be sent, and it is in should terms throughout. What the rule fixes is the content of the endorsement; the MUST level reflects registry practice and the fact that the complainant is directed to appear before that named magistrate within days, so the status is inferred.",
+      "notes": [
+        "hr-filing-assistant-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-001"
@@ -292,6 +308,11 @@
       "test": "A user holding a ministerial role cannot be saved as the recipient of a complaint, petition or application unless the court record carries a magistrate-on-leave arrangement for that period; otherwise only a judicial-officer role can be saved, and only a judicial-officer role can be recorded as disposing of it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-A.4(c) says the members of the ministerial establishment are strictly forbidden to receive complaints, petitions or other documents direct from lawyers, their clerks or litigants, and states the one exception the requirement carries over, the Magistrate being on leave with no other Magistrate in charge. Unusually for Volume III the prohibition is in mandatory terms, and sub-rule (a) matches it by having the Magistrate initial every petition and pass orders himself.",
+      "notes": [
+        "hr-filing-assistant-2026-06",
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-SRV-006"
@@ -317,7 +338,11 @@
       "how": "The Electronic Filing Rules prescribe conversion into an OCR searchable PDF/A using any PDF converter or the conversion plug-in provided in the software.",
       "test": "Upload a flat image PDF of a complaint; it is rejected with a format objection. Upload an OCR-searchable PDF/A and a text search for the cheque number returns a hit.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Rule 7.2 of the Electronic Filing Rules prescribes the format exactly, an OCR searchable PDF/A produced by any converter or by the plug-in in the software, but directs that the document should be converted into it rather than shall. Rule 19.1 allows a filing to be rejected for not following the protocol the Rules mandate, which is what gives the MUST level its practical force; because the format rule itself is not mandatory in terms, the status is inferred.",
+      "notes": [
+        "hr-judgment-writer-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-005",
@@ -344,7 +369,11 @@
       "how": "Image resolution of 300 DPI, in OCR searchable mode, saved as a PDF document.",
       "test": "A scanned enclosure below 300 DPI is refused at upload with a resolution objection; the accepted file reports 300 DPI or better and carries a text layer.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Rule 7.3 fixes the specification precisely, 300 dots per inch in OCR searchable mode saved as a PDF, but says such a document should be scanned that way rather than shall. The figure is the Registry's own and there is no competing one; the obligation is what is soft, so the status is inferred.",
+      "notes": [
+        "hr-judgment-writer-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-004"
@@ -370,7 +399,11 @@
       "how": "Text documents and scanned documents are merged into one OCR searchable PDF and bookmarked as per the Master Index duly approved by the Registry.",
       "test": "The upload produces one PDF whose bookmark tree matches the Master Index entries; a submission of several separate PDFs, or one without bookmarks, is rejected.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Rule 9.1 states both limbs, a single merged OCR searchable PDF and bookmarking as per the Master Index duly approved by the Registry, but in should terms for each. The Master Index is itself a Registry instrument, so the content of the duty is fixed even though its language is not mandatory, which is why the status is inferred.",
+      "notes": [
+        "hr-filing-assistant-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-004"
@@ -402,6 +435,7 @@
       "test": "Attempt to upload a file named with each prohibited character and with a 46-character name; each is refused before submission with the offending character or the length named in the message.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 9.6 says the listed special characters are not allowed in a file name, and r.19.1 says an e-filing will be rejected where the protocol mandated by the Rules is not followed, so the rejection the requirement describes is the Rules' own consequence. The 45-character ceiling in the same sub-rule is put as what a file name should not exceed, which is weaker than the character bar it sits beside.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-012"
@@ -428,6 +462,7 @@
       "test": "Upload a password-protected PDF, a watermarked PDF and a PDF with an accepted-changes-pending revision layer or PDF annotations; each is refused with the specific defect named.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 9.7 is one of the few provisions in the Electronic Filing Rules cast in mandatory terms: an online e-filing shall not be watermarked or encrypted, and all e-filed documents shall be legible and free of markings, track changes or annotations. Every defect the requirement refuses is named in that sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-004"
@@ -459,6 +494,10 @@
       "test": "A PDF carrying no digital signature cannot be submitted, and the position of the signature block is validated against the prescribed places before the filing is accepted.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8.1 says the PDF document shall be digitally signed by the parties or their Advocate, and that the digital signatures shall be appended at such places on the document as prescribed under the extant rules. Both limbs of the requirement, the signature and its position, are in the sub-rule and in mandatory language.",
+      "notes": [
+        "hr-filing-assistant-2026-06"
+      ],
       "tightens": "REQ-FIL-001",
       "relatedTo": [
         "REQ-HR-FIL-010"
@@ -489,6 +528,7 @@
       "test": "A user account with no registered digital signature certificate can still complete a filing through the print-sign-scan path and through e-Sign, and the completed filing records which route was used.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8.1 prescribes the first fallback in terms: where neither the party nor the engaged Advocate possesses a digital signature, a printout of the Action shall be physically signed, and it shall then be scanned and uploaded. Rule 8.3 adds e-Sign on Aadhaar authentication for the same filer. The requirement does no more than keep both routes open to an account with no certificate.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-009"
@@ -515,6 +555,11 @@
       "test": "The submit action is blocked until a transaction ID is present, and the stored ID is the one issued by the payment route selected.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 10 says the Transaction ID provided on payment of court fee and other charges is required to be entered in the appropriate field at the time of online e-filing, which fixes both the field and the moment. The requirement adds nothing to it.",
+      "notes": [
+        "hr-filing-assistant-2026-06",
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-017"
@@ -546,6 +591,11 @@
       "test": "Raising an objection on a case emits an e-mail or an SMS to the registered contact, or posts it to that filer's own portal view, within the same session, and the notification that went out is recorded against the case.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 19.3 says the Registry will communicate objections on cases filed to the concerned Advocate or litigant in person by e-mail, SMS or web hosting, and will inform them again, including by e-mail or SMS, once the case is processed for listing. The channel and the trigger are both in the sub-rule.",
+      "notes": [
+        "hr-filing-assistant-2026-06",
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-013"
@@ -572,6 +622,10 @@
       "test": "A case with at least one open objection cannot be added to a cause list; clearing the last objection makes it listable and notifies the filer.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 19.3 states a sequence, that after the objections are cleared the case will be processed for listing, rather than a bar on listing while an objection is open. Turning the sequence into a prohibition is the step taken here, which is why the status is inferred rather than firm.",
+      "notes": [
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-012"
@@ -603,6 +657,11 @@
       "test": "A transfer request from a litigant-in-person account stays pending until an Administrator-role user allows it; after transfer the litigant-in-person account has read-only access.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5.2 requires a litigant in person who later engages an Advocate to apply to the Administrator, says the data shall be transferred once the Administrator allows the application, and says the litigant will then not be in a position to modify it without his permission. The gate and its consequence are both express, and r.3.2 identifies who the Administrator is in a district court.",
+      "notes": [
+        "hr-filing-assistant-2026-06",
+        "hr-hc-it-systems-2026-06"
+      ],
       "tightens": null,
       "relatedTo": []
     },
@@ -627,6 +686,10 @@
       "test": "An exemption application records one of the five grounds and, once allowed by a judicial-officer role, permits the named document to be recorded as filed physically against the same case.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 13 provides for exemption from online e-filing of a pleading or document, on an application to the Bench, on five stated grounds that include a document which cannot be scanned or filed electronically because of its size, shape or condition. An exemption granted under it means the document is filed outside the channel, so accepting it there is what the rule provides for rather than an extension of it.",
+      "notes": [
+        "hr-filing-assistant-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-001",
@@ -662,6 +725,11 @@
       "test": "No cheque complaint appears in Register No. XXIII or No. XXIV; every entry in those registers is keyed to a First Information Report received under the police-report route, and a complaint case cannot be selected as the subject of one.",
       "derivedFrom": "practice-note",
       "status": "inferred",
+      "statusReason": "Volume III r.11-A.14 describes what Registers No. XXIII and XXIV are: registers of First Information Reports received by a magistrate under section 157, entered according to the serial number of the report and inspected monthly by the presiding officer. It defines what the registers hold rather than forbidding anything, so the bar on writing a complaint case into them is drawn from their subject matter and not from a line in the rule.",
+      "notes": [
+        "hr-ahlmad-2026-06",
+        "hr-filing-assistant-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-010",
@@ -694,6 +762,7 @@
       "test": "The fee record shows court fee and process fee as separate amounts with separate payment references; issuing process checks only the process fee, and scrutiny of the complaint checks only the court fee.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 84 of the Haryana Police Act fixes where the sums paid for the service of processes by police officers go, namely to the State Government save so far as an enactment gives them to a local authority. It settles the destination of that money and says nothing about how a court holds or records it, so keeping process fee apart from court fee is read off the two different destinations rather than stated in either instrument.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-011"
@@ -724,6 +793,11 @@
       "test": "Two distinct date fields exist on the complaint record, date of presentation and date of registration; limitation is computed from the presentation date, and registering the case leaves the presentation date untouched.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Volume III r.1-B.3 fixes a date of presentation on the face of the complaint and is silent on the date the case is later registered and numbered; the rule is also in should terms. That the two dates must be held as separate fields is a reading of the rule against the way a file actually moves at Panchkula, where the filing number issues at the window and registration follows the removal of objections weeks later.",
+      "notes": [
+        "hr-filing-assistant-2026-06",
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-001",
@@ -759,6 +833,11 @@
       "test": "A cheque complaint saves and passes scrutiny with the FIR number empty; a cheque-amount field exists on the case record, so no user has a reason to put the cheque amount in the FIR field.",
       "derivedFrom": "practice-note",
       "status": "inferred",
+      "statusReason": "Volume III r.11-A.14 attaches the First Information Report to the police-report route and to the registers kept for it, and nothing in it asks for an FIR number on a case instituted on complaint. The bar on a mandatory FIR field is therefore inferred from what the rule attaches the report to, and the ahlmad's account of the cheque amount being typed into that field is what shows what leaving it required actually costs.",
+      "notes": [
+        "hr-ahlmad-2026-06",
+        "hr-filing-assistant-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-016"
@@ -789,6 +868,7 @@
       "test": "The case record stores the date the fee became payable and displays the days elapsed; the case appears in a list of complaints with process fee outstanding, visible to the court and to the complainant's advocate.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Volume III r.1-Ci.2 ends by saying that where process fees are payable a process should not issue until they are paid, and that in default of payment of the fees within a reasonable time the magistrate may dismiss the complaint. What the rule confers is a power to dismiss; it says nothing about running or displaying a clock. Making a reasonable time visible to the people it can cost is the step taken here, and it is why the status is inferred.",
       "tightens": "REQ-FIL-004",
       "relatedTo": []
     },
@@ -821,6 +901,10 @@
       "test": "The process list for a cheque case offers e-summons at the first issue of process; selecting it records the process type as e-summons on the case record and on the process itself.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "The amended Volume III r.1-Ci.2 puts the e-summons beside the summons, but it does so in a sentence about issuing a summons where the law provides for a warrant, and it confers a discretion on the magistrate rather than directing that both forms be available when process is generated. Reading that discretion as a requirement that the system offer an e-summons at the first issue of process is the step taken here.",
+      "notes": [
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-SRV-004"
@@ -856,6 +940,7 @@
       "test": "The warrant-generation action in a case classified as a summons case cannot complete with an empty reasons field, and the recorded reasons appear on the case record against the warrant.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-Ci.2 makes the recording of reasons a condition of the power itself: a magistrate may issue a warrant instead of a summons, in a case in which the law provides for a summons in the first instance, only after recording his reasons for doing so. A warrant issued with nothing on the record is therefore outside the power the rule describes, and BNSS s.90 is to the same effect. Rule 1-Ci.3, which adds that great care should be taken, is the softer companion to it.",
       "tightens": "REQ-SRV-016",
       "relatedTo": [
         "REQ-HR-SRV-003"
@@ -881,7 +966,8 @@
       "how": "The receipt is given whether or not it is demanded, so the system emits it on recording the receipt rather than on request.",
       "test": "Recording talbana or stamped envelopes against a case produces a receipt document without any further user action, and the receipt is retrievable from the case record afterwards.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.1-A.4(d) says that talbanas and stamped postal envelopes should be received direct by the Ahlmad or the Moharrir and a receipt given for them whether demanded or not. The unprompted receipt is stated in terms, but the sentence is in should form and sits in a list of exceptions to the petition-box orders rather than as a direction of its own. The MUST level reflects registry practice rather than mandatory language, so the status is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-SRV-006",
@@ -909,6 +995,7 @@
       "test": "Only users holding the Ahlmad or Moharrir role can save a talbana or envelope receipt; other ministerial roles are refused, and the saved receipt names the officer who took it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The bar itself is mandatory: r.1-A.4(c) strictly forbids the ministerial establishment from receiving documents direct, and r.1-A.4(d) lifts it for talbana and stamped envelopes only in favour of the Ahlmad or the Moharrir, whom it names. Any other clerical officer who took them would be caught by the prohibition in (c), which is why the status stays firm even though the carve-out in (d) is itself phrased with should.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-SRV-005",
@@ -940,6 +1027,10 @@
       "test": "The destination of a process for police service is chosen from the list of police stations constituted under Haryana Police Act §12 and cannot be saved as free text; processes outstanding against a station can be listed by station and by the officer in charge of it.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 12 of the Haryana Police Act says what a police station is: created by notification in the Official Gazette and headed by a Station House Officer not below the rank of Sub-Inspector. It constitutes the office and says nothing about what a court's process record must name. That the destination of a process for police service should be drawn from that constituted list rather than typed as free text is a reading of the section, taken against the ahlmad's account of process leaving the district and never reappearing in the system.",
+      "notes": [
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-FIL-017"
@@ -975,6 +1066,7 @@
       "test": "Generating a witness summons for a video-conferenced examination requires a Remote Point with a date and a time, and all three print on the summons; the ordinary summons template cannot be used for it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 7 of the Video Conferencing Rules says the summons issued to a witness who is to be examined through video conferencing shall mention the date, time and venue of the concerned Remote Point. All three particulars, and the Remote Point rather than the court room as the place named, are in the rule.",
       "tightens": "REQ-SRV-003",
       "relatedTo": [
         "REQ-HR-SRV-009",
@@ -1003,6 +1095,7 @@
       "test": "Selecting documents for a video-conferenced examination attaches certified copies to the generated summons, and the summons cannot be issued with documents selected but unattached.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8.5 says that if a person is examined with reference to a particular document then the summons to the witness must be accompanied by a duly certified photocopy of that document. The obligation is express and in mandatory terms, and the same sub-rule keeps the original for exhibition at the Court Point.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-008"
@@ -1034,6 +1127,7 @@
       "test": "The witness summons generated for a video-conferenced examination prints the direction to attend in person with proof of identity, and the direction cannot be removed from the template.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The second limb of Video Conferencing Rules r.7 says the summons shall direct the witness to attend in person along with proof of identity or an affidavit to that effect, and r.8.1 is what makes that proof a precondition of being examined at all. The direction the requirement fixes on the template is the rule's own.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-SRV-008",
@@ -1066,6 +1160,7 @@
       "test": "The judgment template carries a powers field populated from the presiding officer's recorded class of powers, and the judgment cannot be finalised with it empty.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-H.2 makes every judicial officer responsible that the record and the final order shall disclose the criminal powers he exercised in hearing or deciding the proceeding, and r.1-H.3 lists those powers from magistrate of the third class up to Sessions Judge. This is one of the rules in Volume III cast with shall, and the requirement carries it over without extension.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-JUR-002"
@@ -1101,6 +1196,7 @@
       "test": "A case marked as tried summarily cannot be assigned to an officer not flagged as specially empowered, and the judgment prints the special empowerment statement.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-H.4 says that where an officer exercises specially conferred powers, and it gives the power to try cases summarily as its own example, the record and final order shall disclose that he is specially empowered in that behalf. Rule 2.1 supplies the premise that a summary trial can be held only by a magistrate so empowered, and section 143 of the NI Act is what puts a cheque case in that mode.",
       "tightens": "REQ-TRL-001",
       "relatedTo": [
         "REQ-HR-JUR-001",
@@ -1136,7 +1232,8 @@
       "how": null,
       "test": "The dismissal-in-default action cannot complete with an empty reasons field; the reasons are stored against the order and appear on the copy supplied to the complainant.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.1-F.2 says reasons should always be recorded where a case is dismissed in default, and directs the magistrate first to consider whether such an order is legal and whether the circumstances justify it. The duty is stated squarely but its verb is should, and BNSS s.272 requires no reasons of its own. The MUST level reflects what a revisional court will expect to find on the file rather than mandatory language, so the status is inferred.",
       "tightens": "REQ-TRL-016",
       "relatedTo": [
         "REQ-HR-TRL-002",
@@ -1163,7 +1260,8 @@
       "how": null,
       "test": "The order of dismissal in default stores and prints a time of day as well as a date, and it cannot be saved without one.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.1-F.3(ii)(a) says the time of dismissal should always be noted on the record, and the instruction was issued because applicants for revision kept urging that the case was dismissed very early in the day while the magistrates' records furnished no definite information on the point. The direction is exact, but its verb is should, so the MUST level rests on the purpose the instruction states rather than on mandatory words, and the status is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-TRL-001",
@@ -1196,6 +1294,7 @@
       "test": "The dismissal-in-default action requires a recorded second call, or an explicit override with reasons; the second call and its time appear on the order sheet.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-F.3(ii)(a) says that ordinarily, if a complainant is absent when his case is first called on, his case should be called on again later, and r.1-F.0 gives the reason, that some magistrates are inclined to dismiss cases in default hastily. Here the SHOULD level matches the rule's own should, so the requirement states the instruction at the strength the instruction has.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-TRL-001",
@@ -1226,7 +1325,8 @@
       "how": null,
       "test": "The detention-in-default order template carries the bail amount, the offence and the punishing section, and cannot be generated with any of the three empty.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.10.1 says the amount of bail, and the offence charged with the section under which it is punishable, should always be stated on the face of an order directing the accused to be detained in the lock-up in default of furnishing bail. All three particulars are named, but the sentence is in should form, so the MUST level reflects what the order has to carry to be capable of compliance rather than the verb of the rule, and the status is inferred.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1250,7 +1350,8 @@
       "how": "The case is decided at least two days before the holidays commence, and arrangements are made for free copies to be supplied to the convicted person forthwith.",
       "test": "With a court calendar containing a run of four or more consecutive holidays, the system refuses or warns on a judgment date inside the two days before it for a case flagged as likely to carry imprisonment.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.1-H.1(iv) says all cases in which an accused person is likely to be convicted and sentenced to imprisonment before a spell of four or more holidays should be decided at least two days before the holidays commence, and that arrangements should be made for free copies forthwith so that he can apply for bail. Both limbs are stated and both use should, so the status is inferred and the MUST level reflects the consequence the rule is guarding against rather than its language.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-CPY-003"
@@ -1287,6 +1388,7 @@
       "test": "Any hearing conducted over a link writes a mode flag to the order sheet entry, and that flag prints in the order sheet text.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 14.9 of the Video Conferencing Rules says that wherever any proceeding is carried out by the Court under those Rules by taking recourse to video conferencing, this shall specifically be mentioned in the order sheet. Rule 3(ii) supplies the reason, that a proceeding conducted that way is a judicial proceeding for every purpose.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-TRL-009",
@@ -1320,6 +1422,7 @@
       "test": "Recording a remote deposition requires an identity confirmation entry naming the document or affidavit relied on, and that entry prints in the order sheet.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 12.3 says the identity of the person to be examined shall be confirmed by the Court with the assistance of the Coordinator at the Remote Point at the time of recording the evidence, and that the same must be reflected in the order sheet. Both the confirmation and its entry are mandatory on the face of the sub-rule, and r.8.1 states what the proof consists of.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-TRL-008",
@@ -1347,6 +1450,7 @@
       "test": "Closing a video-conferenced hearing requires a recorded satisfaction entry covering both Court Users and Remote Users before the order sheet entry can be finalised.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 10.8 says the Court shall record its satisfaction as to clarity, sound and connectivity for both Court Users and Remote Users. The requirement uses the sub-rule's own words, and r.10.9, which lets a prejudiced Remote User have the hearing declared incomplete, is what that entry exists to answer.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-TRL-008"
@@ -1378,6 +1482,7 @@
       "test": "Selecting a non-designated platform on a hearing requires reasons and writes the platform name to the order sheet; using the designated platform requires neither.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 12.2 permits a departure from the Designated Video Conferencing Software only for a technical glitch and only for reasons to be recorded, and r.10.7 says that on completion the Court shall mention in the order sheet the software used where it is not the designated one, together with the time and duration of the proceeding. Both the condition and the entry are express.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-TRL-008"
@@ -1409,6 +1514,11 @@
       "test": "The deposition screen produces a typed, searchable record attributed to the presiding officer's dictation; a scanned handwritten page is accepted only with a recorded reason.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-E.3(ii)(a), substituted in December 2021, says the depositions of witnesses shall be recorded in typed format if possible, and that the record of evidence shall be prepared on computers if available, in Court, on the dictation of the Presiding Officer. The verb is shall but each limb carries its own condition, if possible and if available, which is why the level is SHOULD rather than MUST; the content of the direction is the rule's own, so the status is firm.",
+      "notes": [
+        "hr-ahlmad-2026-06",
+        "hr-judgment-writer-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-CPY-001"
@@ -1440,6 +1550,10 @@
       "test": "Marking a document while a witness is under examination generates an exhibit number of the form P-n/PWn automatically; the composite number appears in the FORM C appendix of the judgment.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-E.3(iv)(b) says the exhibit number shall further show the number of the witness through whom the document was first introduced, and gives the reason, to locate that witness easily. The explanation that follows fixes the form itself, Exhibit P-1/PW1, so both the composite identifier and its shape are in the rule.",
+      "notes": [
+        "hr-judgment-writer-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-003"
@@ -1466,6 +1580,7 @@
       "test": "An exhibit can be saved in a subject-to-proof state, the qualifier prints wherever the exhibit number appears, and a report lists exhibits still subject to proof at the close of evidence.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-E.3(iv)(b) says that if an exhibit is marked without proper proof the same shall be indicated by showing in brackets, and the explanation gives the exact form, Exhibit P-1/PW1 (subject to proof). The qualifier, its wording and its place in the marking all come from the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-002"
@@ -1497,6 +1612,10 @@
       "test": "Each deposition stores three separately populated date fields; the FORM B statement in the judgment is generated from them and not typed by hand.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-E.3(iii)(c) says the record of depositions shall indicate the date of the examination-in-chief, the cross-examination and the re-examination, and (f) requires the witness's name and number to be clearly stated on any later date where the evidence is not concluded on the day it begins. Three separately held dates are what the sub-rule asks for in terms.",
+      "notes": [
+        "hr-judgment-writer-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-005"
@@ -1526,7 +1645,8 @@
       "how": null,
       "test": "A deposition with no cross-examination cannot be closed without an explicit entry that the accused did not wish to cross-examine, or that a further opportunity was refused for recorded reasons.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.1-E.10 says that if a witness is not cross-examined the record should show that the accused did not wish to do so, so the entry the requirement asks for is exactly the one the rule describes. The verb is should, and the sentence sits under a heading about distinguishing cross-examination by a note in the margin, so the MUST level reflects what the record has to carry to answer a ground of appeal rather than mandatory language, and the status is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-004"
@@ -1558,6 +1678,7 @@
       "test": "An objection record cannot be saved without all three elements populated and a link to the specific exhibit or answer objected to.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The mandatory limb is r.1-E.3(iii)(e), inserted in 2021, under which objections by either the prosecution or the defence shall be taken note of and reflected in the evidence and decided immediately, or at the discretion of the judge at the end of that witness's deposition. The three-part formula the requirement uses, the piece of evidence objected to, the objection and the decision on it, comes from the older r.1-E.1, which puts it as what should be clearly recorded. The duty to note and decide is firm; the itemisation belongs to the softer rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-003"
@@ -1584,6 +1705,7 @@
       "test": "A remote examination cannot be started until an acknowledgement of transmission is recorded against the case, listing the documents transmitted.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8.4 of the Video Conferencing Rules says the documents sought to be relied upon shall be transmitted by the applicant to the witness before the examination, so that the witness acquires familiarity with them, and that the applicant will file an acknowledgement with the Court in that behalf. The transmission and the acknowledgement on file are both stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-SRV-009",
@@ -1615,7 +1737,8 @@
       "how": "Where the document is at the Remote Point instead, the hard copy countersigned by the witness and the Remote Point Coordinator is dispatched to the Court Point by authorised courier or registered speed post.",
       "test": "An exhibit marked during a remote deposition carries a flag showing whether the original was at the Court Point or the Remote Point, and in the latter case a dispatch record is required.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Rule 8.5 says the original document should be exhibited at the Court Point in accordance with the deposition of the person being examined, so the practice the requirement records is the rule's own, but the verb is should where the certified photocopy accompanying the summons, in the sentence before it, is a must. Rule 9 adds only how a document may be shown at either point, and does so permissively. Making the exhibition of the original a required entry therefore goes beyond the language, and the status is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-007",
@@ -1652,6 +1775,7 @@
       "test": "Ending a remote examination stores a master recording, its hash value and its encryption state against the case; the hash can be recomputed and matched on retrieval.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8.9 says an audio-visual recording of the examination shall be preserved, and that an encrypted master copy with hash value shall be retained as a part of the record. The encryption, the hash and the recording's place in the record are each in the sub-rule, and r.3(vi) bars any unauthorised recording alongside it.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-010"
@@ -1678,6 +1802,7 @@
       "test": "A remote deposition remains in an incomplete state until a signed transcript is attached, and the case shows the dispatch date and the days elapsed against the three-day expectation.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8.8 says the Court shall obtain the signature of the person being examined on the transcript once the examination is concluded, and that the signed transcript will form part of the record of the judicial proceedings. The two routes for obtaining it, and the preference that the hard copy be dispatched within three days, are set out in r.8.8.1 and r.8.8.2.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-009"
@@ -1704,6 +1829,7 @@
       "test": "The compounding action cannot complete until a statement is recorded against every party on the case record, complainant and each accused.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-H.10 says that where an offence is compounded no judgment on facts is needed but the statement of all the parties concerned must be recorded. This is one of the few directions in Volume III put with must, and the requirement asks for nothing beyond it.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1736,7 +1862,8 @@
       "how": null,
       "test": "Where the case is flagged as requiring the court's permission to compound, the acquittal order cannot be generated with an empty reasons field.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Both sources say what the requirement says, and both say it with should: r.1-H.10 directs that where the permission of the court is necessary the reasons for granting it should be stated in the order directing the acquittal, and r.1-H.12 that in every case in which a magistrate allows the parties to compromise his reason should be recorded in his order. The content is unambiguous and stated twice, but the language is not mandatory, so the status is inferred.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1765,6 +1892,7 @@
       "test": "Recording an award in a remotely conducted Lok Adalat queues the award and the record of proceedings for transmission to the Remote Point and stores the date they were sent.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15.3 of the Video Conferencing Rules says a copy of the award or order and the record of proceedings shall be sent to the Remote Point, and r.15.2 gives that award the same force as one passed by a regular Lok Adalat. Both the transmission and what is transmitted are stated.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1798,6 +1926,7 @@
       "test": "A sentence that includes a fine cannot be finalised without a recorded means entry, and that entry is reproduced in the sentencing part of the judgment.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Volume III r.19-B.1 directs that care should always be taken to see that a fine is not excessive with reference to the means of the offender, and warns that indiscriminate fines waste the time of the courts and the police and harass the convict and his dependants. It states the consideration but neither how means are to be ascertained nor that the material relied on be recorded; requiring that record is the step taken here, and the rule's verb is should in any event.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-SEN-002"
@@ -1828,7 +1957,8 @@
       "how": null,
       "test": "The sentencing screen offers a payment schedule for a fine-only sentence, stores the instalment dates, and tracks payments against them before any default warrant can issue.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.19-B.3 notes that where a fine is not paid forthwith the court can order it to be paid within a certain period or in instalments, and it locates that power in section 388 of the Code rather than creating it. What the rule describes is a power of the court; that a sentencing screen must expose the power, so that it is not lost by omission, is a system-level consequence rather than a duty the rule states, which is why the status has been moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-SEN-001"
@@ -1859,6 +1989,7 @@
       "test": "The compensation release action is blocked until the appeal period has elapsed and a recorded no-appeal confirmation from the appellate court is attached to the case.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The first limb is mandatory: Volume III r.1-H.8 says the compensation must not be paid away until the period for appeal has elapsed or, where an appeal is presented, until it is decided. The second limb, the positive check, is put as what the lower courts should not do until they are satisfied by examining the record and making a reference to the appellate court, so it is the softer of the two. The rule also states why the check exists, that money paid out in ignorance of a pending appeal proved impossible to recover.",
       "tightens": "REQ-SEN-006",
       "relatedTo": [
         "REQ-HR-SEN-002"
@@ -1889,6 +2020,7 @@
       "test": "The retention class assigned to a document typed as a cheque is the general class under r.11.1, never the permanent class under r.11.3; a power of attorney filed in the same case does take the permanent class.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 11.3 lists the documents that will have to be preserved permanently, and its first entry is a negotiable instrument other than a cheque, so the cheque is put outside that class by the words of the list itself. What is left for it is r.11.1, under which originals of scanned documents are preserved for production or inspection as the Bench directs, and r.11.4, which puts that burden on the party that filed the scan.",
       "tightens": "REQ-EVI-017",
       "relatedTo": [
         "REQ-HR-REC-002",
@@ -1916,6 +2048,7 @@
       "test": "Every scanned document stores a filing party; a direction to produce an original is addressed to that party and appears on that party's task list.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 11.4 says the responsibility of producing the originals and proving their genuineness shall be of the party that has electronically filed the scanned copies. The requirement holds nothing more than the identity of that party, which is what the sub-rule makes decisive the moment the Bench calls for an original.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-001"
@@ -1941,7 +2074,8 @@
       "how": null,
       "test": "The retention date on the vakalatnama and affidavit is computed from the latest disposal across the trial and appellate proceedings, and moves outward when an appeal is filed.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Rule 11.2 names the documents, the signed vakalatnama and the notarised or attested affidavit among them, and fixes the reference point in mandatory terms: final disposal shall include disposal of the Action by the superior appellate court. The preservation duty itself is put as what should be preserved for at least two years, so the clock the requirement runs rests on a should even though the point it counts from is stated with shall, and the status is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-002"
@@ -1976,7 +2110,11 @@
       "how": "On receipt the case goes into the institution register; a separate entry is made in the register of summary cases when the accused appears.",
       "test": "A cheque case appears in the institution register and in pendency counts from the date it is received in court, before any appearance is recorded.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.2.6 records why the instruction exists, that summary cases were being entered in the registers only when the accused appeared and large numbers of them escaped the notice of the courts, and says it is of the utmost importance that as soon as such a case is received in Court it should be entered in Register No. 1, with the separate entry in the register of summary cases following on appearance. The direction is emphatic but its verb is should, so the MUST level reflects the mischief the High Court identified rather than mandatory language, and the status is inferred.",
+      "notes": [
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-005"
@@ -2007,7 +2145,11 @@
       "how": null,
       "test": "Only a judicial-officer role can write to those columns; a ministerial role sees them read-only, and the saved entry names the magistrate who made it.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.2.3 says columns 7 to 14 of Register No. XVII should be filled in by the Magistrate himself, and r.1-E.8 explains why they carry so much, that in a summary case where no appeal lies the particulars under section 263 are the record. The allocation to the magistrate personally is exactly what the requirement enforces, but the rule says should rather than shall, so the status is inferred.",
+      "notes": [
+        "hr-ahlmad-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-004",
@@ -2044,6 +2186,7 @@
       "test": "Every date change on a case writes an adjournment order with its own date and the resumed date; the order sheet can be read end to end with no unexplained gap between dates.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-E.14 says every order of adjournment must be entered, which is mandatory, and that the date on which the inquiry was resumed should be apparent, which is not. The sentence before them, requiring a short note of every material order in its proper place with the date it was made, is also in should terms. The core of the requirement, the adjournment order itself, rests on the must.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-007"
@@ -2075,6 +2218,10 @@
       "test": "Party names, order text and judgment text entered in Devanagari round-trip unchanged through storage, generated documents and printed process; the record stores which language was used.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "The 1962 notification reproduced in Volume III r.1-E.14 determines the language of the courts subordinate to the High Court to be Hindi in Devanagari script in the Hindi Region and Punjabi in Gurmukhi in the Punjabi Region, and r.1-H.1(ii) requires the judgment to be written in the language of the court or in English. It is an undivided-Punjab instrument: that the Hindi Region is now Haryana follows from the reorganisation and not from the text, which is why the status is inferred.",
+      "notes": [
+        "hr-judgment-writer-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-EVI-001"
@@ -2101,6 +2248,7 @@
       "test": "An order received through FASTER can be actioned without a physical certified copy, and the case record shows the FASTER transmission as its source.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-A.14, inserted in September 2022, says the e-authenticated copies of interim orders, stay orders, bail orders and records of proceedings transmitted through the FASTER system shall be valid for compliance of the directions contained in them. The rule is a single sentence and it says exactly this, in mandatory terms.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-CPY-002"
@@ -2132,6 +2280,10 @@
       "test": "The system offers no bulk export or e-mail-a-copy path for a case file to an address outside the court's controlled domain, and any such attempt is refused and logged.",
       "derivedFrom": "practice-note",
       "status": "inferred",
+      "statusReason": "Rule 18 says e-filings will be stored on an exclusive server maintained under the control and directions of the Court, each separately labelled and encrypted, with access restricted and a mirror permitted only at a location the Court decides. It describes where filings are held rather than forbidding a copy held elsewhere, so the prohibition is read off that scheme, with r.20's caution that e-mail is not a secure medium beside it. That reading is why the status is inferred.",
+      "notes": [
+        "hr-filing-assistant-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-010"
@@ -2163,6 +2315,11 @@
       "test": "Each register carries at most one inspection record per month, naming the presiding officer and the date he signed it; a month closing with no inspection record on a register is flagged on the court's dashboard.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Volume III r.11-A.14 requires the registers to be inspected by the presiding officer at least once a month and to be signed by him in token of having done so, but it says that of Registers No. XXIII and XXIV, the registers of First Information Reports. Extending the same control to the other registers the same ahlmad keeps is the step taken here, and the inspection sentence is in should terms even for the two registers it does name.",
+      "notes": [
+        "hr-ahlmad-2026-06",
+        "hr-judgment-writer-2026-06"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-HR-REC-004",
@@ -2194,6 +2351,7 @@
       "test": "Closing a deposition generates three certified copies with receipt slips for the accused or his advocate, the witness and the prosecutor, dated the day of recording; the receipts are stored against the case.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.1-E.3(ii)(c) states every element of the requirement in one sentence and with shall: a hard copy of the testimony recorded, duly signed to be a true copy by the Presiding Officer or court officer, made available free of cost against receipt to the accused or an advocate representing him, to the witness and to the prosecutor, on the date of recording. Nothing is added.",
       "tightens": null,
       "tightens_hint": "The national requirement governing the supply of copies of the evidence and the record to the accused.",
       "relatedTo": [
@@ -2221,6 +2379,7 @@
       "test": "A revision application pending a copy for seven days raises an escalation and offers the forward-without-copy path, which requires an explanation before it completes.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.25-G.3 says no application for revision is to be detained for more than a week for the purpose of granting a copy of the judgment impeached, and that if a copy cannot be given within that time the application must be forwarded to the High Court without it, with an explanation of the cause. Both the ceiling and what follows it are stated, and both are in mandatory form.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-CPY-003"
@@ -2251,7 +2410,8 @@
       "how": "Such copies are supplied on the same day as far as possible, and if that is not practicable at least on the next day.",
       "test": "An application flagged with a custodial sentence made on the working day before a holiday is placed at the head of the copying queue and its target date is the same day, failing which the next day.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Volume III r.25-G.3 says applications for copies made by a person sentenced to imprisonment on a working day preceding a holiday should be treated as urgent, and that such copies should be supplied on the same day as far as possible and, failing that, at least on the next day. The class and the target dates are identified exactly, but both sentences use should and the second is further softened by as far as possible, so the MUST level goes beyond the language and the status is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-TRL-007",
@@ -2288,6 +2448,10 @@
       "test": "A conviction with imprisonment issues the free copy without any application; a fine-only conviction raises a prompt to the convicted person or his advocate to apply, and the copy is then supplied free of cost.",
       "derivedFrom": "practice-note",
       "status": "inferred",
+      "statusReason": "Volume III r.1-H.1(vi) attaches the free copy of the finding and sentence to a sentence of imprisonment, and BNSS s.404(1) does the same for the judgment, which leaves a fine-only conviction to s.404(2), expressed as being on the application of the accused. Neither instrument says the convicted person is to be prompted to make that application; the prompt is the step taken here, because the Panchkula practice of handing the copy over on every conviction is more generous than the letter of the rule and a system following the letter would leave him unaware that he must ask.",
+      "notes": [
+        "hr-judgment-writer-2026-06"
+      ],
       "tightens": "REQ-CPY-004",
       "relatedTo": [
         "REQ-HR-APL-005"
@@ -2314,6 +2478,7 @@
       "test": "A vakalatnama, memo of appearance or written authorisation cannot be saved without an address, a telephone or cell number and an enrolment number; the e-mail and fax fields save empty.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.25-A.4 says an Advocate shall, at the time of accepting his appointment or engagement, record his residential or office address, telephone or cell number, enrolment number and, if available, e-mail as well as fax number on the Vakalatnama, Memo of Appearance or Written Authorization. The particulars, and which of them are conditional, are the rule's own, and the verb is shall.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-APL-002",
@@ -2341,6 +2506,7 @@
       "test": "Filing a vakalatnama with no stamp recorded is refused unless an urgency undertaking is captured; the same check applies to a respondent's vakalatnama.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The second proviso to Volume III r.25-A.4 says every Vakalatnama, Memo of Appearance or Written Authorization shall be affixed with the requisite Advocate Welfare Fund Stamp, provides for acceptance on an undertaking where the stamp is unavailable in a case of urgency, and says in terms that the same applies where the counsel files for a respondent. All three limbs of the requirement are in that proviso.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-APL-001",
@@ -2368,6 +2534,7 @@
       "test": "A matter with an open stamp undertaking cannot be added to a cause list without a recorded court order; recording compliance releases it automatically.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The same proviso says the matter shall be listed before the Court only after compliance with the undertaking, unless otherwise ordered by the Court. The bar and the two ways it lifts are stated together and in mandatory terms.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-APL-002"
@@ -2399,6 +2566,7 @@
       "test": "A revision filed by anyone other than the named complainant requires a duly stamped power of attorney on record before it can be admitted; the check runs before numbering.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.25-A.1 says a petition for revision by a complainant shall not be admitted unless it is presented by the complainant or by some person authorised by a duly stamped power of attorney to present it on his behalf, and it states that bar separately from the one governing a convict's appeal. The High Court's fee table carries the power of attorney as an item of its own, which is what duly stamped refers to.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-APL-005"
@@ -2435,6 +2603,7 @@
       "test": "Setting the custody flag on the appellant reduces the computed fee to nil for a criminal appeal, revision or miscellaneous application, and the nil fee is shown with the custody ground stated.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The note to the criminal fee table says that where the Appellant, Applicant or Petitioner is in custody, court fee is not required, and the Criminal Appeal entry repeats it as a nil fee in that case. Volume III r.25-A.5 says the same thing from the other side, that no court fees shall be charged on appeals preferred on behalf of a prisoner by a pleader or by agent. The exemption and the class it covers are both express.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-APL-006",
@@ -2467,6 +2636,7 @@
       "test": "The computed fee for a petition equals the case-type fee plus Rs. 0.65 multiplied by the annexure page count, and the two components are shown separately.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The Court Fee Table carries Annexures as its own entry among the common documents, at Rs. 0.65 per page, alongside the flat case-type fees such as the Rs. 2.65 on a quashing petition. Charging the two separately is how the table is built; the requirement only refuses to quote the case-type fee on its own.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-APL-005",
@@ -2494,6 +2664,7 @@
       "test": "Any screen quoting a High Court criminal fee shows the provisional status and the reason, and the fee values are held as data that can be replaced without a code change.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Note 1 to the Court Fee Table says the fees are received under the Court Fees Act, 1870 as un-amended because Schedules I and II of the Court Fees (Punjab Second Amendment) Act, 2009 have stood stayed since 27 November 2013, and that the chart is subject to change without notification and to the final decision in RSA No. 3311 of 2013. The table states its own provisional status. That judgment is not in this corpus, which is a further reason to hold the fee values as replaceable data rather than fix them.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-APL-006"
@@ -2520,6 +2691,7 @@
       "test": "Where several advocates are recorded for a party, exactly one address is flagged as the address for service, and every notice the system generates for that party is addressed to it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Volume III r.25-A.4 says the address the Advocate records shall be the address for service within the meaning of Rule 5 of Order 3 of the Code of Civil Procedure, and its first proviso says that where more than one Advocate accepts the engagement it is sufficient for one of them to record his address. Both the designation and the single-address rule are in the text.",
       "tightens": null,
       "relatedTo": [
         "REQ-HR-APL-001"
