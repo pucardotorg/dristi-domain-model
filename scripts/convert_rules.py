@@ -82,17 +82,57 @@ def rankof(mark):
     if inner == 'i': return 2
     if len(inner) >= 2 and re.fullmatch(r'[ivxlcdm]+', inner): return 2
     return 1
-MK = re.compile(r'^[\*\[]{0,2}\((\d+[A-Z]?|[A-Za-z]{1,4})\)\s+(.*)$')
+MK = re.compile(r'^[\*]{0,2}(?:\d{1,3}\s?(?=\[))?[\[]{0,2}\((\d+[A-Z]?|[A-Za-z]{1,4})\)\s+(.*)$')
+# "1. Name of the Court." - an enumeration nested inside a sub-rule. Common in this
+# corpus after "showing the following particulars:" / "the following registers:".
+DOT = re.compile(r'^(\d{1,2})\.\s+(\S.*)$')
+# gazette amendment footnotes: "50Renumbered by Notification No. ..." - they trail a
+# rule and must not be glued onto the last list item as if they were part of it.
+FOOT = re.compile(r'^\d{1,3}\s?(?:Re-?numbered|Inserted|Substituted|Added|Omitted|Deleted)\b')
+
+def dotted_flags(lines):
+    """Which lines belong to a dotted-arabic enumeration.
+
+    Only a run counting up from 1 with at least two members qualifies, so a stray
+    numbered sentence, or a footnote quoting an old rule ("35. Form of Proceedings."),
+    is never mistaken for a list. Up to three unmarked lines are tolerated
+    between members: list items wrap.
+    """
+    n = len(lines); flags = [False] * n; i = 0
+    while i < n:
+        m = DOT.match(lines[i])
+        if m and m.group(1) == '1':
+            run = [i]; want = 2; j = i + 1
+            while j < n:
+                mm = DOT.match(lines[j])
+                if mm and int(mm.group(1)) == want:
+                    run.append(j); want += 1; j += 1
+                elif j - run[-1] <= 3 and not MK.match(lines[j]) and not FOOT.match(lines[j]):
+                    j += 1                       # continuation of the current item
+                else:
+                    break
+            if len(run) >= 2:
+                for k in run: flags[k] = True
+                i = run[-1] + 1
+                continue
+        i += 1
+    return flags
 
 def parse_content(body_list, eid):
     lines = [clean(l) for l in body_list if clean(l)]
+    dotted = dotted_flags(lines)
     nodes = []
-    for line in lines:
+    for idx, line in enumerate(lines):
         m = MK.match(line)
         if m:
             mark = '(' + m.group(1) + ')'
-            nodes.append({'t': 'item', 'mark': mark, 'd': rankof(mark), 'text': clean(m.group(2)), 'children': []})
-        elif re.match(r'^(Provided|Explanation|Illustration|Note|TABLE)', line, re.I):
+            nodes.append({'t': 'item', 'st': 'paren', 'mark': mark, 'd': rankof(mark),
+                          'text': clean(m.group(2)), 'children': []})
+        elif dotted[idx]:
+            d = DOT.match(line)
+            nodes.append({'t': 'item', 'st': 'dot', 'mark': d.group(1) + '.', 'd': 1,
+                          'text': clean(d.group(2)), 'children': []})
+        elif FOOT.match(line) or re.match(r'^(Provided|Explanation|Illustration|Note|TABLE)', line, re.I):
             nodes.append({'t': 'p', 'text': line})
         else:
             if nodes and nodes[-1]['t'] == 'item': nodes[-1]['text'] += ' ' + line
@@ -116,8 +156,10 @@ def parse_content(body_list, eid):
             if e['t'] == 'p':
                 out.append('<p>' + esc(clean(e['text'])) + '</p>'); i += 1
             else:
-                grp = []
-                while i < len(entries) and entries[i]['t'] == 'item': grp.append(entries[i]); i += 1
+                grp = []; st = e['st']
+                # one blockList per enumeration: a change of marker style ends the list
+                while i < len(entries) and entries[i]['t'] == 'item' and entries[i]['st'] == st:
+                    grp.append(entries[i]); i += 1
                 ctr[0] += 1; lid = eid + '__l' + str(ctr[0]); s = '<blockList eId="' + lid + '">'
                 for it in grp:
                     ctr[0] += 1; iid = eid + '__i' + str(ctr[0])
@@ -130,10 +172,13 @@ def parse_content(body_list, eid):
     if not inner: inner = '<p></p>'
     return '<content>' + inner + '</content>'
 
-def unit_xml(num, heading, body_lines, prefix):
-    eid = f'{prefix}_{num}'
-    head = '<heading>' + esc(clean(heading)) + '</heading>' if heading else ''
-    return f'<section eId="{eid}"><num>{num}.</num>{head}' + parse_content(body_lines, eid) + '</section>'
+def unit_xml(r, prefix):
+    # schedules and forms carry their own eId and print their label verbatim ("SCHEDULE A"),
+    # numbered rules keep the historic "<prefix>_<num>" ids the JSON layers pin against
+    eid = r.get('eid') or f'{prefix}_{r["num"]}'
+    label = r.get('label') or f'{r["num"]}.'
+    head = '<heading>' + esc(clean(r['heading'])) + '</heading>' if r['heading'] else ''
+    return f'<section eId="{eid}"><num>{esc(label)}</num>{head}' + parse_content(r['body'], eid) + '</section>'
 
 def _split_head(rest, seps=r'[—.:]'):
     """heading = text up to the first separator on the marker line; remainder = body."""
@@ -157,29 +202,66 @@ def parse_chapter_flatrule(text):
         marks.append(('chap', m.start(), m.end(), m.group(1), None))
     for m in re.finditer(r'(?m)^\s*(\d{1,3}[A-Z]?)\.\s+([A-Z].*)$', text):
         marks.append(('rule', m.start(), m.end(), m.group(1), m.group(2)))
+    marks += annex_marks(text)
     return _assemble(marks, text, next_line_title=True)
+
+def annex_marks(text):
+    """Schedules and Forms printed after the last rule.
+
+    They carry no rule number, so without their own marks the whole tail - here
+    Schedules A and B plus 38 forms, about 52 KB - lands inside the final rule's
+    body and buries it.
+    """
+    out = []
+    for m in re.finditer(r'(?m)^\s*(SCHEDULE\s+([A-Z])|FORM\s+NO\.\s*(\d+[A-Z]?)|APPENDIX\s+([IVXLC]+|[A-Z]))\s*$', text):
+        label = clean(m.group(1))
+        key = re.sub(r'[^a-z0-9]+', '_', label.lower()).strip('_')
+        out.append(('annex', m.start(), m.end(), label, key))
+    return out
 
 def _assemble(marks, text, next_line_title):
     marks.sort(key=lambda x: x[1])
+    # Pass 1: drop rule marks that are out of sequence - TOC noise, cross-references,
+    # and (most often) the numbered lines of an enumeration *inside* a rule, e.g. the
+    # "showing the following particulars: 1. ... 2. ..." of Rule 144. A rejected mark
+    # must also stop being a boundary: keeping it as one truncated the enclosing rule
+    # at the first list item and silently dropped everything after it.
+    kept = []; last = 0; in_annex = False
+    for mk in marks:
+        if mk[0] == 'chap':
+            kept.append(mk)          # chapters don't reset rule numbering (continuous)
+            continue
+        if mk[0] == 'annex':
+            in_annex = True          # past the last rule: numbered lines below are form fields
+            kept.append(mk)
+            continue
+        if in_annex: continue
+        base = int(re.match(r'\d+', mk[3]).group())
+        if base < last or base > last + 25:
+            continue
+        last = base
+        kept.append(mk)
+    # Pass 2: boundaries come from the surviving marks only.
     chapters = [{'roman': None, 'title': None, 'rules': []}]   # implicit preliminary group
-    last = 0
-    for i, mk in enumerate(marks):
-        end = marks[i + 1][1] if i + 1 < len(marks) else len(text)
+    for i, mk in enumerate(kept):
+        end = kept[i + 1][1] if i + 1 < len(kept) else len(text)
         if mk[0] == 'chap':
             title = mk[4]
             if next_line_title:
                 tail = text[mk[2]:end].lstrip('\n')
                 title = clean(tail.split('\n', 1)[0]) if tail.strip() else ''
             chapters.append({'roman': mk[3], 'title': clean(title or ''), 'rules': []})
-            last = last  # chapters don't reset rule numbering (continuous)
+        elif mk[0] == 'annex':
+            tail = text[mk[2]:end].lstrip('\n').split('\n')
+            heading = clean(tail[0]) if tail and clean(tail[0]) else ''
+            if chapters[-1]['roman'] is not None:
+                chapters.append({'roman': None, 'title': None, 'rules': []})   # out of the chapters
+            chapters[-1]['rules'].append({'num': mk[3], 'label': mk[3], 'eid': mk[4],
+                                          'heading': heading, 'body': tail[1:]})
         else:
-            num = mk[3]; base = int(re.match(r'\d+', num).group())
-            if base < last or base > last + 25:   # ignore stray refs / TOC noise
-                continue
-            last = base
             heading, first_body = _split_head(mk[4])
             body_lines = ([first_body] if first_body else []) + text[mk[2]:end].split('\n')
-            chapters[-1]['rules'].append({'num': num, 'heading': heading, 'body': body_lines})
+            chapters[-1]['rules'].append({'num': mk[3], 'heading': heading, 'body': body_lines})
     return [c for c in chapters if c['rules']]
 
 def parse_flat_rule(text):
@@ -229,7 +311,7 @@ def build(slug, cfg, text):
     prefix = cfg["eid"]
     body_parts = []; n_units = 0
     for ci, ch in enumerate(chapters, 1):
-        units = ''.join(unit_xml(r['num'], r['heading'], r['body'], prefix) for r in ch['rules'])
+        units = ''.join(unit_xml(r, prefix) for r in ch['rules'])
         n_units += len(ch['rules'])
         if not units: continue
         if ch['roman']:
