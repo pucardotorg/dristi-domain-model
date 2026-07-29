@@ -29,6 +29,7 @@
       "test": "Case instituted through the SARAS route carries case type 'eCriminal Case'; a case with any other case type is not allocated to a SARAS presiding officer.",
       "derivedFrom": "practice-note",
       "status": "firm",
+      "statusReason": "Paragraph 3 records that the SARAS N.I. Court establishment was set up under the C.J.M. Courts of Ahmedabad City exclusively for cheque cases e-filed by banks and NBFCs, and says in terms that these cases will be filed and instituted with case type 'eCriminal Case'; rule 1(c) applies the SARAS rules to that establishment. The case-type string is named in the source rather than derived from it. The one caveat is that the source is a press release recording two notifications of 5 December 2024 that are not themselves in this corpus.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-JUR-003"
@@ -64,7 +65,8 @@
       "how": null,
       "test": "Two distinct fields exist; a case whose presiding officer is posted at Narmada still reports its court of jurisdiction as the C.J.M. courts of Ahmedabad City.",
       "derivedFrom": "practice-note",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Paragraph 4 records that the nominated presiding officers are posted at Ahmedabad, Anand, Narmada and Gir Somnath and that their place of work does not change, paragraph 5 that officers posted anywhere in the State adjudicate cases e-filed in the Ahmedabad City courts, and rule 9.1 that adjudication is valid notwithstanding the remote station. Those passages state a fact about the arrangement; none of them says the court of jurisdiction must be held apart from the officer's station. Separating the two into distinct fields, so that summonses, cause lists and statistics follow the court rather than the officer, is the step taken here, which is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-JUR-004"
@@ -95,7 +97,8 @@
       "how": null,
       "test": "The complainant record carries an institutional-class attribute; SARAS routing is driven by that attribute and rejects a complaint whose complainant is not a bank or an NBFC.",
       "derivedFrom": "practice-note",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Paragraphs 2 and 3 define the establishment by who files into it, cheque cases e-filed by banks and Non-Banking Financial Companies, and the exclusivity is express. What they describe is the scope of a docket; they say nothing about recording the complainant's institutional class on the complaint. Holding that class as an attribute is what makes the exclusivity testable at scrutiny, and that step is ours rather than the source's, which is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-JUR-001"
@@ -127,6 +130,7 @@
       "test": "A hearing recorded with the presiding officer at a station other than the court's location is accepted and produces a signed order without a warning or override.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 9.1 says that notwithstanding the presiding judicial officers being stationed at remote locations, adjudication in a SARAS Court through audio-video electronic means shall be construed as the valid mode of adjudication. Validity despite the officer's absence from the court point is therefore stated and not read in, and rule 5 of the 2025 rules puts proceedings conducted by video conferencing on the footing of judicial proceedings generally. A workflow treating co-location as a condition would contradict the sub-rule directly.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-JUR-002"
@@ -158,6 +162,7 @@
       "test": "Both the NI Act, 1881 and the Payment and Settlement Systems Act, 2007 are selectable as the governing statute on a SARAS case, and both route to the same establishment.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 1(c) applies these rules both to the SARAS N.I. Court establishment and to e-filed cases under section 25 of the Payment and Settlement Systems Act, 2007, and rule 2(1)(a) defines 'Act' as the Negotiable Instruments Act and, wherever applicable, the Payment and Settlement Systems Act. Both statutes are named in the text, so the two-statute scope of the docket is stated rather than constructed.",
       "tightens": null,
       "relatedTo": []
     },
@@ -182,6 +187,7 @@
       "test": "The filing record carries a Registry-receipt timestamp in IST that is distinct from any client-side or payment timestamp, and the limitation computation uses only that timestamp.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 14.1 says the date of e-filing will be taken as the date when the Action is electronically received in the Registry, and that Indian Standard Time applies to computing the time at which e-filing is made. The moment that counts and the time zone it is expressed in are both fixed by the clause, so a client-side or gateway stamp is not the filing time on any reading of it.",
       "tightens": "REQ-LIM-007",
       "relatedTo": [
         "REQ-GJ-LIM-002",
@@ -214,6 +220,7 @@
       "test": "A complaint uploaded at 1601 hours reports an effective filing date of the next court working day, and the limitation display warns before submission when the cut-off has passed.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 14.2 says that on-line e-filing carried out after 1600 hours on any day will be treated as the date which follows the actual filing date, provided that is a court working day, and permits filing at a Designated Counter up to 1600 hours on a court working day. The cut-off and the roll-forward are stated in terms; clause 14.3 supplies the twenty-four hour availability of the portal that makes the trap possible.",
       "tightens": "REQ-LIM-007",
       "relatedTo": [
         "REQ-GJ-LIM-001"
@@ -240,6 +247,7 @@
       "test": "A complaint uploaded on a declared holiday reports an effective filing date equal to the next court working day, drawn from the court calendar rather than a generic weekday rule.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 14.2 says that Actions filed on a day declared a gazetted holiday, or on a day when the court is closed, will be regarded as having been filed on the next working day. Both limbs sit in the same sentence, so nothing has to be read in to reach the rule the requirement states.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-LIM-002"
@@ -266,6 +274,7 @@
       "test": "Portal unavailability is not an available reason for delay anywhere in the limitation workflow; the unavailability path instead surfaces the Designated Counter and physical-filing options.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 14.3 says in terms that no exemption from limitation shall be permitted on the ground of a failure of the web based on-line e-filing facility, and directs the filer instead to a Designated Counter or to physical filing. The prohibition and the fallback are both in the clause, which is why this is a bar on offering the reason at all rather than a caution about relying on it.",
       "tightens": null,
       "relatedTo": []
     },
@@ -295,6 +304,7 @@
       "test": "The fee computed for a complaint is the fixed Schedule II Article 1(c) amount and does not vary with the cheque amount across a sample of cases from a few thousand to several crore rupees.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Schedule II Article 1(c) charges three rupees on a writing containing a complaint or charge of any offence presented to any criminal court, a fixed sum with no reference to the value of anything, and section 4 makes payment of the Schedule amount the condition of filing. That the fee does not vary with the cheque follows from the entry sitting in the fixed Schedule at all.",
       "tightens": null,
       "relatedTo": []
     },
@@ -319,6 +329,7 @@
       "test": "Registration of a complaint is blocked until a fee payment of at least the Schedule amount is recorded against it.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 4 says that no document of a kind specified as chargeable in the First or Second Schedule shall be filed, exhibited or recorded in any Court of Justice unless the proper fee has been paid. The prohibition names all three acts, so it operates as a gate ahead of the register rather than as an accounting rule applied afterwards.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-003"
@@ -345,6 +356,7 @@
       "test": "A presiding-officer role can admit and exhibit a document on which the proper fee has not been paid; the fee gate yields only to that role, and the admission is visible on the case record and in the rojnama.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 44 says that where the filing or exhibition in a criminal court of a document on which the proper fee has not been paid is, in the opinion of the Presiding Judge, necessary to prevent a failure of justice, nothing in section 4 shall be deemed to prohibit it. The override, the person who exercises it and the ground are all in the section; only the manner of recording it is left open, which is why how is null.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-002"
@@ -376,6 +388,7 @@
       "test": "Recording the complainant's examination raises a section 19 fee entry only where no earlier fee-bearing petition by that complainant is on the case; a complaint on which the Article 1(c) fee was levied raises none. The entry can be remitted by the court with the remission recorded.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 19 attaches the ten-rupee fee to the first or only examination of a complainant being reduced to writing, and states both conditions the requirement carries: the offence must be one for which a police officer may not arrest without a warrant, and the complainant must not already have presented a petition on which a fee has been levied under the Act. The power to remit sits in the same sentence. The conditions are the section's own, not a gloss placed on it.",
       "tightens": null,
       "relatedTo": []
     },
@@ -400,6 +413,7 @@
       "test": "An advocate cannot be attached to a case without a vakalatnama document on record, except under one of the four recorded exceptions.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 135 says vakalatnamas shall be filed by all pleaders appearing on behalf of any party in all classes of cases in all criminal courts in the State, and its proviso lists the four exceptions the requirement carries: the Public Prosecutor for Government, a pleader appointed by the court for an accused without means, a pleader appearing as amicus curiae, and a pleader engaged by another duly appointed pleader. Both the rule and the closed list of exceptions are express.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-006"
@@ -426,6 +440,7 @@
       "test": "The vakalatnama fee produced for a magistrate's court, a Sessions Court and the High Court differ and match the three Article 12 rates.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Schedule II Article 12 sets three different amounts for a vakalatnama according to the court it is presented to: two rupees to a criminal court other than a District Court, Court of Session or the High Court, three rupees to a District or Sessions Court, and five rupees to the High Court. The rate turning on the level of court is the entry's own structure.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-005"
@@ -462,6 +477,7 @@
       "test": "A complaint can be filed end to end with the court fee paid electronically, and the payment reference is stored on the filing record.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Section 37(1) as amended says all fees chargeable under the Act shall be collected by stamps or by e-payment, and section 2(bb) defines e-payment as payment by electronic mode in the manner prescribed. Clause 9 of the e-Filing SOP goes further and requires court fees and other charges to be paid through electronic payment in the manner notified by the High Court. The electronic mode is therefore lawful under the Act and directed by the SOP, so a system confined to a physical stamp is out of step with both.",
       "tightens": null,
       "relatedTo": []
     },
@@ -496,6 +512,7 @@
       "test": "No path exists to create a case document in a SARAS case other than through the portal, a designated e-filing counter, or a Bench exemption recorded under the e-filing exemption requirement; every document on the record carries a portal filing reference or an exemption reference.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.1 says all cases, complaints, interlocutory applications, affidavits and other pleadings shall be e-filed through the designated portal, which it names, and rule 4.2 makes reference to the e-Filing SOP mandatory for the avoidance of objections and defects; clause 3.1 of the SOP names the same portal. The obligation is stated, and rule 4.3 supplies the only alternative, a designated e-filing counter for a person unable to access the portal.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-021"
@@ -522,6 +539,7 @@
       "test": "Every newly e-filed complaint appears in the Registry scrutiny queue with a due date of the next working day, and the queue reports items past that date.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.11 says that upon receipt of a newly e-filed complaint the Registry shall scrutinise the filing on the next working day. The deadline is in the sub-rule and attaches to every new filing, so a queue that carries no due date is not a slower implementation of the rule but a departure from it.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-010",
@@ -559,6 +577,7 @@
       "test": "Each objection is stored as text against the filing with its date, and the filer receives it on at least one of email, SMS or the portal; the objection history survives after clearance.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.11 says that where defects are noticed, objections shall be recorded in writing and communicated for rectification, and clause 18.3 of the SOP names the channels the Registry uses: email, SMS or web hosting to the advocate or litigant in person. The writing and the communication are both directed; clause 2.12 supplies the definition of an objection as a deficiency or error pointed out by the Registry.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-009",
@@ -586,6 +605,7 @@
       "test": "Registration is blocked while any objection against the filing is open; clearing the last objection makes registration available.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.11 registers the matter under the appropriate case type if the filing is found in order, and otherwise only upon clearance of all objections. Registration after clearance is the sub-rule's own sequence, so a numbered case with objections still open is not a permissible variant of it.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-010"
@@ -612,6 +632,7 @@
       "test": "A user without the Registry role cannot record, clear or waive a technical-compliance objection; the attempt is refused and logged.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3.10 says scrutiny of e-filed complaints and documents for technical compliance shall remain within the exclusive domain of the Registry. The word exclusive is what turns this from an allocation of work into a restriction, so treating it as an access rule follows the sub-rule rather than extending it.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-009"
@@ -638,6 +659,7 @@
       "test": "An e-file over twenty megabytes is refused before upload starts, with the Designated Counter route offered in the same message.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 3.4 says the size of the e-file should not exceed twenty megabytes and that where it does, the advocate or litigant should visit a Designated Counter to file through the intranet. Both the ceiling and the fallback are in the clause, and the requirement's SHOULD tracks the clause's own should. What the clause does not say is who enforces the ceiling; applying it at the portal rather than leaving it to the filer is an implementation choice and not an addition to the norm.",
       "tightens": null,
       "relatedTo": []
     },
@@ -672,6 +694,7 @@
       "test": "A document uploaded without a text layer is refused; a Gujarati document uploaded through the workflow yields searchable Gujarati text.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 6.2 requires the document to be converted into an OCR searchable PDF or PDF/A including OCR enablement for Gujarati fonts, and names PDF/A as the preferred format; clause 6.3 fixes 300 dpi in OCR searchable mode for a document that is not a text document, and SARAS rule 3.7 requires physically produced documents to be scanned and OCR-enabled before they reach the record. The Gujarati OCR layer is named in the clause itself rather than inferred from the language of the record.",
       "tightens": null,
       "relatedTo": []
     },
@@ -701,6 +724,7 @@
       "test": "Generated and converted documents are A4; a non-A4 page is flagged at upload with the original-size exception available and recorded.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.8 says that except where the original size of the paper does not permit compliance, all documents, whether scanned or directly converted into PDF, shall be prepared in A4 size, and clause 6.1 of the SOP fixes A-4 for original typed material. The rule and its single exception are both express.",
       "tightens": null,
       "relatedTo": []
     },
@@ -725,6 +749,7 @@
       "test": "A file named with any listed character, or longer than forty-five characters, is refused at selection with the offending character named.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 8.6 lists the special characters that are not allowed in a document binary file name, ending with the period used consecutively in the middle of the name or at its start or end, and says file names should not exceed forty-five characters in length including spaces. The list and the cap are the clause's own, and the requirement carries them without extension.",
       "tightens": null,
       "relatedTo": []
     },
@@ -749,6 +774,7 @@
       "test": "An encrypted PDF, a PDF with tracked changes, and a PDF with annotation objects are each refused at upload with the reason stated.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 8.7 says on-line e-filing shall not be watermarked or encrypted, and that all e-filed documents shall be legible and free of markings, track changes or annotations. Every item the requirement forbids appears in that clause.",
       "tightens": null,
       "relatedTo": []
     },
@@ -778,6 +804,7 @@
       "test": "The submitted bundle is one PDF whose bookmark tree matches the Master Index, and each bookmark resolves to the correct first page.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 8.1 says the text documents and scanned documents should be merged as a single OCR searchable PDF file and should be book-marked as per the Master Index duly approved by the Registry, and clause 8.2 makes the merged document the thing that is uploaded. The single file, the OCR layer and the Master Index bookmarking are all named in the clause.",
       "tightens": null,
       "relatedTo": []
     },
@@ -807,6 +834,7 @@
       "test": "The filing workflow distinguishes natively electronic documents from physical originals and offers no scan step for the former.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.5 says documents inherently originating in physical form shall alone be scanned and uploaded, and that documents originating in electronic form shall be uploaded directly; rule 4.6 prefers direct generation in PDF for complaints, vakalatnamas, lists of documents, affidavits and applications. The word alone is what closes the scanning route for a natively electronic document, so the prohibition is in the text.",
       "tightens": null,
       "relatedTo": []
     },
@@ -831,6 +859,7 @@
       "test": "Acceptance of an e-filing returns a filing or registration number to the filer's account and by the notification channel on record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 8.3 says that once e-filing is accepted, the filing or registration number shall be notified to the advocate or litigant in person. The notification is directed and its addressee named, so nothing is read in.",
       "tightens": null,
       "relatedTo": []
     },
@@ -855,6 +884,7 @@
       "test": "An exemption can be applied for, granted by a judicial role against one of the five listed grounds, and is visible on the case record against the document it covers.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 12 says exemption from on-line e-filing of the entire pleading or a part of the pleadings or documents may be permitted by the Bench upon an application, and lists the five circumstances the requirement carries, ending with just and sufficient cause. The permission, the application that triggers it and the grounds are all in the clause, and the level is MAY because the clause is permissive on its face.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-FIL-008"
@@ -886,6 +916,7 @@
       "test": "An acknowledged digitally signed e-summons sets the service status to served with the acknowledgement date stored; the five-working-day window is computed on court working days.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 5(iv) makes service through digitally signed electronic communication an additional and preferential mode, and says that upon acknowledgement of receipt by the other side, the acknowledgement being within five working days, the service shall be deemed to have been made in accordance with the requirements of the Code. The deeming is express. What is not is the reach: rule 5 is written for a suit, appeal or original proceeding, and it touches a criminal complaint only through rule 21(B), which applies the same norms with the corresponding changes required by the Code of Criminal Procedure. That carry is the inference.",
       "tightens": "REQ-SRV-006",
       "relatedTo": [
         "REQ-GJ-SRV-007"
@@ -917,6 +948,7 @@
       "test": "A service return entered as complainant service or courier service cannot be accepted without an affidavit-of-service document attached.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 5(v) says that in cases where service of summons is permitted and is effected by the plaintiff or a certified or registered courier, the concerned person shall file an affidavit of service in the prescribed manner, form and time. The direction is express on the civil side. Its application to a complainant serving an accused in a cheque case runs through rule 21(B) rather than through the words of rule 5, and that step is why the status is inferred.",
       "tightens": "REQ-SRV-014",
       "relatedTo": [
         "REQ-GJ-SRV-005"
@@ -948,6 +980,7 @@
       "test": "A return with outcome 'refused' cannot be saved without an attached signed declaration naming the declarant and his capacity.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 5(vi) requires a return endorsed as refused to be accompanied by a declaration, signed by the plaintiff or by a responsible person of the courier agency, that the endorsement made is correct, with the declarant exposed to punishment for perjury or summary treatment for abuse of the Code if it is false; it is on consideration of that declaration that the court may place the defendant ex parte. The declaration and its content are stated. What is read in is the transposition to a criminal complaint through rule 21(B).",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-SRV-004",
@@ -975,6 +1008,7 @@
       "test": "A courier agency marked black-listed is not selectable on a new service instruction, and existing instructions to it are reported.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 5(vi) says only that where the person concerned was representing a certified or registered courier agency, that agency can be black-listed. It creates a consequence and names nobody who must keep the list, publish it, or act on it when a courier is next chosen. Turning it into a control at the point of selection is our reading of what a black-list is for, and the level is SHOULD because the rule leaves the consequence itself discretionary.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-SRV-005"
@@ -1006,6 +1040,7 @@
       "test": "Recording a postal or courier return of non-service raises a single escalation action that creates both a bailiff process and a substituted service process; neither can be created alone from that trigger.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 5(vii) says that whenever a summons or notice issued to a defendant or respondent through post or courier is reported unserved, the Court shall order issuance of summons through bailiff and substituted service simultaneously. The simultaneity is in the word the rule uses and is not read in. The inference is the reach again: the sub-rule speaks of a defendant or respondent, and it governs a criminal complaint only through rule 21(B).",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-SRV-003"
@@ -1037,6 +1072,7 @@
       "test": "An order for process starts a three-day fee clock on the case; on expiry without payment the case appears on the non-prosecution cause list and the filer is notified.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 5(iii) says the process fee for service shall be paid within three days from the date of the order, failing which the case will be posted in Cause List-I for dismissal for non-prosecution. The clock and the consequence are both express, and rule 21(B) is what carries them to a criminal proceeding. That carry, together with treating the listing as something the record must surface to the filer rather than an act done quietly in the office, is why the status is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-SRV-009"
@@ -1067,7 +1103,8 @@
       "how": "Rule 41 charges a distinct fee for every summons or notice, every warrant of arrest, every proclamation and every warrant of attachment; no fee is levied on a process issued on the complaint of a police officer acting as such, nor on the re-issue of a process; and the court may remit the process fees in whole or in part where the complainant or the accused has not the means to pay them.",
       "test": "Issuing a summons, a warrant of arrest, a proclamation and a warrant of attachment each raise a distinct fee entry at the rate held for that process type, and the rate table is editable without a code change.",
       "derivedFrom": "act",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Section 33 requires a table showing the fees chargeable for service and execution to be exposed to view in a conspicuous part of each court. That is a duty to display a table; the section neither says that a fee is charged per process nor fixes any rate. Rule 41 does set a distinct fee for every summons, warrant of arrest, proclamation and warrant of attachment, but it was made under section 32 of the repealed Bombay Court Fees Act, 1959, and the corresponding rule-making power in section 32 of the 2004 Act was deleted by Gujarat 14 of 2016, so its table cannot be taken as the rate in force. Reading the two together to require pricing per process type from a table held as data is our construction, which is why the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-SRV-008"
@@ -1099,6 +1136,7 @@
       "test": "A witness summons generated for a video-conferencing examination carries a designated place with its address, the time, and the identity direction; it cannot be generated without a designated place selected.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 12 says that processes issued to a witness who is to be examined through video conferencing shall mention the date, time and venue of the concerned designated place, and shall direct the witness to attend in person along with proof of identity. Every element the requirement puts on the face of the process is named in that sentence, and rule 6 supplies what counts as proof of identity.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-SRV-011"
@@ -1125,6 +1163,7 @@
       "test": "Where a witness is linked to one or more documents on the case, the generated process packet includes copies of exactly those documents.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The second sentence of rule 12 says that if a person is examined with reference to a particular document, the process to the witness must be accompanied by a copy of the document. The enclosure is directed in terms, and the condition that triggers it, examination with reference to a document, is the rule's own.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-SRV-010"
@@ -1151,6 +1190,7 @@
       "test": "Dispatch by Registry e-mail is recorded as an additional service event and does not by itself move the accused's service status to served.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 13 opens with the words 'In addition to the prescribed mode of service' and then permits notices, documents and pleadings filed electronically also to be served through the designated e-mail IDs of Registry officials, which are published on the court website so that a recipient can verify the source. The clause adds a channel and expressly does not displace the prescribed mode, so closing the service task on a Registry e-mail would contradict its opening words. It prescribes no method for keeping the two apart, which is why how is null.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1180,6 +1220,7 @@
       "test": "A printed or transmitted process shows the issuing court, the presiding officer's digital signature and a verifiable reference back to the portal record.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 64(a) makes it the duty of every police officer promptly to serve every summons and obey and execute every warrant or other order lawfully issued to him by a competent authority. The duty falls on the officer, and the only qualifier is that the process be lawfully issued by a competent authority; the section says nothing about what a process must show on its face. Rule 4.18 requires orders to be generated in PDF and digitally signed by the Presiding Officer, but not that the issuing court and the authentication be legible to the constable holding the paper. Putting them there is the step that makes the officer's duty capable of being discharged, and it is ours.",
       "tightens": "REQ-SRV-003",
       "relatedTo": []
     },
@@ -1204,6 +1245,11 @@
       "test": "A chief-examination affidavit can be e-filed against a named witness, exhibited, and closed as the chief examination without any physical hearing event.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 6.1 says the examination-in-chief of witnesses for the complainant shall ordinarily be tendered by way of affidavit through electronic filing. The mode is directed rather than merely permitted, and ordinarily marks the exception rather than weakening the rule. What makes the affidavit lawful in the first place is section 145(1) as read in Mandvi Cooperative Bank and applied in the Indian Bank Association directions; rule 6.1 is Gujarat routing that established mode through the portal.",
+      "cases": [
+        "mandvi-coop-2010",
+        "indian-bank-assn-2014"
+      ],
       "tightens": "REQ-EVI-001",
       "relatedTo": [
         "REQ-GJ-EVI-002",
@@ -1231,6 +1277,10 @@
       "test": "Scheduling a cross-examination requires a venue chosen from the court, a notified FWDC or a notified Remote Point; a video-conferencing venue requires the permission recorded under the audio-video requirement.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 6.2 says the examination-in-chief of the accused, the witness for the accused and cross-examination of witnesses shall ordinarily be conducted by physical presence before the Court, at a Formal Witness Deposition Centre notified by the High Court, or at a Remote Point Location notified by the Government. The three events and the three venues are both listed in the sub-rule. The asymmetry against rule 6.1 is not accidental: Mandvi Cooperative Bank holds that section 145(1) lets the complainant depose on affidavit and does not extend the same to the accused.",
+      "cases": [
+        "mandvi-coop-2010"
+      ],
       "tightens": "REQ-EVI-002",
       "relatedTo": [
         "REQ-GJ-EVI-001",
@@ -1258,6 +1308,7 @@
       "test": "An evidence event with an audio-video venue carries a reference to the order permitting it; without that reference the event cannot be marked complete.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 6.3 says recording of evidence through audio-video electronic means may be permitted subject to judicial discretion, strictly in accordance with the 2025 rules. The permission is a condition of using the mode at all, so a deposition recorded that way without it is recorded contrary to the sub-rule. Holding the permission on the record is the record of compliance with an express precondition rather than a precondition of our own.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-002"
@@ -1289,6 +1340,7 @@
       "test": "Each of the cheque, return memo and demand notice carries a physical-custody status; the case cannot be marked ready for evidence while any of them is recorded as neither in court custody nor returned on endorsement.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3.11 says original cheques and other documents produced physically, though excluded from permanent preservation under the Gujarat e-Filing SOP, shall be retained during trial for evidentiary purposes, and shall thereafter be preserved and dealt with in accordance with final judicial directions or until the dispute attains finality in appeal or revision. Clause 10.3 is the exclusion it refers to, its permanent-preservation list reaching a negotiable instrument other than a cheque. Retention through trial is stated in the sub-rule and is not read into the SOP's silence.",
       "tightens": "REQ-EVI-017",
       "relatedTo": [
         "REQ-GJ-EVI-005",
@@ -1316,6 +1368,7 @@
       "test": "Returning an original requires the case number, exhibit number and date; the generated endorsement carries all three and the exhibit shows the document as returned with the holder recorded.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3.9 permits the original cheque, return memo, notice, bills and invoices produced physically to be returned to the complainant on request, on condition of producing them to the court whenever ordered, and with an endorsement that such document is produced in Case No. ____ at exhibit No. _____ dated ____. The three particulars the requirement demands are the blanks in the rule's own form of endorsement.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-004"
@@ -1347,6 +1400,7 @@
       "test": "Every physically held document carries a cover marking bearing the case particulars, and a query by case number returns the marking of the cover holding that case's documents.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3.8 requires physically signed originals, once scanned and uploaded, to be preserved in sealed and appropriately marked covers in the custody of the court staff, and rule 3.12 requires the Bench Clerk or other designated ministerial staff to place the physically produced documents of each case file in a sealed envelope duly marked with the case particulars. Both the sealing and what the marking must carry are stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-004",
@@ -1379,6 +1433,7 @@
       "test": "The retention clock for these classes of document starts at final disposal including appellate disposal, not at trial judgment, and no destruction action is available before the floor expires.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 10.2 says the signed vakalatnama, the signed and notarized or attested affidavit, and any other document whose authenticity is likely to be questioned, should be preserved at least for two years till after the final disposal of the Action, and adds in the next sentence that final disposal shall include disposal by the superior appellate court. SARAS rule 13.2 adopts clause 10 for retention of originals in a SARAS case. Both the floor and the event it runs from are express.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-016"
@@ -1405,6 +1460,7 @@
       "test": "Each scanned document records the filing party, and a call for the original is addressed to that party by name.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 10.4 says the responsibility of producing the originals and proving their genuineness shall be of the party that has electronically filed scanned copies of the document. The allocation is the clause's own; what the requirement adds is only that the record hold the filing party by name, so that a call for the original has an addressee.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-009"
@@ -1431,6 +1487,7 @@
       "test": "Uploading a scanned document requires the undertaking to be affirmed, and the affirmation with its actor and timestamp is stored on the document record.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "The proviso to rule 4.10 puts on every person uploading scanned PDF documents the duty to ensure that the corresponding physical originals are preserved in their original condition until produced before the Court on demand or dealt with in accordance with judicial directions, and the body of the sub-rule makes the scanned document the record of the Court notwithstanding that the original stays with the person producing it. The duty and the person who bears it are both stated. What the proviso does not do is require it to be captured as an undertaking affirmed at the moment of upload; making it a recorded act with an actor and a timestamp is the step taken here, and it is why this is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-008"
@@ -1457,6 +1514,7 @@
       "test": "All three modes are available during a remote examination, and the document transmitted is logged against the examination event.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 14 enumerates the ways a document may be shown to a person examined at a remote point: by document visualizer where the document is at the Court Point, by transmitting a copy or image through the designated video conferencing software or official e-mail where no visualizer is available, and by transmitting a copy or image to the Court Point where the document is at the remote point. The modes are listed in the rule, so supporting each of them follows its terms rather than extending them.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-011"
@@ -1483,6 +1541,7 @@
       "test": "An examination on a document held at the remote point cannot be closed without a dispatch entry for the countersigned hard copy.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The last sentence of rule 14(c) says the hard copy of the document, countersigned by the witness and by the coordinator at the designated place, shall also be dispatched to the Court Point. The word also is what makes the paper copy an addition to the transmitted image rather than an alternative to it, and both countersignatures are named in the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-010"
@@ -1509,6 +1568,7 @@
       "test": "A remote examination cannot be closed without a signed transcript on the record; both prescribed routes are available and the route used is recorded.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 13(3) says the Court shall read over and explain the evidence recorded to the witness, obtain the signature of the person being examined on the transcript immediately after the examination concludes, and that the signed transcript shall form part of the record of the judicial proceedings. Clauses (a) and (b) then prescribe the two routes for obtaining that signature according to whether digital signatures exist at both points. The obligation and both alternatives are in the sub-rule.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1533,6 +1593,7 @@
       "test": "An affidavit generated by the system carries the court heading and the matter heading, populated from the case record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 236 fixes the heading of every affidavit to be used in a court of law as 'In the Court........at......' naming the court, requires it, where a case is pending, also to begin with 'In the matter of case of........', and where no case is pending, with 'In the matter of the application of........'. The forms of words are the rule's own.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-001",
@@ -1560,6 +1621,7 @@
       "test": "A generated affidavit is in the first person with consecutively numbered paragraphs, and the numbering is stable when the affidavit is exhibited.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 237 says every affidavit shall be drawn up in the first person and divided into paragraphs numbered consecutively, each paragraph, as far as may be, confined to a distinct subject or portion of one. Both the person and the paragraphing are directed by the rule in terms.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-013"
@@ -1596,6 +1658,7 @@
       "test": "A witness without a chief-examination affidavit on record cannot be added to an evidence listing, and the block names the missing affidavit.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 9(5) says the parties shall keep the affidavit in chief-examination ready whenever the witness's examination is taken up, and rule 9(4) that evidence must as far as possible be recorded day to day with all witnesses in attendance. Keeping an affidavit ready is a duty on the party at the hearing; neither sub-rule says the affidavit must be on the record before the witness can be listed at all, and both are written for a civil trial, reaching a criminal complaint through rule 21(B). Turning the readiness duty into a listing precondition is the reading taken here.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-018"
@@ -1627,6 +1690,7 @@
       "test": "Every physically held document names a custodian drawn from the roles the rule permits; a query by case number returns the custodian, and a custody handover changes the name on the record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 13.1 says physical documents shall be preserved in the custody of the Superintendent or Board Clerk, or as may be decided by the Presiding Officer of the Court, and rule 3.12 requires them to be maintained so as to ensure ready and prompt access whenever required by the Court. The rule fixes a determinate custodian and leaves the Presiding Officer free to name another; recording which of them holds a given bundle is the record of that allocation rather than an addition to it.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-006",
@@ -1654,6 +1718,7 @@
       "test": "Recording a plea requires the accused's location to be the SARAS Court or a notified Remote Point Location, or a place directed by the presiding officer with that direction recorded.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5.1 says the accused shall remain present physically at the SARAS Court or at a Remote Point Location, or as directed by the Presiding Officer, and it stands at the head of the rule that governs recording of the plea. The two named places, and the Presiding Officer's power to direct another, are the sub-rule's own, so a plea taken from wherever the accused happens to be sitting is outside it.",
       "tightens": "REQ-TRL-007",
       "relatedTo": [
         "REQ-GJ-TRL-002"
@@ -1685,6 +1750,7 @@
       "test": "A plea cannot be marked recorded without a scanned signed plea document and an identity proof attached.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5.2 says a physical copy of the signed plea document shall be recorded in the manner provided in paragraph 3.5, and rule 3.5 requires the physically signed document, accompanied by a self-attested copy of a driving licence, election card, passport, PAN card, Aadhaar card or other identity proof the court permits, to be scanned and uploaded so as to form part of the judicial record. The signature and the identity proof are both conditions of the route the plea is sent down.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-001",
@@ -1712,6 +1778,7 @@
       "test": "All three electronic modes are selectable when supplying copies, and the mode used with its date is recorded on the case.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5.3 says copies of the complaint, documents, statements and other papers required to be supplied to the accused under law shall ordinarily be furnished in electronic form, and lists the three modes: electronic mail, a recognised electronic messaging service, or a digital storage device procured at the cost of the accused. The direction and the closed list of modes are both in the sub-rule.",
       "tightens": "REQ-SRV-001",
       "relatedTo": [
         "REQ-GJ-TRL-004",
@@ -1739,6 +1806,7 @@
       "test": "The supply record accepts a nominee or the pleader as the recipient with the relationship stated, and the supply is reported as compliant.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5.4 says that where the accused does not possess the necessary facility to receive electronic copies, such copies shall be furnished to a person duly nominated by the accused or to the pleader appearing for him, and that such supply shall be deemed to be valid compliance of the statutory requirement. The deeming is what makes the alternative recipient a compliant one, and it is in the sub-rule's own words.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-003"
@@ -1765,6 +1833,7 @@
       "test": "Where the accused is recorded as unable to receive electronic copies, a free printed supply can be directed and fulfilled, with no charge raised against the accused.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5.5 says that only where the accused is unable to access or does not possess the facility to receive copies in electronic mode, printed copies of the papers shall be supplied to him free of cost, in compliance with the statutory mandate, as directed by the Presiding Officer of the Court. The condition, the free supply and the person who directs it are all stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-003"
@@ -1796,6 +1865,7 @@
       "test": "A document filed during a hearing raises a supply task on the filing party that must be completed before the hearing is closed.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.22 says that where documents are filed by a party during the course of hearing, copies shall be furnished to the opposite party forthwith, ordinarily in electronic mode, by the party filing them; rule 4.23 names the electronic modes and the physical fallback where the opposite party cannot receive electronically. The duty, the person on whom it falls and the word forthwith are all in the sub-rules.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1825,6 +1895,7 @@
       "test": "The hearing can be joined only through an approved platform held in configuration; an arbitrary meeting URL cannot be attached to a hearing.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.21 and rule 5(iv) of the 2025 rules use the same words: courts shall use only High Court or Government approved and secure video conferencing platforms equipped with end-to-end encryption to protect data and privacy. Approval and encryption are stated as conditions of the platform rather than as guidance about choosing one.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-011"
@@ -1851,6 +1922,7 @@
       "test": "Each remote appearance carries either an identity-proof reference or a recorded dispensation by the court.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 6 says the person appearing shall provide an identity proof as recognised by the Government of India or a State Government to the court point coordinator by electronic communication, and that where identity proof is not readily available the Court may, upon satisfaction, allow the person to participate without producing it. The rule creates exactly the two states the requirement holds, the proof and the dispensation on the court's satisfaction.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-002"
@@ -1877,6 +1949,7 @@
       "test": "A remote examination of an accused offers a private consultation channel before and after the examination, and the fact that it was offered is recorded.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 13(2) says that where the person being examined is an accused, the court shall provide adequate opportunity to consult with his advocate before and after the video conferencing. The duty falls on the court, it is expressed as a shall, and both moments are named in the sub-rule.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1901,6 +1974,7 @@
       "test": "The remote-point session records who was admitted, restricts joining to the person examined and the coordinator's listed necessary persons, and refuses others.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 13(5) says the coordinator at the designated place shall ensure that no person is present at the remote point, save and except the person being examined and those whose presence is deemed administratively necessary by the coordinator for the proceedings. The exclusion and its single exception are stated, and the requirement carries them without narrowing or widening either.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1930,6 +2004,7 @@
       "test": "Participant-side recording is disabled by default; enabling it requires a recorded court permission tied to the hearing.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5(vii) says that unless expressly permitted by the Court, no person at the Court Point, the designated place, a Remote Point or an advocate's remote point shall record or publish the proceedings, and rule 5(viii) adds that there shall be no unauthorised recording by any person or entity. The prohibition, its reach to every point and the express-permission exception are all in the rules.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-007"
@@ -1956,6 +2031,7 @@
       "test": "Every remote appearance in a criminal case carries either a request record naming its mover or a marker that the proceeding was initiated by the Court or on the public prosecutor's request; an appearance with neither cannot be listed.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 11(1) says that in criminal cases any party to the proceedings or a witness, save and except where proceedings are initiated at the instance of the Court or on the request of the public prosecutor, may move a request for presence and proceedings through video conferencing. The request is the route the rule prescribes for a criminal case, and the two situations in which none is needed are named, so recording it is the record of an express condition rather than an addition to one.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-021"
@@ -1992,6 +2068,7 @@
       "test": "A case instituted on a private complaint is created in Track I, and the classification carries both the ministerial entry and the judicial confirmation.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Schedule II Part B item 7 lists Criminal Case - Private Complaint against Track I, rule 21(A)(1) requires the presiding officer to classify criminal trials and proceedings according to the Schedule, and rule 3(i) and 3(ii) put the categorisation on the ministerial officer with confirmation by the judicial officer. The Track I entry is in the table itself. One blemish in the drafting is worth noting: rules 3(i) and 21(A)(1) both speak of Schedule-I, while the criminal table, and the entry this requirement uses, sit in Schedule II Part B.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-014"
@@ -2028,6 +2105,7 @@
       "test": "A private-complaint criminal case shows an outer date six months from institution; the nine-month Track I figure is not used for this case type, and the divergence is surfaced rather than silently resolved.",
       "derivedFrom": "rule",
       "status": "contested",
+      "statusReason": "The instrument divides against itself and neither limb is a reading of ours. Schedule II Part B item 7 prescribes six months as the outer limit for concluding a criminal case on a private complaint. Rule 3(iv) gives Track I a maximum of nine months, and rule 21(A)(2) repeats nine months for Track I criminal trials, while the Schedule entry itself puts a private complaint in Track I. Nothing in the rules says which figure prevails where the specific entry and the track maximum disagree, so the requirement carries the shorter Schedule figure and surfaces the divergence rather than settling it by implementation.",
       "tightens": "REQ-TRL-006",
       "relatedTo": [
         "REQ-GJ-TRL-013",
@@ -2056,6 +2134,7 @@
       "test": "The track and outer date cannot be changed without a reason text and a presiding-officer actor; the change and the reason appear on the case history.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3(vi) says the Presiding Judge may, for valid reason to be recorded in writing, extend the time limit applicable to the concerned Track or shift a case from one Track to another. The writing, the reason and the person who may do it are all in the sub-rule. The only step outside the words cited is the civil-to-criminal carry that runs through rule 21(B), which this requirement does not itself cite.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-014"
@@ -2082,6 +2161,7 @@
       "test": "The report generates on the prescribed date, covers the cases listed in the following month, and shows each case against its track and outer date.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3(vii) says that on the last working day of the third week of every month, or five working days before the end of a particular business period, whichever is earlier, the Ministerial Officer shall cause a report about the stage and progress of the cases scheduled to be listed in the next month to be prepared, and shall place it before the Court concerned. The date, the content and both actors are in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-014"
@@ -2113,6 +2193,7 @@
       "test": "Closing evidence on a case creates an arguments listing within seven days; a case with evidence closed and no arguments date inside seven days is reported as overdue.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 9(13)(a) says the case shall be listed immediately after the completion of evidence, for arguments, which shall as far as possible not be more than seven days. The seven days are qualified by as far as possible, which is why the level is SHOULD, and the sub-rule is written for a suit, reaching a criminal complaint only through rule 21(B). The softening and the carry together are why this is not firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-015"
@@ -2144,6 +2225,7 @@
       "test": "The case carries a summary-trial decision with its date and actor, recorded before the first evidence event; the decision cannot be back-dated after evidence has begun.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 102(1) says that before commencing the trial of offences which can be tried summarily, magistrates should consider the appropriateness and desirability of following the summary procedure, and rule 102(2) lists the cases in which it is not appropriate, including those prima facie likely to be long and complicated; rule 101 sets out when the summary power exists at all. What the Manual directs is the consideration. It nowhere says the decision must be recorded, still less that it must be recorded before the trial begins, so both the recording and its timing are our reading.",
       "tightens": "REQ-TRL-001",
       "relatedTo": []
     },
@@ -2168,6 +2250,7 @@
       "test": "Recording the accused's release on bond raises the Article 10 fee entry against the case.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Schedule II Article 10 charges two rupees on a bail-bond in a criminal case and on a recognizance to prosecute, to appear or otherwise. The fee, its amount and the instruments it attaches to are all in the entry; what brings it into every contested cheque case is that the accused answering summons is released on such a bond, not any reading of the Article.",
       "tightens": null,
       "relatedTo": []
     },
@@ -2192,6 +2275,7 @@
       "test": "A video-conferencing cost order can be recorded against a party or waived, and the billing follows the order rather than a default.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 22 lets the Court determine and apportion the costs of video conferencing in a criminal case, naming the expenses of the facility, of preparing and transmitting soft or certified copies of the record to the coordinator at the remote point, and the fees payable to the translator, interpreter, special educator and coordinator; it says in terms that it shall be open to the Court to waive the costs. The power and the waiver are both stated, and the level is MAY because the rule is discretionary throughout.",
       "tightens": null,
       "relatedTo": []
     },
@@ -2216,6 +2300,7 @@
       "test": "An order allowing video conferencing captures the schedule as a dated, timed field on the appearance, and the hearing listing for that appearance is generated from it rather than entered separately.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 11(3) says that while allowing a request for video conferencing the Court may also fix the schedule for convening it. That is a power given to the court, and an order fixing the schedule in prose would satisfy the words. Requiring it to be held as a dated, timed field from which the listing is generated is the reading taken here, which is why the status is inferred.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-012"
@@ -2247,6 +2332,7 @@
       "test": "Referring a case to mediation, conciliation or the Lok Adalat pauses the outer-date clock; on the failure report the outer date is extended by the elapsed period and the adjustment is visible on the case.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 9(2) says that where the report about failure of conciliation or mediation is received and the record returned, the time spent in the process shall be set off and the time limit under the respective Tracks shall proportionately stand extended. The set-off and the extension are both express. The sub-rule is drawn for a suit and names conciliation and mediation; extending it to a Lok Adalat reference in a criminal complaint runs through rule 21(B), and that carry is the inference.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-TRL-014",
@@ -2284,6 +2370,7 @@
       "test": "Recording a failure report creates a listing within three days, and a case with a failure report and no listing inside three days is reported.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 9(1) says that on the filing of the report by the mediator, the conciliator or the Lok Adalat about the failure of the process, the suit shall be listed within three days after the report, and rule 9(3) warns courts not to allow the ADR forum to be abused to prolong the case. The three days are express, but the sub-rule lists the suit for framing of issues, a stage a criminal complaint does not have, so its application here runs through rule 21(B) with the corresponding changes. That transposition is the reading, and it is why the level is SHOULD and the status is not firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CMP-001"
@@ -2310,6 +2397,7 @@
       "test": "A judgment cannot be marked pronounced unless the accused's presence at the SARAS Court is recorded, or a direction of the presiding officer to the contrary is on the record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 10.1 says accused persons shall remain personally present at the SARAS Court at the time of pronouncement of judgment, or as and when directed by the Presiding Officer of the Court. Personal presence at pronouncement is stated as a requirement separate from the presence at the plea that rule 5.1 governs, and the only relaxation is a direction of the Presiding Officer.",
       "tightens": "REQ-TRL-018",
       "relatedTo": [
         "REQ-GJ-SEN-003"
@@ -2341,6 +2429,7 @@
       "test": "Where e-payment is not enabled for the court, cash and other permissible modes remain selectable, and the mode used is recorded against the payment.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 12.1 permits payment of fine, penalty or compensation through the e-payment facility once enabled for the Court, and rule 12.2 says that until such enablement, payment may be accepted by cash or such other permissible mode. Read together they make the electronic route conditional on enablement and keep cash open until it arrives, so an electronic-only payment screen would close a court where the facility is not yet live.",
       "tightens": null,
       "relatedTo": []
     },
@@ -2365,6 +2454,7 @@
       "test": "A conviction warrant is produced as a signed instrument for execution through the ordinary process channel, and its execution is recorded from a physical return rather than closed inside the portal.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 10.2 says that in all cases where a person is produced before the Court pursuant to execution of a warrant, or where a person is required to be committed to prison upon issuance of a conviction warrant, the issuance, execution and compliance of such process shall be governed strictly by the procedure established by law. The word strictly, in a set of rules that otherwise makes the electronic record authoritative, is what puts this step outside the portal.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-SEN-001"
@@ -2401,6 +2491,7 @@
       "test": "Every document, order and rojnama entry of a SARAS case exists on the portal record, and no case artifact exists only outside it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3.1 says the electronic record maintained on the designated portal shall constitute the primary and authoritative judicial record; rule 3.2 requires complaints, affidavits, applications, evidence, orders, judgments and rojnama entries ordinarily to be accessed and acted upon in electronic form; and rule 4.10 makes the scanned electronic document the record of the Court notwithstanding that the physical original stays with the person producing it. The primacy is declared in terms and is not derived from the design of the establishment.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-004",
@@ -2443,6 +2534,7 @@
       "test": "A signatory with a registered token is offered only the token route, and a document signed with it records the certificate details on the record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3.3 requires documents that must be signed to be authenticated in a manner ensuring verifiability, integrity and attribution, and rule 3.4 gives exactly two modes: a token-based Digital Signature Certificate, or a physical signature where the person does not possess a token based digital signature. That condition is the gate, since the physical route opens only in the absence of a token. Rule 4.19 points the same way in softer words, saying physical signing shall ordinarily be discouraged where a token or Aadhaar e-sign is held, and clause 7.1 of the SOP makes the print-and-sign route the fallback for a person with no digital signature.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-003"
@@ -2479,6 +2571,7 @@
       "test": "A physically signed upload cannot be completed without an identity proof attached, and both pages land on the same document record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3.5 says that where authentication is required by physical signature, the person shall physically sign, and the signed document accompanied by a self-attested copy of one of the listed proofs of identity shall be scanned and uploaded so as to form part of the judicial record; rule 3.6 then deems what is done that way duly authenticated. The identity proof is part of what the rule requires to be uploaded, not an addition made to it.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-002",
@@ -2511,6 +2604,7 @@
       "test": "A scanned document sits in a pending state until the presiding officer signs it; only then does it appear as part of the official record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 3.7 says that once documents scanned, OCR-enabled, checked and verified by the ministerial staff of the Remote Adjudication Point are received by the SARAS Court, the Presiding Officer shall digitally sign them, and that they shall then be deemed to form part of the official record of the Court; rule 4.15 says the same for documents authenticated on the portal. The signature is the act that admits the document, and the sequence is the rule's own.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-011"
@@ -2542,6 +2636,7 @@
       "test": "Exhibit numbers run in the order documents come before the court, and the exhibit list on the rojnama matches the exhibit numbers on the documents themselves.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.13 says the designated staff member shall promptly and correctly assign bookmarks, exhibits or marks strictly in accordance with the nature of the documents and in conformity with rule 76 of the Criminal Manual, and rule 76 requires each document to bear an exhibit number and a serial number as it comes before the Court. The conformity is directed by name, so an independent numbering scheme is not a permitted variant.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-008",
@@ -2574,6 +2669,7 @@
       "test": "Closing a hearing creates a rojnama entry dated that day, which cannot become part of the record until digitally signed by the presiding officer.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.20 says that at the conclusion of proceedings on each date of hearing the designated staff member shall accurately record the rojnama in the Case Information System under the Case Proceedings or Business block, that it shall thereafter be placed for digital authentication by the Presiding Officer, and that upon that signature it forms part of the official record. Rule 76 supplies what the rojnama is for, a faithful history of the case kept from day to day. The moment and the authentication are both in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-007",
@@ -2601,6 +2697,7 @@
       "test": "Fee receipts, process generation and similar ministerial events appear in the audit trail but not in the rojnama; the rojnama for a typical cheque hearing is a handful of lines.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 76 says the Roznama is not to include a record of ministerial acts, such as receipt of bhatta or process fees, the preparation of summonses and the like, and requires it to be as concise as possible while remaining a faithful history of the case. The exclusion is stated and it names the very classes of event the requirement keeps out.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-006"
@@ -2627,6 +2724,7 @@
       "test": "An order recorded against an application exhibited as 5 is numbered 5/1, and the next independent document takes the next whole number.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.17 says that where an order is passed upon an interlocutory application, or a document is filed in continuation of an existing exhibit, it shall be sub-numbered or itemised below the original exhibit, and gives the worked example that an order passed below Exhibit-5 shall be marked Exhibit-5/1 and shall not be assigned an independent exhibit number. The rule and its example are both in the text.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-005"
@@ -2653,6 +2751,7 @@
       "test": "A judgment, an order and a deposition produced by the system are each PDFs with a selectable text layer, and no page in them is a scanned image.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.18 says all orders, judgments and depositions shall be directly generated in PDF format. Directly generated is what excludes the print, sign and scan cycle, so the requirement carries the sub-rule's own word rather than reasoning from the value of a text layer.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-010",
@@ -2681,6 +2780,7 @@
       "test": "An order sheet cannot be uploaded to the CIS in an unsigned state; the upload action requires the signature in the same step.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8.1 says magistrates can dictate the order sheets to stenographers online during or after hearing, and that the typed order sheets shall be digitally signed by the magistrates before uploading them on CIS. The signature and its position ahead of the upload are both in that sentence.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-009"
@@ -2707,6 +2807,7 @@
       "test": "A newly registered matter appears only in the presiding officer's queue; the staff queue receives it after his verification is recorded.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.12 says that upon registration the matter shall first be made available for perusal in the user account of the Presiding Officer on the designated portal, and that upon verification by him it shall thereafter proceed to the user account of the designated Court staff for further ministerial processing. The order is the sub-rule's own, expressed as first and thereafter.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-004"
@@ -2738,6 +2839,7 @@
       "test": "Every electronic case record carries a Criminal Manual classification and the retention period that attaches to it, and no destruction runs outside that policy.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 7.1 says the maintenance, classification, retention and destruction of electronic records maintained on the designated portal shall be governed by, and carried out in conformity with, rules 361 to 367 of the Criminal Manual, insofar as they are applicable to electronic records. The application of the 1977 record rules to the electronic record is directed by name and by range.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-013",
@@ -2766,6 +2868,7 @@
       "test": "The despatch action is unavailable while the appeal or revision period is running or an appeal or revision is pending, and the two-month precautionary hold is applied before filing orders are sought.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 361 says the record of a substantive criminal proceeding should not be considered due for despatch to the record room until the expiry of the period of appeal or revision application and, if one has been instituted, until after its disposal, and adds as a matter of precaution that records be kept intact in the sequence of institution serial numbers for two months beyond that period before filing orders are put up. The condition and the precautionary hold are both stated, though the Manual expresses them as should rather than shall, which the requirement's MUST NOT tightens.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-012",
@@ -2798,6 +2901,7 @@
       "test": "Passing the filing order requires each document to carry an A, B, C or D classification, and an unclassified document blocks the filing order.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 362(i) says that immediately after the passing of the filing order in any case the record shall be arranged in four files marked A, B, C and D, and rule 363 defines what belongs in each and attaches a different retention period to each. The classification, its timing and its four values are all in the rules.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-015"
@@ -2824,6 +2928,7 @@
       "test": "The destruction date on a document equals its class period added to the case's final-decision date - the appellate or revisional decision date where an appeal or revision was filed - and never to the document's own date.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 363(5) fixes the periods, permanent for file A, thirty years for file B, five years for file C and six months for file D, and rule 363(6) fixes the starting point: the period is computed from the date of the final decision of the case in the trial Court where no appeal or revision application has been filed, and from the date of the final decision of the appellate or revisional Court where one has. Both the periods and the event they run from are in the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-014",
@@ -2861,6 +2966,7 @@
       "test": "A signed vakalatnama in a SARAS case is retained until at least two years after final appellate disposal, and the six-month file D period does not trigger its destruction.",
       "derivedFrom": "rule",
       "status": "contested",
+      "statusReason": "The two instruments give different answers for the same document and neither yields to the other. Rule 363 puts vakalatnamas in file D, to be destroyed after six months. Clause 10.2 of the e-Filing SOP requires the signed vakalatnama to be preserved at least two years after final disposal, including disposal by the superior appellate court, and SARAS rule 13.2 adopts clause 10 for retention of originals in a SARAS case, while SARAS rule 7.1 sends the electronic record back to rules 361 to 367 of the Manual. The rules therefore point at each other, and nothing in either says which prevails, so the requirement takes the longer period rather than deciding the conflict by implementation.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-EVI-007",
@@ -2888,6 +2994,7 @@
       "test": "The case register carries a thirty-year retention computed from the expiry of the last year in the volume, independent of the retention on the case papers it indexes.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 364, under the heading for papers not forming part of court proceedings, says the Register of Cases before Judicial Magistrates and Metropolitan Magistrates shall be preserved for thirty years from the expiry of the last year of the Register in the same volume of Registers. The period, the register and the starting point are all named in the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-012"
@@ -2914,6 +3021,7 @@
       "test": "An advocate not on record for a party cannot open the pleadings or documents of that case; the attempt is refused and logged.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 11.1 says access to the pleadings and the documents filed electronically in an Action will be provided only to the advocates for the parties or to the concerned party-in-person. The word only is what makes this a restriction rather than a description of who ordinarily looks at a file.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-010"
@@ -2940,6 +3048,7 @@
       "test": "Filings are held encrypted at rest on court-controlled infrastructure, each with its own label, and access is only through the court's own access-control path.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 17 says e-filings will be stored on an exclusive server maintained under the control and directions of the Court, that each filing will be separately labelled and encrypted to facilitate identification and retrieval, and that access will be restricted in the manner provided. Court control, the label and the encryption are each stated in the clause.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-001",
@@ -2967,6 +3076,7 @@
       "test": "A restore from the mirror reproduces the portal record of a sample case in full, including its digital signatures.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "The last sentence of clause 17 says that for continuity of operations in case of disaster, natural calamity or breakdown, a mirror image of the e-filings available on the servers located in the Court may be maintained at different geographical locations, as decided from time to time by the Court. The clause is permissive on its face and leaves the decision with the Court. Treating the mirror as something a system ought to have is a reading of it against SARAS rule 3.1, which makes the electronic record the primary and authoritative judicial record and so makes the loss of the store the loss of the case.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-019"
@@ -2993,6 +3103,7 @@
       "test": "An audio or video upload records a hash value against the document; recomputing the hash on the stored file reproduces it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 8.4 says that where on-line e-filing includes audio or video files, the Administrator shall generate a hash value. The duty and the class of file it attaches to are both in the clause.",
       "tightens": null,
       "relatedTo": []
     },
@@ -3017,6 +3128,7 @@
       "test": "A judgment carries a verifiable digital signature of the presiding officer applied on the portal; a judgment without one cannot be released to the parties or transmitted on appeal.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 4.18 requires all orders, judgments and depositions to be digitally signed by the Presiding Officer through a designated portal, in the same sentence that requires them to be generated in PDF. The signature is not a practice built on top of the sub-rule; it is half of what the sub-rule directs.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-009",
@@ -3049,6 +3161,7 @@
       "test": "A certified copy of a judgment can be obtained as a digitally signed electronic file, and it is accepted as a certified copy without a further physical attestation.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 11.2 says certified copies shall ordinarily be generated from the digitally signed electronic record available on the designated portal, and that such digitally signed electronic copies shall be treated as certified copies for all legal purposes; rule 11.1 keeps issuance governed by Chapter XXII of the Criminal Manual. The equivalence the requirement rests on is stated in the sub-rule in those words.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-002",
@@ -3076,6 +3189,7 @@
       "test": "A certified copy of a scanned document carries the statement on its face; a certified copy of a natively electronic order does not.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 11.3 says that when certified copies of digitally converted documents are issued, they shall contain a statement that the copy is generated from the digitally converted document filed in court. Both the trigger and the substance of the statement are in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-001"
@@ -3102,6 +3216,7 @@
       "test": "The application captures the medium; the supply record shows the copy went out by that medium.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 11.4 says the applicant shall specify in the application the medium through which certified copies are sought, naming electronic mail, a recognised electronic messaging service or a digital storage device that has not become obsolete, and that certified copies shall be supplied through the medium specified in the application. The applicant's choice and the court's obligation to follow it are both stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-004"
@@ -3128,6 +3243,7 @@
       "test": "A copy of sixty megabytes is charged for three blocks; supply on a device adds the device cost as a separate line.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 11.5 sets the scale in a table: a minimum of fifty rupees for up to twenty-five megabytes as handling charges, and thereafter fifty rupees for each additional twenty-five megabytes, with the actual cost of the electronic device borne by the applicant in addition where supply is on one. The figures and the block size are the sub-rule's own.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-003"
@@ -3159,6 +3275,7 @@
       "test": "Every electronically supplied certified copy carries an endorsement page with the three dates and a verifiable staff signature.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 11.7 says that at the time of supplying certified copies in electronic form the concerned ministerial staff shall make an endorsement on a separate page indicating the date on which the application was made, the date on which it was granted and the date on which the copy was ready for delivery, and that the endorsement shall be digitally signed by the staff member supplying the copies; rule 11.6 requires compliance with the Criminal Manual to be secured through digital endorsements and signatures. The separate page, the three dates and the signature are all directed.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-006",
@@ -3186,6 +3303,7 @@
       "test": "A complete copy application carries a due date ten days out, and the queue reports applications past it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 384 says copies shall be furnished within ten days of the application, computed from the day on which it is presented where the application is complete, and in other cases from the date on which the application is granted. The period and both starting points are in the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-007"
@@ -3212,6 +3330,7 @@
       "test": "A copy delivered after the due date cannot be issued without a cause-of-delay text, and the text appears on the copy.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The same sentence of rule 384 makes the ten days subject to further delay being unavoidable, and says that in that case the cause of delay shall be endorsed on the copy. The endorsement and the document it goes on are both stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-006"
@@ -3243,6 +3362,7 @@
       "test": "The copy workflow produces an estimate and takes a deposit before the copying task can be started.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 380 says the office shall estimate the costs of the copies before the copying work is undertaken, and that the estimate should as far as possible cover all probable costs including postage where the copies are to be sent by post. Rule 381 then requires an applicant not entitled to a free copy to deposit the estimated cost and make up any other deficiency before the copying work is taken on hand. The order of the steps is what the two rules fix.",
       "tightens": null,
       "relatedTo": []
     },
@@ -3267,6 +3387,7 @@
       "test": "A copy application marked as requiring a search raises a fee computed per year searched, at a rate held as data rather than hard-coded.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 382 says that where the description of the documents given in the application is incorrect or deficient and a search of the records is in consequence necessary, a fee shall be payable for each year of which the records are searched, whether the document is found or not and whether the copy is granted or not. The trigger, the unit of charge and both indifferences are in the rule. Its rate, one rupee for each year, is the 1977 figure taken from an OCR of the first edition of the Manual, which is why the requirement holds the rate as data rather than fixing it.",
       "tightens": null,
       "relatedTo": []
     },
@@ -3296,6 +3417,7 @@
       "test": "A user with no association to the case can lodge a certified-copy application and receive the copy on the ordinary terms, while remaining unable to browse the case file.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 11.3 says a stranger to the Action is entitled to obtain the certified copy of the pleadings and documents filed in the Action in accordance with the relevant rules, and clause 11.2 gives the parties' advocates and the party-in-person the same entitlement. The stranger's right is stated in the SOP alongside the access restriction in clause 11.1, so the two are meant to stand together and a blanket implementation of the restriction would defeat an express entitlement.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-REC-018"
@@ -3322,6 +3444,7 @@
       "test": "The application queue for a case in a Judicial Magistrate's court is addressed to the Clerk of the Court, and an application for a free copy is addressed to the presiding officer.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 383 names a different officer for each court: the Registrar or Clerk of the Court in the Sessions Court, the Clerk of the Court before a Judicial Magistrate, the Sheristedar in the Court of the Metropolitan Magistrate, and a junior clerk specially authorised by the Judicial Magistrate where no senior clerk is appointed; it also sends an application for a copy free of costs to the presiding officer for orders. The routing is a list in the rule rather than an inference from it.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-012"
@@ -3348,6 +3471,7 @@
       "test": "The refuse action is unavailable until a grounds text is entered; the applicant's record then shows a written refusal document carrying that text, with the date it was despatched and the channel it went by.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 383 says that in case of refusal, such refusal and the grounds for the refusal shall be communicated to the applicant in writing. Both the communication and the grounds are directed, and it is the writing that the requirement holds.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-011"
@@ -3374,6 +3498,7 @@
       "test": "A direction from an appellate or revisional court produces an electronic transmission of the complete record and proceedings, with the transmission logged on the case.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 14.1 says that upon receipt of a direction from the Appellate Court or the Revisional Court, the record and proceedings of the matter as available on the designated portal shall be transmitted in electronic form to the concerned Appellate Court. The trigger, the form and the destination are all in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-APL-002",
@@ -3406,6 +3531,7 @@
       "test": "Transmission of originals or hard copies requires a recorded direction of the appellate or revisional court; the default transmission carries only the electronic record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 14.2 says the original record and hard copies of the electronically maintained case record shall be transmitted only in accordance with, and subject to, the directions issued by the Appellate Court or the Revisional Court. The word only is the prohibition; rule 3.11, which requires the original cheque to be retained until the dispute attains finality, is what makes the restriction matter in a cheque case.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-APL-001",
@@ -3433,6 +3559,7 @@
       "test": "A presented matter shows a filing number and no registration number; clearing the last office objection assigns the registration number and both remain on the record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 333, as inserted in 2016, says a filing number shall initially be given to all criminal main matters, and that if there is no office objection, a registration number shall be given to the matter. Two numbers under two different conditions are what the rule creates.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-APL-004",
@@ -3460,6 +3587,7 @@
       "test": "A filed criminal application carries a scrutiny due date six days out, and one with a custody flag and a sentence of six months or less carries a next-day due date.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 339 says every appeal or application shall be examined by the office as expeditiously as possible and the examination completed within six days from the date of filing, except in matters in which the sentence is six months or less and the accused is in custody, where it must be completed not later than the day next after presentation or receipt. Both clocks and the condition that switches between them are in the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-APL-003"
@@ -3486,6 +3614,7 @@
       "test": "Notification of objections starts a fourteen-day clock recorded on the matter, and on expiry without removal the matter appears on a list for orders.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 340 requires the office to affix the objections on a special notice board and to enter the date of that notification on the presentation form, and its clause (ii) says the advocate, appellant or applicant shall remove the objections within fourteen days from the date of notification, failing which the matter shall without delay be placed before the Court for orders. The period, the event it runs from and the consequence are all stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-APL-003"
@@ -3512,6 +3641,7 @@
       "test": "A criminal application cannot be presented without a certified copy of the order challenged, and a challenge to a revisional order additionally requires the trial court judgment.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 345 says every appeal and application shall be accompanied by the certified copy of the judgment or order appealed from or applied against, including the certified copy of the judgment of the trial Court where the application is against an appellate or revisional order of the Sessions Judge. Both limbs are in the rule. It says what must accompany the memorandum and leaves the manner of production open, which is why how is null.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-CPY-001",
@@ -3540,6 +3670,7 @@
       "test": "A quashing petition and a criminal revision arising out of a cheque case are listed before a Single Judge by default, and a Division Bench listing requires an express override.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 2, in its Part II on criminal matters, assigns to a Single Judge applications for the exercise of the Court's revisional jurisdiction under section 401 of the Code, applications under section 482 of the Code, applications for transfer of cases and proceedings pending in a criminal court, and by clause (11-A) applications under article 227 of the Constitution. The routes by which cheque litigation reaches the High Court are named items in that list.",
       "tightens": null,
       "relatedTo": []
     },
@@ -3564,6 +3695,7 @@
       "test": "An Article 227 application is charged the Article 1(f)(ii) amount, distinct from the Article 226 and residual entries.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Schedule II Article 1(f)(ii) charges fifty rupees on an application to the High Court for directions, orders or writs under article 226 for the enforcement of a fundamental right or for the exercise of its jurisdiction under article 227, against one hundred rupees under Article 1(f)(i) for an article 226 petition for any other purpose and twenty rupees under Article 1(f)(iii) in any other case. The three rates and what separates them are the entry's own.",
       "tightens": null,
       "relatedTo": []
     },
@@ -3593,6 +3725,7 @@
       "test": "An e-payment receipt reference satisfies the court-fee sufficiency check on an appeal without a physical stamp.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 64 as amended contemplates the case where a stamp of a different amount is required on the appeal, or a receipt of payment made through the e-payment system is required to be produced, so the receipt is named in the rule as something the office calls for on the sufficiency inquiry. Section 37(1) makes e-payment a lawful mode of collecting the fee in the first place. Accepting the receipt is therefore what the amended rule provides for and not a concession the office may choose to make.",
       "tightens": null,
       "relatedTo": []
     },
@@ -3617,6 +3750,7 @@
       "test": "A memorandum challenging an order of a Sessions Court held in the record as covering more than one revenue district cannot be presented without the revenue district of institution recorded, and that district appears on the generated memorandum.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The last sentence of rule 345 says that when the order complained of is that of a Sessions Court having jurisdiction over more than one revenue district, the memorandum of the proceeding shall show the revenue district in which the original proceeding was instituted. The condition and what must appear on the memorandum are both in the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-GJ-APL-006"
