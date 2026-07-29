@@ -10,9 +10,25 @@ layout. Here we use the raw (reflowed) pdftotext, where the text appears as:
     (1)
     <body> ...
 
-Sections start at a standalone `N.` line; the heading is the short preceding
-line(s); the body runs to the next section. Best-effort headings (marginal notes
-reflow imperfectly), clean bodies.
+Sections start at the section number; the heading is the short preceding line(s);
+the body runs to the next section. Best-effort headings (marginal notes reflow
+imperfectly), clean bodies.
+
+IMPORTANT - the standalone `N.` line is not the only shape a section start takes.
+Where the marginal note is short enough to sit on a single line, pdftotext reflows
+the number onto the first line of the body instead:
+
+    Method of proving orders
+    and notifications.
+    85. Any order or notification published or issued by ...
+
+Matching only the standalone form makes such a section invisible, and because the
+body of a section runs to the *next* recognised start, every missed boundary is
+silently swallowed by the section before it - one oversized section carrying
+several unrelated ones inside its <content>. So we accept the inline form too,
+guarded by monotonicity (the number must be the next one expected, or within a
+short reach of it) to keep body prose like "1973. The Code ..." from splitting a
+section in half.
 
 IMPORTANT - state gazette PDFs are often BUNDLES: the principal Act followed by
 the gazette pages of one or more later Amendment Acts. Each amendment Act restarts
@@ -77,25 +93,46 @@ def main():
     clean = [l for l in lines if not JUNK.match(l.strip())]
 
     NUM = re.compile(r'^(\d+[A-Z]?)\.$')                 # a standalone "N." line = section start
+    # ... and the reflowed variant, where the number keeps the first body line
+    # company: "85. Any order or notification published or issued by ..."
+    NUM_INLINE = re.compile(r'^(\d+[A-Z]?)\.\s+(\S.*)$')
     MARK = re.compile(r'^\(([0-9]+|[a-z]{1,3}|[ivxlc]+)\)')  # (1) (a) (iv) clause markers
     CHAP = re.compile(r'^Chapter\s+([IVXLC]+)\s*$', re.I)
+    REACH = 3      # how far ahead of the last section number an inline start may jump
 
-    # locate section starts
-    starts = [i for i, l in enumerate(clean) if NUM.match(l.strip())]
-    starts.append(len(clean))
+    # locate section starts, keeping any body text that shares the number's line
+    starts, last = [], 0     # [(line index, "N", residual body text)]
+    for i, l in enumerate(clean):
+        s = l.strip()
+        m = NUM.match(s)
+        if m:
+            starts.append((i, m.group(1), ""))
+            last = int(re.match(r'\d+', m.group(1)).group(0))
+            continue
+        m = NUM_INLINE.match(s)
+        if not m:
+            continue
+        # only a monotonic, near-in-sequence number opens a section inline; a stray
+        # "1973. ..." mid-body must not
+        n = int(re.match(r'\d+', m.group(1)).group(0))
+        if last < n <= last + REACH:
+            starts.append((i, m.group(1), m.group(2).strip()))
+            last = n
+    starts.append((len(clean), "", ""))
+    start_at = {i for i, _, _ in starts}
 
     sections = []
     chap_at = {}   # section-index -> (roman, heading) if a chapter opened just before it
     for k in range(len(starts) - 1):
-        i, j = starts[k], starts[k + 1]
-        num = NUM.match(clean[i].strip()).group(1)
+        i, num, residual = starts[k]
+        j = starts[k + 1][0]
         # heading: the short, non-clause, non-body lines just above the number
         head = []
         p = i - 1
         while p >= 0 and len(head) < 4:
             s = clean[p].strip()
             if not s: p -= 1; continue
-            if MARK.match(s) or NUM.match(s): break
+            if MARK.match(s) or p in start_at: break
             # marginal headings are short Title-Case notes; a body-continuation line
             # starts lowercase / ends with ,; / is a long sentence - stop there
             if s[:1].islower() or s.startswith('"') or s.endswith((';', ',')) or len(s.split()) > 7: break
@@ -108,16 +145,17 @@ def main():
             cm = CHAP.match(clean[q].strip())
             if cm:
                 title_lines = [clean[t].strip() for t in range(q + 1, i) if clean[t].strip()
-                               and not NUM.match(clean[t].strip()) and clean[t].strip() not in head]
+                               and t not in start_at and clean[t].strip() not in head]
                 chap_at[len(sections)] = (cm.group(1), (title_lines[0] if title_lines else ""))
-        # body: from after the number to the next section, split on clause markers
+        # body: the text sharing the number's line, then on to the next section,
+        # split on clause markers
         body, buf = [], []
         def flush():
             if buf:
                 t = re.sub(r'\s+', ' ', " ".join(buf)).strip()
                 if t: body.append(t)
             buf.clear()
-        for l in clean[i + 1:j]:
+        for l in ([residual] if residual else []) + clean[i + 1:j]:
             s = l.strip()
             if not s: continue
             if s in head: continue
