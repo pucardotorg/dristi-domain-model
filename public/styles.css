@@ -775,8 +775,16 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
      edge or a fill. */
   /* one measure for the whole card, in px not ch - a ch resolves against each element's
      own font size, which is exactly how the statement, the why and the meta ended up
-     wrapping at three different right edges */
-  .req{--rq-measure:620px; border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px 18px 13px; margin-bottom:9px}
+     wrapping at three different right edges.
+     The measure also sets the width of the view. A card wider than the text it holds
+     is a card with a hole in it, so the card is exactly the measure plus its own
+     padding, and the scope bar, the lede, the search, the facets and the group heads
+     are capped at the same number. One column, one right edge, at every width - and
+     nothing to re-open the hole when a disclosure grows the card downwards. */
+  .view-req{--rq-measure:620px; --rq-pad:18px;
+    max-width:calc(var(--rq-measure) + var(--rq-pad)*2 + 2px)}
+  .view-req .lede{max-width:none}
+  .req{border:1px solid var(--line); border-radius:11px; background:var(--panel); padding:14px var(--rq-pad) 13px; margin-bottom:9px}
   .req .rq-h{cursor:pointer}
   .rq-eyebrow{display:flex; align-items:center; gap:13px; margin-bottom:6px}
   .rq-id{font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--ink-2); letter-spacing:.01em}
@@ -839,18 +847,25 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .rq-jid{font-family:var(--font-mono); font-size:11.5px}
   .rq-plain{color:var(--ink-3)}
   @media(max-width:640px){
-    .req{padding:13px 15px 12px}
+    .view-req{--rq-pad:15px}
+    .req{padding:13px var(--rq-pad) 12px}
     .rq-more{margin-left:0}
   }
 
   /* ===================== UNIVERSAL SEARCH =====================
      A centred panel over a dimmed app. Type and spacing carry the structure;
      the type label and state badge are quiet text, never chips. */
-  .gs-trigger{margin-left:auto; flex:none; width:24px; height:24px; padding:0; display:inline-flex;
-    align-items:center; justify-content:center; border:1px solid var(--line); border-radius:6px;
+  /* the trigger carries its own shortcut. It is height-locked to 24px - the brand row
+     is 24px and that compaction is load-bearing - and takes the width it needs from
+     the slack the row already had to the right of the wordmark. */
+  .gs-trigger{margin-left:auto; flex:none; height:24px; padding:0 6px; display:inline-flex;
+    align-items:center; justify-content:center; gap:5px; border:1px solid var(--line); border-radius:6px;
     background:var(--panel); color:var(--ink-3); cursor:pointer; transition:color .12s, border-color .12s}
-  .gs-trigger svg.lu{width:13px; height:13px}
+  .gs-trigger svg.lu{width:13px; height:13px; flex:none}
+  .gs-kbd{font-family:var(--font-mono); font-size:10px; line-height:1; letter-spacing:.02em;
+    color:var(--ink-3); white-space:nowrap; transition:color .12s}
   .gs-trigger:hover{color:var(--ink); border-color:var(--line-2)}
+  .gs-trigger:hover .gs-kbd{color:var(--ink-2)}
   .gs-trigger:focus-visible{outline:2px solid var(--brand); outline-offset:1px}
 
   .gs{position:fixed; inset:0; z-index:200; display:none}
@@ -897,6 +912,42 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .gs-idle p{margin:0}
   .gs-idle b{color:var(--ink-2); font-weight:600}
   .gs-idle-eg{margin-top:9px !important; color:var(--ink-3)}
+
+  /* ---- scope tokens: "kerala:", "pages:" ----------------------------------
+     The token is a box in the field, ahead of the caret, so a filter never
+     reads as query text. It is a flex sibling of the input, not an overlay,
+     so a long scope name cannot end up underneath what is being typed.
+     Borders and ink only: the one colour in this panel stays the active row. */
+  /* the tokens give up width far more slowly than the text field does, so a narrow
+     panel eats into the query before it starts abbreviating a filter */
+  .gsc-toks{display:flex; align-items:center; gap:5px; flex:0 0 auto; min-width:0; max-width:66%; overflow:hidden}
+  .gsc-toks[hidden]{display:none}
+  .gsc-tok{display:inline-flex; align-items:center; gap:6px; max-width:100%; flex:0 1 auto;
+    border:1px solid var(--line-2); border-radius:4px; background:var(--panel-2); color:var(--ink-2);
+    font-family:inherit; font-size:13px; line-height:1.5; padding:2px 6px; cursor:pointer;
+    white-space:nowrap; overflow:hidden; transition:color .12s, border-color .12s}
+  .gsc-tok:hover{color:var(--ink)}
+  .gsc-tok:focus-visible{outline:2px solid var(--brand); outline-offset:1px}
+  /* the name gives way first: the × has to stay reachable at any width */
+  .gsc-tl{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .gsc-tx{flex:none; color:var(--ink-3); font-size:13px; line-height:1}
+  .gsc-tok:hover .gsc-tx{color:var(--ink-2)}
+
+  .gsc-bar{flex:none; display:flex; align-items:center; flex-wrap:wrap; gap:6px;
+    padding:7px 15px; border-bottom:1px solid var(--line); background:var(--panel-2);
+    font-size:11.5px; color:var(--ink-3)}
+  .gsc-bar[hidden]{display:none}
+  .gsc-lab{font-size:10px; letter-spacing:.09em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
+  .gsc-sug,.gsc-eg{border:1px solid var(--line); background:var(--panel); color:var(--ink-2);
+    font-family:inherit; font-size:11.5px; padding:2px 6px; border-radius:4px; cursor:pointer;
+    transition:color .12s, border-color .12s}
+  .gsc-sug:hover,.gsc-eg:hover{color:var(--ink); border-color:var(--line-2)}
+  .gsc-sug:focus-visible,.gsc-eg:focus-visible{outline:2px solid var(--brand); outline-offset:1px}
+  .gsc-tab kbd{font-family:var(--font-mono); font-size:10px; border:1px solid var(--line-2);
+    border-radius:4px; padding:0 4px; color:var(--ink-3)}
+  .gsc-note{color:var(--ink-3)}
+  .gsc-alt{margin-top:13px}
+  .gsc-eg{font-size:12px; margin-left:2px}
 
   .gs-foot{flex:none; display:flex; align-items:center; gap:12px; justify-content:space-between;
     padding:8px 15px; border-top:1px solid var(--line); background:var(--panel-2);

@@ -636,7 +636,8 @@ const reqNavCount = () => REQS.filter(r=>r.scope==="national"||r.scope===activeS
 V.requirements=()=>{
   if(!isModelled()) return notModelled();
   const stName=stateById(activeState).name;
-  const m=el("div"); m.appendChild(scopeBar());
+  /* view-req caps the whole column at the card's measure - see styles.css */
+  const m=el("div","view-req"); m.appendChild(scopeBar());
   const head=el("div");
   head.innerHTML=`<h1 class="page-title">Requirements</h1>
     <p class="lede">What a system must do to run a ${caseById(activeCase).name.toLowerCase()} case lawfully - each statement derived from a provision that opens, and each one testable. It opens on National and ${esc(stName)}; use Show to see All, or any other state.</p>`;
@@ -2430,7 +2431,18 @@ const GS_LABEL={}; GS_TYPES.forEach(([k,v])=>{GS_LABEL[k]=v;});
 const GS_CAP=6;                     // rows shown per group; the total is always stated
 const gsStrip=s=>String(s==null?"":s).replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim();
 const gsTrim=(s,n)=>{ s=gsStrip(s); return s.length>n ? s.slice(0,n).replace(/\s+\S*$/,"")+"…" : s; };
-const gsIsMac=()=>/Mac|iPhone|iPad|iPod/.test((navigator.platform||"")+" "+(navigator.userAgent||""));
+/* which shortcut to advertise. navigator.platform is deprecated, so ask the UA-data
+   API first and fall back to the user-agent string; when neither says Mac - including
+   when neither exists - advertise the Ctrl form, which is the safer default because a
+   Mac reader recognises Ctrl+K as "not mine" faster than a PC reader decodes ⌘. */
+const gsIsMac=()=>{
+  const p=(navigator.userAgentData && navigator.userAgentData.platform) || "";
+  if(p) return /mac/i.test(p);
+  return /Mac|iPhone|iPad|iPod/.test(navigator.userAgent||"");
+};
+/* the same shortcut in the two forms it is written in: on the button, and out loud */
+const gsHintKeys=()=>gsIsMac() ? "⌘K" : "Ctrl K";
+const gsHintSaid=()=>gsIsMac() ? "Command K" : "Control K";
 
 /* ---- the index ---------------------------------------------------------- */
 let GS_INDEX=null, _gsKey="";
@@ -2471,6 +2483,7 @@ function gsBuildIndex(){
   navPages().forEach(p=>{
     const ctx=p.section||"";
     gsPush(L,{type:"page", state:p.scoped?activeState:null, title:p.label,
+      view:p.view, scoped:!!p.scoped,
       sub:"Page"+(ctx?" · "+ctx:""), snip:p.desc||"",
       f:[[p.label,1], ...((p.alias||[]).map(a=>[a,.92])), [ctx,.35], [p.scoped?stNow:"",.3]],
       open:()=>gsGo(p.view, p.scoped?activeState:null, null)});
@@ -2593,6 +2606,98 @@ function gsIndex(){
   return GS_INDEX;
 }
 
+/* ---- scopes -------------------------------------------------------------
+   A leading "<scope>: " narrows the search before anything is scored, so the
+   ranking below is untouched - a scope removes candidates, it never reorders
+   them. Two kinds, and they compose: a state ("kerala:") and a kind of thing
+   ("pages:", "laws:"). A prefix is only honoured when the word before the
+   colon is a scope we know; anything else - "foo: bar", "held that: x" - is
+   searched literally as typed, because a colon is ordinary punctuation. */
+const GS_TYPE_SCOPES=[
+  {id:"pages",        label:"Pages",         types:["page"],
+   alias:["page","pages","tab","tabs","view","views","screen","screens"]},
+  {id:"provisions",   label:"Provisions",    types:["provision"],
+   alias:["provision","provisions","section","sections","sec"]},
+  {id:"vocabulary",   label:"Vocabulary",    types:["vocab"],
+   alias:["vocab","vocabulary","word","words","term","terms","glossary"]},
+  {id:"requirements", label:"Requirements",  types:["req"],
+   alias:["req","reqs","requirement","requirements"]},
+  {id:"cases",        label:"Case law",      types:["case"],
+   alias:["case","cases","case law","caselaw","judgment","judgments","judgement","judgements","ruling","rulings","precedent","precedents"]},
+  {id:"practice",     label:"Local practice",types:["note"],
+   alias:["note","notes","practice","local practice","field note","field notes","fieldnote","fieldnotes","ground"]},
+  {id:"story",        label:"Story",         types:["story"],
+   alias:["story","stories","process","stage","stages","role","roles","journey"]},
+  {id:"institutions", label:"Institutions",  types:["inst"],
+   alias:["inst","institution","institutions","court","courts","police","body","bodies"]},
+  {id:"acts",         label:"Acts",          types:["act"],
+   alias:["act","acts","statute","statutes","instrument","instruments","legislation"]},
+  /* "the law" is not a group name: to a lawyer it means the instrument and the
+     section indifferently, so it takes both. The exact group names stay exact. */
+  {id:"law",          label:"Acts and provisions", short:"Law", types:["act","provision"],
+   alias:["law","laws","rule","rules"]}
+];
+let _gsScopes=null, _gsScopesK="";
+function gsScopes(){
+  const k=(JURISDICTIONS||[]).map(j=>j.id).join(",");
+  if(_gsScopes && _gsScopesK===k) return _gsScopes;
+  const all=[], by={};
+  GS_TYPE_SCOPES.forEach(s=>all.push(Object.assign({kind:"type"},s)));
+  (JURISDICTIONS||[]).forEach(j=>all.push({kind:"state", id:j.id, label:j.name||j.id, states:[j.id],
+    alias:[String(j.id||"").toLowerCase(), String(j.name||"").toLowerCase()]}));
+  /* the layer that binds every state - the national provisions, Acts, vocabulary and judgments */
+  all.push({kind:"state", id:"national", label:"National", states:["national"],
+    alias:["national","india","central","centre","union"]});
+  all.forEach(s=>s.alias.forEach(a=>{ if(a && !by[a]) by[a]=s; }));
+  _gsScopes={all, by}; _gsScopesK=k;
+  return _gsScopes;
+}
+/* eat leading "<word>: " runs while each word names a scope. Case-insensitive,
+   the space after the colon is optional, and repeats collapse. */
+function gsParseScope(raw){
+  const by=gsScopes().by;
+  let s=String(raw==null?"":raw), tokens=[];
+  for(;;){
+    const m=s.match(/^\s*([A-Za-z][A-Za-z .&'-]*?)\s*:\s*/);
+    if(!m) break;
+    const sc=by[m[1].toLowerCase().replace(/\s+/g," ").trim()];
+    if(!sc) break;
+    if(!tokens.some(t=>t.id===sc.id)) tokens.push(sc);
+    s=s.slice(m[0].length);
+  }
+  const states=new Set(), types=new Set();
+  tokens.forEach(sc=>{ (sc.kind==="state"?sc.states:sc.types).forEach(x=>(sc.kind==="state"?states:types).add(x)); });
+  const real=[...states].filter(x=>x!=="national");
+  return {q:s, tokens, states, types, one: (states.size===1 && real.length===1) ? real[0] : null};
+}
+/* the filter itself. Returns the entry to score, or null to drop it. */
+function gsScopeKeep(e,sc){
+  if(sc.types.size && !sc.types.has(e.type)) return null;
+  if(sc.states.size){
+    /* a state-scoped page belongs to whichever layer you open it on, so under a
+       single state scope it retargets to that state instead of being dropped -
+       "kerala: state rules" opens the State rules page on Kerala. */
+    if(e.type==="page" && e.scoped && sc.one)
+      return Object.assign({},e,{state:sc.one, open:()=>gsGo(e.view, sc.one, null)});
+    if(!sc.states.has(e.state||"national")) return null;
+  }
+  return e;
+}
+const gsScopeNames=sc=>sc.tokens.map(t=>t.label);
+/* scopes whose name the typed word begins, offered as the user types */
+function gsScopeSuggest(q){
+  const t=String(q||"").toLowerCase().trim();
+  if(t.length<2 || /[\s:]/.test(t)) return [];
+  const out=[], seen={};
+  (_gsToks||[]).forEach(t=>{ seen[t.id]=1; });     // never offer a scope already on
+  gsScopes().all.forEach(s=>{
+    if(seen[s.id]) return;
+    const a=s.alias.find(x=>x && x.indexOf(t)===0);
+    if(a){ seen[s.id]=1; out.push({id:s.id, label:s.label, alias:a}); }
+  });
+  return out.slice(0,4);
+}
+
 /* ---- ranking ------------------------------------------------------------
    exact > prefix > word-boundary > substring, each scaled by how identifying the
    field is. A multi-word query that no single field carries whole still matches if
@@ -2620,17 +2725,21 @@ function gsScoreEntry(e,alts,toks){
   return 0;
 }
 function gsSearch(raw){
-  const q=String(raw||"").toLowerCase().replace(/\s+/g," ").trim();
-  if(!q) return null;
+  const sc=gsParseScope(raw);
+  const q=String(sc.q||"").toLowerCase().replace(/\s+/g," ").trim();
+  if(!q && !sc.tokens.length) return null;
   const alts=[q];
   const m=q.match(/^(?:s\.?|sec\.?|section|§|r\.?|rule)\s*([0-9].*)$/);   // "s.138" / "§138" / "rule 7"
   if(m && m[1]!==q) alts.push(m[1]);
   const toks=q.split(" ").filter(Boolean);
   const idx=gsIndex();
   const hits=[];
+  const scoped=sc.tokens.length>0;
   for(let i=0;i<idx.length;i++){
-    const s=gsScoreEntry(idx[i],alts,toks);
-    if(s>0) hits.push({e:idx[i], s});
+    let e=idx[i];
+    if(scoped){ e=gsScopeKeep(e,sc); if(!e) continue; }
+    const s=q ? gsScoreEntry(e,alts,toks) : 1;   // a bare scope lists everything it holds
+    if(s>0) hits.push({e, s});
   }
   hits.sort((a,b)=> b.s-a.s || (a.e.rank||0)-(b.e.rank||0) || a.e.title.length-b.e.title.length
                  || a.e.title.localeCompare(b.e.title));
@@ -2652,7 +2761,7 @@ function gsSearch(raw){
   const pin=!!(pg && pg.best>=400 && !(other>=900 && other>pg.best));
   const pagePin=g=>(pin && g.key==="page") ? 1 : 0;
   groups.sort((a,b)=> pagePin(b)-pagePin(a) || b.best-a.best);
-  return {q, groups, total:hits.length};
+  return {q, scope:sc, groups, total:hits.length};
 }
 
 /* ---- the overlay -------------------------------------------------------- */
@@ -2677,6 +2786,7 @@ function gsSnippet(text,q){
 }
 function gsIdle(){
   const nStates=(JURISDICTIONS||[]).length;
+  const stFirst=String((((JURISDICTIONS||[])[0])||{}).id||"national");
   const nVocab=Object.keys(TERMS).length+(JURISDICTIONS||[]).reduce((n,j)=>n+stateVocabTerms(j.id).length,0);
   const bits=[[PROVISIONS.length,"provisions"],[nVocab,"vocabulary words"],[REQS.length,"requirements"],
               [CASES.length,"judgments"],[(PRACTICE_NOTES||[]).length,"field notes"]]
@@ -2684,7 +2794,97 @@ function gsIdle(){
   return `<div class="gs-idle">
     <p>Search everything at once - ${bits}, plus the story, the roles, the police and court ladders and the Acts, across all ${nStates} state layers.</p>
     <p class="gs-idle-eg">Try a section number (<b>138</b>), a requirement id (<b>REQ-LIM-004</b>), a word (<b>roznama</b>), a case (<b>Rangappa</b>), or a page (<b>vocabulary</b>).</p>
+    <p class="gs-idle-eg">Narrow it with a prefix - <b>${esc(stFirst)}:</b> for one state, <b>pages:</b> <b>laws:</b> <b>words:</b> <b>cases:</b> for one kind. They combine:
+      <button class="gsc-eg" type="button" data-gsc-set="${esc(stFirst)}: pages: ">${esc(stFirst)}: pages:</button></p>
   </div>`;
+}
+/* ---- the scope as a token ------------------------------------------------
+   A recognised scope leaves the text field and becomes a box sitting in the
+   field, in front of the caret: the input then holds nothing but the residual
+   query. It is a flex sibling of the input inside .gs-in, not an overlay with
+   a measured padding, so a long scope name can never sit under the text. */
+let _gsToks=[], _gsCycle=null;
+const GS_PH="Search a section, a word, a requirement, a judgment…";
+const gsTokLabel=t=>t.short||t.label;
+const gsScopePrefix=()=>_gsToks.map(t=>t.id+": ").join("");
+function gsAndList(a){
+  return a.length<2 ? (a[0]||"") : a.slice(0,-1).join(", ")+" and "+a[a.length-1];
+}
+/* text the user typed that names a scope moves out of the field and becomes a token */
+function gsAbsorb(){
+  const input=$("#gsInput"); if(!input) return false;
+  const p=gsParseScope(input.value);
+  if(!p.tokens.length) return false;
+  p.tokens.forEach(t=>{ if(!_gsToks.some(x=>x.id===t.id)) _gsToks.push(t); });
+  input.value=p.q;
+  return true;
+}
+function gsToksRender(){
+  const box=_gsEl&&_gsEl.querySelector("#gscToks"), input=$("#gsInput");
+  if(!box) return;
+  box.innerHTML=_gsToks.map((t,i)=>`<button class="gsc-tok" type="button" data-gsc-drop="${i}"
+    title="Remove this filter (backspace)" aria-label="Remove the ${esc(gsTokLabel(t))} filter"><span class="gsc-tl">${esc(gsTokLabel(t))}</span><span class="gsc-tx" aria-hidden="true">×</span></button>`).join("");
+  box.hidden=!_gsToks.length;
+  if(input) input.placeholder=_gsToks.length ? "Search within "+gsAndList(_gsToks.map(gsTokLabel))+"…" : GS_PH;
+}
+function gsToksSet(list,keepCycle){
+  _gsToks=list; if(!keepCycle) _gsCycle=null;
+  gsToksRender(); _gsLastQ=null; gsRun();
+  const input=$("#gsInput");
+  if(input){ input.focus(); const n=input.value.length; try{ input.setSelectionRange(n,n); }catch(err){} }
+}
+function gsTokAdd(id,keepCycle){
+  const sc=gsScopes().by[id]; if(!sc) return;
+  const input=$("#gsInput");
+  if(input && gsScopeSuggest(input.value).some(s=>s.id===sc.id)) input.value="";   // the partial word became the token
+  gsToksSet(_gsToks.some(x=>x.id===sc.id)?_gsToks:_gsToks.concat([sc]), keepCycle);
+}
+function gsTokDrop(i){ gsToksSet(_gsToks.filter((t,n)=>n!==i)); }
+/* Tab completes the scope the residual text is starting to spell. It is only
+   taken when the whole residual text is that partial word - which is exactly
+   when the strip below the field is offering it - so Tab keeps trapping focus
+   at every other moment. A second Tab swaps the token for the next candidate
+   rather than adding one, which is how an ambiguous prefix gets resolved. */
+function gsTabComplete(){
+  const input=$("#gsInput"); if(!input || document.activeElement!==input) return false;
+  const cands=gsScopeSuggest(input.value);
+  if(cands.length){
+    _gsCycle={list:cands, i:0, id:cands[0].id};
+    gsTokAdd(cands[0].id,true);
+    return true;
+  }
+  const c=_gsCycle;
+  if(c && c.list.length>1 && !input.value && _gsToks.length && _gsToks[_gsToks.length-1].id===c.id){
+    c.i=(c.i+1)%c.list.length; c.id=c.list[c.i].id;
+    const sc=gsScopes().by[c.list[c.i].alias];
+    gsToksSet(_gsToks.slice(0,-1).concat([sc]),true);
+    return true;
+  }
+  return false;
+}
+/* Backspace with the caret at the very start, nothing selected, takes the whole
+   token off in one press. Anywhere else it is an ordinary backspace. */
+function gsTokBackspace(){
+  const input=$("#gsInput");
+  if(!input || document.activeElement!==input || !_gsToks.length) return false;
+  if(input.selectionStart!==0 || input.selectionEnd!==0) return false;
+  gsTokDrop(_gsToks.length-1);
+  return true;
+}
+/* the strip under the field: what the query is restricted to, or the scopes the
+   half-typed word could still become */
+function gsScopeStrip(tail){
+  const bar=_gsEl&&_gsEl.querySelector("#gscBar"); if(!bar) return;
+  const sug=gsScopeSuggest(tail);
+  let h="";
+  if(sug.length){
+    h=`<span class="gsc-lab">Narrow to</span>`
+      +sug.map(s=>`<button class="gsc-sug" type="button" data-gsc-add="${esc(s.id)}">${esc(s.alias)}:</button>`).join("")
+      +`<span class="gsc-tab"><kbd>tab</kbd></span>`;
+  }else if(_gsToks.length){
+    h=`<span class="gsc-note">Searching ${esc(gsAndList(_gsToks.map(gsTokLabel)))} only - backspace or × to clear.</span>`;
+  }
+  bar.innerHTML=h; bar.hidden=!h;
 }
 function gsBuildOverlay(){
   if(_gsEl) return _gsEl;
@@ -2693,11 +2893,13 @@ function gsBuildOverlay(){
     <div class="gs-panel" role="dialog" aria-modal="true" aria-label="Search the corpus">
       <div class="gs-in">
         <span class="gs-mag">${ic('search')}</span>
+        <span class="gsc-toks" id="gscToks" hidden></span>
         <input id="gsInput" class="gs-input" type="text" autocomplete="off" autocorrect="off" spellcheck="false"
           aria-label="Search the corpus" role="combobox" aria-expanded="true" aria-controls="gsList" aria-autocomplete="list"
           placeholder="Search a section, a word, a requirement, a judgment…">
         <button class="gs-x" type="button" data-gs-close aria-label="Close search">Esc</button>
       </div>
+      <div class="gsc-bar" id="gscBar" hidden></div>
       <div class="gs-list" id="gsList" role="listbox" aria-label="Search results"></div>
       <div class="gs-foot">
         <span class="gs-keys"><kbd>↑</kbd><kbd>↓</kbd> move &nbsp; <kbd>↵</kbd> open &nbsp; <kbd>esc</kbd> close</span>
@@ -2708,6 +2910,12 @@ function gsBuildOverlay(){
   _gsEl=o;
   const list=o.querySelector("#gsList"), input=o.querySelector("#gsInput");
   o.addEventListener("click",e=>{
+    const drop=e.target.closest("[data-gsc-drop]");
+    if(drop){ gsTokDrop(+drop.dataset.gscDrop); return; }
+    const add=e.target.closest("[data-gsc-add]");
+    if(add){ gsTokAdd(add.dataset.gscAdd); return; }
+    const set=e.target.closest("[data-gsc-set]");
+    if(set){ const inp=$("#gsInput"); inp.value=set.dataset.gscSet; gsAbsorb(); gsToksSet(_gsToks); return; }
     if(e.target.closest("[data-gs-close]")){ gsClose(); return; }
     const row=e.target.closest(".gs-row");
     if(row){ gsSetActive(+row.dataset.i); gsOpenActive(); }
@@ -2717,6 +2925,8 @@ function gsBuildOverlay(){
     const i=+row.dataset.i; if(i!==_gsActive) gsSetActive(i,true);
   });
   input.addEventListener("input",()=>{
+    _gsCycle=null;
+    if(gsAbsorb()) gsToksRender();   // "kerala:" becomes a token the moment it is typed
     clearTimeout(_gsTimer);
     _gsTimer=setTimeout(gsRun, input.value.trim()?90:0);   // debounce typing; clearing is instant
   });
@@ -2724,11 +2934,13 @@ function gsBuildOverlay(){
 }
 function gsRun(){
   const input=$("#gsInput"), list=$("#gsList"), tally=_gsEl.querySelector(".gs-tally");
-  const q=input.value;
+  if(gsAbsorb()) gsToksRender();
+  const q=gsScopePrefix()+input.value;      // the tokens are part of the query
   if(q===_gsLastQ) return; _gsLastQ=q;
   const t0=performance.now();
   const res=gsSearch(q);
   _gsRows=[];
+  gsScopeStrip(res?res.q:input.value);
   if(!res){
     list.innerHTML=gsIdle(); tally.textContent="";
     input.removeAttribute("aria-activedescendant"); _gsActive=-1;
@@ -2736,7 +2948,9 @@ function gsRun(){
     return;
   }
   if(!res.total){
-    list.innerHTML=`<div class="gs-none">Nothing matches “${esc(res.q)}”.</div>`;
+    const inWhat=_gsToks.length?" in "+esc(gsAndList(_gsToks.map(gsTokLabel))):"";
+    list.innerHTML=`<div class="gs-none">${res.q?`Nothing${inWhat} matches “${esc(res.q)}”.`:`Nothing${inWhat} to show.`}
+      ${_gsToks.length?`<div class="gsc-alt"><button class="gsc-sug" type="button" data-gsc-drop="${_gsToks.length-1}">Drop the ${esc(gsTokLabel(_gsToks[_gsToks.length-1]))} filter</button></div>`:""}</div>`;
     tally.textContent="no matches";
     input.removeAttribute("aria-activedescendant"); _gsActive=-1;
     window.__gsPerf=Object.assign(window.__gsPerf||{},{lastQuery:res.q,hits:0,queryMs:+(performance.now()-t0).toFixed(2)});
@@ -2797,6 +3011,7 @@ function gsShow(){
   document.body.style.overflow="hidden";
   const input=$("#gsInput");
   input.value=""; _gsLastQ=null; _gsActive=-1; _gsRows=[];
+  _gsToks=[]; _gsCycle=null; gsToksRender();
   gsIndex();          // warm the index while the panel is appearing
   gsRun();
   input.focus();
@@ -2818,8 +3033,13 @@ window.gsShow=gsShow;
 function gsMountTrigger(){
   const b=$("#gsTrigger"); if(!b || b.dataset.ready) return;
   b.dataset.ready="1";
-  b.innerHTML=ic('search');
-  b.title="Search the corpus ("+(gsIsMac()?"⌘K":"Ctrl+K")+")";
+  /* the shortcut is spelled out on the button itself. The brand row is 24px tall and
+     stays 24px tall: the hint grows the button sideways into space the row already
+     had, never downwards. The glyphs are decoration for a screen reader - the label
+     says the same thing in words. */
+  b.innerHTML=ic('search')+'<span class="gs-kbd" aria-hidden="true">'+gsHintKeys()+'</span>';
+  b.title="Search the corpus ("+gsHintKeys()+")";
+  b.setAttribute("aria-label","Search the corpus, "+gsHintSaid());
   b.onclick=e=>{ e.stopPropagation(); e.preventDefault(); gsToggle(); };
 }
 
@@ -2834,7 +3054,17 @@ document.addEventListener("keydown",e=>{
     if(e.key==="ArrowDown"){ e.preventDefault(); e.stopPropagation(); gsMove(1); return; }
     if(e.key==="ArrowUp"){ e.preventDefault(); e.stopPropagation(); gsMove(-1); return; }
     if(e.key==="Enter"){ e.preventDefault(); e.stopPropagation(); gsOpenActive(); return; }
-    if(e.key==="Tab"){ e.preventDefault(); e.stopPropagation(); gsTrapTab(e); return; }
+    /* a whole scope token comes off in one press, and only from the very start
+       of an unselected field, so an ordinary backspace mid-word is untouched */
+    if(e.key==="Backspace" && !e.metaKey && !e.ctrlKey && !e.altKey && gsTokBackspace()){
+      e.preventDefault(); e.stopPropagation(); return; }
+    if(e.key==="Tab"){
+      /* completion first, but only when one is genuinely on offer; otherwise Tab
+         keeps trapping focus inside the panel exactly as before */
+      if(!e.shiftKey && !e.metaKey && !e.ctrlKey && !e.altKey && gsTabComplete()){
+        e.preventDefault(); e.stopPropagation(); return; }
+      e.preventDefault(); e.stopPropagation(); gsTrapTab(e); return;
+    }
     return;
   }
   if((e.metaKey||e.ctrlKey) && !e.altKey && (e.key==="k"||e.key==="K")){ e.preventDefault(); e.stopPropagation(); gsShow(); return; }
