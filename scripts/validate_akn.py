@@ -33,7 +33,16 @@ from pathlib import Path
 try:
     from lxml import etree
 except ImportError:  # pragma: no cover
-    sys.exit("lxml is required: pip install lxml")
+    # Stay IMPORTABLE without lxml. Exiting here would take down any caller that
+    # merely imports this module - which is how the Netlify build silently died for
+    # ten commits, since a failed build makes Netlify keep serving the last deploy.
+    # Callers that actually need the schema get a clean ImportError from _require().
+    etree = None
+
+
+def _require_lxml():
+    if etree is None:
+        raise ImportError("lxml is required for AKN schema validation: pip install lxml")
 
 REPO = Path(__file__).resolve().parent.parent
 SCHEMA = REPO / "schemas" / "akomantoso30" / "akomantoso30.xsd"
@@ -49,6 +58,7 @@ def find_files(args_paths: list[str]) -> list[Path]:
 
 
 def load_schema() -> etree.XMLSchema:
+    _require_lxml()
     if not SCHEMA.exists():
         sys.exit(
             f"Akoma Ntoso schema not found at {SCHEMA}.\n"

@@ -5,7 +5,10 @@
 
 [build]
   publish = "public"
-  command = "python3 scripts/generate_agent_artifacts.py"
+  # Install the build-time checkers first (see requirements.txt). If pip fails the
+  # generator still runs and publishes, but with its checks skipped and a loud line
+  # in the log - a stale deploy is worse than an unchecked one.
+  command = "pip install -r requirements.txt || echo 'WARNING: pip install failed - self-checks will be skipped'; python3 scripts/generate_agent_artifacts.py"
 
 # Long-cache the immutable legal source files; the HTML stays revalidated.
 [[headers]]

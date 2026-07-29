@@ -1,0 +1,13 @@
+# Build-time Python dependencies for the Netlify build.
+#
+# scripts/generate_agent_artifacts.py runs in the build (see netlify.toml) and
+# self-checks the corpus before publishing:
+#   lxml       - real XSD validation of the Akoma Ntoso files (scripts/validate_akn.py)
+#   jsonschema - validates the profile, state layers, field notes and requirements
+#                against the generated schemas
+#
+# Without these the build still succeeds, but it publishes with the checks SKIPPED
+# and says so loudly in the log. Declaring them here is what makes the guards real
+# on the deployed site rather than only on a developer machine.
+lxml>=5.0
+jsonschema>=4.0
