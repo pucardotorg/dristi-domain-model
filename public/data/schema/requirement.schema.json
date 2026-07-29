@@ -33,7 +33,8 @@
           "binds",
           "test",
           "derivedFrom",
-          "status"
+          "status",
+          "statusReason"
         ],
         "properties": {
           "id": {
@@ -161,6 +162,24 @@
               "contested",
               "inferred"
             ]
+          },
+          "statusReason": {
+            "type": "string",
+            "description": "why the requirement carries that status, written from the provision's text. For 'inferred' it names the gap between what the provision commands and what the requirement asks; for 'contested' it names both sides."
+          },
+          "cases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "ids of judgments the requirement rests on, from the case-law dataset"
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "ids of field notes the requirement rests on, from practice_notes"
           },
           "tightens": {
             "type": [

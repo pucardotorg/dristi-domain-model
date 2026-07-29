@@ -222,6 +222,10 @@ def resolve_authority(scope, c, rid=None):
                                 % (rid, c.get("l"), out["ref"] or "?", out["akn"] or "?"))
     return out
 
+CASE_TITLE = {c.get("id"): (c.get("title") or c.get("case") or c.get("name"))
+              for c in caselaw.get("cases", []) if c.get("id")}
+NOTE_TITLE = {n.get("id"): n.get("serial") for n in notes if n.get("id")}
+
 def resolve_requirement(scope, r):
     return {"id": r.get("id"), "category": r.get("category"),
             "category_label": CAT_LABEL.get(r.get("category")),
@@ -229,6 +233,11 @@ def resolve_requirement(scope, r):
             "authority": [resolve_authority(scope, c, r.get("id")) for c in r.get("authority", [])],
             "binds": r.get("binds"), "how": r.get("how"), "test": r.get("test"),
             "derivedFrom": r.get("derivedFrom"), "status": r.get("status"),
+            "statusReason": r.get("statusReason"),
+            # Denormalized so a consumer reads the source's name without joining back
+            # to the case-law and field-note datasets itself.
+            "cases": [{"id": c, "title": CASE_TITLE.get(c)} for c in (r.get("cases") or [])],
+            "notes": [{"id": n, "title": NOTE_TITLE.get(n)} for n in (r.get("notes") or [])],
             "tightens": r.get("tightens"), "tightens_hint": r.get("tightens_hint"),
             "relatedTo": r.get("relatedTo", [])}
 
@@ -661,7 +670,7 @@ schemas = {
      "title": {"type": "string"}, "note": {"type": "string"},
      "requirements": {"type": "array", "items": {"type": "object",
         "required": ["id", "category", "level", "statement", "why", "authority", "binds",
-                     "test", "derivedFrom", "status"],
+                     "test", "derivedFrom", "status", "statusReason"],
         "properties": {
           "id": {"type": "string", "pattern": "^REQ-([A-Z]{2}-)?[A-Z]{3}-[0-9]{3}$"},
           "category": enum("requirement_category"),
@@ -681,6 +690,18 @@ schemas = {
           "test": {"type": "string"},
           "derivedFrom": enum("requirement_derived_from"),
           "status": enum("requirement_status"),
+          "statusReason": {"type": "string", "description":
+             "why the requirement carries that status, written from the provision's text. "
+             "For 'inferred' it names the gap between what the provision commands and what "
+             "the requirement asks; for 'contested' it names both sides."},
+          # Source shape. This schema validates the authored files under
+          # data/requirements/, where a link is a bare id. The denormalized bundle in
+          # domain/ resolves each id to {id, title} for consumers; see the data
+          # dictionary. Ids are checked against the corpus by validate_requirements.py.
+          "cases": {"type": "array", "items": {"type": "string"}, "description":
+             "ids of judgments the requirement rests on, from the case-law dataset"},
+          "notes": {"type": "array", "items": {"type": "string"}, "description":
+             "ids of field notes the requirement rests on, from practice_notes"},
           "tightens": {"type": ["string", "null"]},
           "tightens_hint": {"type": ["string", "null"]},
           "relatedTo": {"type": "array", "items": {"type": "string"}}}}}}},

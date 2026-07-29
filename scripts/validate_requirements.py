@@ -27,7 +27,7 @@ DERIVED  = {"act", "rule", "caselaw", "practice-note"}
 CATS = {"LIM","NOT","FIL","SRV","EVI","PRE","JUR","TRL","CMP","SEN","APL","REC","CPY"}
 STATE_CODE = {"kerala": "KL", "haryana": "HR", "gujarat": "GJ"}
 REQUIRED = ["id","category","level","statement","why","authority","binds","test",
-            "derivedFrom","status"]
+            "derivedFrom","status","statusReason"]
 
 def load(p):
     with open(p, encoding="utf-8") as f: return json.load(f)
@@ -54,6 +54,21 @@ def check():
             for it in d.get(cat, {}).get("items", []):
                 if it.get("alias") and it.get("akn"):
                     state_alias[st][it["alias"]] = os.path.join(DATA, it["akn"])
+
+    # Every judgment and field note a requirement may point at. A dangling id renders
+    # as a dead chip in the app, which is worse than no link at all, so it fails here.
+    case_ids = set()
+    for f in glob.glob(os.path.join(DATA, "caselaw", "*.caselaw.json")):
+        d = load(f)
+        for c in (d.get("cases") or d.get("caselaw") or []):
+            if c.get("id"): case_ids.add(c["id"])
+    note_ids = set()
+    try:
+        cfg = load(os.path.join(DATA, "config", "app.config.json"))
+        for n in (cfg.get("practice_notes") or []):
+            if n.get("id"): note_ids.add(n["id"])
+    except OSError:
+        pass
 
     _cache = {}
     def has_eid(path, eid):
@@ -137,6 +152,19 @@ def check():
                         errors.append(f"{name}/{rid}: {c['s']}:{c.get('e')} does not resolve")
                 else:
                     errors.append(f"{name}/{rid}: authority entry has neither n nor s")
+
+            # evidence links must resolve to something a reader can actually open
+            for cid in (r.get("cases") or []):
+                if cid not in case_ids:
+                    errors.append(f"{name}/{rid}: cases id '{cid}' is not a judgment in the corpus")
+            for nid in (r.get("notes") or []):
+                if nid not in note_ids:
+                    errors.append(f"{name}/{rid}: notes id '{nid}' is not a practice note in the corpus")
+
+            # a contested requirement that does not say who divides is not usable
+            sr = (r.get("statusReason") or "").strip()
+            if sr and len(sr) < 40:
+                errors.append(f"{name}/{rid}: statusReason is too short to justify the status")
 
             t = r.get("tightens")
             if t and t not in national_ids:

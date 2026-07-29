@@ -12,7 +12,7 @@ Everything else here is descriptive: it says what the law provides, and a descri
 
 **493 requirements**: 172 national (binding every state), plus 127 Gujarat, 84 Haryana, 110 Kerala. A state file never restates a national requirement - it adds only what its own instruments require, or where it makes a national one stricter, and then it names that requirement in `tightens`.
 
-By level: MUST 399 · MUST NOT 73 · MAY 8 · SHOULD 13. By status: firm 426 · contested 6 · inferred 61. Derived from: act 129 · caselaw 58 · practice-note 10 · rule 296.
+By level: MUST 399 · MUST NOT 73 · MAY 8 · SHOULD 13. By status: firm 395 · contested 6 · inferred 92. Derived from: act 129 · caselaw 58 · practice-note 10 · rule 296.
 
 ### National - binds every state (172)
 
@@ -359,7 +359,7 @@ Where the claim to free legal services rests on income, the system MUST accept a
 - *test* - An income-based claim can be completed with an affidavit alone; no revenue-issued certificate is required as a precondition.
 - *related* - REQ-FIL-005
 
-**REQ-FIL-007** · MUST · firm · from act
+**REQ-FIL-007** · MUST · inferred · from act
 
 The system MUST make the filing registry able to accept and store documents in accessible formats where a party is a person with disability.
 
@@ -761,7 +761,7 @@ The system MUST NOT put the accused in a section 138 case on oath unless the acc
 - *binds* - screen: hearing - oath administration for the accused
 - *test* - The oath action is unavailable against a person recorded as the accused unless that person has been entered as a defence witness.
 
-**REQ-EVI-010** · MUST · firm · from act
+**REQ-EVI-010** · MUST · inferred · from act
 
 The system MUST require an affidavit tendered in a judicial proceeding to be sworn before a court, judge, magistrate or other person empowered by the High Court to administer oaths for that purpose.
 
@@ -1111,7 +1111,7 @@ Where a complaint by the same payee against the same drawer is already pending i
 - *test* - File a second complaint by the same payee against the same drawer with a different collecting branch: the system proposes the court where the first complaint is pending and states section 142A(2) as the basis.
 - *related* - REQ-JUR-001, REQ-JUR-010
 
-**REQ-JUR-010** · MUST · firm · from act
+**REQ-JUR-010** · MUST · inferred · from act
 
 The system MUST surface, when a section 138 complaint is presented, every pending prosecution between the same payee and the same drawer across all courts.
 
@@ -1208,7 +1208,7 @@ The system MUST NOT permit an adjournment of a section 138 trial beyond the foll
 - *test* - Select a next date more than one day ahead: the reason field becomes mandatory and the recorded reason appears on the order sheet.
 - *related* - REQ-TRL-006
 
-**REQ-TRL-006** · MUST · firm · from act
+**REQ-TRL-006** · MUST · inferred · from act
 
 The system MUST compute and display, on every pending section 138 case, the time elapsed since the date the complaint was filed against the six-month period within which the trial is to be concluded.
 
@@ -1241,7 +1241,7 @@ The system MAY permit a person not enrolled as an advocate to appear in a partic
 - *binds* - workflow-step: appearance - permission for a non-advocate in a particular case
 - *test* - A non-advocate cannot be attached as a representative without an order granting permission, and the order is visible on the case record.
 
-**REQ-TRL-009** · MUST · firm · from act
+**REQ-TRL-009** · MUST · inferred · from act
 
 The system MUST allow the testimony, arguments or opinion of a party or witness with a disability to be recorded in that person's preferred language and means of communication.
 
@@ -1665,7 +1665,7 @@ The system MUST link every recovery entry to the specific order it enforces and 
 - *test* - Every recovery entry names the order it enforces and its type as interim compensation, fine or compensation.
 - *related* - REQ-SEN-005
 
-**REQ-SEN-016** · MUST · firm · from act
+**REQ-SEN-016** · MUST · inferred · from act
 
 The system MUST make any compensation paid or recovered in a section 138 case retrievable in a form a civil court can rely on when awarding damages on the same matter.
 
@@ -1859,7 +1859,7 @@ The system MUST store, on every case, which procedural code governs it, determin
 - *test* - Create a case with an offence in 2023 and cognizance in 2025: the governing code is the Sanhita. Create a case pending trial in June 2024: the governing code remains the Code, and it does not change when the case is next listed.
 - *related* - REQ-REC-002
 
-**REQ-REC-002** · MUST · firm · from act
+**REQ-REC-002** · MUST · inferred · from act
 
 Every order and judgment the system generates MUST cite the section number of the procedural code that actually governs the case.
 
@@ -2288,7 +2288,7 @@ The system MUST list a case for dismissal for non-prosecution where the process 
 - *test* - An order for process starts a three-day fee clock on the case; on expiry without payment the case appears on the non-prosecution cause list and the filer is notified.
 - *related* - REQ-GJ-SRV-009
 
-**REQ-GJ-SRV-009** · MUST · firm · from act
+**REQ-GJ-SRV-009** · MUST · inferred · from act
 
 The system MUST price each process issued in a cheque case according to the current table of process fees published for the court.
 
@@ -2534,7 +2534,7 @@ The system MUST institute a cheque case e-filed by a bank or an NBFC in the SARA
 - *test* - Case instituted through the SARAS route carries case type 'eCriminal Case'; a case with any other case type is not allocated to a SARAS presiding officer.
 - *related* - REQ-GJ-JUR-003
 
-**REQ-GJ-JUR-002** · MUST · firm · from practice-note
+**REQ-GJ-JUR-002** · MUST · inferred · from practice-note
 
 The system MUST record the court that has jurisdiction over a SARAS cheque case separately from the place at which the presiding officer is posted.
 
@@ -2546,7 +2546,7 @@ The system MUST record the court that has jurisdiction over a SARAS cheque case 
 - *test* - Two distinct fields exist; a case whose presiding officer is posted at Narmada still reports its court of jurisdiction as the C.J.M. courts of Ahmedabad City.
 - *related* - REQ-GJ-JUR-004
 
-**REQ-GJ-JUR-003** · MUST · firm · from practice-note
+**REQ-GJ-JUR-003** · MUST · inferred · from practice-note
 
 The system MUST record whether the complainant in a cheque case is a bank or a Non-Banking Financial Company.
 
@@ -3431,7 +3431,7 @@ The system MUST NOT take the date of institution of a cheque complaint from the 
 
 #### FIL - filing, court fee, scrutiny, numbering (19)
 
-**REQ-HR-FIL-001** · MUST · firm · from rule
+**REQ-HR-FIL-001** · MUST · inferred · from rule
 
 The system MUST endorse the date of presentation on the complaint itself immediately upon its institution.
 
@@ -3444,7 +3444,7 @@ The system MUST endorse the date of presentation on the complaint itself immedia
 - *tightens* - REQ-JUR-006
 - *related* - REQ-HR-FIL-002, REQ-HR-FIL-018, REQ-HR-LIM-006
 
-**REQ-HR-FIL-002** · MUST · firm · from rule
+**REQ-HR-FIL-002** · MUST · inferred · from rule
 
 The system MUST record, as part of the endorsement made at presentation, the name of the magistrate to whom the complaint is sent for inquiry or trial.
 
@@ -3466,7 +3466,7 @@ The system MUST NOT record a member of the ministerial establishment as having r
 - *test* - A user holding a ministerial role cannot be saved as the recipient of a complaint, petition or application unless the court record carries a magistrate-on-leave arrangement for that period; otherwise only a judicial-officer role can be saved, and only a judicial-officer role can be recorded as disposing of it.
 - *related* - REQ-HR-SRV-006
 
-**REQ-HR-FIL-004** · MUST · firm · from rule
+**REQ-HR-FIL-004** · MUST · inferred · from rule
 
 The system MUST convert every typed document in an e-filed cheque complaint into an optical-character-recognition searchable PDF/A before it is accepted.
 
@@ -3477,7 +3477,7 @@ The system MUST convert every typed document in an e-filed cheque complaint into
 - *test* - Upload a flat image PDF of a complaint; it is rejected with a format objection. Upload an OCR-searchable PDF/A and a text search for the cheque number returns a hit.
 - *related* - REQ-HR-FIL-005, REQ-HR-FIL-006
 
-**REQ-HR-FIL-005** · MUST · firm · from rule
+**REQ-HR-FIL-005** · MUST · inferred · from rule
 
 The system MUST require a non-text document enclosed with the complaint to be scanned at 300 dots per inch in optical-character-recognition searchable mode.
 
@@ -3488,7 +3488,7 @@ The system MUST require a non-text document enclosed with the complaint to be sc
 - *test* - A scanned enclosure below 300 DPI is refused at upload with a resolution objection; the accepted file reports 300 DPI or better and carries a text layer.
 - *related* - REQ-HR-FIL-004
 
-**REQ-HR-FIL-006** · MUST · firm · from rule
+**REQ-HR-FIL-006** · MUST · inferred · from rule
 
 The system MUST merge the text and scanned documents of an Action into a single optical-character-recognition searchable PDF bookmarked according to the Master Index approved by the Registry.
 
@@ -3686,7 +3686,7 @@ The system MUST require the magistrate's recorded reasons before a warrant issue
 - *tightens* - REQ-SRV-016
 - *related* - REQ-HR-SRV-003
 
-**REQ-HR-SRV-005** · MUST · firm · from rule
+**REQ-HR-SRV-005** · MUST · inferred · from rule
 
 The system MUST issue a receipt for talbana and stamped postal envelopes filed by a litigant, whether or not a receipt is demanded.
 
@@ -3803,7 +3803,7 @@ The system MUST record separately, for each witness, the date of the examination
 - *test* - Each deposition stores three separately populated date fields; the FORM B statement in the judgment is generated from them and not typed by hand.
 - *related* - REQ-HR-EVI-005
 
-**REQ-HR-EVI-005** · MUST · firm · from rule
+**REQ-HR-EVI-005** · MUST · inferred · from rule
 
 The system MUST record, where a witness in a cheque case is not cross-examined, that the accused did not wish to cross-examine him.
 
@@ -3836,7 +3836,7 @@ The system MUST record an acknowledgement, filed with the court by the applicant
 - *test* - A remote examination cannot be started until an acknowledgement of transmission is recorded against the case, listing the documents transmitted.
 - *related* - REQ-HR-SRV-009, REQ-HR-EVI-008
 
-**REQ-HR-EVI-008** · MUST · firm · from rule
+**REQ-HR-EVI-008** · MUST · inferred · from rule
 
 The system MUST record that the original document was exhibited at the Court Point, in accordance with the deposition of the person examined remotely.
 
@@ -3900,7 +3900,7 @@ The system MUST disclose, on the record and on the final order of a cheque case 
 
 #### TRL - trial conduct, plea, attendance (9)
 
-**REQ-HR-TRL-001** · MUST · firm · from rule
+**REQ-HR-TRL-001** · MUST · inferred · from rule
 
 The system MUST require reasons to be recorded before a cheque complaint is dismissed by reason of the complainant's absence.
 
@@ -3913,7 +3913,7 @@ The system MUST require reasons to be recorded before a cheque complaint is dism
 - *tightens* - REQ-TRL-016
 - *related* - REQ-HR-TRL-002, REQ-HR-TRL-003
 
-**REQ-HR-TRL-002** · MUST · firm · from rule
+**REQ-HR-TRL-002** · MUST · inferred · from rule
 
 The system MUST record the time of day at which a complaint was dismissed for the complainant's absence.
 
@@ -3934,7 +3934,7 @@ The system SHOULD record that the case was called on again later in the day befo
 - *test* - The dismissal-in-default action requires a recorded second call, or an explicit override with reasons; the second call and its time appear on the order sheet.
 - *related* - REQ-HR-TRL-001, REQ-HR-TRL-002
 
-**REQ-HR-TRL-004** · MUST · firm · from rule
+**REQ-HR-TRL-004** · MUST · inferred · from rule
 
 The system MUST state the amount of bail, and the offence charged with the section under which it is punishable, on the face of any order directing an accused to be detained in default of furnishing bail.
 
@@ -3944,7 +3944,7 @@ The system MUST state the amount of bail, and the offence charged with the secti
 - *binds* - output-document: order directing detention in default of bail
 - *test* - The detention-in-default order template carries the bail amount, the offence and the punishing section, and cannot be generated with any of the three empty.
 
-**REQ-HR-TRL-007** · MUST NOT · firm · from rule
+**REQ-HR-TRL-007** · MUST NOT · inferred · from rule
 
 The system MUST NOT fix the pronouncement of a judgment likely to end in a sentence of imprisonment within two days of the start of a spell of four or more holidays.
 
@@ -4012,7 +4012,7 @@ The system MUST record the statement of every party concerned before a cheque ca
 - *binds* - workflow-step: recording the statement of each party on compounding
 - *test* - The compounding action cannot complete until a statement is recorded against every party on the case record, complainant and each accused.
 
-**REQ-HR-CMP-003** · MUST · firm · from rule
+**REQ-HR-CMP-003** · MUST · inferred · from rule
 
 The system MUST record the reasons for granting permission to compound in the order directing the acquittal, wherever the permission of the court is necessary.
 
@@ -4047,7 +4047,7 @@ The system MUST record the material on the offender's means that the court relie
 - *test* - A sentence that includes a fine cannot be finalised without a recorded means entry, and that entry is reproduced in the sentencing part of the judgment.
 - *related* - REQ-HR-SEN-002
 
-**REQ-HR-SEN-002** · MUST · firm · from rule
+**REQ-HR-SEN-002** · MUST · inferred · from rule
 
 The system MUST allow the court to order that a fine imposed in a cheque case be paid within a stated period or in instalments.
 
@@ -4184,7 +4184,7 @@ The system MUST record, against each scanned document in an e-filed cheque case,
 - *test* - Every scanned document stores a filing party; a direction to produce an original is addressed to that party and appears on that party's task list.
 - *related* - REQ-HR-REC-001
 
-**REQ-HR-REC-003** · MUST · firm · from rule
+**REQ-HR-REC-003** · MUST · inferred · from rule
 
 The system MUST hold the retention clock on a signed vakalatnama and an attested affidavit in a cheque case open for at least two years after final disposal, counting final disposal as disposal by the superior appellate court.
 
@@ -4194,7 +4194,7 @@ The system MUST hold the retention clock on a signed vakalatnama and an attested
 - *test* - The retention date on the vakalatnama and affidavit is computed from the latest disposal across the trial and appellate proceedings, and moves outward when an appeal is filed.
 - *related* - REQ-HR-REC-002
 
-**REQ-HR-REC-004** · MUST · firm · from rule
+**REQ-HR-REC-004** · MUST · inferred · from rule
 
 The system MUST enter a summarily triable cheque case in the institution register as soon as it is received in court, before any appearance of the accused is recorded.
 
@@ -4207,7 +4207,7 @@ The system MUST enter a summarily triable cheque case in the institution registe
 - *test* - A cheque case appears in the institution register and in pendency counts from the date it is received in court, before any appearance is recorded.
 - *related* - REQ-HR-REC-005
 
-**REQ-HR-REC-005** · MUST · firm · from rule
+**REQ-HR-REC-005** · MUST · inferred · from rule
 
 The system MUST restrict the entry of columns 7 to 14 of the register of summary cases to the magistrate himself.
 
@@ -4302,7 +4302,7 @@ The system MUST NOT hold an application for revision for more than a week for th
 - *test* - A revision application pending a copy for seven days raises an escalation and offers the forward-without-copy path, which requires an explanation before it completes.
 - *related* - REQ-HR-CPY-003
 
-**REQ-HR-CPY-003** · MUST · firm · from rule
+**REQ-HR-CPY-003** · MUST · inferred · from rule
 
 The system MUST treat an application for a copy made by a person sentenced to imprisonment on a working day preceding a holiday as urgent.
 
@@ -4996,7 +4996,7 @@ The system MUST mark exhibits by the party who filed them, using the prescribed 
 - *test* - Mark documents for the complainant, for two separate accused and by the court; the marks take the prescribed letters and the defence numerals run consecutively across both accused rather than restarting at D1.
 - *related* - REQ-KL-EVI-009, REQ-KL-EVI-023
 
-**REQ-KL-EVI-013** · MUST · firm · from rule
+**REQ-KL-EVI-013** · MUST · inferred · from rule
 
 The system MUST record that an interpreter took an oath or made an affirmation before being called upon to interpret, in the form the rules prescribe for an interpreter.
 
@@ -5009,7 +5009,7 @@ The system MUST record that an interpreter took an oath or made an affirmation b
 - *tightens* - REQ-EVI-007
 - *related* - REQ-KL-EVI-014, REQ-KL-EVI-015, REQ-KL-EVI-017
 
-**REQ-KL-EVI-014** · MUST · firm · from rule
+**REQ-KL-EVI-014** · MUST · inferred · from rule
 
 The system MUST record that the oath to a witness or interpreter was administered in open court by the Presiding Officer or by a person he has empowered in that behalf, or by the Commissioner where the witness is examined on commission.
 
@@ -5021,7 +5021,7 @@ The system MUST record that the oath to a witness or interpreter was administere
 - *tightens* - REQ-EVI-006
 - *related* - REQ-KL-EVI-013
 
-**REQ-KL-EVI-015** · MUST · firm · from rule
+**REQ-KL-EVI-015** · MUST · inferred · from rule
 
 Where a witness cannot understand the language in which the oath or affirmation is administered, the system MUST record that it was translated by the interpreter, put to the witness, and taken by the witness in a language known to him.
 

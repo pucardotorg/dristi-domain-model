@@ -77,6 +77,9 @@ Categories:
   "test": "Two distinct date fields exist and are separately populated; the cause-of-action date is computed from receipt, never from dispatch.",
   "derivedFrom": "act",
   "status": "firm",
+  "statusReason": "Proviso (c) fixes the fifteen days from the date of receipt of the notice, so the receipt date is the one the statute computes from. The requirement restates what the provision says.",
+  "cases": [],
+  "notes": [],
   "tightens": null,
   "relatedTo": []
 }
@@ -101,6 +104,23 @@ Field notes:
   reading, reasoning given in `why` · `contested` the authorities divide, and the
   division is stated. Without this, a requirement inferred from one judgment would
   read as firmly as one lifted from the section itself.
+- **`statusReason`** carries the status's justification, and is **written after
+  reading the provision, not after reading the citation label**. For `firm`, say what
+  the text does and quote a few words of it. For `inferred`, name the gap exactly:
+  what the provision commands, and the step of reasoning that reaches the
+  requirement. For `contested`, name both sides. A status without a reason is an
+  assertion, so the validator requires the field.
+
+  The label has to survive the reading. The commonest defect found in practice is a
+  `firm` whose provision creates the duty on **someone other than the actor the
+  requirement binds** - a Government told to equip registries, a later civil court, a
+  witness told to swear an oath at the hearing. That is an `inferred`, however
+  squarely the provision is on the subject.
+- **`cases[]`** and **`notes[]`** link a requirement to the judgment or field note it
+  actually rests on, by id, so the reader reaches the source rather than a citation
+  label naming it. Ids are checked against the corpus: a dangling one fails
+  validation, because a dead chip is worse than no link. Add them only where the
+  source genuinely underpins the requirement.
 - **`derivedFrom`**: `act` · `rule` · `caselaw` · `practice-note`.
 
 ## Validation
