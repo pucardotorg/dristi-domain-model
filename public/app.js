@@ -3037,7 +3037,11 @@ function gsMountTrigger(){
      stays 24px tall: the hint grows the button sideways into space the row already
      had, never downwards. The glyphs are decoration for a screen reader - the label
      says the same thing in words. */
-  b.innerHTML=ic('search')+'<span class="gs-kbd" aria-hidden="true">'+gsHintKeys()+'</span>';
+  /* The ⌘ character renders thin and undersized next to the K at this size, so on a
+     Mac the glyph comes from the icon set and is drawn on the same stroke grid as the
+     magnifier beside it. Elsewhere "Ctrl" is a word and stays one. */
+  b.innerHTML=ic('search')+'<span class="gs-kbd" aria-hidden="true">'
+    +(gsIsMac() ? ic('command')+'<span class="gs-kbd-k">K</span>' : gsHintKeys())+'</span>';
   b.title="Search the corpus ("+gsHintKeys()+")";
   b.setAttribute("aria-label","Search the corpus, "+gsHintSaid());
   b.onclick=e=>{ e.stopPropagation(); e.preventDefault(); gsToggle(); };

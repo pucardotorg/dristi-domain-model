@@ -863,7 +863,12 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
     background:var(--panel); color:var(--ink-3); cursor:pointer; transition:color .12s, border-color .12s}
   .gs-trigger svg.lu{width:13px; height:13px; flex:none}
   .gs-kbd{font-family:var(--font-mono); font-size:10px; line-height:1; letter-spacing:.02em;
-    color:var(--ink-3); white-space:nowrap; transition:color .12s}
+    color:var(--ink-3); white-space:nowrap; transition:color .12s;
+    display:inline-flex; align-items:center; gap:1px}
+  /* the drawn command glyph, sized to sit level with the K rather than to the 13px
+     the magnifier uses - a more specific selector than .gs-trigger svg.lu above */
+  .gs-kbd svg.lu{width:11px; height:11px; stroke-width:2.1}
+  .gs-kbd-k{font-size:11px; font-weight:600}
   .gs-trigger:hover{color:var(--ink); border-color:var(--line-2)}
   .gs-trigger:hover .gs-kbd{color:var(--ink-2)}
   .gs-trigger:focus-visible{outline:2px solid var(--brand); outline-offset:1px}
