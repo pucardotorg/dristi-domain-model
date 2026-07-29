@@ -879,7 +879,11 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
     font-size:10px; letter-spacing:.09em; text-transform:uppercase; font-weight:700; color:var(--ink-3)}
   .gs-grp-n{font-size:10px; font-weight:600; letter-spacing:0; color:var(--ink-3); opacity:.75}
   .gs-row{padding:7px 16px; cursor:pointer; scroll-margin:8px}
-  .gs-row.on{background:var(--panel-2)}
+  /* The active row is what Enter opens, so it has to read as chosen at a glance.
+     --panel-2 was a 2% shift against the panel and did not. This is the same
+     selected surface the nav and the theme toggle already use. */
+  .gs-row.on{background:var(--brand-dim)}
+  .gs-row.on .gs-r-t{color:var(--brand-hi)}
   .gs-r-t{font-size:14px; color:var(--ink); line-height:1.4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .gs-r-m{font-size:11.5px; color:var(--ink-3); line-height:1.5; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .gs-st{color:var(--ink-2)}
