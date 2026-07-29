@@ -29,6 +29,7 @@
       "test": "Submit an e-filing whose client clock is set to a different timezone and whose upload completes after midnight IST; the stored filing date is the Registry receipt date in IST, and the limitation computation uses that date.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 13(2) fixes the date of electronic filing, for the computation of limitation, as the date the Action is electronically received in the Registry, and puts Indian Standard Time in the sub-rule itself. The DCMS SOP adds nothing to that beyond pointing back to rule 13 for the computation. The requirement uses the rule's own test rather than a construction of it.",
       "tightens": "REQ-LIM-007",
       "relatedTo": [
         "REQ-KL-LIM-002",
@@ -56,6 +57,7 @@
       "test": "With the portal recorded as unavailable across the last day of the limitation period, the limitation calculation is unchanged and the complaint is still flagged out of time; no reason code suppresses the flag.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 13(5) says the e-filer shall not be permitted to claim exemption from the period of limitation on the ground that there was failure of the electronic filing facility. The prohibition is stated in terms and carries no exception, so a system that offers relief for an outage is offering something the rule denies.",
       "tightens": "REQ-LIM-008",
       "relatedTo": [
         "REQ-KL-LIM-001",
@@ -83,6 +85,7 @@
       "test": "With the portal marked unavailable, a Designated Counter presentation can be recorded against the case, is offered only inside the court's working hours, and names which of the three grounds is relied on; with the portal available the route is not offered.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 13(4) provides that when electronic filing is not possible on the portal because of technical failure, system maintenance or other exigencies, the e-filer can file through the Designated Counters during the working hours of the court. The route, its three grounds and the working-hours limit are all in the sub-rule; the level is MAY because the sub-rule enables rather than commands.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-LIM-002",
@@ -110,6 +113,7 @@
       "test": "Set a 15-day re-presentation period whose last day is the first of three consecutive days on which the court office is closed; the computed due date is the first day the office reopens.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 6 states the reckoning in terms: days not expressed to be clear days are counted exclusive of the first and inclusive of the last, and where the last day falls on a day the court office is closed, exclusive of that day and of any following days during which it continues to be closed. The requirement is the rule's arithmetic with nothing added.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-010"
@@ -141,6 +145,7 @@
       "test": "Record a counter presentation on a day after a failed upload; the stored filing date is the counter presentation date, and neither the upload attempt date nor the portal restoration date can be selected as the filing date.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 13(2) fixes the filing date as the date the Action is received in the Registry, and rule 13(4) opens the Designated Counter when the portal fails. Neither says what date a counter presentation carries. That it is the date of presentation, and not the failed upload or the day the portal came back, is the reading taken here, and it is why the status is not firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-LIM-003",
@@ -168,6 +173,7 @@
       "test": "Fee computed for a cheque at, just below and far above the threshold matches the Article 21 slab, is derived from the cheque amount field, and never exceeds the ceiling.",
       "derivedFrom": "act",
       "status": "firm",
+      "statusReason": "Article 21(a) prices the complaint on the dishonoured cheque itself: a flat two hundred and fifty rupees where the cheque does not exceed ten thousand, and otherwise five per cent of the entire cheque amount subject to a maximum of three lakh rupees. The base, the slabs and the ceiling are all in the Article, so the computation is read off it.",
       "tightens": null,
       "tightens_hint": "the national requirement that the court fee payable on the institution of a complaint be recorded",
       "relatedTo": [
@@ -196,6 +202,7 @@
       "test": "Two Article 21 schedules with different effective dates can coexist; a complaint presented under the earlier schedule is priced on it, and one presented after the later date is priced on the later schedule.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Article 21 states the slabs in force and says nothing about how a court's fee table should be held. An Article that has already been inserted by one Finance Act and revised by another carries no instruction about pricing a complaint on the schedule of its own past. Treating the schedule as effective-dated data is a consequence of the Article being amendable rather than anything it directs, which is why the status is not firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-001"
@@ -222,6 +229,7 @@
       "test": "The process fee charged on an issue of summons is read from a dated rate table rather than a constant, and revising the table changes the fee on a subsequent issue without a code change.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 273 says process fee shall be leviable at the rates prescribed from time to time under the Kerala Court Fees and Suits Valuation Act, 1959. The rule expressly declines to fix a figure and points at a movable scale, which is the whole content of the requirement.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-001",
@@ -254,6 +262,7 @@
       "test": "Add a second and third accused to a complaint; the required copy count rises with them, and acceptance is blocked until that many copies are attached.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 24(1) requires as many copies on plain paper as there are accused to be filed along with the complaint, and rule 24(2) directs the court to return a complaint not accompanied by them. Both the count and the consequence of failing it are in the rule.",
       "tightens": "REQ-FIL-001",
       "relatedTo": [
         "REQ-KL-FIL-005"
@@ -280,6 +289,7 @@
       "test": "Each copy record names the certifying person and their capacity; a copy with no certifier blocks acceptance.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 24(1) requires the copies to be verified and certified to be true copies of the original by the complainant, or by his pleader or advocate where he is represented, and rule 24(2) makes a complaint whose copies are not so certified returnable. The certification is a mark the copy has to bear and the court has to check before accepting it, so capturing it is the rule's own condition and not an addition to it.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-004"
@@ -306,6 +316,7 @@
       "test": "A document offered in a language that is neither English nor the court's own language is refused at presentation; the same document in the court's language is accepted.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 27(1) provides that all petitions, applications, affidavits, memoranda of appeal, revision petitions and other proceedings presented to a court shall be in English or in the language of the court. The permitted set is closed on the face of the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-SRV-003",
@@ -334,6 +345,7 @@
       "test": "Every generated filing carries all four docket particulars, and the date of presentation on the docket equals the stored presentation date.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 27(2) requires all proceedings and other documents filed in court to be docketed on the reverse of the final page, endorsing the name of the court, the number and year of the proceedings to which it relates, the name of the person presenting it and the date of presentation. All four particulars are enumerated in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-008"
@@ -360,6 +372,7 @@
       "test": "The complaint record holds a receipt date and a numbering date as separate populated fields, and the receipt date is never derived from the numbering date.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 28(1) directs that all papers presented in court be sealed with the date stamp of the court immediately they are received, so the date of receipt is something the court's own office fixes at that moment and cannot reconstruct afterwards. The contrast with the numbering date is not drawn in rule 28; it is drawn here only to say that the receipt date must be stored as the rule creates it, never derived from a later event.",
       "tightens": "REQ-JUR-006",
       "relatedTo": [
         "REQ-KL-FIL-007",
@@ -392,6 +405,7 @@
       "test": "A complaint with an open defect has no case number; the number is issued only once every defect is cleared, and the e-filing number is visibly not a case number.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 68 says a petition, application, complaint, police report or other proceeding that does not comply with the requirements of rule 67 or is otherwise defective shall not be numbered and shall be returned. The withholding of the number is the rule's own words, and rule 67 supplies the compliance it is measured against.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-010",
@@ -424,6 +438,7 @@
       "test": "Every return record carries a specified representation deadline; a re-presentation after it is flagged as requiring a petition to excuse the delay.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rules 68 and 104 both direct that the defective proceeding be returned for amendment and representation within a specified time. Specifying the time is part of the act of return the rules command, and the party cannot comply without being told it, so a return record carrying the deadline is the rule rather than a reading of it.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-009",
@@ -456,6 +471,10 @@
       "test": "Noting an objection despatches a notification to the e-filer's registered address and records the despatch time against the objection; an objection with no despatch record is reportable.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 17(2) directs the Registry to inform the e-filer of the objections noted, at his electronic mail address or through any other electronic mode. The duty falls on the Registry, which is what this requirement binds, and both the trigger and the channel are in the sub-rule. The Kerala field note is cited for where the duty fails on the ground, not as its source.",
+      "notes": [
+        "ke-scrutiny-officer-2026-07"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-012",
@@ -488,6 +507,7 @@
       "test": "A complaint with an uncured objection cannot be added to a cause list; clearing the last objection makes it listable.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 17(4) says the pleadings or documents shall be posted before the court only after the objections noted by the Registry are cured by the e-filer, and rule 17(3) puts the curing on the e-filer within the time provided. The gate on listing is stated in terms.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-011"
@@ -519,6 +539,7 @@
       "test": "For a court flagged DCMS-enabled, the filing route resolves to the DCMS portal and the national portal is not offered.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 1 of the SOP says e-filing from the date of implementation of DCMS shall only be through https://filing.keralacourts.in, and clause 4 confines the old-portal route to files already filed there and not registered before the rollout. The exclusivity and its single exception are both express.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-014"
@@ -550,6 +571,7 @@
       "test": "Acceptance despatches an SMS or email carrying the e-filing number and stores the despatch against the filing.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 11 provides that upon acceptance the e-filing number will be communicated to the advocate or litigant via SMS and email, and rule 12 of the E-Filing Rules requires proof of electronic filing to reach the e-filer at his registered address, number or user account. The event and the channels are both stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-013"
@@ -576,6 +598,7 @@
       "test": "The scrutiny task for an e-filed complaint becomes actionable on acceptance, with no physical-file precondition, and the scrutiny queue is ordered by receipt with an urgency override.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 11 says scrutiny shall be done with the e-filed documents without waiting for the submission of the physical files. The negative the requirement states is the clause's own words.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-016"
@@ -602,6 +625,7 @@
       "test": "No hearing date can be assigned before the physical file is logged, unless an extension order is recorded against the case; the requirement can be switched off for a court where the High Court has dispensed with it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 12 says that except as provided the court will assign a hearing date only on submission of the physical file, and in the same clause allows the Judicial Officer or Judge concerned to extend the time for production. Both the gate and its exception are express. The clause also records that the High Court is considering dispensing with the physical file after the Kalpetta pilot, which is why the condition is held as court-level data rather than as a constant.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-015",
@@ -629,6 +653,7 @@
       "test": "Logging a physical file requires the undertaking and stores who gave it and when; a physical file logged without it is reportable.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 12 requires the e-filer, when producing the physical files after registration, to give an undertaking that the case files, petitions, documents and vakalaths filed in court are the same as those approved by the CMO. The undertaking and its content are the clause's own.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-016"
@@ -655,6 +680,7 @@
       "test": "A complaint with a fee shortfall shows a balance-payment action, and paying the balance clears the deficiency without a new filing or a new filing date.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Clause 8 says that in case of any deficiency in the fee the deficit or balance amount may be paid using the Balance Payment facility in DCMS. It provides a facility and permits its use; it does not say the Registry may not instead return the filing for the shortfall. That the balance route displaces the return is the reading taken here, and it is why the status is not firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-001",
@@ -682,6 +708,7 @@
       "test": "Registration can proceed with an undertaking recorded in place of the stamp, the case carries an outstanding fee flag, and the flag clears only on balance payment.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Clause 8 says that where physical court fees or other stamps are unavailable the officer scrutinising the pleadings may accept an undertaking from the e-filer and proceed with case registration, the fee then being paid through the balance or deficit option in DCMS. The discretion, its condition and what follows it are all in the clause, and the level is MAY because the clause permits rather than directs.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-018"
@@ -713,6 +740,7 @@
       "test": "A filing recorded as paid by physical stamps requires a cancellation entry naming the officer and the date and the total value; a filing paid through the portal requires none.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 29 requires the Presiding Officer or the Chief Ministerial Officer to cancel a stamped document with his initials and date, to note the total value of the stamp on the top of the document, and to punch out the insignia of the State leaving the designated amount untouched. Clause 10 of the SOP removes defacement only for portal-to-portal payment through DCMS, so rule 29 continues to govern the physically stamped filings the SOP leaves optional.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-018"
@@ -739,6 +767,7 @@
       "test": "Upload a Malayalam pleading in a legacy non-Unicode font and as a scanned image; both are rejected, and a Unicode Malayalam pleading is accepted and its text is extractable.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5(2) says a document to be typed in the local language of the court shall be typed using Unicode font at 12 point. A scanned image and a legacy font-mapped file are both outside typed using Unicode, so the prohibition is the sub-rule's converse and not an addition to it.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-006",
@@ -776,6 +805,7 @@
       "test": "Upload a 150 DPI image-only PDF of a cheque; it is rejected with the OCR requirement stated, and a 300 DPI OCR-searchable scan is accepted.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 5(3) states the PDF or PDF/A and OCR-searchable obligation for pleadings and their supporting documents filed in the High Court, and rule 5(5) states the 300 DPI OCR-searchable scan requirement generally for non-text documents enclosed with pleadings. Clause 6 of the SOP requires all e-filed pleadings and documents to conform to the E-Filing Rules but does not itself carry rule 5(3) down to the district judiciary. Applying the pleading format to a district court cheque complaint is that step, not the letter of rule 5(3).",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-021",
@@ -803,6 +833,7 @@
       "test": "Every e-filed document stores an authentication mode from the closed set and the identity of the signatory; a document with no mode cannot be submitted.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 6 sets out a descending ladder: digital signature, failing that an Aadhaar-based electronic signature with OTP, failing that email or mobile OTP verification, and failing all three a physically signed print scanned and uploaded. It prescribes which mode is available when, and says nothing about storing which one was used. Requiring the record to name the mode follows from the modes not being of equal evidential weight, and that step is ours.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-024"
@@ -834,6 +865,7 @@
       "test": "The generated vakalatnama carries the prescribed form reference, refuses to render without a named pleader, and captures execution and acceptance dates separately.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 32(1) requires the vakkalath to be in Judicial Form No. 57 unless the court otherwise permits, requires the pleader's name to be inserted before it is executed, and requires it to be dated at the time of its execution and of its acceptance; rule 19(1) of the High Court Rules does the same with Form No. 1. Rule 32(2) repeats that no vakkalath shall be attested unless the pleader's name was inserted previous to execution.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-025",
@@ -866,6 +898,7 @@
       "test": "The attesting authority is chosen from the enumerated list, the certificate text and the designation are captured, and a vakalatnama with no attestation record cannot be filed.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 32(1) enumerates the authorities who may attest the execution of a vakkalath, and rule 32(2) requires the attesting authority to certify that it was duly executed in his presence and to subscribe his signature over his name and designation. The list, the certificate and the signature block are all in the rule, with rule 32(3) supplying the custody variant and the proviso the personally-known one.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-024"
@@ -897,6 +930,7 @@
       "test": "Marking the executant as illiterate, blind or unacquainted with the document language makes the read-and-explained certificate mandatory before the vakalatnama can be filed.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The closing sentence of rule 32(2), and rule 19(2) of the High Court Rules in the same words, require the attesting person to certify, where the executant appears illiterate, blind or unacquainted with the language in which the vakalath is written, that it was read, translated and explained in his presence, that the executant seemed to understand it, and that he made his signature or thumb mark in his presence. Trigger and certificate are both express.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-025",
@@ -929,6 +963,7 @@
       "test": "The generated memorandum carries all six particulars and cannot be filed with the roll number or address blank.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 31 lists the particulars a pleader's memorandum of appearance shall contain, the roll number and the advocate's address among them, and rule 18 of the High Court Rules requires the same particulars there. The requirement is that enumeration.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-TRL-004"
@@ -955,6 +990,7 @@
       "test": "Filing a second vakalatnama for a party who has a pleader on record is blocked until either a consent record or a court permission record is attached.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 34 says a pleader proposing to enter appearance for a party who already has a pleader on record shall produce the written consent of that pleader, or, where consent is refused, obtain the special permission of the court. Both routes and the condition that triggers them are stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-024"
@@ -986,6 +1022,10 @@
       "test": "A filing cannot be moved to objected without at least one objection record naming a document and a specific non-compliance; an objection with an empty defect cannot be saved.",
       "derivedFrom": "practice-note",
       "status": "inferred",
+      "statusReason": "Rule 17(1) directs the Registry, on scrutiny, to note the objections regarding non-compliance with these Rules or Practice Directions or any other law, and rule 68 returns a defective proceeding for amendment. What the rules command is that objections be noted; neither says each must be itemised against the document it attaches to, or that a filing cannot be marked objected without one. That structure is the reading taken here, and the Kerala field note is what shows the cost of leaving it unstructured.",
+      "notes": [
+        "ke-scrutiny-officer-2026-07"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-011",
@@ -1019,6 +1059,10 @@
       "test": "The scrutiny queue defaults to receipt order, taking an item out of order requires a recorded urgency ground, and each item shows the elapsed time since acceptance.",
       "derivedFrom": "practice-note",
       "status": "inferred",
+      "statusReason": "Clause 11 of the SOP requires the CMO or designated officer to complete scrutiny on time and without delay, in sequential order and considering the urgency of the matter. It directs how the work is to be done and says nothing about exposing the queue, recording the ground on which an item is taken out of turn, or showing how long a filing has waited. Making the order visible and the departure from it recorded is the step taken here, prompted by the field note's report of files held at this desk.",
+      "notes": [
+        "ke-scrutiny-officer-2026-07"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-029",
@@ -1051,6 +1095,10 @@
       "test": "Every objection and every clearance stores the acting officer, and scrutiny actions can be reported by officer and by elapsed time.",
       "derivedFrom": "practice-note",
       "status": "inferred",
+      "statusReason": "Clause 11 puts the scrutiny duty on the CMO or the designated officer, and rule 17(1) puts the noting of objections on the Registry. Both name an office; neither requires the acting officer to be recorded against each objection and each clearance. Attribution at that granularity is our reading of what makes the duty answerable, which is why the status is inferred.",
+      "notes": [
+        "ke-scrutiny-officer-2026-07"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-029",
@@ -1083,6 +1131,7 @@
       "test": "Issuing process twice against the same accused creates two process fee entries, each tied to its own batta memo and addressee, and neither entry alters the fee recorded on the complaint.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 274 requires a party applying for the issue of process to file a batta memo carrying the addressee's name, residence and full address together with the fees for that service and any batta prescribed, and rule 273 sets the process fee at the scale under the Court Fees Act. The rules create a charge that recurs with each application for process, but neither says it is to be held apart from the fee paid on the complaint. Separating the two heads in the ledger is the reading taken here.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-003",
@@ -1115,6 +1164,7 @@
       "test": "Every filed document carries a stored language value from the closed set; issuing that document to a court of a different official language raises the translation requirement from the stored value rather than from a manual choice.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 27(1) permits a proceeding to be in English or in the language of the court, and rule 14 makes a translation obligation turn on the language the process is issued in. Neither says the language of a filed document is to be stored. The field is inferred from the fact that the downstream obligations cannot be raised without it, and that inference is ours.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-006",
@@ -1142,6 +1192,7 @@
       "test": "A generated summons defaults to the Chief Ministerial Officer as signatory and stores the identity of the officer who signed; another signatory can be recorded only as a departure from that default, and the process shows who signed it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 7(1) says summonses issued to accused and witnesses shall ordinarily be signed by the Chief Ministerial Officer of the court. The signatory is named in the sub-rule, and the word ordinarily is what makes it a default the court may depart from, which is why the level is SHOULD.",
       "tightens": "REQ-SRV-003",
       "relatedTo": [
         "REQ-KL-SRV-002"
@@ -1168,6 +1219,7 @@
       "test": "The rendered summons carries the exact words immediately above the signature block, and the words cannot be edited out of the template.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 7(2) says the words By order of the Court shall invariably be prefixed to the signature of the ministerial officer. The formula and the word invariably are both in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-SRV-001"
@@ -1194,6 +1246,7 @@
       "test": "Issuing process to a court whose official language differs from the language of the process requires an attached English translation and records who authorised it; the issue is blocked without one.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The first sentence of rule 14 says that when process is issued in a language other than the official language of the receiving court, such process shall be accompanied by an authorised English translation. The trigger and the remedy are both stated, and the duty attaches to the process the issuing court sends out, which is what this binds.",
       "tightens": null,
       "tightens_hint": "the national requirement that summons be served through the court within whose jurisdiction the person resides",
       "relatedTo": [
@@ -1222,6 +1275,7 @@
       "test": "A service return recorded in a language that is neither English nor the issuing court's language cannot be accepted without an attached authorised translation.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The second sentence of rule 14 requires the receiving court's report on service or non-service to be accompanied by an authorised English translation where the report is not in English or in the language of the court that issued the summons. The requirement holds the issuing court's record to the condition the rule already puts on that document; it does not add one.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-SRV-003"
@@ -1253,6 +1307,7 @@
       "test": "Recording electronic service alone leaves the accused's service status incomplete; the status turns served only when a prescribed mode is also recorded.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Both sub-rules of rule 11 close with the same sentence: electronic service shall be in addition to the prescribed mode of service as per the relevant Acts and Rules. In addition to is not instead of, so treating an email as discharging service is the one thing the rule rules out.",
       "tightens": "REQ-SRV-012",
       "relatedTo": [
         "REQ-KL-SRV-003"
@@ -1284,6 +1339,7 @@
       "test": "Marking a witness as a police officer changes the addressee of the summons to the superior officer and offers the direct intimation as a second despatch.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 10(1) says summons to police officers shall be issued through their superior officers, and rule 10(2) allows the court in addition to send the witness a direct postal notice of the date for his appearance, stating that the summons is being sent through proper channel. The routing and the optional second despatch are both in the rule.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1313,6 +1369,7 @@
       "test": "Two addresses for service falling in different notified station jurisdictions produce different executing stations on the process; an address that resolves to no notified station cannot be issued against, and the executing officer stored is the Station House Officer of the resolved station rather than free text.",
       "derivedFrom": "act",
       "status": "inferred",
+      "statusReason": "Section 5 lets the Government establish police stations by notification, fixes each station's area of jurisdiction by that notification, and makes the designated Station House Officer the officer in charge; section 4(n) makes it a police function to obey and execute lawfully all lawful commands of competent authorities. What the Act does is constitute the office and the area. It says nothing about how a court is to address its process, so resolving an address to a notified station and naming that station's Station House Officer on the warrant is the consequence drawn here rather than the Act's direction.",
       "tightens": null,
       "relatedTo": []
     },
@@ -1337,6 +1394,7 @@
       "test": "The generated affidavit is in the first person with consecutively numbered paragraphs, and paragraph numbers are stable references usable in a cross-examination note.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 37 requires every affidavit to be drawn up in the first person and divided into paragraphs numbered consecutively, each paragraph confined as nearly as may be to a distinct portion of the subject matter. The requirement is the rule sentence for sentence.",
       "tightens": "REQ-EVI-001",
       "relatedTo": [
         "REQ-KL-EVI-002",
@@ -1364,6 +1422,7 @@
       "test": "The affidavit cannot be generated without name, age, place of abode and at least one of the named relations; the rendered document shows all of them.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 38 requires every affidavit to state the full name, age, description and place of abode of the deponent, and says the description shall include the father's or karanavan's or husband's or mother's name and such other particulars as may be necessary to identify the person. Every particular the requirement lists is named in the rule.",
       "tightens": "REQ-EVI-001",
       "relatedTo": [
         "REQ-KL-EVI-001",
@@ -1391,6 +1450,7 @@
       "test": "A multi-page affidavit uploaded with signatures on only the last page is rejected; the signature count must equal the page count.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 38 says that where the affidavit covers more than one page the deponent shall sign every page. The obligation is stated in terms and is unqualified.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-002"
@@ -1417,6 +1477,7 @@
       "test": "An affidavit recorded as carrying a correction cannot be filed unless the authentication is recorded, or a leave of court order is attached.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 39 requires alterations, erasures and interlineations to be authenticated, before the affidavit is sworn or affirmed, by the person before whom it is signed, and says that an affidavit carrying an unauthenticated one shall not, except with the leave of the court, be filed or made use of in any manner. Both the authentication and the consequence of its absence are express.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-005"
@@ -1448,6 +1509,7 @@
       "test": "The authenticating authority is selected from the enumerated list; a free-text or out-of-list authority cannot be saved against an affidavit.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 40(1), and rule 76 of the High Court Rules in the same terms, enumerate the persons before whom an affidavit may be sworn or affirmed. The whole subject of the rule is who may authenticate, and it would prescribe nothing at all if the enumeration did not exclude everyone outside it, so the closed list is the rule rather than a construction placed on it.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-006"
@@ -1479,6 +1541,7 @@
       "test": "The rendered affidavit carries the prescribed jurat with date, place, signature, name and designation, and the affidavit record stores each as a field.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 40(2) requires the person before whom the affidavit is sworn or affirmed to state the date on which and the place where it is made and to sign under his name and designation at the end, as in Judicial Form No. 58; rule 77 of the High Court Rules does the same with Form No. 4. The jurat's contents and its prescribed form are both in the rules.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-005"
@@ -1510,6 +1573,7 @@
       "test": "Flagging the deponent as illiterate, blind or unacquainted with the affidavit's language makes the certificate mandatory and prints it on the document.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 41, and rule 78 of the High Court Rules, require the person authenticating to certify, where the deponent appears illiterate, blind or unacquainted with the language in which the affidavit is written, that it was read, explained and translated to him, that he seemed to understand it, and that he made his signature or mark in that person's presence. The certificate is the rule's own text.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-FIL-026",
@@ -1542,6 +1606,7 @@
       "test": "The affidavit structure distinguishes statements on knowledge from statements on belief, and a belief statement requires an accompanying ground.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 45, and rule 82 of the High Court Rules, require every affidavit to express clearly how much is a statement of the deponent's knowledge and how much a statement of his belief, and require the grounds of belief to be stated with sufficient particularity for the court to judge whether it is safe to act on the belief. Both limbs are stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-001"
@@ -1573,6 +1638,7 @@
       "test": "Each document attached to an affidavit gets an exhibit mark and a rendered certificate naming the officer; an attachment without both is reportable.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 43 requires documents mentioned in and accompanying an affidavit to be referred to as exhibits, marked in the same manner as exhibits admitted by the court, and to bear a certificate as in Judicial Form No. 59 signed by the officer before whom the affidavit is taken; rule 80 of the High Court Rules is to the same effect with Form No. 6.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-012"
@@ -1604,6 +1670,7 @@
       "test": "An affidavit whose filing or service on the opposite party is less than three days before the listed hearing is flagged unusable, and can only be used with a recorded leave order.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 46 says that except with the leave of the court no affidavit which has not been filed in court, and of which a copy has not been given to the opposite side at least three days before the hearing, shall be used in any matter; rule 83 of the High Court Rules repeats it. The bar, the period and the single exception are all in the rule.",
       "tightens": "REQ-EVI-001",
       "relatedTo": [
         "REQ-KL-EVI-011"
@@ -1635,6 +1702,7 @@
       "test": "The affidavit record holds a filing date and a service-on-opposite-party date as distinct populated fields, and the three-day check uses the later of them.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 46 makes both events, filing in court and giving a copy to the opposite side, conditions of using the affidavit, and rule 48 keys the right to file a counter-affidavit to the copy having been given. Neither rule says the two dates are to be held as separate fields. That they must be, because the usable date is the later of the two, is the reading taken here.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-010"
@@ -1666,6 +1734,7 @@
       "test": "Mark documents for the complainant, for two separate accused and by the court; the marks take the prescribed letters and the defence numerals run consecutively across both accused rather than restarting at D1.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 62(1) fixes P, D and C with running numerals for prosecution, defence and court exhibits, and rule 62(2) says all exhibits marked by several accused shall be marked consecutively. The letters, the numerals and the rule against restarting the series for each accused are all in the sub-rules.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-009",
@@ -1697,7 +1766,8 @@
       "how": "The prescribed form: to well and truly interpret and explain all questions put to and evidence given by witnesses.",
       "test": "Assigning an interpreter to an examination requires an oath record for that interpreter before evidence can be recorded in the session.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Rule 49 requires every witness and every interpreter to take an oath or make an affirmation before he is examined or called upon to interpret, and rule 52 gives the interpreter's oath its own words. What the rules command is the act at the hearing; neither says the oath must appear in the record, or that evidence may not be taken until it does. Requiring a stored oath record as the precondition of recording evidence is a system-level consequence of the rules, which is why the status was moved off firm.",
       "tightens": "REQ-EVI-007",
       "relatedTo": [
         "REQ-KL-EVI-014",
@@ -1725,7 +1795,8 @@
       "how": "Administered in open court by the Presiding Officer or by such other person as he has empowered in that behalf, or, where the witness is examined on commission, by the Commissioner.",
       "test": "Every oath record names the officer who administered it and the authority under which he did so; a sworn flag with no administering officer cannot be saved.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Rule 50 says the oath to witnesses and interpreters shall be administered in open court by the Presiding Officer or by such other person as he has empowered in that behalf, or by the Commissioner where the witness is examined on commission. The rule governs who may administer the oath and where; it does not direct that the administering officer or the setting be recorded against the deposition. Making those stored fields is the step taken here so that a challenge to the oath can be answered from the record, and it is why the status was moved off firm.",
       "tightens": "REQ-EVI-006",
       "relatedTo": [
         "REQ-KL-EVI-013"
@@ -1756,7 +1827,8 @@
       "how": "The oath or affirmation is translated by the interpreter and put to the witness, and the witness is allowed to take it in the language known to him.",
       "test": "Where the witness's language differs from the language of the oath, the oath record captures the translating interpreter and the language in which the oath was actually taken.",
       "derivedFrom": "rule",
-      "status": "firm",
+      "status": "inferred",
+      "statusReason": "Rule 53 directs that where the witness cannot understand the language in which the oath is administered it shall be translated by the interpreter and put to the witness, who is allowed to take it in the language known to him, and rule 51 prescribes the words. Both rules command what is to happen at the hearing and neither requires the record to capture it. Holding the translating interpreter and the language the oath was actually taken in as fields is our reading of what makes the deposition's foundation provable, so the status was moved off firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-013",
@@ -1784,6 +1856,7 @@
       "test": "The rendered deposition heading carries all the listed particulars, drawn from stored fields rather than free text.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 56 requires the heading of a deposition to record the full name including the family name of the deponent, the father's or mother's or husband's name, and the age, profession and residence of the witness. Every particular the requirement names is in the rule, and the rule is addressed to the document rather than to the event.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-017"
@@ -1810,6 +1883,7 @@
       "test": "Assigning an interpreter to an examination causes the interpreter's name to appear in the rendered deposition heading below the witness particulars.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 56 closes by saying the name of the interpreter, if any, shall be written below the particulars stated above. Both the particular and its placement in the heading come from that sentence.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-013",
@@ -1837,6 +1911,7 @@
       "test": "Closing a deposition requires a witness signature on the final page and a judicial initial on every page recorded by a stenographer.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 57 says that after a deposition has been read over to the witness the last page shall be signed in full by him, and that the Judge shall initial every page if the deposition is not recorded in his hand. Both marks are required on the document itself, so the requirement checks what the rule puts on the page.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-019"
@@ -1863,6 +1938,7 @@
       "test": "The rendered certificate resolves each alternative from stored facts rather than printing both, and cannot be produced without the Judge's name.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 57 prescribes the certificate to be appended at the foot of the deposition and requires the Judge to affix his signature to it over his name. The alternatives inside the prescribed words, taken down by me or before me and interpreted or read over, are the rule's own, so resolving them rather than printing both is what the rule asks for.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-018",
@@ -1890,6 +1966,7 @@
       "test": "Marking an uploaded document as a copy stamps the endorsement on the first page of the stored PDF; a document marked as a copy without the endorsement cannot be filed.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5(6) requires the advocate or party-in-person producing a document that is not the original to endorse on the top of the first page of the document that it is not the original and is only a certified copy or a photocopy. The endorsement, its wording and its position are all in the sub-rule.",
       "tightens": "REQ-EVI-003",
       "relatedTo": [
         "REQ-KL-EVI-021",
@@ -1917,6 +1994,7 @@
       "test": "Flagging an uploaded document as not clearly legible requires a second file recorded as the certified typed copy before the filing can be submitted.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5(5) says that when the original of the document is not clearly legible a typed copy duly certified by the advocate or party-in-person shall also be scanned and uploaded along with the original. The trigger and the second file are both stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-020"
@@ -1948,6 +2026,7 @@
       "test": "Every scanned document stores the e-filer responsible for its original, and a call for production resolves to that person.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8(3) says the responsibility for producing the originals of the documents shall be on the person who has electronically filed the scanned copies, and rule 8(1) requires those originals to be preserved for production as and when directed by the court. The rule allocates the responsibility to a person the act of electronic filing already identifies, so the requirement only makes the record resolve to him rather than creating the duty.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-REC-008"
@@ -1974,6 +2053,7 @@
       "test": "Material objects produced by the complainant, by the accused and by the court take numbers from one shared counter, and no two objects in the case carry the same number.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 62(3) says all material objects shall be marked in Arabic numbers in continuous series, whether exhibited for the prosecution or the defence or the court. The single series across all three is the sub-rule's express point of contrast with the party-lettered exhibit marks in rule 62(1).",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-012"
@@ -2005,6 +2085,7 @@
       "test": "Listing a hearing on a court holiday is blocked unless an absolute-urgency reason is recorded against it.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5(2) says no case shall be heard and no judicial act shall be formally announced or done on a holiday save in case of absolute urgency, and rule 5(3) carves out the detention, lunacy, dying declaration and release functions the bar does not touch. The prohibition and its exception are both express; requiring the urgency to be recorded is only how the exception is evidenced.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-TRL-002",
@@ -2032,6 +2113,7 @@
       "test": "A newly created court inherits the 11:00 to 17:00 window and the interval cap, and the values can be overridden on the court record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 5(1) says the courts shall ordinarily sit from 11.00 a.m. to 5.00 p.m. with an interval not exceeding one hour. Ordinarily is what makes it a default rather than a fixed window, which is why the level is SHOULD and why the value has to sit on the court record.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-JUR-003",
@@ -2064,6 +2146,7 @@
       "test": "Recording an exemption from personal appearance against an accused makes the memorandum of appearance route unavailable for that accused's pleader.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 33 says every pleader appearing on behalf of an accused who has been exempted from personal appearance shall file a vakkalath as prescribed by rule 32. The instrument and the class of case are both named, so refusing the memorandum route for that accused is the rule and not an inference from it.",
       "tightens": "REQ-TRL-015",
       "relatedTo": [
         "REQ-KL-FIL-024",
@@ -2091,6 +2174,7 @@
       "test": "A High Court criminal appearance can be completed on a memorandum of appearance alone, with no vakalatnama demanded; the same route is not offered on the civil side except for the Government and public servants.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The second proviso to rule 17(1) of the High Court Rules says an advocate appearing for an accused person in a criminal proceeding may, instead of filing a vakalath, file a memorandum of appearance containing a declaration that he has been duly instructed. The permission is express and confined to the criminal side, sub-rule (2) dealing separately with Government and public servants.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-TRL-003",
@@ -2124,6 +2208,7 @@
       "test": "Every appearance stores the instrument it rests on and links to that document; an appearance saved with no instrument is rejected, and the value is never populated by default.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "Rule 17(1) of the High Court Rules and rule 31 of the Criminal Rules each prescribe an instrument of authority, and rule 33 makes the vakkalath compulsory for an exempted accused in the subordinate courts. Together they mean the two instruments are not interchangeable across courts, but no rule says the appearance record must name which one was used, or forbids a default. That field is our reading of what makes the difference checkable.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-TRL-004",
@@ -2151,6 +2236,7 @@
       "test": "Attempting to allocate a case of any type other than NI Act s.138 to the Kollam Special Court is refused.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "The notification establishes a Special Court of Judicial Magistrate of the First Class to try cases under section 138 of the Negotiable Instruments Act. It confers a designation; it does not in terms forbid other work being allocated to that court. Reading the designation as exclusive is the step taken here, and it is why the status is not firm.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-JUR-002",
@@ -2178,6 +2264,7 @@
       "test": "The court record carries the sessions division, the place of sitting and the effective date; a case instituted before that date does not resolve to this court.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The notification names the Sessions Division, the court and the place of sitting by reference to the columns of its Schedule, and gives the designation effect from 20 November 2024. All three particulars, the effective date included, are on the face of the instrument.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-JUR-001"
@@ -2209,6 +2296,7 @@
       "test": "The Kollam Special Court record carries a round-the-clock operating window, an ordinary JMFC carries the 11:00 to 17:00 default, and the scheduler reads both from the court record.",
       "derivedFrom": "rule",
       "status": "inferred",
+      "statusReason": "The notification starts the Kollam court as a Digital Court on a pilot basis as the 24x7 ON Court, and rule 5(1) says courts shall ordinarily sit from 11.00 a.m. to 5.00 p.m. Neither instrument says operating hours are to be held as court-level data; that follows from one designated court departing from the general default. The step is short, but it is ours.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-TRL-002",
@@ -2236,6 +2324,7 @@
       "test": "Diary entries carry the date they relate to and the date they were signed; signing an entry on a later date is flagged.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 72(1) requires every court to maintain a diary in Administrative Form No. 10 and says the entries shall be signed by the Presiding Officer on the day to which they relate. The form and the same-day signature are both in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-REC-002",
@@ -2263,6 +2352,7 @@
       "test": "A day's sittings produce entries in both registers; the hearing book renders in Administrative Form No. 11 and the diary in Administrative Form No. 10, and neither is produced by relabelling the other's entries.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 72(2) requires every court to maintain a hearing book in Administrative Form No. 11, as an obligation separate from the diary in Administrative Form No. 10 in sub-rule (1). The two registers and their two forms are distinguished by the rule itself.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-REC-001"
@@ -2289,6 +2379,10 @@
       "test": "Every adjournment entry requires a recorded reason, and each proceedings paper entry stores the initialling judicial officer.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 73(1) requires a proceedings paper on Judicial Form No. 61 furnishing full information as to the several judicial steps taken, and lists reasons for adjournments first among them; it also requires the entries to be initialled by the Judge or Magistrate in open court. Both the adjournment reason and the initialling are express. The Kerala field note is cited for what such a record would make visible, not as authority for keeping it.",
+      "notes": [
+        "ke-scrutiny-officer-2026-07"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-KL-REC-001",
@@ -2316,6 +2410,7 @@
       "test": "Generating a record bundle for appeal, revision or transfer includes a proceedings paper copy; a bundle without one is blocked.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 73(2) says that when records are sent up to a court of appeal or revision, or forwarded to a court to which the case is transferred or committed, a typed or neatly written copy of the proceedings paper shall be placed with the records. The occasion and the document are both named.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-REC-003"
@@ -2347,6 +2442,7 @@
       "test": "The document store's ownership and access policy resolve to the court, and access to a case's documents is governed by the rules rather than by the hosting provider.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15(1) requires electronically filed pleadings and documents to be stored on an exclusive server under the control and supervision of the courts, and rule 15(3) puts their security on the courts and makes access a matter for the Rules. Custody with the court is stated, not derived.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-REC-006",
@@ -2374,6 +2470,7 @@
       "test": "Each case's stored documents carry a case-level label and are encrypted with a key scoped to that case; retrieval of one case does not require decrypting another.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15(2) says the Registry shall separately label and encrypt each Action for facilitating their identification and retrieval. Per-case labelling, per-case encryption and the purpose they serve are all in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-REC-005"
@@ -2400,6 +2497,7 @@
       "test": "A backup of every case's documents exists, is restorable, and its currency is reportable.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15(4) says the courts shall take all necessary steps to ensure that a backup copy of all Actions is preserved in the manner decided by the High Court from time to time. The obligation is stated and only the manner is left open, which is why the method carries nothing.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-REC-005"
@@ -2426,6 +2524,7 @@
       "test": "A case with a pending appeal shows no document as eligible for destruction; the three-year clock starts only when the last appeal is disposed of.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 8(2) requires the signed vakalath, notarised or attested affidavits and any original document whose authenticity is disputed to be preserved at least for three years after the final disposal of the Action including appeals if any. The class of documents, the period and the event the clock runs from are all in the sub-rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-EVI-022"
@@ -2457,6 +2556,7 @@
       "test": "The copy application form requires each particular and identifies the target document by reference rather than free text.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 222 requires every application for a copy to be presented by the applicant or his pleader and to set out the name of the applicant, his position in the proceedings if any, the name of his pleader if any, and a description of the proceeding or document of which a copy is required; rule 128(1) of the High Court Rules asks for the same in Form No. 9. The particulars are enumerated.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-CPY-002"
@@ -2488,6 +2588,10 @@
       "test": "A returned copy application carries a representation deadline that cannot be set beyond seven days from the return.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 223 says an application not complying with the rules shall be returned for being represented after rectifying the defects within a period not exceeding seven days, and rule 228 repeats the seven-day limit and makes an application not re-presented within it liable to be struck off. The cap is a number in the rule. The Kerala field note is cited for the analogous holding of files at scrutiny, not as authority for the cap.",
+      "notes": [
+        "ke-scrutiny-officer-2026-07"
+      ],
       "tightens": null,
       "relatedTo": [
         "REQ-KL-CPY-001"
@@ -2519,6 +2623,7 @@
       "test": "An urgent copy is applied for on its own application that cannot be submitted without stated grounds of urgency.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 224 says applications for urgent copies shall be by a separate urgent application setting forth the grounds of urgency, and rule 232 makes the ordinary preparation of copies follow the serial order of application except where such an application has been filed and allowed. The separate application, the grounds and the ordering it displaces are all express.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-CPY-001"
@@ -2550,6 +2655,7 @@
       "test": "A non-party can obtain a judgment; any other document requires a recorded court order made on a verified petition stating the purpose.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 226 says that except in the case of judgments, applications by a stranger to the proceeding for copies of any proceeding or document shall be allowed only by order of the court obtained on a petition duly verified setting forth the purpose for which the copy is required; rule 129 of the High Court Rules is to the same effect and adds that copies of judgments and decrees can be granted to anyone paying the prescribed fees. The exception for judgments and the order requirement for everything else are both stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-CPY-005"
@@ -2581,6 +2687,7 @@
       "test": "Every issued copy names the certifying officer and bears the court seal; a copy issued without either is not producible as a certified copy.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 239 requires all copies furnished by the court to be certified to be true copies by the Head Clerk or officer appointed for the purpose and to be sealed with the seal of the court; rule 143 of the High Court Rules requires the same there. Certification and seal are both in the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-CPY-006",
@@ -2613,6 +2720,7 @@
       "test": "The issued copy's endorsement carries every enumerated particular from stored fields, and the appeal limitation calculation can consume them.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 240 enumerates the particulars the endorsement on every copy shall show, among them the dates of calling for and producing stamp papers and additional stamp papers, the date the copy was made ready, the date notified for appearance to receive it and the date of delivery, and requires the endorsement to be initialled by the Head Clerk or other officer appointed. Rule 144 of the High Court Rules imposes the same endorsement, though the list it introduces is not carried in the text held here, so the enumeration relied on is rule 240's.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-CPY-005",
@@ -2640,6 +2748,7 @@
       "test": "Every copy application carries a notified delivery date; re-notification is only permitted on or before the current date, and each notification is stored.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 241 requires the Head Clerk to fix a date for the appearance of the applicant to receive the copy and to notify it, and, if the copy is not ready for delivery on that date, to fix another day and notify it on or before the date originally fixed. Notifying in advance rather than after the event is the sentence's own point.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-CPY-006"
@@ -2666,6 +2775,7 @@
       "test": "A copy request against a subordinate court document filed in the High Court requires a recorded Deputy Registrar order and a petition stating the reason.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 130 of the High Court Rules says copies of documents which form part of the records of the subordinate courts shall be granted only on the orders of the Deputy Registrar obtained on a duly verified petition setting forth the necessity for the copy and the reason why it was not obtained from the lower court. The officer, the petition and the two things it must state are all named.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-CPY-004"
@@ -2697,6 +2807,7 @@
       "test": "The generated memorandum carries the provision of law, the court, both sets of party names and the full lower court cause title, drawn from the linked trial case record.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 100(1) requires every memorandum of criminal appeal to be headed with a cause title setting out the provisions of law under which it is preferred, the name of the court, the names of the appellants and respondents in the court of appeal and the full cause title of the case in the lower court; rule 100(3) applies the same to revision petitions so far as may be. Each element is enumerated.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-002"
@@ -2723,6 +2834,7 @@
       "test": "An appeal or revision cannot be submitted without a document recorded as a certified copy of the impugned judgment or order.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 102 says every memorandum of appeal or revision petition shall be accompanied by a certified copy of the judgment or order of the court appealed against or sought to be revised. The enclosure is stated as a condition of the filing.",
       "tightens": null,
       "tightens_hint": "the national right of an accused convicted under NI Act s.138 to appeal, and the conditions on which an appeal is entertained",
       "relatedTo": [
@@ -2751,6 +2863,7 @@
       "test": "Where a pleader is named on an appeal or revision, submission requires an attached signed vakalatnama or memorandum of appearance.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "The same sentence of rule 102 requires a vakkalath or memo of appearance duly signed where a pleader is engaged. The condition and the circumstance that triggers it are both in the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-002",
@@ -2778,6 +2891,7 @@
       "test": "Where the computed presentation date is past the limitation period, submission requires an attached delay petition and a supporting affidavit.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 103 says that where an appeal or revision petition is not presented within the prescribed period of limitation, a petition to excuse the delay supported by an affidavit explaining the circumstances of the delay shall be filed along with the appeal or revision petition. That the delay petition travels with the appeal rather than after it is the rule's own words.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-005"
@@ -2809,6 +2923,7 @@
       "test": "A re-presentation after the recorded representation deadline requires an attached delay petition and affidavit before it can be accepted.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 105 says every petition or appeal re-presented after the expiry of the time allowed by the preceding rule shall be accompanied by a petition to excuse the delay supported by an affidavit explaining it, and rule 104 is what fixes that time on the return. The two rules together state the requirement in terms.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-004",
@@ -2836,6 +2951,7 @@
       "test": "Remand, re-admission or transfer of an appeal leaves its pendency computed from the original institution date, and the age reported does not fall.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 140 says that when a criminal appeal or revision case is remanded, re-admitted or transferred from one court to another, the date for the purpose of calculating its period of pendency shall be the date of original institution. All three events and the date are named.",
       "tightens": null,
       "relatedTo": []
     },
@@ -2860,6 +2976,7 @@
       "test": "A revision petition against an order for which no other law prescribes a period is flagged out of time beyond ninety days, computed with the benefit of sections 5 and 12 of the Limitation Act.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 44 of the High Court Rules says that where no period of limitation is prescribed by any other law a revision petition shall be presented within ninety days of the order complained of, and that sections 5 and 12 of the Limitation Act, 1963 apply to such petitions. The residual character of the period, its length and the sections that soften it are all stated.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-004",
@@ -2887,6 +3004,7 @@
       "test": "The revision filing checklist enumerates every item, scales the respondent copies with the number of respondents, and blocks submission until each is attached.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 45 of the High Court Rules enumerates what a revision petition shall be accompanied by: the certified copies of the order sought to be revised and of the judgments below, one additional typewritten or printed set of them, as many authenticated copies of the petition as there are respondents, two further copies for the use of the court, and the prescribed fees for service of notice. The requirement is that list.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-009",
@@ -2914,6 +3032,7 @@
       "test": "A quashing petition against a s.138 complaint cannot be submitted without an attached copy of the complaint recorded as certified true by the advocate or the party in person.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 45A says all petitions under section 482 of the Code shall be accompanied by a copy of the proceeding against which the petition is directed, certified as true by the advocate of the petitioner or by the petitioner when the petition is filed in person, and its Explanation says the expression proceeding includes a complaint. That it reaches a section 138 complaint comes from the rule's own Explanation.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-008"
@@ -2940,6 +3059,7 @@
       "test": "A Registrar's return records a re-presentation deadline that cannot be set more than fifteen days out, and a re-presentation after it is flagged for a delay petition.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 15(2) of the High Court Rules empowers the Registrar to return a memorandum of appeal, petition or other proceeding that is insufficiently stamped, undervalued or defective, for re-presentation within a period not exceeding fifteen days. The cap sits on the face of the power, so a return recording a longer period is outside it.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-005",
@@ -2972,6 +3092,7 @@
       "test": "Every High Court presentation names the presenter and their capacity from the permitted set; a postal or telegraphic receipt cannot be recorded as a presentation without a recorded court order.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 32 of the High Court Rules says all petitions, appeals and other proceedings shall be presented in person by the party or his advocate or the advocate's registered clerk, and rule 33 says that unless the court otherwise orders no document sent by post or by telegram shall be received or filed. The permitted presenters and the exclusion of post are both express.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-012"
@@ -2998,6 +3119,7 @@
       "test": "Improper language, illegibility and prolixity are available as recorded grounds of return, and a returned paper carries the ground it was returned on.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 50 of the High Court Rules says all papers which are couched in improper language or are illegible or are unnecessarily prolix shall be returned for rectification, and its Explanation deems papers written in pencil illegible unless they are the originals received by the party. The three grounds and the pencil rule are the rule's own.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-APL-011",
@@ -3025,6 +3147,7 @@
       "test": "The generated levy warrant names a police officer as the executing authority and cites the prescribed form.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 190(1) says a warrant for the levy of a fine by attachment and sale under section 421(1)(a) of the Code shall be directed to a Police Officer and shall be in Form No. 43 of Schedule II to the Code. The addressee and the form are both named.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-SEN-002"
@@ -3051,6 +3174,7 @@
       "test": "A levy warrant cannot be issued without a specified sale and return date, and an overdue warrant is reportable.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 190(2) says the authority issuing the warrant shall specify a time limit for the sale of the attached property and for the return of the warrant. Both limits are required by the sub-rule, and specifying them is part of the act of issuing the warrant.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-SEN-001"
@@ -3082,6 +3206,7 @@
       "test": "A claim recorded within one month of attachment blocks the sale, requires a reasoned decision, and on decision despatches it to the executing officer.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 190(9) gives a person other than the offender one month from the date of attachment to prefer a claim, and rule 190(12) requires the enquiry to be summary, the decision to be recorded with reasons, and the decision, which is final, to be communicated forthwith to the police officer executing the warrant. The window, the enquiry, the reasons and the communication are all in the sub-rules.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-SEN-002"
@@ -3108,6 +3233,7 @@
       "test": "The fine register is generable in the prescribed form and reconciles to the sentence and receipt records of each case.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 191 says the account of fine imposed, levied and refunded shall be kept in Administrative Form No. 20. The register and its form are the rule.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-SEN-007"
@@ -3139,6 +3265,7 @@
       "test": "The generated payment order carries exactly one of the three certificates, selected from the case's recorded appeal and revision history rather than chosen by hand.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 200(1) requires the payment order issued to the treasury to carry a certificate in one of three alternatives: that the sentence and award are not subject to appeal or have been confirmed with no revisional order received, that the payment order conforms to a modification made in appeal or revision, or that the appeal time has expired with no appeal preferred and no revisional order received. Rule 201 supplies the appellate court's certificate where the trial court cannot say whether an appeal was preferred. The three forms are enumerated in the sub-rule.",
       "tightens": null,
       "relatedTo": []
     },
@@ -3173,6 +3300,7 @@
       "test": "The compensation record moves through awarded, in deposit and paid as separate states, and the paid state can only be reached from a recorded payment order.",
       "derivedFrom": "rule",
       "status": "firm",
+      "statusReason": "Rule 203(2) requires the amount to be retained in deposit in the treasury subject to the order of the court awarding compensation or of the court of appeal or revision, and rule 203(3) says it shall be paid to the party entitled on production before the Treasury Officer of a payment order issued under rule 200. Rule 202 carries the same machinery to compensation awarded otherwise than under section 357. Awarded, in deposit and paid are three states the rules themselves keep apart.",
       "tightens": null,
       "relatedTo": [
         "REQ-KL-SEN-006"
