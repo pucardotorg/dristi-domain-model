@@ -943,7 +943,9 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
      A page that holds more than one tab says so under its title: quiet text, an
      underline on the one you are reading, and nothing else. Not buttons, not pills -
      the strip has to read as a continuation of the heading, not as a control panel. */
-  .subtabs{display:flex; align-items:center; gap:22px; margin:2px 0 20px;
+  /* the title's own 6px is app-wide and stays; the room between it and the tab strip
+     belongs to the strip, so it is set here rather than by changing every page's title */
+  .subtabs{display:flex; align-items:center; gap:22px; margin:20px 0 24px;
     border-bottom:1px solid var(--line); overflow-x:auto; scrollbar-width:none}
   .subtabs::-webkit-scrollbar{display:none}
   .subtab{appearance:none; background:none; border:0; padding:0 0 10px; cursor:pointer;
