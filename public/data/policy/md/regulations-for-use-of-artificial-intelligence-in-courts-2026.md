@@ -686,11 +686,13 @@ All AI Systems deployed in Court processes shall comply with the provisions of t
 
 ## Chapter VIII - Capacity building, training, and best practices
 
-### 49.
+### 49. Capacity building and training
 
-> The source prints no heading for regulation 49; the number stands alone above
-> the text. Its table of contents calls it "Capacity building and training", and
-> that is how it is referred to elsewhere in this corpus.
+> The heading here is the document's, but it is taken from its table of contents.
+> The body prints regulation 49 with the number standing alone and no heading above
+> the text, which is the one place the source's contents page is not simply a
+> repetition of the headings below it. Restored so the regulation is not the only
+> one in the document that cannot be referred to by name.
 
 (1) All Judges, advocates and Court staff, who are required to use or interact with AI Systems in the course of their duties, shall receive regular, structured training on the technical, legal and ethical dimensions of AI, as may be relevant to their functions.
 

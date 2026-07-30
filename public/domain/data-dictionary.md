@@ -13,8 +13,9 @@ Generated from the data - the field meanings and the **enumerations are derived 
 | `data/requirements/national.json` | the normative layer, central: what a system MUST do, binding every state |
 | `data/requirements/<state>.json` | the normative layer, per state: only what that state's own instruments add, or tighten |
 | `data/standards/standards-adherence.md` | the standards layer: the non-legal obligations a build is measured against, each with its test. Markdown, not JSON, and not joined into the bundle |
-| `data/policy/policy.json` | the policy manifest: each document's issuer, status, unit of numbering, markdown, source PDF and source URL |
-| `data/policy/md/*.md` | the policy documents themselves, transcribed. Not Akoma Ntoso - a policy is neither an Act nor a judgment - with their own numbering kept so a clause can be cited and linked |
+| `data/policy/policy.json` | the policy manifest: each document's issuer, status, unit of numbering, Akoma Ntoso, transcription, source PDF and source URL |
+| `data/policy/akn/*.akn.xml` | the policy documents as Akoma Ntoso `<doc name="regulations">`, addressed by `eId` - `reg_43_3` is regulation 43(3). This is what the Policy page reads |
+| `data/policy/md/*.md` | the checked transcription each Akoma Ntoso file is converted from, by `scripts/convert_policy_akn.py` |
 | `data/standards/ai-policy-compliance.md` | the operational obligations drawn out of those documents, each citing a clause. The document's half and DRISTI's suggested build are separate fields and must stay so |
 | `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId` |
 | `domain/cheque-dishonour-s138.json` / `.md` | the denormalized join of all of the above |

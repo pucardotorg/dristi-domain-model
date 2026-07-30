@@ -6,7 +6,7 @@
   ],
   "as_of": "2026-07-30",
   "maintained_by": "PUCAR / DRISTI",
-  "note": "The manifest for the policy area. A policy is not an Act and not a judgment, so it is not Akoma Ntoso: it is kept as markdown under policy/md/ with its source PDF one folder over in policy/sources/, the same pairing the rest of the corpus uses. The Policy page is generic over this list - to add a document, drop its markdown and its PDF in and add an entry here. `unit` is how that document numbers itself, so a citation reads in the document's own language rather than in ours.",
+  "note": "The manifest for the policy area. Akoma Ntoso has no policy document type, so a policy is carried as <doc name=\"regulations\"> under policy/akn/ - <doc> is the element the standard provides for a document type it does not name. It would be <act> once notified into force. The source PDF sits one folder over in policy/sources/ and the checked transcription in policy/md/, which is what the converter reads. The Policy page is generic over this list - to add a document, drop its files in, add an entry here and run scripts/convert_policy_akn.py. `unit` is how that document numbers itself, so a citation reads in the document's own language rather than in ours.",
   "documents": [
     {
       "id": "ai-in-courts-2026",
@@ -19,8 +19,13 @@
       "status": "draft",
       "status_note": "Published for comment on 3 June 2026, comments invited until 20 June 2026. Not in force: regulation 1(2) commences it only on a notification by the Chief Justice of India for the Supreme Court, and by the Chief Justice of each High Court for the courts under it.",
       "dated": "2026-06-03",
-      "unit": { "label": "Regulation", "short": "Reg.", "prefix": "reg" },
+      "unit": {
+        "label": "Regulation",
+        "short": "Reg.",
+        "prefix": "reg"
+      },
       "md": "policy/md/regulations-for-use-of-artificial-intelligence-in-courts-2026.md",
+      "akn": "policy/akn/regulations-for-use-of-artificial-intelligence-in-courts-2026.akn.xml",
       "source_pdf": "policy/sources/regulations-for-use-of-artificial-intelligence-in-courts-2026.pdf",
       "source_url": "https://cdnbbsr.s3waas.gov.in/s3ec0490f1f4972d133619a60c30f3559e/uploads/2026/06/2026060342.pdf",
       "summary": "Fifty-seven regulations, in ten chapters, on how a court may and may not use artificial intelligence. It applies to every adjudicatory and administrative function of the Supreme Court, the High Courts and every court, tribunal and statutory commission that adjudicates. It fixes the principles (human primacy, explainability, accountability, data protection), lists what AI may be used for and what it may never be used for, builds the institutions that approve and police it, and lays down the registers, audits, incident reports and disclosures a court and its vendors have to produce.",

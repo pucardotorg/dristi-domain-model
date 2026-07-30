@@ -340,7 +340,7 @@ communicate what it learns to the Apex Body and to the other High Court AI Commi
 
 **Binds.** court
 
-**Citation.** reg_33_3_i · reg_33_3_e
+**Citation.** reg_33_3_e_i · reg_33_3_e
 
 **Timing.** Per incident. The Committee meets at intervals of not more than three months
 under regulation 33(5), which is the outer limit on when a review can happen.
@@ -368,7 +368,7 @@ jurisdiction, submit it to its Chief Justice, and share it with the Apex Body.
 
 **Binds.** court
 
-**Citation.** reg_33_3_ii
+**Citation.** reg_33_3_e_ii
 
 **Timing.** Annual.
 

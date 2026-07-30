@@ -263,79 +263,42 @@ async function loadPolicy(){
   try{ POLICY=JSON.parse(await fetchText((DATA_BASE||"")+POLICY_FILE)); }
   catch(e){ POLICY={documents:[]}; }
 }
-/* One policy document, parsed into blocks the page renders and, more importantly, into
-   anchors a citation can land on. The document numbers its own units (regulation 43)
-   and its own clauses ((3), then (a)), so the anchor is derived from the markers as
-   printed rather than from anything we add to the file: `reg-43-3` is regulation 43,
-   clause (3), because that paragraph starts "(3)" inside "### 43.".
+/* The transcription in policy/md/ is the checked text and the converter's input, not
+   something the app reads: scripts/convert_policy_akn.py turns it into the Akoma Ntoso
+   below, and the page reads that. The clause-numbering logic that used to live here -
+   which marker opens a level and which continues one - moved into the converter with
+   it, so it runs once at build time instead of on every render.
 
-   The marker stack is what makes the nesting work. A marker that continues the sequence
-   at an open level replaces it; a marker that opens a sequence - (1), (a), (i) - pushes
-   a level. That is why (a) under (3) becomes 43-3-a and the next (4) pops back to 43-4. */
-const POLICY_MD_CACHE={};
-const ROMAN_SEQ=["i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii"];
-function markKind(m){ return /^\d+$/.test(m) ? "num" : "alpha"; }
-const nextLetter = a => a.slice(0,-1)+String.fromCharCode(a.charCodeAt(a.length-1)+1);
-function markFollows(m,prev){
-  if(!prev) return false;
-  if(markKind(m)!==markKind(prev)) return false;
-  if(markKind(m)==="num") return +m===+prev+1;
-  // letters run a..z then za, zb …; roman numerals run their own sequence
-  if(m.length===prev.length+1 && m.indexOf(prev)===0) return true;              // z -> za
-  if(m.length===prev.length && m.length<=2 && m===nextLetter(prev)) return true;
-  // an amendment inserts (na) after (n); (o) still follows, it just does not follow (na)
-  if(prev.length===2 && m.length===1 && m===nextLetter(prev.charAt(0))) return true;
-  const i=ROMAN_SEQ.indexOf(m);
-  return i>0 && ROMAN_SEQ[i-1]===prev;
-}
-function parsePolicyMd(md){
-  const blocks=[]; const anchors=[];
-  let unit=null, stack=[], note=[];
-  const flushNote=()=>{ if(note.length){ blocks.push({t:"note", text:note.join(" ")}); note=[]; } };
-  String(md||"").replace(/<!--[\s\S]*?-->/g,"").split(/\r?\n/).forEach(raw=>{
-    const line=raw.trim();
-    if(!line) return;
-    if(/^>/.test(line)){ note.push(line.replace(/^>\s?/,"").trim()); return; }
-    flushNote();
-    if(/^#\s/.test(line)) return;                        // the document's own title; policy.json holds it
-    if(/^##\s/.test(line)){ unit=null; stack=[];
-      const label=line.replace(/^##\s*/,"").trim();
-      blocks.push({t:"part", label, id:"part-"+stdSlug(label)}); return; }
-    if(/^###\s/.test(line)){
-      const body=line.replace(/^###\s*/,"").trim();
-      const m=body.match(/^(\d+)\.\s*(.*)$/);
-      unit=m?m[1]:null; stack=[];
-      const id=unit?("reg-"+unit):("u-"+stdSlug(body));
-      blocks.push({t:"unit", num:m?m[1]+".":"", heading:m?m[2]:body, id});
-      anchors.push(id); return; }
-    const mk=line.match(/^\(([0-9]{1,2}|[a-z]{1,4})\)\s*/);
-    let id="", depth=0;
-    if(mk && unit){
-      const mark=mk[1];
-      const at=stack.findIndex(x=>markFollows(mark,x));
-      if(at>=0) stack=stack.slice(0,at).concat([mark]);   // continues that level
-      // a numbered clause past (1) with no numbered level open means the (1) was never
-      // printed - regulation 37 opens straight at (2) - so it belongs at the top of the
-      // unit, not nested under whatever lettered item happened to precede it
-      else if(markKind(mark)==="num" && +mark>1 && !stack.some(x=>markKind(x)==="num")) stack=[mark];
-      else stack=stack.concat([mark]);                    // opens a new one
-      depth=stack.length-1;
-      id="reg-"+unit+"-"+stack.join("-");
-      anchors.push(id);
-    } else if(unit && stack.length){
-      depth=stack.length-1;                               // a proviso keeps its clause's indent
-    }
-    blocks.push({t:"p", text:line, id, depth, mark:mk?mk[1]:""});
+   The document as Akoma Ntoso. Read from AKN for the same reason the Acts are: the
+   structure is in the file rather than inferred at render time, so a chapter is a
+   chapter and regulation 43(3) is an element with an eId. actBlocks walks it
+   unchanged - <doc> differs from <act> only in being wrapped in <mainBody> instead of
+   <body>, and the walker never looked at that. */
+const POLICY_AKN_CACHE={};
+async function getPolicyAkn(doc){
+  if(!doc || !doc.akn) return null;
+  if(POLICY_AKN_CACHE[doc.id]) return POLICY_AKN_CACHE[doc.id];
+  const xml=await fetchText((DATA_BASE||"")+doc.akn);
+  const x=new DOMParser().parseFromString(xml,"application/xml");
+  if(x.getElementsByTagName("parsererror").length) throw new Error("XML parse error: "+doc.akn);
+  // the flat block list, grouped back into the chapters it came in
+  const blocks=actBlocks(x);
+  const chapters=[]; let cur=null;
+  blocks.forEach(b=>{
+    if(b.t==="chap"){ cur={label:b.label, id:"polchp-"+stdSlug(b.label), regs:[]}; chapters.push(cur); return; }
+    if(!cur){ cur={label:"", id:"polchp-0", regs:[]}; chapters.push(cur); }
+    cur.regs.push(b);
   });
-  flushNote();
-  return {blocks, anchors};
+  // the covering notice: <preface> is not part of the hierarchy, so actBlocks skips it
+  const pref=[...x.getElementsByTagName("*")].filter(e=>e.localName==="preface")[0];
+  const preface=pref?[...pref.children].filter(e=>e.localName==="p").map(e=>cleanText(e)):[];
+  const parsed={chapters, preface, xdoc:x};
+  POLICY_AKN_CACHE[doc.id]=parsed; return parsed;
 }
-async function getPolicyMd(doc){
-  if(!doc || !doc.md) return null;
-  if(POLICY_MD_CACHE[doc.id]) return POLICY_MD_CACHE[doc.id];
-  const parsed=parsePolicyMd(await fetchText((DATA_BASE||"")+doc.md));
-  POLICY_MD_CACHE[doc.id]=parsed; return parsed;
-}
+/* every eId the document offers, so a citation can be checked before it is rendered
+   as a link that goes nowhere */
+const policyHasEid=(parsed,eid)=> !!(parsed && parsed.xdoc && parsed.xdoc.querySelector(`[eId="${eid}"]`));
+
 
 /* the AI policy compliances - the other half of the Standards page. Same parser, same
    philosophy, different labels: what the document obliges, and separately what we say
@@ -383,20 +346,34 @@ function sectionData(sec){
       else if(STRUCT.includes(ln)){
         const cn=childByLocal(c,"num"); const cnt=cn?cleanText(cn):"";
         const content=childByLocal(c,"content"); const target=content||c;
+        // the clause's own eId rides along on its first row. Acts have never needed it -
+        // a citation lands on the section - but a policy is cited at 43(3), so the
+        // renderer has to be able to put an anchor on the clause itself.
+        const ceid=c.getAttribute && c.getAttribute("eId") || "";
+        const intro=childByLocal(c,"intro");
         let first=true;
+        const emit=(t)=>{ body.push(["li",depth, first?((cnt?cnt+" ":"")+t):t, first?ceid:""]); first=false; };
+        if(intro){ for(const ic2 of intro.children) if(ic2.localName==="p"){ const t=cleanText(ic2); if(t) emit(t); } }
         for(const cc of target.children){
           const l2=cc.localName;
-          if(l2==="p"){ const t=cleanText(cc); if(t){ body.push(["li",depth, first?((cnt?cnt+" ":"")+t):t]); first=false; } }
+          if(l2==="p"){ const t=cleanText(cc); if(t) emit(t); }
           else if(l2==="blockList"||l2==="list"){ walk(cc,depth+1); }
           else if(STRUCT.includes(l2)){ walk(c,depth+1); break; }
         }
-        if(first && cnt) body.push(["li",depth,cnt]);
+        if(first && cnt) body.push(["li",depth,cnt,ceid]);
       }
       else if(ln==="content"){ walk(c,depth); }
-      else if(ln==="num"||ln==="heading"||ln==="authorialNote"){ /* skip */ }
+      // <intro> is emitted by whoever owns it - the clause branch above, or the section
+      // itself just below. Walking into it here as well printed every lead-in twice, the
+      // second time unindented, because the generic branch treated it as a container.
+      else if(ln==="num"||ln==="heading"||ln==="intro"||ln==="authorialNote"){ /* skip */ }
       else { walk(c,depth); }
     }
   }
+  // a section's own lead-in ("The AI Committee shall have the powers -") sits in <intro>
+  // before its clauses, so it is emitted first and at the section's own depth
+  const secIntro=childByLocal(sec,"intro");
+  if(secIntro) for(const p of secIntro.children) if(p.localName==="p"){ const t=cleanText(p); if(t) body.push(["p",0,t]); }
   walk(sec,0);
   return {num:numEl?cleanText(numEl):"", heading:headEl?cleanText(headEl):"", body};
 }
@@ -434,10 +411,11 @@ function actBlocks(doc){
 }
 
 /* ---- render a flat [type,depth,text] body as nested clause lists ---- */
-function liRow(txt){
+function liRow(txt,anchor){
+  const id=anchor?` id="${esc(anchor)}"`:"";
   const m=txt.match(/^(\([^)]{1,6}\))\s*([\s\S]*)$/);
-  if(m) return `<div class="litem"><span class="lmark">${esc(m[1])}</span><span class="ltext">${esc(m[2])}</span></div>`;
-  return `<div class="litem"><span class="lmark"></span><span class="ltext">${esc(txt)}</span></div>`;
+  if(m) return `<div class="litem"${id}><span class="lmark">${esc(m[1])}</span><span class="ltext">${esc(m[2])}</span></div>`;
+  return `<div class="litem"${id}><span class="lmark"></span><span class="ltext">${esc(txt)}</span></div>`;
 }
 /* detect statutory annotations (Explanation / Proviso / Illustration / Exception)
    so they don't read like the bare enacting text */
@@ -450,14 +428,17 @@ function legNote(txt){
   return null;
 }
 function noteHTML(n){ return `<div class="legnote"><span class="lnl">${esc(n.label)}</span><span class="lnt">${esc(n.text)}</span></div>`; }
-function renderBody(body,pfx){
+/* idPfx: when given, a clause that carries an eId gets an id of idPfx+eId, so a
+   citation can be scrolled to. Left off everywhere else, so act markup is unchanged. */
+function renderBody(body,pfx,idPfx){
   let html=""; const stack=[];
   const openTo=n=>{ while(stack.length<n){html+='<div class="lgroup">';stack.push(1);} while(stack.length>n){html+='</div>';stack.pop();} };
-  (body||[]).forEach(([t,d,txt])=>{
+  (body||[]).forEach(([t,d,txt,eid])=>{
+    const anchor = (idPfx && eid) ? idPfx+eid : "";
     const n=legNote(txt);
     if(n){ openTo(t==="p"?0:d+1); html+=noteHTML(n); }
-    else if(t==="p"){ openTo(0); html+=`<p class="${pfx}-p">${esc(txt)}</p>`; }
-    else { openTo(d+1); html+=liRow(txt); }
+    else if(t==="p"){ openTo(0); html+=`<p class="${pfx}-p"${anchor?` id="${esc(anchor)}"`:""}>${esc(txt)}</p>`; }
+    else { openTo(d+1); html+=liRow(txt,anchor); }
   });
   openTo(0);
   return html;
@@ -1203,45 +1184,112 @@ const polCite = (ref, docId) => `<a class="pcite" data-doc="${esc(docId||"")}" d
    anchor is reg-33-3-e-i - and a citation should follow the document's numbering, not
    ours. Failing both, the unit itself, so a citation always arrives somewhere true
    rather than nowhere. */
+/* A citation names a clause as the document numbers it - reg_43_3 - and the AKN
+   carries that string as an eId, so resolving is a lookup rather than a guess. Where
+   the eId is not there (a citation to a clause the drafting nests differently), fall
+   back to the regulation, which always exists. */
 function policyAnchorId(parsed, clause){
-  const id=String(clause||"").replace(/_/g,"-");
-  if(!parsed) return id;
-  if(parsed.anchors.indexOf(id)>=0) return id;
-  const want=id.split("-");
-  const fits=a=>{ let i=0; a.split("-").forEach(x=>{ if(x===want[i]) i++; }); return i===want.length; };
-  const near=parsed.anchors.filter(fits).sort((a,b)=>a.length-b.length)[0];
-  return near || want.slice(0,2).join("-");
+  const eid=String(clause||"").trim();
+  if(!eid) return "";
+  if(policyHasEid(parsed,eid)) return "pol-"+eid;
+  const reg=eid.split("_").slice(0,2).join("_");
+  return policyHasEid(parsed,reg) ? "polreg-"+reg : "";
 }
 function goPolicyClause(docId, clause){
   policyDocId=docId||policyDocId; policyScrollTo=clause||null;
   _extra={}; if(policyDocId) _extra.doc=policyDocId; if(clause) _extra.clause=clause;
   go("policy", true);
 }
-function policyDocHTML(d, parsed){
+/* The document, given the same shape the Acts get: a chapter is an accordion, a
+   regulation is a row inside it that opens to its own text, and the whole document
+   is one click away in a modal. 57 regulations rendered flat is a wall nobody reads
+   to the end of; rendered this way a reader sees ten chapters and opens the one they
+   came for. Same classes as the law view on purpose - .actgrp and .prov already carry
+   this behaviour and a reader who has used one page knows how to use this one. */
+function policyRegRow(d, r){
+  const row=el("div","prov pol-reg"); row.id="polreg-"+r.eId;
+  row.innerHTML=`
+    <div class="prov-head">
+      <span class="ref">${esc((d.unit&&d.unit.short)||"Reg.")} ${esc((r.num||"").replace(/\.$/,""))}</span>
+      <span class="rt">${esc(r.heading||"")}</span>
+      <span class="caret">${ic('chevron-right')}</span>
+    </div>
+    <div class="prov-body">
+      <div class="statute pol-statute">
+        ${renderBody(r.body,"st","pol-")}
+        <div class="st-inpar"><button class="view-full pol-full" data-doc="${esc(d.id)}" data-eid="${esc(r.eId)}">${ic('maximize-2')}&nbsp; Read this inside the whole document</button></div>
+      </div>
+    </div>`;
+  row.querySelector(".prov-head").onclick=()=>row.classList.toggle("open");
+  return row;
+}
+function policyDocHTML(d, parsed, host){
   const meta=[d.issuer, d.made_by && d.made_by!==d.issuer ? d.made_by : "",
               d.dated ? "dated "+d.dated : ""].filter(Boolean).join(" · ");
-  let h=`<div class="pol-doc-h">
+  const head=el("div");
+  head.innerHTML=`<div class="pol-doc-h">
     <div class="pol-doc-t">${esc(d.title)}</div>
     ${meta?`<div class="pol-doc-m">${esc(meta)}</div>`:""}
     ${d.status?`<div class="pol-status"><span class="pol-dot s-${esc(d.status)}"></span>${esc(d.status)}${d.status_note?` <span class="pol-status-n">${esc(d.status_note)}</span>`:""}</div>`:""}
-  </div>`;
-  if(d.summary) h+=`<p class="pol-sum">${esc(d.summary)}</p>`;
-  if(d.why_it_matters) h+=`<p class="pol-why">${esc(d.why_it_matters)}</p>`;
+  </div>
+  ${d.summary?`<p class="pol-sum">${esc(d.summary)}</p>`:""}
+  ${d.why_it_matters?`<p class="pol-why">${esc(d.why_it_matters)}</p>`:""}`;
   const acts=[];
+  acts.push(`<button class="view-full pol-full" data-doc="${esc(d.id)}">${ic('book-open')}&nbsp; Open the whole document</button>`);
   if(d.source_pdf) acts.push(`<button class="pdf-orig" data-pdf="${esc(DATA_BASE+d.source_pdf)}" data-pdftitle="${esc(d.title)}">${ic('file')}&nbsp; Read the original PDF</button>`);
-  if(d.source_url) acts.push(`<a class="pol-src" href="${esc(d.source_url)}" target="_blank" rel="noopener noreferrer">Where it was published</a>`);
-  if(acts.length) h+=`<div class="pol-acts">${acts.join("")}</div>`;
-  const parts=(parsed.blocks||[]).filter(b=>b.t==="part");
-  if(parts.length>1) h+=`<div class="pol-toc"><span class="std-l">Contents</span>`
-    +parts.map(p=>`<a class="pol-toc-i" data-jump="${esc(p.id)}">${esc(p.label)}</a>`).join("")+`</div>`;
-  h+=`<div class="pol-body">`;
-  (parsed.blocks||[]).forEach(b=>{
-    if(b.t==="note") h+=`<div class="pol-note"><span class="std-l">Note from this corpus</span>${stdInline(b.text)}</div>`;
-    else if(b.t==="part") h+=`<h2 class="pol-part" id="${esc(b.id)}">${esc(b.label)}</h2>`;
-    else if(b.t==="unit") h+=`<div class="pol-unit" id="${esc(b.id)}"><span class="pol-num">${esc(b.num)}</span>${esc(b.heading)}</div>`;
-    else h+=`<p class="pol-p d${Math.min(b.depth||0,3)}"${b.id?` id="${esc(b.id)}"`:""}>${esc(b.text)}</p>`;
+  head.innerHTML+=`<div class="pol-acts">${acts.join("")}</div>`;
+  /* The covering notice - "Sub.: Seeking views/suggestions…", the email address, the
+     Sd/- - is the letter the draft was circulated under, not the regulations. It stays
+     in the Akoma Ntoso as <preface> and it is there in the whole-document view, where
+     "whole" is the promise. It is not on the reading surface. */
+  host.appendChild(head);
+  (parsed.chapters||[]).forEach((c,i)=>{
+    const grp=el("div","actgrp pol-chp"+(i===0?" open":"")); grp.id=c.id;
+    grp.innerHTML=`
+      <div class="actgrp-head">
+        <span class="ag-chev">${ic('chevron-down')}</span>
+        <span class="ag-title">${esc(c.label||"Regulations")}</span>
+        <span class="ag-count">${c.regs.length}</span>
+      </div>
+      <div class="actgrp-body"></div>`;
+    const body=grp.querySelector(".actgrp-body");
+    c.regs.forEach(r=>body.appendChild(policyRegRow(d,r)));
+    grp.querySelector(".actgrp-head").onclick=()=>grp.classList.toggle("open");
+    host.appendChild(grp);
   });
-  return h+`</div>`;
+}
+/* the whole document in the modal every other instrument uses. renderFullAct is not
+   reused because it reads SOURCES, which a policy is deliberately not in. */
+async function openPolicyModal(docId, focusEid){
+  const d=policyDoc(docId); if(!d) return;
+  const modal=$("#modal"), body=$("#modal-body");
+  body.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the document…</div>`;
+  modal.classList.add("show"); document.body.style.overflow="hidden";
+  try{
+    const parsed=await getPolicyAkn(d);
+    setModalPdf(d.source_pdf?(DATA_BASE+d.source_pdf):null, d.title);
+    // the regulation a clause sits in, so a clause ref still lands somewhere
+    const regOf=e=>String(e||"").split("_").slice(0,2).join("_");
+    const focusReg=focusEid?regOf(focusEid):"";
+    let h=`<div class="actdoc-h"><div class="ad-title">${esc(d.title)}</div>`
+      +`${d.status?`<div class="ad-sub">${esc(d.status)}${d.status_note?" · "+esc(d.status_note):""}</div>`:""}</div>`;
+    h+=`<div class="actdoc-body">`;
+    (parsed.preface||[]).forEach(t=>{ h+=`<p class="ad-pref">${esc(t)}</p>`; });
+    (parsed.chapters||[]).forEach(c=>{
+      if(c.label) h+=`<div class="ad-chap">${esc(c.label)}</div>`;
+      c.regs.forEach(r=>{
+        h+=`<div class="ad-sec${r.eId===focusReg?" focus":""}" id="adsec-${esc(r.eId)}">`
+          +`<div class="ad-sec-h"><span class="ad-num">${esc(r.num||"")}</span>${esc(r.heading||"")}`
+          +`${r.eId===focusReg?'<span class="ad-focus-tag">the regulation you came from</span>':''}</div>`
+          +renderBody(r.body,"ad","admd-")+`</div>`;
+      });
+    });
+    body.innerHTML=h+`</div>`;
+    const t=document.getElementById("admd-"+focusEid)||document.getElementById("adsec-"+focusReg);
+    if(t) setTimeout(()=>t.scrollIntoView({block:"center"}),60); else body.scrollTop=0;
+  }catch(e){
+    body.innerHTML=`<div class="ad-loading">Couldn't load this document.<br><br>The viewer reads the files live, so it must be served over http - see the note under the sidebar.</div>`;
+  }
 }
 V.policy=()=>{
   const m=el("div","view-pol");
@@ -1267,15 +1315,26 @@ V.policy=()=>{
   host.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the document…</div>`;
   m.appendChild(host);
   const d=policyDoc(policyDocId);
-  getPolicyMd(d).then(parsed=>{
-    if(!parsed){ host.innerHTML=""; host.appendChild(el("div","empty","This document has no text file.")); return; }
-    host.innerHTML=policyDocHTML(d, parsed);
-    host.querySelectorAll(".pol-toc-i").forEach(a=>a.onclick=()=>scrollToId(a.dataset.jump,70,true));
-    if(policyScrollTo){ const want=policyScrollTo; policyScrollTo=null;
-      scrollToId(policyAnchorId(parsed, want), 80, true); }
+  getPolicyAkn(d).then(parsed=>{
+    if(!parsed){ host.innerHTML=""; host.appendChild(el("div","empty","This document has no Akoma Ntoso file.")); return; }
+    host.innerHTML=""; policyDocHTML(d, parsed, host);
+    if(policyScrollTo){ const want=policyScrollTo; policyScrollTo=null; policyLandOn(host, parsed, want); }
   }).catch(()=>{ host.innerHTML=`<div class="empty">Couldn't load the document. The viewer reads it live, so it must be served over http.</div>`; });
   return m;
 };
+/* Landing a citation: the chapter it is in has to be opened and the regulation
+   expanded before the clause exists in the DOM to scroll to. Same three steps the law
+   view takes when a provision is deep-linked. */
+function policyLandOn(host, parsed, clause){
+  const anchor=policyAnchorId(parsed, clause); if(!anchor) return;
+  const reg=String(clause).split("_").slice(0,2).join("_");
+  const row=host.querySelector("#polreg-"+CSS.escape(reg));
+  if(row){
+    const grp=row.closest(".actgrp"); if(grp) grp.classList.add("open");
+    row.classList.add("open");
+  }
+  setTimeout(()=>scrollToId(anchor, 80, true), 40);
+}
 
 /* ---- AI policy compliance: a sub-tab of Standards adherence, not a page of its own.
    It answers the same question the standards answer - what is this build measured
@@ -3010,6 +3069,8 @@ document.addEventListener("click",e=>{
   if(pv && pv.dataset.pdf){ if(window.openPdfModal) openPdfModal(pv.dataset.pdf, pv.dataset.pdftitle||"Original document"); else window.open(pv.dataset.pdf,"_blank"); return; }
   const sd=e.target.closest(".stdoc");
   if(sd && sd.dataset.akn){ openStateDocModal(sd.dataset.akn, sd.dataset.title, sd.dataset.sub, sd.dataset.pdf||"", sd.dataset.eid||""); return; }
+  const pf=e.target.closest(".pol-full");
+  if(pf && pf.dataset.doc){ e.stopPropagation(); openPolicyModal(pf.dataset.doc, pf.dataset.eid||""); return; }
   const ci=e.target.closest(".cite");
   if(ci){ e.stopPropagation();
     if(ci.dataset.nat){ const [a,eid]=ci.dataset.nat.split(":"); if(SOURCES[a]) openActModal(a,eid); }
