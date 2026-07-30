@@ -1295,10 +1295,12 @@ V.policy=()=>{
   const m=el("div","view-pol");
   const docs=POLICY.documents||[];
   const head=el("div");
-  const lede=(POLICY.lede||[]).length ? POLICY.lede
-    : ["Instruments that govern how a court runs, rather than how a case is decided."];
+  // no lede in the manifest means no lede on the page. The standing copy that used to
+  // sit here said a policy is not kept as Akoma Ntoso, which stopped being true the day
+  // it was converted - a hardcoded fallback is a second source of truth that goes stale
+  // without anyone editing it.
   head.innerHTML=`<h1 class="page-title">${esc(POLICY.title||"Policy")}</h1>`
-    +lede.map(t=>`<p class="lede">${esc(t)}</p>`).join("");
+    +(POLICY.lede||[]).map(t=>`<p class="lede">${esc(t)}</p>`).join("");
   m.appendChild(head);
   if(!docs.length){ m.appendChild(el("div","empty","No policy documents are linked from this corpus.")); return m; }
   if(!policyDocId || !policyDoc(policyDocId)) policyDocId=docs[0].id;

@@ -891,6 +891,17 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   /* the group's own sentence, under its head and above its cards */
   .view-std .std-gloss{font-size:13.5px; line-height:1.6; color:var(--ink-2);
     max-width:770px; margin:-4px 0 13px}
+  /* The opened body lines up under the regulation's title, not under the law view's
+     120px - that indent is sized for its 104px ref chip and this one is 74px, so it
+     overshot the title by 27px and the gutter read as an accident. Derived from the
+     chip width plus the row padding and the header gap, so it cannot drift apart from
+     the header again. */
+  .pol-reg{--pol-ref:74px}
+  .pol-reg .prov-head .ref{min-width:var(--pol-ref)}
+  @media(min-width:761px){
+    .actgrp-body .pol-reg .prov-body{padding-left:calc(var(--pol-ref) + 19px)}
+  }
+
   .req.std .rq-h{padding-right:2px}
   .req.std .std-name{display:flex; align-items:flex-start; gap:13px}
   .req.std .std-name .caret{margin-top:3px}
@@ -1003,8 +1014,11 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
     color:var(--ink-3); max-width:720px; line-height:1.6}
   .pol-sum{font-size:14.5px; line-height:1.7; color:var(--ink-2); max-width:900px; margin:16px 0 0}
   .pol-why{font-size:13.5px; line-height:1.7; color:var(--ink-3); max-width:900px; margin:10px 0 0}
-  .pol-acts{display:flex; align-items:center; flex-wrap:wrap; gap:14px; margin-top:14px}
-  .pol-acts .pdf-orig{margin-top:0}
+  /* both buttons carry their own margin-top for the contexts they normally sit in - 12px
+     on .view-full, 11px on .pdf-orig - which put them on two different baselines here.
+     The row owns the spacing; the buttons bring none of their own. */
+  .pol-acts{display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin-top:20px}
+  .pol-acts .view-full, .pol-acts .pdf-orig{margin-top:0}
   .pol-src{font-size:12.5px; color:var(--ink-3); text-decoration:underline; text-underline-offset:3px;
     text-decoration-color:color-mix(in srgb,var(--ink-3) 40%,transparent)}
   .pol-src:hover{color:var(--brand-hi); text-decoration-color:var(--brand)}
@@ -1020,7 +1034,6 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   /* a regulation carries a heading, not a role and a pair of badges, so the row gives
      the heading the room the law view spends on its chips */
   .pol-reg .prov-head .rt{font-weight:600; color:var(--ink)}
-  .pol-reg .prov-head .ref{min-width:74px}
   .pol-statute{margin:0}
   .pol-statute .st-p{font-size:14px; line-height:1.75}
   /* landing from a citation: the clause is tinted for a moment so the eye finds it in
