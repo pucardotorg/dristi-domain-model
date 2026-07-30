@@ -26,6 +26,7 @@ let vocabScrollTo = null;         // a vocab word to scroll to when the Vocabula
 let practiceScrollTo = null;      // a field-note id to scroll to when the Local practice view next renders
 let reqScrollTo = null;           // a requirement id to land on when the Requirements view next renders
 let stdScrollTo = null;           // a standard id to land on when the Standards view next renders
+let aipScrollTo = null;           // an AI-policy compliance id to land on when that sub-tab renders
 let _extra = {};                  // deep-link query params for the current position (sec/term/note/act/eid)
 let pendingAnchor = null;         // a DOM id to scroll to after the next view renders (from a deep link)
 let _lastHash = null;             // the hash we last wrote, so our own writes don't re-trigger the router
@@ -172,15 +173,20 @@ const reqById = id => REQS.find(r=>r.id===id);
    Adding a group or a standard is an edit to the markdown, never a change here. */
 let STANDARDS={lede:[], groups:[]};
 const STD_FILE="standards/standards-adherence.md";
-function parseStandards(md){
+/* The label map is the only thing that differs between the two prose files this parser
+   reads - the standards, and the AI policy compliances that hang off the same page - so
+   it is a parameter rather than a second parser. A label the map does not know stays in
+   the gloss, which is the honest failure: an editor's typo shows up as prose, not as a
+   silently dropped field. */
+const STD_LABELS={"spec":"spec","anchor":"anchor","how to test":"test","pass when":"pass",
+                  "check":"check","note":"note"};
+function parseLabelledMd(md, LABEL){
   const out={lede:[], groups:[]};
   const lede=[[]];   // the lede keeps its paragraphs: a bare ">" line starts a new one
   let g=null, s=null;
   // the shape comment, and any other HTML comment, is authoring instruction and not content
   const lines=String(md||"").replace(/<!--[\s\S]*?-->/g,"").split(/\r?\n/);
   // a labelled paragraph: "**How to test.** …" - the label decides the field it fills
-  const LABEL={"spec":"spec","anchor":"anchor","how to test":"test","pass when":"pass",
-               "check":"check","note":"note"};
   const flush=(buf,target)=>{
     const txt=buf.join(" ").replace(/\s+/g," ").trim(); buf.length=0;
     if(!txt||!target) return;
@@ -201,8 +207,8 @@ function parseStandards(md){
       g={name:line.replace(/^##\s*/,"").trim(), gloss:"", items:[]}; out.groups.push(g); return; }
     if(/^###\s/.test(line)){ flush(buf,target());
       if(!g){ g={name:"", gloss:"", items:[]}; out.groups.push(g); }
-      s={name:line.replace(/^###\s*/,"").trim(), gloss:"", spec:"", anchor:"", test:"",
-         pass:"", check:"", note:"", group:g.name};
+      s={name:line.replace(/^###\s*/,"").trim(), gloss:"", group:g.name};
+      Object.values(LABEL).forEach(k=>{ s[k]=""; });
       s.id=stdSlug(s.name); g.items.push(s); return; }
     buf.push(line);
   });
@@ -216,7 +222,9 @@ function parseStandards(md){
    not one worth having. */
 const stdInline = txt => esc(String(txt||"")).replace(
   /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-  (m,label,url)=>`<a class="std-link" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`);
+  (m,label,url)=>`<a class="std-link" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`)
+  // and emphasis, which the compliance lede needs to say which half of a card is whose
+  .replace(/\*\*([^*]+)\*\*/g,(m,t)=>`<strong>${t}</strong>`);
 /* "Anchor" is the standard's footing in law that this corpus already holds - the RPwD
    accessibility sections, s.70B for CERT-In, Article 348 for the language of a High
    Court. Written as the corpus's own `<alias>:<eId>` ref, so it opens the provision
@@ -234,8 +242,115 @@ const stdChecks = raw => String(raw||"").split(" · ").map(x=>x.trim()).filter(B
 const stdSlug = n => String(n||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);
 const stdItems = () => STANDARDS.groups.reduce((a,g)=>a.concat(g.items),[]);
 async function loadStandards(){
-  try{ STANDARDS=parseStandards(await fetchText((DATA_BASE||"")+STD_FILE)); }
+  try{ STANDARDS=parseLabelledMd(await fetchText((DATA_BASE||"")+STD_FILE), STD_LABELS); }
   catch(e){ STANDARDS={lede:[], groups:[]}; }
+}
+
+/* ---------------------------------------------------------------- THE POLICY LAYER
+   A policy is the third kind of instrument this corpus holds. An Act is Akoma Ntoso
+   because it is legislation; a judgment is Akoma Ntoso because it is a judgment; a
+   policy - a draft regulation circulated for comment, a court's own guidance - is
+   neither, and forcing it into <act> would assert a status it does not have. So it is
+   kept as markdown under data/policy/md/ with its source PDF one folder over, which is
+   the same pairing acts/ and caselaw/ use, and policy.json is the manifest over it.
+
+   Everything on the Policy page comes from that manifest: the documents, their status,
+   how each one numbers itself. A second policy is a file plus an entry, never code. */
+let POLICY={documents:[]};
+const POLICY_FILE="policy/policy.json";
+const policyDoc = id => (POLICY.documents||[]).find(d=>d.id===id) || null;
+async function loadPolicy(){
+  try{ POLICY=JSON.parse(await fetchText((DATA_BASE||"")+POLICY_FILE)); }
+  catch(e){ POLICY={documents:[]}; }
+}
+/* One policy document, parsed into blocks the page renders and, more importantly, into
+   anchors a citation can land on. The document numbers its own units (regulation 43)
+   and its own clauses ((3), then (a)), so the anchor is derived from the markers as
+   printed rather than from anything we add to the file: `reg-43-3` is regulation 43,
+   clause (3), because that paragraph starts "(3)" inside "### 43.".
+
+   The marker stack is what makes the nesting work. A marker that continues the sequence
+   at an open level replaces it; a marker that opens a sequence - (1), (a), (i) - pushes
+   a level. That is why (a) under (3) becomes 43-3-a and the next (4) pops back to 43-4. */
+const POLICY_MD_CACHE={};
+const ROMAN_SEQ=["i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii"];
+function markKind(m){ return /^\d+$/.test(m) ? "num" : "alpha"; }
+const nextLetter = a => a.slice(0,-1)+String.fromCharCode(a.charCodeAt(a.length-1)+1);
+function markFollows(m,prev){
+  if(!prev) return false;
+  if(markKind(m)!==markKind(prev)) return false;
+  if(markKind(m)==="num") return +m===+prev+1;
+  // letters run a..z then za, zb …; roman numerals run their own sequence
+  if(m.length===prev.length+1 && m.indexOf(prev)===0) return true;              // z -> za
+  if(m.length===prev.length && m.length<=2 && m===nextLetter(prev)) return true;
+  // an amendment inserts (na) after (n); (o) still follows, it just does not follow (na)
+  if(prev.length===2 && m.length===1 && m===nextLetter(prev.charAt(0))) return true;
+  const i=ROMAN_SEQ.indexOf(m);
+  return i>0 && ROMAN_SEQ[i-1]===prev;
+}
+function parsePolicyMd(md){
+  const blocks=[]; const anchors=[];
+  let unit=null, stack=[], note=[];
+  const flushNote=()=>{ if(note.length){ blocks.push({t:"note", text:note.join(" ")}); note=[]; } };
+  String(md||"").replace(/<!--[\s\S]*?-->/g,"").split(/\r?\n/).forEach(raw=>{
+    const line=raw.trim();
+    if(!line) return;
+    if(/^>/.test(line)){ note.push(line.replace(/^>\s?/,"").trim()); return; }
+    flushNote();
+    if(/^#\s/.test(line)) return;                        // the document's own title; policy.json holds it
+    if(/^##\s/.test(line)){ unit=null; stack=[];
+      const label=line.replace(/^##\s*/,"").trim();
+      blocks.push({t:"part", label, id:"part-"+stdSlug(label)}); return; }
+    if(/^###\s/.test(line)){
+      const body=line.replace(/^###\s*/,"").trim();
+      const m=body.match(/^(\d+)\.\s*(.*)$/);
+      unit=m?m[1]:null; stack=[];
+      const id=unit?("reg-"+unit):("u-"+stdSlug(body));
+      blocks.push({t:"unit", num:m?m[1]+".":"", heading:m?m[2]:body, id});
+      anchors.push(id); return; }
+    const mk=line.match(/^\(([0-9]{1,2}|[a-z]{1,4})\)\s*/);
+    let id="", depth=0;
+    if(mk && unit){
+      const mark=mk[1];
+      const at=stack.findIndex(x=>markFollows(mark,x));
+      if(at>=0) stack=stack.slice(0,at).concat([mark]);   // continues that level
+      // a numbered clause past (1) with no numbered level open means the (1) was never
+      // printed - regulation 37 opens straight at (2) - so it belongs at the top of the
+      // unit, not nested under whatever lettered item happened to precede it
+      else if(markKind(mark)==="num" && +mark>1 && !stack.some(x=>markKind(x)==="num")) stack=[mark];
+      else stack=stack.concat([mark]);                    // opens a new one
+      depth=stack.length-1;
+      id="reg-"+unit+"-"+stack.join("-");
+      anchors.push(id);
+    } else if(unit && stack.length){
+      depth=stack.length-1;                               // a proviso keeps its clause's indent
+    }
+    blocks.push({t:"p", text:line, id, depth, mark:mk?mk[1]:""});
+  });
+  flushNote();
+  return {blocks, anchors};
+}
+async function getPolicyMd(doc){
+  if(!doc || !doc.md) return null;
+  if(POLICY_MD_CACHE[doc.id]) return POLICY_MD_CACHE[doc.id];
+  const parsed=parsePolicyMd(await fetchText((DATA_BASE||"")+doc.md));
+  POLICY_MD_CACHE[doc.id]=parsed; return parsed;
+}
+
+/* the AI policy compliances - the other half of the Standards page. Same parser, same
+   philosophy, different labels: what the document obliges, and separately what we say
+   a system should do about it. The two halves are kept apart in the data because the
+   page keeps them apart on the card, and a reader must never take our advice for the
+   Court's requirement. */
+let AIPOLICY={lede:[], groups:[]};
+const AIPOL_FILE="standards/ai-policy-compliance.md";
+const AIPOL_LABELS={"document":"document","binds":"binds","citation":"citation",
+                    "timing":"timing","compliant when":"compliant","artifact":"artifact",
+                    "build":"build","automate":"automate","test":"test","note":"note"};
+const aipolItems = () => AIPOLICY.groups.reduce((a,g)=>a.concat(g.items.map(i=>({...i, document:i.document||g.document}))),[]);
+async function loadAiPolicy(){
+  try{ AIPOLICY=parseLabelledMd(await fetchText((DATA_BASE||"")+AIPOL_FILE), AIPOL_LABELS); }
+  catch(e){ AIPOLICY={lede:[], groups:[]}; }
 }
 
 /* re-point STATE_DATA at the active state. Kept async, and kept as the name every
@@ -972,7 +1087,7 @@ V.standards=()=>{
   const head=el("div");
   const lede=(STANDARDS.lede||[]).length ? STANDARDS.lede
     : ["The non-legal standards a build is measured against, and how each one is tested."];
-  head.innerHTML=`<h1 class="page-title">Standards adherence</h1>`
+  head.innerHTML=`<h1 class="page-title">Standards adherence</h1>`+subTabsHTML("standards","standards")
     +lede.map(t=>`<p class="lede">${esc(t)}</p>`).join("");
   m.appendChild(head);
   const all=stdItems();
@@ -1062,6 +1177,224 @@ V.standards=()=>{
   redraw();
   if(stdScrollTo){ const wanted=stdScrollTo; stdScrollTo=null;
     setTimeout(()=>{ const c=document.getElementById("std-"+wanted); if(c) c.classList.add("open"); scrollToId("std-"+wanted,70,true); },60); }
+  return m;
+};
+
+/* ============================================================ POLICY
+   The national policy instruments: not Acts, not judgments, so not Akoma Ntoso (see
+   the loader above). The page is generic over data/policy/policy.json - it renders
+   whatever documents that manifest names, in whatever way each of them numbers itself.
+   Nothing about the AI regulations is written into this code. */
+let policyDocId=null;        // the document the page is showing
+let policyScrollTo=null;     // a clause ref to land on when the page next renders
+const polUnitShort = doc => ((doc&&doc.unit)||{}).short || "Reg.";
+/* "reg_43_3" in the document's own language: Reg. 43(3). The first token is the unit
+   prefix the document declares, everything after it is the path down the clause tree. */
+function polCiteLabel(ref, doc){
+  const p=String(ref||"").split("_"); p.shift();
+  const n=p.shift()||"";
+  return polUnitShort(doc)+" "+n+p.map(x=>"("+x+")").join("");
+}
+const polCite = (ref, docId) => `<a class="pcite" data-doc="${esc(docId||"")}" data-clause="${esc(ref)}">`
+  +`${esc(polCiteLabel(ref, policyDoc(docId)))}</a>`;
+/* Land a citation on the clause it names. The exact anchor is tried first. Failing
+   that, the shortest anchor that contains the cited path in order: the draft prints two
+   lists a level deeper than it numbers them - 33(3)(i) sits inside item (e), so its
+   anchor is reg-33-3-e-i - and a citation should follow the document's numbering, not
+   ours. Failing both, the unit itself, so a citation always arrives somewhere true
+   rather than nowhere. */
+function policyAnchorId(parsed, clause){
+  const id=String(clause||"").replace(/_/g,"-");
+  if(!parsed) return id;
+  if(parsed.anchors.indexOf(id)>=0) return id;
+  const want=id.split("-");
+  const fits=a=>{ let i=0; a.split("-").forEach(x=>{ if(x===want[i]) i++; }); return i===want.length; };
+  const near=parsed.anchors.filter(fits).sort((a,b)=>a.length-b.length)[0];
+  return near || want.slice(0,2).join("-");
+}
+function goPolicyClause(docId, clause){
+  policyDocId=docId||policyDocId; policyScrollTo=clause||null;
+  _extra={}; if(policyDocId) _extra.doc=policyDocId; if(clause) _extra.clause=clause;
+  go("policy", true);
+}
+function policyDocHTML(d, parsed){
+  const meta=[d.issuer, d.made_by && d.made_by!==d.issuer ? d.made_by : "",
+              d.dated ? "dated "+d.dated : ""].filter(Boolean).join(" · ");
+  let h=`<div class="pol-doc-h">
+    <div class="pol-doc-t">${esc(d.title)}</div>
+    ${meta?`<div class="pol-doc-m">${esc(meta)}</div>`:""}
+    ${d.status?`<div class="pol-status"><span class="pol-dot s-${esc(d.status)}"></span>${esc(d.status)}${d.status_note?` <span class="pol-status-n">${esc(d.status_note)}</span>`:""}</div>`:""}
+  </div>`;
+  if(d.summary) h+=`<p class="pol-sum">${esc(d.summary)}</p>`;
+  if(d.why_it_matters) h+=`<p class="pol-why">${esc(d.why_it_matters)}</p>`;
+  const acts=[];
+  if(d.source_pdf) acts.push(`<button class="pdf-orig" data-pdf="${esc(DATA_BASE+d.source_pdf)}" data-pdftitle="${esc(d.title)}">${ic('file')}&nbsp; Read the original PDF</button>`);
+  if(d.source_url) acts.push(`<a class="pol-src" href="${esc(d.source_url)}" target="_blank" rel="noopener noreferrer">Where it was published</a>`);
+  if(acts.length) h+=`<div class="pol-acts">${acts.join("")}</div>`;
+  const parts=(parsed.blocks||[]).filter(b=>b.t==="part");
+  if(parts.length>1) h+=`<div class="pol-toc"><span class="std-l">Contents</span>`
+    +parts.map(p=>`<a class="pol-toc-i" data-jump="${esc(p.id)}">${esc(p.label)}</a>`).join("")+`</div>`;
+  h+=`<div class="pol-body">`;
+  (parsed.blocks||[]).forEach(b=>{
+    if(b.t==="note") h+=`<div class="pol-note"><span class="std-l">Note from this corpus</span>${stdInline(b.text)}</div>`;
+    else if(b.t==="part") h+=`<h2 class="pol-part" id="${esc(b.id)}">${esc(b.label)}</h2>`;
+    else if(b.t==="unit") h+=`<div class="pol-unit" id="${esc(b.id)}"><span class="pol-num">${esc(b.num)}</span>${esc(b.heading)}</div>`;
+    else h+=`<p class="pol-p d${Math.min(b.depth||0,3)}"${b.id?` id="${esc(b.id)}"`:""}>${esc(b.text)}</p>`;
+  });
+  return h+`</div>`;
+}
+V.policy=()=>{
+  const m=el("div","view-pol");
+  const docs=POLICY.documents||[];
+  const head=el("div");
+  const lede=(POLICY.lede||[]).length ? POLICY.lede
+    : ["Instruments that govern how a court runs, rather than how a case is decided."];
+  head.innerHTML=`<h1 class="page-title">${esc(POLICY.title||"Policy")}</h1>`
+    +lede.map(t=>`<p class="lede">${esc(t)}</p>`).join("");
+  m.appendChild(head);
+  if(!docs.length){ m.appendChild(el("div","empty","No policy documents are linked from this corpus.")); return m; }
+  if(!policyDocId || !policyDoc(policyDocId)) policyDocId=docs[0].id;
+  // more than one document: name them all and let the reader pick. With one, the page
+  // is the document and a picker of one is furniture.
+  if(docs.length>1){
+    const pick=el("div","pol-pick");
+    pick.innerHTML=docs.map(d=>`<button class="pol-pick-i${d.id===policyDocId?" on":""}" data-doc="${esc(d.id)}">${esc(d.short||d.title)}</button>`).join("");
+    pick.onclick=e=>{ const b=e.target.closest(".pol-pick-i"); if(!b) return;
+      policyDocId=b.dataset.doc; policyScrollTo=null; _extra={doc:policyDocId}; go("policy", true); };
+    m.appendChild(pick);
+  }
+  const host=el("div","pol-host");
+  host.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the document…</div>`;
+  m.appendChild(host);
+  const d=policyDoc(policyDocId);
+  getPolicyMd(d).then(parsed=>{
+    if(!parsed){ host.innerHTML=""; host.appendChild(el("div","empty","This document has no text file.")); return; }
+    host.innerHTML=policyDocHTML(d, parsed);
+    host.querySelectorAll(".pol-toc-i").forEach(a=>a.onclick=()=>scrollToId(a.dataset.jump,70,true));
+    if(policyScrollTo){ const want=policyScrollTo; policyScrollTo=null;
+      scrollToId(policyAnchorId(parsed, want), 80, true); }
+  }).catch(()=>{ host.innerHTML=`<div class="empty">Couldn't load the document. The viewer reads it live, so it must be served over http.</div>`; });
+  return m;
+};
+
+/* ---- AI policy compliance: a sub-tab of Standards adherence, not a page of its own.
+   It answers the same question the standards answer - what is this build measured
+   against - but from an instrument rather than from a published standard, so it sits
+   inside that page and shares its card, its search and its facets.
+
+   The card's one job beyond the content is provenance. What the document obliges and
+   what we suggest building are separated in the data and separated again here, under
+   two labels, because a reader who takes our "Automate" line for the Supreme Court's
+   requirement has been misled by the design. */
+const AIP_BINDS={court:"The court", vendor:"The vendor", both:"Both"};
+const aipBinds = b => AIP_BINDS[String(b||"").toLowerCase().trim()] || (b||"");
+V.aipolicy=()=>{
+  const m=el("div","view-req view-std view-aip");
+  const head=el("div");
+  head.innerHTML=`<h1 class="page-title">Standards adherence</h1>`+subTabsHTML("standards","aipolicy");
+  m.appendChild(head);
+  const lede=(AIPOLICY.lede||[]).length ? AIPOLICY.lede : [];
+  if(lede.length) m.appendChild(el("div","",lede.map(t=>`<p class="lede">${stdInline(t)}</p>`).join("")));
+  const all=aipolItems();
+  if(!all.length){ m.appendChild(el("div","empty","No AI policy compliance file is linked from this corpus.")); return m; }
+
+  const controls=el("div","controls");
+  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="a-search" placeholder="Search a compliance - register, audit, incident, disclosure, vendor…"></div>`;
+  m.appendChild(controls);
+  const facets=el("div","vfacets"); m.appendChild(facets);
+  const list=el("div"); list.id="a-list"; list.style.marginTop="10px"; m.appendChild(list);
+
+  const items=all.map(s=>({s, grp:s.group||"", binds:String(s.binds||"").toLowerCase().trim(),
+    art:s.artifact||"",
+    hay:((s.name||"")+" "+(s.gloss||"")+" "+(s.citation||"")+" "+(s.timing||"")+" "+(s.compliant||"")
+        +" "+(s.build||"")+" "+(s.automate||"")+" "+(s.test||"")+" "+(s.note||"")).toLowerCase()}));
+  const state={q:"", grp:"", binds:"", art:"", openAll:false};
+  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
+  const block=(l,v)=>`<div class="rq-block"><span class="rq-l">${l}</span><div class="rq-v">${v}</div></div>`;
+
+  function aipCardHTML(it){
+    const s=it.s;
+    const cites=String(s.citation||"").split("·").map(x=>x.trim()).filter(Boolean)
+      .map(c=>polCite(c, s.document)).join("");
+    const said=[];                                   // the document's half
+    if(s.compliant) said.push(block("To be compliant", stdInline(s.compliant)));
+    const ours=[];                                   // ours
+    if(s.build) ours.push(block("To be built", (s.artifact?`<span class="aip-art">${esc(reqArtifact(s.artifact))}</span>`:"")+stdInline(s.build)));
+    if(s.automate) ours.push(block("Automate", stdInline(s.automate)));
+    if(s.test) ours.push(block("Test", stdInline(s.test)));
+    return `<div class="req std aip" id="aip-${esc(s.id)}" data-aip="${esc(s.id)}">
+      <div class="rq-h">
+        <div class="rq-stmt std-name">${esc(s.name)}<span class="caret">${ic('chevron-right')}</span></div>
+      </div>
+      ${s.gloss?`<div class="rq-why">${stdInline(s.gloss)}</div>`:""}
+      <div class="aip-facts">
+        ${s.binds?`<span class="aip-f"><span class="std-l">Binds</span>${esc(aipBinds(s.binds))}</span>`:""}
+        ${s.timing?`<span class="aip-f"><span class="std-l">When</span>${stdInline(s.timing)}</span>`:""}
+      </div>
+      ${cites?`<div class="aip-cites"><span class="std-l">Citation</span><span class="cites">${cites}</span></div>`:""}
+      <div class="rq-full">
+        ${said.length?`<div class="aip-band">What the document requires</div><div class="aip-sec">${said.join("")}</div>`:""}
+        ${ours.length?`<div class="aip-band aip-ours">What we suggest building <span>our reading, not the Court's</span></div><div class="aip-sec">${ours.join("")}</div>`:""}
+        ${s.note?`<div class="rq-block aip-note"><span class="rq-l">Note</span><div class="rq-v">${stdInline(s.note)}</div></div>`:""}
+      </div>
+    </div>`;
+  }
+  function redraw(){
+    const bySearch=items.filter(it=> !state.q || it.hay.includes(state.q));
+    const cnt=(arr,k)=>{ const o={}; arr.forEach(i=>{ if(i[k]) o[i[k]]=(o[i[k]]||0)+1; }); return o; };
+    const grpC=cnt(bySearch,"grp");
+    const groups=AIPOLICY.groups.map(g=>g.name).filter(n=>grpC[n]);
+    let fh="";
+    // one jurisdiction is the normal case today, and a facet offering a single choice
+    // teaches nothing - it appears when a second jurisdiction does
+    if(groups.length>1) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Jurisdiction</span><div class="chips">`
+      +pill("grp","","All",bySearch.length,!state.grp)
+      +groups.map(n=>pill("grp",n,n,grpC[n],state.grp===n)).join("")+`</div></div>`;
+    const inGrp=bySearch.filter(it=> !state.grp || it.grp===state.grp);
+    const bC=cnt(inGrp.filter(i=>!state.art||i.art===state.art),"binds");
+    const bOrder=["court","vendor","both"].filter(b=>bC[b]);
+    if(bOrder.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Binds</span><div class="chips">`
+      +bOrder.map(b=>pill("binds",b,aipBinds(b),bC[b],state.binds===b)).join("")+`</div></div>`;
+    const aC=cnt(inGrp.filter(i=>!state.binds||i.binds===state.binds),"art");
+    const aOrder=Object.keys(aC).sort((x,y)=>aC[y]-aC[x]||x.localeCompare(y));
+    if(aOrder.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">To be built</span><div class="chips">`
+      +aOrder.map(a=>pill("art",a,reqArtifact(a),aC[a],state.art===a)).join("")+`</div></div>`;
+    facets.innerHTML=fh;
+
+    const final=bySearch.filter(it=> (!state.grp||it.grp===state.grp) && (!state.binds||it.binds===state.binds)
+      && (!state.art||it.art===state.art));
+    if(!final.length){ list.innerHTML=""; list.appendChild(el("div","empty","No compliance matches this search.")); return; }
+    let html=`<div class="std-bar"><span class="std-count">${final.length} of ${items.length} compliances</span>`
+      +`<span class="std-toggle" data-all="${state.openAll?"1":"0"}">${state.openAll?"Close all":"Open all"}</span></div>`;
+    AIPOLICY.groups.forEach(g=>{
+      const rows=final.filter(i=>i.grp===g.name); if(!rows.length) return;
+      const d=policyDoc(g.document);
+      const sub=[rows.length+"", d?d.title:""].filter(Boolean).join(" · ");
+      html+=`<div class="grouphead">${esc(g.name)} <span class="gh-status">${esc(sub)}</span></div>`;
+      if(g.gloss) html+=`<p class="std-gloss">${esc(g.gloss)}</p>`;
+      rows.forEach(it=>{ html+=aipCardHTML(it); });
+    });
+    list.innerHTML=html;
+    if(state.openAll) list.querySelectorAll(".req.aip").forEach(c=>c.classList.add("open"));
+  }
+  facets.addEventListener("click",e=>{
+    const p=e.target.closest(".chip"); if(!p) return;
+    const fg=p.dataset.fg, fv=p.dataset.fv;
+    if(fg==="grp") state.grp=(fv && state.grp===fv) ? "" : (fv||"");
+    else state[fg]=(state[fg]===fv?"":fv);
+    redraw();
+  });
+  list.addEventListener("click",e=>{
+    const t=e.target.closest(".std-toggle");
+    if(t){ state.openAll=!state.openAll; redraw(); return; }
+    if(e.target.closest(".pcite")) return;             // a citation opens the policy page
+    const h=e.target.closest(".rq-h"); if(!h) return;
+    h.closest(".req").classList.toggle("open");
+  });
+  setTimeout(()=>{const inp=$("#a-search"); if(inp)inp.oninput=e=>{ state.q=e.target.value.toLowerCase().trim(); redraw(); };},0);
+  redraw();
+  if(aipScrollTo){ const wanted=aipScrollTo; aipScrollTo=null;
+    setTimeout(()=>{ const c=document.getElementById("aip-"+wanted); if(c) c.classList.add("open"); scrollToId("aip-"+wanted,70,true); },60); }
   return m;
 };
 
@@ -2387,6 +2720,14 @@ const NAV_PAGES=[
    desc:"The judgments that fix how the provisions are read.",
    alias:["judgments","judgements","cases","precedent","rulings","citations"],
    tag:()=>`<span class="count">${isModelled()?(CASES.length||'-'):'-'}</span>`},
+  /* Policy sits with the other national objects because that is what it is: an
+     instrument that binds every court in the country. It is not case-typed - a
+     regulation on how a court may use AI is as true of a motor claim as of a §138
+     complaint - so, like Standards, it carries no state scope and no case scope. */
+  {view:"policy", label:"Policy", icon:"landmark", section:"National objects",
+   desc:"Policy instruments that govern how a court runs, rather than how a case is decided.",
+   alias:["policy","policies","regulations","ai","artificial intelligence","guidance","circular","draft regulations"],
+   tag:()=>`<span class="count">${(POLICY.documents||[]).length||'-'}</span>`},
   {view:"story", label:"The story", icon:"book-open", section:"", scoped:true, special:true,
    desc:"How a case actually moves, stage by stage, and the roles around it.",
    alias:["process","stages","journey","the story","roles","lifecycle"]},
@@ -2422,10 +2763,20 @@ const NAV_PAGES=[
    tag:()=>`<span class="count">${isModelled()?(reqNavCount()||'-'):'-'}</span>`},
   /* not scoped: a standard binds the build, not a case type or a state layer, so this
      page reads the same on every state and stays available on an unmodelled case type */
-  {view:"standards", label:"Standards adherence", icon:"shield-check", section:"Design",
+  {view:"standards", label:"Standards adherence", tab:"Standards", icon:"shield-check", section:"Design",
    desc:"The non-legal standards a build is measured against, and how each one is tested.",
    alias:["standards","standard","adherence","compliance","wcag","accessibility","a11y","security","owasp","dpdp","performance","interoperability","usability","testing","conformance"],
+   count:()=>stdItems().length,
    tag:()=>`<span class="count">${stdItems().length||'-'}</span>`},
+  /* A sub-tab of the page above, not a sibling of it: same question - what is this
+     build measured against - asked of an instrument instead of a published standard.
+     `under` keeps it out of the sidebar and puts it in that page's tab strip; it is
+     still declared here so search finds it and its deep link is a page like any other. */
+  {view:"aipolicy", label:"AI policy compliance", tab:"AI policy compliance",
+   section:"Design", under:"standards",
+   desc:"What the Supreme Court's draft AI regulations would require of a court and its vendor, clause by clause.",
+   alias:["ai policy","ai compliance","ai regulations","artificial intelligence","ai register","ai incident","apex body","ai committee","genai","vendor"],
+   count:()=>aipolItems().length},
   {view:"overview", label:"Overview", icon:"compass", section:"Overview",
    desc:"Where the model starts: what is modelled, and how to read it.",
    alias:["home","start","summary","introduction"]},
@@ -2441,6 +2792,23 @@ const NAV_PAGES=[
 ];
 const navLink=(p,cls)=>`<a data-view="${p.view}"${cls?` class="${cls}"`:""}><span class="ico">${ic(p.icon)}</span> ${esc(p.label)}${p.tag?" "+p.tag():""}</a>`;
 const navPagesIn=sec=>NAV_PAGES.filter(p=>p.section===sec && !p.under && !p.special);
+/* A sub-tab is a page that lives inside another page rather than beside it. The pages
+   nested under The story get their own sidebar links because they are about different
+   subjects; these are about the same subject read from a different instrument, so they
+   belong in a tab strip on the parent page and nowhere else. `under` is what says so:
+   navPagesIn already drops them from the sidebar, and this builds the strip from the
+   same declaration, so a second sub-tab is an entry in NAV_PAGES and no new code. */
+function subTabsHTML(parent, active){
+  const tabs=[NAV_PAGES.find(p=>p.view===parent), ...NAV_PAGES.filter(p=>p.under===parent)].filter(Boolean);
+  if(tabs.length<2) return "";
+  return `<div class="subtabs" role="tablist">`+tabs.map(t=>{
+    const n=t.count?t.count():0;
+    return `<button class="subtab${t.view===active?" on":""}" role="tab" aria-selected="${t.view===active}" `
+      +`data-view="${esc(t.view)}">${esc(t.tab||t.label)}${n?`<span class="subtab-n">${n}</span>`:""}</button>`;
+  }).join("")+`</div>`;
+}
+/* the page whose tab strip this view appears in - the sidebar marks that one active */
+const parentView = view => (NAV_PAGES.find(p=>p.view===view)||{}).under || null;
 const navLinks=(sec,cls)=>navPagesIn(sec).map(p=>navLink(p,cls)).join("");
 /* the same list as the sidebar offers right now: the pages nested under The story
    only exist where this state's layer carries that institution, so they are taken
@@ -2532,7 +2900,12 @@ function go(view, push){
   if(view==="parts"||view==="provisions") view="law"; // Acts + Provisions merged
   if(!V[view]) view="overview";
   currentView=view;
-  document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
+  /* which sidebar link lights up. A sub-tab has no link of its own - the reader is on
+     the parent page, on one of its tabs - so the parent's link carries the state. Every
+     other page, including the ones nested under The story, has its own link and keeps it. */
+  const inNav = v => !!document.querySelector('#nav a[data-view="'+v+'"], #ovNav a[data-view="'+v+'"]');
+  const navView = inNav(view) ? view : (parentView(view)||view);
+  document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===navView));
   syncNavGroups();   // open the groups that contain the active page, mark the parent
   setMain(V[view]());
   if(view!=="words") try{ linkifyVocab($("#main")); }catch(e){}   // turn vocabulary words in the prose into links
@@ -2556,7 +2929,8 @@ function scrollToId(id, offset, flash){
 }
 
 /* ---- deep-link router: the URL hash carries view + state + position ----
-   #<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&req=<id>&std=<id>&act=<a>&eid=<e> */
+   #<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&req=<id>&std=<id>&act=<a>&eid=<e>
+   &aip=<id>&doc=<policy doc>&clause=<clause ref> */
 function buildHash(){
   const p=new URLSearchParams();
   if(activeState) p.set("state",activeState);
@@ -2581,10 +2955,15 @@ function applyHash(raw, push){
     if(p.get("lens")) processLens=p.get("lens");
     _extra={}; pendingAnchor=null;
     const term=p.get("term"), note=p.get("note"), sec=p.get("sec"), act=p.get("act"), eid=p.get("eid"), req=p.get("req"), std=p.get("std");
+    const aip=p.get("aip"), pdoc=p.get("doc"), clause=p.get("clause");
     if(term){ vocabScrollTo=term; _extra.term=term; }
     if(note){ practiceScrollTo=note; _extra.note=note; }
     if(req){ reqScrollTo=req; _extra.req=req; }
     if(std){ stdScrollTo=std; _extra.std=std; }
+    if(aip){ aipScrollTo=aip; _extra.aip=aip; }
+    // a policy deep link names the document, and may name the clause inside it
+    if(pdoc && policyDoc(pdoc)){ policyDocId=pdoc; _extra.doc=pdoc; }
+    if(clause){ policyScrollTo=clause; _extra.clause=clause; }
     if(sec){ pendingAnchor=sec; _extra.sec=sec; }
     if(act){ _extra.act=act; if(eid) _extra.eid=eid; }
     go(view, !!push);
@@ -2621,6 +3000,12 @@ function setDrawer(open){
 
 /* delegated: open the full-Act modal from any "view-full" button */
 document.addEventListener("click",e=>{
+  // a sub-tab is a page, so it navigates through the same route as a sidebar link
+  const tb=e.target.closest(".subtab");
+  if(tb && tb.dataset.view){ _extra={}; go(tb.dataset.view, true); return; }
+  // a compliance citation opens the policy document, landing on the clause it names
+  const pc2=e.target.closest(".pcite");
+  if(pc2 && pc2.dataset.clause){ e.stopPropagation(); goPolicyClause(pc2.dataset.doc, pc2.dataset.clause); return; }
   const pv=e.target.closest(".pdf-orig");
   if(pv && pv.dataset.pdf){ if(window.openPdfModal) openPdfModal(pv.dataset.pdf, pv.dataset.pdftitle||"Original document"); else window.open(pv.dataset.pdf,"_blank"); return; }
   const sd=e.target.closest(".stdoc");
@@ -2664,7 +3049,8 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeModal(); con
    goVocabWord, goPracticeNote, the #requirements?req= deep link, …) - the
    overlay never invents a route of its own. */
 const GS_TYPES=[["page","Pages"],
-                ["provision","Provisions"],["vocab","Vocabulary"],["req","Requirements"],["std","Standards"],["case","Case law"],
+                ["provision","Provisions"],["vocab","Vocabulary"],["req","Requirements"],["std","Standards"],
+                ["policy","Policy"],["case","Case law"],
                 ["note","Local practice"],["story","Story"],["inst","Institutions"],["act","Acts"]];
 const GS_LABEL={}; GS_TYPES.forEach(([k,v])=>{GS_LABEL[k]=v;});
 const GS_CAP=6;                     // rows shown per group; the total is always stated
@@ -2687,6 +3073,7 @@ const gsHintSaid=()=>gsIsMac() ? "Command K" : "Control K";
 let GS_INDEX=null, _gsKey="";
 function gsKey(){ return [PROVISIONS.length,Object.keys(TERMS).length,REQS.length,stdItems().length,CASES.length,
   PRACTICE_NOTES.length,Object.keys(STATES_DATA).length,Object.keys(SOURCES).length,
+  (POLICY.documents||[]).length,aipolItems().length,
   activeState].join("|"); }   // activeState: the page rows carry the state layer they open on
 /* one entry: display strings, the weighted fields it is matched on, and how to open it.
    f is [text, weight] - the weight says how identifying that field is, so a hit on a
@@ -2798,6 +3185,24 @@ function gsBuildIndex(){
       title:s.name, sub:"Standard · "+(s.group||""), snip:s.gloss||s.test||"",
       f:[[s.name,1],[s.group,.5],[s.gloss,.45],[s.test,.35],[s.pass,.35]],
       open:()=>gsGoStd(s)});
+  });
+
+  /* The policy layer: each document, and each compliance drawn from one. A reader who
+     types "AI register" wants the obligation, so the compliance is indexed on its
+     citation too - "reg 37" finds it. */
+  (POLICY.documents||[]).forEach(d=>{
+    gsPush(L,{type:"policy", state:null, title:d.title, sub:"Policy · "+(d.issuer||"")+(d.status?" · "+d.status:""),
+      snip:d.summary||"",
+      f:[[d.title,1],[d.short,.9],[d.id,.8],[d.kind,.5],[d.issuer,.5],[d.summary,.4]],
+      open:()=>goPolicyClause(d.id, null)});
+  });
+  aipolItems().forEach(s=>{
+    const doc=policyDoc(s.document);
+    const cites=String(s.citation||"").split("·").map(x=>polCiteLabel(x.trim(), doc)).join(" ");
+    gsPush(L,{type:"policy", state:null, title:s.name,
+      sub:"AI policy compliance · "+aipBinds(s.binds)+(cites?" · "+cites:""), snip:s.gloss||"",
+      f:[[s.name,1],[cites,.85],[s.gloss,.5],[reqArtifact(s.artifact),.45],[s.build,.35],[s.test,.3]],
+      open:()=>applyHash("aipolicy?aip="+encodeURIComponent(s.id), true)});
   });
 
   /* Case law */
@@ -3347,7 +3752,8 @@ function showLoadError(err){
     await loadConfig();
     await loadProfile();
     // every state layer and the whole normative layer, in parallel - state is a filter, not a switch
-    await Promise.all([loadAllStates(), loadRequirements(), loadStandards()]);
+    await Promise.all([loadAllStates(), loadRequirements(), loadStandards(),
+                       loadPolicy(), loadAiPolicy()]);
     buildNav();
     // the Map ("graph") is hidden for now; keep V.graph defined but never land on it.
     // Restore where the user last was: an explicit URL hash (a shared deep link) wins;

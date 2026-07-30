@@ -520,6 +520,9 @@ def data_dictionary():
     w("| `data/requirements/national.json` | the normative layer, central: what a system MUST do, binding every state |")
     w("| `data/requirements/<state>.json` | the normative layer, per state: only what that state's own instruments add, or tighten |")
     w("| `data/standards/standards-adherence.md` | the standards layer: the non-legal obligations a build is measured against, each with its test. Markdown, not JSON, and not joined into the bundle |")
+    w("| `data/policy/policy.json` | the policy manifest: each document's issuer, status, unit of numbering, markdown, source PDF and source URL |")
+    w("| `data/policy/md/*.md` | the policy documents themselves, transcribed. Not Akoma Ntoso - a policy is neither an Act nor a judgment - with their own numbering kept so a clause can be cited and linked |")
+    w("| `data/standards/ai-policy-compliance.md` | the operational obligations drawn out of those documents, each citing a clause. The document's half and DRISTI's suggested build are separate fields and must stay so |")
     w("| `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId` |")
     w("| `domain/%s.json` / `.md` | the denormalized join of all of the above |" % PROFILE)
     w("")
@@ -714,12 +717,63 @@ for name, sch in schemas.items():
 # ---------------------------------------------------------------- standards
 # the non-legal layer. Prose, not a schema, so nothing is joined into the bundle; the
 # generator only counts it, so llms.txt and the README can point at it truthfully.
+def _md_counts(path):
+    """(records, group names) for one of the prose files, read the way the app reads it."""
+    if not os.path.exists(path): return 0, []
+    txt = re.sub(r"<!--.*?-->", "", open(path, encoding="utf-8").read(), flags=re.S)
+    return len(re.findall(r"^### ", txt, re.M)), re.findall(r"^## (.+)$", txt, re.M)
+
 STD_PATH = os.path.join(DATA, "standards", "standards-adherence.md")
-STD_COUNT, STD_GROUPS = 0, []
-if os.path.exists(STD_PATH):
-    _std = re.sub(r"<!--.*?-->", "", open(STD_PATH, encoding="utf-8").read(), flags=re.S)
-    STD_COUNT  = len(re.findall(r"^### ", _std, re.M))
-    STD_GROUPS = re.findall(r"^## (.+)$", _std, re.M)
+STD_COUNT, STD_GROUPS = _md_counts(STD_PATH)
+
+# ---------------------------------------------------------------- policy + compliance
+# The policy layer: instruments that are neither Act nor judgment, so they are markdown
+# rather than Akoma Ntoso (a draft regulation is not legislation and should not be
+# dressed as it). policy.json is the manifest; the compliance file hangs off it, one
+# record per operational obligation, each citing a clause of a document named here.
+POL_PATH = os.path.join(DATA, "policy", "policy.json")
+POLICY = load(POL_PATH) if os.path.exists(POL_PATH) else {"documents": []}
+POL_DOCS = POLICY.get("documents", [])
+AIPOL_PATH = os.path.join(DATA, "standards", "ai-policy-compliance.md")
+AIPOL_COUNT, AIPOL_GROUPS = _md_counts(AIPOL_PATH)
+
+def _aipol_binds():
+    """How the compliances split by who they bind - the one number a reader asks for."""
+    out = {}
+    if not os.path.exists(AIPOL_PATH): return out
+    txt = re.sub(r"<!--.*?-->", "", open(AIPOL_PATH, encoding="utf-8").read(), flags=re.S)
+    for m in re.finditer(r"^\*\*Binds\.\*\*\s*(.+?)\s*$", txt, re.M):
+        out[m.group(1)] = out.get(m.group(1), 0) + 1
+    return out
+AIPOL_BINDS = _aipol_binds()
+
+# every compliance must cite, and every citation must name a document in the manifest.
+# A record whose document is not there is a citation that cannot resolve in the app, so
+# it stops the build rather than shipping as a dead link.
+_pol_errors = []
+if os.path.exists(AIPOL_PATH):
+    _txt = re.sub(r"<!--.*?-->", "", open(AIPOL_PATH, encoding="utf-8").read(), flags=re.S)
+    _ids = {d.get("id") for d in POL_DOCS}
+    _doc = None
+    for _block in re.split(r"^(?=###? )", _txt, flags=re.M):
+        _h2 = re.match(r"^## (.+)$", _block, re.M)
+        _d = re.search(r"^\*\*Document\.\*\*\s*(\S+)\s*$", _block, re.M)
+        if _d: _doc = _d.group(1)
+        _h3 = re.match(r"^### (.+)$", _block)
+        if not _h3: continue
+        _name = _h3.group(1).strip()
+        if not re.search(r"^\*\*Citation\.\*\*", _block, re.M):
+            _pol_errors.append("ai-policy-compliance: %r cites no clause" % _name)
+        if _doc not in _ids:
+            _pol_errors.append("ai-policy-compliance: %r cites document %r, which policy.json does not name"
+                               % (_name, _doc))
+for _d in POL_DOCS:
+    for _k in ("md", "source_pdf"):
+        if _d.get(_k) and not os.path.exists(os.path.join(DATA, _d[_k])):
+            _pol_errors.append("policy.json: %s %s does not exist" % (_d.get("id"), _d[_k]))
+if _pol_errors:
+    for _e in _pol_errors[:20]: print("  " + _e)
+    raise SystemExit("POLICY LAYER FAILED: %d problem(s)." % len(_pol_errors))
 
 # ---------------------------------------------------------------- llms.txt
 def llms_txt():
@@ -788,6 +842,33 @@ def llms_txt():
       "%d standards across %s. The file states its own shape in a comment at the top." %
       (STD_COUNT, ", ".join(STD_GROUPS)),
       "",
+      ] + ([
+      "## Policy (%d document%s) and AI policy compliance (%d records)"
+      % (len(POL_DOCS), "" if len(POL_DOCS) == 1 else "s", AIPOL_COUNT),
+      "",
+      "A policy is the third kind of instrument here: not an Act, not a judgment, so not "
+      "Akoma Ntoso. It is kept as markdown with its own numbering intact and its source PDF "
+      "one folder over, and `policy.json` is the manifest over it. The compliance file pulls "
+      "out every operational obligation - anything that must be reported, disclosed, logged, "
+      "registered, audited, or produced as a record - and cites the clause it comes from. "
+      "Each record separates what the document requires from what DRISTI suggests building; "
+      "do not read the second as the first.",
+      "",
+      "- [/data/policy/policy.json](/data/policy/policy.json): the manifest - each document's "
+      "issuer, status, unit of numbering, markdown, source PDF and source URL.",
+      ] + [
+      "- [/data/%s](/data/%s): %s (%s%s)." % (d["md"], d["md"], d.get("title", d.get("id")),
+                                              d.get("issuer", ""),
+                                              ", " + d["status"] if d.get("status") else "")
+      for d in POL_DOCS if d.get("md")
+      ] + [
+      "- [/data/standards/ai-policy-compliance.md](/data/standards/ai-policy-compliance.md): "
+      "%d compliance records%s. Read as a sub-tab of Standards adherence in the viewer." %
+      (AIPOL_COUNT,
+       " (" + ", ".join("%d bind %s" % (n, k) for k, n in sorted(AIPOL_BINDS.items())) + ")"
+       if AIPOL_BINDS else ""),
+      "",
+      ] if POL_DOCS else []) + [
       "## Schemas",
       "- [/data/schema/profile.schema.json](/data/schema/profile.schema.json)",
       "- [/data/schema/state.schema.json](/data/schema/state.schema.json)",
@@ -841,6 +922,25 @@ def readme_block():
         w("| `public/data/standards/standards-adherence.md` | %d standards across %s - each with how to test it and the threshold that decides it |"
           % (STD_COUNT, ", ".join(STD_GROUPS)))
         w("")
+    if POL_DOCS:
+        w("The **policy layer** is the third kind of instrument: not an Act and not a judgment, so "
+          "not Akoma Ntoso. Each document is transcribed as markdown with its own numbering intact, "
+          "its source PDF one folder over, and the operational obligations pulled out clause by "
+          "clause under Standards adherence:")
+        w("")
+        w("| source | what |")
+        w("|---|---|")
+        w("| `public/data/policy/policy.json` | the manifest: %d document%s, each with its issuer, status, unit of numbering and source |"
+          % (len(POL_DOCS), "" if len(POL_DOCS) == 1 else "s"))
+        for d in POL_DOCS:
+            if d.get("md"):
+                w("| `public/data/%s` | %s%s |" % (d["md"], d.get("title", d.get("id")),
+                                                   " (%s)" % d["status"] if d.get("status") else ""))
+        w("| `public/data/standards/ai-policy-compliance.md` | %d compliance records%s - what the document requires, kept separate from what DRISTI suggests building |"
+          % (AIPOL_COUNT,
+             " (" + ", ".join("%d bind %s" % (n, k) for k, n in sorted(AIPOL_BINDS.items())) + ")"
+             if AIPOL_BINDS else ""))
+        w("")
     w("Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the Netlify build, so deploys never drift).")
     w("")
     w("**Enumerations in use** (data-derived):")
@@ -848,7 +948,7 @@ def readme_block():
     for k, vals in ENUMS.items():
         w("- `%s`: %s" % (k, ", ".join(vals)))
     w("")
-    w("**Counts:** %d Acts, %d provisions, %d national terms; states: %s; %d field notes%s%s." % (
+    w("**Counts:** %d Acts, %d provisions, %d national terms; states: %s; %d field notes%s%s%s." % (
         len({p['act'] for p in prof['provisions']}), len(prof['provisions']), len(prof['terms']),
         ", ".join("%s (%d terms)" % (st['name'], len(st['vocabulary'])) for st in bundle['states'].values()),
         len(notes),
@@ -856,7 +956,9 @@ def readme_block():
             REQUIREMENTS["counts"]["total"], REQUIREMENTS["counts"]["national"],
             " + ".join("%d %s" % (n, s) for s, n in REQUIREMENTS["counts"]["by_state"].items()))
          ) if REQUIREMENTS else "",
-        "; %d standards" % STD_COUNT if STD_COUNT else ""))
+        "; %d standards" % STD_COUNT if STD_COUNT else "",
+        ("; %d policy document%s with %d compliance records"
+         % (len(POL_DOCS), "" if len(POL_DOCS) == 1 else "s", AIPOL_COUNT)) if POL_DOCS else ""))
     w("")
     w("<!-- AUTO-DATA-MODEL:END -->")
     return "\n".join(L)

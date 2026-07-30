@@ -196,6 +196,10 @@ dristi-domain-model/
 │       │   ├── cheque-dishonour-s138.caselaw.json   # the dataset
 │       │   ├── akn/      #     43 judgments as Akoma Ntoso <judgment> XML (*.akn.xml)
 │       │   └── sources/  #     43 original judgment PDFs the AKN was converted from
+│       ├── policy/       #   policy instruments - neither Act nor judgment, so not AKN
+│       │   ├── policy.json #   the manifest: title, issuer, status, unit of numbering, paths
+│       │   ├── md/       #     each document transcribed, its own numbering intact (*.md)
+│       │   └── sources/  #     the original policy PDFs the markdown was transcribed from
 │       ├── profiles/     #   per-case-type relevance profiles (*.profile.json), the manifest
 │       └── state/        #   per-state overlay, read by the State objects pages
 │           ├── kerala.json               # Kerala manifest (amendments / rules / notifications)
@@ -218,6 +222,7 @@ dristi-domain-model/
 - **`public/data/` is the only directory the app reads.** Serve the site from `public/`.
 - `context/` is human research and is **gitignored** - it is never committed or deployed.
 - **`acts/`, `caselaw/` and each `state/<state>/` share the same standardised shape:** an `akn/` folder holding the Akoma Ntoso XML and a `sources/` folder holding the original PDFs. Acts and rules use `<act>`; judgments use `<judgment>`.
+- **`policy/` keeps that pairing but not the format.** A policy - a draft regulation circulated for comment, a court's own guidance - is neither legislation nor a judgment, and dressing it as an `<act>` would assert a status it does not have. So the converted form is markdown under `policy/md/` with the source PDF one folder over in `policy/sources/`, and the document's own numbering (Regulation 43, clause (3)) is kept intact so a clause can be cited and deep-linked. `policy.json` is the manifest the **Policy** page reads.
 - Every `.akn.xml` therefore has its source PDF one folder over (`…/akn/x.akn.xml` to `…/sources/x.pdf`), kept for provenance and re-conversion.
 - **`public/data/state/` is the per-state overlay** (see [§3.3](#33-shared-core-vs-state-layer)): a `<state>.json` manifest per state plus the state's own AKN + source PDFs. The viewer reads it through the **State objects** pages; **Kerala** is modelled, other states show a placeholder.
 - The conversion pipeline lives in `scripts/`; its methodology is documented in [`docs/methodology.md`](docs/methodology.md).
@@ -612,6 +617,11 @@ Everything else the model needs (statutes, the Constitution, vocabulary, the 202
 2. Populate its `construes` with the provision refs (`<alias>:<eId>`) it interprets - that's what wires it into the Provisions and Case-law views.
 3. Drop the judgment PDF into `public/data/caselaw/sources/`, convert it to a `<judgment>` `.akn.xml` under `public/data/caselaw/akn/` (see §8.2), and set the case's `akn`, `source_pdf`, `decided`, and `neutral_citation` fields - that's what lights up the **Read judgment** button.
 
+**Add a policy document (and its compliances):**
+1. Drop the source PDF into `public/data/policy/sources/<canonical-slug>.pdf` and transcribe it to `public/data/policy/md/<canonical-slug>.md`, keeping the document's own headings and clause numbers exactly as printed - `## part`, `### <n>. <heading>`, then clause paragraphs starting `(1)` / `(a)` / `(i)`. A `>` line anywhere in the file is an editorial note from this corpus, never the document.
+2. Add an entry to `public/data/policy/documents[]` in `public/data/policy/policy.json` with its title, issuer, status, `unit` (how it numbers itself), `md`, `source_pdf` and `source_url`. The **Policy** page picks it up; no app code changes.
+3. If it carries operational obligations, add records to `public/data/standards/ai-policy-compliance.md` under the right `## jurisdiction`, each citing a clause of that document (`reg_43_3`). The file states its own shape in a comment at the top. Keep what the document requires apart from what you are recommending - the page renders the two under different labels and the distinction is the point.
+
 **Add a state-layer instrument (e.g. a new state, or another Kerala rule):**
 1. Drop the source PDF into `public/data/state/<state>/sources/` (lowercase-hyphenated slug).
 2. For a section/rule-structured document, add an entry to `DOCS` in `scripts/convert_rules.py`: its title, FRBR work URI, date, and the matching parse mode (`chapter-rule` / `flat-rule` / `chapter-flatrule` / `flat-section`); if the embedded text is poor, extract a clean `.txt` layout dump and point `text_file` at it. Short, table-shaped documents (a G.O., a fee schedule) are hand-authored to the same `<meta>` template instead.
@@ -718,6 +728,14 @@ The **standards layer** is the non-legal half of the same question. It is prose,
 |---|---|
 | `public/data/standards/standards-adherence.md` | 41 standards across Accessibility, Security, Performance, Interoperability, Usability, Content & Legal - each with how to test it and the threshold that decides it |
 
+The **policy layer** is the third kind of instrument: not an Act and not a judgment, so not Akoma Ntoso. Each document is transcribed as markdown with its own numbering intact, its source PDF one folder over, and the operational obligations pulled out clause by clause under Standards adherence:
+
+| source | what |
+|---|---|
+| `public/data/policy/policy.json` | the manifest: 1 document, each with its issuer, status, unit of numbering and source |
+| `public/data/policy/md/regulations-for-use-of-artificial-intelligence-in-courts-2026.md` | Regulations for Use of Artificial Intelligence in Courts, 2026 (draft) |
+| `public/data/standards/ai-policy-compliance.md` | 44 compliance records (15 bind both, 28 bind court, 1 bind vendor) - what the document requires, kept separate from what DRISTI suggests building |
+
 Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the Netlify build, so deploys never drift).
 
 **Enumerations in use** (data-derived):
@@ -736,6 +754,6 @@ Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the N
 - `requirement_derived_from`: act, caselaw, practice-note, rule
 - `requirement_binds_artifact`: validation-rule, workflow-step, schema-field, screen, output-document, access-control
 
-**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes; 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala); 41 standards.
+**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes; 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala); 41 standards; 1 policy document with 44 compliance records.
 
 <!-- AUTO-DATA-MODEL:END -->

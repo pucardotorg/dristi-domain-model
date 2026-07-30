@@ -1,0 +1,766 @@
+<!--
+  HOW THIS FILE IS WRITTEN - the Policy page parses it, so keep the shape.
+
+    # Title           the document's own title. The page titles itself from
+                      policy.json, so this line is not rendered.
+    > line            an editorial note from this corpus, NOT the document. It is
+                      rendered inset and labelled as such, wherever it appears.
+    ## Name           a part of the document (a Chapter, the covering Notice).
+    ### N. Name       one numbered unit - a regulation. It is the citable unit:
+                      the compliance table cites "reg_43_3" and lands on it.
+    (1) / (a) / (i)   a clause. The marker is kept exactly as printed; the page
+                      derives the anchor from it, so 43(3) is reachable because
+                      the paragraph starts "(3)".
+    Provided ...      a proviso; it is a paragraph like any other.
+
+  Everything that is not a `>` line is the document, transcribed verbatim. Nothing
+  is summarised, reordered or renumbered. Add a document by dropping its markdown
+  in this folder and naming it in policy.json - no new code.
+-->
+
+# Regulations for Use of Artificial Intelligence in Courts, 2026 (draft)
+
+> Transcribed from the PDF the Supreme Court of India published on 3 June 2026,
+> which is kept alongside this file at `policy/sources/regulations-for-use-of-artificial-intelligence-in-courts-2026.pdf`.
+> The wording is the document's, character for character, checked against the
+> source text. Two things are presentational and nothing else was touched: the
+> long dash the source uses to introduce a list, as in "namely:", is written here
+> as a single hyphen, and the source's table of contents is not
+> repeated because the headings below reproduce it. This is a DRAFT circulated
+> for comment; it is not in force, and it commences only when the Chief Justice
+> of India, or the Chief Justice of a High Court, notifies it under regulation 1(2).
+
+## Notice as published with the draft
+
+SUPREME COURT OF INDIA
+
+Dated: 03.06.2026
+
+NOTICE
+
+Sub.: Seeking views/suggestions of all stakeholders and the general public on draft ‘Regulations for Use of Artificial Intelligence (AI) in Courts, 2026’.
+
+1. After due deliberations and consultation, a preliminary draft of ‘Regulations for Use of Artificial Intelligence (AI) in Courts, 2026’ has been prepared under the aegis of the Artificial Intelligence Committee, Supreme Court of India. These regulations aim to govern the use of Artificial Intelligence in Courts, grounded in the principles of human primacy, transparency, accountability, data protection, and judicial independence, while establishing an institutional framework for responsible AI adoption across India’s judicial system.
+
+2. As directed, the draft ‘Regulations for Use of Artificial Intelligence (AI) in Courts, 2026’ are herewith published to invite comments and suggestions. All stakeholders and the general public are invited to share their comments and suggestions on the said draft regulations through email addressed to Member Secretary, AI Committee, Supreme Court of India at email ID office.regcc@sci.nic.in by 20/06/2026.
+
+Sd/-
+
+Member Secretary, AI Committee
+
+Copy to all concerned.
+
+## Chapter I - Preliminary
+
+### 1. Short title and commencement
+
+(1) These regulations may be called the “Regulations for Use of Artificial Intelligence in Courts, 2026”.
+
+(2) These regulations, or any provision thereof, shall come into force -
+
+(a) in their application to the Supreme Court of India, on such date as the Chief Justice of India may, by notification in the Official Gazette, appoint; and
+
+(b) in their application to a High Court, and to all Courts, Tribunals and statutory Commissions falling within the jurisdiction of such High Court, on such date as the Chief Justice of the respective High Court may, by notification, appoint, and different dates may be appointed for different provisions of these regulations.
+
+### 2. Application
+
+They shall apply to the use, deployment, or integration of Artificial Intelligence in any judicial, adjudicatory or administrative function of the Supreme Court of India, High Courts, and all Courts including the Tribunals and statutory Commissions performing adjudicatory functions, within the territory of India.
+
+### 3. Definitions
+
+(1) Unless the context otherwise requires, -
+
+(a) “adjudicatory function” includes any function of a Court that directly involves the application of law to facts for the purpose of determining the rights, liabilities, status, or obligations of any party, including the hearing and disposal of suits, appeals, revisions, petitions and applications, the recording of evidence, the framing of issues, the passing of orders on merits, and the pronouncement of judgments and sentences;
+
+(b) “administrative function” includes any function of a Court, other than an adjudicatory function, such as, case filing and registration, cause-list preparation, scheduling and listing of matters, issuance of notices, summons and process, maintenance of records and registers, defect scrutiny, fee computation, certified copy issuance, and other ministerial and secretarial functions of the Court Registry, and the term “administrative” shall be construed accordingly;
+
+(c) “AI Audit” means the oversight and accountability mechanism provided under Regulation 38 of these Regulations;
+
+(d) “AI Committee” means the Committee of Judges constituted in the Supreme Court or in each High Court for the purposes of these regulations under regulation 33;
+
+(e) “AI Incident” means any event, in which the use, operation, failure, erroneous output or malfunction of an AI System, directly or indirectly, results in, or creates a substantial risk of harm to any person, or infringement of any right, or disruption of any Court process, or a breach of data security or confidentiality;
+
+(f) “AI Register” means the official register required to be maintained by the Court under regulation 37;
+
+(g) “AI Secretariat” means the secretariat established under Regulation 34 of these Regulations.
+
+(h) “AI Service Provider” includes any organisation which, or a person who, by virtue of a contract, designs, develops, trains, fine-tunes, or integrates an AI System for deployment in any Court process, and assumes express or implied contractual, statutory, or regulatory obligation towards the Court and remains accountable for the performance, accuracy, fairness, transparency, and security of such AI System throughout its lifecycle;
+
+(i) “AI System” or “AI Tool” includes any software, platform, application, device, or process that employs Artificial Intelligence to perform tasks in connection with any Court process;
+
+(j) “Algorithmic Decision-Making (ADM)” means the use of outputs produced by algorithms (whether in whole or in part) to inform, recommend, or arrive at a decision affecting any person or process;
+
+(k) “anonymisation” means the process of irreversibly altering or removing personal information from a dataset such that the data subject cannot be identified, directly or indirectly, including by reference to any name, identification number, location data, or any other factor specific to the identity of that person;
+
+(l) “Appropriate Authority” means -
+
+(i) the Apex Body at the Supreme Court of India; or
+
+(ii) the AI Committee at the respective High Court or Tribunal or Commission, as the case may be, under whose administrative control an AI System is deployed or proposed to be deployed;
+
+(m) “Artificial Intelligence (AI)” refers to a machine-based system that infers, learns, and generates decisions, predictions, and recommendations from data, with a varying degree of autonomy, such as, algorithms, computational processes, and software, deployed for court processes, excluding general-purpose software or digital tools, unless such software or tools are specifically embedded with, augmented by, or functionally dependent upon, artificial intelligence;
+
+(n) “Black Box” refers to an AI System, which typically employs deep learning techniques and whose internal processes and decision-making logic are not transparent, comprehensible, or capable of being explained by reference to identifiable rules or factors accessible to the user or affected person;
+
+(na) “Controlled Environment Testing” means a secure, controlled and isolated testing environment created to enable the development, testing or evaluation of software, applications, systems or processes for use in Court processes, wherein the activities carried out within such environment do not affect, interfere with, or compromise the integrity, security, or functioning of the primary operational system or network of any Court;
+
+(o) “Court” means the Supreme Court of India, the respective High Courts and all Courts including Tribunals and statutory Commissions performing adjudicatory functions within the territory of India;
+
+(p) “Court data” means any data generated by or in possession of a Court;
+
+(q) “Court process” includes any work, function, or activity relating to the adjudicatory, quasi-adjudicatory, or administrative functions of a Court, including but not limited to filing, scheduling, hearing management, evidence handling, legal research, drafting, translation, transcription, and record management;
+
+(r) “cyber security” shall have the same meaning as assigned to it in clause
+
+(nb) of sub-section (1) of section 2 of the Information Technology Act, 2000 (21 of 2000);
+
+(s) “data” shall have the same meaning as assigned to it in clause (h) of section 2 of the Digital Personal Data Protection Act, 2023 (22 of 2023);
+
+(t) “data minimisation” means the principle that an AI System shall collect, process and retain only such personal data as is strictly necessary for the specific purpose for which it is deployed, and shall not collect, aggregate, or retain personal data beyond the minimum required for that purpose; and such principle shall apply at the stages of system design, procurement, deployment and audit;
+
+(u) “Designated Officer” means a judicial officer or a Court officer specifically nominated by the Appropriate Authority to supervise, verify, and take responsibility for the use of a specified AI System or AI Tool in a Court process;
+
+(v) “Ethical Impact Assessment” means a structured pre-and-post-deployment evaluation, as specified by the Appropriate Authority, of the design and deployment of an AI System or AI Tool, proposed for use or deployed in Court processes, against the general principles specified under Chapter II;
+
+(w) “explainability” means the capacity of an AI System to generate a comprehensible account of the reasoning, factors, weightings, and process by which it arrived at a particular output, recommendation, or decision, in terms that can be understood by the judicial officer, court staff, or litigant, to whom such account is directed; and an AI System shall be considered explainable, if such account may be provided upon request without requiring specialist technical knowledge on the part of the recipient;
+
+(x) “external system” means any computing infrastructure, server, software platform or network, not owned, managed, or directly controlled by the Court or the Appropriate Authority;
+
+(y) “Generative Artificial Intelligence (GenAI)” means a class of AI Systems designed to generate new content (including text, images, audio, video, and computer code) by learning statistical patterns and structures from large volumes of existing data; and no such GenAI-generated content shall be filed or produced before any Court, without mandatory disclosure of its origin and verification through a designated centralised mechanism, as may be decided by the Appropriate Authority;
+
+(z) “hallucination” means a phenomenon in AI Systems, that generate outputs that appear plausible or coherent, which are factually incorrect, fabricated, misleading, or unsupported by verifiable data or source material, including fabrication, misstatement, or erroneous representation of legal facts, evidence, case precedents, statutory provisions, rules, or legal principles;
+
+(za) “harm”, in relation to AI Incidents, includes any kind of physical or financial damage, or damage to the reputation or rights of any individual, institution, or infrastructure;
+
+(zb) “Human-in-the-Loop (HITL)” means a governance process in which the outputs, recommendations, or results generated by an AI System or AI Tool are subject to mandatory human review, supervision and verification, with final decision-making authority, responsibility, and accountability resting at all times with a human;
+
+(zc) “Institutional Head” means the Chairperson or President of a Tribunal or Commission performing adjudicatory functions, under whose administrative authority it functions;
+
+(zd) “Large Language Model (LLM)” means a type of AI System trained on extensive textual datasets to understand, generate and transform natural language, capable of performing tasks including translation, summarisation, legal research assistance and text generation;
+
+(ze) “Machine Learning (ML)” means a subset of Artificial Intelligence that enables systems to learn from data and improve their performance on specific tasks without being explicitly programmed for each such task, by identifying patterns and generating predictive or analytical outputs;
+
+(zf) “private entity” means any company, firm, partnership, trust, society, or other legal entity, whether incorporated or not, that is not owned, controlled, or managed by the Central Government or any State Government, and includes foreign entities and their subsidiaries or representatives operating in India;
+
+(zg) “Risk Scoring” means the use of an AI System to assign a numerical or categorical score to an individual that purports to estimate the probability of that person engaging in a specified future behaviour, including the commission of an offence, recidivism, or failure to appear before a Court;
+
+(zh) “sensitive judicial data” includes any personal identifiable information of parties, witnesses, or legal representatives and any information processed in connection with a Court process, the unauthorised disclosure of which may cause harm;
+
+(zi) “synthetic data or synthetic information” includes any audio, visual, audio-visual, or text-based data generated, modified, or produced by an AI System or AI Tool, including large language models, machine learning, or natural language processing systems, that mimics statistical properties of real data without being directly collected from real-world events or persons, but do not include data produced by established mathematical or scientific modelling that is not AI-assisted; and
+
+(2) Words and expressions used herein and not defined but defined in the Digital Personal Data Protection Act, 2023 (22 of 2023) or the Information Technology Act, 2000 (21 of 2000) shall have the same meanings as respectively assigned to them in the said Acts.
+
+## Chapter II - General principles to govern adoption, deployment and use of AI Systems in Courts
+
+### 4. Human primacy and judicial independence
+
+(1) The use of Artificial Intelligence in Court processes shall at all times remain strictly subservient to human judgment and judicial authority.
+
+(2) Every AI System shall function solely in an assistive capacity and shall not supplant or compromise the independent exercise of judicial authority by a duly appointed judicial officer.
+
+(3) The ultimate authority to determine matters of law, fact and justice shall vest exclusively in the judicial officers of the competent jurisdiction.
+
+### 5. Rule of law
+
+(1) The adoption and use of AI Systems in Courts shall be consistent with the provisions of the Constitution and any other law for the time being in force including the principles of natural justice and shall not be used in any manner that could undermine due process, the right to a fair trial, equality before law, or access to justice.
+
+(2) The Bangalore Principles of Judicial Conduct (adopted in 2002) shall, in addition to these regulations, continue to govern the conduct of judicial officers in all matters, including those involving the use of AI.
+
+### 6. Fairness and non-discrimination
+
+(1) The AI Systems used in Court processes shall be designed, trained and deployed in a manner that promotes fairness and avoids discrimination.
+
+(2) No AI System shall be deployed that perpetuates, amplifies, or introduces bias on the grounds of race, religion, caste, sex, gender, disability, language, economic status, or any other ground prohibited under the Constitution or any law for the time being in force and special care shall be taken to protect the rights and interests of vulnerable groups including women, children, persons with disabilities, marginalised and minority communities, and persons from economically and socially disadvantaged backgrounds.
+
+### 7. Transparency and explainability
+
+(1) Every AI System used in Court processes shall meet high standards of transparency and explainability.
+
+(2) The functioning, data inputs and decision logic of any AI System used in a Court process shall be capable of being understood and, where appropriate, be explained to judicial officers, the parties concerned and the public.
+
+(3) The deployment of AI Systems that are opaque or incapable of explanation shall be subject to heightened scrutiny and shall be restricted in high-risk applications affecting personal liberty or any lawful right of a person.
+
+### 8. Accountability
+
+(1) Accountability for all decisions made by any officer with the assistance of AI shall rest exclusively upon such officer and it shall not be permissible to invoke the outputs of an AI System, the opaqueness of a Black Box system, or the occurrence of hallucination, as a ground for avoiding accountability for a palpably incorrect, illegal, or harmful decision.
+
+(2) The Appropriate Authority shall ensure that clear and documented lines of accountability are established and maintained for the operation of every AI System or AI Tool in a Court.
+
+(3) Where any AI-generated output or information is used in any Court, it shall be treated as advisory in nature and reasonable care shall be taken to verify the accuracy of such output before the same is utilised:
+
+Provided that the officer responsible and accountable for using such AI Tool may, for reasons to be recorded in writing, dispense with the requirement of verification:
+
+Provided further that such AI tools used exclusively for administrative (non-adjudicatory) functions and certified by the AI Secretariat to have established reliability, shall be deemed to satisfy verification requirements on a class basis, without requiring prior verification.
+
+### 9. Auditability and continuous oversight
+
+(1) Every AI System in use in Court processes shall be subject to continuous monitoring and periodic technical, legal and ethical audits throughout their lifecycle and adequate mechanisms shall be established to detect, document and address errors, malfunctions and biases.
+
+(2) Audit findings shall be recorded and disclosed in accordance with these regulations, and shall decide upon the continued deployment of AI Systems in Courts.
+
+### 10. Data protection and privacy
+
+(1) The processing of personal data through AI Systems shall be governed by the principles of purpose limitation, data minimisation and data privacy by design in accordance with the provisions of the Digital Personal Data Protection Act, 2023 (22 of 2023) or any other law for the time being in force, and sensitive judicial data shall be accorded the highest standard of protection.
+
+(2) The right to privacy shall be ensured in all AI related operations of Courts.
+
+### 11. Purpose limitation
+
+AI Systems shall be deployed and used solely for specific purposes for which they have been approved by the Appropriate Authority and any use of an AI System beyond the scope of its approved purpose shall require a separate and specific approval of the Appropriate Authority, which shall record reasons therefor.
+
+### 12. Proportionality
+
+(1) The use of AI in any Court process shall be proportionate to the nature, complexity and risk profile of the relevant task.
+
+(2) Applications involving higher levels of risk to personal liberty or any lawful right of a person, or the integrity of judicial outcomes shall be subject to correspondingly heightened safeguards including mandatory Human-in-the-Loop requirements and independent oversight.
+
+### 13. Inclusivity and accessibility
+
+(1) AI Systems deployed in Courts shall be designed and operated to promote inclusivity and expand equitable access to justice.
+
+(2) Specific attention shall be given to ensuring that the deployment of AI does not create or widen digital divides and that the benefits of AI-assisted judicial services are extended fairly to all stakeholders including those from rural, economically disadvantaged, or linguistically diverse communities.
+
+### 14. Data integrity
+
+(1) AI Systems used in Court processes shall be trained and operated on the basis of data that is accurate, representative, lawfully obtained and to the extent feasible, free from discriminatory bias.
+
+(2) The deployment of AI Systems, trained on unlawfully collected or demonstrably biased datasets, shall be prohibited.
+
+### 15. Cyber security
+
+The confidentiality, integrity and availability of Court data, processed through or stored in AI Systems, shall be protected by robust, layered and continuously updated technical and organisational security measures, commensurate with the sensitivity of the data and the nature of the Court process.
+
+### 16. Presumption in favour of responsible AI adoption
+
+(1) Every Court shall actively seek opportunities to deploy AI Systems or AI Tools that demonstrably improve access to justice, reduce delays, or enhance administrative efficiency, and unless proved otherwise, the presumption shall be in favour of responsible adoption of AI in Court processes:
+
+Provided that no AI System or AI Tool used for the purpose of assistance in Court processes, shall replace humans as far as decision-making is concerned, and shall not be deployed for dispute-outcome prediction.
+
+(2) The restriction on, or refusal to permit, the use of any AI System or AI Tool, shall be for reasons to be recorded in writing, and such restriction shall be reasonable and to such extent so as to address the concern identified.
+
+### 17. Innovation over Restraint
+
+(1) The adoption of Artificial Intelligence in Court processes shall be pursued, in a responsible manner, as a catalyst for impactful innovation in the justice delivery system; and the exploration, development and integration of AI Systems and AI Tools that demonstrably further the goals of judicial efficiency and easy access to justice shall be actively encouraged.
+
+(2) All innovation under sub-regulation (1) shall be carried out with due regard to the other general principles set out in this Chapter, so as to maximise the overall benefit of AI adoption while eliminating or minimising potential harm; and, all other things being equal, an approach that prefers active and responsible adoption over restraint shall be encouraged.
+
+## Chapter III - Permissible and prohibited uses
+
+### 18. Appropriate Authority to identify use of AI in Courts
+
+The Appropriate Authority shall determine, from time to time, the areas of Court processes in which AI Systems may be utilised, in accordance with the provisions of these regulations.
+
+### 19. Permissible uses of AI
+
+(1) Subject to prior approval in writing by the Appropriate Authority and to the supervision and verification of officers nominated for that purpose, AI Systems may be used for the following purposes, which are illustrative and not exhaustive: -
+
+(a) case management (including identification of defects in new filings), cause list preparation, hearing scheduling and docket prioritisation;
+
+(b) automated transcription of court proceedings, subject to mandatory review and certification of accuracy by a Designated Officer;
+
+(c) translation of judgments, orders, pleadings and other legal documents, subject to human verification of accuracy and fidelity to the original;
+
+(d) legal research, precedent retrieval, citation verification and document summarisation;
+
+(e) administrative functions including case filing assistance, defect scrutiny, record management and judicial resource allocation;
+
+(f) conversational AI Assistants and guided chatbots to assist litigants and other stakeholders in accessing Court services and understanding procedural requirements, subject to human oversight of their functioning;
+
+(g) accessibility services including text-to-speech, speech-to-text, Braille translation and visual assistance tools, for persons with disabilities or language barriers;
+
+(h) document authenticity verification and fraud detection in administrative processes, subject to mandatory human review of all outputs before any action is taken;
+
+(i) anonymisation of judgments, orders and Court records for publication in the public domain;
+
+(j) analytical tools for judicial administration, court performance assessment and backlog monitoring and management; and
+
+(k) auto-generation of prescribed formats, notices and summons with metadata merge including automated preparation of administrative documents.
+
+(2) Any use of AI not enumerated under sub-regulation (1), or not otherwise specifically approved, shall require the prior written approval of the Appropriate Authority, which shall record reasons for the grant or refusal of such approval.
+
+### 20. Prohibited uses of AI
+
+(1) The following uses of AI are strictly prohibited in all Court processes. These prohibitions are absolute and non-derogable, and shall not be subject to relaxation or modification by any authority under these Regulations, including under the power conferred by Regulation 19(1) -
+
+(a) no personal data of any person shall be used to train, test, or refine any AI System without the prior approval of the Appropriate Authority and, where applicable, in compliance with applicable data protection law;
+
+(b) no judicial outcome (including any judgment, order, or finding of fact or law) shall be reached through Algorithmic Decision-Making alone or solely on the basis of AI-generated information, data, or analysis and the human judicial authority shall be the determinative authority in all adjudicative decisions;
+
+(c) no AI System shall perform the function of adjudication or sentencing in any matter without mandatory Human-in-the-Loop and any output of an AI System in relation to adjudicative or sentencing questions shall be treated as advisory only and shall be subject to independent judicial evaluation;
+
+(d) no AI System shall be used for Risk Scoring for any purpose in Court processes, including the assessment of flight risk, prediction of recidivism, evaluation of bail eligibility, or determination of the credibility of parties or witnesses;
+
+(e) no undisclosed, opaque, or unexplainable AI System shall be used in any Court process that may materially affect the lawful rights or personal liberty of any party;
+
+(f) no AI System shall be used to predict, profile, or infer the future conduct or behaviour of parties, accused persons, witnesses, or legal representatives in any Court process;
+
+(g) no AI System shall be used for the surveillance or continuous monitoring of judicial officers, advocates, litigants, or any other person within or in connection with Court premises or Court processes, except as may be specifically authorised by applicable law for the time being in force;
+
+(h) no AI-generated output shall be submitted to a Court as an independent source of evidence without full and transparent disclosure of its AI-generated character; and
+
+(i) no AI System shall be used in any manner that may compromise the confidentiality of judicial deliberations or the independence of the judicial decision-making process.
+
+(2) The prohibitions referred to in sub- regulation (1) shall be absolute and shall not be subject to relaxation or modification by any authority.
+
+### 21. Remedial measures by AI Committee
+
+Every violation of any prohibition specified in regulation 20 shall be reported forthwith to the AI Secretariat, which shall be placed before the AI Committee, and the AI Committee shall, after due enquiry, direct such remedial measures, including the suspension of the relevant AI System, as it deems appropriate.
+
+## Chapter IV - Policy making and institutional mechanism
+
+### 22. Apex Body
+
+(1) There shall be constituted a permanent, full-time Apex Body at the Supreme Court of India to regulate and promote innovation, integration, governance, oversight, standard-setting and policy development on Artificial Intelligence in judiciary.
+
+(2) The Apex Body shall consist of the following Members, namely: -
+
+(a) two Judges of the Supreme Court of India, nominated by the Chief Justice of India, one of whom shall serve as the Chairperson of the Apex Body, ex officio;
+
+(b) two Chief Justices of High Courts, nominated by the Chief Justice of India in consultation with senior puisne Judges, ex officio;
+
+(c) two Judges of High Courts, nominated by the Chief Justice of India, ex officio;
+
+(d) one Member from an Institution of national importance or any institution of repute, as may be nominated by the Chief Justice of India;
+
+(e) an officer not below the rank of Joint Secretary to the Government of India in the Ministry of Electronics and Information Technology (MeitY), Government of India, ex officio;
+
+(f) an expert in Finance, to be nominated by the Chief Justice of India;
+
+(g) an expert in Cybersecurity, to be nominated by the Chief Justice of India;
+
+(h) one or more advocates of standing, nominated by the Chief Justice of India, with expertise in technology related laws or data privacy or related fields; and
+
+(i) the Professor heading the field of Artificial Intelligence at the National Judicial Academy (NJA), Bhopal, ex officio:
+
+Provided that the Apex Body may co-opt such additional experts from Research Institutions or academic bodies as it deems necessary, on a case-to-case or standing basis, with the permission of the Chief Justice of India.
+
+(3) The terms of appointment, tenure, allowances, conditions of service and removal of Members of the Apex Body, other than ex officio Members, shall be such as may be determined by the Chief Justice of India.
+
+(4) The Apex Body shall devise its own procedure to be followed for its functioning and for conduct of its meetings.
+
+### 23. Functions of Apex Body
+
+The functions of the Apex Body shall be -
+
+(a) to ensure that no AI system, whether autonomous AI agent or static predictive model or any AI Tool, is in violation of any of the provisions of the Constitution or any law for the time being in force and are in compliance with the operational safeguards;
+
+(b) to benchmark and integrate cutting-edge AI Systems into the Indian Judicial System, in alignment with the highest global standards;
+
+(c) to uphold the Governing Principles as provided under Chapter II;
+
+(d) to strive for realising the vision of the AI Committee;
+
+(e) to coordinate with High Court AI Committees to ensure a harmonised national approach to AI governance in Courts;
+
+(f) to liaise with MeitY, the National Informatics Centre (NIC), the Data Protection Board, CERT-In (Indian Computer Emergency Response Team), or any other statutory or regulatory body on matters concerning AI in Courts;
+
+(g) to hear and recommend appropriate actions in respect of grievances arising out of usage of AI Systems and AI Tools;
+
+(h) to publish an Annual Governance Report on the state of AI in Indian Courts; and
+
+(i) to discharge such other functions as the Chief Justice of India may, from time to time, assign.
+
+### 24. Powers of Apex Body
+
+(1) The powers of the Apex Body shall include the following, namely: -
+
+(a) to set and periodically revise, the minimum mandatory standards and guidelines for the use of AI in Courts across India for compliance by all Courts;
+
+(b) to approve AI Systems proposed for use in Court processes subject to the provisions of Chapter V;
+
+(c) to issue guidelines and clarifications for the implementation of these Regulations;
+
+(d) to oversee the Centre of Research and Excellence on Artificial Intelligence (CoRE-AI) established under regulation 32, and to receive and act upon its reports and recommendations; and
+
+(e) to constitute Standing Committees to assist it in the discharge of its functions.
+
+### 25. Committees of Apex Body
+
+The Apex Body shall constitute the following Committees to assist it in the discharge of its functions, namely: -
+
+(a) Judicial Committee;
+
+(b) Technical Committee;
+
+(c) Committee on Infrastructure and Finance;
+
+(d) Case and Data Management Committee; and
+
+(e) Cyber Security Committee.
+
+### 26. Judicial Committee
+
+(1) The Judicial Committee shall be constituted by the Apex Body and shall comprise of judicial officers, registry personnel, and such other persons as the Apex Body may determine.
+
+(2) The Judicial Committee shall innovate, develop and deploy AI tools to assist in adjudication, so as to meet specific operational requirements of Courts and to address any other specific needs or concerns relating to the adoption and use of AI in Courts.
+
+(3) The Judicial Committee shall constitute a Sub-Committee of Rules to assist it for the purpose of framing, revising and recommending procedural rules relating to use of AI in Courts.
+
+### 27. Technical Committee
+
+(1) The Technical Committee shall consist of such number of AI researchers, computer scientists, data scientists and domain experts, as may be determined by the Apex Body.
+
+(2) The Technical Committee shall monitor advances in AI research and development; assess opportunities and risks arising from emerging AI technologies for the judiciary.
+
+### 28. Committee on Infrastructure and Finance
+
+(1) The Committee on Infrastructure and Finance shall consist of such number of experts in the fields of information technology, Artificial Intelligence, cloud computing, data centre, procurement, expenditure and finance, as may be determined by the Apex Body.
+
+(2) The Committee on Infrastructure and Finance shall oversee the establishment of infrastructure related to Artificial Intelligence, financial aspects of AI adoption in Courts including budget allocations, cost-benefit evaluations and the audit of expenditure under these regulations.
+
+(3) The Committee on Infrastructure and Finance shall coordinate with the Central Government and High Courts to assess the budgetary requirements for AI-related budget and place them before the Apex Body.
+
+### 29. Case and Data Management Committee
+
+(1) The Case and Data Management Committee (CDMC) shall consist of such number of Judicial Officers, officers of the Court Registry with experience of having worked in case management, legal research, listing, judicial administration and pendency reduction, along with experts in the field of AI and data management, as may be determined by the Apex Body.
+
+(2) The CDMC shall innovate, develop and deploy AI for assistance in adjudication and legal research connected to the National Court Management System (NCMS) of the Supreme Court of India and to the State Court Management Systems (SCMS) of the High Courts, so as to ensure backward integration with existing systems.
+
+### 30. Cyber Security Committee
+
+(1) The Cyber Security Committee (CSC) shall consist of such number of experts in the fields of information technology, cyber security, data protection including officers of CERT-In, Ministry of Electronics and Information Technology and NIC, as may be determined by the Apex Body.
+
+(2) The CSC shall monitor, evaluate, and make recommendations on aspects related to cyber security of AI systems, AI-related risk management, cyber security audits, vulnerability monitoring, and compliance with leading cybersecurity and data protection standards.
+
+### 31. Procedure to be followed by Committees of Apex Body
+
+(1) Each Committee of the Apex Body specified in regulation 25 shall frame its own procedure for its meeting and decision-making, subject to such directions as the Apex Body may issue.
+
+(2) The recommendations of each Committee shall be placed before the Apex Body for consideration and final decision.
+
+### 32. Centre of Research and Excellence on Artificial Intelligence
+
+(1) There shall be a Centre of Research and Excellence on Artificial Intelligence (CoRE-AI), as an integrated body, having such number of experts in the fields of technology, law, and academia, as may be determined by the Apex Body, to provide research and legal compliance-related support to the Apex Body.
+
+(2) The experts referred to in sub-regulation (1) shall include Judges, lawyers, technical experts, academicians in the fields of AI and law, Senior and Distinguished Fellows from Think-tanks, post-doctoral researchers and representatives of the National Judicial Academy.
+
+(3) The functions of the CoRE-AI shall include -
+
+(a) conducting original research on the application of AI in judicial and legal contexts;
+
+(b) evaluating AI tools and prototypes for use in court systems in the light of such research;
+
+(c) maintaining a centralised record of AI tools, evaluations and technical regulations available to Courts and public institutions;
+
+(d) providing technical advice and analytical support to the Apex Body and its Committees;
+
+(e) continuous monitoring and analysis of national and international jurisprudential developments concerning AI and emerging technologies;
+
+(f) conducting research on the legal impact of AI-prototypes, comparative legal tracking and releasing of white papers and empirical studies; and
+
+(g) organising conferences, seminars, colloquiums, symposiums, etc., in relation to the integration of AI in the judicial process.
+
+### 33. AI Committees
+
+(1) The Supreme Court of India and every High Court shall constitute an AI Committee to oversee, regulate and facilitate the responsible adoption and governance of AI within its jurisdiction, in accordance with the minimum mandatory standards laid down by the Apex Body.
+
+(2) The AI Committee referred to in sub-regulation (1) shall consist of -
+
+(a) a Judge of the Supreme Court or the respective High Court of not less than five years of standing as a Judge, as the case may be, designated by the Chief Justice, who shall serve as Chairperson of the AI Committee;
+
+(b) not less than two other Judges of the Supreme Court or such High Court as its Chief Justice may nominate; and
+
+(c) a Senior Member of the AI Secretariat and such other members of the AI Secretariat as the AI Committee may invite.
+
+(3) The AI Committee shall have the powers -
+
+(a) to approve AI Systems for use in Court processes within its jurisdiction, following a Technical and Ethical Impact Assessment;
+
+(b) to monitor compliance with these regulations and the minimum mandatory standards set by the Apex Body;
+
+(c) to issue supplementary directions tailored to local needs, provided they are not inconsistent with the minimum mandatory standards;
+
+(d) to recommend modifications to these regulations to the Apex Body, with reasons to be recorded in writing;
+
+(e) to oversee the AI Secretariat and to direct periodic audits of all Court AI Tools deployed within its jurisdiction, and shall perform the following functions, namely: -
+
+(i) review reports of AI Incidents, direct remedial measures, and communicate learnings to the Apex Body and other High Court AI Committees;
+
+(ii) prepare an annual report on the state of AI adoption within its jurisdiction and submit to the Chief Justice, which shall also be shared with the Apex Body; and
+
+(iii) coordinate with the Apex Body in developing common standards, shared platforms and best practices for AI adoption in Courts.
+
+(4) The AI Committee constituted in the Supreme Court shall be deemed to be the AI Committee for Tribunals and statutory Commissions performing adjudicatory functions at the national level and AI Committee constituted in the respective High Court shall be deemed to be the AI Committee for Tribunals and statutory Commissions performing adjudicatory functions at the State level.
+
+(5) The AI Committee shall meet at such intervals not more than three months, or at such shorter intervals as circumstances may require.
+
+(6) The AI Committee may call for suggestions from Universities, researchers and the private sector undertakings on the use and deployment of AI in Courts and the legal justice system, and may organise conferences or interactions with those whose suggestions merit consideration.
+
+### 34. AI Secretariat
+
+(1) Every AI Committee shall be supported by a dedicated AI Secretariat, headed by an officer in the cadre of District Judge, as may be designated by the Chief Justice of the respective High Court.
+
+(2) The AI Secretariat shall consist of such a number of officers and experts in judicial administration, technology, data science and law, as may be determined by the AI Committee.
+
+(3) The terms of service, manner of appointment, and tenure of officers and experts of the AI Secretariat shall be determined by the respective High Court in consultation with the Apex Body.
+
+(4) The AI Secretariat shall have the power to grant expedited approval for an AI Tool that -
+
+(a) is used exclusively for administrative purposes not involving personal data of parties;
+
+(b) does not affect adjudicatory functions; and
+
+(c) is functionally similar to a tool already approved by the Appropriate Authority.
+
+(5) The AI Secretariat shall maintain a register of all tools cleared under this pathway.
+
+## Chapter V - Oversight, audits and incident management
+
+### 35. Oversight and accountability
+
+(1) The Appropriate Authority shall, before approving any AI System for use in Court processes, require the submission of a comprehensive Technical and Ethical Impact Assessment.
+
+(2) The Appropriate Authority shall prescribe a standard format for the Technical and Ethical Impact Assessment within six months from the date of commencement of these regulations.
+
+(3) The Technical and Ethical Impact Assessment shall evaluate at a minimum, the -
+
+(a) purpose, architecture and functioning of the AI System;
+
+(b) nature, source, quality and representativeness of its training data;
+
+(c) risks of bias, error, hallucination and misuse in the relevant judicial context;
+
+(d) cyber security vulnerabilities and the data protection measures in place;
+
+(e) mechanisms for explainability and compliance with Human-in-the-Loop requirements; and
+
+(f) procedures for redressal of any harm and for incident reporting.
+
+### 36. Controlled Environment Testing
+
+(1) The Appropriate Authority may, in suitable cases and prior to the full-scale deployment of any AI System or AI Tool in Court processes, direct that the AI System or AI Tool be evaluated through Controlled Environment Testing established under the supervision of the AI Secretariat.
+
+(2) The Controlled Environment Testing shall be undertaken on a time-limited and clearly defined basis with documented parameters of evaluation, including accuracy, reliability, fairness, explainability, cyber security and compatibility with existing Court processes, and the outcomes of such testing shall be placed before the Appropriate Authority for consideration prior to any decision on deployment, mainstreaming or scaling of the AI System or AI Tool.
+
+(3) During the period of Controlled Environment Testing, the activities carried out within such environment shall not affect, interfere with, or compromise the integrity, security or functioning of the primary operational systems or networks of any Court, nor shall the outputs of such testing be used in any actual adjudicatory or administrative decision in a Court process.
+
+### 37. AI Register
+
+Each Court shall maintain an AI Register, in such form and with such particulars as the Appropriate Authority may prescribe, documenting -
+
+(a) all AI Systems approved for use in Court processes;
+
+(b) the purposes and scope of approved use for each system;
+
+(c) the identity of the AI Service Provider and, where applicable, the vendor;
+
+(d) the date of approval and any conditions attached thereto;
+
+(e) the records of Technical and Ethical Impact Assessments conducted;
+
+(f) the records of audits conducted and their outcomes; and
+
+(g) the AI Incidents recorded in connection with each system.
+
+(2) The dissemination of AI Register on the official website of the Court for public access shall be subject to data protection, confidentiality and cyber security.
+
+### 38. Audits
+
+(1) All Court AI Systems and AI Tools shall undergo periodic technical, legal and ethical audits at intervals not exceeding one year from the date of approval or the date of the preceding audit, or at such shorter intervals as the Appropriate Authority may direct.
+
+(2) The audits shall be conducted ‘in-house’, and under no circumstances the source code, algorithms, datasets, or other architectural information shall be shared with any third party or private entity for an audit outside the Court premises.
+
+(3) The audit reports shall be submitted to the Appropriate Authority and shall be recorded in the AI Register.
+
+### 39. AI Incident Database
+
+(1) Every AI Secretariat shall maintain an AI Incident Database for the systematic recording of all AI Incidents, including their type, cause, manner of occurrence, consequences and the remedial measures taken.
+
+(2) Where an AI Incident is reported in any High Court, the AI Secretariat of that High Court shall communicate the relevant findings and learnings to the AI Secretariats of other High Courts and to the Apex Body, so that corrective measures may be adopted across jurisdictions.
+
+(3) Any malfunction, error, or bias in a Court AI Tool with potential legal consequences shall be reported immediately to the AI Secretariat by the officer responsible for supervising such AI Tool.
+
+(4) The AI Secretariat shall, on receipt of a report referred to in sub-regulation (3), initiate remedial measures without delay and report the matter to the AI Committee.
+
+### 40. Discretion in supervising AI Systems
+
+The nominated officer responsible for supervising any AI System shall retain full discretion to accept, modify, or reject any AI-generated recommendation or output within the matters falling under his charge, and shall exercise discretion with independent professional judgment.
+
+### 41. Review of AI Systems already in use
+
+AI Systems already in use in Courts at the time of commencement of these Regulations shall be reviewed by the AI Secretariat for compliance within a period of one year from the date of such commencement and the Appropriate Authority shall determine the appropriate course of action in respect of any system found to be non-compliant.
+
+### 42. Emergency and fall-back protocol
+
+(1) Every High Court shall, in consultation with the AI Secretariat, establish and maintain an emergency and fall-back protocol specifying the procedures to be followed in the event of a failure, malfunction, or unavailability of any AI System or AI Tool in Court.
+
+(2) The emergency and fall-back protocol shall ensure the continuity of essential Court processes through manual or alternative means and shall be tested at periodic intervals as determined by the AI Secretariat.
+
+(3) Where a Court AI Tool fails or is suspended under these regulations, the AI Secretariat shall activate the applicable fall-back protocol and notify the AI Committee within twenty-four hours.
+
+### 43. Transparency and disclosure
+
+(1) The Courts shall, where an AI Tool materially assists in any aspect of case management, document analysis, or judicial administration that may affect the conduct of their proceedings, ensure that the parties are informed in a timely and accessible manner.
+
+(2) The obligation under sub-regulation (1) shall apply in all permitted uses of AI specified in regulation 19.
+
+(3) Where an AI Tool is used by any party or his legal representative in the preparation or submission of any document, pleading, or evidence, the AI-assisted character of such material shall be disclosed to the Court at the time of submission by way of a duly executed declaration or certificate in the format prescribed under Annexure I and any Court-initiated AI use in any Court process shall be declared in accordance with the format provided in Annexure II.
+
+(4) The Court shall have the authority to require disclosure of the AI System used, the nature and extent of AI assistance provided, and the steps taken to verify the accuracy of any AI-generated content, in respect of any AI-assisted submission placed before it.
+
+(5) Any person using Synthetic Data or Synthetic Information in any judicial proceeding shall be required to disclose such use to the Court, in such form and manner as the Appropriate Authority may prescribe.
+
+(6) In the event that any document, pleading, or evidence submitted to a Court is found to be fabricated, false, misleading, or inaccurate by reason of its AI-generated character, the person submitting the same shall bear full responsibility therefor and shall not be entitled to rely upon the character of the AI output as a defence. The Court may pass such orders as it deems fit against the responsible person.
+
+### 44. AI Content Verification Authority
+
+The Appropriate Authority shall constitute a dedicated institutional authority, to be designated as the AI Content Verification Authority, charged with the oversight, operation, and continuous updation of verification standards, tools and protocols applicable to GenAI-generated content in Court Process.
+
+### 45. Annual Transparency Report
+
+Every High Court, Tribunal and Commission referred to in these regulations shall submit an Annual Transparency Report on AI adoption within its jurisdiction, summarising the AI Systems in use, outcomes of audits, AI Incidents recorded and measures taken for compliance with and improvement of these regulations, to the Apex Body and cause the same to be published on its official website.
+
+## Chapter VI - Procurement and private sector engagement
+
+### 46. Engagement of Private Entities
+
+(1) No private entity, vendor, or third-party service provider shall undertake, participate in, or provide any service in connection with an AI System deployed in Court processes without the prior written approval of the Appropriate Authority.
+
+(2) All proposals for engagement of private entities in connection with AI Systems shall, prior to approval by the Appropriate Authority be subject to a comprehensive evaluation covering technical capability, legal compliance, ethical standards, data security practices and financial standing.
+
+(3) The procurement of AI Systems and related services shall, subject to ensuring transparency, competition, value for public resources and compliance with applicable procurement law and financial regulations, be governed by such procedures as the Chief Justice may determine.
+
+(4) All agreements entered into with private entities for AI-related services shall include mandatory provisions governing -
+
+(a) ownership of, and access rights to, Court data and AI outputs;
+
+(b) prohibition on the use of Sensitive Judicial Data or Court data for any purpose beyond the scope of the engagement;
+
+(c) full compliance with these Regulations and all applicable laws;
+
+(d) obligations of disclosure, incident reporting, and cooperation with audits;
+
+(e) the right of the AI Secretariat to audit and inspect the relevant AI System and its underlying data;
+
+(f) consequences of breach, including suspension or termination of the engagement and liability for harm;
+
+(g) source and model transparency, including complete technical documentation of the architecture and training data of the AI System;
+
+(h) explainability documentation for all High-Risk AI Tools;
+
+(i) mandatory indemnity clauses protecting the Court from liability for harms caused by defects in vendor-supplied AI Systems;
+
+(j) on-premise or sovereign cloud deployment requirements for AI Systems processing Sensitive Judicial Data;
+
+(k) explicit prohibition on the retraining, fine-tuning, or modification of AI models using Court data without the express written approval of the AI Committee;
+
+(l) Clear contractual allocation of liability between the Court and the vendor in the event of AI-related incidents, data breaches, or harm to litigants or third parties.
+
+(5) All AI Systems supplied, operated, or maintained by private entities shall be subject to continuous monitoring and periodic audits by the AI Secretariat throughout the duration of the engagement, as provided in regulation 38.
+
+(6) Any data breach, security incident or AI Incident, involving an AI System provided or maintained by a private entity, shall be reported by such entity to the Appropriate Authority without delay and non-compliance of such reporting, or with any other material condition of engagement, may result in the suspension or termination of the engagement and such further consequences as the Appropriate Authority may direct.
+
+(7) The AI Secretariat shall be empowered to grant expedited approval within thirty days for an AI Tool that -
+
+(a) is used exclusively for administrative purposes not involving personal data of parties;
+
+(b) does not affect adjudicatory functions; and
+
+(c) is functionally similar to a tool already approved by the Appropriate Authority.
+
+(8) The AI Secretariat shall maintain a register of all tools approved under sub-regulation (7).
+
+(9) Where AI Tools are developed using Court data or Court resources, the Appropriate Authority shall ensure that the Court retains ownership of, or a perpetual royalty-free licence to, the resulting tool and its outputs. No private entity shall claim exclusive intellectual property rights over tools developed primarily using judicial data or public resources.
+
+## Chapter VII - Data protection and cyber security
+
+### 47. Application of relevant laws
+
+All AI Systems deployed in Court processes shall comply with the provisions of the Digital Personal Data Protection Act, 2023 (22 of 2023), the Information Technology Act, 2000 (21 of 2000) and the applicable rules and regulations framed thereunder, and any other law governing the protection of personal data and judicial information for the time being in force.
+
+### 48. Sensitive judicial data
+
+(1) Sensitive judicial data shall not be transferred to any External System without the express written authorisation of the Appropriate Authority.
+
+(2) All transfers of sensitive judicial data shall be subject to appropriate technical and contractual safeguards designed to prevent unauthorised access, disclosure, alteration, or misuse.
+
+(3) The principle of data minimisation shall be applied in the selection and deployment of AI Systems and AI Systems that achieve the relevant operational objective while requiring lesser processing of personal data shall be preferred over those requiring greater data processing, particularly in Court processes involving sensitive personal information or matters affecting personal liberty.
+
+(4) Anonymisation shall be applied to personal data to the extent technically feasible without compromising the utility of the data for the intended purpose, before it is used for the training, testing, or refinement of any AI System.
+
+(5) Every AI System in use in Court processes shall be subject to regular cybersecurity audits at intervals not exceeding one year, or at such shorter intervals as the AI Secretariat may determine and the outcomes of cybersecurity audits shall be reported to the Appropriate Authority and recorded in the AI Register.
+
+(6) The Appropriate Authority shall establish and maintain protocols governing access to personal data processed through or stored in AI Systems, consistent with the principles of least privilege and need-to-know, and shall review these protocols annually.
+
+(7) The AI Secretariat shall ensure that security vulnerabilities and data incidents are identified, documented, escalated and addressed in a timely manner, and shall maintain records of all such incidents in the AI Incident Database.
+
+## Chapter VIII - Capacity building, training, and best practices
+
+### 49.
+
+> The source prints no heading for regulation 49; the number stands alone above
+> the text. Its table of contents calls it "Capacity building and training", and
+> that is how it is referred to elsewhere in this corpus.
+
+(1) All Judges, advocates and Court staff, who are required to use or interact with AI Systems in the course of their duties, shall receive regular, structured training on the technical, legal and ethical dimensions of AI, as may be relevant to their functions.
+
+(2) Training on use of AI in Court processes shall be accessible to all such persons, including those in district Courts, and shall be offered in a manner that accounts for linguistic diversity.
+
+(3) The training programmes shall be developed by the AI Secretariat in consultation with relevant domain experts and judicial training institutions, and shall address, at a minimum -
+
+(a) the functioning, capabilities and limitations of AI Systems in use in Court processes;
+
+(b) the identification and mitigation of AI bias, hallucinations and technical errors;
+
+(c) the legal and ethical framework governing AI in the judicial context, including the rights of litigants and the obligations of judicial officers under these regulations;
+
+(d) data protection principles, cyber security awareness and the handling of sensitive judicial data; and
+
+(e) the correct procedures for reporting AI Incidents, raising concerns and utilising grievance redressal mechanisms.
+
+### 50. Repository of best practices on AI Incidents
+
+The Appropriate Authority shall maintain a living repository of best practices, case studies, lessons drawn from AI Incidents and guidance notes, which shall be regularly updated, curated and made available to all relevant Courts and judicial personnel, so as to serve as an institutional memory to ensure continuity of competence, despite changes in staff or composition.
+
+### 51. Review of training programmes
+
+(1) The adequacy and effectiveness of training programmes shall be reviewed at least once in every two years by the AI Committee in consultation with the AI Secretariat, and such modifications as are warranted by practical experience or technological developments shall be implemented.
+
+(2) Every High Court shall devise an annual training calendar in coordination with judicial training institutions and the Apex Body, to ensure the sustained and updated competence of all judicial and administrative personnel in matters relating to AI.
+
+## Chapter IX - Grievance redressal and remedies
+
+### 52. Grievance Redressal
+
+(1) Where any harm is caused to any party to a proceeding as a direct or indirect effect of prohibited use of AI under regulation 20, he or his legal representative, may file an application at the earliest opportunity to the Court in which the relevant AI System was or is being used, and such Court shall, after giving a reasonable opportunity of being heard, pass appropriate orders as it may deem fit.
+
+(2) The High Court may lay down principles and procedures for the adjudication of grievances arising from the use of AI in Court processes, and may prescribe formats for the filing of complaints, so as to ensure accessibility and ease of use for all stakeholders, including persons with limited legal literacy.
+
+### 53. Other remedies
+
+Nothing in these regulations shall preclude any person from seeking such legal remedies as may be available under any law for the time being in force before a competent Court in respect of any harm caused by the use of AI in Court processes.
+
+## Chapter X - Miscellaneous
+
+### 54. Regulations not in derogation of other laws
+
+(1) The provisions of these regulations shall be in addition to and not in derogation of the provisions of the Information Technology Act, 2000 (21 of 2000) or the Digital Personal Data Protection Act, 2023 (22 of 2023) or any other law governing Courts, data protection, and AI for the time being in force.
+
+(2) In the event of any inconsistency between these regulations and the provisions of any other law on the subject, the provisions of such law, as may be applicable, shall prevail.
+
+(3) These regulations shall not derogate from any obligation imposed upon Courts or judicial officers by the Constitution or any Central Act or State Act, or the rules of Court framed thereunder.
+
+(4) Where these regulations afford a higher degree of protection to any person than administrative instructions or directions issued by any authority, the provisions of these regulations shall prevail over such instructions or directions to the extent of any inconsistency.
+
+### 55. Power to issue directions
+
+The Chief Justice or the Institutional Head may issue administrative directions, circulars, or instructions, as may be necessary, for the effective implementation of these regulations, which shall not be inconsistent with the provisions of these regulations.
+
+### 56. Power to relax or modify
+
+The Chief Justice may, for reasons to be recorded in writing, relax or modify any provision of these regulations (other than any prohibition specified in regulation 20, which is non-derogable) in relation to any specific Court, AI System, or set of circumstances, provided that such relaxation or modification does not result in a violation of the general principles laid down in Chapter II.
+
+(2) Any modification proposed to these regulations shall be communicated to the Apex Body within a period of two weeks from the date of such modification.
+
+### 57. Review of regulations
+
+(1) The Supreme Court AI Committee shall review these regulations periodically, or whenever necessity arises due to significant developments in AI technology, changes in applicable legislation, or the practical experience of implementation.
+
+(2) Every High Court shall share data, feedback, case studies, and recommendations for improvement with the Supreme Court AI Committee on an ongoing basis, to enable periodic review of these regulations and to facilitate the continuous improvement of AI governance across the judicial system.
+
+> The published draft ends here. Two annexures are referred to in regulation
+> 43(3) - Annexure I, the declaration a party files when a document was prepared
+> with AI, and Annexure II, the declaration for Court-initiated AI use - but
+> neither is printed in the PDF the Court published, so neither is reproduced
+> here. Anything that cites those formats is citing a form that does not yet
+> exist in the source.
