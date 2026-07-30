@@ -12,6 +12,7 @@ Generated from the data - the field meanings and the **enumerations are derived 
 | `data/caselaw/cheque-dishonour-s138.caselaw.json` | the case-law dataset |
 | `data/requirements/national.json` | the normative layer, central: what a system MUST do, binding every state |
 | `data/requirements/<state>.json` | the normative layer, per state: only what that state's own instruments add, or tighten |
+| `data/standards/standards-adherence.md` | the standards layer: the non-legal obligations a build is measured against, each with its test. Markdown, not JSON, and not joined into the bundle |
 | `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId` |
 | `domain/cheque-dishonour-s138.json` / `.md` | the denormalized join of all of the above |
 
@@ -20,7 +21,7 @@ Generated from the data - the field meanings and the **enumerations are derived 
 - **Provision / national term ref**: `<alias>:<eId>` (e.g. `ni:sec_138`). `alias` is a key in the profile `sources`; `eId` exists in that Act's AKN file. '<alias>:<eId>'. Resolve to the file at sources[alias].file, element eId; the logical AKN id is sources[alias].uri + '/eng@#' + eId (which equals the <FRBRuri> inside that file).
 - **State cite**: `{l, s, e}` where `s` is a state-instrument alias and `e` an eId; or `{l, n}` where `n` is a national `<alias>:<eId>`.
 - **Field-note impact ref**: `<state>:<unit>:<id>` (unit = term|role|process); the created unit carries the same trailing `id`.
-- **App deep link**: `#<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&act=<a>&eid=<e>` - append to the site root.
+- **App deep link**: `#<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&req=<id>&std=<id>&act=<a>&eid=<e>` - append to the site root.
 
 ## Requirements - the normative layer
 

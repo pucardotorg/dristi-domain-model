@@ -25,6 +25,7 @@ let processLens = "prescribed";   // which lens the story "process" is viewed th
 let vocabScrollTo = null;         // a vocab word to scroll to when the Vocabulary view next renders
 let practiceScrollTo = null;      // a field-note id to scroll to when the Local practice view next renders
 let reqScrollTo = null;           // a requirement id to land on when the Requirements view next renders
+let stdScrollTo = null;           // a standard id to land on when the Standards view next renders
 let _extra = {};                  // deep-link query params for the current position (sec/term/note/act/eid)
 let pendingAnchor = null;         // a DOM id to scroll to after the next view renders (from a deep link)
 let _lastHash = null;             // the hash we last wrote, so our own writes don't re-trigger the router
@@ -159,6 +160,61 @@ async function loadRequirements(){
   });
 }
 const reqById = id => REQS.find(r=>r.id===id);
+
+/* the standards layer: the non-legal obligations a build is measured against. Unlike
+   the requirements these are not derived from any Act, so they are neither case-typed
+   nor state-scoped - one file, written as markdown because the thing being said is
+   prose and a person outside the team has to be able to edit it without touching a
+   schema. The file states its own shape in a comment at the top; the parser below is
+   the only thing that reads it, and it reads exactly that shape:
+     > lede · ## group (+ gloss) · ### standard (+ gloss) · **How to test.** ·
+     **Pass when.** · **Note.**
+   Adding a group or a standard is an edit to the markdown, never a change here. */
+let STANDARDS={lede:[], groups:[]};
+const STD_FILE="standards/standards-adherence.md";
+function parseStandards(md){
+  const out={lede:[], groups:[]};
+  const lede=[[]];   // the lede keeps its paragraphs: a bare ">" line starts a new one
+  let g=null, s=null;
+  // the shape comment, and any other HTML comment, is authoring instruction and not content
+  const lines=String(md||"").replace(/<!--[\s\S]*?-->/g,"").split(/\r?\n/);
+  // a labelled paragraph: "**How to test.** …" - the label decides the field it fills
+  const LABEL={"how to test":"test","pass when":"pass","note":"note"};
+  const flush=(buf,target)=>{
+    const txt=buf.join(" ").replace(/\s+/g," ").trim(); buf.length=0;
+    if(!txt||!target) return;
+    const m=txt.match(/^\*\*([^*]+?)[.:]?\*\*\s*(.*)$/);
+    if(m && LABEL[m[1].trim().toLowerCase()]){ target[LABEL[m[1].trim().toLowerCase()]]=m[2].trim(); return; }
+    target.gloss = target.gloss ? target.gloss+" "+txt : txt;
+  };
+  const buf=[];
+  const target=()=> s || g || null;
+  lines.forEach(raw=>{
+    const line=raw.trim();
+    if(!line){ flush(buf,target()); return; }
+    if(/^>/.test(line)){ const t=line.replace(/^>\s?/,"").trim();
+      if(t) lede[lede.length-1].push(t); else if(lede[lede.length-1].length) lede.push([]);
+      return; }
+    if(/^#\s/.test(line)) return;                       // the file's own H1; the view titles itself
+    if(/^##\s/.test(line)){ flush(buf,target()); s=null;
+      g={name:line.replace(/^##\s*/,"").trim(), gloss:"", items:[]}; out.groups.push(g); return; }
+    if(/^###\s/.test(line)){ flush(buf,target());
+      if(!g){ g={name:"", gloss:"", items:[]}; out.groups.push(g); }
+      s={name:line.replace(/^###\s*/,"").trim(), gloss:"", test:"", pass:"", note:"", group:g.name};
+      s.id=stdSlug(s.name); g.items.push(s); return; }
+    buf.push(line);
+  });
+  flush(buf,target());
+  out.lede=lede.filter(p=>p.length).map(p=>p.join(" "));
+  return out;
+}
+const stdSlug = n => String(n||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);
+const stdItems = () => STANDARDS.groups.reduce((a,g)=>a.concat(g.items),[]);
+async function loadStandards(){
+  try{ STANDARDS=parseStandards(await fetchText((DATA_BASE||"")+STD_FILE)); }
+  catch(e){ STANDARDS={lede:[], groups:[]}; }
+}
+
 /* re-point STATE_DATA at the active state. Kept async, and kept as the name every
    state-selector calls, so switching state is now just a pointer move. */
 async function loadStateData(){
@@ -880,6 +936,91 @@ V.requirements=()=>{
   if(reqScrollTo){ const wanted=reqScrollTo; reqScrollTo=null; setTimeout(()=>jumpTo(wanted,false),60); }
   return m;
 };
+
+/* Standards adherence - the other half of the normative picture. Requirements say what
+   the law compels; this says what any public digital service owes the person using it,
+   and a court-facing one owes more heavily. Neither is case-typed nor state-scoped, so
+   there is no scope bar and no state filter here: one list, grouped as the markdown
+   groups it, every entry carrying the test and the threshold that decides it.
+   The page is generic over the file - groups, counts and facets are whatever the
+   markdown holds, so a new group needs no code. */
+V.standards=()=>{
+  const m=el("div","view-req view-std");
+  const head=el("div");
+  const lede=(STANDARDS.lede||[]).length ? STANDARDS.lede
+    : ["The non-legal standards a build is measured against, and how each one is tested."];
+  head.innerHTML=`<h1 class="page-title">Standards adherence</h1>`
+    +lede.map(t=>`<p class="lede">${esc(t)}</p>`).join("");
+  m.appendChild(head);
+  const all=stdItems();
+  if(!all.length){ m.appendChild(el("div","empty","No standards file is linked from this corpus.")); return m; }
+
+  const controls=el("div","controls");
+  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="s-search" placeholder="Search a standard - contrast, audit log, timeout, WCAG, DPDP…"></div>`;
+  m.appendChild(controls);
+  const facets=el("div","vfacets"); m.appendChild(facets);
+  const list=el("div"); list.id="s-list"; list.style.marginTop="10px"; m.appendChild(list);
+
+  const items=all.map(s=>({s, grp:s.group||"",
+    hay:((s.name||"")+" "+(s.gloss||"")+" "+(s.test||"")+" "+(s.pass||"")+" "+(s.note||"")).toLowerCase()}));
+  const state={q:"", grp:"", openAll:false};
+  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
+
+  function stdCardHTML(it){
+    const s=it.s;
+    const rows=[];
+    if(s.test) rows.push(`<div class="rq-block"><span class="rq-l">How to test</span><div class="rq-v">${esc(s.test)}</div></div>`);
+    if(s.pass) rows.push(`<div class="rq-block"><span class="rq-l">Pass when</span><div class="rq-v">${esc(s.pass)}</div></div>`);
+    return `<div class="req std" id="std-${esc(s.id)}" data-std="${esc(s.id)}">
+      <div class="rq-h">
+        <div class="rq-stmt std-name">${esc(s.name)}<span class="caret">${ic('chevron-right')}</span></div>
+      </div>
+      ${s.gloss?`<div class="rq-why">${esc(s.gloss)}</div>`:""}
+      ${s.note?`<div class="std-note"><span class="std-note-l">Note</span> ${esc(s.note)}</div>`:""}
+      ${rows.length?`<div class="rq-full">${rows.join("")}</div>`:""}
+    </div>`;
+  }
+  function redraw(){
+    const bySearch=items.filter(it=> !state.q || it.hay.includes(state.q));
+    const grpC={}; bySearch.forEach(it=>{ if(it.grp) grpC[it.grp]=(grpC[it.grp]||0)+1; });
+    const groups=STANDARDS.groups.map(g=>g.name).filter(n=>grpC[n]);
+    let fh=`<div class="vfacet-row"><span class="vfacet-lbl">Area</span><div class="chips">`
+      +pill("grp","","All",bySearch.length,!state.grp)
+      +groups.map(n=>pill("grp",n,n,grpC[n],state.grp===n)).join("")
+      +`</div></div>`;
+    facets.innerHTML=fh;
+
+    const final=bySearch.filter(it=> !state.grp || it.grp===state.grp);
+    if(!final.length){ list.innerHTML=""; list.appendChild(el("div","empty","No standard matches this search.")); return; }
+    let html=`<div class="std-bar"><span class="std-count">${final.length} of ${items.length} standards</span>`
+      +`<span class="std-toggle" data-all="${state.openAll?"1":"0"}">${state.openAll?"Close all":"Open all"}</span></div>`;
+    STANDARDS.groups.forEach(g=>{
+      const rows=final.filter(i=>i.grp===g.name); if(!rows.length) return;
+      html+=`<div class="grouphead">${esc(g.name)} <span class="gh-status">${rows.length}</span></div>`;
+      if(g.gloss) html+=`<p class="std-gloss">${esc(g.gloss)}</p>`;
+      rows.forEach(it=>{ html+=stdCardHTML(it); });
+    });
+    list.innerHTML=html;
+    if(state.openAll) list.querySelectorAll(".req.std").forEach(c=>c.classList.add("open"));
+  }
+  facets.addEventListener("click",e=>{
+    const p=e.target.closest(".chip"); if(!p) return;
+    state.grp = (p.dataset.fv && state.grp===p.dataset.fv) ? "" : (p.dataset.fv||"");
+    redraw();
+  });
+  list.addEventListener("click",e=>{
+    const t=e.target.closest(".std-toggle");
+    if(t){ state.openAll=!state.openAll; redraw(); return; }
+    const h=e.target.closest(".rq-h"); if(!h) return;
+    h.closest(".req").classList.toggle("open");
+  });
+  setTimeout(()=>{const inp=$("#s-search"); if(inp)inp.oninput=e=>{ state.q=e.target.value.toLowerCase().trim(); redraw(); };},0);
+  redraw();
+  if(stdScrollTo){ const wanted=stdScrollTo; stdScrollTo=null;
+    setTimeout(()=>{ const c=document.getElementById("std-"+wanted); if(c) c.classList.add("open"); scrollToId("std-"+wanted,70,true); },60); }
+  return m;
+};
+
 V.practice=()=>{
   if(!isModelled()) return notModelled();
   const m=el("div"); m.appendChild(scopeBar());
@@ -2235,6 +2376,12 @@ const NAV_PAGES=[
    desc:"The normative layer - what a system must do, each statement drawn from a provision.",
    alias:["reqs","req","normative","design requirements","must"],
    tag:()=>`<span class="count">${isModelled()?(reqNavCount()||'-'):'-'}</span>`},
+  /* not scoped: a standard binds the build, not a case type or a state layer, so this
+     page reads the same on every state and stays available on an unmodelled case type */
+  {view:"standards", label:"Standards adherence", icon:"shield-check", section:"Design",
+   desc:"The non-legal standards a build is measured against, and how each one is tested.",
+   alias:["standards","standard","adherence","compliance","wcag","accessibility","a11y","security","owasp","dpdp","performance","interoperability","usability","testing","conformance"],
+   tag:()=>`<span class="count">${stdItems().length||'-'}</span>`},
   {view:"overview", label:"Overview", icon:"compass", section:"Overview",
    desc:"Where the model starts: what is modelled, and how to read it.",
    alias:["home","start","summary","introduction"]},
@@ -2365,7 +2512,7 @@ function scrollToId(id, offset, flash){
 }
 
 /* ---- deep-link router: the URL hash carries view + state + position ----
-   #<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&req=<id>&act=<a>&eid=<e> */
+   #<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&req=<id>&std=<id>&act=<a>&eid=<e> */
 function buildHash(){
   const p=new URLSearchParams();
   if(activeState) p.set("state",activeState);
@@ -2389,10 +2536,11 @@ function applyHash(raw, push){
   const run=()=>{
     if(p.get("lens")) processLens=p.get("lens");
     _extra={}; pendingAnchor=null;
-    const term=p.get("term"), note=p.get("note"), sec=p.get("sec"), act=p.get("act"), eid=p.get("eid"), req=p.get("req");
+    const term=p.get("term"), note=p.get("note"), sec=p.get("sec"), act=p.get("act"), eid=p.get("eid"), req=p.get("req"), std=p.get("std");
     if(term){ vocabScrollTo=term; _extra.term=term; }
     if(note){ practiceScrollTo=note; _extra.note=note; }
     if(req){ reqScrollTo=req; _extra.req=req; }
+    if(std){ stdScrollTo=std; _extra.std=std; }
     if(sec){ pendingAnchor=sec; _extra.sec=sec; }
     if(act){ _extra.act=act; if(eid) _extra.eid=eid; }
     go(view, !!push);
@@ -2472,7 +2620,7 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeModal(); con
    goVocabWord, goPracticeNote, the #requirements?req= deep link, …) - the
    overlay never invents a route of its own. */
 const GS_TYPES=[["page","Pages"],
-                ["provision","Provisions"],["vocab","Vocabulary"],["req","Requirements"],["case","Case law"],
+                ["provision","Provisions"],["vocab","Vocabulary"],["req","Requirements"],["std","Standards"],["case","Case law"],
                 ["note","Local practice"],["story","Story"],["inst","Institutions"],["act","Acts"]];
 const GS_LABEL={}; GS_TYPES.forEach(([k,v])=>{GS_LABEL[k]=v;});
 const GS_CAP=6;                     // rows shown per group; the total is always stated
@@ -2493,7 +2641,7 @@ const gsHintSaid=()=>gsIsMac() ? "Command K" : "Control K";
 
 /* ---- the index ---------------------------------------------------------- */
 let GS_INDEX=null, _gsKey="";
-function gsKey(){ return [PROVISIONS.length,Object.keys(TERMS).length,REQS.length,CASES.length,
+function gsKey(){ return [PROVISIONS.length,Object.keys(TERMS).length,REQS.length,stdItems().length,CASES.length,
   PRACTICE_NOTES.length,Object.keys(STATES_DATA).length,Object.keys(SOURCES).length,
   activeState].join("|"); }   // activeState: the page rows carry the state layer they open on
 /* one entry: display strings, the weighted fields it is matched on, and how to open it.
@@ -2520,6 +2668,9 @@ function gsGoReq(r){
   p.set("req", r.id);
   applyHash("requirements?"+p.toString(), true);
 }
+/* a standard binds no state, so its link carries only the id - the router keeps
+   whatever layer the reader was already on */
+function gsGoStd(s){ applyHash("standards?std="+encodeURIComponent(s.id), true); }
 function gsBuildIndex(){
   const L=[];
 
@@ -2597,6 +2748,14 @@ function gsBuildIndex(){
       open:()=>gsGoReq(r)});
   });
 
+  /* Standards - not state-scoped, so no state rides on the row */
+  stdItems().forEach(s=>{
+    gsPush(L,{type:"std", state:null,
+      title:s.name, sub:"Standard · "+(s.group||""), snip:s.gloss||s.test||"",
+      f:[[s.name,1],[s.group,.5],[s.gloss,.45],[s.test,.35],[s.pass,.35]],
+      open:()=>gsGoStd(s)});
+  });
+
   /* Case law */
   CASES.forEach(c=>{
     gsPush(L,{type:"case", title:c.name, sub:"Judgment · "+c.citation+(c.year?" · "+c.year:""), snip:c.holding||"",
@@ -2669,6 +2828,8 @@ const GS_TYPE_SCOPES=[
    alias:["vocab","vocabulary","word","words","term","terms","glossary"]},
   {id:"requirements", label:"Requirements",  types:["req"],
    alias:["req","reqs","requirement","requirements"]},
+  {id:"standards",    label:"Standards",     types:["std"],
+   alias:["standard","standards","adherence","compliance","conformance","wcag","accessibility","a11y"]},
   {id:"cases",        label:"Case law",      types:["case"],
    alias:["case","cases","case law","caselaw","judgment","judgments","judgement","judgements","ruling","rulings","precedent","precedents"]},
   {id:"practice",     label:"Local practice",types:["note"],
@@ -3142,7 +3303,7 @@ function showLoadError(err){
     await loadConfig();
     await loadProfile();
     // every state layer and the whole normative layer, in parallel - state is a filter, not a switch
-    await Promise.all([loadAllStates(), loadRequirements()]);
+    await Promise.all([loadAllStates(), loadRequirements(), loadStandards()]);
     buildNav();
     // the Map ("graph") is hidden for now; keep V.graph defined but never land on it.
     // Restore where the user last was: an explicit URL hash (a shared deep link) wins;

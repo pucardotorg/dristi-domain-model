@@ -519,6 +519,7 @@ def data_dictionary():
     w("| `data/caselaw/%s.caselaw.json` | the case-law dataset |" % PROFILE)
     w("| `data/requirements/national.json` | the normative layer, central: what a system MUST do, binding every state |")
     w("| `data/requirements/<state>.json` | the normative layer, per state: only what that state's own instruments add, or tighten |")
+    w("| `data/standards/standards-adherence.md` | the standards layer: the non-legal obligations a build is measured against, each with its test. Markdown, not JSON, and not joined into the bundle |")
     w("| `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId` |")
     w("| `domain/%s.json` / `.md` | the denormalized join of all of the above |" % PROFILE)
     w("")
@@ -527,7 +528,7 @@ def data_dictionary():
     w("- **Provision / national term ref**: `<alias>:<eId>` (e.g. `ni:sec_138`). `alias` is a key in the profile `sources`; `eId` exists in that Act's AKN file. %s" % (prof.get("ref_format") or ""))
     w("- **State cite**: `{l, s, e}` where `s` is a state-instrument alias and `e` an eId; or `{l, n}` where `n` is a national `<alias>:<eId>`.")
     w("- **Field-note impact ref**: `<state>:<unit>:<id>` (unit = term|role|process); the created unit carries the same trailing `id`.")
-    w("- **App deep link**: `#<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&act=<a>&eid=<e>` - append to the site root.")
+    w("- **App deep link**: `#<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&req=<id>&std=<id>&act=<a>&eid=<e>` - append to the site root.")
     w("")
     R = REQUIREMENTS
     if R:
@@ -710,6 +711,16 @@ for name, sch in schemas.items():
     json.dump(sch, open(os.path.join(SCHEMA, name), "w", encoding="utf-8"), indent=2, ensure_ascii=False)
     open(os.path.join(SCHEMA, name), "a").write("\n")
 
+# ---------------------------------------------------------------- standards
+# the non-legal layer. Prose, not a schema, so nothing is joined into the bundle; the
+# generator only counts it, so llms.txt and the README can point at it truthfully.
+STD_PATH = os.path.join(DATA, "standards", "standards-adherence.md")
+STD_COUNT, STD_GROUPS = 0, []
+if os.path.exists(STD_PATH):
+    _std = re.sub(r"<!--.*?-->", "", open(STD_PATH, encoding="utf-8").read(), flags=re.S)
+    STD_COUNT  = len(re.findall(r"^### ", _std, re.M))
+    STD_GROUPS = re.findall(r"^## (.+)$", _std, re.M)
+
 # ---------------------------------------------------------------- llms.txt
 def llms_txt():
     st_files = " · ".join("[/data/state/%s.json](/data/state/%s.json)" % (s, s) for s in states)
@@ -765,6 +776,18 @@ def llms_txt():
       "- [/data/caselaw/%s.caselaw.json](/data/caselaw/%s.caselaw.json): case-law dataset." % (PROFILE, PROFILE),
       "- Statute corpus: %d Akoma Ntoso XML files under [/data/acts/akn/](/data/acts/akn/) (national) and /data/state/<state>/akn/." % len(glob.glob(rel("acts","akn","*.akn.xml"))),
       "",
+      "## Standards adherence (the non-legal layer, %d standards)" % STD_COUNT,
+      "",
+      "The requirements above are what the *law* compels. These are what any public digital "
+      "service owes the person using it, which a court-facing one owes more heavily: "
+      "accessibility, security, performance, interoperability, usability and content. Markdown "
+      "rather than JSON because the content is prose; every entry carries a test and the "
+      "threshold that decides it.",
+      "",
+      "- [/data/standards/standards-adherence.md](/data/standards/standards-adherence.md): "
+      "%d standards across %s. The file states its own shape in a comment at the top." %
+      (STD_COUNT, ", ".join(STD_GROUPS)),
+      "",
       "## Schemas",
       "- [/data/schema/profile.schema.json](/data/schema/profile.schema.json)",
       "- [/data/schema/state.schema.json](/data/schema/state.schema.json)",
@@ -809,6 +832,15 @@ def readme_block():
               % (s, n, bundle["states"].get(s, {}).get("name", s)))
         w("| `public/data/requirements/README.md` | the spec: every field, the category codes, the id grammar |")
         w("")
+    if STD_COUNT:
+        w("The **standards layer** is the non-legal half of the same question. It is prose, so it is "
+          "markdown rather than JSON and is read straight off disk by the Standards adherence page:")
+        w("")
+        w("| source | what |")
+        w("|---|---|")
+        w("| `public/data/standards/standards-adherence.md` | %d standards across %s - each with how to test it and the threshold that decides it |"
+          % (STD_COUNT, ", ".join(STD_GROUPS)))
+        w("")
     w("Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the Netlify build, so deploys never drift).")
     w("")
     w("**Enumerations in use** (data-derived):")
@@ -816,14 +848,15 @@ def readme_block():
     for k, vals in ENUMS.items():
         w("- `%s`: %s" % (k, ", ".join(vals)))
     w("")
-    w("**Counts:** %d Acts, %d provisions, %d national terms; states: %s; %d field notes%s." % (
+    w("**Counts:** %d Acts, %d provisions, %d national terms; states: %s; %d field notes%s%s." % (
         len({p['act'] for p in prof['provisions']}), len(prof['provisions']), len(prof['terms']),
         ", ".join("%s (%d terms)" % (st['name'], len(st['vocabulary'])) for st in bundle['states'].values()),
         len(notes),
         ("; %d requirements (%d national + %s)" % (
             REQUIREMENTS["counts"]["total"], REQUIREMENTS["counts"]["national"],
             " + ".join("%d %s" % (n, s) for s, n in REQUIREMENTS["counts"]["by_state"].items()))
-         ) if REQUIREMENTS else ""))
+         ) if REQUIREMENTS else "",
+        "; %d standards" % STD_COUNT if STD_COUNT else ""))
     w("")
     w("<!-- AUTO-DATA-MODEL:END -->")
     return "\n".join(L)

@@ -712,6 +712,12 @@ The **normative layer** is source data, not generated, and is joined into the bu
 | `public/data/requirements/kerala.json` | 110 requirements added by Kerala's own instruments, or tightening a national one |
 | `public/data/requirements/README.md` | the spec: every field, the category codes, the id grammar |
 
+The **standards layer** is the non-legal half of the same question. It is prose, so it is markdown rather than JSON and is read straight off disk by the Standards adherence page:
+
+| source | what |
+|---|---|
+| `public/data/standards/standards-adherence.md` | 41 standards across Accessibility, Security, Performance, Interoperability, Usability, Content & Legal - each with how to test it and the threshold that decides it |
+
 Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the Netlify build, so deploys never drift).
 
 **Enumerations in use** (data-derived):
@@ -730,6 +736,6 @@ Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the N
 - `requirement_derived_from`: act, caselaw, practice-note, rule
 - `requirement_binds_artifact`: validation-rule, workflow-step, schema-field, screen, output-document, access-control
 
-**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes; 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala).
+**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes; 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala); 41 standards.
 
 <!-- AUTO-DATA-MODEL:END -->

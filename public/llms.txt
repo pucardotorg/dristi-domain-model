@@ -28,6 +28,12 @@ The rest of the corpus is descriptive: it says what the law provides, and a desc
 - [/data/caselaw/cheque-dishonour-s138.caselaw.json](/data/caselaw/cheque-dishonour-s138.caselaw.json): case-law dataset.
 - Statute corpus: 24 Akoma Ntoso XML files under [/data/acts/akn/](/data/acts/akn/) (national) and /data/state/<state>/akn/.
 
+## Standards adherence (the non-legal layer, 41 standards)
+
+The requirements above are what the *law* compels. These are what any public digital service owes the person using it, which a court-facing one owes more heavily: accessibility, security, performance, interoperability, usability and content. Markdown rather than JSON because the content is prose; every entry carries a test and the threshold that decides it.
+
+- [/data/standards/standards-adherence.md](/data/standards/standards-adherence.md): 41 standards across Accessibility, Security, Performance, Interoperability, Usability, Content & Legal. The file states its own shape in a comment at the top.
+
 ## Schemas
 - [/data/schema/profile.schema.json](/data/schema/profile.schema.json)
 - [/data/schema/state.schema.json](/data/schema/state.schema.json)
