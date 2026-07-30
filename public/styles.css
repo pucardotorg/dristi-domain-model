@@ -861,12 +861,27 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   }
 
   /* ===================== STANDARDS ADHERENCE =====================
-     The same card, the same measure and the same single disclosure as Requirements,
-     because a reader moves between the two and the two are the same kind of thing
-     read from different ends. What differs is that a standard has no id to cite, no
-     authority to open and no state to belong to - so the card is the name, what it
-     means, and behind the caret the test and the threshold. Nothing is coloured: the
-     only signal on the page is the caret. */
+     The same card and the same single disclosure as Requirements, because a reader
+     moves between the two and the two are the same kind of thing read from different
+     ends. What differs is that a standard has no id to cite, no authority to open and
+     no state to belong to - so the card is the name, what it means, and behind the
+     caret the test and the threshold. Nothing is coloured: the only signal is the caret.
+
+     The measure differs too. Requirements holds a 620px column because its cards carry
+     a citation apparatus - chips, tie rows, grounds - that only reads as one column.
+     These carry prose, so that column buys nothing and only strands the right half of
+     the page. The card takes the width the rest of the app takes, and the disclosure
+     splits into two: the method beside the threshold that decides it, each landing at a
+     readable measure of its own. That is what the width is for. */
+  .view-std{--rq-measure:1180px}
+  /* the width is for the cards. The prose above them is still prose, and keeps the
+     reading measure the rest of the app gives a lede. */
+  .view-std .lede{max-width:770px}
+  .view-std .rq-full{grid-template-columns:1fr 1fr; gap:2px 40px; align-items:start}
+  .view-std .req.std.open .rq-full{display:grid}
+  /* the sidebar takes ~310px before the column starts, so the split only pays once the
+     window is wide enough to leave two columns of about 400px. Below that it stacks. */
+  @media(max-width:1240px){ .view-std .rq-full{grid-template-columns:1fr; gap:0} }
   .view-std .std-bar{display:flex; align-items:baseline; gap:12px; margin:14px 0 2px;
     font-size:12px; color:var(--ink-3); max-width:var(--rq-measure)}
   .view-std .std-toggle{margin-left:auto; cursor:pointer; color:var(--ink-3); white-space:nowrap;
@@ -875,7 +890,7 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .view-std .std-toggle:hover{color:var(--brand-hi); text-decoration-color:var(--brand)}
   /* the group's own sentence, under its head and above its cards */
   .view-std .std-gloss{font-size:13.5px; line-height:1.6; color:var(--ink-2);
-    max-width:var(--rq-measure); margin:-4px 0 13px}
+    max-width:770px; margin:-4px 0 13px}
   .req.std .rq-h{padding-right:2px}
   .req.std .std-name{display:flex; align-items:flex-start; gap:13px}
   .req.std .std-name .caret{margin-top:3px}
