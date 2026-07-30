@@ -3762,7 +3762,7 @@ The system MUST direct a witness who is to be examined by video conferencing to 
 The system SHOULD capture the deposition of a witness in a cheque case in typed form, prepared on a computer from the dictation of the presiding officer.
 
 - *why* - Volume III was amended to require exactly this, and the Panchkula ahlmad says evidence in his court is still written out by hand, which produces mixed hands and stretches nobody can read. The judgment writer then has to reconstruct from that record which document the complainant tendered and under which exhibit number, and a wrong exhibit number in a s.138 judgment cannot be repaired once the judgment is signed. An illegible deposition is also the record the appellate court will read.
-- *authority* - R&O Vol.III r.1-E.3(ii)(a) (procedure for recording evidence) (`phhc3:rule_1-E.3` - 1-E.3)
+- *authority* - R&O Vol.III r.1-E.3(ii)(a) (procedure for recording evidence) (`phhc3:rule_1-E.3` - 1-E.3 Mode of recording evidence)
 - *authority* - R&O Vol.III r.1-E.11 (illegible record) (`phhc3:rule_1-E.11` - 1-E.11 Illegible record)
 - *binds* - workflow-step: recording of a witness deposition
 - *how* - The record is prepared on a computer in court on the dictation of the presiding officer; where the deposition is in a language other than English or the language of the State it is simultaneously translated into English, and recorded in both.
@@ -3774,8 +3774,8 @@ The system SHOULD capture the deposition of a witness in a cheque case in typed 
 The system MUST form the exhibit number of a document from its own serial number and the number of the witness through whom it was first introduced, in the form Exhibit P-1/PW1.
 
 - *why* - Volume III adopted this composite identifier in December 2021 so that an exhibit can be traced back to the witness who proved it without reading the whole record. In a cheque case the exhibits are few and decisive, and the whole defence often turns on whether the return memo was introduced through the complainant or through a bank witness. A bare Exhibit P-3 loses that link, and the judgment writer who is hunting the file for what the complainant tendered and under which exhibit number has nothing to find it by.
-- *authority* - R&O Vol.III r.1-E.3(iv)(a) to (c) (exhibiting of material objects and evidence) (`phhc3:rule_1-E.3` - 1-E.3)
-- *authority* - R&O Vol.III r.1-H.1(i-a)(c) (FORM C appendix of exhibits) (`phhc3:rule_1-H.1` - 1-H.1)
+- *authority* - R&O Vol.III r.1-E.3(iv)(a) to (c) (exhibiting of material objects and evidence) (`phhc3:rule_1-E.3` - 1-E.3 Mode of recording evidence)
+- *authority* - R&O Vol.III r.1-H.1(i-a)(c) (FORM C appendix of exhibits) (`phhc3:rule_1-H.1` - 1-H.1 Contents of a judgment)
 - *binds* - schema-field: exhibit record - composite exhibit number carrying the introducing witness
 - *how* - Prosecution exhibits are marked P-1, P-2 in seriatim, defence exhibits D-1, D-2, court exhibits C-1, C-2, and material objects MO-1, MO-2; the exhibit number then shows the witness number after it, as in Exhibit P-1/PW1.
 - *test* - Marking a document while a witness is under examination generates an exhibit number of the form P-n/PWn automatically; the composite number appears in the FORM C appendix of the judgment.
@@ -3786,7 +3786,7 @@ The system MUST form the exhibit number of a document from its own serial number
 The system MUST mark an exhibit as '(subject to proof)' where it is exhibited without proper proof being offered at the time of marking.
 
 - *why* - This is where cheque cases are won and lost. The return memo, the bank certificate and the postal acknowledgement are routinely put on the record through the complainant and marked before anyone proves them. Volume III requires the qualification to be carried in the marking itself. If the exhibit register shows a clean Exhibit P-2/PW1, the judgment will treat a document that was never proved as proved, and the conviction rests on it.
-- *authority* - R&O Vol.III r.1-E.3(iv)(b) and (c) (exhibit marked without proper proof) (`phhc3:rule_1-E.3` - 1-E.3)
+- *authority* - R&O Vol.III r.1-E.3(iv)(b) and (c) (exhibit marked without proper proof) (`phhc3:rule_1-E.3` - 1-E.3 Mode of recording evidence)
 - *binds* - schema-field: exhibit record - subject-to-proof qualifier
 - *how* - The qualifier is shown in brackets after the exhibit number, as Exhibit P-1/PW1 (subject to proof).
 - *test* - An exhibit can be saved in a subject-to-proof state, the qualifier prints wherever the exhibit number appears, and a report lists exhibits still subject to proof at the close of evidence.
@@ -3797,8 +3797,8 @@ The system MUST mark an exhibit as '(subject to proof)' where it is exhibited wi
 The system MUST record separately, for each witness, the date of the examination-in-chief, the date of the cross-examination and the date of the re-examination.
 
 - *why* - Volume III requires the record of depositions to indicate all three, and requires the witness's name and number to be restated on any later date where evidence is not concluded on the day it begins. The Panchkula judgment writer's day goes on hunting the file for exactly these dates, because the FORM B tabular statement in every judgment turns on the dates of commencement and closing of evidence. Where the dates are not recorded per stage, they have to be reconstructed from the order sheet, and a reconstructed date that is wrong is in the judgment for good.
-- *authority* - R&O Vol.III r.1-E.3(iii)(c) and (f) (format of recording evidence) (`phhc3:rule_1-E.3` - 1-E.3)
-- *authority* - R&O Vol.III r.1-H.1(i-a)(b) (FORM B tabular statement) (`phhc3:rule_1-H.1` - 1-H.1)
+- *authority* - R&O Vol.III r.1-E.3(iii)(c) and (f) (format of recording evidence) (`phhc3:rule_1-E.3` - 1-E.3 Mode of recording evidence)
+- *authority* - R&O Vol.III r.1-H.1(i-a)(b) (FORM B tabular statement) (`phhc3:rule_1-H.1` - 1-H.1 Contents of a judgment)
 - *binds* - schema-field: deposition record - dates of examination-in-chief, cross-examination and re-examination
 - *test* - Each deposition stores three separately populated date fields; the FORM B statement in the judgment is generated from them and not typed by hand.
 - *related* - REQ-HR-EVI-005
@@ -3808,7 +3808,7 @@ The system MUST record separately, for each witness, the date of the examination
 The system MUST record, where a witness in a cheque case is not cross-examined, that the accused did not wish to cross-examine him.
 
 - *why* - Volume III requires this in terms, and it is the commonest silence in a s.138 file: the complainant deposes on affidavit, the accused's counsel says nothing, and the record shows only that no cross-examination was taken. On appeal that reads as a denial of the opportunity to cross-examine, which is one of the two grounds Volume III says applicants for revision urge most often. The affirmative entry is what closes it.
-- *authority* - R&O Vol.III r.1-E.10 (cross-examination to be distinguished; record to show that the accused did not wish to cross-examine) (`phhc3:rule_1-E.10` - 1-E.10)
+- *authority* - R&O Vol.III r.1-E.10 (cross-examination to be distinguished; record to show that the accused did not wish to cross-examine) (`phhc3:rule_1-E.10` - 1-E.10 Cross-examination and re-examination to be distinguished by a note in the margin)
 - *authority* - NI Act §145 (evidence on affidavit) (`ni:sec_145` - 145. Evidence on affidavit) [open](#law?act=ni&eid=sec_145)
 - *binds* - validation-rule: deposition record - absence of cross-examination
 - *test* - A deposition with no cross-examination cannot be closed without an explicit entry that the accused did not wish to cross-examine, or that a further opportunity was refused for recorded reasons.
@@ -3820,7 +3820,7 @@ The system MUST record, for every objection taken to the admissibility of eviden
 
 - *why* - Volume III requires the magistrate to decide an admissibility objection forthwith and to record all three elements clearly, and the 2021 amendment repeats it for objections during a deposition. In a cheque case the objections are to the bank certificate, to a photocopy of the cheque and to the mode of proof of the return memo. If the record shows only that an objection was taken, the appellate court cannot tell what was objected to or what was decided, and the exhibit stands or falls on nothing.
 - *authority* - R&O Vol.III r.1-E.1 (only relevant evidence should be recorded) (`phhc3:rule_1-E.1` - 1-E.1 Only relevant evidence should be recorded)
-- *authority* - R&O Vol.III r.1-E.3(iii)(e) (objections to be noted and decided) (`phhc3:rule_1-E.3` - 1-E.3)
+- *authority* - R&O Vol.III r.1-E.3(iii)(e) (objections to be noted and decided) (`phhc3:rule_1-E.3` - 1-E.3 Mode of recording evidence)
 - *binds* - schema-field: objection record - evidence objected to, the objection and the ruling
 - *how* - The objection is decided immediately in accordance with law or, at the judge's discretion, at the end of that witness's deposition.
 - *test* - An objection record cannot be saved without all three elements populated and a link to the specific exhibit or answer objected to.
@@ -3878,7 +3878,7 @@ The system MUST obtain the signature of the person examined by video conferencin
 The system MUST disclose, on the record and on the final order in a cheque case, the criminal powers the presiding officer exercised in hearing or deciding it.
 
 - *why* - Volume III makes every judicial officer personally responsible that the record and the final order disclose his criminal powers, and lists them from magistrate of the third class up to Sessions Judge. A s.138 judgment that names the officer but not the class of powers he exercised leaves the appellate or revisional court unable to see, from the judgment itself, whether the sentence was one the court could pass. That is a defect the judgment writer cannot repair afterwards, because no court can alter a judgment once signed.
-- *authority* - R&O Vol.III r.1-H.2 (criminal powers to be noted in the record and final order) (`phhc3:rule_1-H.2` - 1-H.2)
+- *authority* - R&O Vol.III r.1-H.2 (criminal powers to be noted in the record and final order) (`phhc3:rule_1-H.2` - 1-H.2 Criminal powers of the courts should be noted in the record and final order)
 - *authority* - R&O Vol.III r.1-H.3 (powers of the various criminal courts) (`phhc3:rule_1-H.3` - 1-H.3 Powers of various criminal court)
 - *binds* - output-document: judgment and final order - the criminal powers exercised
 - *how* - The powers are stated from the list in Volume III r.1-H.3.
@@ -3890,7 +3890,7 @@ The system MUST disclose, on the record and on the final order in a cheque case,
 The system MUST disclose, on the record and on the final order of a cheque case tried summarily, that the officer is specially empowered to try cases summarily.
 
 - *why* - Section 143 of the NI Act directs that a cheque case be tried summarily, and Volume III allows a summary trial only by a District Magistrate, a magistrate of the first class specially empowered in that behalf, or a Bench so empowered. Volume III then requires that where an officer exercises specially conferred powers, the record and the final order say so. If a Haryana s.138 judgment does not carry that statement, the accused's first ground in revision is that the trial was held by a court without power to hold it, and nothing in the file answers him.
-- *authority* - R&O Vol.III r.1-H.4 (special powers to be noted on the record and final order) (`phhc3:rule_1-H.4` - 1-H.4)
+- *authority* - R&O Vol.III r.1-H.4 (special powers to be noted on the record and final order) (`phhc3:rule_1-H.4` - 1-H.4 Special powers to be noted on the record and final order)
 - *authority* - R&O Vol.III r.2.1 (magistrates competent to hold a summary trial) (`phhc3:rule_2.1` - 2.1 Magistrates competent to try and the procedure to be adopted)
 - *authority* - NI Act §143 (`ni:sec_143` - 143. Power of Court to try cases summarily) [open](#law?act=ni&eid=sec_143)
 - *binds* - output-document: judgment in a summarily tried cheque case - special empowerment of the magistrate
@@ -3949,7 +3949,7 @@ The system MUST state the amount of bail, and the offence charged with the secti
 The system MUST NOT fix the pronouncement of a judgment likely to end in a sentence of imprisonment within two days of the start of a spell of four or more holidays.
 
 - *why* - Volume III requires such cases to be decided at least two days before the holidays begin, and copies to be supplied free of cost forthwith, so that the convicted person can apply for bail before the courts close. A drawer sentenced to imprisonment on the afternoon before a four-day break, with no copy of the judgment, spends the break in custody with no means of moving an appellate court. The scheduling screen is where that is prevented or caused.
-- *authority* - R&O Vol.III r.1-H.1(iv) (pronouncement of judgment before a spell of holidays) (`phhc3:rule_1-H.1` - 1-H.1)
+- *authority* - R&O Vol.III r.1-H.1(iv) (pronouncement of judgment before a spell of holidays) (`phhc3:rule_1-H.1` - 1-H.1 Contents of a judgment)
 - *binds* - validation-rule: listing of a judgment date before a spell of four or more holidays
 - *how* - The case is decided at least two days before the holidays commence, and arrangements are made for free copies to be supplied to the convicted person forthwith.
 - *test* - With a court calendar containing a run of four or more consecutive holidays, the system refuses or warns on a judgment date inside the two days before it for a case flagged as likely to carry imprisonment.
@@ -4008,7 +4008,7 @@ The system MUST record on the order sheet the video conferencing software used, 
 The system MUST record the statement of every party concerned before a cheque case is disposed of as compounded.
 
 - *why* - Volume III dispenses with a judgment on facts when an offence is compounded but does not dispense with the statements: it requires the statement of all the parties concerned to be recorded. In a cheque case the parties are frequently a company acting through an authorised representative and a drawer who has paid part of the amount, and the settlement is often reached at a Lok Adalat. Without every party's recorded statement the court cannot show that the compounding was consensual, and the acquittal is exposed to a claim that the payee never agreed.
-- *authority* - R&O Vol.III r.1-H.10 (statements of all parties to be recorded) (`phhc3:rule_1-H.10` - 1-H.10)
+- *authority* - R&O Vol.III r.1-H.10 (statements of all parties to be recorded) (`phhc3:rule_1-H.10` - 1-H.10 Acquittal of accused when offence is compounded)
 - *binds* - workflow-step: recording the statement of each party on compounding
 - *test* - The compounding action cannot complete until a statement is recorded against every party on the case record, complainant and each accused.
 
@@ -4017,8 +4017,8 @@ The system MUST record the statement of every party concerned before a cheque ca
 The system MUST record the reasons for granting permission to compound in the order directing the acquittal, wherever the permission of the court is necessary.
 
 - *why* - Volume III requires the reasons to be stated in the order directing the acquittal, and repeats in the same Part that in every case in which a magistrate allows the parties to compromise his reasons should be recorded in his order. A s.138 compounding after cognizance, and any compounding at the appellate stage, needs the court's permission. An order of acquittal on compromise that carries no reasons is a bare order, and the guidance the High Court gives on when permission should be refused becomes unenforceable because nothing shows what the magistrate considered.
-- *authority* - R&O Vol.III r.1-H.10 (reasons for granting permission to compound) (`phhc3:rule_1-H.10` - 1-H.10)
-- *authority* - R&O Vol.III r.1-H.12 (reasons to be recorded where a compromise is permitted) (`phhc3:rule_1-H.12` - 1-H.12)
+- *authority* - R&O Vol.III r.1-H.10 (reasons for granting permission to compound) (`phhc3:rule_1-H.10` - 1-H.10 Acquittal of accused when offence is compounded)
+- *authority* - R&O Vol.III r.1-H.12 (reasons to be recorded where a compromise is permitted) (`phhc3:rule_1-H.12` - 1-H.12 Points to be remembered before a compromise is permitted)
 - *authority* - BNSS §359 (compounding of offences) (`bnss:sec_359` - 359. Compounding of offences) [open](#law?act=bnss&eid=sec_359)
 - *binds* - output-document: order of acquittal on compounding - reasons for granting permission
 - *test* - Where the case is flagged as requiring the court's permission to compound, the acquittal order cannot be generated with an empty reasons field.
@@ -4063,7 +4063,7 @@ The system MUST allow the court to order that a fine imposed in a cheque case be
 The system MUST NOT release compensation out of a fine to the complainant until the period for appeal has elapsed or an appeal has been decided, and the court has satisfied itself by examining the record and referring to the appellate court that no appeal or revision has been lodged.
 
 - *why* - This is the payee's money in a cheque case, and Volume III records why the check exists: lower courts have paid compensation in ignorance of a pending appeal, and when the amount was later reduced or remitted it proved impossible to get it back from the complainant. A system that releases compensation the moment the fine is realised recreates exactly that. The rule requires two things before release, elapse of the appeal period and a positive check with the appellate court, and a release button with neither is a rule breach on every convicted file.
-- *authority* - R&O Vol.III r.1-H.8 (application of fine towards costs and compensation) (`phhc3:rule_1-H.8` - 1-H.8)
+- *authority* - R&O Vol.III r.1-H.8 (application of fine towards costs and compensation) (`phhc3:rule_1-H.8` - 1-H.8 Application of fine towards costs and compensation)
 - *authority* - BNSS §395 (order to pay compensation) (`bnss:sec_395` - 395. Order to pay compensation) [open](#law?act=bnss&eid=sec_395)
 - *binds* - workflow-step: release of compensation out of a realised fine to the complainant
 - *how* - The court examines the record of the case and makes a reference to the appellate court to satisfy itself that no appeal or revision has been lodged, before payment.
@@ -4223,7 +4223,7 @@ The system MUST restrict the entry of columns 7 to 14 of the register of summary
 The system MUST record every order of adjournment in a cheque case with its date, and make apparent the date on which the inquiry or trial was resumed.
 
 - *why* - Volume III requires a short note of every material order with its date, and requires every adjournment to be entered so that the date of resumption is apparent. A s.138 case is meant to be summary, and adjournments are the thing that defeats that. If the record shows only a chain of dates with no orders of adjournment, neither the High Court's monthly returns nor a revisional court can see who asked for the delay, and the Volume III direction that adjournments be as short as possible cannot be checked against anything.
-- *authority* - R&O Vol.III r.1-E.14 (record to contain a brief note of all material orders passed) (`phhc3:rule_1-E.14` - 1-E.14)
+- *authority* - R&O Vol.III r.1-E.14 (record to contain a brief note of all material orders passed) (`phhc3:rule_1-E.14` - 1-E.14 Record to contain a brief note of all material orders passed)
 - *authority* - R&O Vol.III r.1-A.6 (speedy disposal of cases) (`phhc3:rule_1-A.6` - 1-A.6 Speedy disposal of cases)
 - *authority* - NI Act §143 (`ni:sec_143` - 143. Power of Court to try cases summarily) [open](#law?act=ni&eid=sec_143)
 - *binds* - schema-field: order sheet - adjournment orders and the date of resumption
@@ -4236,8 +4236,8 @@ The system MUST record every order of adjournment in a cheque case with its date
 The system MUST support Hindi in Devanagari script as the language of a Haryana subordinate criminal court's record and judgment, alongside English.
 
 - *why* - The notification reproduced in Volume III determines the language of the courts subordinate to the High Court to be Hindi in Devanagari script in the Hindi Region, and Volume III requires the judgment to be written in the language of the court or in English. It is a 1962 Punjab notification framed for the Hindi and Punjabi Regions of undivided Punjab; that the Hindi Region is now Haryana follows from the reorganisation and not from the text, so the requirement is a reading of the notification. The Panchkula judgment writer takes the judge's dictation in the language of the court. A system that stores only ASCII, or that mangles Devanagari in a generated FORM A preface or in a summons, produces a record in a language the court does not use and a name it cannot print.
-- *authority* - R&O Vol.III r.1-E.14 (notification regarding court language) (`phhc3:rule_1-E.14` - 1-E.14)
-- *authority* - R&O Vol.III r.1-H.1(ii) (judgment in the language of the court or in English) (`phhc3:rule_1-H.1` - 1-H.1)
+- *authority* - R&O Vol.III r.1-E.14 (notification regarding court language) (`phhc3:rule_1-E.14` - 1-E.14 Record to contain a brief note of all material orders passed)
+- *authority* - R&O Vol.III r.1-H.1(ii) (judgment in the language of the court or in English) (`phhc3:rule_1-H.1` - 1-H.1 Contents of a judgment)
 - *binds* - schema-field: record and judgment text - language and script
 - *test* - Party names, order text and judgment text entered in Devanagari round-trip unchanged through storage, generated documents and printed process; the record stores which language was used.
 - *related* - REQ-HR-EVI-001
@@ -4247,7 +4247,7 @@ The system MUST support Hindi in Devanagari script as the language of a Haryana 
 The system MUST accept an e-authenticated copy of an interim order, stay order, bail order or record of proceedings transmitted through the FASTER system as valid for compliance with the directions it contains.
 
 - *why* - Volume III was amended in September 2022 to say so in terms. In a cheque case the order that matters most urgently is a bail order or a stay of proceedings, and the drawer is often at a different court or in custody in a different district. If the system requires a physically certified copy before it will act, a person entitled to release under an order already transmitted electronically stays where he is until paper arrives, which is precisely the delay the FASTER system was created to remove.
-- *authority* - R&O Vol.III r.1-A.14 (Fast and Secured Transmission of Electronic Records) (`phhc3:rule_1-A.14` - 1-A.14)
+- *authority* - R&O Vol.III r.1-A.14 (Fast and Secured Transmission of Electronic Records) (`phhc3:rule_1-A.14` - 1-A.14 Fast and Secured Transmission of Electronic Records (FASTER))
 - *binds* - workflow-step: acceptance of a FASTER e-authenticated order for compliance
 - *test* - An order received through FASTER can be actioned without a physical certified copy, and the case record shows the FASTER transmission as its source.
 - *related* - REQ-HR-CPY-002
@@ -4283,7 +4283,7 @@ The system MUST record the presiding officer's monthly inspection and signature 
 The system MUST supply a hard copy of the testimony recorded, certified a true copy by the presiding officer or court officer, free of cost and against receipt, to the accused or his advocate, to the witness and to the prosecutor, on the date of recording.
 
 - *why* - Volume III fixes the day: the date of recording, not on application and not later. In a cheque case the complainant's evidence is often tendered on affidavit and then cross-examined in one sitting, and the accused's counsel has to prepare his next step from what was actually said. If the copy comes weeks afterwards, or only on a copying application, the accused is defending a summary trial on his memory of a deposition he has not read, and the receipt the rule requires is what shows whether he got it at all.
-- *authority* - R&O Vol.III r.1-E.3(ii)(c) (procedure for recording evidence) (`phhc3:rule_1-E.3` - 1-E.3)
+- *authority* - R&O Vol.III r.1-E.3(ii)(c) (procedure for recording evidence) (`phhc3:rule_1-E.3` - 1-E.3 Mode of recording evidence)
 - *authority* - NI Act §145 (evidence on affidavit) (`ni:sec_145` - 145. Evidence on affidavit) [open](#law?act=ni&eid=sec_145)
 - *binds* - output-document: certified true copy of a deposition supplied on the date of recording
 - *how* - The copy is certified a true copy by the presiding officer or the court officer, given free of cost, and a receipt is taken from each recipient.
@@ -4308,7 +4308,7 @@ The system MUST treat an application for a copy made by a person sentenced to im
 
 - *why* - Volume III makes it urgent because a copy is what an appeal has to be accompanied by, and a convict who does not get one before the courts close cannot move for bail over the break. A s.138 sentence can run to two years. A copying queue that works first in, first out will hand the copy over after the holidays, by which time the person has served part of a sentence he was trying to appeal.
 - *authority* - R&O Vol.III r.25-G.3 (applications for copies before a holiday to be treated as urgent) (`phhc3:rule_25-G.3` - 25-G.3 Application for revision to be accompanied by copy of judgment. Free supply of copy to accused)
-- *authority* - R&O Vol.III r.1-H.1(iv) (pronouncement before a spell of holidays) (`phhc3:rule_1-H.1` - 1-H.1)
+- *authority* - R&O Vol.III r.1-H.1(iv) (pronouncement before a spell of holidays) (`phhc3:rule_1-H.1` - 1-H.1 Contents of a judgment)
 - *binds* - workflow-step: priority of a copy application made before a holiday by a person sentenced to imprisonment
 - *how* - Such copies are supplied on the same day as far as possible, and if that is not practicable at least on the next day.
 - *test* - An application flagged with a custodial sentence made on the working day before a holiday is placed at the head of the copying queue and its target date is the same day, failing which the next day.
@@ -4319,7 +4319,7 @@ The system MUST treat an application for a copy made by a person sentenced to im
 The system MUST prompt for the convicted person's application for a free copy of the judgment where a cheque conviction ends in fine only, because the automatic free copy under Volume III is engaged only by a sentence of imprisonment.
 
 - *why* - Volume III r.1-H.1(vi) attaches the free copy of the finding and sentence to a sentence of imprisonment, and BNSS §404(1) does the same for the judgment. The commonest s.138 outcome is fine and compensation with no imprisonment, and in that case the free copy comes instead under BNSS §404(2), which is expressed as being on the application of the accused. The Panchkula practice of handing it over on every conviction is more generous than the letter of the rule. If a system instead follows the letter and issues no copy and no prompt, a drawer fined twice the cheque amount holds no copy of the judgment his appeal has to be accompanied by, and does not know he must ask.
-- *authority* - R&O Vol.III r.1-H.1(vi) (free copy where the accused is sentenced to imprisonment) (`phhc3:rule_1-H.1` - 1-H.1)
+- *authority* - R&O Vol.III r.1-H.1(vi) (free copy where the accused is sentenced to imprisonment) (`phhc3:rule_1-H.1` - 1-H.1 Contents of a judgment)
 - *authority* - R&O Vol.III r.25-G.2 (appeal to be accompanied by a copy of the judgment) (`phhc3:rule_25-G.2` - 25-G.2 Appeal to be accompanied by copy of judgment or order. Free supply of copy in certain cases)
 - *authority* - BNSS §404 (copy of judgment) (`bnss:sec_404` - 404. Copy of judgment to be given to accused and other persons) [open](#law?act=bnss&eid=sec_404)
 - *binds* - workflow-step: supply of a free copy of the judgment on a fine-only cheque conviction
