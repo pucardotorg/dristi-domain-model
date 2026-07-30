@@ -179,7 +179,8 @@ function parseStandards(md){
   // the shape comment, and any other HTML comment, is authoring instruction and not content
   const lines=String(md||"").replace(/<!--[\s\S]*?-->/g,"").split(/\r?\n/);
   // a labelled paragraph: "**How to test.** …" - the label decides the field it fills
-  const LABEL={"how to test":"test","pass when":"pass","note":"note"};
+  const LABEL={"spec":"spec","anchor":"anchor","how to test":"test","pass when":"pass",
+               "check":"check","note":"note"};
   const flush=(buf,target)=>{
     const txt=buf.join(" ").replace(/\s+/g," ").trim(); buf.length=0;
     if(!txt||!target) return;
@@ -200,7 +201,8 @@ function parseStandards(md){
       g={name:line.replace(/^##\s*/,"").trim(), gloss:"", items:[]}; out.groups.push(g); return; }
     if(/^###\s/.test(line)){ flush(buf,target());
       if(!g){ g={name:"", gloss:"", items:[]}; out.groups.push(g); }
-      s={name:line.replace(/^###\s*/,"").trim(), gloss:"", test:"", pass:"", note:"", group:g.name};
+      s={name:line.replace(/^###\s*/,"").trim(), gloss:"", spec:"", anchor:"", test:"",
+         pass:"", check:"", note:"", group:g.name};
       s.id=stdSlug(s.name); g.items.push(s); return; }
     buf.push(line);
   });
@@ -208,6 +210,27 @@ function parseStandards(md){
   out.lede=lede.filter(p=>p.length).map(p=>p.join(" "));
   return out;
 }
+/* The one piece of markdown a card renders: [text](url). Everything is escaped first,
+   so the only markup that survives is the anchor this builds, and only for an http(s)
+   target - the file is ours, but a citation layer that can be made to emit anything is
+   not one worth having. */
+const stdInline = txt => esc(String(txt||"")).replace(
+  /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+  (m,label,url)=>`<a class="std-link" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`);
+/* "Anchor" is the standard's footing in law that this corpus already holds - the RPwD
+   accessibility sections, s.70B for CERT-In, Article 348 for the language of a High
+   Court. Written as the corpus's own `<alias>:<eId>` ref, so it opens the provision
+   through the same route every other citation in the app uses. */
+const stdAnchors = raw => String(raw||"").split("·").map(x=>x.trim()).filter(Boolean).map(ref=>{
+  const src=SOURCES[ref.split(":")[0]];
+  if(!src) return `<span class="rq-plain">${esc(ref)}</span>`;
+  return `<a class="cite" data-nat="${esc(ref)}">${esc(secNum(ref))} <span class="std-anc-act">`
+    +`${esc(src.title.split(",")[0])}</span></a>`;
+}).join("");
+/* a list, one hosted checker per line: what it is, and what it wants from you */
+const stdChecks = raw => String(raw||"").split(" · ").map(x=>x.trim()).filter(Boolean)
+  .map(x=>`<li>${stdInline(x)}</li>`).join("");
+
 const stdSlug = n => String(n||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);
 const stdItems = () => STANDARDS.groups.reduce((a,g)=>a.concat(g.items),[]);
 async function loadStandards(){
@@ -961,22 +984,33 @@ V.standards=()=>{
   const facets=el("div","vfacets"); m.appendChild(facets);
   const list=el("div"); list.id="s-list"; list.style.marginTop="10px"; m.appendChild(list);
 
-  const items=all.map(s=>({s, grp:s.group||"",
-    hay:((s.name||"")+" "+(s.gloss||"")+" "+(s.test||"")+" "+(s.pass||"")+" "+(s.note||"")).toLowerCase()}));
-  const state={q:"", grp:"", openAll:false};
+  /* a Check line that names no link is the honest "nothing hosted reaches this one",
+     so the facet counts links rather than the field - it would otherwise offer a
+     reader a hosted checker and hand them a card saying there isn't one */
+  const items=all.map(s=>({s, grp:s.group||"", spec:!!s.spec, check:/\]\(https?:/.test(s.check||""),
+    hay:((s.name||"")+" "+(s.gloss||"")+" "+(s.spec||"")+" "+(s.anchor||"")+" "+(s.test||"")
+        +" "+(s.pass||"")+" "+(s.check||"")+" "+(s.note||"")).toLowerCase()}));
+  const state={q:"", grp:"", has:"", openAll:false};
   const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
 
+  const block=(l,v,cls)=>`<div class="rq-block${cls?" "+cls:""}"><span class="rq-l">${l}</span><div class="rq-v">${v}</div></div>`;
   function stdCardHTML(it){
     const s=it.s;
+    /* the disclosure: the method, the threshold it is judged against, and last the
+       checkers that will do part of it for you. The first two pair off into the two
+       columns; the checkers run underneath, because a list wants its own line. */
     const rows=[];
-    if(s.test) rows.push(`<div class="rq-block"><span class="rq-l">How to test</span><div class="rq-v">${esc(s.test)}</div></div>`);
-    if(s.pass) rows.push(`<div class="rq-block"><span class="rq-l">Pass when</span><div class="rq-v">${esc(s.pass)}</div></div>`);
+    if(s.test) rows.push(block("How to test", stdInline(s.test)));
+    if(s.pass) rows.push(block("Pass when", stdInline(s.pass)));
+    if(s.check) rows.push(block("Check it online", `<ul class="std-checks">${stdChecks(s.check)}</ul>`, "std-wide"));
     return `<div class="req std" id="std-${esc(s.id)}" data-std="${esc(s.id)}">
       <div class="rq-h">
         <div class="rq-stmt std-name">${esc(s.name)}<span class="caret">${ic('chevron-right')}</span></div>
       </div>
-      ${s.gloss?`<div class="rq-why">${esc(s.gloss)}</div>`:""}
-      ${s.note?`<div class="std-note"><span class="std-note-l">Note</span> ${esc(s.note)}</div>`:""}
+      ${s.gloss?`<div class="rq-why">${stdInline(s.gloss)}</div>`:""}
+      ${s.spec?`<div class="std-spec"><span class="std-l">Spec</span> ${stdInline(s.spec)}</div>`:""}
+      ${s.anchor?`<div class="std-anchor"><span class="std-l">In this corpus</span><span class="cites">${stdAnchors(s.anchor)}</span></div>`:""}
+      ${s.note?`<div class="std-note"><span class="std-l">Note</span> ${stdInline(s.note)}</div>`:""}
       ${rows.length?`<div class="rq-full">${rows.join("")}</div>`:""}
     </div>`;
   }
@@ -988,9 +1022,18 @@ V.standards=()=>{
       +pill("grp","","All",bySearch.length,!state.grp)
       +groups.map(n=>pill("grp",n,n,grpC[n],state.grp===n)).join("")
       +`</div></div>`;
+    /* the two questions a reader actually arrives with: which of these rest on a
+       published standard, and which can I check right now against a running site */
+    const inGrp=bySearch.filter(it=> !state.grp || it.grp===state.grp);
+    const nSpec=inGrp.filter(i=>i.spec).length, nCheck=inGrp.filter(i=>i.check).length;
+    if(nSpec||nCheck) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Has</span><div class="chips">`
+      +(nSpec?pill("has","spec","A published spec",nSpec,state.has==="spec"):"")
+      +(nCheck?pill("has","check","A hosted checker",nCheck,state.has==="check"):"")
+      +`</div></div>`;
     facets.innerHTML=fh;
 
-    const final=bySearch.filter(it=> !state.grp || it.grp===state.grp);
+    const final=bySearch.filter(it=> (!state.grp || it.grp===state.grp)
+      && (!state.has || (state.has==="spec" ? it.spec : it.check)));
     if(!final.length){ list.innerHTML=""; list.appendChild(el("div","empty","No standard matches this search.")); return; }
     let html=`<div class="std-bar"><span class="std-count">${final.length} of ${items.length} standards</span>`
       +`<span class="std-toggle" data-all="${state.openAll?"1":"0"}">${state.openAll?"Close all":"Open all"}</span></div>`;
@@ -1005,7 +1048,8 @@ V.standards=()=>{
   }
   facets.addEventListener("click",e=>{
     const p=e.target.closest(".chip"); if(!p) return;
-    state.grp = (p.dataset.fv && state.grp===p.dataset.fv) ? "" : (p.dataset.fv||"");
+    if(p.dataset.fg==="has") state.has = (state.has===p.dataset.fv ? "" : p.dataset.fv);
+    else state.grp = (p.dataset.fv && state.grp===p.dataset.fv) ? "" : (p.dataset.fv||"");
     redraw();
   });
   list.addEventListener("click",e=>{

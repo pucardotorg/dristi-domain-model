@@ -894,10 +894,39 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .req.std .rq-h{padding-right:2px}
   .req.std .std-name{display:flex; align-items:flex-start; gap:13px}
   .req.std .std-name .caret{margin-top:3px}
-  /* a caveat about the standard itself, not about the build - quiet, and never a pill */
-  .std-note{font-size:12.5px; line-height:1.6; color:var(--ink-3); margin-top:9px; max-width:var(--rq-measure)}
-  .std-note-l{font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
-    color:var(--ink-3); margin-right:6px}
+
+  /* The citation lines, above the caret because they say what the standard IS rather
+     than how you meet it: the published spec it comes from, and where Indian law that
+     this corpus already holds gives it force. Both are quiet run-in lines with an
+     inline label, not blocks - a card with four headed sections stops being a card. */
+  .std-spec, .std-anchor, .std-note{font-size:12.5px; line-height:1.65; margin-top:9px;
+    color:var(--ink-3); max-width:900px}
+  .std-spec{color:var(--ink-2)}
+  .std-l{font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
+    color:var(--ink-3); margin-right:7px}
+  .std-anchor{display:flex; align-items:baseline; flex-wrap:wrap; gap:2px 10px}
+  .std-anchor .cites{display:inline-flex; flex-wrap:wrap; gap:4px 16px}
+  .std-anc-act{color:var(--ink-3); font-family:var(--font-sans); font-weight:500; font-size:12.5px}
+
+  /* links out are plain and underlined, never boxed - and the corpus citations here
+     take the same treatment, so an internal cite and an external spec read alike */
+  .view-std .std-link, .view-std .cite{font-family:inherit; font-size:inherit; font-weight:600;
+    color:var(--ink-2); background:none; border:0; border-radius:0; padding:0;
+    text-decoration:underline; text-underline-offset:3px;
+    text-decoration-color:color-mix(in srgb,var(--ink-3) 45%,transparent); transition:color .12s, text-decoration-color .12s}
+  /* .cite is an inline-flex box, so the space between the section number and the Act
+     name is a whitespace text node the flex layout drops. The gap puts it back. */
+  .view-std .cite{font-family:var(--font-mono); font-size:12px; gap:7px}
+  .view-std .std-link:hover, .view-std .cite:hover{color:var(--brand-hi); text-decoration-color:var(--brand)}
+
+  /* the hosted checkers: a list, one per line, because each is a name plus what it
+     wants from you and that does not read as a run of chips */
+  .std-checks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px}
+  .std-checks li{position:relative; padding-left:15px}
+  .std-checks li::before{content:""; position:absolute; left:3px; top:8px; width:4px; height:4px;
+    border-radius:50%; background:var(--line-2)}
+  /* the checkers run the full card, under the two columns that pair method and threshold */
+  .view-std .rq-block.std-wide{grid-column:1/-1; margin-top:2px}
 
   /* ===================== UNIVERSAL SEARCH =====================
      A centred panel over a dimmed app. Type and spacing carry the structure;
