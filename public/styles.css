@@ -1036,8 +1036,23 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   /* a regulation carries a heading, not a role and a pair of badges, so the row gives
      the heading the room the law view spends on its chips */
   .pol-reg .prov-head .rt{font-weight:600; color:var(--ink)}
-  .pol-statute{margin:0}
-  .pol-statute .st-p{font-size:14px; line-height:1.75}
+  /* An Act's statute box carries a source line and a numbered heading, and those give it
+     its air. A regulation needs neither - the row above already says which regulation
+     this is - so with both gone the clauses sat flush against the top padding and the
+     box read as packed next to the same component on the law page. The room they were
+     providing is put back as spacing instead of as chrome. */
+  .pol-statute{margin-top:14px; padding:20px 22px}
+  .pol-statute .st-p, .pol-statute .litem{font-size:13.5px; line-height:1.8; margin:11px 0}
+  /* renderBody wraps even top-level clauses in a .lgroup, so the first row is never a
+     direct child of the box - the reset has to reach through it or the top inset is the
+     padding plus two margins */
+  .pol-statute > :first-child, .pol-statute > :first-child > .litem:first-child{margin-top:0}
+  .pol-statute .st-inpar ~ *{margin-bottom:0}
+  .pol-statute .lgroup{padding-left:26px; margin:7px 0}
+  .pol-statute .st-inpar{margin-top:20px}
+  /* the rows themselves, so a chapter of 14 regulations is a list and not a stack */
+  .actgrp-body .pol-reg .prov-head{padding-top:15px; padding-bottom:15px}
+  .actgrp-body .pol-reg .prov-body{padding-bottom:22px}
   /* landing from a citation: the clause is tinted for a moment so the eye finds it in
      a wall of numbered text. Same brand tint the story sections use when jumped to. */
   .pol-statute .litem.sec-flash, .pol-statute .st-p.sec-flash, .prov.sec-flash,
@@ -1054,7 +1069,8 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .pol-note{margin:18px 0; padding:13px 16px; background:var(--panel-2); border:1px solid var(--line);
     border-radius:11px; font-size:13px; line-height:1.7; color:var(--ink-3)}
   .pol-note .std-l{display:block; margin:0 0 4px}
-  @media(max-width:700px){ .pol-doc-t{font-size:19px} .pol-reg .prov-head .ref{min-width:0} }
+  @media(max-width:700px){ .pol-doc-t{font-size:19px} .pol-reg .prov-head .ref{min-width:0}
+    .pol-statute{padding:15px 14px} .pol-statute .lgroup{padding-left:16px} }
 
   /* ===================== UNIVERSAL SEARCH =====================
      A centred panel over a dimmed app. Type and spacing carry the structure;
