@@ -289,8 +289,10 @@ async function getPolicyAkn(doc){
   const blocks=actBlocks(x);
   const chapters=[]; let cur=null;
   blocks.forEach(b=>{
-    if(b.t==="chap"){ cur={label:b.label, id:"polchp-"+stdSlug(b.label), regs:[]}; chapters.push(cur); return; }
-    if(!cur){ cur={label:"", id:"polchp-0", regs:[]}; chapters.push(cur); }
+    // namespaced like every other policy id: two documents can both open with a
+    // "Chapter I Preliminary" and the slug alone would collide between them
+    if(b.t==="chap"){ cur={label:b.label, id:"polchp-"+doc.id+"-"+stdSlug(b.label), regs:[]}; chapters.push(cur); return; }
+    if(!cur){ cur={label:"", id:"polchp-"+doc.id+"-0", regs:[]}; chapters.push(cur); }
     cur.regs.push(b);
   });
   // the covering notice: <preface> is not part of the hierarchy, so actBlocks skips it
@@ -1175,10 +1177,16 @@ let policyScrollTo=null;     // a clause ref to land on when the page next rende
 const polUnitShort = doc => ((doc&&doc.unit)||{}).short || "Reg.";
 /* "reg_43_3" in the document's own language: Reg. 43(3). The first token is the unit
    prefix the document declares, everything after it is the path down the clause tree. */
+/* A citation is written the way its own document writes it. The AI regulations number
+   43(3); both eCommittee model rule sets number 10.3 on the page, and rendering that as
+   "Rule 10(3)" invents a form the reader will not find when they go and look. The
+   manifest says which - unit.clause_style "dotted" or, by default, parenthesised. */
 function polCiteLabel(ref, doc){
   const p=String(ref||"").split("_"); p.shift();
   const n=p.shift()||"";
-  return polUnitShort(doc)+" "+n+p.map(x=>"("+x+")").join("");
+  const dotted=((doc||{}).unit||{}).clause_style==="dotted";
+  const tail=dotted ? p.map(x=>"."+x).join("") : p.map(x=>"("+x+")").join("");
+  return polUnitShort(doc)+" "+n+tail;
 }
 const polCite = (ref, docId) => `<a class="pcite" data-doc="${esc(docId||"")}" data-clause="${esc(ref)}">`
   +`${esc(polCiteLabel(ref, policyDoc(docId)))}</a>`;
@@ -1188,16 +1196,26 @@ const polCite = (ref, docId) => `<a class="pcite" data-doc="${esc(docId||"")}" d
    anchor is reg-33-3-e-i - and a citation should follow the document's numbering, not
    ours. Failing both, the unit itself, so a citation always arrives somewhere true
    rather than nowhere. */
-/* A citation names a clause as the document numbers it - reg_43_3 - and the AKN
-   carries that string as an eId, so resolving is a lookup rather than a guess. Where
-   the eId is not there (a citation to a clause the drafting nests differently), fall
-   back to the regulation, which always exists. */
-function policyAnchorId(parsed, clause){
+/* An eId is unique inside its own document and nowhere else. Two eCommittee model rule
+   sets both number rules, so both carry rule_1 and rule_10_3; the AI regulations carry
+   chp_1 and so do they. The page renders every document into one DOM, so an id built
+   from the eId alone collides the moment a second document arrives, and a citation
+   resolves to whichever document happened to render first. Every policy DOM id is
+   therefore namespaced by the document that owns it. */
+const polClauseId = (docId, eid) => "pol-" + docId + "-" + eid;
+const polRowId    = (docId, eid) => "polreg-" + docId + "-" + eid;
+const polUnitOf   = eid => String(eid||"").split("_").slice(0,2).join("_");
+
+/* A citation names a clause as the document numbers it - reg_43_3, rule_10_3 - and the
+   AKN carries that string as an eId, so resolving is a lookup rather than a guess.
+   Where the eId is not there (a citation to a clause the drafting nests differently),
+   fall back to the numbered unit, which always exists. */
+function policyAnchorId(docId, parsed, clause){
   const eid=String(clause||"").trim();
   if(!eid) return "";
-  if(policyHasEid(parsed,eid)) return "pol-"+eid;
-  const reg=eid.split("_").slice(0,2).join("_");
-  return policyHasEid(parsed,reg) ? "polreg-"+reg : "";
+  if(policyHasEid(parsed,eid)) return polClauseId(docId, eid);
+  const unit=polUnitOf(eid);
+  return policyHasEid(parsed,unit) ? polRowId(docId, unit) : "";
 }
 function goPolicyClause(docId, clause){
   policyDocId=docId||policyDocId; policyScrollTo=clause||null;
@@ -1211,7 +1229,7 @@ function goPolicyClause(docId, clause){
    came for. Same classes as the law view on purpose - .actgrp and .prov already carry
    this behaviour and a reader who has used one page knows how to use this one. */
 function policyRegRow(d, r){
-  const row=el("div","prov pol-reg"); row.id="polreg-"+r.eId;
+  const row=el("div","prov pol-reg"); row.id=polRowId(d.id, r.eId);
   row.innerHTML=`
     <div class="prov-head">
       <span class="ref">${esc((d.unit&&d.unit.short)||"Reg.")} ${esc((r.num||"").replace(/\.$/,""))}</span>
@@ -1220,7 +1238,7 @@ function policyRegRow(d, r){
     </div>
     <div class="prov-body">
       <div class="statute pol-statute">
-        ${renderBody(r.body,"st","pol-")}
+        ${renderBody(r.body,"st","pol-"+d.id+"-")}
         <div class="st-inpar"><button class="view-full pol-full" data-doc="${esc(d.id)}" data-eid="${esc(r.eId)}">${ic('maximize-2')}&nbsp; Read this inside the whole document</button></div>
       </div>
     </div>`;
@@ -1339,16 +1357,15 @@ V.policy=()=>{
     list.appendChild(policyDocAccordion(d, parsed, d.id===want));
   });
   if(policyScrollTo){ const clause=policyScrollTo; policyScrollTo=null;
-    const d=policyDoc(want); policyLandOn(list, POLICY_AKN_CACHE[want], clause); }
+    policyLandOn(list, want, POLICY_AKN_CACHE[want], clause); }
   return m;
 };
 /* Landing a citation: the chapter it is in has to be opened and the regulation
    expanded before the clause exists in the DOM to scroll to. Same three steps the law
    view takes when a provision is deep-linked. */
-function policyLandOn(host, parsed, clause){
-  const anchor=policyAnchorId(parsed, clause); if(!anchor) return;
-  const reg=String(clause).split("_").slice(0,2).join("_");
-  const row=host.querySelector("#polreg-"+CSS.escape(reg));
+function policyLandOn(host, docId, parsed, clause){
+  const anchor=policyAnchorId(docId, parsed, clause); if(!anchor) return;
+  const row=host.querySelector("#"+CSS.escape(polRowId(docId, polUnitOf(clause))));
   if(row){
     // three things are shut between the page and the clause now: the document, the
     // chapter, and the row. Every ancestor accordion opens, not just the nearest.

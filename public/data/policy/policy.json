@@ -44,7 +44,8 @@
       "unit": {
         "label": "Rule",
         "short": "Rule",
-        "prefix": "rule"
+        "prefix": "rule",
+        "clause_style": "dotted"
       },
       "akn_author": {
         "id": "sci-ecommittee",
@@ -70,7 +71,8 @@
       "unit": {
         "label": "Rule",
         "short": "Rule",
-        "prefix": "rule"
+        "prefix": "rule",
+        "clause_style": "dotted"
       },
       "akn_author": {
         "id": "sci-ecommittee",
