@@ -1,0 +1,859 @@
+<!--
+  HOW THIS FILE IS WRITTEN - the Policy page parses it, so keep the shape.
+
+    # Title           the document's own title. The page titles itself from
+                      policy.json, so this line is not rendered. It is spelt
+                      "Information"; the cover page below reproduces the
+                      printed "INFORMAITON", which is what the PDF prints.
+    > line            an editorial note from this corpus, NOT the document. It is
+                      rendered inset and labelled as such, wherever it appears.
+    ## Name           a part of the document. This document is built as three
+                      Parts - PART I NATIONAL POLICY, PART II ACTION PLAN,
+                      PART III PROJECT COST ANAYLYSIS - and closes with a list
+                      of abbreviations belonging to no Part, so that list carries
+                      a `##` of its own.
+    ### Name          one unit of a Part - a chapter. THIS DOCUMENT NUMBERS
+                      NOTHING IN ITS BODY. It is a 2005 report, not a rulebook:
+                      the chapters are printed as centred capitals with no number
+                      on them, so a reader cites them by name ("Digital Archives",
+                      "Phase I"), never by number. The only numbering anywhere is
+                      in the table of contents, which numbers the Part I chapters
+                      1.1 to 1.12 - and it is incomplete (it has no 1.11, it omits
+                      Post-Operational Maintenance altogether, and several of its
+                      titles differ in wording and spelling from the headings the
+                      body actually prints). Those numbers are therefore left in
+                      the table of contents where the document puts them and are
+                      NOT attached to the body headings, which would be inventing
+                      a citation the document does not offer.
+
+  Two consequences of that, recorded here so nobody has to rediscover them:
+    - Part II prints PHASE I / II / III as bold underlined capitals under the
+      centred heading PHASING OF THE ACTION PLAN, one typographic level down.
+      Markdown here has one level for a unit, so the three Phases are `###`
+      alongside PHASING OF THE ACTION PLAN rather than under it.
+    - Every other heading the document prints - the bold sub-headings inside a
+      chapter ("Ownership", "Statute Laws:", "Part One (first year)",
+      "Deliverables of Phase I") - is left as a plain line at the point it is
+      printed, because there is no third level.
+
+  Clause markers. The body carries five list forms, kept exactly as printed:
+  `a)` `b)`, `i)` `ii)`, `1)` `2)`, `(i)` `(ii)` and `•`. Nothing in this
+  document numbers a clause the way a rule does.
+
+  Everything that is not a `>` line is the document, transcribed verbatim. Nothing
+  is summarised, reordered or renumbered.
+-->
+
+# National Policy and Action Plan for Implementation of Information and Communication Technology in the Indian Judiciary
+
+> Transcribed from the PDF published by the e-Committee, Supreme Court of India,
+> which is kept alongside this file at
+> `policy/sources/policy-action-plan-phase-i-ecourts-2005.pdf`. The PDF carries a
+> real text layer - it is not a scan - and the wording here is the document's,
+> character for character, checked against that text. The document's own
+> misspellings are kept as printed: INFORMAITON on the cover, Trainign, Potrayed
+> and Creations in the table of contents, ANAYLYSIS and ABBRIVATIONS in the later
+> Parts, compterizataion, Indefisible, freqnency, and "inter alias" for inter alia.
+> Five things are presentational and nothing else was touched: running page numbers
+> are dropped; lines broken by justification are rejoined into paragraphs; a word
+> the source breaks across two lines at its own hyphen - E-Committee, E-mail,
+> C-DAC, front-end, change-management, day-to-day - is closed up rather than left
+> with the line break's space inside it; the document's tables are flattened, each
+> row written as its cells separated by `|`, under a `>` note saying so; and its
+> four footnotes, printed at the foot of the page, are written here as their own
+> paragraph directly beneath the paragraph that carries the marker. The six figures
+> cannot be transcribed at all; each is replaced by a `>` note saying what was there.
+
+NATIONAL POLICY
+
+AND
+
+ACTION PLAN
+
+FOR
+
+IMPLEMENTATION OF
+
+INFORMAITON AND
+
+COMMUNICATION TECHNOLOGY
+
+IN THE
+
+INDIAN JUDICIARY
+
+Prepared by
+
+E-COMMITTEE
+
+Supreme Court of India
+
+New Delhi
+
+1st August, 2005
+
+> The table of contents is transcribed as printed, including the numbering the
+> body itself never repeats, the jump from 1.10 to 1.12, the omission of
+> Post-Operational Maintenance, the stray "75" against 2.1, and the spellings
+> Organisation, Trainign, Creations and Potrayed.
+
+TABLE OF CONTENTS
+
+PART-I
+
+NATIONAL POLICY
+
+1.1 Introduction
+
+1.2 Implementation Strategies
+
+1.2.1 Ownership
+
+1.2.2 Creation of ICT Infrastructure
+
+1.2.3 Organisation/ Committees/ Bodies involved in the Proper
+
+1.3 Judicial Portal and E-mail Services
+
+1.4 Development of Customised Software Application
+
+1.5 Trainign of Judges and Administrative Staff in Courts
+
+1.6 Creations of cadre of trouble-shooters for each Court complex
+
+1.7 Upgradation of Infrastructure of Supreme Court and High Court Complexes
+
+1.8 Digitisation of Legal Tools: Statute laws and Case law
+
+1.9 Digital Archives
+
+1.10 Inter-connectivity of Law Libraries
+
+1.12 Implementation Difficulties (Potrayed Risks)
+
+1.12.1 Implementation Difficulties
+
+1.12.2 Drivers of Delay as portrayed by NIC
+
+PART-II
+
+ACTION PLAN
+
+2.1 Introduction 75
+
+2.2 Phasing of the Action Plan
+
+2.2.1 Phase I: Initiation of the ICT Implementation in the Judicial System
+
+2.2.2 Phase II: Coordination of ICT infrastructure for Judicial System
+
+2.2.3 Phase III: ICT coverage of Judicial process from filing to execution and all administrative activities
+
+PART-III
+
+PROJECT COST ANALYSIS
+
+3.1 Phase I
+
+3.2 Phase II
+
+3.3 Phase III
+
+## PART I - NATIONAL POLICY
+
+### INTRODUCTION
+
+Indian Judiciary is in urgent need of re-engineering its processes, optimize the use of its human resources and bring about change management by harnessing the potentiality of the available Information and Communication Technology (ICT) to its fullest extent. The objective of this exercise is to enhance judicial productivity both qualitatively and quantitatively as also make the justice delivery system affordable, accessible, cost effective, transparent and accountable. Similar objectives have been achieved in other parts of the world by use of technology but in India though its manpower is known for its technology expertise, the ICT benefits could not be fully explored and utilized in public service sectors like judiciary and other organs of the State.
+
+In the Indian Judiciary, effort for computerization of some of its processes has been going on since 1990. Need was felt to make the programme of ICT enablement of the Indian Judiciary mission-critical. There was an overwhelming realization in the judicial sector in favour of devising a National Policy and Action Plan with appropriate spread and phasing to implement ICT in courts across the country and their web-based interlinking.
+
+The Chief Justice of India (CJI) made a proposal to the Central Government under the letter dated 05.07.2004 addressed to the Minister of Law and Justice for constitution of an E-Committee to assist him in formulating a National Policy on computerization of Indian Judiciary and advise technological, communication and management related changes. Appreciating the desirability of constitution of such a Committee, the Union Cabinet approved the proposal. Consequently, office order dated 28.12.2004 was issued by the Ministry of Law and Justice (Department of Justice) constituting the E-Committee under the Chairmanship of Dr. Justice G.C. Bharuka, a retired Judge of the High Court of Karnataka, with three other specialist members. The E-Committee was inter alias required to formulate a National Policy on computerization of justice delivery system and to draw up an action plan with appropriate phasing for time bound implementation. This Committee is also required to concurrently monitor and evaluate the action plan on periodic basis.
+
+The E-Committee prepared the Report on Strategic Plan for Implementation of Information and Communication Technology in Indian Judiciary which was presented to the CJI on 11.05.2005. The Judges of the Supreme Court, senior advocates and senior executives from Department of Justice, Ministry of Communication and Information Technology as also NIC were present on the occasion. The Report of the E-Committee was circulated by the Hon'ble CJI to the Chief Justices of all the High Courts requesting them to consider the proposals contained in the Report and send suggestions as may be found advisable. Copies of the Report had also been sent to the leading jurists, academicians, concerned Ministers and ministries of the Union Government including NIC. The Report was made available to the Law Ministers of all the States as well at the Law Ministers Conference held at Simla on 11.06.2005 and elaborate discussions were held thereon. E-Committee also held detailed discussions with large section of ICT related organizations, service providers, research and development experts and leading manufacturers to ascertain the existing status of the technology. Its use in the context of court related processes, pricing, availability, security, implementation, scalability, sustainability, pace of change and support systems. Based on the inputs received from persons having expertise in diverse domains relevant for change management in Indian Judiciary, the E-Committee has framed the present National Policy and Action Plan for its implementation during a span of five years from the date of its effective commencement.
+
+### IMPLEMENTATION STRATEGIES
+
+A review of the computerization projects undertaken in the Indian courts during the last fifteen years mostly at the High Court levels and in 1997 at District Court level reveal that unless the court functionaries like the Judges and the Court staff show a personal initiative and involvement for bringing about a change in its work culture by use of technology, the efforts can hardly succeed at the touchstone of speed and quality. Till recently, the scope and purpose of using computers/ICT was not very clearly perceived or appreciated by the policy makers in the judiciary. By and large, the internal users felt satisfied with the automation of causelist preparation, digital transcription of orders and judgments and of late, their publication on the Internet. These exercises though had the effect of enhancing the court services to a certain degrees but in the real sense, had hardly in any way advanced the cause of achieving the basis objectives of providing speedy, qualitative and cost-effective justice, reducing harassments and corruption or enhancing transparency and accountability.
+
+The plan prepared by the E-Committee seeks to achieve the objectives by meaningful effective use of ICT through its implementation in a phased manner over a period of five years. It may be noticed here that no doubt hardware deployment in the courts can be made within two to three years and some of the processes can be automated but in order to avail the best of the technology to answer the basic needs and avowed objectives, there has to be a sustainable change in attitude, work culture and transformation of processes, which is time consuming and requires continuous over-viewing, training and fine-tuning to make the change-management happen, till it becomes an irreversible part of the organizational behaviour.
+
+Ownership
+
+ICT enablement project has to reflect initiative and leadership of the Chief Justice and Judges of the High Courts who have administrative control over the State judiciary. The governments may be Central or State, and other governmental agencies can give effective support to such initiation. Throughout the implementing life cycle, it must clearly appear that it is being done by the Court itself and not that the project has been undertaken and is required to be accomplished by someone else for the Court.
+
+Though the Chief Justices and the Judges of the High Court cannot personally and closely involve with the details of the project implementation because of their engagement with the judicial work, but the court staff, technicians, nodal agencies and the vendors must have a clear perception that they are acting at the direction of the Presiding Judge or the High Court administration. This mandate should be formal and should be re-affirmed as often as necessary during the ICT implementation project. It would help in establishing ownership (responsibility) by the Court of the project under implementation. A clear communication of a mandate to this effect from the top leadership of the court system to all concerned involved in executing the project will enhance co-operation and support at all levels making the project a success.
+
+Creation of ICT Infrastructure
+
+For the optimal utilization of ICT to make the judicial processes and tasks more efficient and transparent, there is a need to have the right ICT infrastructure in place. The ICT infrastructure among other things would necessarily include PC clients/ thin clients, servers, printers, scanners, hubs, switches, routers along with cabling both data and electrical. Keeping in view the discussions held with the interest groups, users, and their experience, it is decided that the make, specification, architecture, configuration and the broad principles for procurement of ICT infrastructure will be laid down by the E-Committee in consultation with the nominated implementing agency/ agencies and such other experts knowledge/ service providers as the E-Committee decides.
+
+The creation of physical ICT infrastructure in the manner noticed above will primarily involve the following:
+
+a) Network Planning and Feasibility Study: This would include analysis of the existing infrastructure that is available at the court complexes. The ICT infrastructure required for the judicial system will be mapped to the processes followed in the judicial system and planned accordingly. Depending on the requirements, the specifications of the hardware/ICT infrastructure are required to be prepared. Site preparation and laying of Local Area Networking (LAN) should be preceded by a feasibility study as has already been conducted for the State of Bihar.
+
+b) Site Preparation: Each court complex should have a dedicated area/ room for housing the services and related ICT equipments. This would be the computer room of the court complex. For the creation of the 'Computer Room' in the court complex site preparation in terms of minimal civil works and electrical works would need to be carried out. The interiors, civil works, computer furniture, etc. would need to be done. Electrical works would involve electrical cabling, earthing, wiring, etc. Electrical equipments such as DG set. UPS or solar system, electrical sockets. etc. would also need to be in place for the equipments installed in court complex. Reliable and uninterrupted electricity and power back-up is a critical requirement of ICT infrastructure. Poor electricity with voltage fluctuations causes damage to the ICT infrastructure.
+
+c) Communication infrastructure: The communication infrastructure in terms of broadband internet connectivity will be sin qua non for the implementation of ICT in any organization. Broadband internet connectivity ranging from 256 Kbps to 2 Mbps should be in place at the court complexes. For establishing the internal LAN connectivity between various computers/servers of the computer room data cabling has to be done. As part of the communications infrastructure, LAN and WAN connectivity with its associated equipments such as hubs, modems, routers should be installed. It is also proposed to provide broadband access to home offices of all judicial officers/Judges across the country. Links will be established between jails and courts.
+
+d) ICT Hardware and System Software: The ICT hardware such as computers, server, scanners, printers, etc. needs to be installed at a computer rooms of each of the court complexes. The operating system will be as per the final decision of the E-Committee is proposed to be Linux. Various other system software needs to be developed keeping in view the processes and requirements of the judicial system. Uniformity in the use of software at various court complexes shall render the functioning of the judicial system more coherent and in synchronization.
+
+e) Infrastructure creation for E-Committee: The E-Committee would be the apex body to oversee the implementation of ICT based applications in the judicial system. The E-Committee would need to have dedicated lease line internet connectivity of at least 2 Mbps. The E-Committee would develop various system software and ICT applications in-house with the help of a core group of technical personnel. The E-Committee would be housing the centralized database of the judicial system. Availability of allied ICT infrastructure such as computers, laptops, printers, scanners and office infrastructure to accommodate the E-Committee and the core group of technical and support staff, will be a pre-requisite.
+
+Organization/Committees/Bodies involved in the Project
+
+Apex Bodies/Committees
+
+The E-Committee would be the apex body at the national level for implementing the project. In line with the functions and tasks of the E-Committee described above. The E-Committee would be performing the task of overall monitoring and policy formulation.
+
+A Group of National Advisors would be formed which will comprise of members from NIC, IITs, IISc., judicial sector, ICT sector and members having expertise in policy formulation/ governance. The Group of Advisors will advise the E-Committee regarding policy issues/ implementation strategies and overall guidance on the project implementation.
+
+1) E-Committee: The E-Committee would be the apex body for decisions regarding the implementation of its objectives, the E-Committee would be supported by a core group of researchers and functional/ technical staff of around 50 persons. Services of various consultants/ domain experts would be utilized by the E-Committee to complete various tasks. The legal researcher will assist the E-Committee in identifying and structuring the procedural laws (rules of business) followed by the Courts in their respective territorial jurisdictions. This task will be conducted in a centralized distributed manner with effective coordination.
+
+The consultants would be housed in the premise of the E-Committee and assist the E-Committee on various aspects such as identifying different vendors/ service providers for providing of internet service, software/ hardware systems, office automation equipments, etc. The consultants would undertake the task of system analysis and design and would identify the flow process of the judicial system and design suitable user interfaces. RDBMS, front-end and back-end tools etc. Consultants would also assist the E-Committee in development of various customized software for the judicial system. Micro analysis of the tasks to be undertaken as well as documentation of various tasks would be undertaken by the consultants. They would design the software/hardware, system configuration, RFPs, RFQs, ICT policy, etc. in close consultation and directions of the E-Committee. To achieve the desired results pertaining to the tasks in various phases of implementation, the E-Committee would be required to be assisted by consultants/domain experts for customized software design and application development, assistance in preparation of various RFPs (Request for Proposals), oversee the progress of implementation on a regular basis and report the same to the E-Committee. The consultants would assist the E-Committee in selection of the right vendor for the various implementations involved in phase-wise deliverables of the project.
+
+2) Steering Committee of High Court Judges: A Steering Committee consisting of five High Court Judges would oversee the various tasks/implementation of the computerization and ICT implementation at the respective High Courts. The Steering Committee would recommend various policy measures, administrative restructuring essential for ICT implementation in consultation with the E-Committee. It is advisable that the Chief Justice of the High Court nominates a sitting Judge of the High Court from amongst the members of the Steering Committee having comparatively less administrative responsibilities and longer tenure to have closer supervision of the ICT project on day-to-day basis subject to overall supervision of a Steering Committee.
+
+3) Central Project Coordinator: The Central Project Coordinator would be a person of the rank of District Judge or Civil Judge Senior Division, who would co-ordinate the implementation of various modules/ tasks of the project. The Project Coordinator would have a dedicated team of identified supporting staff -- two having university degree in computer applications, one having a diploma in computer application and three to four staff of High Court having computer knowledge of internet access and email communication. The Project Coordinator along with him team would coordinate with the E-Committee and the nodal agencies described later in this section for the implementation of all the tasks entrusted by the E-Committee.
+
+4) District Court Project Supervision Committee: The District Court Project Supervision Committee would consist of one Senior Additional District Judge and two Civil Judges (Senior Division) or one Civil Judge (Senior Division) and one Civil Judge (Junior Division) along with two court officials having computer knowledge and two court staff having the knowledge of electric and technical work. This Committee would perform the overall monitoring of the project implementation in the District under the overall supervision of the Principal District Judge. This Committee would work in close co-ordination with the Central Project Coordinator. The committee would undertake the various tasks detailed in the subsequent chapters, at District and Taluka/Tehsil/Sub-division levels.
+
+5) Taluka/Tehsil/Sub-division Court Team: The Taluka Court Team would consist of one Senior Civil Judge (wherever available) and one Junior Civil Judge along with court staff having knowledge of electrical works and some basic computer knowledge. In case there is only one court in the Taluka Court, the presiding officer of that court would be the head of the team. The Taluka Court Team would perform the various tasks of monitoring the project implementation at the Taluka Court level.
+
+Taking into account the voluminous task involved in implementation of ICT based applications in the Indian Judiciary, various agencies, entities would need to work in a synchronized manner along with the stakeholders of the judicial system. A brief description of the agencies/ entities involved in the process and their areas of operation is enumerated below.
+
+The total task, as broadly mentioned above, would need the involvement of various agencies/ committees/ bodies for monitoring, implementation, software application development, technical study, analysis. etc.
+
+The main functions include procurement of the right hardware and its installation, setting up of computer rooms well equipped with power backup, etc. and development of software applications for the judicial system. The coordinated integration of agencies involved in the project is of prime importance for the efficient implementation of the project. There are various other tasks/ sub-tasks involved in the above three categories.
+
+i) National Informatics Centre: NIC has been implementing ICT tools and applications including computer systems, servers, networking equipments, etc. in the courts in India since 1990 subject to its own limitation. With the formation of E-Committee and the tasks entrusted upon it, the NIC would be required to function in co-ordination and in accordance with the requests/ recommendations of the E-Committee. NIC has funds allocated by the Government of India for the ICT implementation in the judicial system. In line with the tasks/ activities described in this report, NIC would co-ordinate with E-Committee and release payments to various agencies, described below who would be implementing the various tasks as per the policy decisions and directions of the E-Committee.
+
+ii) Nodal Agencies for Implementation of ICT infrastructure: One or more nodal agencies such as Government Societies/ PSUs/ Autonomous Bodies and other knowledge and service providers having expertise in creation and management of ICT infrastructure/ incubation would be identified. These agencies would be responsible for setting up of computer room in court complexes throughout the country in the States/ areas assigned to them. This would involve creation of an ICT incubation space with allied civil and electrical works. The agencies would also enable internet connectivity at the court complexes by identified internet service provider(s). The agencies would assist in procuring and installing the required hardware. The agencies would work as per the directions and supervision of the E-Committee.
+
+iii) Nodal Agencies for Supply and Installation of ICT Hardware: Another set of nodal agencies having expertise in networking, ICT system integration, implementation of ICT projects, etc. may be made responsible, subject to decision of the E-Committee for the implementation of ICT and computer hardware such as PCs, servers, printers, scanners, etc. for the computer room at various Court complexes. Other infrastructure such a video-conferencing solution. Wireless LAN connectivity, etc. would also implemented by such agencies. These agencies would identify various vendors and source the ICT hardware requirement. These agencies would be functioning and performing various tasks entrusted upon it under the direct supervision and approval of the E-Committee.
+
+iv) Nodal Agency for ICT Training: Training of the judicial officers and the court staff is a vital component of the computerization process. The training process would have to be done on a mass scale. At the same time, there needs to be uniformity in terms of the training modules, manuals, etc. Training of the judicial personnel being a major component of the computerization process of the judicial system, it is proposed that nodal agencies such as CDAC, DOEACC, etc. which are Central Government instrumentalities, would be appointed. These nodal agencies in consultation with the E-Committee would form the training modules, manuals, etc. after understanding the various processes/ applications that would be implemented as part of the computerization process. These nodal agencies, in order to provide training on a countrywide basis could form partnership with other agencies to provide training at all the court locations. Regular seminars/ refresher courses/ updation courses on various aspects of ICT usage, use of ICT in legal system, basic operations, advanced user courses etc. would be conducted on a regular basis with predefined timeframes. For the purpose of training the judicial academics both at the national and state levels will have to be actively involved.
+
+v) Implementing Agencies/Contractors/ Software Developers: The various tasks would be broken down horizontally and vertically. The implementing agencies would provide and implement the hardware systems and allied technical infrastructure as designed and specified by the E-Committee. Different tasks would be implemented by different selected agencies depending upon the requirements and expertise/area of operations of the respective agencies.
+
+The selection of nodal, implementing and other agencies will be made in accordance with the general/specific procedures laid down by the Central Government and in an absolutely transparent manner with all the relevant information made available on the internet.
+
+### JUDICIAL PORTAL AND E-MAIL SERVICES
+
+E-Committee has taken the initiative of setting up of a web portal named indianjudiciary.in. Two domain names have been registered i.e. indianjudiciary.in and indiancourts.in. With the help of an in-house team, the web site has been created with links relating to information on Supreme Court, State Judiciary, Legal Information, Judicial Academies. E-Committee and Data center. The link on Supreme Court will have the Judgments, profile of Hon'ble Chief Justice and Hon'ble Justices of Supreme Court. The link relating to state judiciary will contain information like the details of judgments, profile of Hon'ble Judges. Intranet facility has been provided in portal for creating a database for data center. It will have facilities for entering case and court related data at each and every court in India and the data can be viewed real time at data center hub at Supreme Court at respective High Courts which have the necessary administrative power under Article 235 of the Constitution of India. The Data Centre will have features to add names of the town, cities where the courts are located, categories of courts, manpower details, functioning, classification, etc. Data entry, editing, deleting can be done by the staff who has minimal exposure in computers, with few days of training. It will also have online help facility. The data so stored, processed and retrieved in the desired format will help in administrative and judicial decision making. It will help in effective use of case management and caseflow management technics.
+
+It is proposed to have a full fledged portal which will have information on Indian Judicial System. The portal can be utilized by the general public, advocates, court officers, etc. The portal will contain information like details of the structure of various courts in the country, history, functions, and role of the judiciary. It will also contain an encyclopedia of digital version of legal documents. The speeches of Hon'ble CJI, Hon'ble Judges, Judgments of the Supreme Court of India and High Courts, the functions of E-Committee, Judicial Academies, Legal Information, Law Libraries will be part of the website.
+
+It is proposed to have a centralized e-mail server exclusively for Indian Judiciary domain. The e-mail ID's would be issued to selected members of the Judiciary like Hon'ble CJI, Judges, officers of the judiciary System. There will be unique Ids for each court also. The e-mail server will have security features considering the sensitiveness of the information. Development, hosting, maintenance of the Web Server and E-mail Server would be done in-house using the expertise of the technical team. It is proposed to take a dedicated leased line from NIC to E-Committee of 2 Mbps through MTNL. NIC will provide 2 Mbps internet port access and the web server will be hosted in the internet data center of NIC. It will have facility for chatting or close user group. One application server and e-mail server with two numbers of work stations would be housed at the E-Committee to carry out the development of the web server as and when required. System Administration of E-mail server for creating/ deleting of the user e-mail accounts, space management etc. will be done at the premises of E-Committee. An Online documentation would be prepared and put on the portal for training to data entry operators all over the courts for entering data on a regular basis. Extensive security measures will be taken to ensure full proofed protection of the date and minimal chances of data loss. The backup of Data will be taken using back up drives at regular intervals. A local area network is proposed to ensure connectivity for workstations and application server, e-mail server at E-Committee premises. The day to day development on web will be transported to web server at NIC premises using a dedicated 2 Mbps link between NIC and E-Committee. The NIC will act as technologically helping hand for hosting of web site and they would be responsible for the security and power back up to ensure maximum up time for the hosted web server.
+
+There are several technological options available on which the Application services, Web services and E-Mail services will be developed and hosted. The platform could be Linux, Windows, or UNIX.
+
+For administrating control over the functioning of the web and E-mail services certain policies need to be framed to monitor and audit the usage of E-Mail communication. It is proposed that email of indianjudiciary.in will be used for official purposes only. Mails coming from other e-mail domain will be blocked. This will facilitate only official communications to ensure proper functioning and restrict spam mails, viruses etc. The details of the users will be entered through web from different courts and proper naming convention will be decided. Though Infrastructure of NIC will be utilized partially, the control will be with the E-committee for information flow.
+
+After the test launching of this website personnel from all the High Courts in the country are accessing indianjudiciary in through Internet. They are successfully entering data through website which are stored in a database.Querybased reports are being generated at E-Committee, through the portal. Registries of all the High Courts are in regular touch with the team of E-committee, for assistance and clarification.
+
+The proposed portal will boost up the use of ICT. The information available will help the judicial management in taking decision at all functional levels. It will help in bringing ICT culture in Indian Judiciary in an effective and speedier manner.
+
+### DEVELOPMENT OF CUSTOMISED SOFTWARE APPLICATION
+
+The Status Reports received from the High Courts and the District Courts reveal that the application software so far developed for Indian Courts are neither uniform nor based on any scientific analysis and study of the court requirements. The applications have been developed at the whims and fancies of the local developers on the platforms and data base management tools of their choice and convenience. No process analysis or designing documents are available. The developer/ programmer appears to have straight away proceeded with designing the data base structure on day-to-day study of the initial judicial processes by holding interactions with functional court staff. The softwares so far developed are partial translation of processes instead of helping transformation of such processes. This has resulted in retaining, sustaining and supplementing the vices in the system, making the processes more mystifying.
+
+For developing application software, a system analyst has to have a full insight of the organizational structure of the Indian Judiciary from constitutional perspective, statutory settings and its physical infrastructure. The analyst must have a clear knowledge and perception of court processes both on judicial as well as administrative side and should ascertain the deviations which have occurred gradually on practical side, resulting in vices and delays. The analyst should have a clear study of all the reform reports and findings given by the expert bodies setting out the reasons for delays and mounting of arrears. After undertaking such an exercise, the infirmities are to be appropriately catalogued, brought to the notice of the decision making authorities so that "best practices" could be developed for enhancing the judicial productivity. This is a time taking exercise requiring high skill, in-depth research, taking of quick decisions and transforming the processes into rules of practice and procedure in an expeditious manner. It is only then that a customized software transforming the judicial processes by the use of ICT can be of real benefit to all the stakeholders, users and beneficiaries of the system.
+
+The E-Committee has found that in the Supreme Court as well as the High Courts in the country, the National Informatics Centre (NIC) had initially developed softwares by using Unix as the operating system and FoxBase as the data base management tool. This was essentially used only for generating causelist or the payrolls. The judgment writers were also trained for digital transcription of judgments and orders on word processors. In 1996-2000, in Karnataka High Court, application software was developed on text-based Oracle version with Developer as the front end. In 1997, NIC had developed a data base management application in C++ for its use in district and subordinate courts, which, by and large, could not be used for its inaptness to cater the needs of local courts. In the year 2000, an effective software was developed in-house in Karnataka High Court for use in the district and subordinate courts across the State. It was done by using SQL Server and Visual Basic. The software is still in use.
+
+Subsequently, similar efforts have been made with the help of NIC for automating some of the judicial processes in Delhi district courts by using Linux and Oracle, which is also in use. Asian Development Bank consultants, under a contract with the Government of India, are still making an evaluation thereof. Almost parallely, a similar software has been developed by NICSI/NIC at Pune on Linux/My SQL, which has very recently been deployed in all the District and Subordinate courts of Maharashtra. On 16.12.2004, the High Court of Andhra Pradesh has entered into an agreement with a private software developer, M/s. Opusasia Technologies Pvt. Ltd. for development of comprehensive integrated software for automation of judicial as well as administrative functions of the High Court and city civil courts for a consideration of Rs.1.16 crores. On the instructions from the High Court, the software company has informed the E-Committee that they have already developed the software on SQL Server-ASP.Net.
+
+In the above backdrop, the E-Committee feels that for developing a comprehensive and integrated software in order to support the court system both on judicial as well as administrative side, the following steps need to be taken:
+
+(i) A comprehensive study of all the procedural laws and rules of practice followed in the courts of all the States of the country should be made with thehelp of at least one sufficiently senior judicial officer drawn from each State. This is necessary for devising and suggesting "best practices" for re-engineering of processes by use of ICT. The E-Committee has already received the requisite procedural laws from all the States and is in the process of laying down broad guidelines/formats for such a study. This study will also form the basis for administrative reforms in the judiciary. It is proposed that this study will be completed in about six months.
+
+(ii) In the meantime, based on the experience so far gathered in use of different platforms and application tools across the country by different agencies, a decision has to be taken in respect of using a common operating system and other database, front-end and word processing tools across the entire system, which can help in meaningful communication and knowledge sharing amongst stakeholders. This would further help in developing a National Judicial Data Grid with security and privilege definitions.
+
+(iii) The application software will be developed by following the procedures internationally defined and recognized. The entire process will follow the 4D methodology namely, Discovery, Design, Development and Deployment. The entire process will be properly documented. The document including the entire coding, source code, the logic, forms and reports will remain the property of the Supreme Court of India as the apex body and representative of the Indian Judiciary. This would also include the copyright over the entire software developed. Copies of the documents prepared and software so developed will always be made available to the High Courts as of right.
+
+(iv) The entire process of software development will commence and continue in the E-Committee's Development Centre under close supervision and coordination of the E-Committee by a group of ICT professionals/ domain experts, document writers and planners approved by E-Committee in consultation with NIC. The E-Committee, if it finds necessary, can draw ICT personnel from C-DAC, the Microsoft Inc. and other service providers. The software will be developed in a phased manner as devised by the E-Committee. If found necessary and advisable, E-Committee may require the studies, analysis and software development to be conducted at the State levels as well.
+
+(v) Applications will be web-based and intranet enabled with high security features.
+
+(vi) The input forms and output documents will be designed in the notified official language of the jurisdictional Courts as well.
+
+### TRAINING OF JUDGES AND ADMINISTRATIVE STAFF IN COURTS
+
+One of the references made to the E-Committee is to create support systems by framing policies and implementation plan in following areas:1
+
+1 See Notification of Government of India dated Dec. 28, 2004
+
+a) To create training for judges and administrative staff in the courts
+
+b) To create a cadre of trainers and trouble-shooters for each court complex
+
+c) To suggest ways and means to ensure the smooth running of the computer systems, including therein availability of power supply, peripherals, stationary etc.
+
+d) To suggest methods to make access to justice and availability of information more litigant friendly.
+
+In order to create training modules and devising sustainable training strategies for the Judges and the court staff, the E-Committee, after due deliberation and examining all the pros and cons. availed the services of DOEACC, an autonomous society created and working under the Ministry of Communication and Information Technology, Government of India. This society, which has to work on a no-profit basis has been created by Government of India exclusively for designing user expertise non-informal courses for ICT awareness and learning both for professionals as well as the users. After having long deliberations and discussions with the Executive Director of DOEACC and nominated experts in the field of IT training, the E-Committee in coordination with DOEACC framed training modules and courses for entry level as well as in-service training of judicial officers. The modules have been so designed that the judicial officers can be trained for 90-94 sessions each comprising of 1½ hours. The judicial officers are required to undertake this training after court hours. The duration and the course material has been so designed that at the end of this training, the judicial officers may acquire an expertise in use of ICT tools, which will help them in becoming self-reliant and smart performers. It is proposed that on the successful completion of this training course, which will be assessed on intermediary and final skill test, the judicial officers will be granted a certificate of successful completion of the course. The certificate is to be granted under the authority of the Hon'ble Chief Justice and one designated Judge of the High Court and the Chairman of the E-Committee.
+
+As a pilot project, this training course was started for 100 judicial officers of Delhi District Judiciary with the help of the Delhi High Court and the Delhi Judicial Academy. It was inaugurated by the Hon'ble Chief Justice of India on 11.07.2005. The training program and the course schedules have been found to be very suitable and satisfactory by the judicial officers. At the end of the training, on the basis of the feedback that the E-Committee receives from the trainees, the Academy and the High Court, appropriate changes will be made in terms of the content of the course as well its duration.
+
+A similar course material is being designed for the different categories of court staff keeping in view the nature of duties assigned to them. This course may be of a duration of about two weeks only. The training is proposed to be given at the respective court locations. It may be held at the weekends at the District head quarters depending upon the situational requirements.
+
+The E-Committee is of the opinion that the training which is required to be imparted in ICT tools to the Judges and court staff should be entrusted to DOEACC, the Central Government organization. The terms and conditions for impartation of such a training program by DOEACC, through its own faculty or under exceptional situation, through its accredited institutions, can be settled on a pragmatic basis by the NIC in consultation with and under the supervisions of the E-Committee.
+
+### CREATION OF CADRE OF TROUBLE-SHOOTERS FOR EACH COURT COMPLEX
+
+During the execution of the project ICT, skilled manpower having expertise on the various tasks involved is needed. Recruitment of such manpower would be done for a fixed period during the implementation of the project or its milestones. The recruitment could be done initially for a period of two years. Subsequently, this skilled manpower can be absorbed in the system as a part of its establishment as of necessity. The requirement in term of manpower would be as under:
+
+For each of the High Court complexes, the personnel that would be required include one Senior System Administrator (BE/MCA) on a consolidated pay of around Rs. 12,000/- p.m., one Additional System Administrator (BE/MCA) on a consolidated pay of around Rs. 10,000/- p.m. and two System Assistants (Diploma holders in computer/electronics) on a consolidated pay of around Rs. 6,000/- p.m. each.
+
+For District Courts and Subordinate Courts, one District Courts ICT Administrator (BE/MCA) and two support System Assistants would be required. These persons would be working under the direct supervision of the E-Committee during the implementation of the project. They would also be reporting to their respective High Court/District Court/Subordinate Court authorities with respect to the various tasks/activities involved in the successful completion of the project. The technical manpower planning may vary keeping in view the local need which the E-Committee will asses on case-to-case basis in consultation with NIC and designated nodal agency.
+
+This manpower would execute the various tasks involved in the project and the identified personnel of the judicial system would work along with the manpower recruited for a fixed term. These personnel would have gathered the required information and expertise during the initial two years of the project and would be in a position to take charge of the ICT infrastructure and processes at tall subsequent stages including future maintenance. The technical manpower so created will be absorbed in the regular cadre of the courts for which the concerned State Governments, in consultation with the High Courts, should make appropriate provisions. A suitable nodal agency would be identified for manpower development activity such as DOEACC.
+
+### UPGRADATION OF INFRASTRUCTURE OF SUPREME COURT AND HIGH COURT COMPLEXES
+
+The process of setting up of ICT infrastructure in Supreme Court and High Court complexes started around fifteen years ago. The Supreme Court and High Court already have certain amount of compterizataion done. As has already been stated in the Report dated 11.05.2005, the Supreme Court and High Courts are at varying stages of ICT enablement.
+
+Nevertheless additional technical infrastructure and upgradation of existing infrastructure is necessary at Supreme Court and High Court. It is proposed to equip the Supreme Court and High Court Complexes with technical infrastructure such as WiFi System, Digital Record Room, VC studio etc.
+
+Wireless LAN facilities will be provided in the court complexes with multiple codes within space which will have a caveat area encompassing the court complex and nearby area. People in the surrounding area of the court complex will be able to access the internet, judicial database and judicial intranet through web using their laptop or computers without using internet cable connection with proper authorization. This will enable judges, lawyers, judicial officers to communicate through e-mails seamlessly. The WiFi system would enable internet access without locational constraint within an area of 1 km radius.
+
+Voluminous data in the form of orders, appeals, verdicts, etc. are continuously created by the judicial system. These data are highly important and maintenance thereof is of utmost importance. The record keeping in this scenario becomes a tedious and time-consuming task with requirement of more manpower. It is proposed that this data would be stored in a digital format by way of scanning and proper digital archiving. Document Management tools would be utilized for systematic indexing and archiving of this vital information. A Digital Record Room is proposed to be created at the Court Complexes which will serve as a centralized database of judicial information. Document retrieval would become easier in this case. In the manual record maintenance the record retrieval is also a time consuming task. With the creation of a Digital Record Room past records, judgements etc would be made available to the judges, judicial officers etc through web/intranet with proper authorization. The process of digitization of the record room has already been initiated at Supreme Court. With proper planning the whole digitization process can be completed with in three to five years.
+
+The existing High Court computer rooms would become the nodal points for district and subordinate courts under its jurisdiction. The High Court computer room needs to be upgraded with additional servers/server farm, power infrastructure, data cabling etc. The High Court computer rooms would maintain a centralized database, library system and record room for all the district courts and subordinate courts under its jurisdiction. These will become the central Network Operation System of the affiliated district and subordinate courts. The technical infrastructure needs to be upgraded to reflect the additional load on the servers, computers with the proposed additional facilities and features.
+
+A state of the art Video Conferencing Studio would be set up at Supreme Court and High Court Complexes. This would be utilized for interactions between the Judges, Judicial Officers, and Lawyers etc. The VC studio would be a virtual meeting place for key judicial personnel to have discussions/ deliberations on various issues/ points. The VC studio would enable the key stakeholders of the Supreme Court and High Courts to interact with each other without spending money and time on associated travel etc.
+
+It is proposed that biometrics facility be installed at Supreme Court and High Court Complexes. The setting up of Biometric Facility would ease the process of prosecution/ judgment in cases of fraud/ use of aliases. The use of biometric facility would be a great help for fair judicial judgements. The most desirable effect of this technology would be the eventual establishment of a global database which, may be shared with other law enforcement and government agencies. This global approach to truly confirmed identification will eventually eliminate the systematic abuses created by the use of alias identities. To initiate the use of such a technology which would greatly help the judicial system, it is proposed that this facility be set up in Supreme Court and High Court Complexes. There is a need to have an analysis/ study undertaken at all the higher court complexes to understand the existing technical infrastructure and to carry out a gap analysis. The presence of technical infrastructure at the higher court complexes is varying. The gap analysis would provide an exact picture of the existing technical infrastructure and the need for upgradation.
+
+### DIGITISATION OF LEGAL TOOLS: STATUTE LAWS AND CASE LAWS
+
+Statute Laws:
+
+Courts in India exercise their adjudicatory functions by ascertaining the facts and primarily applying the statutory laws subject to their interpretation by the Supreme Court and the High Courts. The statutory law are made by the Parliament, respective State legislatures, President of India, Governors of the States and their delegatees. These are known as Acts, Ordinances, Rules, Regulations, Notifications, Orders, etc. For being enforceable, these laws are published in the Official Gazettes. Though these laws are of prime importance for adjudicatory processes, quite often those are not readily available in updated forms which leads to either delayed justice or many a times, miscarriage of justice. Therefore, with the available technology, appropriate solutions have to be devised to make all such laws available to the courts through web in an updated form as and when those are made and enforced E-Committee proposes to develop appropriate softwares for availability of all statute laws and devise methods for storing of such laws in digital forms with requisite search facilities on the internet. For scanning and storing of such laws, the services of the judicial academies can be availed of.
+
+Case Laws:
+
+Indian Judicial system is a part of common law system. Law of precedents developed over centuries is an integral and indispensable part of this system. In India, now the law of precedents has a constitutional recognition. Article 141 of the Constitution of India mandates that law declared by the Supreme Court of India is binding on all courts within the territory of India. Similarly, as declared by the Supreme Court, the law declared by the High Courts is binding on all courts under the control of the respective High Courts. For compliance of this rule, the judgments of the Supreme Court and High Court should be available expeditiously with requisite search facilities. Now it is feasible by use of ICT. E-Committee proposes to develop the necessary web-enabled software to achieve this end.
+
+> A figure is printed here, at the foot of the page. It is a hand-drawn network
+> diagram captioned "KNOWLEDGE SHARING OF LEGAL TOOLS - CASE LAW AND STATUTE LAW
+> SYSTEM", showing High Courts, law schools, law offices and a Supreme Court node
+> linked to a central judicial database. It cannot be transcribed.
+
+### DIGITAL ARCHIVES
+
+Present Manual System
+
+Each Judicial District in the State across the country is having a Record Room styled the "Central Record Room" under the charge of the Record Keeper attached to the District Court. The "Central Record Room" means a place provided under Orders of the respective High Courts from time to time for lodging and preservation of the records of civil and criminal courts in the different areas of the State. The normal place of Central Record Room will be in the premises of the District Court under the control of the District Judge.
+
+In all the subordinate courts to the District Court one clerk is appointed as Record Keeper. The Records of all disposed of cases will be in his sole custody, until they are sent to the Central Record Room. The record will be under lock and key and will be in the custody of the Record Keeper who shall be personally responsible for its safe keeping. The files are arranged as per the Civil and Criminal Rules of Practice prevailing in each state.
+
+The records of all categories of civil cases disposed of will be retained in the concerned Tehsil Courts for a period of one year from the date of disposal and thereafter dispatched to the Central Record Room. In every Court, during he first week of every calendar month, the records of cases disposed of during the immediately preceding calendar month will be arranged according to the rules and left in the custody of the record keeper of the concerned Court. The Record Keeper will dispatch the records of the cases so arranged in a particular calendar month to the Central Record Room during the corresponding month of the succeeding year so as to reach the Central Record Room before the end of the month.
+
+The records of the Courts of Magistrates will be retained in the Court for a period of six clear months after the disposal. After expiry of the said period of six months, the records will be sent to the Central Record Room packed into bundles "month war" i.e., each bundle containing records of disposed of cases in a particular month and shall be dispatched to the Central Record Room before 15th of the seventh month. The bundles dispatched during each calendar year are serially numbered with a list showing the disposed of cases.
+
+On receiving the records, the Record Keeper of the Central Record Room will cause the records to be checked with the lists accompanying bundles of records and entered in the register of records received in the Central Record Room. The Central Record Keeper will check the court fee labels in each file to verify punching of the labels. The Central Record Keeper shall be responsible for the safe custody and preservation of the records received in the Record Room. The racks in which the records are arranged are normally divided into compartments, of each of which shall be neatly written the name of the Court to which the records contained therein belong, the nature of the record and year of disposal. The record shall be arranged in the compartments according to dates of disposal, each record being stitched in book form and shall be tied with white or yellow cloth.
+
+The Central Record Room preserve the records and as per the Civil and Criminal Rules of Practice prevailing in each of the States, the registers and main records will be preserved permanently and rest of the records will be destroyed after expiry of the prescribed period. No records will be removed from the Central Record Room without written requisition of the Chief Ministerial Officer of the District Court. The record keeper of the Central Record Room who is custodian of the disposed of records will attend to the requisition of records from the appellate courts and other courts. After the expiry of the prescribed period, the record keeper of the Central Record Room takes steps for the destruction of the records. The destruction of all papers will be effected by tarring them into bits. The torn bits will be disposed of in accordance with the procedure prescribed for the disposal of waste paper.
+
+Source:
+
+i) The Karnataka Civil Rules of Practice, 1967
+
+ii) The Karnataka Criminal Rules of Practice, 1968
+
+iii) Karnataka Hand book on Administration and Inspection
+
+Proposed System
+
+Dedicated manpower is engaged to store-manage and to retrieve the judicial records as per the requirements. It becomes very difficult to maintain these records because condition of the old records deteriorates day by day. The number of files goes on increasing and the space requirement increases, consequently, searching and retrieving the files becomes difficult. It is high time now that these records should be achieved through digital processes. Through the computer and scanner each document of the files can be scanned and stored in a manner so that retrieval can be done swiftly. Document Management Software can be utilized for indexing, searching, retrieving, accessing, printing and displaying. This software will have feature like web enablement and multilevel security. These digitized files can be kept in CD/ magnetic tape in proper place. At about 600 places where record rooms are located, these digital archives are to be properly done. The existing manpower can be properly skilled and trained on the process of digitization of archival work. No additional manpower will be required for this purpose. The infrastructure requirement will be computers, heavy-duty scanners, printers and document management software. The application will be web based so that the record can be stored in multiple locations. The backup will be stored in the CD. Through the process of networking valuable files are preserved and documents are accessed in more user friendly way. Even this process can be done in a remote place from where a document can be accessed through network. The standard document management software product can be procured and customized to suit the requirement of the Court System. The training for the staff can be organized in each place. E-Committee will undertake the responsibility for organizing the training through nodal agency and customize software. The whole process of digitization will take three to five years.
+
+### INTER-CONNECTIVITY OF LAW LIBRARIES
+
+Each court complex in the country has libraries. All these libraries are currently functioning independently with no interconnectivity/ resource sharing among them. These libraries are an integral and essential part of the judicial system. Judicial officers and judges refer to the library resource on a regular basis to get various information for reference purposes.
+
+Dedicated manpower is assigned for the functioning of these libraries. The manpower performs various tasks such as management of library books/ periodicals/ magazines, etc. This includes issuance of these resources to judicial personnel and management of records of issuance and submission of various books/ reference material, etc.
+
+There is no centralized database of books/ periodicals etc. It is proposed that a digital library system be maintained. This would have the important reference material/ books/ periodicals in digital format, which could be accessed through internet/ intranet by the judicial officers and judges as also to the lawyers and public at large subject to assigned privileges and security measures. This would avoid duplication of purchases and have access to library resources anytime and anywhere by the authorized users of the library system.
+
+In the proposed computerized library system, all the library resources would be connected through a network through standard library systems like LIBSYS, SLIM, SOUL, NISCAR (CSIR), or any other customized software application designed and developed by the E-Committee.
+
+This would enable optimal utilization of library resources in a more economic and scientific manner. Also the required information can be accessed faster through computerized search tools/ keyword search, etc. The important documents/ reference material would also be digitalized and this digitalized library system could be accessed online through the internet. This would also have link with the digital judicial archives. This can be accessed by the judges at all their work places.
+
+The infrastructure requirement for the digitalization of law literature would include scanners, computers, servers, digital storage devices, etc.
+
+### POST-OPERATIONAL MAINTENANCE
+
+Under the Centrally Sponsored Scheme for implementing ICT in Indian Judiciary with 100% central funding, the Expenditure Finance Committee (EFC) while approving the proposal has, amongst others, stipulated the following condition.
+
+> The condition below is printed as an indented block quotation.
+
+"Written commitment should be obtained from State Governments for meeting all recurring expenses, including maintenance of computer equipment, beyond the warranty period."
+
+For making the ICT applications sustainable in any organization for availing the best of its use, there is a need for continuous maintenance of its material and human resources. This will include maintenance of hardware, upgradation and fine tuning of software applications, providing of uninterrupted supply of consumables, availability of technical manpower for trouble-shooting etc. Post operational maintenance would include Annual Maintenance contracts of hardware equipments, power supply system, data and power cablings as also periodical training of Judges and court staff to keep them updated with progressive changes in the technology, pre-printed stationary for generating reports like statements, returns, summons, warrants, receipts, registers, etc.
+
+The true import of the condition laid down by the EFC is that the State Government should give a commitment that it would bear the cost and make provisions for maintenance of the ICT infrastructure in the State Courts. The requirement in this regard has necessarily to be put forth by the High Courts while making their annual budgets and also intermittently as and when so required. It has been informed to the E-Committee by the Department of Justice that pursuant to a letter 09.05.2005 addressed to the Department of Justice, some of the State Governments have already sent their written commitments to the above effect. The respective High Courts will be required to make appropriate administrative arrangements for making ICT applications sustainable by arriving at a clear understanding with the respective State Governments in this regard on a priority basis.
+
+### IMPLEMENTATION DIFFICULTIES (Perceived Risks)
+
+Implementation Difficulties
+
+According to the E-Committee, one may face certain difficulties while implementing ICT in the Indian Judiciary, like:
+
+a) The Court, as an institution, functions on the basis of its legal system. Any change in the system has its immediate impact on the functioning of the Judges, lawyers and the subordinate staff as also the litigants. The system is composed of its codified rules, the traditions and practices regularly followed in the Court and the procedures judicially recognized. All these governing rules of procedure and court management are not always uniform for all the jurisdictions. Therefore, no handy software providing whole-some solutions to the legal system is commercially available. It is required to be developed under the day-to-day guidance and supervision of persons well-versed with information technology and the particular justice delivery system.
+
+b) Implementation of ICT in judicial system has suffered set backs for want of an in-house dedicated technical hand forming part of its establishment and cadres. The Court had to depend for technical support of external agencies, over which the Court administration had no control.
+
+c) There is a tendency of non-cooperation and/or obstruction by the functional staff at the registry level since they apprehend impeding of their interest.
+
+d) Beneficiaries of the pre-existing system try to obstruct the change over to IT since it makes the legal process more transparent.
+
+e) During the initial and transitional period of change over, IT application creates some apparent confusion showing its inaptness to cater the need of legal process but it is always a passing phase.
+
+f) It is well known that the functionaries in the Court system like the Judges of the Court staff have hardly any acquaintance with the intricacies of hardware, LAN or the process of software development. Therefore, laying of the responsibility of this nature on the Judges would simply mean a complete frustration of the project.
+
+Drivers of Delay as portrayed by NIC with respect to its earlier projects
+
+i) Site Preparation: The Site Preparation work concerning installation of computer servers at the project sites has to be done by the State PWD. It can cause delays in completion of project implementation. This may further delay the subsequent processes as every activity is related to each other.
+
+Comment: In the previous projects, the NIC had insisted for preparation of site only by PWD. According to NIC, the delay in earlier projects occurred because the PWD of the respective State were not co-operating in site preparations. In this regard, the E-Committee has found that preparation of site (computer room) is essentially a work related to creation of ICT infrastructure and not a work of "brick-cement". Therefore, PWD has neither any experience nor expertise for creating ICT infrastructure. The expert services are provided by Government undertakings like STPI, CMC or VSNL apart from known experts in private sector whose services are very frequently availed by various departments of Central and State Governments. It is rather strange that NIC had insisted upon the High Courts to get the site preparation job done only by the PWD. Various High Courts have opined that the estimates given by the PWD are exorbitant as compared to competitive market rates and the money could have been better utilized in acquiring more computers.
+
+ii) LAN Establishment: The Local Area Networks (LAN) have to be established by laying cables from the computer room to various computer nodes. This activity usually cannot be done during the working hours of the court, as it causes disturbance. It has to be done after court hours only. This may cause delays in establishment of the LAN.
+
+iii) Sparing of Officials for Training: It is common knowledge that the courts are under staffed and to spare the officials for imparting training is always a problem, as their absence hampers the court functioning. Unless training is given, the courts staff cannot start using the computer systems. The training aspect will cause delays in the implementation process.
+
+iv) Installation of Hardware: Most of the supplied hardware would be installed in the courtrooms and sections. Installation of these computer hardware items could not be done during the court functioning. This has to be done after the court hours only. In addition to this, vendors may not be in a position to provide more manpower for installation of computer hardware especially in the interior parts of the country.
+
+v) Cost Over Runs: As part of spiraling effect, the delay in implementation process will have cost over runs.
+
+## PART II - ACTION PLAN
+
+### INTRODUCTION
+
+One of the duties assigned to the E-Committee by the Government of India under its notification dated 28.12.2004 is to draw an action plan with appropriate phasing for time bound implementation with physical and financial targets as also concurrently monitor and evaluate the action plan on periodical basis. The E-Committee has already noticed in its Report dated 11.05.2005 that "as-is-view" of ICT infrastructure available in the Indian Judiciary. Keeping in view the spread and presence of ICT so available and the need of developing the ICT culture and change management in the Indian Judiciary, both horizontally and vertically, as also to create an ICT grid linking of all the courts for effective administration of justice with appropriate public interface and transparency and enhance court services, the E-Committee has devised implementation phases. These phases have been created on broad ICT tool implementation strategies, spread (geographical) dimensions as also functional (Processional) dimensions. Care has been taken to ensure that the phasing should gradually enhance ICT culture starting from basic to complex and advance functions. The phase so devised should, within one year of implementation of the present implementation program, ensure the public as users of court services a visible change in the working of the courts in terms of better services and speedier processes.
+
+### PHASING OF THE ACTION PLAN
+
+### PHASE I (TWO YEARS): INITIATION OF THE ICT IMPLEMENTATION IN THE JUDICIAL SYSTEM
+
+Part One (first year)
+
+Network Architecture Plan & Feasibility Study
+
+This task would involve the analysis of the existing ICT set-up of the Judicial System. The E-Committee has already gathered a lot of inputs from various High Courts and District Courts. After completion of detailed analysis of the existing ICT set up and study of the various processes/tasks performed in the system, the E-Committee would perform benchmarking and identification of best practices. Based on the benchmarking, gap analysis would be done. After this process is over, the first step would be to prepare the specifications of the hardware and the associated software that would need to be installed as per the various tasks/subtasks that have been planned as part of the project. The E-Committee would have a core in-house technical team and source domain expertise/consultants who would work part time to time with the E-Committee. This task would provide details about the future course of action.
+
+Preparation of a dedicated website for the Judicial System
+
+It is proposed to have a full-fledged website, which will have information on Indian Judicial System. The website can be used by judges, advocates, court officers, general public, etc. The website would contain details of the structure of various courts in the country, history, functions, role and organizational structure of the Judicial System. The website would be comprehensive and informative with linkages to National Judicial Data Center which would have the Entry Form Modules, Report Forms, Statistical information, etc. 2
+
+2 See Judicial Portal and E-mail Services at p. 26 in Part I
+
+The E-Committee would be the apex body governing the implementation of the project. The E-Committee would also undertake tasks such as creation of website and data center for the Judicial sytem. It will develop various software modules and applications for ICT implementation across the courts in the country. The E-Committee would also be assisted by software developers, document writers and domain experts. Infrastructure in terms of PCs, printers, scanners, office automation equipments, etc. would be procured for the efficient and smooth functioning. Also high-end server to house the centralized judicial database and maintenance of the Judicial website would be done at the E-Committee.
+
+Creation of National Judicial Data Grid
+
+A National Judicial Data Grid would be created for warehousing all the critical data concerning functioning of the Indian courts. Through web technology operating through intra-net in a fully secured digital environment with authorized user facilities, we will have user connectivity with all courts, Judge and court staff. This Data Center will be used for feeding the pendencies, filings, stages, disposals and nature and age of cases for devising policies pertinent for carrying out the delay reduction programs of the system.
+
+The Data Grid so enriched will help in creation of consensus national and state policies in respect of additional court requirements, performance assessments, adjournments, cost orders, performance appraisals of the court personnel, infrastructural requirements and the like. The Data Center, through state-specific customized software, will create automated reports, which the High Courts and District Courts require for judicial administration. These reports, at the required intervals, can be downloaded and hard copies so generated can be stored in physical files and can be appropriately used. This will avoid creation of voluminous monthly, quarterly, half-yearly and annual statements, which are presently prepared, processed and stored by manual process in various registers and consumes enormous time, energy and manpower.
+
+Providing of laptop (Notebook and ancillary facilities) to the Judicial Officers
+
+All the judicial officers in the country who preside as judges in court halls will be provided with laptops with latest technology to enable them to comfortably work at their home offices, chambers and the court hall. This would foster a culture of use of ICT and computer usage among the decision makers of the Judicial system. Simultaneously, for proper use of ICT, the Judicial Officers will be provided with broad-band connectivity through mobile phones to access and disseminate information through internet and intranet with appropriate security. For this purpose, each Judge would be given a unique user ID and password for accessing the Judicial data Center. Once the Judges start using the Judicial database and accessing information from the Judicial website, it would be much faster to implement ICT and computer usage in the Judicial System. They will further be given the facility for using digital signatures for authentication of digitally transcribed judgments, order and order sheets. They will also be provide with email address with an extension "@indianjudiciary.in" for official communications through the Indian Judiciary Intranet Service.
+
+> A figure is printed here. It is a hand-drawn diagram of three judicial officers -
+> at a home office, in a court hall and in a chamber - linked by wireless connections
+> to an ellipse labelled "NATIONAL JUDICIAL DATA CENTER / Central Database,
+> Application Server, Mail Server, etc." containing an Application Server, a Database
+> Server and an Email Server. The caption "Graph2", printed beside it, is the
+> document's own and is transcribed below. The diagram itself cannot be transcribed.
+
+Graph2
+
+Creation of Sites (Computer Center)
+
+In court complexes
+
+As per the information available to the E-Committee, the district and subordinate courts thereto are situated in 2,066 towns but in probability, in some of the towns, the court complexes may be more than one. Therefore, for planning purposes, the number of court complexes to be 2,500.
+
+Considering the number of courts in a given complex, three different sizes of sites (computer rooms) are planned namely, (1) large size (200 sq.ft. approx.); (2) medium size (150 sq.ft. approx.); and (3) small size (100 sq.ft. approx.). Court complexes with 1-4 courts, 5-10 courts and more than 10 courts will have small, medium and large size computer rooms respectively. Each computer room will have one server, three to four user clients, printer, scanner, copier, fax, etc. which would be connected through LAN. The computer room would have broadband internet connectivity of 256 Kbps through BSNL.
+
+To ensure smooth operations, proper electrical cabling, earthing with stabilizer, UPS and air conditioning will be procured for the computer room. Proper vinyl flooring with furniture would be installed.
+
+> A figure is printed here. It is the same hand-drawn ellipse labelled "NATIONAL
+> JUDICIAL DATA CENTER / Central Database, Application Server, Mail Server, etc.",
+> this time with three boxes marked COURT COMPLEX linked into it. It cannot be
+> transcribed.
+
+Video-Conferencing Facility
+
+Between court and prison
+
+The President of India has recently said that, "[T]he video conferencing offered of ICT has to be used in a large way. This saves enormous amount of expenditure and the unnecessary movement of police personnel and under trial and avoids unpleasant incident that would have happened during the transit. This will be very useful in cases where a number of individuals are accused. The witness identification and crime reconstruction areas have also immensely benefited by the use of ICT." 3
+
+3 Address at the Inauguration of the All India Seminar on Judicial Reforms with Special Reference to Arrears of Court Cases, Vigyan Bhawan, New Delhi, 29.04.2005.
+
+The Supreme Court, in State of Maharashtra v. Dr. Praful B Desai,4 has given its approval for use of video-conferencing for examination of witnesses.
+
+4 (2003) 4 SCC 601
+
+In the first phase, it is proposed to have video conferencing facility at 100 locations in the country having highest pendency of criminal cases. This video conferencing would be between the prison and the court. The video conferencing solution would enable face-to-face interaction between the judge and the prisoner without the prisoner having so physically brought to the court premise.
+
+Part Two (second year)
+
+Extension of computer and support facilities
+
+In the second year of Phase I, the computer facilities would be extended to the Judges’ chamber, court hall, filing section, certified copy section and process branch. The users will be the Judge in his chamber, the Judge and typist/stenographer on the dais. Stenographer in his transcription room, the bench clerk, the pending clerk, filing section official, scrutiny and registration official, certified copy official and the process branch officials.
+
+In the court complex, each Judge and his supporting staff will have five computers with three printers. In sections like filing, nazarat and certified copies, five computers with three printers would be made available connected to the computer center through LAN. For court complex with higher number of courts, number of computers utilized will be as follows:
+
+> The number of computers is printed as a two-column table. It is flattened here,
+> the heading row first and then each row as its two cells separated by `|`.
+
+No. of Courts | Computers in Filing Section/Nazarat/ Certified Copy Section
+
+1-5 | 5
+
+6-10 | 10
+
+11-50 | 15
+
+51-100 | 20
+
+101-150 | 25
+
+151 & above | 30
+
+Computerization of the above places would require site infrastructure in terms of computer furniture, dust free environment, proper air conditioning, etc.
+
+In this Step of First Phase, information relating to status of the cases and certified copy applications will be available to the public/ litigant through Enquiry Counters as also on the internet. The preparation and publication of cause lists of all the Courts will be automated. Judgments and orders duly subscribed with digital signatures of the Judge concerned will be made available on interenet. It will help in generating certified copies without delay.
+
+Wi-Fi (Wireless LAN/ internet connectivity) at Supreme Court and High Court Complexes
+
+The Wi-Fi (Wireless Frequency) is a technological solution to have wireless internet connectivity for all desktops/laptops that are registered with the base station and is within a specified area. The Supreme Court and High Court premises are proposed to be Wi-Fi enabled so that Judges, lawyers and administrative staff can log on to the internet without having to go to a specific location/ internet enabled-PC. This would promote the use of ICT in the judicial system and information flow would be seamless which would be beneficial for all concerned. As many users namely, the Judges, lawyers, and administrative staff would be accessing internet simultaneously, provision of a higher capacity bandwidth of around 5 to 10 Mbps would be required in order to avoid congestion in accessing the internet. The bandwidth could be procured on IRU (Indefeasible Right of Use) basis from the internet service provider.
+
+Deliverables of Phase I
+
+• All the Judges in India will have laptops (notebooks) for discharge of their judicial and administrative functions at the requisite work places with connectivity and appropriately developed skills.
+
+• Awareness and introduction of ICT and computer based environment in the Judicial System.
+
+• Video conferencing between court and prison at 100 locations.
+
+• A fully developed and highly informative Website – www.indianjudiciary.in
+
+• Creation of National Judicial Data Grid
+
+• Creation of Committees and High Court Level Committees to monitor and guide the ICT implementation in the court complexes
+
+• Implementation of Wi-Fi at Supreme Court and High Court premise.
+
+• Computer Room at court complexes.
+
+After the completion of Phase I
+
+A general overview of various stages of ICT implementation in an organization were pictorially represented above. The current status of the courts in India was also marked. Taking a cue from the same after the completion of Phase I, an upward shift in the stage of ICT implementation in the Judicial System would be seen as under:
+
+> A figure is printed here, at the head of the page. It is a hand-drawn line graph
+> captioned "AT THE END OF SECOND YEAR", plotting five stages - Planning, Physical
+> Presence of ICT Infrastructure, Initiation (Digital transcription & automated
+> processes), Developed IT Culture, IT Enablement - along a rising dashed line, with
+> District & Subordinate Courts, High Courts and the Supreme Court marked at
+> successive points on it. It cannot be transcribed.
+
+• Easy access to public on various issues/ information pertaining to the judicial system.
+
+• Better co-ordination and time bound management of the processes of the Judicial System.
+
+• Easy access to public on various issues/information pertaining to the judicial system.
+
+• Better co-ordination and time bound management of the processes of the Judicial System.
+
+• Intangible benefits include time saved on various traditional methods of functioning such as production of prisoners in the court, file movements, etc.
+
+• Better justice delivery system cannot be valued in monitory terms.
+
+• Time saved by police and law enforcement authorities could be utilized for other work in the interest of public.
+
+• Cost of Various ICT equipments such as hardware and software is at a all time law and it would be a rightly timed initiative in terms of expenditure that would be incurred.
+
+• Bandwidth prices are also at an all time low and they have more or less stabilized. This is another aspect of cost saving by embarking on the initiative at this time.
+
+• Centralized procurement in bulk quantity would also reduce the costs substantially.
+
+### PHASE II (TWO YEARS): COORDINATION OF ICT INFRASTRUCTURE FOR JUDICIAL SYSTEM
+
+In Phase II, the objective is to create the required ICT and support infrastructure for the Judicial System. This phase envisaged the creation and development of state-of-the art technical facilities for the judicial system such as video-conferencing, digital archives, inter-connectivity of law libraries, digitalization of legal tools like case laws and statute laws, wireless LAN, larger deployment of computer systems and allied hardware. Apart from the ICT hardware installation, there would also be development and implementation of software for judicial and administrative processes in progressively identified sections/departments/activities/processes.
+
+In this phase, there would be substantial procurement and installation of various ICT hardware and software to meet the objectives of the tasks mentioned above. There would also be requirement for higher volume of bandwidth keeping in view the requirements of bandwidth for the various tasks mentioned above. Robust back-up infrastructure in terms of uninterrupted and steady power supply would be a vital necessity from Phase II onwards as there would be higher dependency of the court processes on the computers and online transactions.
+
+Implementation of Software for Judicial Processes at all levels
+
+The Courts working in different states and hierarchies have been traditionally following diverse policies and procedures for their day-to-day activities. The policies and procedures are not uniform. This has resulted in the creation of a difficult situation to setup a common process or policy for all the courts throughout the country. Keeping this fact in view, this task would involve the development of modules and sub-modules as per the local needs. These functions would be integrated at the lowest levels possible and as per the needs, customization would be done for each of the states. A beta test of the developed modules could be conducted at a court for examining a pilot process. The concept of object-oriented methodology will be utilized for creating functions, procedures, which will help integrating the modules.
+
+The essential and important Judicial and Administrative processes would be computerized for the use of Judges, Record Keepers, Enquiry Officers, Filing Clerks, Account Officials, Official dealing with certified copies etc.
+
+In the courtroom, the judgements/evidence will be transcripted during the functioning of the court. The copy will be sent to the computer room of the court complex for uploading in the website and creation of a judgment database. Security measures would be important so as to restrict unauthorized access of the systems established in the court complex.
+
+The Judge, record keeper, bench clerk will feed the data related to the cases which are at various stages, issuance of summons, issues, evidence, hearing etc. through a user interface created for this purpose. This would enable the exact status/stage of the case to be known without referring various documents/papers. This data would be processed through software for generation of various lists/reports such as cause list, pending and disposal status etc. This would be available on the net for the litigants/citizens.
+
+This task of the project would also involve creation of software related to case filing which deals with fresh filing of cases, defect maintenance, court fee calculations, registrations, time limitation, etc. Queries and reports of fresh filing will be implemented and code will be generated for uniquely identifying the case and its status. During the filing of the case the relevant documents will be scanned along with the petitions.
+
+This would be helpful in the general management of the various processes of the court. The implementation of this software would enable facilities like court checking, calculation of time limit and court fees, generation of initial order sheet, first cause lists, summons, tracking of stages of progress on cases, generation of periodic reports, and query based information and reports. Procedural delays would be minimized by the implementation of this software. For e.g. distribution of judicial work/assignment of cases to the judges would be done online which would avoid a large amount of paperwork and file movements.
+
+Library is an integral part of judicial system. There are libraries at all levels of courts with millions of books. The library is a source of information and reference for many tasks and processes related to judicial functions. The computerization of the library with proper indexing and search for specific topics/terms related to judiciary would be helpful in optimally utilizing this vast source of information. Modern library system will be in place with all the facilities by the end of this phase.
+
+In the second phase, all the files from the filing stage onwards would be digitized and customized software will be created using a proper coding mechanism. The files in their physical form would also be bar coded so that retrieval of information and location of file becomes easier and less time consuming. This would directly affect the efficiency of the judicial system and the processes would be done faster. The bar coding will be integrated with the database so that the accession of information will be simpler.
+
+An integrated personal information systems of all the key officers, staff, rules and regulations will be created which will help the management and the concerned employees in their administrative functions. A package for accounting, budgeting and financing will be created for sub-ordinate levels, district levels, High Court and Supreme Court level. All these package will be supported with Indian language fonts and can be operated in multiple platforms. The above task would enable a proper MIS (Management Information System) to be put in place.
+
+Creation of Reliable Critical Infrastructure
+
+Computerization will be extended from the computer room to all the court processing areas. The number of computers in the LAN nodes will vary from 11 to 300 as per the size of the court complex. For the day-to-day management and processing computer will be inevitable in this phase and hence the back-up infrastructure to support the system becomes a crucial factor. Reliability of the IT infrastructure will play a major role because the dependability on judicial work on IT will be growing at this phase. Uninterrupted quality electrical supply, seamless and quality internet connectivity, robust hardware, and resilient network will be essential. To achieve this state of the art infrastructure with UPS, DG Set of optimum configuration, proper hardware, proper air conditioning, dust free environment, lease line connectivity from at least two service providers for redundancy, sufficient inventory of hardware parts and consumables need to be made available. Proper electrical wiring, structured cabling of data cables and earthing are some of the factors which would need to be taken care of.
+
+Continuation of IT Training activities and extension of training program
+
+The training of the administrative and judicial staff of the judicial system is a critical factor in the success of this project and to achieve the desired objectives.
+
+In the first phase regular courses/training programs were proposed so as to update and refresh the skills of the staff concerned with the implementation of this project and to create the requisite manpower for the handling of the various ICT tasks related to the project.
+
+With the starting of Phase II, a lot of ICT implementation would have taken place in the judicial system. These tasks envisage the use of this created ICT infrastructure for the purpose of training and manpower development. Online courses on various areas/topics related to law and ICT, process updated etc are proposed to be conducted. This would also enable the staff to have special faculty and key stakeholders of the judicial system including senior judges, law experts could impart training to the staff online through video conferencing.
+
+This would enable the training process to be conducted without the faculty and students being have to move outside the office premise.
+
+After the completion of Phase II
+
+At the starting of this report a general overview of various stages of ICT implementation in an organization were pictorially represented. The gradual shift in the status of the Supreme Court, High Courts, District Courts and Subordinate Courts was given at the end of Phase I. The implementation of Phase II would further better their status as depicted in the figure below.
+
+> A figure is printed here, at the head of the next page. It is the same hand-drawn
+> line graph, captioned "AT THE END OF FOURTH YEAR", with District & Subordinate
+> Courts and the Supreme Court & High Courts marked further along the same five
+> stages. It cannot be transcribed.
+
+### PHASE III (ONE YEAR): ICT COVERAGE OF JUDICIAL PROCESS FROM FILING TO EXECUTION AND ALL ADMINISTRATIVE ACTIVITIES
+
+Extending the computerization activities to new Courts in the same or new Court complexes
+
+After analyzing the data related to number of pending cases, number of cases filed and radial distance from each village to the court complex, population density, it is assumed that 15,000 new courts will be established. These new courts will have similar facilities as that of the existing courts.
+
+During this time, the process of computerization would have been stabilized. The application software would have been tested. It will not take much time to reach the required stage of computerization to catch up with the stage of existing courts.
+
+Integrated digital document management system with digital inventory of files, properties, with digital signature
+
+Millions of documents, folders and files will be digitally and physically stored. Locating the right information from this huge database will be a Herculean task. Bar code technology with document management tools will be used to manage this data. The information on materials in the properties room and other inventory materials can be also accessed through this technology.
+
+Digital system integration with external entities like police, treasury, jail, Registration office, etc. (B to B)
+
+By this time, it is expected that computerization activities will be similarly in progress in other Government institutions/organizations like police, treasury, jail, registration office, etc. The judicial system can be upgraded so that data can flow seamlessly with other government entities. Necessary upgradation and modification will be required as per mutual convenience.
+
+Installation of Biometrics facilities
+
+Use of aliases is seriously undermining the judicial system in India as well as the world over. In order to restrict the use of aliases, especially in case of witnesses, it is proposed that biometrics technology can be implemented in the judicial system Biometrics is an automated technique of measuring a physical characteristic or personal trait of an individual and comparing that characteristic or trait to a database for purposes of recognizing that individual. By using a person’s individual and distinct anatomical geography, it is possible to eliminate the use of aliases and fraudulent identification. Biometric scanning is used for two major purposes : (a) identification; and (b) verification.
+
+The impact of alias usage is far reaching and poses a great risk to public safety. Most desirable effect of this technology would be the eventual establishment of a global database, which may be shared with other law enforcement and government agencies. This global approach would correctly confirm individual identification and will eventually eliminate the systematic abuses created by the use of alias identities. Fingerprint recognition technology is the most widely used and well known biometric.
+
+Creation of Information Gateways between court services and governmental agencies.
+
+By now, most of the ICT infrastructure in the Judicial System would be in place and the computerization activity in all the courts would have been completed. Successful completion of the other tasks would have made the Indian judicial system ICT-enabled. As a result of the previous phases, all the data, documents concerned with the judicial processes would be available in digital form. Information flow would be easier with the availability of strong internet connectivity at all the court complexes.
+
+It is envisaged that e-filing and e-enquiry would be implemented. Citizens can file cases and will be able to know the status of the cases to get legal assistance through web. This would save a lot of time and energy for citizens and litigants.
+
+The voluminous database of the judicial system would be stored and managed in a distributed architecture form and access to the data would be enabled depending upon the type of data. Data/information for the public would be available through web and internal data pertaining to the judicial system would be available to the identified stakeholders of the judicial system through online access control mechanisms such as password protection etc. The integrated database will be made accessible through internet and intranet. Facilities will be created so that the litigant, advocates, other agencies can interact with the judicial system electronically. The job of system administration and management will be challenging and will require proper planning and implementation strategies. The database created by now would be crucially important of the functioning of the system and hence requisite data security measures would be of prime importance. Security measures for the data would be implemented in this phase including disaster recovery services. A robust and reliable Data Center would be set up for disaster recovery services.
+
+Since a lot of data flow will be through internet/intranet the system would require high bandwidth. The internet backbone would be important at this stage and measures would be taken to have redundancy/back-up of the internet connection from different service providers so as to ensure maximum uptime.
+
+Looking at the above aspects, the dependency of the judicial system on ICT will increase to the maximum level by this phase. Measures will be taken to ensure 100% utilize of time of the infrastructure.
+
+Judicial process would have been automated and this process can be made available in the software library. Meta data, Scheme related legal process will be made available in a standardized form. Generic package can be made available which will be utilized for creation of new applications by the domain user itself. It is expected that the judicial system will be completely ICT enabled during this phase.
+
+After the completion of Phase III
+
+At the starting of this report a general overview of various stages of IT implementation in an organization were pictorially represented. The implementation of Phase III would take all the Courts in the Indian judiciary to the last stage that is stage of ICT Enablement.
+
+> A figure fills the whole of the next page, which carries no other text. It is the
+> same hand-drawn line graph, captioned "AT THE END OF FIFTH YEAR", with "All the
+> Courts in the Indian Judiciary" marked at IT Enablement, the last of the five
+> stages. It cannot be transcribed.
+
+## PART III - PROJECT COST ANAYLYSIS
+
+### PHASE-WISE COST EVALUATION
+
+It is estimated that a sum of Rs. 854 crores will be required to implement the project. The cost has been estimated task wise for each phase after preparing the requirement list. For the infrastructure like hardware and software leading technology solution providers were contacted to understand the market prices. The bandwidth prices were discussed with the leading telecommunication companies. Similarly, for training and other infrastructure, E-Committee had extensive discussion with the leading institution in the related field to find out the cost. Based on the information so gathered, phase-wise financial evaluation has been worked out. These estimates are based on market trend. Wherever technology options are available, the appropriate technology to suit the requirement of the project has been taken for consideration of cost evaluation. The cost evaluation estimates are based on the existing and likely increase in number of courts during the project implementation period.
+
+> The cost of each phase is printed as a three-column table - serial number,
+> "Proposed Active", cost - with a total row at the foot. Each table is flattened
+> here, the heading row first and then each row as its cells separated by `|`. The
+> total row has an empty first cell in the source and is written here as "Total" and
+> its figure. A cell's own wording, spelling and punctuation are unchanged.
+
+Phase I (2 years)
+
+Step-I
+
+Sr. No. | Proposed Active | Cost
+
+1. | Creation of computer room at all the court complexes with internet provisioning | Rs. 36 crore *
+
+2. | Providing laptops to judicial officers and judges | Rs. 40 crores
+
+3. | ICT Training for the 1st year | Rs. 12 crores
+
+4. | System Software (OS, RDBMS, Office Packages etc.) | Rs. 3 crores
+
+5. | Creation of centralized facility for system administration. | Rs. 2 crore
+
+6. | Manpower development and retention cost | Rs. 15 crores
+
+7. | Up-gradation of ICT Infrastructure in Supreme Court and High Courts (1st year) | Rs. 30 crores
+
+8. | Project Management Consultancy, Monitoring and Change Management | Rs. 1 crore
+
+Total | Rs. 139 crores
+
+Step-II
+
+9. | Extension of computer facility at process places, judges chamber, court hall filing scrutiny section and certified copy section and computer room within the court complex. | Rs. 150 crores
+
+10. | Upgradation of ICT and power infrastructure | Rs. 90 crores
+
+11. | Upgradation of centralized facility for system administration | Rs. 4 crores
+
+12. | Upgradation of computer facility computer room and providing scanner at the computing facility. | Rs. 20 crores.
+
+13. | Manpower and Training Cost for the 2nd year | Rs. 16 crores
+
+14. | Upgradation of ICT Infrastructure in Supreme Court and High Courts (2nd year) | Rs. 35 crores
+
+15. | Project Management Consultancy, Monitoring and Change Management. | Rs. 1 crore
+
+Total | Rs.316 crores
+
+* Computer room need not be created at all the court complexes as various court complexes in the country in states such as Karnataka and Maharashtra already have a dedicated computer room available within the court complex.
+
+Phase II (2 years)
+
+Sr. No. | Proposed Active | Cost
+
+1. | Creation of ICT Infrastructure for additional courts to be created during the project period as per the direction of the Supreme Court in All India Judges Association v Union of India, (2002) 4 SCC 247, pr. 25. | Rs. 120 crores
+
+2. | Provisioning of video conferencing facility between under trail prisoners and magistrate with video monitoring. | Rs. 60 crores
+
+3. | Installation of Wireless Internet facility system in the Supreme Court and High Court complexes. | Rs. 1.5 crore
+
+4. | Infrastructure upgradation for centralized facility | Rs. 3.5 crores
+
+5. | Manpower and training | Rs. 15 crores
+
+6. | Up-gradation of Centralized facility | Rs. 5 crores
+
+7. | Digital Archive of record room and library Management system. | Rs. 20 crores
+
+TOTAL | Rs. 225 crores
+
+Phase III (1 years)
+
+Sr. No. | Proposed Active | Cost
+
+1. | Use of advanced ICT tools, intensive training, warehousing and mining tool customization to crystallize change management, Biometric facilities. Gateway interface with other agencies. | Rs. 70 crores
+
+2. | Upgradation of centralized facility | Rs. 4 crores
+
+3. | Digital Archive of record room and Digital Library Management system | Rs. 100 crores
+
+Total | Rs. 174 crores
+
+TOTAL COST
+
+Phase-I | Phase-II | Phase-III | Total
+
+Rs.455 crores | Rs. 225 crores | Rs. 174 crores | Rs. 854 crores
+
+2 years | 2 years | 1 year | 5 years
+
+## ABBRIVATIONS
+
+> The document prints this heading once, centred, on its own last page. It appears
+> twice here - as the `##` division and as the `###` unit inside it - because a
+> division with no unit under it is dropped on conversion, and this list belongs to
+> no Part.
+
+### ABBRIVATIONS
+
+> The abbreviations are printed as a two-column list, the abbreviation on the left
+> and what it stands for on the right. Each is written here as its two cells
+> separated by `|`, in the order printed, with the document's own spellings
+> (Indefisible, freqnency) kept.
+
+B to B | Business to Business
+
+BSNL | Bharat Sanchar Nigam Limited
+
+CCTV | Closed Circuit Television
+
+CD | Compact Disk
+
+CDAC | Centre for Development of Advanced Computing
+
+CJI | Chief Justice of India
+
+DG | Diesel Generator
+
+DOEACC | Department of Electronics Accredited Computer Courses
+
+EFC | Expenditure Finance Committee
+
+e-mail | Electronic Mail
+
+ERP | Enterprise Resource Planning
+
+HC | High Court
+
+ICT | Information and Communication Technology
+
+Id | Identification
+
+IRU | Indefisible Right to Use
+
+IT | Information Technology
+
+KBPS | KiloBit Per Second
+
+LAN | Local Area Network
+
+MBPS | MegaBit per Second
+
+MIS | Management Information System
+
+NIC | National Informatics Centre
+
+NIIT | National Institute of Information & Technology
+
+NJDC | National Judicial Data Centre
+
+PC | Personal Computer
+
+PSU | Public Sector Undertaking
+
+RDBMS | Relational Database Management System
+
+Report | Report on Strategic Plan for Implementation of ICT in the Indian Judiciary submitted by E-Committee to the Hon’ble CJI on 11.05.2005.
+
+RFP | Request for Proposal
+
+RFQ | Request for Quotation
+
+SC | Supreme Court
+
+SCC | Supreme Court Cases
+
+Sq-ft | Square feet
+
+UPS | Uninterrupted Power Supply
+
+VC | Video Conferencing
+
+WAN | Wide Area Network
+
+Wi-fi | Wireless freqnency
+
+XML | Extended Markup Language

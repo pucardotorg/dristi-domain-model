@@ -262,11 +262,11 @@ def render_node(n, out, ind):
 
 
 def build(doc_meta, preface, parts, today):
-    slug = doc_meta["slug"]
+    doc_slug = doc_meta["slug"]
     # the FRBR work name is the document's own kind, and the year is the date it
     # carries, so a regulation and a set of model rules do not pretend to be the same
     # thing merely because both are policy.
-    work = "/akn/in/doc/%s/%s/%s" % (doc_meta["kind"], doc_meta["dated"][:4], slug)
+    work = "/akn/in/doc/%s/%s/%s" % (doc_meta["kind"], doc_meta["dated"][:4], doc_slug)
     author, author_name = doc_meta["author"], doc_meta["author_name"]
     o = []
     a = o.append
@@ -323,6 +323,7 @@ def build(doc_meta, preface, parts, today):
             a('      <p eId="pref_p%d">%s</p>' % (i, esc(p)))
         a("    </preface>")
     a("    <mainBody>")
+    used_eids = set()
     chap = 0
     for part in parts:
         if not part["regs"]:
@@ -336,7 +337,10 @@ def build(doc_meta, preface, parts, today):
         ind = 4 if wrapped else 3
         if wrapped:
             chap += 1
-            m = re.match(r"^(Chapter\s+[IVXL]+)\s*[-–]\s*(.*)$", label, re.I)
+            # Part and Title divide a document exactly as Chapter does - the 2005 action
+            # plan prints "PART I - NATIONAL POLICY" - and matching only Chapter put the
+            # whole label in <num> and left the division with no <heading> at all.
+            m = re.match(r"^((?:Chapter|Part|Title)\s+(?:[IVXLC]+|[0-9]+))\s*[-–]\s*(.*)$", label, re.I)
             num, head = (m.group(1), m.group(2)) if m else (label, "")
             a('      <chapter eId="%s">' % (part["stem"] or "chp_%d" % chap))
             a("        <num>%s</num>" % esc(num))
@@ -344,7 +348,16 @@ def build(doc_meta, preface, parts, today):
                 a("        <heading>%s</heading>" % esc(head))
         pad = "  " * ind
         for i, r in enumerate(part["regs"], 1):
-            eid = r["eid"] or "%s_x%d_%d" % (part["stem"] or "chp", chap, i)
+            # A unit that prints no number is named, not numbered - the 2005 action plan
+            # heads its chapters in centred capitals and numbers nothing in the body, so
+            # a reader cites "Digital Archives", never "chapter 4". The eId is built from
+            # the heading for exactly that reason; a positional one would be citable only
+            # by counting, and would move the moment a unit was inserted above it.
+            eid = r["eid"]
+            if not eid:
+                base = "%s_%s" % (part["stem"] or "chp_%d" % chap, slug(r["heading"] or "unit"))
+                eid = base if base not in used_eids else "%s_%d" % (base, i)
+            used_eids.add(eid)
             a('%s<section eId="%s">' % (pad, eid))
             # the unit's number exactly as the source prints it. An annexure's units
             # print "1." like anything else; one that prints no number at all - the

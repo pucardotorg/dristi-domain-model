@@ -111,6 +111,33 @@
       "source_pdf": "policy/sources/model-rules-for-live-streaming-and-recording-2022.pdf",
       "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2021/06/2022091599.pdf",
       "compliance": "standards/ai-policy-compliance.md"
+    },
+    {
+      "id": "policy-action-plan-phase-i-2005",
+      "title": "National Policy and Action Plan for Implementation of Information and Communication Technology in the Indian Judiciary",
+      "short": "eCourts Phase I Policy and Action Plan, 2005",
+      "kind": "report",
+      "scope": "national",
+      "issuer": "e-Committee, Supreme Court of India",
+      "made_by": "e-Committee, Supreme Court of India, under the Chairmanship of Dr. Justice G.C. Bharuka",
+      "status": "superseded",
+      "status_note": "Historical. The founding document of the eCourts Project - the National Policy the e-Committee was constituted to frame by the Ministry of Law and Justice office order of 28.12.2004, presented on 1 August 2005, and the five-year action plan that became eCourts Phase I. It is a report, not a rulebook: it binds nobody, creates no obligation, and numbers nothing in its body, so it is cited by the name of a chapter rather than by number. It has been overtaken twice, by the Policy and Action Plan Phase II (2014) and the Vision Document Phase III (2022). Read it for provenance, not for what is in force.",
+      "dated": "2005-08-01",
+      "unit": {
+        "label": "Chapter",
+        "short": "Chap.",
+        "prefix": "chp"
+      },
+      "akn_author": {
+        "id": "sci-ecommittee",
+        "name": "e-Committee, Supreme Court of India",
+        "href": "/ontology/organization/in/supreme-court-ecommittee"
+      },
+      "md": "policy/md/policy-action-plan-phase-i-ecourts-2005.md",
+      "akn": "policy/akn/policy-action-plan-phase-i-ecourts-2005.akn.xml",
+      "source_pdf": "policy/sources/policy-action-plan-phase-i-ecourts-2005.pdf",
+      "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2020/05/2020053162.pdf",
+      "compliance": "standards/ai-policy-compliance.md"
     }
   ]
 }

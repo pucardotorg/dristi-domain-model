@@ -734,11 +734,12 @@ The **policy layer** is the third kind of instrument: not an Act and not a judgm
 
 | source | what |
 |---|---|
-| `public/data/policy/policy.json` | the manifest: 4 documents, each with its issuer, status, unit of numbering and source |
+| `public/data/policy/policy.json` | the manifest: 5 documents, each with its issuer, status, unit of numbering and source |
 | `public/data/policy/md/regulations-for-use-of-artificial-intelligence-in-courts-2026.md` | Regulations for Use of Artificial Intelligence in Courts, 2026 (draft) |
 | `public/data/policy/md/model-rules-for-e-filing-2020.md` | Model Rules for e-Filing (Rules for On-line Electronic Filing framed under Articles 225 and 227 of the Constitution of India) (model) |
 | `public/data/policy/md/model-rules-for-video-conferencing-for-courts-2020.md` | Model Rules for Video Conferencing for Courts (model) |
 | `public/data/policy/md/model-rules-for-live-streaming-and-recording-2022.md` | Model Rules for Live Streaming and Recording of Court Proceedings (model) |
+| `public/data/policy/md/policy-action-plan-phase-i-ecourts-2005.md` | National Policy and Action Plan for Implementation of Information and Communication Technology in the Indian Judiciary (superseded) |
 | `public/data/standards/ai-policy-compliance.md` | 68 compliance records (20 bind both, 47 bind court, 1 bind vendor) - what the document requires, kept separate from what DRISTI suggests building |
 
 Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the Netlify build, so deploys never drift).
@@ -759,6 +760,6 @@ Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the N
 - `requirement_derived_from`: act, caselaw, practice-note, rule
 - `requirement_binds_artifact`: validation-rule, workflow-step, schema-field, screen, output-document, access-control
 
-**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes; 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala); 41 standards; 4 policy documents with 68 compliance records.
+**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes; 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala); 41 standards; 5 policy documents with 68 compliance records.
 
 <!-- AUTO-DATA-MODEL:END -->
