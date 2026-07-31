@@ -313,8 +313,13 @@
   .rel{font-size:12.5px; color:var(--ink-2); display:flex; gap:8px; align-items:baseline}
   .rel .r{color:var(--purple-txt); font-family:var(--font-mono); font-size:11.5px} .rel .to{font-family:var(--font-mono); color:var(--ink)}
   @media(max-width:760px){.prov-head{flex-wrap:wrap} .prov-body{padding-left:16px} .prov .hbadges{width:100%; justify-content:flex-start}}
-  /* Acts & provisions - collapsible Act group holding its provision rows */
-  .actgrp{border:1px solid var(--line); border-radius:12px; background:var(--panel); margin:0 0 10px; overflow:hidden}
+  /* Acts & provisions - collapsible Act group holding its provision rows.
+     No enclosing border. A page of these is a list of Acts, not a stack of framed
+     cards, and boxing each one drew four hard edges around content that is already
+     separated by its own fill and by the space between groups. The panel fill and
+     the radius do the bounding; the hairlines that remain inside (head to body, and
+     row to row) are the ones that carry meaning, so they stay. */
+  .actgrp{border-radius:12px; background:var(--panel); margin:0 0 10px; overflow:hidden}
   .actgrp-head{display:flex; align-items:center; gap:12px; padding:13px 16px; cursor:pointer; user-select:none}
   .actgrp-head:hover{background:var(--panel-2)}
   .ag-chev{display:inline-flex; color:var(--ink-3); transition:transform .18s; flex:none}
@@ -328,8 +333,13 @@
   .actgrp-body{display:none; padding:6px 14px 12px; border-top:1px solid var(--line)}
   .actgrp.open .actgrp-body{display:block}
   .ag-openfull{margin:8px 0 10px}
-  /* provision rows sit flat inside the Act group, not as nested cards */
-  .actgrp-body .prov{border:none; border-radius:0; background:transparent; margin:0; border-top:1px solid var(--line-2)}
+  /* Provision rows sit flat inside the Act group, not as nested cards. A standalone
+     .prov is a raised card and picks up --shadow-raised from the shared card rule
+     below; once it is flattened here that shadow has no card to lift, so it painted a
+     black hairline along the bottom and sides of every row - a border in all but name,
+     and the one thing in dark that actually reads as black. The border-top is the
+     separator between rows and is deliberate; the shadow is not. */
+  .actgrp-body .prov{border:none; border-radius:0; background:transparent; box-shadow:none; margin:0; border-top:1px solid var(--line-2)}
   .actgrp-body .prov:first-of-type{border-top:none}
   .actgrp-body .prov-head{padding:12px 6px}
   .actgrp-body .prov-body{padding-left:6px; padding-right:6px}
@@ -995,13 +1005,6 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
      the document's own, and the clause indents carry the structure - no rules, no
      boxes, nothing that would make a regulation look like a dashboard. */
   .view-pol .lede{max-width:900px}
-  .pol-pick{display:flex; flex-wrap:wrap; gap:20px; margin:0 0 22px;
-    border-bottom:1px solid var(--line)}
-  .pol-pick-i{appearance:none; background:none; border:0; padding:0 0 10px; cursor:pointer;
-    font-family:var(--font-sans); font-size:13.5px; font-weight:600; color:var(--ink-3);
-    border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .12s, border-color .12s}
-  .pol-pick-i:hover{color:var(--ink-2)}
-  .pol-pick-i.on{color:var(--ink); border-bottom-color:var(--brand)}
   .pol-doc-h{margin-bottom:12px}
   .pol-doc-t{font-size:22px; font-weight:700; letter-spacing:-.01em; line-height:1.25}
   .pol-doc-m{font-size:12.5px; color:var(--ink-3); margin-top:6px}
