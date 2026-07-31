@@ -1035,6 +1035,16 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .pol-pref{margin:24px 0 6px; padding:16px 0 4px; border-top:1px solid var(--line); max-width:820px}
   .pol-pref .std-l{display:block; margin:0 0 8px}
   .pol-pref-p{font-size:13.5px; line-height:1.75; color:var(--ink-2); margin:0 0 10px}
+  /* The document is the top thing on the page and, collapsed, it is a single row -
+     so it gets the room a heading gets rather than the room a list row gets. Scoped to
+     .pol-doc: the Act accordions on the law page are a long list where the tighter
+     head is right, and they are left alone. */
+  .pol-list{margin-top:24px}
+  .pol-doc > .actgrp-head{padding:20px 18px}
+  .pol-doc > .actgrp-head .ag-title{font-size:15px}
+  .pol-doc + .pol-doc{margin-top:14px}
+  /* inside an open document, the first chapter clears the document's own title block */
+  .pol-doc > .actgrp-body{padding-top:14px}
   .pol-chp{margin-top:12px}
   /* a regulation carries a heading, not a role and a pair of badges, so the row gives
      the heading the room the law view spends on its chips */
