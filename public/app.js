@@ -1262,7 +1262,7 @@ function policyDocAccordion(d, parsed, openIt){
     <div class="actgrp-head">
       <span class="ag-chev">${ic('chevron-down')}</span>
       <span class="dot s-${esc(d.status||"")}"></span>
-      <span class="ag-title">${esc(d.short||d.title)}${year?` <span class="ag-year">${esc(year)}</span>`:""}</span>
+      <span class="ag-title">${esc(d.short||d.title)}${(year && (d.short||"").indexOf(year)<0)?` <span class="ag-year">${esc(year)}</span>`:""}</span>
       <span class="ag-status">${esc(meta)}</span>
       <span class="ag-count">${nunits||"-"}</span>
     </div>
@@ -1284,12 +1284,18 @@ function policyDocAccordion(d, parsed, openIt){
      Sd/- - is the letter the draft was circulated under, not the regulations. It stays
      in the Akoma Ntoso as <preface> and it is there in the whole-document view, where
      "whole" is the promise. It is not on the reading surface. */
+  /* A document that prints no division over its units does not get one here. The model
+     e-filing rules run nineteen rules under no chapter at all, and the converter
+     refuses to invent a <chapter> for them for the same reason; heading the group with
+     the bare unit label, "Rule", was the page inventing what the converter would not.
+     Those rows sit straight in the document, which is where the source puts them. */
   (parsed.chapters||[]).forEach((c,i)=>{
+    if(!c.label){ c.regs.forEach(r=>body.appendChild(policyRegRow(d,r))); return; }
     const chp=el("div","actgrp pol-chp"+(i===0?" open":"")); chp.id=c.id;
     chp.innerHTML=`
       <div class="actgrp-head">
         <span class="ag-chev">${ic('chevron-down')}</span>
-        <span class="ag-title">${esc(c.label||((d.unit&&d.unit.label)||"Rules"))}</span>
+        <span class="ag-title">${esc(c.label)}</span>
         <span class="ag-count">${c.regs.length}</span>
       </div>
       <div class="actgrp-body"></div>`;

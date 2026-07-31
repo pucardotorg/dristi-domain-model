@@ -355,7 +355,13 @@ def build(doc_meta, preface, parts, today):
             # by counting, and would move the moment a unit was inserted above it.
             eid = r["eid"]
             if not eid:
-                base = "%s_%s" % (part["stem"] or "chp_%d" % chap, slug(r["heading"] or "unit"))
+                # the stem is the document's own word for its unit - a document whose
+                # units are Sections should not have them named chp_. Where there is a
+                # division above them the division's index keeps two identically named
+                # units in different Parts apart.
+                ustem = doc_meta.get("unit_prefix") or "chp"
+                base = "%s_%s" % (part["stem"] or (("%s_%d" % (ustem, chap)) if wrapped else ustem),
+                                  slug(r["heading"] or "unit"))
                 eid = base if base not in used_eids else "%s_%d" % (base, i)
             used_eids.add(eid)
             a('%s<section eId="%s">' % (pad, eid))
@@ -400,6 +406,7 @@ def main():
         slug = os.path.basename(md_path)[:-3]
         auth = d.get("akn_author") or {}
         meta = dict(slug=slug, title=d["title"], dated=d["dated"], kind=d.get("kind", "policy"),
+                    unit_prefix=prefix,
                     status_note=d.get("status_note", ""), source_pdf=d["source_pdf"],
                     author=auth.get("id", "pucar"), author_name=auth.get("name", "PUCAR"),
                     author_href=auth.get("href", "https://pucar.org"))

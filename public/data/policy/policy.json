@@ -165,6 +165,33 @@
       "source_pdf": "policy/sources/policy-action-plan-phase-ii-ecourts-2014.pdf",
       "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2020/05/2020053169.pdf",
       "compliance": "standards/ai-policy-compliance.md"
+    },
+    {
+      "id": "vision-document-phase-iii-2022",
+      "title": "Digital Courts: Vision & Roadmap - e-Courts Project Phase III",
+      "short": "eCourts Phase III Vision Document, 2022",
+      "kind": "policy",
+      "scope": "national",
+      "issuer": "e-Committee, Supreme Court of India",
+      "made_by": "Sub-committee of the e-Committee, Supreme Court of India, drawn from Agami, DAKSH and the Vidhi Centre for Legal Policy",
+      "status": "current",
+      "status_note": "Not law, and it does not claim to be. The approved vision and roadmap for Phase III of the eCourts Project, published with a Message from Chief Justice Uday U. Lalit dated 23 September 2022 and a Foreword by Dr Justice D.Y. Chandrachud, settled after 2051 public comments on the draft. It creates no obligation, confers no power and numbers nothing in its body, so it is cited by the name of a section rather than by number - and it says of itself that much of what it proposes would need amendments to procedural law, a data governance framework still to be drafted, and an Act of Parliament for the National Judicial Technology Council. It supersedes the Policy and Action Plan Phase II (2014). Read it for direction, not for what is in force.",
+      "dated": "2022-09-23",
+      "unit": {
+        "label": "Section",
+        "short": "Sec.",
+        "prefix": "sec"
+      },
+      "akn_author": {
+        "id": "sci-ecommittee",
+        "name": "e-Committee, Supreme Court of India",
+        "href": "/ontology/organization/in/supreme-court-ecommittee"
+      },
+      "md": "policy/md/vision-document-phase-iii-ecourts-2022.md",
+      "akn": "policy/akn/vision-document-phase-iii-ecourts-2022.akn.xml",
+      "source_pdf": "policy/sources/vision-document-phase-iii-ecourts-2022.pdf",
+      "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2023/04/2023042088.pdf",
+      "compliance": "standards/ai-policy-compliance.md"
     }
   ]
 }

@@ -1056,6 +1056,12 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
      providing is put back as spacing instead of as chrome. */
   .pol-statute{margin-top:14px; padding:20px 22px}
   .pol-statute .st-p, .pol-statute .litem{font-size:13.5px; line-height:1.8; margin:11px 0}
+  /* The Vision Document's Sources list cites a 475-character URL. An unbreakable token
+     that long sets the min-content width of everything above it, so the column widened
+     past the window and the whole page scrolled sideways. "anywhere" rather than
+     "break-word" because only the former is taken into account when min-content width
+     is computed, which is the thing actually forcing the layout here. */
+  .pol-statute .ltext, .pol-statute .st-p{overflow-wrap:anywhere}
   /* renderBody wraps even top-level clauses in a .lgroup, so the first row is never a
      direct child of the box - the reset has to reach through it or the top inset is the
      padding plus two margins */
