@@ -84,6 +84,33 @@
       "source_pdf": "policy/sources/model-rules-for-video-conferencing-for-courts-2020.pdf",
       "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2020/08/2020082629.pdf",
       "compliance": "standards/ai-policy-compliance.md"
+    },
+    {
+      "id": "model-rules-live-streaming-2022",
+      "title": "Model Rules for Live Streaming and Recording of Court Proceedings",
+      "short": "Model Rules for Live Streaming",
+      "kind": "rules",
+      "scope": "national",
+      "issuer": "e-Committee, Supreme Court of India",
+      "status": "model",
+      "status_note": "A model, not law. The Rules are drafted for a High Court to adopt: the preface leaves the name of the Court blank, printed as *Judicature*, frames them under Article 225 or the relevant statute and Article 227, and brings them into force in a State only from the date that State's High Court notifies them. The document itself prints no date; 2022-07-28 is the creation date recorded in the published PDF.",
+      "dated": "2022-07-28",
+      "unit": {
+        "label": "Rule",
+        "short": "Rule",
+        "prefix": "rule",
+        "clause_style": "dotted"
+      },
+      "akn_author": {
+        "id": "sci-ecommittee",
+        "name": "e-Committee, Supreme Court of India",
+        "href": "/ontology/organization/in/supreme-court-ecommittee"
+      },
+      "md": "policy/md/model-rules-for-live-streaming-and-recording-2022.md",
+      "akn": "policy/akn/model-rules-for-live-streaming-and-recording-2022.akn.xml",
+      "source_pdf": "policy/sources/model-rules-for-live-streaming-and-recording-2022.pdf",
+      "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2021/06/2022091599.pdf",
+      "compliance": "standards/ai-policy-compliance.md"
     }
   ]
 }

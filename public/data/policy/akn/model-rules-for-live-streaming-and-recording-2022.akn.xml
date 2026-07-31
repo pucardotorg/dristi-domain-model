@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="rules" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/doc/rules/2022/model-rules-for-live-streaming-and-recording-2022/!main"/>
+          <FRBRuri value="/akn/in/doc/rules/2022/model-rules-for-live-streaming-and-recording-2022"/>
+          <FRBRalias value="Model Rules for Live Streaming and Recording of Court Proceedings" name="shortTitle"/>
+          <FRBRdate date="2022-07-28" name="generation"/>
+          <FRBRauthor href="#sci-ecommittee"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Model Rules for Live Streaming and Recording of Court Proceedings"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/doc/rules/2022/model-rules-for-live-streaming-and-recording-2022/eng@/!main"/>
+          <FRBRuri value="/akn/in/doc/rules/2022/model-rules-for-live-streaming-and-recording-2022/eng@"/>
+          <FRBRdate date="2022-07-28" name="generation"/>
+          <FRBRauthor href="#sci-ecommittee"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/doc/rules/2022/model-rules-for-live-streaming-and-recording-2022/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/doc/rules/2022/model-rules-for-live-streaming-and-recording-2022/eng@.akn"/>
+          <FRBRdate date="2026-07-31" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#pucar">
+        <eventRef eId="e_publication" date="2022-07-28" source="#sci-ecommittee" type="generation"/>
+      </lifecycle>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="sci-ecommittee" href="/ontology/organization/in/supreme-court-ecommittee" showAs="e-Committee, Supreme Court of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_status"><p>A model, not law. The Rules are drafted for a High Court to adopt: the preface leaves the name of the Court blank, printed as *Judicature*, frames them under Article 225 or the relevant statute and Article 227, and brings them into force in a State only from the date that State's High Court notifies them. The document itself prints no date; 2022-07-28 is the creation date recorded in the published PDF.</p></note>
+        <note eId="note_source"><p>Converted from the transcription of the official PDF published on 2022-07-28, which is kept alongside at policy/sources/model-rules-for-live-streaming-and-recording-2022.pdf. The transcription was checked character for character against the source text. Akoma Ntoso has no policy document type; &lt;doc&gt; is the element the standard provides for a document type it does not name, and @name records what it is. It would be &lt;act&gt; once notified into force.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <p eId="pref_p1">MODEL RULES FOR</p>
+      <p eId="pref_p2">LIVE STREAMING AND RECORDING OF COURT PROCEEDINGS</p>
+      <p eId="pref_p3">Preface</p>
+      <p eId="pref_p4">Whereas to imbue greater transparency, inclusivity, and foster access to justice, it is expedient to set up infrastructure and the framework to enable live streaming and recording of proceedings. These rules are framed by the High Court of *Judicature* in the exercise of powers under Article 225 or relevant statute where applicable, and Article 227 of the Constitution of India.</p>
+      <p eId="pref_p5">These Rules will apply to the High Court of *Judicature* and to the courts and tribunals over which it has supervisory jurisdiction.</p>
+      <p eId="pref_p6">These rules will come into force from the date notified by the High Court of *Judicature*.</p>
+    </preface>
+    <mainBody>
+      <section eId="rule_1">
+        <num>1.</num>
+        <heading>Definitions:</heading>
+        <subsection eId="rule_1_i">
+          <num>i.</num>
+          <content>
+            <p>Archival Data: means audio and visual data recorded during the conduct of the proceedings and retained by the Court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_ii">
+          <num>ii.</num>
+          <content>
+            <p>Bench: means the Judge(s) assigned to hear the case filed before the court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_iii">
+          <num>iii.</num>
+          <content>
+            <p>Chief Justice: means the Chief Justice of the High Court, including the Acting Chief Justice.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_iv">
+          <num>iv.</num>
+          <content>
+            <p>Communication Device: means a hardware device capable of transmitting analog or digital signal over the telephone and other communication devices, whether wired or wireless.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_v">
+          <num>v.</num>
+          <content>
+            <p>Court: means the High Court of *Judicature* and/or all the courts/tribunals under its supervision under Article 227 of the Constitution of India.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_vi">
+          <num>vi.</num>
+          <content>
+            <p>Court Master / Reader: means the court staff that assists the court in the conduct of proceedings, including updating of the cause lists published on the display board.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_vii">
+          <num>vii.</num>
+          <content>
+            <p>Court Premises: means and includes buildings and complexes under the authority of courts.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_viii">
+          <num>viii.</num>
+          <content>
+            <p>Designated Officer: means the Registrar (IT) or any other officer mandated to carry out the function of granting access to copies of recordings under these rules.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_ix">
+          <num>ix.</num>
+          <content>
+            <p>Designated Venue: means and includes a courtroom or any other place where the proceedings are conducted, whether within the court premises or at a remote location.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_x">
+          <num>x.</num>
+          <content>
+            <p>Hardware: means and includes equipment to be installed for live streaming and recording of proceedings or any ancillary activity.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_xi">
+          <num>xi.</num>
+          <content>
+            <p>IT Committee: means and includes a committee constituted by the Chief Justice to deal with matters concerning information and communication technology, also referred to as the High Court computer committee or e-Committee.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_xii">
+          <num>xii.</num>
+          <content>
+            <p>Live-stream/ Live-streamed/ Live streaming: means and includes a live television link, webcast, audio-video transmissions via electronic means or other arrangements whereby any person can view the proceedings as permitted under these rules.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_xiii">
+          <num>xiii.</num>
+          <content>
+            <p>Proceedings: mean and include judicial proceedings, Lok Adalat proceedings, full-court references, official transfer, elevation, retirement, farewells organised by the Court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_xiv">
+          <num>xiv.</num>
+          <content>
+            <p>Recording: means audio and video data of proceedings stored in electronic format, whether it is live streamed or not.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_xv">
+          <num>xv.</num>
+          <content>
+            <p>Recording Device: means and includes a device capable of recording images or sound, including but not limited to camera, audio recorder, video recorder, mobile telephone, or screen recorder.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_xvi">
+          <num>xvi.</num>
+          <content>
+            <p>Registrar (IT): means and includes any officer so designated by the Chief Justice of the High Court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_xvii">
+          <num>xvii.</num>
+          <content>
+            <p>Remote Location: means and includes a geographical location, different from the court premises, from where proceedings are conducted.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_1_xviii">
+          <num>xviii.</num>
+          <content>
+            <p>Transcript: means the official written record of the proceedings published as per the directions of the court.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="rule_2">
+        <num>2.</num>
+        <heading>Hardware – Placement &amp; Control:</heading>
+        <subsection eId="rule_2_1">
+          <num>2.1.</num>
+          <content>
+            <p>Cameras will be ordinarily installed in the courtroom covering at least five angles; one towards the bench, the second and third towards the advocates engaged in the concerned matter, the fourth towards the accused (where applicable) and the fifth towards the deponent/witness, as required.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_2_2">
+          <num>2.2.</num>
+          <content>
+            <p>If the court has employed an electronic evidence presentation system, an additional feed shall be captured therefrom.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_2_3">
+          <num>2.3.</num>
+          <content>
+            <p>A remote-control device shall be provided to the presiding judge on the bench to pause or stop the live streaming at any time.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_2_4">
+          <num>2.4.</num>
+          <content>
+            <p>Advocates, witnesses, accused, or any other person permitted by the bench, shall use appropriate microphones while addressing the court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_2_5">
+          <num>2.5.</num>
+          <content>
+            <p>In so far as a remote location is concerned, appropriate hardware will be deployed to the extent practicable, bearing in mind the provisions made in the aforementioned sub-rules.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_2_6">
+          <num>2.6.</num>
+          <content>
+            <p>Where proceedings are conducted through weblinks, including video conferencing services, appropriate software and hardware will be employed, if necessary, to generate an integrated feed for live streaming.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="rule_3">
+        <num>3.</num>
+        <heading>Requisitioning and Positioning of Human Resources:</heading>
+        <subsection eId="rule_3_1">
+          <num>3.1.</num>
+          <content>
+            <p>A dedicated control room (DCR) shall be set up for every court complex.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_3_2">
+          <num>3.2.</num>
+          <content>
+            <p>The DCR shall, inter alia, comprise an officer of the Court, technical and video- recording experts. The DCR will monitor and track proceedings as they are live streamed, recorded, and transcribed. The DCR shall ensure that nothing uncivil or inappropriate is streamed in the public domain.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_3_3">
+          <num>3.3.</num>
+          <content>
+            <p>The coverage of Proceedings will be coordinated by the technical experts under the direct supervision of the Registrar (IT) or her/his nominee.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_3_4">
+          <num>3.4.</num>
+          <content>
+            <p>The Registrar (IT) and/or their nominee shall be subject to the directions of the IT Committee for the overall implementation of live streaming and recording of proceedings.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="rule_4">
+        <num>4.</num>
+        <heading>Personnel positioned in the Court:</heading>
+        <content>
+          <p>In addition to the court master and court staff attached to the bench, technical expert(s) shall be appointed/deputed in each of the court premises or designated venue to enable the live streaming of proceedings. The technical expert(s) shall function under the overall supervision of the DCR.</p>
+        </content>
+      </section>
+      <section eId="rule_5">
+        <num>5.</num>
+        <heading>Live streaming and Recording of Proceedings:</heading>
+        <subsection eId="rule_5_1">
+          <num>5.1.</num>
+          <content>
+            <p>Subject to the exclusions contained within these rules, all proceedings will be live streamed by the court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_5_2">
+          <num>5.2.</num>
+          <intro>
+            <p>The following will be excluded from live streaming:</p>
+          </intro>
+          <paragraph eId="rule_5_2_i">
+            <num>i.</num>
+            <content>
+              <p>Matrimonial matters, child adoption and child custody including transfer petitions arising thereunder.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_ii">
+            <num>ii.</num>
+            <content>
+              <p>Cases concerning sexual offences, including proceedings instituted under Section 376, Indian Penal Code, 1860 (IPC).</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_iii">
+            <num>iii.</num>
+            <content>
+              <p>Cases concerning gender-based violence against women.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_iv">
+            <num>iv.</num>
+            <content>
+              <p>Matters registered under or involving the Protection of Children from Sexual Offences Act, 2012 (POCSO) and under the Juvenile Justice (Care and Protection of Children) Act, 2015.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_v">
+            <num>v.</num>
+            <content>
+              <p>Matters registered under or involving the Medical Termination of Pregnancy Act, 1971.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_vi">
+            <num>vi.</num>
+            <content>
+              <p>In-camera proceedings as defined under Section 327 of the Code of Criminal Procedure, 1973 (CrPC) or Section 153 B of the Code of Civil Procedure, 1908 (CPC).</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_vii">
+            <num>vii.</num>
+            <content>
+              <p>Matters where the bench is of the view, for reasons to be recorded in writing that publication would be antithetical to the administration of justice.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_viii">
+            <num>viii.</num>
+            <content>
+              <p>Cases, which in the opinion of the Bench, may provoke enmity amongst communities likely to result in a breach of law and order.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_ix">
+            <num>ix.</num>
+            <content>
+              <p>Recording of evidence, including cross-examination.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_x">
+            <num>x.</num>
+            <content>
+              <p>Privileged communications between the parties and their advocates; cases where a claim of privilege is accepted by the Court; and non-public discussions between advocates.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_2_xi">
+            <num>xi.</num>
+            <content>
+              <p>Any other matter in which a specific direction is issued by the bench or the Chief Justice.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection eId="rule_5_3">
+          <num>5.3.</num>
+          <content>
+            <p>Live streaming in certain cases may be restricted to final arguments.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_5_4">
+          <num>5.4.</num>
+          <content>
+            <p>The court master/reader shall duly inform the parties, before the commencement of the proceedings, that the proceedings are being live streamed and that objections, if any, should be articulated at that juncture to the concerned bench.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_5_5">
+          <num>5.5.</num>
+          <intro>
+            <p>Objections, if any, to Live streaming may be raised at the time of institution of the case or any later stage. The final decision in that behalf shall be of the Bench.</p>
+          </intro>
+          <paragraph eId="rule_5_5_i">
+            <num>i.</num>
+            <content>
+              <p>Objection to Live streaming, if any, shall be raised by the party by filing the form prescribed in Schedule I.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_5_ii">
+            <num>ii.</num>
+            <content>
+              <p>A person objecting to Live streaming at a later stage, shall do so by filing the form prescribed in Schedule II.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection eId="rule_5_6">
+          <num>5.6.</num>
+          <content>
+            <p>The final decision as to whether to allow the live streaming of the proceedings or any portion thereof will be of the bench. However, the decision of the bench will be guided by the principle of an open and transparent judicial process. The decision of the Bench shall not be justiciable, provided that, in case of difference of opinion, the matter can be referred to a larger bench for a final decision.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_5_7">
+          <num>5.7.</num>
+          <intro>
+            <p>In cases where the proceedings are not live streamed, the recording shall be maintained for usage by the Court and the appellate court(s), subject to the following:</p>
+          </intro>
+          <paragraph eId="rule_5_7_i">
+            <num>i.</num>
+            <content>
+              <p>Access to the recording of the testimony of witnesses will not be given until such time that the evidence is recorded in its entirety.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_7_ii">
+            <num>ii.</num>
+            <content>
+              <p>Transcript of the recordings would be made available to the advocate or litigant-in-person.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_5_7_iii">
+            <num>iii.</num>
+            <content>
+              <p>In case of litigant-in-person, who is also a witness in the matter, the bench in its discretion will decide as to the stage at which the litigant-in-person should have access to the recordings of the testimonies concerning the other witnesses in the matter.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection eId="rule_5_8">
+          <num>5.8.</num>
+          <content>
+            <p>In criminal matters, the testimony of victims and witnesses will be recorded for the exclusive use of the concerned bench and the appellate court(s), as per the direction issued in that behalf. The anonymity of the victims and witnesses shall be maintained in the recordings via dummy names, face-masking, pixelation and/or electronic distortion of voice, as and when directed by the court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_5_9">
+          <num>5.9.</num>
+          <content>
+            <p>Audio-video recording or recording of proceedings by any other means, beyond the mandate of the present Rules is expressly prohibited.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="rule_6">
+        <num>6.</num>
+        <heading>Manner of Recording of Proceedings:</heading>
+        <subsection eId="rule_6_1">
+          <num>6.1.</num>
+          <content>
+            <p>The cameras in the Court shall be as per Rule 2.1.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_6_2">
+          <num>6.2.</num>
+          <content>
+            <p>Cameras shall not ordinarily audio-video record the media persons and the visitors present during the proceedings.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_6_3">
+          <num>6.3.</num>
+          <intro>
+            <p>The following will ordinarily not be live streamed or saved in the archival data or transcribed:</p>
+          </intro>
+          <paragraph eId="rule_6_3_i">
+            <num>i.</num>
+            <content>
+              <p>Discussions between/amongst the judges on the bench.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_6_3_ii">
+            <num>ii.</num>
+            <content>
+              <p>Instructions given by a judge to the administrative staff during the proceedings.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_6_3_iii">
+            <num>iii.</num>
+            <content>
+              <p>Any communication/message/document given by the court master/reader to the bench.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_6_3_iv">
+            <num>iv.</num>
+            <content>
+              <p>Documents given to the judge during the proceedings.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_6_3_v">
+            <num>v.</num>
+            <content>
+              <p>Notes taken down by the judge during the proceedings.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_6_3_vi">
+            <num>vi.</num>
+            <content>
+              <p>Notes made by an advocate either on paper or in electronic form, for assistance, while making submissions before the bench.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_6_3_vii">
+            <num>vii.</num>
+            <content>
+              <p>Communication between the advocate and client, inter-se the advocates, and communications which is not a submission exchanged between the advocate and the court.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection eId="rule_6_4">
+          <num>6.4.</num>
+          <content>
+            <p>If one or more circumstances mentioned in Rule 6.3 occur, the monitor will display the message: “Live streaming paused as per applicable Rules”.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_6_5">
+          <num>6.5.</num>
+          <content>
+            <p>In case the judge concerned on the bench is desirous of opting out of live streaming while dictating the order/oral judgment, live streaming will be paused during that period. In such circumstances, the monitors will display a message: “Order-dictation in progress”. Likewise, when the bench rises for recess or otherwise, the live streaming will be paused, and the monitor will display the message: “Court not in-session”.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="rule_7">
+        <num>7.</num>
+        <heading>Storage and Access:</heading>
+        <subsection eId="rule_7_1">
+          <num>7.1.</num>
+          <content>
+            <p>The recordings will be archived.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_7_2">
+          <num>7.2.</num>
+          <content>
+            <p>Recordings may be uploaded, wholly or in part, on the Courts’ website or made available on other digital platforms, as directed by the court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_7_3">
+          <num>7.3.</num>
+          <content>
+            <p>Access to copies of the recordings not uploaded will be sanctioned by the designated officer, who will act as per law. An application for copies of recordings shall be made in the form prescribed in schedule III.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_7_4">
+          <num>7.4.</num>
+          <content>
+            <p>The archived data should ordinarily be retained by the court for at least six months, subject to special directions issued by the concerned bench in a particular case. The Chief Justice may issue practice directions regarding the cases and the period for which archived data will be preserved. Archived data shall be stored in electronic devices in encrypted form with a specific hash (#) value.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="rule_8">
+        <num>8.</num>
+        <heading>Relay of Proceedings and Recordings:</heading>
+        <subsection eId="rule_8_1">
+          <num>8.1.</num>
+          <content>
+            <p>General Precaution: -</p>
+            <p>Personal information such as date of birth of parties, home address, identity card number, bank account information, and the personal information of related parties, such as close relatives, witnesses and other participants, will be deleted or muted during Live streaming. Inter alia, any one of the masking techniques, as provided in rule 6.8, may be adopted. However, such Proceedings will be preserved in the archival data.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_8_2">
+          <num>8.2.</num>
+          <content>
+            <p>The advocates and litigants-in-person may request the bench to redact personal and sensitive information inter alia of the kind referred to in Rule 8.1.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_8_3">
+          <num>8.3.</num>
+          <intro>
+            <p>Relay of Proceedings: -</p>
+          </intro>
+          <paragraph eId="rule_8_3_i">
+            <num>i.</num>
+            <content>
+              <p>Subject to limitations contained in these rules, the live stream shall commence as soon as the bench assembles and instructs the court staff to start the proceedings and shall end when the bench signals its conclusion for the day.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_8_3_ii">
+            <num>ii.</num>
+            <content>
+              <p>There shall be a delay of ten minutes in streaming, which may be changed as per the direction of the Court.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_8_3_iii">
+            <num>iii.</num>
+            <content>
+              <p>The live streaming shall be carried out from the designated venue as decided by the bench.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection eId="rule_8_4">
+          <num>8.4.</num>
+          <content>
+            <p>Relay of Recordings: -</p>
+            <p>The content of the recording will be vetted and shall be posted, usually within three days of the conclusion of the proceedings. The same shall be posted on the Courts’ website or made available on such digital platforms, as directed by the court.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="rule_9">
+        <num>9.</num>
+        <heading>Disclaimers, Prohibitions and Restrictions:</heading>
+        <subsection eId="rule_9_1">
+          <num>9.1.</num>
+          <intro>
+            <p>Disclaimers:-</p>
+          </intro>
+          <paragraph eId="rule_9_1_i">
+            <num>i.</num>
+            <content>
+              <p>The daily cause list published on the website of the court shall contain requisite information and disclaimer regarding live streaming.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_9_1_ii">
+            <num>ii.</num>
+            <content>
+              <p>The archival data shall not constitute the official record of the court proceedings unless otherwise directed by the bench.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection eId="rule_9_2">
+          <num>9.2.</num>
+          <intro>
+            <p>Prohibitions and restrictions on usage of the recording or live stream:</p>
+          </intro>
+          <paragraph eId="rule_9_2_i">
+            <num>i.</num>
+            <content>
+              <p>No person/entity (including print and electronic media, and social media platforms) other than an authorised person/entity shall record, share and/or disseminate live streamed proceedings or archival data.</p>
+              <p>This provision shall also apply to all messaging applications. Any person/entity acting contrary to this provision will be prosecuted as per law. The court shall have the exclusive copyright in the recordings and archival Data.</p>
+              <p>Any unauthorised usage of the live stream will be punishable as an offence under the Indian Copyright Act, 1957, Information Technology Act, 2000, and other provisions of law, including the law of Contempt.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_9_2_ii">
+            <num>ii.</num>
+            <content>
+              <p>Any party/ litigant-in-person accessing the live stream will be bound by these Rules.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_9_2_iii">
+            <num>iii.</num>
+            <content>
+              <p>The live stream shall not, without the prior written authorisation of the Court, be reproduced, transmitted, uploaded, posted, modified, published, or re-published in any form.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_9_2_iv">
+            <num>iv.</num>
+            <content>
+              <p>The use of authorised recordings in their original form may be permitted by the Court, inter-alia to disseminate news and for training, academic and educational purposes. Authorised recordings handed over for the aforesaid purposes shall not be further edited or processed. Such recordings will not be used for commercial, promotional purposes or advertising in any form.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_9_2_v">
+            <num>v.</num>
+            <content>
+              <p>No person shall use a recording device for recording or for transcribing the proceedings, other than those authorised by the Court.</p>
+            </content>
+          </paragraph>
+        </subsection>
+        <subsection eId="rule_9_3">
+          <num>9.3.</num>
+          <intro>
+            <p>Use of communication device or recording device during proceedings:</p>
+          </intro>
+          <paragraph eId="rule_9_3_i">
+            <num>i.</num>
+            <content>
+              <p>A person must not use a communication device or a recording device to disturb proceedings in a manner that may cause concern to a witness or other participants in the proceedings or allow a person who is not a participant to receive information about the proceeding or the hearing to which the person is not otherwise entitled.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_9_3_ii">
+            <num>ii.</num>
+            <content>
+              <p>During proceedings, all personnel shall follow the instructions of the presiding judge, adhere to courtroom etiquettes and discipline, and shall not engage in the following actions- audio and/or video recording, taking screenshots or using mobile communication tools to relay the proceedings.</p>
+            </content>
+          </paragraph>
+          <paragraph eId="rule_9_3_iii">
+            <num>iii.</num>
+            <content>
+              <p>Violation of Sub-Rules (i) and (ii) will result in prosecution as per law. Additionally, the bench may also direct seizure of the communication device or recording device.</p>
+            </content>
+          </paragraph>
+        </subsection>
+      </section>
+      <section eId="rule_10">
+        <num>10.</num>
+        <heading>Transcription and Access:</heading>
+        <subsection eId="rule_10_1">
+          <num>10.1.</num>
+          <content>
+            <p>Transcripts shall be prepared of recordings only when directed by the court.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_10_2">
+          <num>10.2.</num>
+          <content>
+            <p>The transcripts may be translated into other scheduled languages.</p>
+          </content>
+        </subsection>
+        <subsection eId="rule_10_3">
+          <num>10.3.</num>
+          <content>
+            <p>Recordings that are uploaded will be made accessible for differently abled persons.</p>
+          </content>
+        </subsection>
+      </section>
+      <section eId="rule_11">
+        <num>11.</num>
+        <heading>Dedicated room(s) for live streaming:</heading>
+        <content>
+          <p>In order to decongest the court rooms, dedicated room(s) for viewing the live stream may be made available within the court premises. Access shall be given to law researchers, staff, litigants, academicians, and media personnel authorised to enter the court premises upon receipt of necessary permissions/approvals. Appropriate arrangements shall be made to enable viewing of live streams from multiple benches within this/these room(s). Special arrangements will be made for differently abled persons.</p>
+        </content>
+      </section>
+      <section eId="rule_12">
+        <num>12.</num>
+        <heading>Power to Relax:</heading>
+        <content>
+          <p>The High Court may, if satisfied that the operation of any rule is causing undue hardship, by order, dispense with or relax the requirements of that Rule to such extent and subject to such conditions as may be stipulated to deal with the case in a just and equitable manner.</p>
+        </content>
+      </section>
+      <section eId="rule_13">
+        <num>13.</num>
+        <heading>Reference to Words and Expressions:</heading>
+        <content>
+          <p>Words and expressions used and not defined in these rules shall have the same meaning as assigned to them by the law for the time being in force, including the Information Technology Act 2000, CPC, the CrPC, Indian Evidence Act, 1872, and the General Clauses Act, 1897.</p>
+        </content>
+      </section>
+      <section eId="rule_14">
+        <num>14.</num>
+        <heading>Residual Provisions:</heading>
+        <content>
+          <p>Matters concerning which no express provision is made in these rules shall be decided by the Court consistent with the principle of furthering the interest of justice.</p>
+        </content>
+      </section>
+      <chapter eId="schedule_i">
+        <num>SCHEDULE I</num>
+        <section eId="schedule_i_1">
+          <num></num>
+          <heading>Objection to live streaming of proceedings by filing Party</heading>
+          <intro>
+            <p>[Referred to in Rule 5(5)(i)]</p>
+            <p>1. Diary Number / Filing Number (if any):</p>
+            <p>2. Cause Title:</p>
+            <p>3. Reasons for objection to live streaming (please select one or more applicable). The case relates to:</p>
+          </intro>
+          <subsection eId="schedule_i_1_i">
+            <num>i.</num>
+            <content>
+              <p>Matrimonial matters, transfer petitions thereunder.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_i_1_ii">
+            <num>ii.</num>
+            <content>
+              <p>Sexual offences, including proceedings instituted under Section 376 of the IPC.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_i_1_iii">
+            <num>iii.</num>
+            <content>
+              <p>Gender-based violence against women.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_i_1_iv">
+            <num>iv.</num>
+            <content>
+              <p>POCSO and under The Juvenile Justice (Care and Protection of Children) Act, 2015.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_i_1_v">
+            <num>v.</num>
+            <content>
+              <p>In-camera proceedings as defined under Section 327 of the CrPC or Section 153 B of the CPC.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_i_1_vi">
+            <num>vi.</num>
+            <content>
+              <p>Publication would be antithetical to the administration of justice.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_i_1_vii">
+            <num>vii.</num>
+            <intro>
+              <p>Other(s) (state the reason briefly): ______________________</p>
+              <p>4. Applicant Details:</p>
+            </intro>
+            <paragraph eId="schedule_i_1_vii_i">
+              <num>i.</num>
+              <content>
+                <p>Party name________________________________</p>
+              </content>
+            </paragraph>
+            <paragraph eId="schedule_i_1_vii_ii">
+              <num>ii.</num>
+              <content>
+                <p>Plaintiff/Petitioner/Appellant/Applicant No_____________________</p>
+              </content>
+            </paragraph>
+            <paragraph eId="schedule_i_1_vii_iii">
+              <num>iii.</num>
+              <content>
+                <p>Applicant Address__________________________________________</p>
+              </content>
+            </paragraph>
+            <paragraph eId="schedule_i_1_vii_iv">
+              <num>iv.</num>
+              <content>
+                <p>Applicant Telephone number_______________________</p>
+                <p>I have read and understood the provisions of the Rules for live streaming for Courts (hyperlink). I undertake to remain bound by the same to the extent applicable to me.</p>
+                <p>Signature of the Applicant/Authorised signatory*:</p>
+                <p>( this application may be e-signed)</p>
+                <p>Date:</p>
+                <p>Digital Signature/Scanned Signature</p>
+                <p>For use of the Registry</p>
+                <p>A. Bench assigned:</p>
+                <p>B. Decision of the Bench: Allowed/Not</p>
+                <p>Allowed Date:</p>
+              </content>
+            </paragraph>
+          </subsection>
+        </section>
+      </chapter>
+      <chapter eId="schedule_ii">
+        <num>SCHEDULE II</num>
+        <section eId="schedule_ii_1">
+          <num></num>
+          <heading>[Referred to in Rule 5(5)(ii)] Objection to live streaming of proceedings</heading>
+          <intro>
+            <p>1. Case Number / CNR Number / Diary Number (if any):</p>
+            <p>2. Cause Title:</p>
+            <p>3. Date of Hearing (if already listed) (DD/MM/YYYY):</p>
+            <p>4. Reasons for objection to the Live streaming (please select one or more applicable). Case relates to:</p>
+          </intro>
+          <subsection eId="schedule_ii_1_i">
+            <num>i.</num>
+            <content>
+              <p>Matrimonial matters, transfer petitions thereunder.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_ii_1_ii">
+            <num>ii.</num>
+            <content>
+              <p>Sexual offences, including proceedings instituted under Section 376 of the IPC.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_ii_1_iii">
+            <num>iii.</num>
+            <content>
+              <p>Gender-based violence against women.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_ii_1_iv">
+            <num>iv.</num>
+            <content>
+              <p>POCSO and under The Juvenile Justice (Care and Protection of Children) Act, 2015.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_ii_1_v">
+            <num>v.</num>
+            <content>
+              <p>In-camera proceedings as defined under Section 327 of the CrPC or Section 153 B of the CPC.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_ii_1_vi">
+            <num>vi.</num>
+            <content>
+              <p>Publication would be antithetical to the administration of justice.</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_ii_1_vii">
+            <num>vii.</num>
+            <intro>
+              <p>Other (s) (state the reason briefly):_________________________________</p>
+              <p>__________________________________________________________________</p>
+              <p>5. Applicant Details:</p>
+            </intro>
+            <paragraph eId="schedule_ii_1_vii_i">
+              <num>i.</num>
+              <content>
+                <p>Party name</p>
+              </content>
+            </paragraph>
+            <paragraph eId="schedule_ii_1_vii_ii">
+              <num>ii.</num>
+              <intro>
+                <p>Select one:</p>
+              </intro>
+              <subparagraph eId="schedule_ii_1_vii_ii_a">
+                <num>a.</num>
+                <content>
+                  <p>[i] Petitioner No. [ii] Accused No. [iii] Plaintiff No.</p>
+                </content>
+              </subparagraph>
+              <subparagraph eId="schedule_ii_1_vii_ii_b">
+                <num>b.</num>
+                <content>
+                  <p>[iv] Defendant No. [v] Applicant No. [vi] Respondent No. [vii] Deponent for No.___________ [viii] Other(s)__________</p>
+                </content>
+              </subparagraph>
+            </paragraph>
+            <paragraph eId="schedule_ii_1_vii_iii">
+              <num>iii.</num>
+              <content>
+                <p>Applicant Address______________________</p>
+              </content>
+            </paragraph>
+            <paragraph eId="schedule_ii_1_vii_iv">
+              <num>iv.</num>
+              <content>
+                <p>Applicant Telephone number_________________</p>
+                <p>I have read and understood the provisions of the Rules for live streaming for Courts (hyperlink). I undertake to remain bound by the same to the extent applicable to me.</p>
+                <p>Signature of the Applicant/Authorised Signatory*: (this application may be e-signed)</p>
+                <p>Date:</p>
+                <p>Digital Signature/Scanned Signature</p>
+                <p>For the use of the Registry</p>
+                <p>C) Bench assigned:</p>
+                <p>D) Decision of the Bench: Allowed/Not</p>
+                <p>Allowed Date:</p>
+              </content>
+            </paragraph>
+          </subsection>
+        </section>
+      </chapter>
+      <chapter eId="schedule_iii">
+        <num>SCHEDULE III</num>
+        <section eId="schedule_iii_1">
+          <num></num>
+          <heading>APPLICATION FORM FOR COPIES OF RECORDINGS AVAILABLE IN ARCHIVAL DATA</heading>
+          <intro>
+            <p>[Referred to in Rule 7.3]</p>
+            <p>1. Case Number / CNR Number (if any):</p>
+            <p>2. Cause Title:</p>
+            <p>3. Date of Hearing (if already listed) (DD/MM/YYYY):</p>
+            <p>4. Applicant Status (select one):</p>
+          </intro>
+          <subsection eId="schedule_iii_1_i">
+            <num>i.</num>
+            <content>
+              <p>Party to the proceedings</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_iii_1_ii">
+            <num>ii.</num>
+            <content>
+              <p>Authorised Representative</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_iii_1_iii">
+            <num>iii.</num>
+            <content>
+              <p>Advocate for the Party /</p>
+            </content>
+          </subsection>
+          <subsection eId="schedule_iii_1_iv">
+            <num>iv.</num>
+            <content>
+              <p>Third Party /None of the above (Please Specify)</p>
+              <p>5. Identification document enclosed: (i) Bar Association ID (ii) AADHAAR CARD (iii) PAN Card (iv) Driver’s License (v) Ration Card (vi) Other Government issued ID (please specify)</p>
+              <p>6. ID Number: _______________________________________</p>
+              <p>7. Applicant Address: ________________________________</p>
+              <p>8. Applicant Telephone number: ___________________________</p>
+              <p>9. Reason/s for requesting access: ______________________________</p>
+              <p>10. Format in which Recording is requested: (i) Cloud link (ii) Physical Drive</p>
+              <p>11. Fee to be Paid:</p>
+              <p>[Subject to fee as prescribed by the concerned High Court.]</p>
+              <p>I have read and understood the provisions of the rules for live streaming for Courts (hyperlink). I undertake to remain bound by the same to the extent applicable to me. I undertake not to copy, distribute or publish, or cause the copying, distribution or publication of the Recordings in any manner without the prior written approval of the Court.</p>
+              <p>Signature of the Applicant/Authorised Signatory*:</p>
+              <p>(this application may be e-signed)</p>
+              <p>Date:</p>
+              <p>Digital Signature/Scanned Signature</p>
+              <p>For the use of the Registry</p>
+              <p>WHETHER APPROVED BY DESIGNATED OFFICER</p>
+              <p>Fee paid:</p>
+            </content>
+          </subsection>
+        </section>
+      </chapter>
+    </mainBody>
+  </doc>
+</akomaNtoso>

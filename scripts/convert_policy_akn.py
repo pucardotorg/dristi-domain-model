@@ -74,7 +74,12 @@ AKN_NS = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
 # depth -> the hierarchical element that carries a clause at that depth. All are type
 # "hierarchy", so each holds either <content> or nested hierarchy, never both loose.
 LEVEL = ["subsection", "paragraph", "subparagraph", "clause", "point", "indent"]
-ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii"]
+# the roman sequence, long enough for the longest clause list in the corpus. The live
+# streaming rules number definitions i. to xviii.; stopping at xii silently misfiled
+# every clause past it as a new nesting level instead of a sibling.
+ROMAN = ["i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii","xiii","xiv","xv",
+         "xvi","xvii","xviii","xix","xx","xxi","xxii","xxiii","xxiv","xxv","xxvi","xxvii",
+         "xxviii","xxix","xxx"]
 
 # The four clause markers, tried in this order. `dot` must be tried before the others
 # because "5.6.1" would otherwise be read as a sentence opening with a number, and the
@@ -84,7 +89,7 @@ MARKER = re.compile(r"""^(?:
       \( (?P<paren>[0-9]{1,2}|[a-z]{1,4}) \)            # (3) (a) (iii)
     |   (?P<dot>[0-9]{1,3}(?:\.[0-9]{1,3})+)\.?        # 10.3  5.6.1  2.1.
     |   (?P<half>[a-z]{1,4})\)                          # i)  a)
-    |   (?P<stop>[a-z]{1,2})\.                          # a.  i.
+    |   (?P<stop>m{0,3}(?:c[md]|d?c{0,3})(?:x[cl]|l?x{0,3})(?:i[xv]|v?i{0,3})|[a-z]{1,2})\.                 # a.  i.  xviii.
   )\s+(?P<text>.*)$""", re.X)
 
 # A `##` that opens with one of these is an annexure: its units are numbered inside it
