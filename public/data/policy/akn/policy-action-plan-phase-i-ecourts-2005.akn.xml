@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
-  <doc name="report" contains="originalVersion">
+  <doc name="policy" contains="originalVersion">
     <meta>
       <identification source="#pucar">
         <FRBRWork>
-          <FRBRthis value="/akn/in/doc/report/2005/policy-action-plan-phase-i-ecourts-2005/!main"/>
-          <FRBRuri value="/akn/in/doc/report/2005/policy-action-plan-phase-i-ecourts-2005"/>
+          <FRBRthis value="/akn/in/doc/policy/2005/policy-action-plan-phase-i-ecourts-2005/!main"/>
+          <FRBRuri value="/akn/in/doc/policy/2005/policy-action-plan-phase-i-ecourts-2005"/>
           <FRBRalias value="National Policy and Action Plan for Implementation of Information and Communication Technology in the Indian Judiciary" name="shortTitle"/>
           <FRBRdate date="2005-08-01" name="generation"/>
           <FRBRauthor href="#sci-ecommittee"/>
@@ -14,15 +14,15 @@
           <FRBRname value="National Policy and Action Plan for Implementation of Information and Communication Technology in the Indian Judiciary"/>
         </FRBRWork>
         <FRBRExpression>
-          <FRBRthis value="/akn/in/doc/report/2005/policy-action-plan-phase-i-ecourts-2005/eng@/!main"/>
-          <FRBRuri value="/akn/in/doc/report/2005/policy-action-plan-phase-i-ecourts-2005/eng@"/>
+          <FRBRthis value="/akn/in/doc/policy/2005/policy-action-plan-phase-i-ecourts-2005/eng@/!main"/>
+          <FRBRuri value="/akn/in/doc/policy/2005/policy-action-plan-phase-i-ecourts-2005/eng@"/>
           <FRBRdate date="2005-08-01" name="generation"/>
           <FRBRauthor href="#sci-ecommittee"/>
           <FRBRlanguage language="eng"/>
         </FRBRExpression>
         <FRBRManifestation>
-          <FRBRthis value="/akn/in/doc/report/2005/policy-action-plan-phase-i-ecourts-2005/eng@/!main.xml"/>
-          <FRBRuri value="/akn/in/doc/report/2005/policy-action-plan-phase-i-ecourts-2005/eng@.akn"/>
+          <FRBRthis value="/akn/in/doc/policy/2005/policy-action-plan-phase-i-ecourts-2005/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/doc/policy/2005/policy-action-plan-phase-i-ecourts-2005/eng@.akn"/>
           <FRBRdate date="2026-07-31" name="generation"/>
           <FRBRauthor href="#pucar"/>
           <FRBRformat value="application/akn+xml"/>

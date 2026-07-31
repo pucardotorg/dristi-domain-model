@@ -116,7 +116,7 @@
       "id": "policy-action-plan-phase-i-2005",
       "title": "National Policy and Action Plan for Implementation of Information and Communication Technology in the Indian Judiciary",
       "short": "eCourts Phase I Policy and Action Plan, 2005",
-      "kind": "report",
+      "kind": "policy",
       "scope": "national",
       "issuer": "e-Committee, Supreme Court of India",
       "made_by": "e-Committee, Supreme Court of India, under the Chairmanship of Dr. Justice G.C. Bharuka",
@@ -137,6 +137,33 @@
       "akn": "policy/akn/policy-action-plan-phase-i-ecourts-2005.akn.xml",
       "source_pdf": "policy/sources/policy-action-plan-phase-i-ecourts-2005.pdf",
       "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2020/05/2020053162.pdf",
+      "compliance": "standards/ai-policy-compliance.md"
+    },
+    {
+      "id": "policy-action-plan-phase-ii-2014",
+      "title": "Policy and Action Plan Document, Phase II of the eCourts Project",
+      "short": "eCourts Phase II Policy and Action Plan, 2014",
+      "kind": "policy",
+      "scope": "national",
+      "issuer": "Supreme Court of India",
+      "made_by": "e-Committee, Supreme Court of India",
+      "status": "superseded",
+      "status_note": "Historical. The approved policy and action plan for Phase II of the eCourts Integrated Mission Mode Project, approved on 8 January 2014 for a three-year period from 1 April 2014. It is not law and never was: a programme and funding document addressed to the High Courts, the Department of Justice and NIC, superseded by the Vision Document for Phase III. It is here because it is the specification the district judiciary's systems were actually built to - CIS core and periphery, the National Judicial Data Grid, the two-tier State cloud, software that must be free and open source, and the High Court as implementing agency. Nothing in it binds a court today; much of it still describes how court technology is organised.",
+      "dated": "2014-01-08",
+      "unit": {
+        "label": "Chapter",
+        "short": "Ch.",
+        "prefix": "chapter"
+      },
+      "akn_author": {
+        "id": "sci-ecommittee",
+        "name": "e-Committee, Supreme Court of India",
+        "href": "/ontology/organization/in/supreme-court-ecommittee"
+      },
+      "md": "policy/md/policy-action-plan-phase-ii-ecourts-2014.md",
+      "akn": "policy/akn/policy-action-plan-phase-ii-ecourts-2014.akn.xml",
+      "source_pdf": "policy/sources/policy-action-plan-phase-ii-ecourts-2014.pdf",
+      "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2020/05/2020053169.pdf",
       "compliance": "standards/ai-policy-compliance.md"
     }
   ]
