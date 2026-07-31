@@ -29,7 +29,35 @@ that. The eIds here are those strings exactly - reg_43, reg_43_3, reg_43_3_a - s
 citation resolves against the XML with no mapping layer in between. Canonical AKN
 style would be reg_43__subsec_3__para_a; this corpus has never used that form (the
 Acts carry sec_138, art_71__l1) and one grammar the whole corpus shares is worth
-more here than the canonical spelling of an identifier.
+more here than the canonical spelling of an identifier. The stem is the document's
+own word for its numbered unit, taken from `unit.prefix` in policy.json, so the AI
+regulations number reg_43_3 and the model rules number rule_10_3 - the same grammar
+said in each document's own language.
+
+NUMBERING. Documents do not agree on how to mark a clause, and this converter has to
+read what is printed rather than impose one shape on all of them. Four marker forms
+are recognised, and whichever one the source prints is kept verbatim in <num>:
+
+    (3) (a) (iii)   parenthesised, the form the AI regulations use
+    10.3  5.6.1     dotted decimal, the form both eCommittee model rules use. The
+                    marker already carries its whole path, so the depth and the
+                    parent are read straight off it rather than inferred.
+    i)  a)          half-parenthesised, used for the sub-lists in e-filing rule 4.1
+    a.  i.          alpha or roman with a trailing stop, used in VC rule 2(xii)
+
+A document may mix them - the VC rules number rule 3 as (i), (ii) and rule 5 as
+5.1, 5.2 - so the forms are recognised per line, not per document.
+
+DIVISIONS. A `##` is a division of the document. One that opens "Chapter", "Part" or
+"Title" is hierarchical and the units inside it are the document's numbered units, so
+they carry the document's unit stem. One that opens "Schedule", "Appendix",
+"Annexure", "Form" or "Table" is an annexure: its units are numbered inside it and
+nowhere else, so they carry the division's own stem instead (schedule_i_1) and cannot
+collide with a rule of the same number. Both are emitted as <chapter> because that is
+what this corpus's reader groups on; the <num> carries which it actually is. A
+document with no printed division at all - the model e-filing rules print none over
+their nineteen rules - gets no <chapter> wrapper, because inventing one would assert
+a structure the source does not have.
 
 Run:  python3 scripts/convert_policy_akn.py
 """
@@ -48,9 +76,31 @@ AKN_NS = "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
 LEVEL = ["subsection", "paragraph", "subparagraph", "clause", "point", "indent"]
 ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii"]
 
+# The four clause markers, tried in this order. `dot` must be tried before the others
+# because "5.6.1" would otherwise be read as a sentence opening with a number, and the
+# parenthesised form must be tried before "a." or it would eat the closing bracket.
+# Each captures the marker exactly as printed, because <num> shows what the page shows.
+MARKER = re.compile(r"""^(?:
+      \( (?P<paren>[0-9]{1,2}|[a-z]{1,4}) \)            # (3) (a) (iii)
+    |   (?P<dot>[0-9]{1,3}(?:\.[0-9]{1,3})+)\.?        # 10.3  5.6.1  2.1.
+    |   (?P<half>[a-z]{1,4})\)                          # i)  a)
+    |   (?P<stop>[a-z]{1,2})\.                          # a.  i.
+  )\s+(?P<text>.*)$""", re.X)
+
+# A `##` that opens with one of these is an annexure: its units are numbered inside it
+# and take its own eId stem, so Schedule I paragraph 1 is schedule_i_1 and never
+# collides with rule 1. Anything else is a hierarchical division of the document body.
+ANNEX = re.compile(r"^(schedule|appendix|appendices|annex|annexure|form|table)\b", re.I)
+HIER = re.compile(r"^(chapter|part|title)\s+([IVXLC]+|[0-9]+)\b", re.I)
+
 
 def esc(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def slug(s):
+    """A label to an eId stem: "SCHEDULE I" -> schedule_i, "Appendices" -> appendices."""
+    return re.sub(r"_+", "_", re.sub(r"[^a-z0-9]+", "_", s.lower())).strip("_") or "part"
 
 
 def kind(m):
@@ -80,56 +130,96 @@ def follows(m, prev):
 
 class Node:
     """One clause. `kids` are the clauses under it, `ps` the paragraphs at its own level."""
-    def __init__(self, mark, eid, depth):
-        self.mark, self.eid, self.depth = mark, eid, depth
+    def __init__(self, printed, eid, depth):
+        self.printed, self.eid, self.depth = printed, eid, depth
         self.ps, self.kids = [], []
 
 
-def parse(md):
-    """-> (preface_paras, [ {chapter, regs:[ {num, heading, intro[], nodes[]} ] } ])"""
+def division(label):
+    """A `##` label -> (kind, stem). kind is 'hier' or 'annex'; stem is the eId stem
+    an annexure's units hang off, and None for a hierarchical division, whose units
+    keep the document's own unit stem."""
+    if ANNEX.match(label):
+        return "annex", slug(label)
+    return "hier", None
+
+
+def parse(md, unit_prefix):
+    """-> (preface_paras, [ {label, kind, stem, regs:[ {num, heading, intro[], nodes[]} ] } ])
+
+    `unit_prefix` is the document's word for a numbered unit ("reg", "rule"), so the
+    eIds come out in the language the document and its citations already speak."""
     md = re.sub(r"<!--.*?-->", "", md, flags=re.S)
     parts, cur_part, reg = [], None, None
     stack = []                       # open Nodes, outermost first
-    marks = []                       # the marker at each open level
+    marks = []                       # the eId token at each open level
     preface = []
+
+    def open_part(label):
+        kind_, stem = division(label)
+        p = {"label": label, "kind": kind_, "stem": stem, "regs": []}
+        parts.append(p)
+        return p
 
     for raw in md.split("\n"):
         line = raw.strip()
         if not line or line.startswith(">") or line.startswith("# "):
             continue                 # blank, our own editorial note, the title
         if line.startswith("## "):
-            cur_part = {"label": line[3:].strip(), "regs": []}
-            parts.append(cur_part)
+            cur_part = open_part(line[3:].strip())
             reg, stack, marks = None, [], []
             continue
         if line.startswith("### "):
             body = line[4:].strip()
             m = re.match(r"^(\d+)\.\s*(.*)$", body)
+            if cur_part is None:
+                # a document that prints no division over its units - the model
+                # e-filing rules print none. An unlabelled part carries them, and
+                # build() emits no <chapter> for it.
+                cur_part = open_part("")
             reg = {"num": m.group(1) if m else None,
                    "heading": (m.group(2) if m else body).strip(),
                    "intro": [], "nodes": []}
-            (cur_part or {"regs": []})["regs"].append(reg)
+            # inside an annexure the unit is numbered within the annexure, so its stem
+            # is the annexure's; a unit with no printed number takes its position.
+            stem = cur_part["stem"] if cur_part["kind"] == "annex" else unit_prefix
+            num = reg["num"] or (str(len(cur_part["regs"]) + 1) if cur_part["kind"] == "annex" else None)
+            reg["eid"] = "%s_%s" % (stem, num) if num else None
+            cur_part["regs"].append(reg)
             stack, marks = [], []
             continue
         if reg is None:
-            preface.append(line)     # the covering notice, before any regulation
+            preface.append(line)     # the covering notice, before any unit
             continue
 
-        mk = re.match(r"^\(([0-9]{1,2}|[a-z]{1,4})\)\s*(.*)$", line)
-        if mk and reg["num"]:
-            mark, text = mk.group(1), mk.group(2).strip()
-            at = next((i for i, x in enumerate(marks) if follows(mark, x)), -1)
-            if at >= 0:
-                marks = marks[:at] + [mark]
-                stack = stack[:at]
-            elif kind(mark) == "num" and int(mark) > 1 and not any(kind(x) == "num" for x in marks):
-                # regulation 37 opens at (2) with no (1) printed: it is top level anyway
-                marks, stack = [mark], []
+        mk = MARKER.match(line)
+        if mk and reg["eid"]:
+            text = mk.group("text").strip()
+            if mk.group("dot"):
+                # the marker states its own path: 5.6.1 is the first clause of 5.6,
+                # which is the sixth of rule 5. Drop the leading component when it
+                # repeats the unit number the heading already gave.
+                path = mk.group("dot").split(".")
+                if reg["num"] and path[0] == reg["num"]:
+                    path = path[1:]
+                marks = path or ["1"]
+                stack = stack[:len(marks) - 1]
+                printed = mk.group("dot") + ("." if line[mk.end("dot")] == "." else "")
             else:
-                marks = marks + [mark]
+                mark = mk.group("paren") or mk.group("half") or mk.group("stop")
+                at = next((i for i, x in enumerate(marks) if follows(mark, x)), -1)
+                if at >= 0:
+                    marks = marks[:at] + [mark]
+                    stack = stack[:at]
+                elif kind(mark) == "num" and int(mark) > 1 and not any(kind(x) == "num" for x in marks):
+                    # regulation 37 opens at (2) with no (1) printed: it is top level anyway
+                    marks, stack = [mark], []
+                else:
+                    marks = marks + [mark]
+                printed = ("(%s)" % mark if mk.group("paren") else
+                           "%s)" % mark if mk.group("half") else "%s." % mark)
             depth = len(marks) - 1
-            eid = "reg_%s_%s" % (reg["num"], "_".join(marks))
-            node = Node(mark, eid, depth)
+            node = Node(printed, "%s_%s" % (reg["eid"], "_".join(marks)), depth)
             if text:
                 node.ps.append(text)
             if stack:
@@ -139,7 +229,7 @@ def parse(md):
             stack = stack + [node]
         else:
             # unmarked text: a proviso or a continuation. It belongs to the clause
-            # that is open, and to the regulation's intro when none is.
+            # that is open, and to the unit's intro when none is.
             (stack[-1].ps if stack else reg["intro"]).append(line)
 
     return preface, parts
@@ -149,7 +239,7 @@ def render_node(n, out, ind):
     tag = LEVEL[min(n.depth, len(LEVEL) - 1)]
     pad = "  " * ind
     out.append('%s<%s eId="%s">' % (pad, tag, n.eid))
-    out.append("%s  <num>(%s)</num>" % (pad, n.mark))
+    out.append("%s  <num>%s</num>" % (pad, esc(n.printed)))
     if n.kids:
         if n.ps:
             out.append("%s  <intro>" % pad)
@@ -168,17 +258,21 @@ def render_node(n, out, ind):
 
 def build(doc_meta, preface, parts, today):
     slug = doc_meta["slug"]
-    work = "/akn/in/doc/regulations/2026/%s" % slug
+    # the FRBR work name is the document's own kind, and the year is the date it
+    # carries, so a regulation and a set of model rules do not pretend to be the same
+    # thing merely because both are policy.
+    work = "/akn/in/doc/%s/%s/%s" % (doc_meta["kind"], doc_meta["dated"][:4], slug)
+    author, author_name = doc_meta["author"], doc_meta["author_name"]
     o = []
     a = o.append
     a('<?xml version="1.0" encoding="UTF-8"?>')
     a('<akomaNtoso xmlns="%s">' % AKN_NS)
-    a('  <doc name="regulations" contains="originalVersion">')
+    a('  <doc name="%s" contains="originalVersion">' % esc(doc_meta["kind"]))
     a("    <meta>")
     a('      <identification source="#pucar">')
     for frbr, this, uri, dt, who in [
-        ("FRBRWork", work + "/!main", work, doc_meta["dated"], "#sci-ai-committee"),
-        ("FRBRExpression", work + "/eng@/!main", work + "/eng@", doc_meta["dated"], "#sci-ai-committee"),
+        ("FRBRWork", work + "/!main", work, doc_meta["dated"], "#" + author),
+        ("FRBRExpression", work + "/eng@/!main", work + "/eng@", doc_meta["dated"], "#" + author),
         ("FRBRManifestation", work + "/eng@/!main.xml", work + "/eng@.akn", today, "#pucar"),
     ]:
         a("        <%s>" % frbr)
@@ -200,13 +294,13 @@ def build(doc_meta, preface, parts, today):
     a("      </identification>")
     # a draft is not an original version in force; say so where a reader will look
     a('      <lifecycle source="#pucar">')
-    a('        <eventRef eId="e_publication" date="%s" source="#sci-ai-committee" type="generation"/>'
-      % doc_meta["dated"])
+    a('        <eventRef eId="e_publication" date="%s" source="#%s" type="generation"/>'
+      % (doc_meta["dated"], author))
     a("      </lifecycle>")
     a('      <references source="#pucar">')
     a('        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>')
-    a('        <TLCOrganization eId="sci-ai-committee" href="/ontology/organization/in/supreme-court-ai-committee"'
-      ' showAs="Artificial Intelligence Committee, Supreme Court of India"/>')
+    a('        <TLCOrganization eId="%s" href="%s" showAs="%s"/>'
+      % (author, doc_meta["author_href"], esc(author_name)))
     a("      </references>")
     a('      <notes source="#pucar">')
     a('        <note eId="note_status"><p>%s</p></note>' % esc(doc_meta["status_note"]))
@@ -228,35 +322,48 @@ def build(doc_meta, preface, parts, today):
     for part in parts:
         if not part["regs"]:
             continue
-        chap += 1
         label = part["label"]
-        m = re.match(r"^(Chapter\s+[IVXL]+)\s*[-–]\s*(.*)$", label, re.I)
-        num, head = (m.group(1), m.group(2)) if m else (label, "")
-        a('      <chapter eId="chp_%d">' % chap)
-        a("        <num>%s</num>" % esc(num))
-        if head:
-            a("        <heading>%s</heading>" % esc(head))
-        for r in part["regs"]:
-            eid = "reg_%s" % r["num"] if r["num"] else "reg_x%d" % chap
-            a('        <section eId="%s">' % eid)
-            a("          <num>%s.</num>" % (r["num"] or ""))
+        # an unlabelled part is a document that prints no division over its units. It
+        # gets no <chapter>, because a wrapper the source does not have is a claim
+        # about its structure; the sections sit directly in <mainBody>, which is what
+        # the standard's maincontent admits anyway.
+        wrapped = bool(label)
+        ind = 4 if wrapped else 3
+        if wrapped:
+            chap += 1
+            m = re.match(r"^(Chapter\s+[IVXL]+)\s*[-–]\s*(.*)$", label, re.I)
+            num, head = (m.group(1), m.group(2)) if m else (label, "")
+            a('      <chapter eId="%s">' % (part["stem"] or "chp_%d" % chap))
+            a("        <num>%s</num>" % esc(num))
+            if head:
+                a("        <heading>%s</heading>" % esc(head))
+        pad = "  " * ind
+        for i, r in enumerate(part["regs"], 1):
+            eid = r["eid"] or "%s_x%d_%d" % (part["stem"] or "chp", chap, i)
+            a('%s<section eId="%s">' % (pad, eid))
+            # the unit's number exactly as the source prints it. An annexure's units
+            # print "1." like anything else; one that prints no number at all - the
+            # request form in Schedule II - gets an empty <num>, which is what an
+            # unnumbered heading is.
+            a("%s  <num>%s</num>" % (pad, ("%s." % r["num"]) if r["num"] else ""))
             if r["heading"]:
-                a("          <heading>%s</heading>" % esc(r["heading"]))
+                a("%s  <heading>%s</heading>" % (pad, esc(r["heading"])))
             if r["nodes"]:
                 if r["intro"]:
-                    a("          <intro>")
+                    a("%s  <intro>" % pad)
                     for p in r["intro"]:
-                        a("            <p>%s</p>" % esc(p))
-                    a("          </intro>")
+                        a("%s    <p>%s</p>" % (pad, esc(p)))
+                    a("%s  </intro>" % pad)
                 for n in r["nodes"]:
-                    render_node(n, o, 5)
+                    render_node(n, o, ind + 1)
             else:
-                a("          <content>")
+                a("%s  <content>" % pad)
                 for p in (r["intro"] or [""]):
-                    a("            <p>%s</p>" % esc(p))
-                a("          </content>")
-            a("        </section>")
-        a("      </chapter>")
+                    a("%s    <p>%s</p>" % (pad, esc(p)))
+                a("%s  </content>" % pad)
+            a("%s</section>" % pad)
+        if wrapped:
+            a("      </chapter>")
     a("    </mainBody>")
     a("  </doc>")
     a("</akomaNtoso>")
@@ -269,21 +376,27 @@ def main():
     for d in man["documents"]:
         md_path = os.path.join(DATA, *d["md"].split("/"))
         md = open(md_path, encoding="utf-8").read()
-        preface, parts = parse(md)
+        unit = d.get("unit") or {}
+        prefix = unit.get("prefix") or "reg"
+        preface, parts = parse(md, prefix)
         slug = os.path.basename(md_path)[:-3]
-        meta = dict(slug=slug, title=d["title"], dated=d["dated"],
-                    status_note=d.get("status_note", ""), source_pdf=d["source_pdf"])
+        auth = d.get("akn_author") or {}
+        meta = dict(slug=slug, title=d["title"], dated=d["dated"], kind=d.get("kind", "policy"),
+                    status_note=d.get("status_note", ""), source_pdf=d["source_pdf"],
+                    author=auth.get("id", "pucar"), author_name=auth.get("name", "PUCAR"),
+                    author_href=auth.get("href", "https://pucar.org"))
         xml = build(meta, preface, parts, today)
         assert_unique_eids(xml, slug)
         out_dir = os.path.join(DATA, "policy", "akn")
         os.makedirs(out_dir, exist_ok=True)
         out = os.path.join(out_dir, slug + ".akn.xml")
         open(out, "w", encoding="utf-8").write(xml)
-        nreg = sum(len(p["regs"]) for p in parts)
-        nclause = len(re.findall(r'eId="reg_\d+_', xml))
-        print("%s\n   %d chapters, %d regulations, %d clause eIds, %d preface paragraphs"
-              % (os.path.relpath(out, ROOT), len([p for p in parts if p["regs"]]),
-                 nreg, nclause, len(preface)))
+        live = [p for p in parts if p["regs"]]
+        nreg = sum(len(p["regs"]) for p in live)
+        nclause = len(re.findall(r'eId="[a-z_]+_[0-9ivxl]+_', xml))
+        print("%s\n   %d division(s), %d %s(s), %d clause eIds, %d preface paragraphs"
+              % (os.path.relpath(out, ROOT), len([p for p in live if p["label"]]),
+                 nreg, unit.get("label", "unit").lower(), nclause, len(preface)))
 
 
 if __name__ == "__main__":

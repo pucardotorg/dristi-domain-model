@@ -2,7 +2,7 @@
   "title": "Policy",
   "as_of": "2026-07-30",
   "maintained_by": "PUCAR / DRISTI",
-  "note": "The manifest for the policy area. Akoma Ntoso has no policy document type, so a policy is carried as <doc name=\"regulations\"> under policy/akn/ - <doc> is the element the standard provides for a document type it does not name. It would be <act> once notified into force. The source PDF sits one folder over in policy/sources/ and the checked transcription in policy/md/, which is what the converter reads. The Policy page is generic over this list - to add a document, drop its files in, add an entry here and run scripts/convert_policy_akn.py. `unit` is how that document numbers itself, so a citation reads in the document's own language rather than in ours.",
+  "note": "The manifest for the policy area. Akoma Ntoso has no policy document type, so a policy is carried as <doc name=\"...\"> under policy/akn/ - <doc> is the element the standard provides for a document type it does not name, and @name is the `kind` below. It would be <act> once notified into force. The source PDF sits one folder over in policy/sources/ and the checked transcription in policy/md/, which is what the converter reads. The Policy page is generic over this list - to add a document, drop its files in, add an entry here and run scripts/convert_policy_akn.py. `unit` is how that document numbers itself, so a citation reads in the document's own language rather than in ours: `prefix` is also the eId stem, so the AI regulations number reg_43_3 and the model rules number rule_10_3. `akn_author` is the body the Akoma Ntoso names as the document's author.",
   "documents": [
     {
       "id": "ai-in-courts-2026",
@@ -20,10 +20,67 @@
         "short": "Reg.",
         "prefix": "reg"
       },
+      "akn_author": {
+        "id": "sci-ai-committee",
+        "name": "Artificial Intelligence Committee, Supreme Court of India",
+        "href": "/ontology/organization/in/supreme-court-ai-committee"
+      },
       "md": "policy/md/regulations-for-use-of-artificial-intelligence-in-courts-2026.md",
       "akn": "policy/akn/regulations-for-use-of-artificial-intelligence-in-courts-2026.akn.xml",
       "source_pdf": "policy/sources/regulations-for-use-of-artificial-intelligence-in-courts-2026.pdf",
       "source_url": "https://cdnbbsr.s3waas.gov.in/s3ec0490f1f4972d133619a60c30f3559e/uploads/2026/06/2026060342.pdf",
+      "compliance": "standards/ai-policy-compliance.md"
+    },
+    {
+      "id": "model-rules-efiling-2020",
+      "title": "Model Rules for e-Filing (Rules for On-line Electronic Filing framed under Articles 225 and 227 of the Constitution of India)",
+      "short": "Model Rules for e-Filing",
+      "kind": "rules",
+      "scope": "national",
+      "issuer": "e-Committee, Supreme Court of India",
+      "status": "model",
+      "status_note": "A model, not law. The Rules are drafted for a High Court to adopt: rule 1 and the commencement clause leave the name of the Court, the portal address, the file-size limit and the cut-off hour blank, and they come into force in a State only from the date that State's High Court notifies them under Articles 225 and 227. Three instruments already in this corpus are adoptions of this model - the Punjab and Haryana E-Filing Rules, the Gujarat e-filing SOP for the district judiciary, 2024, and, more loosely, the Kerala Electronic Filing Rules, 2021. The document itself prints no date; 2020-06-23 is the creation date recorded in the published PDF.",
+      "dated": "2020-06-23",
+      "unit": {
+        "label": "Rule",
+        "short": "Rule",
+        "prefix": "rule"
+      },
+      "akn_author": {
+        "id": "sci-ecommittee",
+        "name": "e-Committee, Supreme Court of India",
+        "href": "/ontology/organization/in/supreme-court-ecommittee"
+      },
+      "md": "policy/md/model-rules-for-e-filing-2020.md",
+      "akn": "policy/akn/model-rules-for-e-filing-2020.akn.xml",
+      "source_pdf": "policy/sources/model-rules-for-e-filing-2020.pdf",
+      "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2020/08/2020082629-1.pdf",
+      "compliance": "standards/ai-policy-compliance.md"
+    },
+    {
+      "id": "model-rules-vc-2020",
+      "title": "Model Rules for Video Conferencing for Courts",
+      "short": "Model Rules for Video Conferencing",
+      "kind": "rules",
+      "scope": "national",
+      "issuer": "e-Committee, Supreme Court of India",
+      "status": "model",
+      "status_note": "A model, not law. Rule 1 leaves the name of the High Court blank and applies the Rules only to such courts, proceedings and dates as that High Court may notify. Two instruments already in this corpus are adoptions of this model - the Punjab and Haryana Video Conferencing Rules, which follow it chapter for chapter, and the Gujarat district-courts Electronic Communication and Audio-Video Electronic Means Rules, 2025, which rebuild it around the BNSS. The document itself prints no date; 2020-05-04 is the creation date recorded in the published PDF.",
+      "dated": "2020-05-04",
+      "unit": {
+        "label": "Rule",
+        "short": "Rule",
+        "prefix": "rule"
+      },
+      "akn_author": {
+        "id": "sci-ecommittee",
+        "name": "e-Committee, Supreme Court of India",
+        "href": "/ontology/organization/in/supreme-court-ecommittee"
+      },
+      "md": "policy/md/model-rules-for-video-conferencing-for-courts-2020.md",
+      "akn": "policy/akn/model-rules-for-video-conferencing-for-courts-2020.akn.xml",
+      "source_pdf": "policy/sources/model-rules-for-video-conferencing-for-courts-2020.pdf",
+      "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2020/08/2020082629.pdf",
       "compliance": "standards/ai-policy-compliance.md"
     }
   ]

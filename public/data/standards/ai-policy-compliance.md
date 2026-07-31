@@ -1,12 +1,18 @@
 <!--
-  HOW THIS FILE IS WRITTEN - the AI policy compliance sub-tab parses it, so keep the shape.
+  HOW THIS FILE IS WRITTEN - the policy compliance sub-tab parses it, so keep the shape.
 
     > line              the lede, shown under the page title (one or more lines).
-    ## Name             a jurisdiction: National, or a state / High Court that has its own
-                        AI policy. Lines under it, before the first ###, are its gloss.
+    ## Name             one group of records, all resolving against one policy document.
+                        Where a jurisdiction has a single document the group is named for
+                        the jurisdiction; where it has more than one - as National now
+                        does - the name says which document, because the group is really
+                        (jurisdiction, document) and the reader has to be able to tell
+                        them apart. Lines under it, before the first ###, are its gloss.
     **Document.**       the policy document every citation in this group resolves against -
                         an id from data/policy/policy.json. Written once, under the ##.
-    ### Name            one compliance record. The heading names the obligation.
+    ### Name            one compliance record. The heading names the obligation, and it is
+                        also the record's id, so it must be unique in the WHOLE file and
+                        not merely inside its group.
     plain paragraph     what it is: the obligation in one sentence. Required.
 
   Then two blocks of fields, and the difference between them is the whole point of this
@@ -15,10 +21,13 @@
 
     from the document
       **Binds.**          court | vendor | both.
-      **Citation.**       the clause, as the document numbers it: "reg_43_3" is regulation
-                          43(3). Several separated by " · ". REQUIRED - a record that
-                          cannot cite a clause is not a record. Each one links into the
-                          Policy page, landing on that clause.
+      **Citation.**       the clause, as the document numbers it and in the document's own
+                          stem: "reg_43_3" is regulation 43(3) of the AI regulations,
+                          "rule_10_3" is rule 10.3 of the model e-filing rules. Several
+                          separated by " · ". REQUIRED - a record that cannot cite a clause
+                          is not a record, and the generator fails the build if the clause
+                          is not an eId in that document's Akoma Ntoso. Each one links into
+                          the Policy page, landing on that clause.
       **Timing.**         when and how often, in the document's own terms. Where the
                           document fixes no cadence, write "not stated" - never invent one.
                           Required.
@@ -36,29 +45,36 @@
                         from the source. Optional, and it is ours.
 
   Markdown links, [text](url), are honoured in any of those. Nothing else is parsed.
-  Add a jurisdiction by adding a ##; add a record by adding a ###. No new code for either.
+  Add a document or a jurisdiction by adding a ##; add a record by adding a ###. No new
+  code for either.
 -->
 
-# AI policy compliance
+# Policy compliance
 
-> What a court and its technology vendor would have to do, and to build, if the Supreme
-> Court's draft AI regulations were in force. Each record states one operational
-> obligation - something that has to be reported, communicated, disclosed, logged,
-> registered, audited, or produced as a record - and cites the clause it comes from.
-> Principles, definitions and institutional plumbing are left out unless they carry an
-> operational duty; a rule nobody has to do anything about does not appear here.
+> What a court and its technology vendor would have to do, and to build, to run the
+> policy instruments this corpus holds. Each record states one operational obligation -
+> something that has to be reported, communicated, disclosed, logged, registered,
+> audited, or produced as a record - and cites the clause it comes from. Principles,
+> definitions and institutional plumbing are left out unless they carry an operational
+> duty; a rule nobody has to do anything about does not appear here.
 >
 > Read the split on every card. **The obligation, who it binds, the clause and the timing
 > are the document's.** What to build, how to automate it and how to test it are **ours** -
-> a reading of what a system would need, not something the Court has said. The draft is
-> also just that, a draft: it is published for comment and commences only on a
-> notification under regulation 1(2), so nothing here binds anyone today.
+> a reading of what a system would need, not something the issuing body has said.
 >
-> The structure holds more than one jurisdiction. Only the national draft exists so far;
-> a High Court that issues its own AI policy gets its own group, its own document, and its
-> own records citing into it.
+> None of these documents binds anyone in this form. The AI regulations are a draft
+> published for comment and commence only on a notification under regulation 1(2). The
+> two eCommittee documents are models, drafted for a High Court to adopt: they bind a
+> State only from the date that State's High Court notifies its own rules on them. What
+> makes them worth holding is that the corpus already carries five such adoptions -
+> Kerala, Gujarat and Punjab and Haryana - and reading a State's rule against the model
+> it came from shows what that State chose to change.
+>
+> The structure holds more than one document and more than one jurisdiction. A High Court
+> that issues its own AI policy, or its own e-filing rules, gets its own group, its own
+> document, and its own records citing into it.
 
-## National
+## National - AI in Courts, 2026
 
 The Supreme Court's draft regulations bind every court in India, and through Chapter VI
 they reach the vendor as well - almost always through the contract rather than directly.
@@ -1374,3 +1390,883 @@ regular cut, leaving the court to add only its recommendations.
 
 **Test.** Ask when this court last shared anything with the Supreme Court AI Committee and
 what it contained; both should come from the record.
+
+## National - Model Rules for e-Filing
+
+The e-Committee's model e-filing rules are the source three instruments already in this
+corpus adapted. Punjab and Haryana adopted them almost word for word as Volume V,
+Chapter 1, Part J of the Rules and Orders; Gujarat adopted them as the 2024 SOP for its
+district judiciary, keeping even the model's grammatical slips; Kerala rewrote them into
+seventeen rules in 2021 and, in doing so, quietly dropped some of what the model asked
+for. Reading a State's rule against the model is how you see that choice. The obligations
+below are the model's own, so they bind a court only where its High Court has notified
+rules on this model - but a system built for a s.138 filing has to satisfy whichever
+version of them the State enacted, and they are nearly always this text.
+
+**Document.** model-rules-efiling-2020
+
+### A registration decision by the next working day
+
+An application to register as an e-filing user, whether from an advocate or a litigant in
+person, must be decided and a login ID allotted on the next working day if the application
+is complete in all respects.
+
+**Binds.** court
+
+**Citation.** rule_4_3 · rule_4_1
+
+**Timing.** Next working day after a complete application.
+
+**Compliant when.** Every registration application carries the date it was received and
+the date it was decided, and a complete application is not sitting undecided beyond the
+next working day.
+
+**Artifact.** workflow-step
+
+**Build.** A registration queue that records receipt and decision separately, with
+completeness as an explicit check against the documents rule 4.1 lists - the Bar Council
+certificate or card for an advocate, a government identity document for a litigant in
+person - so "complete in all respects" is a state the system can hold rather than a
+judgement in someone's head.
+
+**Automate.** Timestamp receipt on submission, compute the next working day from the
+Court's own calendar rather than from a fixed weekday rule, and age the queue against it so
+an overdue application is visible before it is late rather than after.
+
+**Test.** Submit a complete registration on a Friday before a gazetted holiday and confirm
+the due date is the following working day; submit one missing the identity document and
+confirm it is held as incomplete rather than counted against the deadline.
+
+**Note.** The model gives no deadline for an incomplete application and no duty to tell the
+applicant what is missing - only rule 18.3's objection route, which is written for filings
+and not for registrations. A litigant in person whose identity document is rejected has no
+stated path back.
+
+### The filing number is notified as soon as the filing is accepted
+
+Once an e-filing is accepted, the filing or registration number must be notified to the
+advocate or the litigant in person.
+
+**Binds.** court
+
+**Citation.** rule_8_3
+
+**Timing.** On acceptance. No interval is stated.
+
+**Compliant when.** Every accepted filing has an outbound notification on record carrying
+the number, addressed to the filer.
+
+**Artifact.** output-document
+
+**Build.** An acknowledgement generated by acceptance itself and not by a clerk, carrying
+the filing number, the date and time the filing was received under rule 14.1, and the case
+it attached to.
+
+**Automate.** Emit it on the acceptance transition, over the channels rule 18.3 already
+names for objections, and keep the sent copy on the case record so the litigant and the
+registry are looking at the same document.
+
+**Test.** Accept a filing and confirm the acknowledgement reaches the filer with the number
+and the rule 14.1 timestamp; confirm no accepted filing exists without one.
+
+**Note.** The rule says "notified" without naming a channel, where rule 18.3 names
+email, SMS and web hosting for objections. Reading the two together is the sensible course;
+the model does not join them.
+
+### A hash value for every audio or video file filed
+
+Where an e-filing includes audio or video files, the Administrator must generate a hash
+value.
+
+**Binds.** court
+
+**Citation.** rule_8_4 · rule_2_2
+
+**Timing.** Per filing that carries an audio or video file.
+
+**Compliant when.** Every audio or video file on the record has a hash value stored against
+it, generated when the file was filed, and the value can be recomputed from the stored file.
+
+**Artifact.** schema-field
+
+**Build.** A hash on the file record rather than in a separate register: the algorithm, the
+value and the time it was computed, written when the upload completes.
+
+**Automate.** Compute it in the ingest path, not on request, so there is no window in which
+an audio file sits on the record unhashed; re-verify on every retrieval and flag a mismatch
+to the Administrator rather than to the reader.
+
+**Test.** File an audio exhibit and confirm a hash is stored; alter the stored file and
+confirm the next retrieval reports a mismatch rather than serving it silently.
+
+**Note.** The model names the Administrator - the Registrar (IT) or an officer appointed by
+the Chief Justice under rule 2.2 - as the person who generates the hash, which is a human
+duty written for a machine step. It fixes no algorithm, so two courts can both comply and
+produce values neither can check against the other.
+
+### The Registry's e-mail addresses are published on the Court website
+
+Electronic service is made from designated e-mail IDs of Registry officials, and those IDs
+must be published on the Court website so a recipient can verify the source of what they
+were sent.
+
+**Binds.** court
+
+**Citation.** rule_13
+
+**Timing.** Standing. No review cadence is stated.
+
+**Compliant when.** A published list of Registry sending addresses exists on the Court
+website, it is current, and every electronic service went out from an address on it.
+
+**Artifact.** access-control
+
+**Build.** One list of designated sending addresses, held as data rather than as a page
+someone edits, with the website reading from it and the mail path restricted to it.
+
+**Automate.** Refuse to send service mail from an address not on the list, and regenerate
+the published page from the same list, so the page cannot fall behind what the system
+actually sends from.
+
+**Test.** Try to serve from an unlisted address and confirm it is refused; compare the
+published page against the sending list and confirm they cannot differ.
+
+**Note.** This is the model's only answer to phishing, and it is a weak one: publishing the
+addresses helps a recipient who checks, and nothing stops a forged sender. Rule 19's
+"General Caution" concedes as much - email is not a secure medium - without providing an
+alternative.
+
+### The filing timestamp is the record limitation runs from
+
+The date of e-filing is the date the Action is electronically received in the Registry
+within the prescribed time on a working day, computed in Indian Standard Time; a filing
+after the cut-off hour, or on a holiday or a day the court is closed, is treated as filed
+on the next working day; and limitation runs from that date exactly as it does for a
+physical filing.
+
+**Binds.** court
+
+**Citation.** rule_14_1 · rule_14_2 · rule_14_4
+
+**Timing.** Per filing, at the moment of receipt.
+
+**Compliant when.** Every filing carries a received-at timestamp in IST and a computed
+filing date, the two are stored separately, and the filing date follows the cut-off and
+court-calendar rules without anyone applying them by hand.
+
+**Artifact.** schema-field
+
+**Build.** Two fields, not one: the instant of receipt, and the filing date the rules
+derive from it. A s.138 complaint filed at the edge of the month's limitation under
+section 142(1)(b) of the Negotiable Instruments Act turns on exactly this derivation, so it
+has to be reproducible and visible to the party, not buried in a log.
+
+**Automate.** Stamp receipt server-side in IST, never from the client clock; derive the
+filing date from the court's own working calendar; and show the party both values on the
+acknowledgement so a disagreement surfaces at filing rather than at the limitation hearing.
+
+**Test.** File at one minute past the cut-off hour and confirm the filing date rolls to the
+next working day while the receipt instant stays; file on a gazetted holiday and confirm
+the same; change the client clock and confirm nothing moves.
+
+**Note.** The model leaves the cut-off hour blank - it prints "after xxxxxx hours" in rule
+14.2 - so the hour is a State's choice and a system must hold it as configuration rather
+than as a constant. Rule 14.2 also fixes 1600 hours for Designated Counters while leaving
+the on-line hour open, which is the one number in the rule that is not a blank.
+
+### The portal runs around the clock, and its failure excuses nothing
+
+The on-line e-filing facility must be available during all twenty four hours of each day,
+subject to breakdown, server downtime, system maintenance or such other exigencies; where
+it is not, the party must be able to fall back to a Designated Counter or to physical
+filing, and no exemption from limitation is permitted on the ground that the facility
+failed.
+
+**Binds.** both
+
+**Citation.** rule_14_3 · rule_3_3
+
+**Timing.** Continuous.
+
+**Compliant when.** Availability is measured rather than asserted, every outage is on
+record with its start and end, and a Designated Counter route is open and staffed on court
+working days.
+
+**Artifact.** workflow-step
+
+**Build.** An availability record the court owns rather than the vendor reports:
+uptime measured from outside the system, each outage with its window and cause, and the
+counter hours published alongside so the fallback is a fact and not a promise.
+
+**Automate.** Monitor from outside the data centre, open an outage record automatically,
+and put the current state and the counter hours on the filing screen itself, so a party who
+cannot file at 2 a.m. knows within one screen whether the fault is theirs.
+
+**Test.** Take the portal down and confirm an outage record opens without anyone writing
+it, and that the filing screen tells a party where else to go.
+
+**Note.** This is the harshest rule in the document and the one a vendor contract has to
+carry. Limitation is not relieved for a portal failure, so an outage on the last day of the
+month under section 142(1)(b) of the Negotiable Instruments Act falls entirely on the
+complainant. The model asks for twenty-four hour availability and sets no target, no
+measurement and no consequence, which leaves the whole risk with the litigant.
+
+### Storage on an exclusive server, encrypted, restricted and mirrored
+
+E-filings must be stored on an exclusive server under the control and directions of the
+Court; each filing separately labelled and encrypted for identification and retrieval; the
+security of the filings ensured and access to them restricted; and for continuity of
+operations in a disaster, natural calamity or breakdown, a mirror image maintained at
+different geographical locations.
+
+**Binds.** both
+
+**Citation.** rule_17 · rule_11
+
+**Timing.** Standing. No audit cadence is stated.
+
+**Compliant when.** The filing store is the Court's own and identified as such, each
+filing is encrypted at rest under its own label, access is granted by role rather than by
+account, and a geographically separate copy exists and has been restored from at least
+once.
+
+**Artifact.** access-control
+
+**Build.** Per-filing encryption with the labels the rule asks for, an access model that
+starts closed and opens to the parties and authorised officers under rule 11, and a
+recovery site in a different seismic and power region rather than a second rack.
+
+**Automate.** Replicate continuously, prove the copy by restoring from it on a schedule and
+recording the result, and log every access to a filing against the person and the reason,
+so "access would be restricted" is something a court can show rather than assert.
+
+**Test.** Ask which server the filings are on and who can read one; take the primary site
+away and file and retrieve from the mirror; confirm the restore test has a dated result and
+not a plan.
+
+**Note.** This is the clearest place to see what a State changed. Punjab and Haryana and
+Gujarat both took rule 17 over word for word, mirror image and all - Gujarat kept even the
+model's "for facilitate easy identification". Kerala rewrote it as rule 15 of the
+Electronic Filing Rules, 2021 in four numbered sub-rules and replaced the geographically
+separate mirror with "a backup copy of all Actions preserved in the manner as decided by
+the High Court from time to time", which is a weaker duty and a different one: a backup is
+not a continuity site.
+
+### Objections are communicated, and so is their clearance
+
+The Registry must communicate objections on a filed case to the advocate or litigant in
+person by email, SMS or web hosting; and after the objections are cleared, the case is
+processed for listing and the filer is informed, including by email and SMS.
+
+**Binds.** court
+
+**Citation.** rule_18_3 · rule_2_10
+
+**Timing.** Per objection, and again on clearance. No interval is stated for either.
+
+**Compliant when.** Every objection raised on a filing has an outbound communication on
+record naming what is deficient, and every clearance has a second one; neither is
+reconstructed from a scrutiny register afterwards.
+
+**Artifact.** workflow-step
+
+**Build.** Objections as records on the filing rather than as free text in a remark field:
+one row per deficiency, each with the rule it fails and its state, so the communication is
+generated from the objection and cannot say something different from the register.
+
+**Automate.** Send on raising and on clearing, over all three channels the rule names, and
+hold the filing in an objected state that cannot become listed until every objection on it
+is cleared.
+
+**Test.** Raise two objections, clear one, and confirm the case cannot reach the cause list
+and that the filer has received exactly two messages so far.
+
+**Note.** No time limit is stated at either end - neither for raising the objection nor for
+clearing it - which is where filing delay actually accumulates. Rule 2.10 defines
+Objections as deficiencies and errors "pointed out by the Registry", so the definition
+carries the duty and the operative rule carries only the channel.
+
+### A filing that breaks the protocol is rejected
+
+An e-filing that does not follow the protocol mandated by the Rules or by practice
+directions will be rejected.
+
+**Binds.** court
+
+**Citation.** rule_18_1 · rule_8_7 · rule_8_6
+
+**Timing.** Per filing, at scrutiny.
+
+**Compliant when.** Each rejection names the rule it failed, and the checks the rules state
+mechanically - watermarking, encryption, malware, track changes, the disallowed characters
+and the forty-five character limit on a file name - are applied by the system rather than
+by a reader.
+
+**Artifact.** validation-rule
+
+**Build.** The mechanical checks at upload, each returning the rule number it enforces, so
+a filer is told "rule 8.6, the file name contains a colon" and not "invalid file".
+
+**Automate.** Run them before the filing is accepted rather than at scrutiny, since a
+rejection after acceptance costs the filer a day of limitation the portal already stamped
+under rule 14.1.
+
+**Test.** Upload a document with track changes, an encrypted PDF, and a file named with a
+colon, and confirm three distinct messages each citing its own clause.
+
+**Note.** Rejection is the only consequence the model provides, and it is harsher than it
+looks: a rejected filing is not a filing, and rule 14.4 runs limitation from the date
+e-filing "is made as per the procedure prescribed in these Rules". A filer rejected on the
+last day of limitation for a file-name character has lost the case, which is why these
+checks belong at upload.
+
+### The electronic record is open to the parties without charge
+
+Access free of cost must be available to authorised persons to the data e-filed by any
+party to that Action, in addition to and not instead of the procedure for obtaining
+certified copies.
+
+**Binds.** court
+
+**Citation.** rule_11 · rule_16
+
+**Timing.** Standing, for the life of the Action.
+
+**Compliant when.** A party or their advocate can read everything filed in their own case
+without paying and without applying, and the certified-copy route is still there for anyone
+who needs an authenticated copy.
+
+**Artifact.** access-control
+
+**Build.** Case-scoped access driven by the parties on the record, so authorisation follows
+the vakalatnama rather than a separate grant, and the free view is plainly distinguished
+from a certified copy on the screen itself.
+
+**Automate.** Grant and revoke with the appearance record - a counsel who withdraws loses
+access the same day - and log reads so an access that should not have happened can be
+found.
+
+**Test.** As the accused in a s.138 complaint, open the complainant's filed documents
+without paying; as a stranger, confirm the same URL refuses.
+
+**Note.** The rule does not say who an "authorised person" is, and the phrase "as is
+presently being provided in pending Actions" refers a reader to a practice rather than to a
+rule. Rule 16 lets advocates and parties print their own hard copies, which is the only
+other place the model says what a party may do with the record.
+
+## National - Model Rules for Video Conferencing
+
+The e-Committee's model video conferencing rules are the source two instruments already in
+this corpus adapted. Punjab and Haryana adopted them chapter for chapter as Volume V,
+Chapter 1, Part H of the Rules and Orders, the text unchanged. Gujarat rebuilt them for the
+district judiciary in 2025 as the Electronic Communication and Audio-Video Electronic Means
+Rules, keeping the model's spine - coordinators, preparatory arrangements, examination of
+persons, seamless conferencing, costs, the Lok Adalat provision - and adding rules the
+model has no equivalent of, for remand, plea bargaining and the record of proceedings, which
+is what the BNSS made necessary. A s.138 case reaches these rules at exactly two points:
+the complainant's evidence on affidavit is often taken with the deponent on a link, and the
+accused's appearance and section 313 examination can be. Both are moments the record has to
+be able to prove afterwards.
+
+**Document.** model-rules-vc-2020
+
+### A named Coordinator for every point the hearing runs from
+
+There must be a Coordinator at the Court Point and at the Remote Point from which a
+Required Person is examined or heard; in the district judiciary the Coordinators are
+persons nominated by the High Court or the District Judge; and for each kind of Remote
+Point the rules name who that Coordinator is, from an Indian consular official overseas to
+a jail superintendent to a person the Court appoints for any other location.
+
+**Binds.** court
+
+**Citation.** rule_5_1 · rule_5_2 · rule_5_3 · rule_5_4
+
+**Timing.** Per proceeding conducted by video conferencing; nominations standing.
+
+**Compliant when.** Every video conferencing proceeding names its Court Point Coordinator
+and, where a witness or an accused is examined, its Remote Point Coordinator, and each name
+traces to a nomination the High Court or the District Judge actually made.
+
+**Artifact.** schema-field
+
+**Build.** A standing roster of nominated coordinators by location and kind of Remote
+Point, with the proceeding pointing at entries in it rather than carrying typed names, so
+the ten cases rule 5.3 sets out become ten selectable kinds and not a rule someone has to
+remember.
+
+**Automate.** Pick the default coordinator from the Remote Point's kind, require an
+explicit appointment order where rule 5.3.10 applies, and carry the nomination date on the
+roster so a lapsed nomination is visible before the hearing rather than during it.
+
+**Test.** Schedule an examination from a jail and confirm the superintendent is the
+proposed coordinator without anyone typing it; schedule from an advocate's office and
+confirm the system asks for the Court's appointment under rule 5.3.10.
+
+**Note.** Rule 5.1's second sentence undercuts its first - a Coordinator is required at
+both points, and then "may be required at the Remote Point only when a witness or a person
+accused of an offence is to be examined". Rule 10.1 resolves it for argument, saying no
+coordinator is needed where an advocate is only addressing the Court. Treat the roster
+requirement as attaching to examinations.
+
+### Identity is proved before a person is examined, and the proof is shared
+
+A person to be examined must produce and file proof of identity - a government identity
+document, or failing that an affidavit attested under section 139 CPC or section 297 CrPC
+stating that the deponent is the same person - a copy must be made available to the
+opposite party, and the identity proof of any Required Person must reach the Court Point
+Coordinator by personal email in advance.
+
+**Binds.** court
+
+**Citation.** rule_8_1 · rule_3_vii
+
+**Timing.** Before examination; the advance proof before the proceeding.
+
+**Compliant when.** No examination is recorded without an identity document or the
+substitute affidavit on the file, and the opposite party has been served with a copy before
+the examination begins.
+
+**Artifact.** validation-rule
+
+**Build.** An identity attachment on the video conferencing listing that must be present
+before the hearing can be marked ready, with service on the opposite party as a recorded
+step rather than an assumption.
+
+**Automate.** Collect it at the request stage from Schedule II rather than on the morning
+of the hearing, serve the copy on the other side automatically when it is filed, and block
+the ready state until both have happened.
+
+**Test.** Try to open an examination with no identity document and confirm it cannot be
+marked ready; file one and confirm the opposite party's copy is on the record with a date.
+
+**Note.** Rule 3(vii) routes identity proof to the coordinator by "personal email", which
+is the one place the model asks for identity documents to travel over a channel it
+elsewhere calls insecure. Where the person has no document, the fallback is an attested
+affidavit, which takes days - a real obstacle for a witness at short notice.
+
+### Everyone is ready half an hour early, and the link is tested first
+
+The Coordinator at the Remote Point must ensure that everyone scheduled to appear is ready
+at least thirty minutes before the scheduled time, and the Coordinator at the Court Point
+must conduct a trial video conference, preferably thirty minutes before, to confirm that
+the technical systems work at both points.
+
+**Binds.** court
+
+**Citation.** rule_5_6_1 · rule_10_5 · rule_5_5
+
+**Timing.** Thirty minutes before each scheduled video conferencing proceeding.
+
+**Compliant when.** Each proceeding has a recorded trial connection and a recorded
+readiness confirmation, both before the scheduled hour, and a failed trial is visible to
+the Court before the hearing is called.
+
+**Artifact.** workflow-step
+
+**Build.** A pre-hearing check on the listing itself - trial connection, both coordinators
+present, the rule 4 equipment confirmed - each with a time, so the half hour is a state and
+not a habit.
+
+**Automate.** Open the check thirty minutes out, notify both coordinators, and surface an
+unfinished check on the Court's board alongside the case, so the Court learns of a broken
+link before it calls the matter rather than after.
+
+**Test.** Let the trial connection fail and confirm the case shows as not ready on the
+board; complete it and confirm the time it completed is on the record.
+
+### No unauthorised recording, and no unauthorised presence
+
+There must be no unauthorised recording of a proceeding by any person or entity; the
+Coordinator at the Remote Point must ensure that no unauthorised recording device is used
+and that no unauthorised person enters the room while the conference is in progress; and
+apart from the person being examined only those whose presence is administratively
+necessary may be at the Remote Point.
+
+**Binds.** court
+
+**Citation.** rule_3_vi · rule_5_6_2 · rule_5_6_3 · rule_8_11
+
+**Timing.** For the duration of each proceeding.
+
+**Compliant when.** The client software does not offer recording to a participant, the
+Court's own recording is the only one, and each proceeding carries the coordinator's
+confirmation of who was in the room.
+
+**Artifact.** access-control
+
+**Build.** Recording disabled for every role but the Court, participants admitted by the
+coordinator rather than by link, and a recorded roll of who was present at the Remote Point
+attached to the proceeding.
+
+**Automate.** Enforce it in the platform rather than by instruction: no participant
+recording permission, a lobby the coordinator admits from under rule 14.4, and a prompt at
+the close for the coordinator to confirm the room, so the confirmation is made while it is
+still true.
+
+**Test.** Join as a party and confirm no recording control is offered; join a second device
+on the same credentials and confirm the coordinator has to admit it.
+
+**Note.** Rule 3(vi) is a prohibition with no sanction attached in these Rules, and a
+platform that leaves the record button enabled makes it unenforceable whatever the rule
+says. This is the clearest example in the document of an obligation that only a build can
+actually discharge.
+
+### A translator, signer or special educator when the person examined needs one
+
+Whenever required, the Court must order the Coordinator at the Remote Point or the Court
+Point to provide a translator where the person is not conversant with the official language
+of the Court, an expert in sign language where the person is impaired in speech or hearing,
+and an interpreter or special educator where the person is differently abled, temporarily or
+permanently.
+
+**Binds.** court
+
+**Citation.** rule_5_9 · rule_5_9_1 · rule_5_9_2 · rule_5_9_3
+
+**Timing.** Whenever required, before the examination.
+
+**Compliant when.** The need is asked about before the hearing is fixed rather than
+discovered at it, and where one exists there is an order and a named person against the
+proceeding.
+
+**Artifact.** schema-field
+
+**Build.** Language and access needs as fields on the video conferencing request in
+Schedule II, not as a remark, with the resulting order and the named provider attached to
+the proceeding.
+
+**Automate.** Ask at request time, carry the answer to the listing, and hold the proceeding
+out of the ready state where a stated need has no provider against it.
+
+**Test.** Request a hearing for a witness who signs and confirm the case cannot be marked
+ready without a sign language expert named; confirm the order is on the record and not only
+in the diary.
+
+**Note.** Rule 13.1 makes the fee for a translator, interpreter or special educator payable
+by such party as the Court directs, so an accessibility need can become a cost order.
+Nothing in the model says it may not fall on the person who needs it.
+
+### The signed transcript reaches the record, and the hard copy within three days
+
+The Court must obtain the signature of the person examined on the transcript once the
+examination concludes; the signed transcript forms part of the record of the judicial
+proceedings; and by whichever of the two routes the rules provide - digital signatures at
+both points, or a printed and countersigned copy where they are not available - the hard
+copy is dispatched by the Remote Point Coordinator to the Court Point, preferably within
+three days, by recognised courier or registered speed post.
+
+**Binds.** court
+
+**Citation.** rule_8_8 · rule_8_8_1 · rule_8_8_2
+
+**Timing.** Signature at the close of the examination; hard copy preferably within three
+days.
+
+**Compliant when.** Every examination conducted by video conferencing has a signed
+transcript on the record, and the physical copy is either received or visibly outstanding
+against the three-day expectation.
+
+**Artifact.** output-document
+
+**Build.** The transcript as a record object with the signature route recorded on it -
+digital at both ends, or printed and countersigned - and a despatch and receipt pair for the
+hard copy, so the gap between the electronic and the physical record is measurable.
+
+**Automate.** Generate the transcript from the proceeding, route it for signature by the
+available means rather than asking a coordinator to choose, and age the awaited hard copy
+against three days from the close of the testimony.
+
+**Test.** Complete an examination and confirm the transcript cannot be marked part of the
+record unsigned; confirm a hard copy outstanding on day four appears on someone's list.
+
+**Note.** "Preferably within three days" is the only interval in the whole document, and
+"preferably" makes it advice rather than a limit. The rule also leaves the record in two
+states at once for those days - electronically complete, physically incomplete - and says
+nothing about which prevails if they differ.
+
+### The recording is preserved, and the master copy is encrypted and hashed
+
+An audio-visual recording of the examination of a person examined must be preserved, and an
+encrypted master copy with a hash value must be retained as part of the record.
+
+**Binds.** both
+
+**Citation.** rule_8_9
+
+**Timing.** Per examination. No retention period is stated.
+
+**Compliant when.** Every examination conducted by video conferencing has a recording, the
+master copy is encrypted, its hash is stored, and the hash still verifies.
+
+**Artifact.** schema-field
+
+**Build.** The recording as an exhibit on the case rather than a file on a server, carrying
+its encryption state, its hash and the algorithm that produced it, and linked to the
+proceeding it came from.
+
+**Automate.** Encrypt and hash at the end of the proceeding, in the same step that closes
+it, and re-verify on a schedule so a silently corrupted master is found before someone needs
+it in evidence.
+
+**Test.** Conduct a recorded examination and confirm the master is encrypted and hashed
+without anyone doing it; alter the stored file and confirm the scheduled verification
+reports it.
+
+**Note.** No retention period is stated anywhere in the document, which for a recording of
+sworn testimony is a serious gap: the model rules for e-filing at least fix two years past
+final disposal for documents whose authenticity may be questioned. The vendor half of this
+is unavoidable - the encryption, the hashing and the storage are the platform's - so it has
+to be in the contract.
+
+### The order sheet records that the hearing was held on a link, and how it went
+
+On completion of a video conferencing proceeding the Court must mention in the order sheet
+the time and duration of the proceeding, the software used where it was not the Designated
+Video Conferencing Software, the issues on which it was addressed and the documents
+produced and transmitted online, with the duration of any digital recording tendered; and
+wherever any proceeding is carried out by recourse to video conferencing that must
+specifically be mentioned in the order sheet.
+
+**Binds.** court
+
+**Citation.** rule_10_7 · rule_14_9
+
+**Timing.** On completion of each video conferencing proceeding.
+
+**Compliant when.** No video conferencing proceeding closes without those particulars in
+the order sheet, and the fact of video conferencing appears in the order sheet of every
+hearing held on a link.
+
+**Artifact.** output-document
+
+**Build.** The order sheet drawing these particulars from the proceeding itself - start,
+end, platform, participants, documents transmitted - so the Court writes the issues and the
+system supplies the rest.
+
+**Automate.** Prefill from the conference record on close and require the Court only to
+confirm, since a duration typed from memory is the field most likely to be wrong and the one
+an appellate court is most likely to test.
+
+**Test.** Hold a hearing on a link and confirm the draft order sheet already carries the
+time, the duration and the documents; try to close it without the video conferencing
+mention and confirm it cannot be closed.
+
+**Note.** Gujarat's 2025 rules keep this as rule 18 but reduce it to the bare fact - the
+Court "shall mention in the order sheet, that the hearing is conducted through video
+conferencing" - dropping the time, duration, software, issues and documents the model asks
+for. Punjab and Haryana kept the model's full list. The same hearing therefore produces a
+materially different record in the two States.
+
+### The Court records that it could see and hear
+
+The Court must record its satisfaction as to clarity, sound and connectivity for both Court
+Users and Remote Users.
+
+**Binds.** court
+
+**Citation.** rule_10_8 · rule_14_7
+
+**Timing.** Per proceeding.
+
+**Compliant when.** Each video conferencing proceeding carries the Court's recorded
+satisfaction, made at the proceeding and not added afterwards.
+
+**Artifact.** schema-field
+
+**Build.** A required field on the close of the proceeding, kept separate from the
+narrative order so it can be found across cases and not only read case by case.
+
+**Automate.** Ask at close, before the order sheet can be signed, and record the time the
+answer was given, so satisfaction expressed on the day is distinguishable from satisfaction
+recorded later.
+
+**Test.** Close a video conferencing hearing and confirm the satisfaction entry is required;
+confirm the entry carries its own timestamp.
+
+**Note.** This is the finding a conviction may later turn on, since a witness examined over
+a poor link is the ground an appeal takes. The model asks the Court to satisfy itself under
+rule 14.7 and to record the satisfaction under rule 10.8, but provides no scale and no
+consequence for dissatisfaction short of rule 10.9's incomplete hearing.
+
+### Only the Designated Software, and any departure is recorded
+
+The Coordinator at the Court Point must ensure that video conferencing is conducted only
+through the Designated Video Conferencing Software, which is the software the High Court
+provides from time to time; a different software may be used in a particular proceeding only
+where there is a technical glitch and only for reasons recorded.
+
+**Binds.** both
+
+**Citation.** rule_12_2 · rule_2_vii · rule_10_7
+
+**Timing.** Per proceeding.
+
+**Compliant when.** The designated software is what a hearing opens in by default, every
+use of anything else has recorded reasons, and the software actually used appears in the
+order sheet under rule 10.7.
+
+**Artifact.** validation-rule
+
+**Build.** The designated platform as configuration held by the court, with a departure
+being an explicit act that demands a reason rather than a coordinator quietly sending a
+different link.
+
+**Automate.** Generate the link from the designated platform, and where a departure is
+recorded carry the software name straight into the order sheet field rule 10.7 asks for, so
+the two cannot disagree.
+
+**Test.** Start a hearing and confirm the link is the designated platform; record a
+departure and confirm the order sheet names the software without anyone typing it.
+
+**Note.** "Designated Video Conferencing Software" is defined in rule 2(vii) as whatever
+the High Court provides from time to time, which makes this obligation only as strong as
+the designation. Nothing in the model requires the designation to be published, so a
+participant cannot check what the designated software is.
+
+### Identity confirmation appears in the order sheet
+
+The identity of the person to be examined must be confirmed by the Court with the
+assistance of the Coordinator at the Remote Point in accordance with rule 8.1, at the time
+of recording the evidence, and the confirmation must be reflected in the order sheet.
+
+**Binds.** court
+
+**Citation.** rule_12_3 · rule_12_4 · rule_12_5 · rule_12_6
+
+**Timing.** At the time of recording the evidence.
+
+**Compliant when.** Every examination has a confirmation entry in the order sheet, made at
+the time the evidence was recorded, distinct from the identity document filed beforehand
+under rule 8.1.
+
+**Artifact.** workflow-step
+
+**Build.** Confirmation as a step in the hearing, prompting the Court with the identity
+document already filed so the confirmation is made against something rather than in the
+abstract, and writing the result into the order sheet.
+
+**Automate.** Show the filed identity proof at the moment the examination opens, and carry
+the confirmation into the order sheet draft, so the Court confirms once rather than
+recording twice.
+
+**Test.** Record evidence over a link and confirm the order sheet carries the identity
+confirmation without a separate dictation; confirm the confirmation cites the document on
+the file.
+
+**Note.** Rules 12.4 to 12.6 put the confirmation of location, willingness and facilities on
+counsel - the parties in a civil case, the prosecution or the defence in a criminal one, and
+the prosecution for an accused. In a s.138 complaint, where the complainant is usually a
+private party and there is no public prosecutor, the model does not say who confirms the
+accused's location.
+
+### The public can watch, and a closed hearing needs recorded reasons
+
+To observe the requirement of an open Court, members of the public must be allowed to view
+hearings conducted through video conferencing, and the Court must endeavour to make
+available sufficient links, consistent with available bandwidth, for accessing the
+proceedings; a hearing is closed only where it is ordered in camera for reasons recorded in
+writing.
+
+**Binds.** both
+
+**Citation.** rule_16_1 · rule_16_2
+
+**Timing.** Per hearing.
+
+**Compliant when.** A member of the public can find and join a listed video conferencing
+hearing without applying for permission, and every hearing that is closed carries a written
+in-camera order.
+
+**Artifact.** screen
+
+**Build.** A public view of the day's video conferencing hearings with a join route, and a
+closure flag on the listing that is set only by an in-camera order carrying its reasons.
+
+**Automate.** Derive the public listing from the cause list rather than maintaining a second
+one, and let the in-camera order itself remove the hearing from it, so a closure is always
+traceable to an order.
+
+**Test.** As a member of the public, join a listed hearing without credentials; order one
+in camera and confirm it leaves the public listing and that the order with its reasons is on
+the record.
+
+**Note.** "Consistent with available bandwidth" is the qualification that can swallow the
+rule, and it is the vendor's half of it: how many public viewers a hearing admits is a
+capacity decision made when the platform is procured, not when the case is listed. Rule
+16.2 covers the opposite case, a stranger physically present at the Remote Point, who must
+be identified by the coordinator and may remain only if the Court orders it.
+
+### A complaint about the link is passed on at once and answered
+
+Where on the completion of video conferencing a Remote User considers that they were
+prejudiced by poor video or audio quality, they must immediately inform the Coordinator at
+the Court Point, who must communicate it to the Court without delay; the Court must consider
+the grievance and may declare the hearing incomplete, in which case the parties may be asked
+to re-connect or to appear physically.
+
+**Binds.** court
+
+**Citation.** rule_10_9 · rule_14_8
+
+**Timing.** Immediately on completion; communicated without delay; considered by the Court.
+
+**Compliant when.** A quality grievance can be made and is on record with the time it was
+made, the time it reached the Court, and what the Court decided.
+
+**Artifact.** workflow-step
+
+**Build.** A grievance record against the proceeding rather than an email to a coordinator,
+with the three times on it, and the Court's decision - hearing complete, or incomplete and
+relisted - as its close.
+
+**Automate.** Offer it at the close of the proceeding to every Remote User, since the rule
+requires it immediately and a route that has to be found will not be used in time; escalate
+it to the Court's queue on submission.
+
+**Test.** Raise a quality grievance as a remote party and confirm it reaches the Court's
+list the same day with both times recorded, and that the proceeding cannot be treated as
+complete until the Court has decided it.
+
+**Note.** Rule 14.8 makes this a strict cut-off in the other direction: connectivity
+difficulties must be raised with the Court Point Coordinator at the earliest, and "no
+complaint shall subsequently be entertained". A party whose audio failed and who did not
+say so during the hearing has, on the face of the rule, lost the point.
+
+### Presence is recorded before the hearing starts, and the link goes only to those given it
+
+Before the commencement of video conferencing all participants must have their presence
+recorded, with masking of a face or a name where a participant asks for it beforehand; the
+Court Point Coordinator sends the link, meeting ID or room details to the email address or
+mobile number furnished by the participant; and once proceedings have commenced no other
+person may participate save with the permission of the Court.
+
+**Binds.** court
+
+**Citation.** rule_14_2 · rule_14_3 · rule_14_4
+
+**Timing.** Before commencement, and for the duration.
+
+**Compliant when.** Each proceeding carries an attendance record made before it started,
+masking requests made in advance are honoured, and the link went only to addresses furnished
+by the participants themselves.
+
+**Artifact.** output-document
+
+**Build.** Attendance as a record on the proceeding drawn from who the coordinator admitted,
+a masking flag settable in advance on the participant, and link despatch that reads the
+furnished address rather than one typed on the day.
+
+**Automate.** Build the attendance from the admissions in the virtual lobby, so the record
+is a by-product of the coordinator's own action; refuse to send a link to an address the
+participant did not furnish; and treat a late joiner as requiring the Court's permission
+rather than as an ordinary admission.
+
+**Test.** Admit three participants and confirm the attendance record matches without anyone
+writing it; ask for masking in advance and confirm the name does not appear; try to send the
+link to an address not on the file and confirm it is refused.
+
+**Note.** Rule 14.5 makes participation itself consent to the proceedings being recorded,
+which means the attendance record and the recording arrive together and a participant who
+does not want to be recorded cannot take part. The masking in rule 14.2 is the only
+mitigation the model offers, and it has to be asked for before the hearing.
