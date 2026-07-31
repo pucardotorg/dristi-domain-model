@@ -261,7 +261,11 @@ const POLICY_FILE="policy/policy.json";
 const policyDoc = id => (POLICY.documents||[]).find(d=>d.id===id) || null;
 async function loadPolicy(){
   try{ POLICY=JSON.parse(await fetchText((DATA_BASE||"")+POLICY_FILE)); }
-  catch(e){ POLICY={documents:[]}; }
+  catch(e){ POLICY={documents:[]}; return; }
+  // and every document's Akoma Ntoso, in parallel, the same way the state layers and
+  // the requirement files are loaded. The page lists all of them at once, so fetching
+  // one at a time on open would make the list a switch again.
+  await Promise.all((POLICY.documents||[]).map(d=>getPolicyAkn(d).catch(()=>null)));
 }
 /* The transcription in policy/md/ is the checked text and the converter's input, not
    something the app reads: scripts/convert_policy_akn.py turns it into the Akoma Ntoso
@@ -1223,40 +1227,61 @@ function policyRegRow(d, r){
   row.querySelector(".prov-head").onclick=()=>row.classList.toggle("open");
   return row;
 }
-function policyDocHTML(d, parsed, host){
-  const meta=[d.issuer, d.made_by && d.made_by!==d.issuer ? d.made_by : "",
-              d.dated ? "dated "+d.dated : ""].filter(Boolean).join(" · ");
-  const head=el("div");
-  head.innerHTML=`<div class="pol-doc-h">
-    <div class="pol-doc-t">${esc(d.title)}</div>
-    ${meta?`<div class="pol-doc-m">${esc(meta)}</div>`:""}
-    ${d.status?`<div class="pol-status"><span class="pol-dot s-${esc(d.status)}"></span>${esc(d.status)}${d.status_note?` <span class="pol-status-n">${esc(d.status_note)}</span>`:""}</div>`:""}
-  </div>
-  ${d.summary?`<p class="pol-sum">${esc(d.summary)}</p>`:""}
-  ${d.why_it_matters?`<p class="pol-why">${esc(d.why_it_matters)}</p>`:""}`;
-  const acts=[];
-  acts.push(`<button class="view-full pol-full" data-doc="${esc(d.id)}">${ic('book-open')}&nbsp; Open the whole document</button>`);
+/* Each document is a top-level accordion, the way each Act is one on the law page.
+   There is one policy today and there will be more - the eCourts model rules, whatever
+   a High Court issues next - and a page that is a single document with a picker on top
+   stops working the moment there are three. So the page is a stack of documents, each
+   collapsible, each holding its own chapters and its rules; a reader scans the stack,
+   opens the one they came for, and never loses the others. The document head carries
+   what an Act's head carries: what it is, who issued it, whether it is in force, and
+   how many numbered units are inside. */
+function policyDocAccordion(d, parsed, openIt){
+  const nunits=(parsed.chapters||[]).reduce((n,c)=>n+c.regs.length,0);
+  const year=(d.dated||"").slice(0,4);
+  const grp=el("div","actgrp pol-doc"+(openIt?" open":"")); grp.id="poldoc-"+d.id;
+  const meta=[d.issuer, d.status||""].filter(Boolean).join(" · ");
+  grp.innerHTML=`
+    <div class="actgrp-head">
+      <span class="ag-chev">${ic('chevron-down')}</span>
+      <span class="dot s-${esc(d.status||"")}"></span>
+      <span class="ag-title">${esc(d.short||d.title)}${year?` <span class="ag-year">${esc(year)}</span>`:""}</span>
+      <span class="ag-status">${esc(meta)}</span>
+      <span class="ag-count">${nunits||"-"}</span>
+    </div>
+    <div class="actgrp-body"></div>`;
+  const body=grp.querySelector(".actgrp-body");
+
+  const head=el("div","pol-doc-h");
+  const line=[d.made_by && d.made_by!==d.issuer ? d.made_by : "", d.dated ? "dated "+d.dated : ""]
+    .filter(Boolean).join(" · ");
+  head.innerHTML=`<div class="pol-doc-t">${esc(d.title)}</div>
+    ${line?`<div class="pol-doc-m">${esc(line)}</div>`:""}
+    ${d.status_note?`<div class="pol-status"><span class="pol-dot s-${esc(d.status||"")}"></span>${esc(d.status)} <span class="pol-status-n">${esc(d.status_note)}</span></div>`:""}`;
+  const acts=[`<button class="view-full pol-full" data-doc="${esc(d.id)}">${ic('book-open')}&nbsp; Open the whole document</button>`];
   if(d.source_pdf) acts.push(`<button class="pdf-orig" data-pdf="${esc(DATA_BASE+d.source_pdf)}" data-pdftitle="${esc(d.title)}">${ic('file')}&nbsp; Read the original PDF</button>`);
   head.innerHTML+=`<div class="pol-acts">${acts.join("")}</div>`;
+  body.appendChild(head);
+
   /* The covering notice - "Sub.: Seeking views/suggestions…", the email address, the
      Sd/- - is the letter the draft was circulated under, not the regulations. It stays
      in the Akoma Ntoso as <preface> and it is there in the whole-document view, where
      "whole" is the promise. It is not on the reading surface. */
-  host.appendChild(head);
   (parsed.chapters||[]).forEach((c,i)=>{
-    const grp=el("div","actgrp pol-chp"+(i===0?" open":"")); grp.id=c.id;
-    grp.innerHTML=`
+    const chp=el("div","actgrp pol-chp"+(i===0?" open":"")); chp.id=c.id;
+    chp.innerHTML=`
       <div class="actgrp-head">
         <span class="ag-chev">${ic('chevron-down')}</span>
-        <span class="ag-title">${esc(c.label||"Regulations")}</span>
+        <span class="ag-title">${esc(c.label||((d.unit&&d.unit.label)||"Rules"))}</span>
         <span class="ag-count">${c.regs.length}</span>
       </div>
       <div class="actgrp-body"></div>`;
-    const body=grp.querySelector(".actgrp-body");
-    c.regs.forEach(r=>body.appendChild(policyRegRow(d,r)));
-    grp.querySelector(".actgrp-head").onclick=()=>grp.classList.toggle("open");
-    host.appendChild(grp);
+    const cbody=chp.querySelector(".actgrp-body");
+    c.regs.forEach(r=>cbody.appendChild(policyRegRow(d,r)));
+    chp.querySelector(".actgrp-head").onclick=e=>{ e.stopPropagation(); chp.classList.toggle("open"); };
+    body.appendChild(chp);
   });
+  grp.querySelector(".actgrp-head").onclick=()=>grp.classList.toggle("open");
+  return grp;
 }
 /* the whole document in the modal every other instrument uses. renderFullAct is not
    reused because it reads SOURCES, which a policy is deliberately not in. */
@@ -1295,33 +1320,26 @@ V.policy=()=>{
   const m=el("div","view-pol");
   const docs=POLICY.documents||[];
   const head=el("div");
-  // no lede in the manifest means no lede on the page. The standing copy that used to
-  // sit here said a policy is not kept as Akoma Ntoso, which stopped being true the day
-  // it was converted - a hardcoded fallback is a second source of truth that goes stale
-  // without anyone editing it.
   head.innerHTML=`<h1 class="page-title">${esc(POLICY.title||"Policy")}</h1>`
     +(POLICY.lede||[]).map(t=>`<p class="lede">${esc(t)}</p>`).join("");
   m.appendChild(head);
   if(!docs.length){ m.appendChild(el("div","empty","No policy documents are linked from this corpus.")); return m; }
-  if(!policyDocId || !policyDoc(policyDocId)) policyDocId=docs[0].id;
-  // more than one document: name them all and let the reader pick. With one, the page
-  // is the document and a picker of one is furniture.
-  if(docs.length>1){
-    const pick=el("div","pol-pick");
-    pick.innerHTML=docs.map(d=>`<button class="pol-pick-i${d.id===policyDocId?" on":""}" data-doc="${esc(d.id)}">${esc(d.short||d.title)}</button>`).join("");
-    pick.onclick=e=>{ const b=e.target.closest(".pol-pick-i"); if(!b) return;
-      policyDocId=b.dataset.doc; policyScrollTo=null; _extra={doc:policyDocId}; go("policy", true); };
-    m.appendChild(pick);
-  }
-  const host=el("div","pol-host");
-  host.innerHTML=`<div class="ad-loading"><div class="spinner"></div>Loading the document…</div>`;
-  m.appendChild(host);
-  const d=policyDoc(policyDocId);
-  getPolicyAkn(d).then(parsed=>{
-    if(!parsed){ host.innerHTML=""; host.appendChild(el("div","empty","This document has no Akoma Ntoso file.")); return; }
-    host.innerHTML=""; policyDocHTML(d, parsed, host);
-    if(policyScrollTo){ const want=policyScrollTo; policyScrollTo=null; policyLandOn(host, parsed, want); }
-  }).catch(()=>{ host.innerHTML=`<div class="empty">Couldn't load the document. The viewer reads it live, so it must be served over http.</div>`; });
+  const list=el("div","pol-list"); m.appendChild(list);
+  // the document a deep link named opens; otherwise the first, so the page is never a
+  // row of closed doors
+  const want = (policyDocId && policyDoc(policyDocId)) ? policyDocId : docs[0].id;
+  docs.forEach(d=>{
+    const parsed=POLICY_AKN_CACHE[d.id];
+    if(!parsed){
+      const grp=el("div","actgrp pol-doc");
+      grp.innerHTML=`<div class="actgrp-head"><span class="ag-title">${esc(d.short||d.title)}</span>`
+        +`<span class="ag-status">could not be loaded</span></div>`;
+      list.appendChild(grp); return;
+    }
+    list.appendChild(policyDocAccordion(d, parsed, d.id===want));
+  });
+  if(policyScrollTo){ const clause=policyScrollTo; policyScrollTo=null;
+    const d=policyDoc(want); policyLandOn(list, POLICY_AKN_CACHE[want], clause); }
   return m;
 };
 /* Landing a citation: the chapter it is in has to be opened and the regulation
@@ -1332,7 +1350,10 @@ function policyLandOn(host, parsed, clause){
   const reg=String(clause).split("_").slice(0,2).join("_");
   const row=host.querySelector("#polreg-"+CSS.escape(reg));
   if(row){
-    const grp=row.closest(".actgrp"); if(grp) grp.classList.add("open");
+    // three things are shut between the page and the clause now: the document, the
+    // chapter, and the row. Every ancestor accordion opens, not just the nearest.
+    let g=row.closest(".actgrp");
+    while(g){ g.classList.add("open"); g=g.parentElement && g.parentElement.closest(".actgrp"); }
     row.classList.add("open");
   }
   setTimeout(()=>scrollToId(anchor, 80, true), 40);
