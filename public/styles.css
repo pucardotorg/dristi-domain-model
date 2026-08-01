@@ -14,6 +14,7 @@
     --pad-card:16px 18px; /* a card's own padding */
     --pad-tight:13px 15px;/* a dense row inside a group */
     --gap-card:10px;      /* between cards in a list */
+    --measure-prose:820px;/* a line of prose, as against the width of its container */
     --font-sans:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
     --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
     /* ---------- LIGHT (Radix scales, PUCAR mapping) ---------- */
@@ -812,20 +813,28 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
      padding, and the scope bar, the lede, the search, the facets and the group heads
      are capped at the same number. One column, one right edge, at every width - and
      nothing to re-open the hole when a disclosure grows the card downwards. */
-  .view-req{--rq-measure:620px; --rq-pad:18px;
+  /* ---- one page, one column ----
+     A view is a column of the same width whatever is in it. Requirements used to cap
+     itself at a 620px measure while Standards, the tab directly under it in the same
+     section, ran to the full column - a 246px difference between two pages a reader
+     moves between, which read as two different applications rather than two tabs.
+     The cards take the column; prose inside them keeps a reading measure of its own. */
+  .view{max-width:none}
+  .view .lede{max-width:820px}
+  .view-req{--rq-measure:1180px; --rq-pad:18px;
     max-width:calc(var(--rq-measure) + var(--rq-pad)*2 + 2px)}
-  .view-req .lede{max-width:none}
+  .view-req .lede{max-width:var(--measure-prose)}
   .req{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); padding:14px var(--rq-pad) 13px; margin-bottom:var(--gap-card)}
   .req .rq-h{cursor:pointer}
   .rq-eyebrow{display:flex; align-items:center; gap:13px; margin-bottom:6px}
   .rq-id{font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--ink-2); letter-spacing:.01em}
   .rq-lvl{flex:none; font-size:10px; letter-spacing:.09em; text-transform:uppercase; font-weight:700; color:var(--ink-3); white-space:nowrap}
-  .rq-stmt{font-size:15.5px; font-weight:650; color:var(--ink); letter-spacing:-.01em; line-height:1.45; max-width:var(--rq-measure)}
+  .rq-stmt{font-size:15.5px; font-weight:650; color:var(--ink); letter-spacing:-.01em; line-height:1.45; max-width:var(--measure-prose)}
   .req .caret{color:var(--ink-3); margin-left:auto; transition:transform .15s; display:inline-flex; flex:none}
   .req .rq-h:hover .caret{color:var(--ink-2)}
   .req.open .caret{transform:rotate(90deg)}
-  .rq-why{color:var(--ink-2); font-size:13.5px; line-height:1.6; margin:8px 0 0; max-width:var(--rq-measure)}
-  .rq-meta{font-size:12px; color:var(--ink-3); margin-top:9px; max-width:var(--rq-measure)}
+  .rq-why{color:var(--ink-2); font-size:13.5px; line-height:1.6; margin:8px 0 0; max-width:var(--measure-prose)}
+  .rq-meta{font-size:12px; color:var(--ink-3); margin-top:9px; max-width:var(--measure-prose)}
 
   /* the layering, in the open: a statement narrowed somewhere, or narrowing something,
      does not mean what it appears to mean read alone, so it says so without being
@@ -839,7 +848,7 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
      grounds. Both stack their label above their value, so nothing indents. */
   .rq-full{display:none; margin-top:14px; padding-top:13px; border-top:1px solid var(--line)}
   .req.open .rq-full{display:block}
-  .rq-block{margin-bottom:12px; max-width:var(--rq-measure)}
+  .rq-block{margin-bottom:12px; max-width:var(--measure-prose)}
   .rq-block:last-child{margin-bottom:0}
   .rq-l{display:block; font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; color:var(--ink-3); margin-bottom:4px}
   .rq-v{font-size:13.5px; line-height:1.6; color:var(--ink-2)}
@@ -872,7 +881,7 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
     text-decoration-color:color-mix(in srgb,var(--brand) 35%,transparent); text-underline-offset:3px}
   .rq-basis .cite:hover{color:var(--brand-hi); text-decoration-color:var(--brand)}
   .rq-basis .cite-plain{color:var(--ink-3); text-decoration:none; cursor:default}
-  .rq-reason{font-size:13.5px; line-height:1.65; color:var(--ink-2); max-width:var(--rq-measure); margin:0 0 13px}
+  .rq-reason{font-size:13.5px; line-height:1.65; color:var(--ink-2); max-width:var(--measure-prose); margin:0 0 13px}
   .rq-reason:last-child{margin-bottom:0}
   .rq-srcs{display:flex; flex-direction:column; gap:6px; align-items:flex-start}
   .rq-src{cursor:pointer; color:var(--ink-2); transition:color .12s}
@@ -908,13 +917,18 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   /* the width is for the cards. The prose above them is still prose, and keeps the
      reading measure the rest of the app gives a lede. */
   .view-std .lede{max-width:770px}
-  .view-std .rq-full{grid-template-columns:1fr 1fr; gap:2px 40px; align-items:start}
-  .view-std .req.std.open .rq-full{display:grid}
+  /* The disclosure splits into two - the method beside the threshold that decides it -
+     on Requirements and on Standards alike. They are the same card in the same column
+     and a reader moves between them, so the rule belongs to both rather than to
+     whichever one happened to be built second. */
+  .view-req .rq-full{grid-template-columns:1fr 1fr; gap:2px 40px; align-items:start}
+  .view-req .req.open .rq-full{display:grid}
+  .view-aip .req.aip.open .rq-full{display:block}   /* its blocks are prose, not a pair */
   /* the sidebar takes ~310px before the column starts, so the split only pays once the
      window is wide enough to leave two columns of about 400px. Below that it stacks. */
-  @media(max-width:1240px){ .view-std .rq-full{grid-template-columns:1fr; gap:0} }
+  @media(max-width:1240px){ .view-req .rq-full{grid-template-columns:1fr; gap:0} }
   .view-std .std-bar{display:flex; align-items:baseline; gap:12px; margin:14px 0 2px;
-    font-size:12px; color:var(--ink-3); max-width:var(--rq-measure)}
+    font-size:12px; color:var(--ink-3); max-width:var(--measure-prose)}
   .view-std .std-toggle{margin-left:auto; cursor:pointer; color:var(--ink-3); white-space:nowrap;
     text-decoration:underline; text-decoration-color:color-mix(in srgb,var(--ink-3) 35%,transparent);
     text-underline-offset:3px; transition:color .12s, text-decoration-color .12s}

@@ -3023,7 +3023,16 @@ function buildNav(){
   const ssel=nav.querySelector(".state-inline");
   if(ssel) ssel.onchange=e=>{ activeState=e.target.value; loadStateData().then(()=>{ buildNav(); go(currentView); }); };
 }
-function setMain(node){const main=$("#main"); main.innerHTML=""; main.appendChild(node); window.scrollTo(0,0);}
+/* Every view's root carries .view, applied here rather than by each of the nineteen
+   builders, so there is one place that means "a page of this app" and one place to
+   style it. Before this, fourteen of the seventeen rendering views returned a bare
+   div with no class at all, so page-level layout could only be written per view -
+   which is why they had drifted apart. */
+function setMain(node){
+  const main=$("#main"); main.innerHTML="";
+  if(node && node.classList) node.classList.add("view");
+  main.appendChild(node); window.scrollTo(0,0);
+}
 function go(view, push){
   if(view==="parts"||view==="provisions") view="law"; // Acts + Provisions merged
   if(!V[view]) view="overview";
