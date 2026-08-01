@@ -470,6 +470,43 @@ async function fillStatute(slot,mini){
 /* ============================================================ VIEWS */
 const V={};
 
+/* ---- the shared page furniture -------------------------------------------
+   Nineteen views, and before this every one assembled its own header, its own
+   search box and its own facet row out of raw template strings, and five carried
+   a byte-for-byte identical `pill` helper as a local const. The markup drifted
+   because nothing held it together: the only shared thing was the stylesheet, so
+   each new view inherited the CSS and reinvented the HTML.
+
+   These are the pieces every view was rebuilding. A view says what it wants said;
+   it does not spell the chrome. A twentieth view writes only what differs. */
+
+/* the title, and however many lede paragraphs the page wants */
+function pageHead(title, lede, extra){
+  const l = Array.isArray(lede) ? lede : (lede ? [lede] : []);
+  const h = el("div","page-head");
+  h.innerHTML = `<h1 class="page-title">${title}</h1>`
+    + l.filter(Boolean).map(t=>`<p class="lede">${t}</p>`).join("")
+    + (extra || "");
+  return h;
+}
+/* the search box. The id stays the caller's - every view wires its own oninput
+   and several are deep-linked to it. */
+const searchBox = (id, placeholder) =>
+  `<div class="search"><span class="mag">${ic('search')}</span>`
+  + `<input id="${esc(id)}" placeholder="${esc(placeholder)}"></div>`;
+
+/* one filter chip. data-fg is the facet group and data-fv the value, which is
+   what every view's click handler already reads. */
+const pill = (fg, fv, label, count, active) =>
+  `<span class="chip ${active?'on':''}" data-fg="${esc(fg)}" data-fv="${esc(fv)}">`
+  + `${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
+
+/* a labelled row of chips */
+const facetRow = (label, chips) =>
+  `<div class="vfacet-row"><span class="vfacet-lbl">${esc(label)}</span>`
+  + `<div class="chips">${chips}</div></div>`;
+
+
 V.cases=()=>{
   const m=el("div");
   m.innerHTML=`
@@ -545,7 +582,7 @@ V.law=()=>{
     <div class="legend"><span><span class="dot" style="background:var(--blue)"></span> in force</span><span><span class="dot" style="background:var(--amber)"></span> 2023 Sanhita (from 2024-07-01)</span><span><span class="dot" style="background:var(--ink-3)"></span> repealed - pre-2024 cases only</span></div>`;
   m.appendChild(head);
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="l-search" placeholder="Search Act, section, role, note - cheque, cognizance, presumption…"></div>`;
+  controls.innerHTML=`${searchBox("l-search","Search Act, section, role, note - cheque, cognizance, presumption…")}`;
   m.appendChild(controls);
   const eraChips=el("div","chips");
   eraChips.innerHTML=`<span class="chip on" data-era="all">All eras</span><span class="chip" data-era="always">Any time</span><span class="chip" data-era="pre">Pre-2024 code</span><span class="chip" data-era="post">2023 Sanhita</span>`;
@@ -660,7 +697,7 @@ V.words=()=>{
     <p class="lede">The words a ${caseById(activeCase).name.toLowerCase()} case is built on - the shared national vocabulary plus the words each state layer adds. It opens on National and ${esc(stName)}; use Show to see All, or any other state.</p>`;
   m.appendChild(head);
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="w-search" placeholder="Search a word - cheque, drawer, summons, Chief Ministerial Officer…"></div>`;
+  controls.innerHTML=`${searchBox("w-search","Search a word - cheque, drawer, summons, Chief Ministerial Officer…")}`;
   m.appendChild(controls);
   const facets=el("div","vfacets"); m.appendChild(facets);
   const list=el("div"); list.id="w-list"; list.style.marginTop="10px"; m.appendChild(list);
@@ -734,14 +771,13 @@ V.words=()=>{
     base.filter(it=> !state.pos || it.pos===state.pos).forEach(it=>{ if(it.role) roleCounts[it.role]=(roleCounts[it.role]||0)+1; });
     const scopeCount={}; scopes.forEach(k=>{ scopeCount[k]=bySearch.filter(i=>i.scope===k).length; });
 
-    let fh=`<div class="vfacet-row"><span class="vfacet-lbl">Show</span><div class="chips">`
-      +pill("scope","all","All",bySearch.length,allScopes())
+    let fh=`${facetRow("Show", pill("scope","all","All",bySearch.length,allScopes())
       +scopes.map(k=>pill("scope",k,scopeName(k),scopeCount[k],state.sel.has(k))).join("")
-      +`</div></div>`;
+      )}`;
     const posVals=POS_ORDER.filter(p=>posCounts[p]);
-    if(posVals.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Type</span><div class="chips">`+posVals.map(p=>pill("pos",p,POS_LABEL[p]||p,posCounts[p],state.pos===p)).join("")+`</div></div>`;
+    if(posVals.length) fh+=`${facetRow("Type", posVals.map(p=>pill("pos",p,POS_LABEL[p]||p,posCounts[p],state.pos===p)).join(""))}`;
     const roleVals=ROLE_ORDER.filter(r=>roleCounts[r]);
-    if(roleVals.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Role</span><div class="chips">`+roleVals.map(r=>pill("role",r,ROLE_LABEL[r]||r,roleCounts[r],state.role===r)).join("")+`</div></div>`;
+    if(roleVals.length) fh+=`${facetRow("Role", roleVals.map(r=>pill("role",r,ROLE_LABEL[r]||r,roleCounts[r],state.role===r)).join(""))}`;
     facets.innerHTML=fh;
 
     const final=base.filter(it=> (!state.pos||it.pos===state.pos) && (!state.role||it.role===state.role));
@@ -829,7 +865,7 @@ V.requirements=()=>{
   m.appendChild(head);
   if(!REQS.length){ m.appendChild(el("div","empty","No requirements dataset is linked from this profile.")); return m; }
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="r-search" placeholder="Search a requirement - receipt, summons, compounding, REQ-LIM-004…"></div>`;
+  controls.innerHTML=`${searchBox("r-search","Search a requirement - receipt, summons, compounding, REQ-LIM-004…")}`;
   m.appendChild(controls);
   const facets=el("div","vfacets"); m.appendChild(facets);
   const list=el("div"); list.id="r-list"; list.style.marginTop="10px"; m.appendChild(list);
@@ -935,7 +971,6 @@ V.requirements=()=>{
       ${hasG?`<div class="rq-basis">${grounds.join("")}</div>`:""}
     </div>`;
   }
-  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
   function redraw(){
     const bySearch=items.filter(it=> !state.q || it.hay.includes(state.q));
     const base=bySearch.filter(it=> state.sel.has(it.scope));
@@ -951,20 +986,19 @@ V.requirements=()=>{
     const tieC=count(base.filter(it=>ok(it,"tie")),"tie");
     const scopeCount={}; scopes.forEach(k=>{ scopeCount[k]=bySearch.filter(i=>i.scope===k).length; });
 
-    let fh=`<div class="vfacet-row"><span class="vfacet-lbl">Show</span><div class="chips">`
-      +pill("scope","all","All",bySearch.length,allScopes())
+    let fh=`${facetRow("Show", pill("scope","all","All",bySearch.length,allScopes())
       +scopes.map(k=>pill("scope",k,reqScopeName(k),scopeCount[k],state.sel.has(k))).join("")
-      +`</div></div>`;
+      )}`;
     /* the one relation in this dataset that crosses the layers, and the one a reader
        cannot get at any other way: the Show chips separate the layers, this joins them. */
     const ties=REQ_TIE_ORDER.filter(t=>tieC[t]);
-    if(ties.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Layering</span><div class="chips">`+ties.map(t=>pill("tie",t,REQ_TIE_LABEL[t],tieC[t],state.tie===t)).join("")+`</div></div>`;
+    if(ties.length) fh+=`${facetRow("Layering", ties.map(t=>pill("tie",t,REQ_TIE_LABEL[t],tieC[t],state.tie===t)).join(""))}`;
     const cats=REQ_CAT_ORDER.filter(c=>catC[c]);
-    if(cats.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Area</span><div class="chips">`+cats.map(c=>pill("cat",c,reqCatLabel(c),catC[c],state.cat===c)).join("")+`</div></div>`;
+    if(cats.length) fh+=`${facetRow("Area", cats.map(c=>pill("cat",c,reqCatLabel(c),catC[c],state.cat===c)).join(""))}`;
     const lvls=REQ_LEVEL_ORDER.filter(l=>lvlC[l]);
-    if(lvls.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Level</span><div class="chips">`+lvls.map(l=>pill("level",l,l,lvlC[l],state.level===l)).join("")+`</div></div>`;
+    if(lvls.length) fh+=`${facetRow("Level", lvls.map(l=>pill("level",l,l,lvlC[l],state.level===l)).join(""))}`;
     const sts=REQ_STATUS_ORDER.filter(s=>stC[s]);
-    if(sts.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Status</span><div class="chips">`+sts.map(s=>pill("status",s,s,stC[s],state.status===s)).join("")+`</div></div>`;
+    if(sts.length) fh+=`${facetRow("Status", sts.map(s=>pill("status",s,s,stC[s],state.status===s)).join(""))}`;
     facets.innerHTML=fh;
 
     const final=base.filter(it=>ok(it,""));
@@ -1081,7 +1115,7 @@ V.standards=()=>{
   if(!all.length){ m.appendChild(el("div","empty","No standards file is linked from this corpus.")); return m; }
 
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="s-search" placeholder="Search a standard - contrast, audit log, timeout, WCAG, DPDP…"></div>`;
+  controls.innerHTML=`${searchBox("s-search","Search a standard - contrast, audit log, timeout, WCAG, DPDP…")}`;
   m.appendChild(controls);
   const facets=el("div","vfacets"); m.appendChild(facets);
   const list=el("div"); list.id="s-list"; list.style.marginTop="10px"; m.appendChild(list);
@@ -1093,7 +1127,6 @@ V.standards=()=>{
     hay:((s.name||"")+" "+(s.gloss||"")+" "+(s.spec||"")+" "+(s.anchor||"")+" "+(s.test||"")
         +" "+(s.pass||"")+" "+(s.check||"")+" "+(s.note||"")).toLowerCase()}));
   const state={q:"", grp:"", has:"", openAll:false};
-  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
 
   const block=(l,v,cls)=>`<div class="rq-block${cls?" "+cls:""}"><span class="rq-l">${l}</span><div class="rq-v">${v}</div></div>`;
   function stdCardHTML(it){
@@ -1120,18 +1153,16 @@ V.standards=()=>{
     const bySearch=items.filter(it=> !state.q || it.hay.includes(state.q));
     const grpC={}; bySearch.forEach(it=>{ if(it.grp) grpC[it.grp]=(grpC[it.grp]||0)+1; });
     const groups=STANDARDS.groups.map(g=>g.name).filter(n=>grpC[n]);
-    let fh=`<div class="vfacet-row"><span class="vfacet-lbl">Area</span><div class="chips">`
-      +pill("grp","","All",bySearch.length,!state.grp)
+    let fh=`${facetRow("Area", pill("grp","","All",bySearch.length,!state.grp)
       +groups.map(n=>pill("grp",n,n,grpC[n],state.grp===n)).join("")
-      +`</div></div>`;
+      )}`;
     /* the two questions a reader actually arrives with: which of these rest on a
        published standard, and which can I check right now against a running site */
     const inGrp=bySearch.filter(it=> !state.grp || it.grp===state.grp);
     const nSpec=inGrp.filter(i=>i.spec).length, nCheck=inGrp.filter(i=>i.check).length;
-    if(nSpec||nCheck) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Has</span><div class="chips">`
-      +(nSpec?pill("has","spec","A published spec",nSpec,state.has==="spec"):"")
+    if(nSpec||nCheck) fh+=`${facetRow("Has", (nSpec?pill("has","spec","A published spec",nSpec,state.has==="spec"):"")
       +(nCheck?pill("has","check","A hosted checker",nCheck,state.has==="check"):"")
-      +`</div></div>`;
+      )}`;
     facets.innerHTML=fh;
 
     const final=bySearch.filter(it=> (!state.grp || it.grp===state.grp)
@@ -1404,7 +1435,7 @@ V.aipolicy=()=>{
   if(!all.length){ m.appendChild(el("div","empty","No AI policy compliance file is linked from this corpus.")); return m; }
 
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="a-search" placeholder="Search a compliance - register, audit, incident, disclosure, vendor…"></div>`;
+  controls.innerHTML=`${searchBox("a-search","Search a compliance - register, audit, incident, disclosure, vendor…")}`;
   m.appendChild(controls);
   const facets=el("div","vfacets"); m.appendChild(facets);
   const list=el("div"); list.id="a-list"; list.style.marginTop="10px"; m.appendChild(list);
@@ -1414,7 +1445,6 @@ V.aipolicy=()=>{
     hay:((s.name||"")+" "+(s.gloss||"")+" "+(s.citation||"")+" "+(s.timing||"")+" "+(s.compliant||"")
         +" "+(s.build||"")+" "+(s.automate||"")+" "+(s.test||"")+" "+(s.note||"")).toLowerCase()}));
   const state={q:"", grp:"", binds:"", art:"", openAll:false};
-  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
   const block=(l,v)=>`<div class="rq-block"><span class="rq-l">${l}</span><div class="rq-v">${v}</div></div>`;
 
   function aipCardHTML(it){
@@ -1452,18 +1482,15 @@ V.aipolicy=()=>{
     let fh="";
     // one jurisdiction is the normal case today, and a facet offering a single choice
     // teaches nothing - it appears when a second jurisdiction does
-    if(groups.length>1) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Jurisdiction</span><div class="chips">`
-      +pill("grp","","All",bySearch.length,!state.grp)
-      +groups.map(n=>pill("grp",n,n,grpC[n],state.grp===n)).join("")+`</div></div>`;
+    if(groups.length>1) fh+=`${facetRow("Jurisdiction", pill("grp","","All",bySearch.length,!state.grp)
+      +groups.map(n=>pill("grp",n,n,grpC[n],state.grp===n)).join(""))}`;
     const inGrp=bySearch.filter(it=> !state.grp || it.grp===state.grp);
     const bC=cnt(inGrp.filter(i=>!state.art||i.art===state.art),"binds");
     const bOrder=["court","vendor","both"].filter(b=>bC[b]);
-    if(bOrder.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Binds</span><div class="chips">`
-      +bOrder.map(b=>pill("binds",b,aipBinds(b),bC[b],state.binds===b)).join("")+`</div></div>`;
+    if(bOrder.length) fh+=`${facetRow("Binds", bOrder.map(b=>pill("binds",b,aipBinds(b),bC[b],state.binds===b)).join(""))}`;
     const aC=cnt(inGrp.filter(i=>!state.binds||i.binds===state.binds),"art");
     const aOrder=Object.keys(aC).sort((x,y)=>aC[y]-aC[x]||x.localeCompare(y));
-    if(aOrder.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">To be built</span><div class="chips">`
-      +aOrder.map(a=>pill("art",a,reqArtifact(a),aC[a],state.art===a)).join("")+`</div></div>`;
+    if(aOrder.length) fh+=`${facetRow("To be built", aOrder.map(a=>pill("art",a,reqArtifact(a),aC[a],state.art===a)).join(""))}`;
     facets.innerHTML=fh;
 
     const final=bySearch.filter(it=> (!state.grp||it.grp===state.grp) && (!state.binds||it.binds===state.binds)
@@ -1517,7 +1544,6 @@ V.practice=()=>{
   const fstate={place:(statesPresent.includes(activeState)?activeState:"all"), tags:new Set()};
   const facets=el("div","vfacets"); m.appendChild(facets);
   const list=el("div","pnotes"); list.style.marginTop="12px"; m.appendChild(list);
-  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
 
   // status severity (drives the tally order + the card's left accent) and the short tally label
   const SEV={contradicted:3,"reported-allegation":2,"needs-check":2,unverified:1,corroborated:0,verified:0,similar:0};
@@ -1583,11 +1609,10 @@ V.practice=()=>{
   }
   function redraw(){
     const filtered=notes.filter(n=>(fstate.place==="all"||n.place===fstate.place)&&(!fstate.tags.size||(n.tags||[]).some(t=>fstate.tags.has(t))));
-    let fh=`<div class="vfacet-row"><span class="vfacet-lbl">State</span><div class="chips">`
-      +pill("place","all","All states",notes.length,fstate.place==="all")
+    let fh=`${facetRow("State", pill("place","all","All states",notes.length,fstate.place==="all")
       +statesPresent.map(s=>pill("place",s,(stateById(s)||{}).name||s,notes.filter(n=>n.place===s).length,fstate.place===s)).join("")
-      +`</div></div>`;
-    if(tagsPresent.length) fh+=`<div class="vfacet-row"><span class="vfacet-lbl">Tags</span><div class="chips">`+tagsPresent.map(t=>pill("tag",t,String(t).replace(/-/g,' '),notes.filter(n=>(n.tags||[]).includes(t)).length,fstate.tags.has(t))).join("")+`</div></div>`;
+      )}`;
+    if(tagsPresent.length) fh+=`${facetRow("Tags", tagsPresent.map(t=>pill("tag",t,String(t).replace(/-/g,' '),notes.filter(n=>(n.tags||[]).includes(t)).length,fstate.tags.has(t))).join(""))}`;
     facets.innerHTML=fh;
     list.innerHTML="";
     if(!filtered.length){ list.appendChild(el("div","empty","No field notes match these filters.")); return; }
@@ -2301,7 +2326,7 @@ V.caselaw=()=>{
   m.appendChild(head);
   if(!CASES.length){ m.appendChild(el("div","empty","No case-law dataset is linked from this profile.")); return m; }
   const controls=el("div","controls");
-  controls.innerHTML=`<div class="search"><span class="mag">${ic('search')}</span><input id="c-search" placeholder="Search a case, holding or citation - Rangappa, jurisdiction, s.141…"></div>`;
+  controls.innerHTML=`${searchBox("c-search","Search a case, holding or citation - Rangappa, jurisdiction, s.141…")}`;
   m.appendChild(controls);
   const chips=el("div","chips");
   const topicsPresent=Object.keys(CASE_TOPICS).filter(t=>CASES.some(c=>(c.topics||[]).includes(t)));
@@ -2631,16 +2656,14 @@ function stateTreeView(catKey, title){ return function(){
   const facets=el("div","vfacets"); m.appendChild(facets);
   const body=el("div"); body.style.marginTop="6px"; m.appendChild(body);
   const fstate={place:activeState};
-  const pill=(fg,fv,label,count,active)=>`<span class="chip ${active?'on':''}" data-fg="${fg}" data-fv="${esc(fv)}">${esc(label)}${count!=null?` <span class="c">${count}</span>`:""}</span>`;
   const GENERIC="These sit on top of the shared national core and change from state to state.";
 
   function redraw(){
     const sel=fstate.place;
     const total=present.reduce((n,s)=>n+itemsOf(s.id).length,0);
-    facets.innerHTML=`<div class="vfacet-row"><span class="vfacet-lbl">State</span><div class="chips">`
-      +pill("place","all","All states",total,sel==="all")
+    facets.innerHTML=`${facetRow("State", pill("place","all","All states",total,sel==="all")
       +present.map(s=>pill("place",s.id,s.name,itemsOf(s.id).length,sel===s.id)).join("")
-      +`</div></div>`;
+      )}`;
     lede.textContent = sel==="all" ? `${title} from every modelled state layer. ${GENERIC}` : (summaryOf(sel)||GENERIC);
     body.innerHTML="";
     const chosen = sel==="all" ? present.map(s=>s.id) : [sel];
