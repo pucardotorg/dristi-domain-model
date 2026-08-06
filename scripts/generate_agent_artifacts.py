@@ -54,7 +54,15 @@ def akn_text(path, eId):
 
 # ---------------------------------------------------------------- load data
 cfg  = load(rel("config", "app.config.json"))
-prof_path = glob.glob(rel("profiles", "*.profile.json"))[0]
+# Which case type these artifacts describe. There are two profiles now, and picking
+# one with glob()[0] made the whole bundle, the README block and llms.txt depend on
+# directory order - while cfg["case_types"][0] was a SECOND, independent ordering that
+# had to agree with the first by luck. The config names its profile, so the two become
+# one ordering: the first declared case type decides, and the glob is only a fallback
+# for a profile no case type claims.
+_primary = (cfg.get("case_types") or [{}])[0]
+prof_path = (rel(*_primary["profile"].split("/")) if _primary.get("profile")
+             else sorted(glob.glob(rel("profiles", "*.profile.json")))[0])
 prof = load(prof_path)
 PROFILE = prof["profile"]
 caselaw = load(rel(*prof["caselaw"].split("/"))) if prof.get("caselaw") else {}
@@ -336,7 +344,7 @@ bundle = {
   "_about": "Denormalized, agent-facing bundle of the DRISTI domain model for one case type. "
             "Generated from the data files by scripts/generate_agent_artifacts.py - do not edit by hand. "
             "Deep links are app URL fragments (append to the site root, e.g. https://<site>/#...).",
-  "case_type": {"id": PROFILE, "title": prof.get("title"), "name": cfg["case_types"][0].get("name"),
+  "case_type": {"id": PROFILE, "title": prof.get("title"), "name": _primary.get("name"),
                 "act": cfg["case_types"][0].get("act"), "blurb": cfg["case_types"][0].get("blurb")},
   "as_of": prof.get("as_of"), "maintained_by": prof.get("maintained_by"),
   "transition_date": prof.get("transition_date"), "ref_format": prof.get("ref_format"),
