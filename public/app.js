@@ -9,7 +9,18 @@
 
 /* ---- resolve where the corpus lives (overridable via ?base= / ?profile=) ---- */
 const qs = new URLSearchParams(location.search);
-const PROFILE_NAME = qs.get('profile') || 'profiles/cheque-dishonour-s138.profile.json';
+/* Which profile is loaded. Not a constant: there are two case types now and the
+   dropdown switches between them, so this follows the active case type. An explicit
+   ?profile= still wins, which is how a profile no case type claims can be opened. */
+let PROFILE_NAME = qs.get('profile') || '';
+const PROFILE_PINNED = !!qs.get('profile');
+/* the profile the active case type declares, falling back to the first that declares
+   one - the config is the single place that says which file belongs to which case */
+function profileFor(caseId){
+  const cts=(typeof CASE_TYPES!=="undefined" && CASE_TYPES) || [];
+  const ct=cts.find(c=>c.id===caseId) || cts.find(c=>c.profile) || {};
+  return ct.profile || 'profiles/cheque-dishonour-s138.profile.json';
+}
 const BASE_CANDIDATES = qs.get('base') ? [qs.get('base')] : ['data/','','../data/'];
 let DATA_BASE = null;
 
@@ -93,6 +104,7 @@ function refLabel(ref){const a=SOURCES[ref.split(":")[0]];return `${secNum(ref)}
 /* ---- fetch + parse ---- */
 async function fetchText(url){ const r=await fetch(url,{cache:"no-cache"}); if(!r.ok) throw new Error(r.status+" "+url); return r.text(); }
 async function loadProfile(){
+  if(!PROFILE_PINNED) PROFILE_NAME = profileFor(activeCase);
   let txt=null, err=null;
   for(const b of BASE_CANDIDATES){
     try{ txt=await fetchText(b+PROFILE_NAME); DATA_BASE=b; break; }catch(e){ err=e; }
@@ -622,7 +634,7 @@ V.cases=()=>{
       <p>${c.blurb}</p>
       <div class="stat"><span><b>${active?Object.keys(SOURCES).length:'-'}</b> Acts</span><span><b>${active?PROVISIONS.length:'-'}</b> provisions</span><span><b>${active?Object.keys(TERMS).length:'-'}</b> words</span></div>
       ${active?'<div class="enter">Open this case type →</div>':''}`;
-    if(active) card.onclick=()=>{ activeCase=c.id; buildNav(); go("law"); };
+    if(active) card.onclick=()=>{ switchCase(c.id); };
     g.appendChild(card);
   });
   return m;
@@ -3249,7 +3261,7 @@ function buildNav(){
   if(ovt) ovt.onclick=e=>{ e.stopPropagation(); $("#ovMenu").classList.toggle("open"); };
   nav.querySelectorAll(".casedd-item[data-id]").forEach(it=>it.onclick=()=>{
     const ct=caseById(it.dataset.id);
-    if(ct && ct.status==="active"){ activeCase=ct.id; buildNav(); go("law"); }
+    if(ct && ct.status==="active"){ switchCase(ct.id); }
     else dd.classList.remove("open");
   });
   const ssel=nav.querySelector(".state-inline");
@@ -3260,6 +3272,21 @@ function buildNav(){
    style it. Before this, fourteen of the seventeen rendering views returned a bare
    div with no class at all, so page-level layout could only be written per view -
    which is why they had drifted apart. */
+/* Switching case type is a data change, not a chrome change. Both entry points - the
+   sidebar dropdown and the Case types cards - used to set activeCase, rebuild the nav
+   and navigate, which left the previous case type's provisions, vocabulary and case law
+   on screen under the new case type's name. */
+async function switchCase(id){
+  if(!id || id===activeCase) return;
+  activeCase=id;
+  try{ localStorage.setItem("dristi:case", id); }catch(e){}
+  const main=$("#main");
+  if(main) main.innerHTML=`<div class="loadbox"><div class="spinner"></div><p>Loading this case type from the corpus…</p></div>`;
+  // loadProfile loads this case type's case law itself, so it is not called again here
+  try{ await loadProfile(); }catch(e){}
+  try{ await loadRequirements(); }catch(e){}
+  buildNav(); go("law");
+}
 function setMain(node){
   const main=$("#main"); main.innerHTML="";
   if(node && node.classList) node.classList.add("view");
