@@ -1,16 +1,37 @@
 {
-  "_about": "Denormalized, agent-facing bundle of the DRISTI domain model for one case type. Generated from the data files by scripts/generate_agent_artifacts.py - do not edit by hand. Deep links are app URL fragments (append to the site root, e.g. https://<site>/#...).",
+  "_about": "Denormalized, agent-facing bundle of the DRISTI domain model for ONE case type. The corpus models two of them; each has its own bundle under /domain/, and /llms.txt lists them. Generated from the data files by scripts/generate_agent_artifacts.py - do not edit by hand. A null layer is one this case type does not model, and `scope` says why. `enumerations` and the schemas are corpus-wide, not per case type. Deep links are app URL fragments (append to the site root, e.g. https://<site>/#...).",
   "case_type": {
     "id": "cheque-dishonour-s138",
     "title": "Relevance profile - Section 138 NI Act (cheque dishonour)",
     "name": "Cheque bounce",
     "act": "NI Act, 1881 · §138",
-    "blurb": "Dishonour of a cheque for insufficiency of funds - a criminal complaint. Around 15% of a typical court's caseload; high volume, relatively standard."
+    "blurb": "Dishonour of a cheque for insufficiency of funds - a criminal complaint. Around 15% of a typical court's caseload; high volume, relatively standard.",
+    "profile": "data/profiles/cheque-dishonour-s138.profile.json"
   },
+  "also_modelled": [
+    {
+      "id": "eft-dishonour-s25",
+      "name": "Transfer dishonour",
+      "act": "PSS Act, 2007 · §25",
+      "bundle": "/domain/eft-dishonour-s25.json"
+    }
+  ],
+  "scope": null,
   "as_of": "2026-07-24",
   "maintained_by": "PUCAR",
   "transition_date": "2024-07-01",
   "ref_format": "'<alias>:<eId>'. Resolve to the file at sources[alias].file, element eId; the logical AKN id is sources[alias].uri + '/eng@#' + eId (which equals the <FRBRuri> inside that file).",
+  "counts": {
+    "_about": "Per case type. Corpus-wide counts (Akoma Ntoso files, standards, policy documents, model rules) are in /domain/data-dictionary.md. null means the layer is not modelled here; see `scope`.",
+    "acts": 21,
+    "provisions": 108,
+    "terms": 91,
+    "edges": 42,
+    "judgments": 43,
+    "requirements": 493,
+    "state_layers": 3,
+    "field_notes": 5
+  },
   "national": {
     "acts": [
       {
@@ -35049,7 +35070,9 @@
       "Presumptions & evidence",
       "Procedure & process",
       "Notice, limitation & disposal",
-      "Constitutional & powers"
+      "Constitutional & powers",
+      "The transfer & the payment system",
+      "The offence (§25)"
     ],
     "domain": [
       "substantive",

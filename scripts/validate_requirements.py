@@ -41,8 +41,21 @@ def check():
     """
     if not os.path.isdir(REQ):
         return None, []
-    prof = load(glob.glob(os.path.join(DATA, "profiles", "*.profile.json"))[0])
-    sources = prof["sources"]
+    # Which profile a national cite is resolved against. There is more than one profile
+    # now, and glob()[0] answered with whatever the filesystem listed first - so this
+    # check passed or failed by directory order, and a profile that pins fewer Acts would
+    # have failed cites that are perfectly good. A requirement belongs to the case type it
+    # was derived against, so the union of every declared profile's sources is what a cite
+    # may name; the config's order decides which title wins where two profiles pin the
+    # same alias, and the sorted glob only sweeps up a profile no case type claims.
+    paths = [os.path.join(DATA, *ct["profile"].split("/"))
+             for ct in load(os.path.join(DATA, "config", "app.config.json")).get("case_types", [])
+             if ct.get("profile")]
+    paths += [p for p in sorted(glob.glob(os.path.join(DATA, "profiles", "*.profile.json")))
+              if os.path.abspath(p) not in {os.path.abspath(q) for q in paths}]
+    sources = {}
+    for p in reversed(paths):
+        sources.update(load(p)["sources"])
 
     # state alias -> akn path, per state
     state_alias = {}

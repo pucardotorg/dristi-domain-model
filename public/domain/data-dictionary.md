@@ -2,15 +2,28 @@
 
 Generated from the data - the field meanings and the **enumerations are derived from what the data actually uses**, so this cannot drift. Structural detail (which fields are required) lives in the JSON Schemas under `data/schema/`.
 
+## Case types
+
+Two case types are modelled. A profile, a bundle and a digest are per case type; the Akoma Ntoso corpus, the schemas, the standards, the policy layer and the model rules are corpus-wide and are shared by all of them.
+
+| case type | id | provisions | Acts | terms | judgments | requirements |
+|---|---|---|---|---|---|---|
+| Cheque bounce (NI Act, 1881 · §138) | `cheque-dishonour-s138` | 108 | 21 | 91 | 43 | 493 |
+| Transfer dishonour (PSS Act, 2007 · §25) | `eft-dishonour-s25` | 96 | 18 | 64 | none - see `scope` | none - see `scope` |
+
+Where a cell says *none*, the case type's profile declares in its `scope` block which layer it does not model and why - the reason is prose written for a reader, and it is carried into that case type's bundle (`scope`) and digest verbatim. An unmodelled layer is `null` in the bundle, never an empty list, so it cannot be read as a measurement.
+
+**Transfer dishonour** does not model state layers, case law, normative requirements and state vocabulary.
+
 ## Files
 
 | file | what |
 |---|---|
-| `data/profiles/cheque-dishonour-s138.profile.json` | national relevance profile: `sources` (Acts), `provisions` (pinned sections), `terms` (vocabulary) |
+| `data/profiles/<case-type>.profile.json` | national relevance profile, one per case type: `sources` (Acts), `provisions` (pinned sections), `terms` (vocabulary), `edges` |
 | `data/state/<state>.json` | a state layer: `vocabulary.terms`, `story.roles`, `story.process` |
-| `data/config/app.config.json` | `case_types`, `jurisdictions`, `practice_notes` (field notes), `domain_labels` |
-| `data/caselaw/cheque-dishonour-s138.caselaw.json` | the case-law dataset |
-| `data/requirements/national.json` | the normative layer, central: what a system MUST do, binding every state |
+| `data/config/app.config.json` | `case_types` (each naming its profile), `jurisdictions`, `practice_notes` (field notes), `domain_labels` |
+| `data/caselaw/<case-type>.caselaw.json` | the case-law dataset for a case type, where there is authority to assemble one. The profile names the file in `caselaw`; a profile with no such key has none |
+| `data/requirements/national.json` | the normative layer, central: what a system MUST do, binding every state. Derived against one case type (Cheque bounce) |
 | `data/requirements/<state>.json` | the normative layer, per state: only what that state's own instruments add, or tighten |
 | `data/standards/standards-adherence.md` | the standards layer: the non-legal obligations a build is measured against, each with its test. Markdown, not JSON, and not joined into the bundle |
 | `data/policy/policy.json` | the policy manifest: each document's issuer, status, unit of numbering, Akoma Ntoso, transcription, source PDF and source URL |
@@ -19,8 +32,8 @@ Generated from the data - the field meanings and the **enumerations are derived 
 | `data/standards/ai-policy-compliance.md` | the operational obligations drawn out of those documents, one `##` group per document, each record citing a clause of it. The document's half and DRISTI's suggested build are separate fields and must stay so |
 | `data/modelrules/modelrules.json` | the model-rules manifest: one entry per tab of the draft, in reading order, plus the source document, its status and its URL. The app builds its tab strip from this and nothing else |
 | `data/modelrules/*.md` | a draft rule set, one file per tab, transcribed under the source's own numbering - `##` a Part, `###` a rule group with the source's Roman label, and the rule numbers carried through as printed. Markdown, not Akoma Ntoso, because a draft out for public inputs is not an instrument in force |
-| `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId` |
-| `domain/cheque-dishonour-s138.json` / `.md` | the denormalized join of all of the above |
+| `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId`. Shared: one Act serves every case type that pins it |
+| `domain/<case-type>.json` / `.md` | the denormalized join of all of the above, one pair per case type: `cheque-dishonour-s138`, `eft-dishonour-s25` |
 
 ## Reference grammars
 
@@ -31,7 +44,7 @@ Generated from the data - the field meanings and the **enumerations are derived 
 
 ## Requirements - the normative layer
 
-**493 requirements** across 4 files: 172 in `national.json`, 127 in `gujarat.json`, 84 in `haryana.json`, 110 in `kerala.json`. Every field is described in `data/requirements/README.md`; the structure is fixed by `data/schema/requirement.schema.json`; all of them, with each `authority` cite resolved to its section number and heading, are joined into `domain/cheque-dishonour-s138.json` under `requirements`.
+**493 requirements** across 4 files: 172 in `national.json`, 127 in `gujarat.json`, 84 in `haryana.json`, 110 in `kerala.json`. They are written against **Cheque bounce** (`cheque-dishonour-s138`) and have not been re-derived for any other case type, so they are joined into that bundle and no other. Every field is described in `data/requirements/README.md`; the structure is fixed by `data/schema/requirement.schema.json`; all of them, with each `authority` cite resolved to its section number and heading, are joined into `domain/cheque-dishonour-s138.json` under `requirements`.
 
 | field | meaning |
 |---|---|
@@ -69,13 +82,16 @@ Categories in use:
 Status: `firm` the instrument says so explicitly · `contested` the authorities divide, and the division is stated · `inferred` a reasonable reading; the reasoning is in `why`.
 
 ## Enumerations (as used in the data)
+
+Corpus-wide: the union of what every case type's data uses, because one schema validates every profile and every state layer. Each bundle carries the same set under `enumerations`.
+
 - `provisions[].tier` - `operative`, `definition`, `supporting`, `procedure`, `evidence`, `notice`, `limitation`, `sentencing`, `constitutional`
 - `terms[].pos` - `noun`, `verb`
 - `terms[].role` - `document`, `actor`, `procedure`, `doctrine`, `remedy`, `forum`
 - `story.roles.items[].cat` - `litigant`, `bank`, `witness`, `advocate`, `advclerk`, `judge`, `staff`, `police`
 - `verification.claims[].status` - `corroborated`, `contradicted`, `reported-allegation`, `needs-check`, `reported-practice`
 - `compare[].relation` - `similar`, `diverges`
-- national vocab `group` - `The cheque & the instrument`, `Parties & liability`, `The offence (§138)`, `Presumptions & evidence`, `Procedure & process`, `Notice, limitation & disposal`, `Constitutional & powers`
+- national vocab `group` - `The cheque & the instrument`, `Parties & liability`, `The offence (§138)`, `Presumptions & evidence`, `Procedure & process`, `Notice, limitation & disposal`, `Constitutional & powers`, `The transfer & the payment system`, `The offence (§25)`
 - `sources[].domain` / `domain_labels` - `substantive`, `procedure`, `representation`, `policing`, `penal`, `evidence`, `interpretation`, `limitation`, `sentencing`, `electronic`, `banking`, `constitutional`, `authentication`, `settlement`, `access`
 - requirements `category` - `LIM`, `NOT`, `FIL`, `SRV`, `EVI`, `PRE`, `JUR`, `TRL`, `CMP`, `SEN`, `APL`, `REC`, `CPY`
 - requirements `level` - `MUST`, `MUST NOT`, `MAY`, `SHOULD`

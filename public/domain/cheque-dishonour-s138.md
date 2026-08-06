@@ -4,7 +4,11 @@
 
 Case type `cheque-dishonour-s138` (NI Act, 1881 · §138). As of 2026-07-24; code transition 2024-07-01. Maintained by PUCAR.
 
-This digest is generated from the data - it joins the relevance profile, the state layers, the field notes and the Akoma Ntoso corpus. Each item carries a **deep link** (a URL fragment for the viewer) and a `ref` into the machine-readable bundle `cheque-dishonour-s138.json`. Do not edit by hand.
+This digest is generated from the data - it joins the relevance profile, the state layers, the field notes, the case law, the normative requirements and the resolved Akoma Ntoso text. Each item carries a **deep link** (a URL fragment for the viewer) and a `ref` into the machine-readable bundle `cheque-dishonour-s138.json`. Do not edit by hand.
+
+**This case type:** 108 provisions across 21 Acts, 91 national terms, 43 judgments, 493 requirements, 3 state layers and 5 field notes.
+
+Also modelled in this corpus: **Transfer dishonour** (PSS Act, 2007 · §25, `eft-dishonour-s25`). Each has its own bundle and digest under `/domain/`, and `/llms.txt` lists them all.
 
 ## Normative requirements - what a system MUST do
 

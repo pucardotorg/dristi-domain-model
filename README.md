@@ -704,17 +704,19 @@ else to configure.
 
 ### Machine-readable data model (generated)
 
-The domain is data. For agents and tools, generated artifacts join and describe it:
+The domain is data. For agents and tools, generated artifacts join and describe it. A bundle and a digest are **per case type**; the dictionary, the schemas and the site map cover the whole corpus:
 
 | artifact | what |
 |---|---|
-| `public/domain/cheque-dishonour-s138.json` | denormalized bundle - profile + state layers + field notes + resolved AKN text, with deep links |
+| `public/domain/cheque-dishonour-s138.json` | denormalized bundle for Cheque bounce (NI Act, 1881 · §138) - joins the relevance profile, the state layers, the field notes, the case law, the normative requirements and the resolved Akoma Ntoso text, with deep links |
 | `public/domain/cheque-dishonour-s138.md` | the same as a readable digest |
-| `public/domain/data-dictionary.md` | field meanings + enumerations (derived from the data) |
-| `public/data/schema/*.schema.json` | JSON Schemas (profile, state, field note, requirement) |
-| `public/llms.txt` | site-root map for agents |
+| `public/domain/eft-dishonour-s25.json` | denormalized bundle for Transfer dishonour (PSS Act, 2007 · §25) - joins the relevance profile and the resolved Akoma Ntoso text, with deep links |
+| `public/domain/eft-dishonour-s25.md` | the same as a readable digest, opening with what this case type does not model |
+| `public/domain/data-dictionary.md` | field meanings + enumerations (derived from the data), and what each case type does and does not model |
+| `public/data/schema/*.schema.json` | JSON Schemas (profile, state, field note, requirement) - one set, validating every case type |
+| `public/llms.txt` | site-root map for agents: every case type, with its bundle, digest and raw profile |
 
-The **normative layer** is source data, not generated, and is joined into the bundle (`requirements`) and the digest:
+The **normative layer** is source data, not generated. It is written against **Cheque bounce** and is joined into that case type's bundle (`requirements`) and digest; the other case types record in their profile `scope` that it has not been derived for them:
 
 | source | what |
 |---|---|
@@ -754,7 +756,7 @@ Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the N
 - `story_role_cat`: litigant, bank, witness, advocate, advclerk, judge, staff, police
 - `verification_status`: corroborated, contradicted, reported-allegation, needs-check, reported-practice
 - `compare_relation`: similar, diverges
-- `vocab_group_national`: The cheque & the instrument, Parties & liability, The offence (§138), Presumptions & evidence, Procedure & process, Notice, limitation & disposal, Constitutional & powers
+- `vocab_group_national`: The cheque & the instrument, Parties & liability, The offence (§138), Presumptions & evidence, Procedure & process, Notice, limitation & disposal, Constitutional & powers, The transfer & the payment system, The offence (§25)
 - `domain`: substantive, procedure, representation, policing, penal, evidence, interpretation, limitation, sentencing, electronic, banking, constitutional, authentication, settlement, access
 - `requirement_category`: LIM, NOT, FIL, SRV, EVI, PRE, JUR, TRL, CMP, SEN, APL, REC, CPY
 - `requirement_level`: MUST, MUST NOT, MAY, SHOULD
@@ -762,6 +764,11 @@ Regenerate with `python3 scripts/generate_agent_artifacts.py` (also run in the N
 - `requirement_derived_from`: act, caselaw, practice-note, rule
 - `requirement_binds_artifact`: validation-rule, workflow-step, schema-field, screen, output-document, access-control
 
-**Counts:** 21 Acts, 108 provisions, 91 national terms; states: Gujarat (40 terms), Haryana (65 terms), Kerala (33 terms); 5 field notes; 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala); 41 standards; 7 policy documents with 68 compliance records.
+**Counts, per case type** (a layer a case type does not model is named, not counted as zero):
+
+- **Cheque bounce** (`cheque-dishonour-s138`): 21 Acts, 108 provisions, 91 national terms, 42 edges, 43 judgments, 493 requirements (172 national + 127 gujarat + 84 haryana + 110 kerala), 3 state layers, 5 field notes.
+- **Transfer dishonour** (`eft-dishonour-s25`): 18 Acts, 96 provisions, 64 national terms, 67 edges; no state layers, no case law, no normative requirements and no state vocabulary - the profile's `scope` says why for each.
+
+**Counts, corpus-wide** (one set of files, whichever case type claims them): 24 Akoma Ntoso Act files; 3 state layers (Gujarat 40 terms, Haryana 65 terms, Kerala 33 terms); 41 standards; 7 policy documents with 68 compliance records; 35 model-rules sections across 2 tabs.
 
 <!-- AUTO-DATA-MODEL:END -->
