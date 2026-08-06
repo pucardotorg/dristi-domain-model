@@ -1,0 +1,1673 @@
+{
+  "profile": "eft-dishonour-s25",
+  "title": "Relevance profile - Section 25 Payment and Settlement Systems Act, 2007 (dishonour of an electronic funds transfer)",
+  "description": "Cross-act index of the provisions, definitions, procedure and evidence rules relevant to a criminal complaint under s.25 of the Payment and Settlement Systems Act, 2007 - the offence of initiating an electronic funds transfer that cannot be executed for want of funds. It is the sibling of the s.138 cheque-dishonour case type and was drafted as a deliberate parallel of it, but it is not a copy: s.25 states its own offence, its own presumptions and its own cognizance rule, and then, in s.25(5), applies Chapter XVII of the Negotiable Instruments Act, 1881 to the dishonour of an electronic funds transfer 'to the extent the circumstances admit'. That single sub-section is the centre of gravity of the whole case type and most of the modelling below is about where it bites and where it does not. References point into the canonical Akoma Ntoso files in this corpus; nothing is copied. Point-in-time aware: procedure/penal/evidence references resolve to the pre-2024 codes or the 2023 Sanhitas depending on the cause-of-action date.",
+  "as_of": "2026-08-06",
+  "maintained_by": "PUCAR",
+  "transition_date": "2024-07-01",
+  "ref_format": "'<alias>:<eId>'. Resolve to the file at sources[alias].file, element eId; the logical AKN id is sources[alias].uri + '/eng@#' + eId (which equals the <FRBRuri> inside that file).",
+
+  "scope": {
+    "state": "This is a first cut. It models the shared central core only. There is no state layer for this case type: no High Court rules, no e-filing rules, no court-fee entry, no special-court notification, no local practice. Where the s.138 profile has Kerala, Gujarat and Haryana overlays, this one has nothing, and the state pages will show the not-modelled placeholder.",
+    "caselaw": "No case-law dataset is linked, and that is a finding rather than an omission of effort. Section 25 has been on the statute book since 2008 and there is, so far as this pass could establish, effectively no reported Supreme Court authority construing it - no analogue of Rangappa on the presumption, of Dashrath Rupsingh on where the complaint lies, of Damodar S. Prabhu on compounding. The case type is therefore modelled almost entirely from the text of the Acts. The practical consequence is that the open questions recorded in the notes below - the limitation period, the place of trial, which compounding power governs - have no judicial answer to cite, only an argument either way.",
+    "requirements": "The normative layer (what a system MUST do to run one of these cases lawfully) is not derived for this case type. The 493 requirements in this corpus are all written against s.138 and none of them has been re-tested against s.25.",
+    "vocabulary": "The terms below are the national vocabulary only. There is no state vocabulary layer."
+  },
+
+  "caveats": [
+    "Section numbers were extracted from India Code reprint PDFs; verify against the official source before authoritative use.",
+    "'applies' indicates the cause-of-action window: 'always' (substantive/interpretive), 'pre-2024-07-01' (old codes), 'post-2024-07-01' (Sanhitas). Use act_alias_map to switch by date.",
+    "The reach of s.25(5) is the single largest uncertainty in this model. Every provision of Chapter XVII of the NI Act is pinned below with an explicit judgment about whether it comes across, is displaced by a PSS provision on the same ground, or is genuinely unresolved. Those judgments are reasoned from the statutory text; they are not settled law and none of them is backed by a citation.",
+    "No case law, no state layer and no requirements layer. See 'scope' above for what that means for a reader."
+  ],
+
+  "link_integrity": {
+    "checked": "2026-08-06",
+    "method": "every ref '<alias>:<eId>' was verified to exist as an eId in sources[alias].file by scripts/validate_akn.py check_pins(); unresolved refs were dropped, not shipped.",
+    "all_refs_resolve": true,
+    "dropped_unresolved": [],
+    "note": "All Acts pinned here were already in the corpus for the s.138 case type; this profile added no new Akoma Ntoso files."
+  },
+
+  "sources": {
+    "pss": {
+      "uri": "/akn/in/act/2007/51",
+      "title": "Payment and Settlement Systems Act, 2007",
+      "domain": "substantive",
+      "status": "in force",
+      "note": "The substantive Act for this case type. In the s.138 profile the same Act is filed under 'banking' as background to cheque clearing; here it creates the offence, so it is the substantive law.",
+      "file": "acts/akn/payment-and-settlement-systems-act-2007.akn.xml"
+    },
+    "ni": {
+      "uri": "/akn/in/act/1881/26",
+      "title": "Negotiable Instruments Act, 1881",
+      "domain": "substantive",
+      "status": "in force",
+      "note": "Not the governing Act here, but not background either. Section 25(5) applies the whole of its Chapter XVII to the dishonour of an electronic funds transfer, so the NI Act supplies the trial machinery that the PSS Act never wrote down.",
+      "file": "acts/akn/negotiable-instruments-act-1881.akn.xml"
+    },
+    "bnss": {
+      "uri": "/akn/in/act/2023/46",
+      "title": "Bharatiya Nagarik Suraksha Sanhita, 2023",
+      "domain": "procedure",
+      "status": "in force from 2024-07-01",
+      "replaces": "crpc",
+      "file": "acts/akn/bharatiya-nagarik-suraksha-sanhita-2023.akn.xml"
+    },
+    "crpc": {
+      "uri": "/akn/in/act/1974/2",
+      "title": "Code of Criminal Procedure, 1973",
+      "domain": "procedure",
+      "status": "repealed 2024-07-01; applies to causes of action before that date",
+      "replaced_by": "bnss",
+      "note": "Both s.28(2) and s.31 of the PSS Act still name the CrPC by title. The 2023 Sanhita has to be read in through the General Clauses Act.",
+      "file": "acts/akn/code-of-criminal-procedure-1973.akn.xml"
+    },
+    "bsa": {
+      "uri": "/akn/in/act/2023/47",
+      "title": "Bharatiya Sakshya Adhiniyam, 2023",
+      "domain": "evidence",
+      "status": "in force from 2024-07-01",
+      "replaces": "iea",
+      "file": "acts/akn/bharatiya-sakshya-adhiniyam-2023.akn.xml"
+    },
+    "iea": {
+      "uri": "/akn/in/act/1872/1",
+      "title": "Indian Evidence Act, 1872",
+      "domain": "evidence",
+      "status": "repealed 2024-07-01",
+      "replaced_by": "bsa",
+      "file": "acts/akn/indian-evidence-act-1872.akn.xml"
+    },
+    "itact": {
+      "uri": "/akn/in/act/2000/21",
+      "title": "Information Technology Act, 2000",
+      "domain": "electronic",
+      "status": "in force",
+      "note": "Carries far more weight here than in a cheque case. Everything in a s.25 case is an electronic record: the instruction, the bank's communication of dishonour, and often the demand notice itself.",
+      "file": "acts/akn/it-act-2000.akn.xml"
+    },
+    "bbea": {
+      "uri": "/akn/in/act/1891/18",
+      "title": "Bankers' Books Evidence Act, 1891",
+      "domain": "evidence",
+      "status": "in force",
+      "file": "acts/akn/bankers-books-evidence-act-1891.akn.xml"
+    },
+    "genclauses": {
+      "uri": "/akn/in/act/1897/10",
+      "title": "General Clauses Act, 1897",
+      "domain": "interpretation",
+      "status": "in force",
+      "file": "acts/akn/general-clauses-act-1897.akn.xml"
+    },
+    "limitation": {
+      "uri": "/akn/in/act/1963/36",
+      "title": "Limitation Act, 1963",
+      "domain": "limitation",
+      "status": "in force",
+      "file": "acts/akn/limitation-act-1963.akn.xml"
+    },
+    "probation": {
+      "uri": "/akn/in/act/1958/20",
+      "title": "Probation of Offenders Act, 1958",
+      "domain": "sentencing",
+      "status": "in force",
+      "file": "acts/akn/probation-of-offenders-act-1958.akn.xml"
+    },
+    "bns": {
+      "uri": "/akn/in/act/2023/45",
+      "title": "Bharatiya Nyaya Sanhita, 2023",
+      "domain": "penal",
+      "status": "in force from 2024-07-01",
+      "replaces": "ipc",
+      "file": "acts/akn/bharatiya-nyaya-sanhita-2023.akn.xml"
+    },
+    "ipc": {
+      "uri": "/akn/in/act/1860/45",
+      "title": "Indian Penal Code, 1860",
+      "domain": "penal",
+      "status": "repealed 2024-07-01",
+      "replaced_by": "bns",
+      "file": "acts/akn/indian-penal-code.akn.xml"
+    },
+    "constitution": {
+      "uri": "/akn/in/act/1950/constitution",
+      "title": "Constitution of India",
+      "domain": "constitutional",
+      "status": "in force",
+      "file": "acts/akn/constitution-of-india.akn.xml"
+    },
+    "advocates": {
+      "uri": "/akn/in/act/1961/25",
+      "title": "Advocates Act, 1961",
+      "domain": "representation",
+      "status": "in force",
+      "file": "acts/akn/advocates-act-1961.akn.xml"
+    },
+    "oaths": {
+      "uri": "/akn/in/act/1969/44",
+      "title": "Oaths Act, 1969",
+      "domain": "authentication",
+      "status": "in force",
+      "file": "acts/akn/oaths-act-1969.akn.xml"
+    },
+    "lsa": {
+      "uri": "/akn/in/act/1987/39",
+      "title": "Legal Services Authorities Act, 1987",
+      "domain": "settlement",
+      "status": "in force",
+      "file": "acts/akn/legal-services-authorities-act-1987.akn.xml"
+    },
+    "rpwd": {
+      "uri": "/akn/in/act/2016/49",
+      "title": "Rights of Persons with Disabilities Act, 2016",
+      "domain": "access",
+      "status": "in force",
+      "file": "acts/akn/rights-of-persons-with-disabilities-act-2016.akn.xml"
+    }
+  },
+
+  "act_alias_map": [
+    { "topic": "criminal procedure (code)", "before": "crpc", "on_or_after": "bnss", "switch_date": "2024-07-01", "note": "PSS s.28(2) and s.31 both name the Code of Criminal Procedure, 1973 in terms; after 2024-07-01 that reference reads as the BNSS through s.8 of the General Clauses Act." },
+    { "topic": "penal law (code)", "before": "ipc", "on_or_after": "bns", "switch_date": "2024-07-01" },
+    { "topic": "evidence law", "before": "iea", "on_or_after": "bsa", "switch_date": "2024-07-01" },
+    { "topic": "cognizance by magistrate", "before": "crpc:sec_190", "on_or_after": "bnss:sec_210", "switch_date": "2024-07-01" },
+    { "topic": "examination of complainant", "before": "crpc:sec_200", "on_or_after": "bnss:sec_223", "switch_date": "2024-07-01" },
+    { "topic": "issue of process", "before": "crpc:sec_204", "on_or_after": "bnss:sec_227", "switch_date": "2024-07-01" },
+    { "topic": "ordinary place of trial", "before": "crpc:sec_177", "on_or_after": "bnss:sec_197", "switch_date": "2024-07-01", "note": "The residual venue rule, and the one that governs if NI s.142(2) is held not to come across through s.25(5)." },
+    { "topic": "summary trial", "before": "crpc:sec_262", "on_or_after": "bnss:sec_285", "switch_date": "2024-07-01", "note": "NI Act s.143 expressly invokes CrPC ss.262-265; BNSS equivalent ss.283-288." },
+    { "topic": "bar to cognizance after limitation", "before": "crpc:sec_468", "on_or_after": "bnss:sec_514", "switch_date": "2024-07-01", "note": "Three years for an offence punishable with imprisonment exceeding one year but not exceeding three - which is what s.25(1) is." },
+    { "topic": "commencement of the limitation period", "before": "crpc:sec_469", "on_or_after": "bnss:sec_515", "switch_date": "2024-07-01" },
+    { "topic": "extension of the limitation period", "before": "crpc:sec_473", "on_or_after": "bnss:sec_519", "switch_date": "2024-07-01" },
+    { "topic": "compounding of offences", "before": "crpc:sec_320", "on_or_after": "bnss:sec_359", "switch_date": "2024-07-01" },
+    { "topic": "order to pay compensation", "before": "crpc:sec_357", "on_or_after": "bnss:sec_395", "switch_date": "2024-07-01" },
+    { "topic": "appeal from conviction", "before": "crpc:sec_374", "on_or_after": "bnss:sec_415", "switch_date": "2024-07-01" },
+    { "topic": "inherent power of the High Court", "before": "crpc:sec_482", "on_or_after": "bnss:sec_528", "switch_date": "2024-07-01" },
+    { "topic": "burden of proof", "before": "iea:sec_101", "on_or_after": "bsa:sec_104", "switch_date": "2024-07-01" },
+    { "topic": "admissibility of electronic records", "before": "iea:sec_65B", "on_or_after": "bsa:sec_63", "switch_date": "2024-07-01" },
+    { "topic": "presumption as to electronic records and signatures", "before": "iea:sec_85B", "on_or_after": "bsa:sec_86", "switch_date": "2024-07-01" },
+    { "topic": "cheating", "before": "ipc:sec_420", "on_or_after": "bns:sec_318", "switch_date": "2024-07-01" }
+  ],
+
+  "provisions": [
+    {
+      "ref": "pss:sec_25",
+      "act": "pss",
+      "eId": "sec_25",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "operative",
+      "role": "the offence",
+      "applies": "always",
+      "note": "The whole case type in one section. 25(1) deems an offence where an electronic funds transfer initiated from a person's own account cannot be executed because the credit balance is short of the instruction, or exceeds the arrangement agreed with the bank, and punishes it with up to two years, or a fine up to twice the amount of the transfer, or both. The four provisos are the elements the complaint must plead: (a) the transfer was for the discharge, whole or part, of a debt or other liability; (b) it was initiated in accordance with the system provider's procedural guidelines; (c) the beneficiary demanded the money by notice in writing within thirty days of receiving information of the dishonour from the bank; and (d) the initiator failed to pay within fifteen days of that notice. 25(2) presumes the transfer was for a debt or liability. 25(3) closes the 'I had no reason to believe the account was short' defence. 25(4) makes the court presume dishonour on production of a communication from the bank, unless disproved. 25(5) applies Chapter XVII of the NI Act to the dishonour of an electronic funds transfer to the extent the circumstances admit. The Explanation confines 'debt or other liability' to a legally enforceable one. Read against NI s.138, the drafting is a conscious transposition: thirty days and fifteen days are the same clocks, the presumptions are the same presumptions, and the Explanation is word for word."
+    },
+    {
+      "ref": "pss:sec_27",
+      "act": "pss",
+      "eId": "sec_27",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "operative",
+      "role": "company liability",
+      "applies": "always",
+      "note": "The PSS Act's own vicarious-liability section, and the reason NI s.141 does not need to travel through s.25(5). It works the same way: everyone in charge of and responsible to the company for the conduct of its business is liable along with the company, with a due-diligence and no-knowledge defence, and sub-section (2) reaches a director, manager, secretary or officer whose consent, connivance or neglect is proved. The Explanation defines 'company' to include a firm or association of individuals and 'director', for a firm, as a partner - identical in substance to the NI s.141 Explanation. One difference worth watching: s.27 is written for 'a contravention of any of the provisions of this Act', while NI s.141 is written for an offence under Chapter XVII, so s.27 is the wider net."
+    },
+    {
+      "ref": "pss:sec_28",
+      "act": "pss",
+      "eId": "sec_28",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "operative",
+      "role": "cognizance / who may complain / trying court",
+      "applies": "always",
+      "note": "The point where this case type diverges most sharply from s.138. The Act's default is a regulator's default: no court may take cognizance of any PSS offence except on the written complaint of an officer of the Reserve Bank authorised in that behalf, and no court below a Metropolitan Magistrate or Judicial Magistrate of the first class may try it. The proviso is what makes s.25 a private complaint at all - the court MAY take cognizance of a s.25 offence on a complaint in writing by 'the person aggrieved by the dishonour'. Compare NI s.142, which states complainant, time and court together: the payee or holder in due course, within one month of the cause of action arising under clause (c) of the s.138 proviso, before a court not inferior to a JMFC, with sub-section (2) fixing territorial jurisdiction at the payee's bank branch. Section 28 answers who and which court. It says nothing about when, and nothing about where. Note also that the proviso says 'may take cognizance' where s.142 says 'no court shall take cognizance except', and that it names 'the person aggrieved' where s.25(1)(c) names 'the beneficiary' - two different words for what is presumably the same person, neither of them defined."
+    },
+    {
+      "ref": "pss:sec_31",
+      "act": "pss",
+      "eId": "sec_31",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "operative",
+      "role": "compounding by the Reserve Bank",
+      "applies": "always",
+      "note": "Unresolved, and squarely so. Section 31 lets an authorised officer of the Reserve Bank compound any offence under the Act that is not punishable with imprisonment only, or with imprisonment and also with fine, on the offender's application before or after proceedings begin. Section 25(1) is punishable with imprisonment, or with fine, or with both, so on the face of it s.31 covers it. But NI s.147, which s.25(5) would carry across, makes the offence compoundable in the ordinary way - between the parties, before the court, on the Damodar S. Prabhu scale of costs. Two compounding powers over the same offence, one vested in a banking regulator with no interest in the debt and one in the beneficiary who is owed it, cannot both be the intended route. Nothing in the Act resolves it and there is no authority. This model records the conflict rather than picking a winner."
+    },
+    {
+      "ref": "pss:sec_26",
+      "act": "pss",
+      "eId": "sec_26",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "sentencing",
+      "role": "the Act's other penalties",
+      "applies": "always",
+      "note": "Not the penalty for a s.25 offence - s.25(1) carries its own - but the sentencing context a magistrate reads it against. Section 26 punishes operating a payment system without authorisation, false statements in returns, breach of the confidentiality duty and non-compliance with directions, with terms up to ten years and fines up to a crore. Section 25 sits at the bottom of that scale, which is a clue to how the legislature saw it: a two-year, fine-led, essentially compensatory offence inside a statute otherwise aimed at institutions."
+    },
+    {
+      "ref": "pss:sec_29",
+      "act": "pss",
+      "eId": "sec_29",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "sentencing",
+      "role": "application of the fine",
+      "applies": "always",
+      "note": "A court imposing a fine under the Act may direct the whole or part of it towards the costs of the proceedings. It is the PSS Act's only word on what happens to the money, and it points at costs, not at the beneficiary. In a s.138 case the fine is routinely routed to the payee as compensation under CrPC s.357 / BNSS s.395, and that machinery is available here too, but nothing in the PSS Act says so and s.29 pulls mildly the other way."
+    },
+    {
+      "ref": "pss:sec_30",
+      "act": "pss",
+      "eId": "sec_30",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "sentencing",
+      "role": "administrative penalties by the Reserve Bank",
+      "applies": "always",
+      "note": "The regulator's own penalty route, kept separate from the criminal one. It matters to this case type mainly as the reason s.31's compounding power exists at all: the Act's normal enforcement mode is administrative, and s.25 is the exception grafted onto it."
+    },
+    {
+      "ref": "pss:sec_32",
+      "act": "pss",
+      "eId": "sec_32",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "operative",
+      "role": "overriding effect",
+      "applies": "always",
+      "note": "The Act has effect notwithstanding anything inconsistent in any other law in force. This is the textual lever for saying that where a PSS provision and an NI Chapter XVII provision imported by s.25(5) cover the same ground, the PSS provision wins - which is how ss.27 and 28 displace NI ss.141 and 142, and how s.25(4) displaces NI s.146."
+    },
+    {
+      "ref": "pss:sec_2",
+      "act": "pss",
+      "eId": "sec_2",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "definition",
+      "role": "defines the vocabulary of the transfer",
+      "applies": "always",
+      "note": "The definition section, and the one that does the work s.138 gets from NI ss.3 to 13. It defines 'electronic funds transfer' (clause c) broadly enough to cover point-of-sale transfers, ATM transactions, direct deposits and withdrawals, telephone, internet and card payments; 'payment system' (i), 'payment instruction' (g), 'payment obligation' (h), 'settlement' (n), 'netting' (e), 'system provider' (q), 'system participant' (p) and 'bank' (a). What it does not define is telling: neither 'beneficiary' nor 'initiator', the two people the offence is actually about, appears in s.2. 'Beneficiary' surfaces only inside the definition of 'payment system' and in the s.25 proviso; 'initiator' is used in s.25 alone. Sub-section (2) borrows anything else from the Reserve Bank of India Act and the Banking Regulation Act."
+    },
+    {
+      "ref": "pss:sec_4",
+      "act": "pss",
+      "eId": "sec_4",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "supporting",
+      "role": "authorisation to operate a payment system",
+      "applies": "always",
+      "note": "No one but the Reserve Bank may operate a payment system without authorisation. It matters to a s.25 case because 'system provider' means a person who operates an AUTHORISED payment system, so proviso (b) - initiation in accordance with the system provider's procedural guidelines - presupposes an authorised system. A transfer over an unauthorised system arguably has no s.25 offence attached to it at all."
+    },
+    {
+      "ref": "pss:sec_10",
+      "act": "pss",
+      "eId": "sec_10",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "supporting",
+      "role": "standards and guidelines for payment systems",
+      "applies": "always",
+      "note": "The Reserve Bank's power to prescribe the format of payment instructions, timings, the manner of transfer and other standards, and to issue guidelines generally. Sits behind proviso (b): the procedural guidelines the initiator must have followed are issued by the system provider, but they are issued inside the standards this section sets."
+    },
+    {
+      "ref": "pss:sec_20",
+      "act": "pss",
+      "eId": "sec_20",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "supporting",
+      "role": "system provider bound by the Act and its own rules",
+      "applies": "always",
+      "note": "Every system provider must operate in accordance with the Act, the regulations, the contract among system participants, the rules governing the system, the conditions of its authorisation and the Reserve Bank's directions. Read with s.21, this is where proviso (b)'s 'relevant procedural guidelines' come from and why they are a legal, not merely a commercial, standard."
+    },
+    {
+      "ref": "pss:sec_21",
+      "act": "pss",
+      "eId": "sec_21",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "supporting",
+      "role": "duties of the system provider - disclosure of the rules",
+      "applies": "always",
+      "note": "The system provider must disclose terms, conditions, charges and limitations of liability to participants and supply them with the rules governing the system. This is the closest the Act comes to naming the document proviso (b) of s.25(1) turns on. In practice, proving element (b) means proving what the guidelines said and that the instruction complied - a burden with no counterpart at all in a cheque case, where the drawer simply signs a cheque."
+    },
+    {
+      "ref": "pss:sec_22",
+      "act": "pss",
+      "eId": "sec_22",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "supporting",
+      "role": "confidentiality of payment-system documents",
+      "applies": "always",
+      "note": "A duty to keep documents in the payment system confidential, breach of which is itself punishable under s.26(4). It cuts against the complainant: the record that would prove the instruction, its compliance with the guidelines and the reason for non-execution sits with a bank and a system provider who are under a statutory duty of confidence and are not parties to the complaint."
+    },
+    {
+      "ref": "pss:sec_23",
+      "act": "pss",
+      "eId": "sec_23",
+      "file": "payment-and-settlement-systems-act-2007.akn.xml",
+      "tier": "supporting",
+      "role": "settlement is final and irrevocable",
+      "applies": "always",
+      "note": "Settlement, gross or net, is final and irrevocable once determined. It marks the boundary of the offence from the other side: s.25 is about a transfer that CANNOT be executed, so a transfer that has reached settlement is outside it entirely, and the timeline of a payment system - instruction, clearing, settlement - is what fixes the moment of dishonour that starts the thirty-day clock."
+    },
+    {
+      "ref": "ni:sec_138",
+      "act": "ni",
+      "eId": "sec_138",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "displaced by s.25(1)",
+      "applies": "always",
+      "note": "Imported in form by s.25(5), spent in substance. Section 138 creates an offence about a cheque drawn on an account and returned unpaid by the bank; there is no cheque in an electronic funds transfer and no return of an instrument. The circumstances do not admit it, because s.25(1) has already done the same job in the same words for the transfer. It is pinned here as the source the whole case type was copied from, not as law to be applied."
+    },
+    {
+      "ref": "ni:sec_139",
+      "act": "ni",
+      "eId": "sec_139",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "displaced by s.25(2)",
+      "applies": "always",
+      "note": "The presumption that the cheque was for the discharge of a debt or liability. Section 25(2) states the identical presumption for the transfer, so nothing comes across. The reason to keep it pinned is that s.139 carries a large body of Supreme Court authority - Rangappa above all - on what the presumption covers and how it is rebutted, and that reasoning is the only guidance a court reading s.25(2) has. Whether it may be borrowed is untested."
+    },
+    {
+      "ref": "ni:sec_140",
+      "act": "ni",
+      "eId": "sec_140",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "displaced by s.25(3)",
+      "applies": "always",
+      "note": "That the drawer had no reason to believe the cheque would be dishonoured is no defence. Section 25(3) says the same for the initiator of a transfer, in more words and to the same effect. Displaced."
+    },
+    {
+      "ref": "ni:sec_141",
+      "act": "ni",
+      "eId": "sec_141",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "displaced by PSS s.27",
+      "applies": "always",
+      "note": "Offences by companies. Displaced by PSS s.27, which is the same rule with the same defences and the same Explanation. The s.141 case law on who is 'in charge of and responsible to' a company - the specific averments a complaint must carry - is the natural interpretive source for s.27, but again by borrowing rather than by binding force."
+    },
+    {
+      "ref": "ni:sec_142",
+      "act": "ni",
+      "eId": "sec_142",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "partly displaced by PSS s.28; the limitation and venue halves are unresolved",
+      "applies": "always",
+      "note": "The most consequential pin in this profile. Section 142 does four things: (1)(a) confines the complaint to the payee or holder in due course; (1)(b) requires it within one month of the cause of action, with a proviso allowing condonation for sufficient cause; (1)(c) fixes the trying court at not below a JMFC; and (2) fixes territorial jurisdiction at the branch of the bank where the payee maintains the account. PSS s.28 covers the first and the third and displaces them. It covers neither the second nor the fourth. So either s.25(5) carries clauses (1)(b) and (2) across - and a s.25 complaint must be filed within one month, at the beneficiary's bank branch - or it does not, and the residual rules apply: three years under CrPC s.468 / BNSS s.514 for an offence punishable up to two years, and the ordinary venue rules of CrPC s.177 / BNSS s.197. The difference between one month and three years is not a detail; it decides whether a s.25 complaint is a fast-expiring statutory remedy like a cheque complaint or an ordinary criminal one. Nothing decides it. The better textual argument is that s.28 is a complete code for cognizance of PSS offences and that the circumstances therefore do not admit s.142 at all; the better purposive argument is that s.25 was written to mirror s.138 and the mirror is incomplete without the clock. This model records both and asserts neither."
+    },
+    {
+      "ref": "ni:sec_142A",
+      "act": "ni",
+      "eId": "sec_142A",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "operative",
+      "role": "does not come across",
+      "applies": "always",
+      "note": "Validation and transfer of cases pending when the 2015 jurisdiction amendment came into force. It is a transitional provision about a change to s.142(2) that never happened to s.25, so the circumstances do not admit it. Pinned to close the chapter: every section of Chapter XVII is accounted for in this profile."
+    },
+    {
+      "ref": "ni:sec_143",
+      "act": "ni",
+      "eId": "sec_143",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "procedure",
+      "role": "imported - summary trial",
+      "applies": "always",
+      "note": "Comes across, and this is the clearest case of s.25(5) doing real work. The PSS Act says nothing about how a s.25 complaint is tried. Section 143 makes it a summary trial under CrPC ss.262 to 265 (BNSS ss.283 to 288), lets the magistrate pass a sentence of up to one year and compensation up to five thousand rupees in a summary trial, and directs that the trial be concluded as far as possible within six months. Nothing in the circumstances of an electronic transfer resists any of that."
+    },
+    {
+      "ref": "ni:sec_143A",
+      "act": "ni",
+      "eId": "sec_143A",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "procedure",
+      "role": "imported by substitution - interim compensation",
+      "applies": "always",
+      "note": "Interim compensation of up to twenty per cent, payable by the drawer during the trial. It comes across only if 'the drawer of the cheque' is read as the initiator of the transfer and 'the amount of the cheque' as the amount of the transfer. Section 25(5) applies Chapter XVII to the dishonour of an electronic funds transfer, which is an instruction to make that substitution, but the substitution is not written anywhere and the amount of an interim award is a real deprivation to hang on an inference. Marked as imported because refusing it would leave the beneficiary of a failed transfer worse off than the payee of a bounced cheque for no reason the statute gives."
+    },
+    {
+      "ref": "ni:sec_144",
+      "act": "ni",
+      "eId": "sec_144",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "procedure",
+      "role": "imported - mode of service of summons",
+      "applies": "always",
+      "note": "Service of summons by speed post or an approved courier, and the rule that a refused summons is deemed served. Nothing in it is cheque-specific and the PSS Act supplies no alternative, so it comes across cleanly."
+    },
+    {
+      "ref": "ni:sec_145",
+      "act": "ni",
+      "eId": "sec_145",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "evidence",
+      "role": "imported - evidence on affidavit",
+      "applies": "always",
+      "note": "The complainant's evidence may be given on affidavit and read in any inquiry, trial or other proceeding, subject to the court summoning the deponent on application. Comes across without strain, and matters more here than in a cheque case: most of what a s.25 complainant proves is documentary, and much of it is electronic."
+    },
+    {
+      "ref": "ni:sec_146",
+      "act": "ni",
+      "eId": "sec_146",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "evidence",
+      "role": "displaced by s.25(4)",
+      "applies": "always",
+      "note": "The bank's slip or memo with the official mark of dishonour is prima facie evidence. Section 25(4) is the same rule rebuilt for a transfer: on production of a communication from the bank denoting the dishonour, the court shall presume the fact of dishonour unless disproved. Displaced, and the PSS version is if anything the stronger of the two - it says 'shall presume', not 'prima facie evidence'."
+    },
+    {
+      "ref": "ni:sec_147",
+      "act": "ni",
+      "eId": "sec_147",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "procedure",
+      "role": "imported, but collides with PSS s.31",
+      "applies": "always",
+      "note": "Every offence punishable under the NI Act is compoundable, notwithstanding the Code. Carried across by s.25(5), it would let the beneficiary and the initiator settle and end the case, which is how the overwhelming majority of s.138 matters actually finish. But PSS s.31 vests a compounding power over PSS offences in an officer of the Reserve Bank. The two do not sit together and the Act does not choose. See the note on pss:sec_31."
+    },
+    {
+      "ref": "ni:sec_148",
+      "act": "ni",
+      "eId": "sec_148",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "procedure",
+      "role": "imported by substitution - deposit pending appeal",
+      "applies": "always",
+      "note": "On an appeal against conviction, the appellate court may order the appellant to deposit a minimum of twenty per cent of the fine or compensation. Like s.143A it is written in the vocabulary of a cheque and comes across only by reading 'drawer' as initiator. The same reasoning applies, and the same doubt."
+    },
+    {
+      "ref": "ni:sec_6",
+      "act": "ni",
+      "eId": "sec_6",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines 'cheque' - outside the imported Chapter",
+      "applies": "always",
+      "note": "Pinned to make a structural point rather than to be applied. Section 25(5) imports Chapter XVII, and Chapter XVII alone. The words that Chapter uses - cheque, drawer, payee - are defined in Chapter I, which is not imported. So the imported machinery arrives without its dictionary, and every reference in ss.143A, 144, 145 and 148 to a cheque or its drawer has to be re-read for a transfer by the reader. This is the precise mechanism by which 'to the extent the circumstances admit' becomes a question rather than an instruction."
+    },
+    {
+      "ref": "ni:sec_7",
+      "act": "ni",
+      "eId": "sec_7",
+      "file": "negotiable-instruments-act-1881.akn.xml",
+      "tier": "definition",
+      "role": "defines drawer / drawee / payee - outside the imported Chapter",
+      "applies": "always",
+      "note": "The other half of the missing dictionary. 'Drawer' is the maker of a cheque; the PSS Act's 'person initiating the electronic funds transfer' is not a drawer of anything. Reading ss.143A and 148 onto a s.25 case means treating the two as equivalents, which is a substitution the statute invites but never spells out."
+    },
+    {
+      "ref": "bnss:sec_210",
+      "act": "bnss",
+      "eId": "sec_210",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "cognizance by magistrate",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.190. The general power on which PSS s.28 operates as a restriction."
+    },
+    {
+      "ref": "bnss:sec_223",
+      "act": "bnss",
+      "eId": "sec_223",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "examination of complainant",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.200. The BNSS version adds a right of hearing to the accused before cognizance, which is new for every complaint case including this one."
+    },
+    {
+      "ref": "bnss:sec_227",
+      "act": "bnss",
+      "eId": "sec_227",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "issue of process",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.204."
+    },
+    {
+      "ref": "bnss:sec_285",
+      "act": "bnss",
+      "eId": "sec_285",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "procedure for summary trials",
+      "applies": "post-2024-07-01",
+      "note": "The summary-trial chapter (ss.283-288) = CrPC ss.262-265, which NI s.143 names and s.25(5) carries in."
+    },
+    {
+      "ref": "bnss:sec_63",
+      "act": "bnss",
+      "eId": "sec_63",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "form of summons",
+      "applies": "post-2024-07-01",
+      "note": "Read with the imported NI s.144."
+    },
+    {
+      "ref": "bnss:sec_64",
+      "act": "bnss",
+      "eId": "sec_64",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "summons how served",
+      "applies": "post-2024-07-01"
+    },
+    {
+      "ref": "bnss:sec_197",
+      "act": "bnss",
+      "eId": "sec_197",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "ordinary place of inquiry and trial",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.177. This is where a s.25 complaint is filed if NI s.142(2) does not come across - the court in whose local jurisdiction the offence was committed, which for a failed transfer is itself a hard question with a bank on one side and a beneficiary on the other."
+    },
+    {
+      "ref": "bnss:sec_514",
+      "act": "bnss",
+      "eId": "sec_514",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "limitation",
+      "role": "bar to cognizance after the limitation period",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.468. Three years for an offence punishable with imprisonment exceeding one year but not exceeding three years, which is what s.25(1) is. This is the residual limitation for a s.25 complaint if the one-month rule in NI s.142(1)(b) is held not to travel through s.25(5)."
+    },
+    {
+      "ref": "bnss:sec_515",
+      "act": "bnss",
+      "eId": "sec_515",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "limitation",
+      "role": "commencement of the limitation period",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.469. Fixes the day the period starts, which on a s.25 cause of action is the day after the fifteen days under proviso (d) expire."
+    },
+    {
+      "ref": "bnss:sec_519",
+      "act": "bnss",
+      "eId": "sec_519",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "limitation",
+      "role": "extension of the limitation period",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.473. Cognizance despite expiry where the delay is properly explained or it is necessary in the interests of justice."
+    },
+    {
+      "ref": "bnss:sec_359",
+      "act": "bnss",
+      "eId": "sec_359",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "compounding of offences",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.320. Neither NI s.147 nor PSS s.31 works through this section - both open with a non obstante - but it is the baseline against which their conflict has to be read."
+    },
+    {
+      "ref": "bnss:sec_395",
+      "act": "bnss",
+      "eId": "sec_395",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "order to pay compensation",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.357. The route by which the fine under s.25(1), which may run to twice the amount of the transfer, reaches the beneficiary. Read against PSS s.29, which points the fine at costs instead."
+    },
+    {
+      "ref": "bnss:sec_415",
+      "act": "bnss",
+      "eId": "sec_415",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "appeals from convictions",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.374. The appeal on which the imported NI s.148 deposit would be ordered."
+    },
+    {
+      "ref": "bnss:sec_528",
+      "act": "bnss",
+      "eId": "sec_528",
+      "file": "bharatiya-nagarik-suraksha-sanhita-2023.akn.xml",
+      "tier": "procedure",
+      "role": "inherent power of the High Court",
+      "applies": "post-2024-07-01",
+      "note": "= CrPC s.482. The route to quash a s.25 complaint, and the forum in which the open questions in this profile will in practice first be argued."
+    },
+    {
+      "ref": "crpc:sec_190",
+      "act": "crpc",
+      "eId": "sec_190",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "cognizance by magistrate",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_200",
+      "act": "crpc",
+      "eId": "sec_200",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "examination of complainant",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_204",
+      "act": "crpc",
+      "eId": "sec_204",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "issue of process",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_262",
+      "act": "crpc",
+      "eId": "sec_262",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "procedure for summary trials",
+      "applies": "pre-2024-07-01",
+      "note": "Expressly invoked by NI Act s.143 (ss.262-265), which s.25(5) imports."
+    },
+    {
+      "ref": "crpc:sec_177",
+      "act": "crpc",
+      "eId": "sec_177",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "ordinary place of inquiry and trial",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_468",
+      "act": "crpc",
+      "eId": "sec_468",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "limitation",
+      "role": "bar to cognizance after the limitation period",
+      "applies": "pre-2024-07-01",
+      "note": "Three years for an offence punishable with imprisonment for a term exceeding one year but not exceeding three - the class s.25(1) falls in."
+    },
+    {
+      "ref": "crpc:sec_469",
+      "act": "crpc",
+      "eId": "sec_469",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "limitation",
+      "role": "commencement of the limitation period",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_473",
+      "act": "crpc",
+      "eId": "sec_473",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "limitation",
+      "role": "extension of the limitation period",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_320",
+      "act": "crpc",
+      "eId": "sec_320",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "compounding of offences",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_357",
+      "act": "crpc",
+      "eId": "sec_357",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "order to pay compensation",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_374",
+      "act": "crpc",
+      "eId": "sec_374",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "appeals from convictions",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "crpc:sec_482",
+      "act": "crpc",
+      "eId": "sec_482",
+      "file": "code-of-criminal-procedure-1973.akn.xml",
+      "tier": "procedure",
+      "role": "inherent power of the High Court",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "bsa:sec_63",
+      "act": "bsa",
+      "eId": "sec_63",
+      "file": "bharatiya-sakshya-adhiniyam-2023.akn.xml",
+      "tier": "evidence",
+      "role": "admissibility of electronic records",
+      "applies": "post-2024-07-01",
+      "note": "= IEA s.65B. Load-bearing here in a way it is not in a cheque case. In a s.138 trial the primary document is a piece of paper; in a s.25 trial there is no paper at all. The instruction, the system provider's log, the bank's communication of dishonour and often the demand notice are all electronic records, and every one of them needs the s.63 certificate to go in."
+    },
+    {
+      "ref": "bsa:sec_86",
+      "act": "bsa",
+      "eId": "sec_86",
+      "file": "bharatiya-sakshya-adhiniyam-2023.akn.xml",
+      "tier": "evidence",
+      "role": "presumption as to electronic records and signatures",
+      "applies": "post-2024-07-01",
+      "note": "= IEA s.85B. Presumes the integrity of a secure electronic record and that a secure electronic signature was affixed with the intention of signing - the presumption that makes proving 'this person initiated the transfer' tractable."
+    },
+    {
+      "ref": "bsa:sec_104",
+      "act": "bsa",
+      "eId": "sec_104",
+      "file": "bharatiya-sakshya-adhiniyam-2023.akn.xml",
+      "tier": "evidence",
+      "role": "burden of proof",
+      "applies": "post-2024-07-01",
+      "note": "= IEA s.101. Read with the presumptions in s.25(2) and 25(4), which shift the burden the moment the complainant produces the bank's communication."
+    },
+    {
+      "ref": "iea:sec_65B",
+      "act": "iea",
+      "eId": "sec_65B",
+      "file": "indian-evidence-act-1872.akn.xml",
+      "tier": "evidence",
+      "role": "admissibility of electronic records",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "iea:sec_85B",
+      "act": "iea",
+      "eId": "sec_85B",
+      "file": "indian-evidence-act-1872.akn.xml",
+      "tier": "evidence",
+      "role": "presumption as to electronic records and signatures",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "iea:sec_101",
+      "act": "iea",
+      "eId": "sec_101",
+      "file": "indian-evidence-act-1872.akn.xml",
+      "tier": "evidence",
+      "role": "burden of proof",
+      "applies": "pre-2024-07-01"
+    },
+    {
+      "ref": "bbea:sec_2",
+      "act": "bbea",
+      "eId": "sec_2",
+      "file": "bankers-books-evidence-act-1891.akn.xml",
+      "tier": "evidence",
+      "role": "definitions (bankers' books)",
+      "applies": "always",
+      "note": "'Bankers' books' expressly includes records kept in electronic form, which is what makes this Act usable at all for an account held on a core banking system."
+    },
+    {
+      "ref": "bbea:sec_4",
+      "act": "bbea",
+      "eId": "sec_4",
+      "file": "bankers-books-evidence-act-1891.akn.xml",
+      "tier": "evidence",
+      "role": "mode of proof of entries",
+      "applies": "always",
+      "note": "The certified copy route to proving the state of the account - that is, proving the insufficiency that is the whole substance of the offence, as distinct from the dishonour that s.25(4) presumes."
+    },
+    {
+      "ref": "itact:sec_2",
+      "act": "itact",
+      "eId": "sec_2",
+      "file": "it-act-2000.akn.xml",
+      "tier": "definition",
+      "role": "IT definitions",
+      "applies": "always",
+      "note": "Supplies 'electronic record', 'electronic form', 'addressee' and 'originator' - and 'originator' is the nearest defined word for the person the PSS Act calls the initiator of a transfer, a term the PSS Act itself never defines."
+    },
+    {
+      "ref": "itact:sec_3",
+      "act": "itact",
+      "eId": "sec_3",
+      "file": "it-act-2000.akn.xml",
+      "tier": "supporting",
+      "role": "authentication of electronic records",
+      "applies": "always",
+      "note": "How an electronic record is authenticated by a digital signature. Behind proviso (b): initiation 'in accordance with the relevant procedural guidelines' is, in practice, a question about authentication."
+    },
+    {
+      "ref": "itact:sec_3A",
+      "act": "itact",
+      "eId": "sec_3A",
+      "file": "it-act-2000.akn.xml",
+      "tier": "supporting",
+      "role": "electronic signature",
+      "applies": "always",
+      "note": "The wider electronic-signature regime that covers the second factors and one-time passwords an ordinary retail transfer actually uses."
+    },
+    {
+      "ref": "itact:sec_4",
+      "act": "itact",
+      "eId": "sec_4",
+      "file": "it-act-2000.akn.xml",
+      "tier": "notice",
+      "role": "legal recognition of electronic records",
+      "applies": "always",
+      "note": "Where a law requires information to be in writing, an electronic record satisfies it. This is what lets proviso (c)'s 'notice in writing' be an email, and it is a question the cheque case never had to answer because a demand notice is posted."
+    },
+    {
+      "ref": "itact:sec_11",
+      "act": "itact",
+      "eId": "sec_11",
+      "file": "it-act-2000.akn.xml",
+      "tier": "evidence",
+      "role": "attribution of electronic records",
+      "applies": "always",
+      "note": "When an electronic record is attributed to the originator - including where it was sent by a system programmed to operate automatically on his behalf. The provision that connects a transfer instruction to the person accused of initiating it."
+    },
+    {
+      "ref": "itact:sec_13",
+      "act": "itact",
+      "eId": "sec_13",
+      "file": "it-act-2000.akn.xml",
+      "tier": "notice",
+      "role": "time and place of despatch and receipt",
+      "applies": "always",
+      "note": "Fixes when an electronic record is despatched and received, and deems the place of despatch and receipt to be the originator's and the addressee's places of business. It decides when the thirty-day and fifteen-day clocks in s.25(1) start if the notice is electronic, and it is one of the few provisions in the corpus that speaks to where a wholly electronic cause of action arises."
+    },
+    {
+      "ref": "genclauses:sec_27",
+      "act": "genclauses",
+      "eId": "sec_27",
+      "file": "general-clauses-act-1897.akn.xml",
+      "tier": "notice",
+      "role": "deemed service by post",
+      "applies": "always",
+      "note": "The basis on which a demand notice under proviso (c) is deemed served when properly addressed, prepaid and posted, whatever the addressee says about receiving it. Carried over from the s.138 model, where it does most of the work on notice."
+    },
+    {
+      "ref": "limitation:sec_5",
+      "act": "limitation",
+      "eId": "sec_5",
+      "file": "limitation-act-1963.akn.xml",
+      "tier": "limitation",
+      "role": "condonation of delay",
+      "applies": "always",
+      "note": "Relevant only if the one-month rule in NI s.142(1)(b) is held to come across, since it is that proviso which brings condonation into a cheque complaint. On the other reading of s.25(5) the operative extension provision is CrPC s.473 / BNSS s.519 instead."
+    },
+    {
+      "ref": "probation:sec_3",
+      "act": "probation",
+      "eId": "sec_3",
+      "file": "probation-of-offenders-act-1958.akn.xml",
+      "tier": "sentencing",
+      "role": "release after admonition",
+      "applies": "always"
+    },
+    {
+      "ref": "probation:sec_4",
+      "act": "probation",
+      "eId": "sec_4",
+      "file": "probation-of-offenders-act-1958.akn.xml",
+      "tier": "sentencing",
+      "role": "release on probation of good conduct",
+      "applies": "always",
+      "note": "Available on the same reasoning as in a s.138 case: a two-year, fine-led offence arising out of a debt is the paradigm case for probation rather than custody."
+    },
+    {
+      "ref": "probation:sec_5",
+      "act": "probation",
+      "eId": "sec_5",
+      "file": "probation-of-offenders-act-1958.akn.xml",
+      "tier": "sentencing",
+      "role": "compensation on release",
+      "applies": "always"
+    },
+    {
+      "ref": "ipc:sec_420",
+      "act": "ipc",
+      "eId": "sec_420",
+      "file": "indian-penal-code.akn.xml",
+      "tier": "supporting",
+      "role": "cheating (companion offence)",
+      "applies": "pre-2024-07-01",
+      "note": "Commonly charged alongside, where the transfer was initiated on an account the initiator knew was empty. The companion offence matters more here than in a cheque case, because a s.25 complaint has no settled limitation period and a cheating complaint has a clear one."
+    },
+    {
+      "ref": "bns:sec_318",
+      "act": "bns",
+      "eId": "sec_318",
+      "file": "bharatiya-nyaya-sanhita-2023.akn.xml",
+      "tier": "supporting",
+      "role": "cheating (companion offence)",
+      "applies": "post-2024-07-01",
+      "note": "= IPC s.420."
+    },
+    {
+      "ref": "constitution:art_246",
+      "act": "constitution",
+      "eId": "art_246",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "legislative competence",
+      "applies": "always",
+      "note": "A real difference from the s.138 case type, not a formality. The NI Act rests on Entry 46 of the Concurrent List - bills of exchange, cheques, promissory notes and other like instruments - so a State legislature can in principle touch it. The PSS Act rests on the Union List: Entry 38 (Reserve Bank of India) and Entry 45 (banking). Section 25 is therefore Union law end to end, and there is no room for a State amendment to the offence. That is one reason this case type has no state substantive layer and, in all probability, never will."
+    },
+    {
+      "ref": "constitution:art_21",
+      "act": "constitution",
+      "eId": "art_21",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "right to life and personal liberty - fair and speedy trial",
+      "applies": "always",
+      "note": "The anchor for expeditious disposal. The directions in In re Expeditious Trial of Cases under s.138 NI Act (2021) are addressed to s.138 complaints; whether they reach a s.25 complaint tried under the same imported s.143 summary procedure has never been asked."
+    },
+    {
+      "ref": "constitution:art_20",
+      "act": "constitution",
+      "eId": "art_20",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "no ex-post-facto penal liability",
+      "applies": "always",
+      "note": "Bears directly on the imported NI s.143A: the interim-compensation power was held prospective in a s.138 case, and the same reasoning would apply to a s.25 case on causes of action before 2018."
+    },
+    {
+      "ref": "constitution:art_14",
+      "act": "constitution",
+      "eId": "art_14",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "equality before law",
+      "applies": "always",
+      "note": "The frame in which the gaps in this profile are most likely to be litigated. If two people are owed the same money and one was paid by cheque and the other by transfer, a difference between a one-month and a three-year limitation, or between compounding by consent and compounding by a regulator, has to be justified."
+    },
+    {
+      "ref": "constitution:art_141",
+      "act": "constitution",
+      "eId": "art_141",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "law declared by the Supreme Court is binding",
+      "applies": "always",
+      "note": "Cuts both ways here. It is what makes the s.138 jurisprudence binding on courts trying cheque cases, and it is exactly what a court trying a s.25 case cannot rely on, because none of that jurisprudence was declared about s.25."
+    },
+    {
+      "ref": "constitution:art_142",
+      "act": "constitution",
+      "eId": "art_142",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "power to do complete justice",
+      "applies": "always",
+      "note": "The source of the compounding-cost guidelines in the cheque jurisprudence. If the s.31 and s.147 conflict is ever resolved in practice rather than in theory, this is the likely instrument."
+    },
+    {
+      "ref": "constitution:art_226",
+      "act": "constitution",
+      "eId": "art_226",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "High Court writ jurisdiction",
+      "applies": "always"
+    },
+    {
+      "ref": "constitution:art_227",
+      "act": "constitution",
+      "eId": "art_227",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "High Court power of superintendence",
+      "applies": "always"
+    },
+    {
+      "ref": "constitution:art_136",
+      "act": "constitution",
+      "eId": "art_136",
+      "file": "constitution-of-india.akn.xml",
+      "tier": "constitutional",
+      "role": "special leave to appeal",
+      "applies": "always",
+      "note": "The route by which the open questions in this profile would eventually get an answer. That no s.25 matter has taken it is the reason they are still open."
+    },
+    {
+      "ref": "advocates:sec_29",
+      "act": "advocates",
+      "eId": "sec_29",
+      "file": "advocates-act-1961.akn.xml",
+      "tier": "supporting",
+      "role": "who may practise law",
+      "applies": "always"
+    },
+    {
+      "ref": "advocates:sec_30",
+      "act": "advocates",
+      "eId": "sec_30",
+      "file": "advocates-act-1961.akn.xml",
+      "tier": "supporting",
+      "role": "advocate's right to appear",
+      "applies": "always"
+    },
+    {
+      "ref": "advocates:sec_32",
+      "act": "advocates",
+      "eId": "sec_32",
+      "file": "advocates-act-1961.akn.xml",
+      "tier": "supporting",
+      "role": "appearance by permission",
+      "applies": "always",
+      "note": "The basis on which a party in person appears - and, for a s.28 complaint filed by the Reserve Bank's officer rather than the beneficiary, the basis on which anyone other than an advocate could be heard."
+    },
+    {
+      "ref": "oaths:sec_3",
+      "act": "oaths",
+      "eId": "sec_3",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "power to administer oaths",
+      "applies": "always",
+      "note": "The authority behind the affidavit that the imported NI s.145 allows the complainant to file."
+    },
+    {
+      "ref": "oaths:sec_4",
+      "act": "oaths",
+      "eId": "sec_4",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "oath to witnesses and interpreters",
+      "applies": "always"
+    },
+    {
+      "ref": "oaths:sec_5",
+      "act": "oaths",
+      "eId": "sec_5",
+      "file": "oaths-act-1969.akn.xml",
+      "tier": "evidence",
+      "role": "affirmation instead of oath",
+      "applies": "always"
+    },
+    {
+      "ref": "lsa:sec_19",
+      "act": "lsa",
+      "eId": "sec_19",
+      "file": "legal-services-authorities-act-1987.akn.xml",
+      "tier": "supporting",
+      "role": "organisation of Lok Adalats",
+      "applies": "always"
+    },
+    {
+      "ref": "lsa:sec_20",
+      "act": "lsa",
+      "eId": "sec_20",
+      "file": "legal-services-authorities-act-1987.akn.xml",
+      "tier": "supporting",
+      "role": "how a case reaches a Lok Adalat",
+      "applies": "always",
+      "note": "The settlement route that, in a cheque case, disposes of a large share of the docket. It is available here on the same terms and is the one disposal path that does not depend on resolving the s.147 / s.31 compounding conflict."
+    },
+    {
+      "ref": "lsa:sec_21",
+      "act": "lsa",
+      "eId": "sec_21",
+      "file": "legal-services-authorities-act-1987.akn.xml",
+      "tier": "supporting",
+      "role": "award of a Lok Adalat",
+      "applies": "always"
+    },
+    {
+      "ref": "rpwd:sec_12",
+      "act": "rpwd",
+      "eId": "sec_12",
+      "file": "rights-of-persons-with-disabilities-act-2016.akn.xml",
+      "tier": "supporting",
+      "role": "access to justice",
+      "applies": "always"
+    }
+  ],
+
+  "terms": {
+    "electronic funds transfer": {
+      "ref": "pss:sec_2",
+      "gloss": "Any transfer of funds initiated by a person by instruction, authorisation or order to a bank to debit or credit an account maintained with that bank through electronic means; includes point-of-sale transfers, ATM transactions, direct deposits and withdrawals, and transfers initiated by telephone, internet or card.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "procedure",
+      "aka": ["EFT", "electronic transfer", "funds transfer"]
+    },
+    "payment system": {
+      "ref": "pss:sec_2",
+      "gloss": "A system that enables payment to be effected between a payer and a beneficiary, involving clearing, payment or settlement service or all of them; excludes a stock exchange. The Explanation brings in credit card, debit card, smart card and money-transfer operations.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "procedure"
+    },
+    "payment instruction": {
+      "ref": "pss:sec_2",
+      "gloss": "Any instrument, authorisation or order in any form, including electronic, to effect a payment by a person to a system participant or between system participants.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "document"
+    },
+    "payment obligation": {
+      "ref": "pss:sec_2",
+      "gloss": "An indebtedness owed by one system participant to another as a result of clearing or settlement of one or more payment instructions.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "settlement": {
+      "ref": "pss:sec_2",
+      "gloss": "Settlement of payment instructions, including of securities, foreign exchange, derivatives or other transactions involving payment obligations. Once effected it is final and irrevocable under s.23.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "procedure"
+    },
+    "netting": {
+      "ref": "pss:sec_2",
+      "gloss": "The system provider's determination of what is due among system participants after setting off their obligations, so that only a net claim is demanded or a net obligation owed.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "procedure"
+    },
+    "gross settlement system": {
+      "ref": "pss:sec_2",
+      "gloss": "A payment system in which each settlement of funds or securities occurs on separate or individual instructions rather than on a netted basis.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "procedure",
+      "aka": ["RTGS"]
+    },
+    "system provider": {
+      "ref": "pss:sec_2",
+      "gloss": "A person who operates an authorised payment system. It is the system provider whose procedural guidelines the transfer must have followed for proviso (b) of s.25(1) to be satisfied.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "system participant": {
+      "ref": "pss:sec_2",
+      "gloss": "A bank or other person participating in a payment system; includes the system provider.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "bank": {
+      "ref": "pss:sec_2",
+      "gloss": "A scheduled bank, a post office savings bank, a banking company, a co-operative bank, or any other bank the Reserve Bank notifies for the purposes of this Act. The bank is the drawee equivalent: it is the bank that cannot execute the instruction and the bank whose communication triggers the presumption under s.25(4).",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "Reserve Bank": {
+      "ref": "pss:sec_2",
+      "gloss": "The Reserve Bank of India. It authorises payment systems, sets their standards, and - uniquely for this case type - is the default complainant under s.28 and holds a compounding power under s.31.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "actor",
+      "aka": ["RBI"]
+    },
+    "authorisation": {
+      "ref": "pss:sec_4",
+      "gloss": "The Reserve Bank's permission to commence or operate a payment system. Without it there is no system provider, and without a system provider there are no procedural guidelines for proviso (b) to test against.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "procedure"
+    },
+    "procedural guidelines": {
+      "ref": "pss:sec_21",
+      "gloss": "The rules the system provider issues for the operation of its payment system and must disclose to participants. Proviso (b) of s.25(1) makes compliance with them an element of the offence - a requirement with no counterpart at all in a cheque case.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "document",
+      "aka": ["system rules", "scheme rules"]
+    },
+    "standards": {
+      "ref": "pss:sec_10",
+      "gloss": "The formats, timings and manner of transfer the Reserve Bank prescribes for payment systems, and the guidelines it issues for their management.",
+      "group": "The transfer & the payment system",
+      "pos": "noun",
+      "role": "document"
+    },
+    "initiator": {
+      "ref": "pss:sec_25",
+      "gloss": "The person who initiates the electronic funds transfer from an account maintained by him - the accused. The PSS Act uses the word only in s.25 and never defines it; the nearest defined equivalent anywhere in the corpus is 'originator' in the IT Act.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor",
+      "aka": ["person initiating the electronic funds transfer", "originator"]
+    },
+    "beneficiary": {
+      "ref": "pss:sec_25",
+      "gloss": "The person the money was to be paid to, and the person who must give the written demand under proviso (c). Like 'initiator' it is undefined: it appears in the definition of 'payment system' and in s.25, and s.28 calls the same person 'the person aggrieved by the dishonour'.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "person aggrieved": {
+      "ref": "pss:sec_28",
+      "gloss": "The words the proviso to s.28(1) uses for the private complainant in a s.25 case. Whether it means exactly the beneficiary of the transfer, or something wider, is untested.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "payer": {
+      "ref": "pss:sec_2",
+      "gloss": "The person between whom and a beneficiary a payment system enables payment to be effected. In a s.25 case the payer is the initiator.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "drawer": {
+      "ref": "ni:sec_7",
+      "gloss": "The maker of a bill of exchange or cheque. There is no drawer in an electronic funds transfer, but ss.143A and 148 of the NI Act - carried in by s.25(5) - are written about the drawer, so applying them means reading the word as 'initiator'.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "company": {
+      "ref": "pss:sec_27",
+      "gloss": "For the purposes of vicarious liability, any body corporate, including a firm or other association of individuals.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor",
+      "aka": ["body corporate", "firm"]
+    },
+    "director": {
+      "ref": "pss:sec_27",
+      "gloss": "A director of a company and, in relation to a firm, a partner in it. A director whose consent, connivance or neglect is proved is liable under s.27(2) even if not in charge of the business.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor",
+      "aka": ["partner"]
+    },
+    "person in charge": {
+      "ref": "pss:sec_27",
+      "gloss": "The person who at the time of the contravention was in charge of, and responsible to, the company for the conduct of its business, and is therefore liable along with it unless he proves absence of knowledge or due diligence.",
+      "group": "Parties & liability",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "dishonour of electronic funds transfer": {
+      "ref": "pss:sec_25",
+      "gloss": "The transfer cannot be executed because the credit balance in the account is insufficient to honour the instruction, or the instruction exceeds the amount arranged to be paid from that account by agreement with the bank.",
+      "group": "The offence (§25)",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": ["failed transfer", "non-execution"]
+    },
+    "insufficiency of funds": {
+      "ref": "pss:sec_25",
+      "gloss": "The state of the account that makes the transfer unexecutable. It is the substance of the offence, and unlike the fact of dishonour it is not presumed - it has to be proved, in practice from the bankers' books.",
+      "group": "The offence (§25)",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "arrangement with the bank": {
+      "ref": "pss:sec_25",
+      "gloss": "The amount agreed with the bank as payable from the account - an overdraft or similar facility. Exceeding it is the second limb of dishonour under s.25(1), exactly as it is under s.138.",
+      "group": "The offence (§25)",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": ["overdraft arrangement"]
+    },
+    "debt or other liability": {
+      "ref": "pss:sec_25",
+      "gloss": "A legally enforceable debt or other liability, by the Explanation to s.25. The transfer must have been initiated to discharge one, wholly or in part, for the section to apply at all.",
+      "group": "The offence (§25)",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "demand notice": {
+      "ref": "pss:sec_25",
+      "gloss": "The beneficiary's written demand for payment, given to the initiator within thirty days of receiving information of the dishonour from the bank. Proviso (c) of s.25(1).",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "document",
+      "aka": ["notice of demand", "statutory notice", "legal notice"]
+    },
+    "cause of action": {
+      "ref": "pss:sec_25",
+      "gloss": "Complete when the initiator fails to pay within fifteen days of the demand notice. Only then is there an offence to complain of. How long the beneficiary then has to complain is the open question of this case type.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "presumption of liability": {
+      "ref": "pss:sec_25",
+      "gloss": "The presumption under s.25(2) that the transfer was initiated for the discharge, in whole or in part, of a debt or other liability, unless the contrary is proved. The PSS twin of NI s.139.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "presumption of dishonour": {
+      "ref": "pss:sec_25",
+      "gloss": "The presumption under s.25(4) that a transfer was dishonoured, arising on production of a communication from the bank denoting it, unless and until disproved. Stronger in terms than NI s.146, which makes the bank's memo prima facie evidence only.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "bank communication": {
+      "ref": "pss:sec_25",
+      "gloss": "The communication from the bank denoting the dishonour of the transfer - the document that triggers the s.25(4) presumption. It is the analogue of the cheque return memo, and it is almost always an electronic record.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "document",
+      "aka": ["dishonour advice", "failure message"]
+    },
+    "no-belief defence bar": {
+      "ref": "pss:sec_25",
+      "gloss": "The rule in s.25(3) that it is no defence to say the initiator did not have reason to believe, when giving the instruction, that the credit in the account was insufficient. The PSS twin of NI s.140.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "electronic record": {
+      "ref": "itact:sec_2",
+      "gloss": "Data, record or data generated, image or sound stored, received or sent in an electronic form or micro film. In a s.25 case nearly every document in the case is one.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "document"
+    },
+    "electronic signature": {
+      "ref": "itact:sec_3A",
+      "gloss": "Authentication of an electronic record by an electronic technique specified in the Second Schedule, including a digital signature. What stands where a drawer's signature stands on a cheque.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "document",
+      "aka": ["digital signature"]
+    },
+    "attribution": {
+      "ref": "itact:sec_11",
+      "gloss": "The rule that an electronic record is attributed to its originator where he sent it, or it was sent by someone authorised, or by an information system programmed to operate automatically on his behalf. It is how a transfer instruction is tied to the accused.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "electronic-records certificate": {
+      "ref": "bsa:sec_63",
+      "gloss": "The certificate that makes a computer output admissible as evidence of its contents without producing the original. Required for the instruction, the system logs and the bank's dishonour communication alike.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "document",
+      "aka": ["65B certificate", "63 certificate", "section 65B certificate"]
+    },
+    "bankers' book": {
+      "ref": "bbea:sec_2",
+      "gloss": "The ledgers, day-books, account books and other records used in the ordinary business of a bank, including records kept in electronic form.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "document"
+    },
+    "certified copy": {
+      "ref": "bbea:sec_4",
+      "gloss": "A copy of an entry in a bankers' book, certified as prescribed, receivable as prima facie evidence of the entry. The practical route to proving the state of the account.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "document"
+    },
+    "burden of proof": {
+      "ref": "bsa:sec_104",
+      "gloss": "The obligation on the party who would fail if no evidence were given. The presumptions in s.25(2) and s.25(4) move it onto the initiator early.",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "evidence on affidavit": {
+      "ref": "ni:sec_145",
+      "gloss": "The complainant's evidence given on affidavit and read in the trial, subject to the court summoning the deponent. Carried into a s.25 case by s.25(5).",
+      "group": "Presumptions & evidence",
+      "pos": "noun",
+      "role": "procedure"
+    },
+    "complaint": {
+      "ref": "pss:sec_28",
+      "gloss": "The written complaint on which the court takes cognizance. For PSS offences generally it must come from an authorised officer of the Reserve Bank; for a s.25 offence the proviso lets it come from the person aggrieved by the dishonour.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "document"
+    },
+    "cognizance": {
+      "ref": "pss:sec_28",
+      "gloss": "The court's act of taking notice of the offence so that proceedings can begin. Section 28 restricts who may set it in motion and which court may try the case; it says nothing about by when or where.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "procedure"
+    },
+    "Judicial Magistrate of the first class": {
+      "ref": "pss:sec_28",
+      "gloss": "The lowest court that may try an offence under this Act. The same floor s.142(1)(c) sets for a cheque case.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "forum",
+      "aka": ["JMFC", "Metropolitan Magistrate", "Judicial First Class Magistrate"]
+    },
+    "summary trial": {
+      "ref": "ni:sec_143",
+      "gloss": "Trial under the summary-trial provisions of the criminal procedure code, with a sentence limited to one year and compensation to five thousand rupees, and a direction to conclude within six months. Reaches a s.25 case only through s.25(5).",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "procedure"
+    },
+    "summons": {
+      "ref": "bnss:sec_63",
+      "gloss": "The court's written order requiring the accused to appear, served in the manner NI s.144 prescribes for these cases.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "document"
+    },
+    "interim compensation": {
+      "ref": "ni:sec_143A",
+      "gloss": "Up to twenty per cent of the amount, ordered against the accused during the trial. Reaches a s.25 case only by reading 'drawer of the cheque' as the initiator of the transfer.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "remedy"
+    },
+    "appellate deposit": {
+      "ref": "ni:sec_148",
+      "gloss": "The minimum twenty per cent an appellate court may require an appellant against conviction to deposit. Carried across on the same substitution as interim compensation.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "remedy"
+    },
+    "place of trial": {
+      "ref": "bnss:sec_197",
+      "gloss": "The court within whose local jurisdiction the offence was committed. This is the residual venue rule for a s.25 complaint, because s.28 fixes no venue and it is unsettled whether NI s.142(2) comes across.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": ["territorial jurisdiction", "venue"]
+    },
+    "compounding": {
+      "ref": "ni:sec_147",
+      "gloss": "Settlement of the offence between the parties, ending the prosecution. Available in a cheque case as of right; in a s.25 case it competes with the Reserve Bank's own compounding power under s.31.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "remedy"
+    },
+    "compounding by the Reserve Bank": {
+      "ref": "pss:sec_31",
+      "gloss": "An authorised officer of the Reserve Bank compounding an offence under the Act on the offender's application, after which no proceeding may be initiated or continued. Written for regulatory contraventions, but on its face wide enough to cover a s.25 offence between two private parties.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "remedy"
+    },
+    "limitation": {
+      "ref": "bnss:sec_514",
+      "gloss": "The period after which no court may take cognizance - three years for an offence punishable with imprisonment exceeding one year but not exceeding three, which is what s.25(1) is. It governs unless the one-month rule of NI s.142(1)(b) is held to come across.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "doctrine",
+      "aka": ["period of limitation", "time bar"]
+    },
+    "condonation of delay": {
+      "ref": "limitation:sec_5",
+      "gloss": "Extension of a prescribed period where sufficient cause is shown. Relevant to a s.25 complaint only on the reading that imports the s.142 proviso; otherwise the extension provision is CrPC s.473 / BNSS s.519.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "procedure"
+    },
+    "deemed service": {
+      "ref": "genclauses:sec_27",
+      "gloss": "Service of a notice is deemed effected by properly addressing, prepaying and posting it, unless the contrary is proved. The rule that stops a demand notice failing because the addressee says it never arrived.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "application of fine": {
+      "ref": "pss:sec_29",
+      "gloss": "The court's power to direct the whole or part of a fine imposed under the Act towards the costs of the proceedings. The Act's only word on where the money goes, and it does not name the beneficiary.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "remedy"
+    },
+    "Lok Adalat": {
+      "ref": "lsa:sec_19",
+      "gloss": "A forum organised by a legal-services authority to settle pending cases by consent; its award is deemed a decree and is final. The one disposal route for a s.25 case that does not depend on which compounding power governs.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "forum"
+    },
+    "probation of good conduct": {
+      "ref": "probation:sec_4",
+      "gloss": "Release of a convicted offender on a bond to keep the peace and be of good behaviour instead of sentencing him at once - the natural disposal for a fine-led offence arising from a debt.",
+      "group": "Notice, limitation & disposal",
+      "pos": "noun",
+      "role": "remedy"
+    },
+    "quashing": {
+      "ref": "bnss:sec_528",
+      "gloss": "The High Court's exercise of its inherent power to end a complaint that is an abuse of process. The forum where the unsettled questions about the reach of s.25(5) will first be argued.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "remedy"
+    },
+    "advocate": {
+      "ref": "advocates:sec_30",
+      "gloss": "A person enrolled on a State roll, entitled as of right to practise in every court in India. Both the complainant and the accused in a s.25 case are ordinarily represented by one.",
+      "group": "Procedure & process",
+      "pos": "noun",
+      "role": "actor"
+    },
+    "overriding effect": {
+      "ref": "pss:sec_32",
+      "gloss": "The rule that this Act prevails over anything inconsistent in any other law in force. The textual reason a PSS provision beats an NI Chapter XVII provision imported by s.25(5) when both cover the same ground.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "legislative competence": {
+      "ref": "constitution:art_246",
+      "gloss": "Which legislature may enact a law. The PSS Act rests on the Union List (Reserve Bank, banking); the NI Act rests on the Concurrent List. Section 25 is therefore Union law with no room for a State amendment.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "fair and speedy trial": {
+      "ref": "constitution:art_21",
+      "gloss": "The Article 21 guarantee behind expeditious disposal. The Supreme Court's directions on expediting cheque cases were given about s.138 and have never been extended in terms to s.25.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "binding precedent": {
+      "ref": "constitution:art_141",
+      "gloss": "Law declared by the Supreme Court binds every court. It is the reason a cheque court has a settled body of authority and a s.25 court, so far, has none.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "doctrine"
+    },
+    "writ jurisdiction": {
+      "ref": "constitution:art_226",
+      "gloss": "The High Court's power to issue writs, exercisable alongside its inherent criminal power to test proceedings under this section.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "remedy"
+    },
+    "access to justice": {
+      "ref": "rpwd:sec_12",
+      "gloss": "The right of a person with disability to access any court without discrimination, with accessible documents and reasonable accommodation - a duty on the court that does not vary with the case type.",
+      "group": "Constitutional & powers",
+      "pos": "noun",
+      "role": "doctrine"
+    }
+  },
+
+  "edges": [
+    { "from": "pss:sec_25", "rel": "uses-definition", "to": "pss:sec_2", "note": "'electronic funds transfer', 'bank', 'system provider'" },
+    { "from": "pss:sec_25", "rel": "raises-presumption", "to": "pss:sec_25", "note": "25(2) debt or liability; 25(4) the fact of dishonour" },
+    { "from": "pss:sec_25", "rel": "guidelines-issued-under", "to": "pss:sec_21", "note": "proviso (b): the system provider's procedural guidelines, disclosed under s.21 and issued within the standards set under s.10" },
+    { "from": "pss:sec_25", "rel": "guidelines-issued-under", "to": "pss:sec_10" },
+    { "from": "pss:sec_25", "rel": "presupposes-authorised-system", "to": "pss:sec_4", "note": "a system provider is a person operating an AUTHORISED payment system, so proviso (b) presupposes authorisation" },
+    { "from": "pss:sec_25", "rel": "bounded-by-settlement-finality", "to": "pss:sec_23", "note": "s.25 is about a transfer that cannot be executed; once settlement is final and irrevocable there is nothing to dishonour" },
+    { "from": "pss:sec_25", "rel": "cognizance-taken-under", "to": "pss:sec_28", "note": "on the complaint of the person aggrieved, by the proviso to s.28(1)" },
+    { "from": "pss:sec_25", "rel": "company-liability-under", "to": "pss:sec_27" },
+    { "from": "pss:sec_25", "rel": "electronic-analogue", "to": "ni:sec_138", "note": "the section s.25 was drafted from, clause for clause and clock for clock" },
+
+    { "from": "pss:sec_25", "rel": "imports", "to": "ni:sec_143", "note": "25(5): summary trial. The PSS Act prescribes no trial procedure of its own, so the circumstances plainly admit it." },
+    { "from": "pss:sec_25", "rel": "imports", "to": "ni:sec_144", "note": "25(5): mode of service of summons. Nothing in it is cheque-specific." },
+    { "from": "pss:sec_25", "rel": "imports", "to": "ni:sec_145", "note": "25(5): evidence on affidavit. Carries across without strain and matters more here, where the proof is documentary and electronic." },
+    { "from": "pss:sec_25", "rel": "imports-by-substitution", "to": "ni:sec_143A", "note": "25(5): interim compensation, but only if 'drawer of the cheque' is read as the initiator of the transfer. The statute invites the substitution and never states it." },
+    { "from": "pss:sec_25", "rel": "imports-by-substitution", "to": "ni:sec_148", "note": "25(5): deposit pending appeal, on the same substitution and with the same doubt." },
+    { "from": "pss:sec_25", "rel": "import-contested", "to": "ni:sec_142", "note": "s.28 displaces s.142(1)(a) and (1)(c). Whether 25(5) still carries the one-month limitation in (1)(b) and the bank-branch venue in (2) is the central open question of this case type." },
+    { "from": "pss:sec_25", "rel": "import-contested", "to": "ni:sec_147", "note": "compounding between the parties, against the Reserve Bank's compounding power in s.31. Both cannot be the route and the Act does not choose." },
+    { "from": "pss:sec_25", "rel": "does-not-import", "to": "ni:sec_142A", "note": "a transitional validation for the 2015 amendment to s.142(2); there is no PSS equivalent to validate" },
+    { "from": "pss:sec_25", "rel": "displaces", "to": "ni:sec_138", "note": "s.25(1) states the offence for a transfer; there is no cheque to be returned unpaid" },
+    { "from": "pss:sec_25", "rel": "displaces", "to": "ni:sec_139", "note": "s.25(2) states the same presumption" },
+    { "from": "pss:sec_25", "rel": "displaces", "to": "ni:sec_140", "note": "s.25(3) states the same defence bar" },
+    { "from": "pss:sec_25", "rel": "displaces", "to": "ni:sec_146", "note": "s.25(4) states the same presumption of dishonour, in stronger terms" },
+    { "from": "pss:sec_27", "rel": "displaces", "to": "ni:sec_141", "note": "the same vicarious liability, the same defences, the same Explanation" },
+    { "from": "pss:sec_28", "rel": "displaces", "to": "ni:sec_142", "note": "as to who may complain and which court may try; not as to when or where" },
+    { "from": "pss:sec_31", "rel": "displaces", "to": "ni:sec_147", "note": "asserted here only as the competing reading, not as a conclusion - see the notes on both provisions" },
+    { "from": "pss:sec_32", "rel": "resolves-conflict-in-favour-of", "to": "pss:sec_28", "note": "the overriding clause is the textual basis for letting a PSS provision beat an imported NI one on the same ground" },
+
+    { "from": "ni:sec_143", "rel": "tried-summarily-under", "to": "crpc:sec_262" },
+    { "from": "ni:sec_143", "rel": "tried-summarily-under", "to": "bnss:sec_285" },
+    { "from": "ni:sec_143A", "rel": "held-prospective-under", "to": "constitution:art_20", "note": "the ex-post-facto bar, applied to the interim-compensation power in the cheque jurisprudence" },
+    { "from": "ni:sec_144", "rel": "read-with", "to": "bnss:sec_63" },
+    { "from": "ni:sec_144", "rel": "read-with", "to": "bnss:sec_64" },
+    { "from": "ni:sec_145", "rel": "sworn-under", "to": "oaths:sec_3" },
+    { "from": "ni:sec_148", "rel": "appeal-lies-under", "to": "bnss:sec_415" },
+    { "from": "ni:sec_148", "rel": "appeal-lies-under", "to": "crpc:sec_374" },
+    { "from": "ni:sec_6", "rel": "outside-imported-chapter", "to": "ni:sec_138", "note": "Chapter I definitions are not imported by 25(5); the imported Chapter XVII arrives without its dictionary" },
+    { "from": "ni:sec_7", "rel": "outside-imported-chapter", "to": "ni:sec_143A", "note": "'drawer' is defined outside the imported Chapter, which is why applying s.143A requires a substitution rather than a reading" },
+
+    { "from": "pss:sec_28", "rel": "cognizance-taken-under", "to": "bnss:sec_210" },
+    { "from": "pss:sec_28", "rel": "cognizance-taken-under", "to": "crpc:sec_190" },
+    { "from": "pss:sec_28", "rel": "complainant-examined-under", "to": "bnss:sec_223" },
+    { "from": "pss:sec_28", "rel": "process-issued-under", "to": "bnss:sec_227" },
+    { "from": "pss:sec_28", "rel": "place-of-trial-under", "to": "bnss:sec_197", "note": "the residual venue rule, since s.28 fixes none and NI s.142(2) may not come across" },
+    { "from": "pss:sec_28", "rel": "place-of-trial-under", "to": "crpc:sec_177" },
+    { "from": "pss:sec_28", "rel": "time-barred-under", "to": "bnss:sec_514", "note": "three years, on the reading that NI s.142(1)(b) does not come across" },
+    { "from": "pss:sec_28", "rel": "time-barred-under", "to": "crpc:sec_468" },
+    { "from": "pss:sec_28", "rel": "quashed-under", "to": "bnss:sec_528" },
+    { "from": "pss:sec_28", "rel": "parties-represented-under", "to": "advocates:sec_30" },
+
+    { "from": "pss:sec_25", "rel": "notice-served-under", "to": "genclauses:sec_27", "note": "deemed service of the proviso (c) demand notice by post" },
+    { "from": "pss:sec_25", "rel": "notice-may-be-electronic-under", "to": "itact:sec_4", "note": "'notice in writing' satisfied by an electronic record - a question a cheque case never had to face" },
+    { "from": "pss:sec_25", "rel": "clock-starts-under", "to": "itact:sec_13", "note": "when an electronic demand notice is despatched and received, and where" },
+    { "from": "pss:sec_25", "rel": "instruction-attributed-under", "to": "itact:sec_11", "note": "how the transfer instruction is tied to the person accused of initiating it" },
+    { "from": "pss:sec_25", "rel": "authenticated-under", "to": "itact:sec_3A" },
+    { "from": "pss:sec_25", "rel": "dishonour-proved-under", "to": "bsa:sec_63", "note": "the bank's communication of dishonour is an electronic record and needs the certificate" },
+    { "from": "pss:sec_25", "rel": "dishonour-proved-under", "to": "iea:sec_65B" },
+    { "from": "pss:sec_25", "rel": "insufficiency-proved-under", "to": "bbea:sec_4", "note": "the fact of dishonour is presumed under 25(4); the insufficiency behind it is not, and is proved from the bankers' books" },
+    { "from": "pss:sec_25", "rel": "record-presumed-under", "to": "bsa:sec_86" },
+    { "from": "pss:sec_25", "rel": "burden-allocated-under", "to": "bsa:sec_104" },
+
+    { "from": "pss:sec_25", "rel": "compounded-under", "to": "ni:sec_147" },
+    { "from": "pss:sec_25", "rel": "compounded-under", "to": "pss:sec_31" },
+    { "from": "pss:sec_25", "rel": "disposal-alternative", "to": "lsa:sec_20", "note": "settlement in a Lok Adalat, which does not turn on which compounding power governs" },
+    { "from": "pss:sec_25", "rel": "compensation-ordered-under", "to": "bnss:sec_395", "note": "how the fine, which may run to twice the amount of the transfer, reaches the beneficiary" },
+    { "from": "pss:sec_29", "rel": "points-fine-at-costs-not-compensation", "to": "bnss:sec_395", "note": "the PSS Act's own direction on the fine points at the costs of the proceedings instead" },
+    { "from": "pss:sec_25", "rel": "sentence-alternative", "to": "probation:sec_4" },
+    { "from": "pss:sec_25", "rel": "companion-offence", "to": "ipc:sec_420" },
+    { "from": "pss:sec_25", "rel": "companion-offence", "to": "bns:sec_318" },
+
+    { "from": "pss:sec_25", "rel": "enacted-under-competence", "to": "constitution:art_246", "note": "Union List - Entry 38 (Reserve Bank of India) and Entry 45 (banking), unlike the NI Act's Concurrent List Entry 46" },
+    { "from": "pss:sec_25", "rel": "fair-trial-guaranteed-by", "to": "constitution:art_21" },
+    { "from": "pss:sec_25", "rel": "equal-treatment-questioned-under", "to": "constitution:art_14", "note": "the same debt paid by cheque and by transfer should not attract materially different limitation, venue and settlement rules without a reason" },
+    { "from": "ni:sec_139", "rel": "construed-bindingly-under", "to": "constitution:art_141", "note": "the cheque jurisprudence binds cheque courts; a s.25 court may borrow the reasoning but is not bound by it" }
+  ]
+}

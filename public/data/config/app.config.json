@@ -41,7 +41,16 @@
       "name": "Cheque bounce",
       "act": "NI Act, 1881 · §138",
       "status": "active",
+      "profile": "profiles/cheque-dishonour-s138.profile.json",
       "blurb": "Dishonour of a cheque for insufficiency of funds - a criminal complaint. Around 15% of a typical court's caseload; high volume, relatively standard."
+    },
+    {
+      "id": "eft-dishonour-s25",
+      "name": "Transfer dishonour",
+      "act": "PSS Act, 2007 · §25",
+      "status": "active",
+      "profile": "profiles/eft-dishonour-s25.profile.json",
+      "blurb": "Dishonour of an electronic funds transfer for insufficiency of funds - the sibling offence to a cheque bounce, drafted as a deliberate parallel of it and then, in s.25(5), told to borrow the cheque machinery 'to the extent the circumstances admit'. Low volume and almost no reported authority; a first cut that names its own gaps."
     }
   ],
   "jurisdictions": [
