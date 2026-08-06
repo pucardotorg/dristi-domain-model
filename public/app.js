@@ -99,6 +99,37 @@ const eraOf=a=>a==="always"?"always":(a.indexOf("pre")===0?"pre":"post");
 function eraFromStatus(s){ s=s||""; if(/from\s*2024/i.test(s))return"post"; if(/repealed/i.test(s))return"pre"; return"always"; }
 function eraBadge(a){const e=eraOf(a);return e==="always"?`<span class="badge b-always">any time</span>`:e==="pre"?`<span class="badge b-pre">pre-2024 code</span>`:`<span class="badge b-post">2023 Sanhita</span>`;}
 const scopeBadge=()=>`<span class="badge b-shared">national</span>`;
+
+/* ---- what this case type does NOT model ------------------------------------
+   A profile may disclaim a whole layer in its `scope` block, and the second case
+   type does: transfer dishonour models the central core only - no state layer, no
+   case law, no requirements. Without this the app showed the OTHER case type's
+   data under it, because the state layers and the requirement files are loaded
+   corpus-wide rather than per case type: 282 requirements, three state rule sets
+   and five field notes, all belonging to cheque dishonour, sitting under a profile
+   that says in terms that none of them exist here. The generated bundle says one
+   thing and the viewer said another.
+
+   So a disclaimed layer renders the profile's own sentence instead of somebody
+   else's data. The page stays in the sidebar rather than disappearing, because a
+   reader is better served learning that a layer is absent, and why, than finding
+   the tab quietly gone. */
+const scopeText = key => ((PROFILE||{}).scope||{})[key] || "";
+const disclaims  = key => !!scopeText(key);
+/* which layer each page belongs to. The whole state layer hangs off one key,
+   because a profile that has no state layer has none of these pages. */
+const PAGE_LAYER={story:"state", police:"state", courts:"state", amendments:"state",
+  staterules:"state", notifications:"state", practice:"state",
+  caselaw:"caselaw", requirements:"requirements"};
+function notModelledLayer(key, title){
+  const m=el("div");
+  m.appendChild(pageHead(esc(title), []));
+  const b=el("div","card");
+  b.innerHTML=`<div class="std-l">Not modelled for this case type</div>`
+    +`<p style="margin:8px 0 0; font-size:13.5px; line-height:1.7; color:var(--ink-2)">${esc(scopeText(key))}</p>`;
+  m.appendChild(b);
+  return m;
+}
 function refLabel(ref){const a=SOURCES[ref.split(":")[0]];return `${secNum(ref)} · ${a?a.title.split(",")[0]:ref.split(":")[0]}`;}
 
 /* ---- fetch + parse ---- */
@@ -2987,6 +3018,8 @@ async function openJudgmentModal(caseId){
 /* nav badge for a state-object category: a count when items exist, "none" when the
    state is modelled but has no discrete items (e.g. no amendments), else "soon". */
 function stateBadge(cat){
+  // a case type with no state layer must not count another one's instruments
+  if(disclaims("state")) return `<span class="count">-</span>`;
   const d = STATE_DATA && STATE_DATA[cat];
   if(!d) return `<span class="count soon">soon</span>`;
   const n = (d.items||[]).length;
@@ -3081,7 +3114,7 @@ const NAV_PAGES=[
   {view:"caselaw", label:"Case law", icon:"scale", section:"National objects",
    desc:"The judgments that fix how the provisions are read.",
    alias:["judgments","judgements","cases","precedent","rulings","citations"],
-   tag:()=>`<span class="count">${isModelled()?(CASES.length||'-'):'-'}</span>`},
+   tag:()=>`<span class="count">${(isModelled() && !disclaims("caselaw"))?(CASES.length||'-'):'-'}</span>`},
   /* Policy sits with the other national objects because that is what it is: an
      instrument that binds every court in the country. It is not case-typed - a
      regulation on how a court may use AI is as true of a motor claim as of a §138
@@ -3114,15 +3147,15 @@ const NAV_PAGES=[
   {view:"practice", label:"Local practice", icon:"messages-square", section:"Domain & culture", scoped:true,
    desc:"Field notes on how the process really runs on the ground.",
    alias:["field notes","practice","ground reality","interviews","informal"],
-   tag:()=>`<span class="count">${isModelled()?PRACTICE_NOTES.length:'-'}</span>`},
+   tag:()=>`<span class="count">${(isModelled() && !disclaims("state"))?PRACTICE_NOTES.length:'-'}</span>`},
   {view:"words", label:"Vocabulary", icon:"type", section:"Domain & culture", scoped:true,
    desc:"The words the system uses, national and local, and what each one means.",
    alias:["vocab","words","terms","glossary","dictionary","terminology"],
-   tag:()=>`<span class="count">${isModelled()?(Object.keys(TERMS).length+(((STATE_DATA||{}).vocabulary||{}).terms||[]).length):'-'}</span>`},
+   tag:()=>`<span class="count">${isModelled()?(Object.keys(TERMS).length+(disclaims("vocabulary")?0:(((STATE_DATA||{}).vocabulary||{}).terms||[]).length)):'-'}</span>`},
   {view:"requirements", label:"Requirements", icon:"file-text", section:"Design", scoped:true,
    desc:"The normative layer - what a system must do, each statement drawn from a provision.",
    alias:["reqs","req","normative","design requirements","must"],
-   tag:()=>`<span class="count">${isModelled()?(reqNavCount()||'-'):'-'}</span>`},
+   tag:()=>`<span class="count">${(isModelled() && !disclaims("requirements"))?(reqNavCount()||'-'):'-'}</span>`},
   /* not scoped: a standard binds the build, not a case type or a state layer, so this
      page reads the same on every state and stays available on an unmodelled case type */
   {view:"standards", label:"Standards adherence", tab:"Standards", icon:"shield-check", section:"Design",
@@ -3296,6 +3329,16 @@ function go(view, push){
   if(view==="parts"||view==="provisions") view="law"; // Acts + Provisions merged
   if(!V[view]) view="overview";
   currentView=view;
+  // a page whose layer this case type disclaims shows the profile's own words
+  const _layer=PAGE_LAYER[view];
+  if(_layer && disclaims(_layer)){
+    const p=NAV_PAGES.find(x=>x.view===view)||{};
+    document.querySelectorAll("#nav a[data-view], #ovNav a[data-view]").forEach(a=>a.classList.toggle("active", a.dataset.view===view));
+    syncNavGroups();
+    setMain(notModelledLayer(_layer, p.label||view));
+    writeHash(!!push);
+    return;
+  }
   /* which sidebar link lights up. A sub-tab has no link of its own - the reader is on
      the parent page, on one of its tabs - so the parent's link carries the state. Every
      other page, including the ones nested under The story, has its own link and keeps it. */
