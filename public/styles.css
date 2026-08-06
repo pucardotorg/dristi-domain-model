@@ -1035,6 +1035,58 @@ table.caseload td.ph{color:var(--ink-3); font-family:var(--font-mono); text-alig
   .aip-art{font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700;
     color:var(--ink-3); margin-right:8px}
 
+  /* ===================== MODEL RULES =====================
+     A draft, read as a draft. It borrows the standards card whole - .req.std gives it
+     the panel, the radius, the padding and the caret - and adds only what a rule
+     needs that a standard does not: a hanging number, an indent per level of nesting,
+     and a table. No new card, no new colour, one measure for the prose. */
+  /* rules and notes are both prose, so neither takes the two-column disclosure the
+     requirement and standard cards use */
+  .view-mr .req.open .rq-full{display:block}
+  /* the document above the rules: its own title, its status line, its opening words */
+  .mr-doc{margin:2px 0 18px; max-width:var(--measure-prose)}
+  .mr-doc-t{font-size:17px; font-weight:650; letter-spacing:-.01em; color:var(--ink); line-height:1.35}
+  .mr-doc-m{font-size:12.5px; color:var(--ink-3); margin-top:5px}
+  .mr-doc .mr-p{color:var(--ink-2); font-size:13.5px; margin:12px 0 0}
+  /* ours, and marked as ours by being the one thing on the page that is folded away */
+  .mr-about{margin-bottom:22px}
+  .mr-about .rq-stmt{font-size:13.5px; font-weight:600; color:var(--ink-2)}
+  .mr-note{font-size:13.5px; line-height:1.65; color:var(--ink-2); max-width:var(--measure-prose); margin:0 0 11px}
+  .mr-note:last-child{margin-bottom:0}
+  /* the group's label sits in its own column so twenty-seven titles line up */
+  .req.mr .mr-l{flex:none; min-width:44px; font-family:var(--font-mono); font-size:12.5px;
+    font-weight:600; color:var(--ink-3); padding-top:1px}
+  .req.mr .mr-n{flex:1 1 auto; min-width:0}
+  /* a rule: its printed number hanging in the gutter, its text on the measure, and
+     one indent step for each level the source nested it at */
+  .mr-i{display:flex; gap:10px; align-items:baseline; margin:0 0 9px;
+    padding-left:calc(var(--l,0) * 26px); max-width:var(--measure-prose)}
+  .mr-i:last-child{margin-bottom:0}
+  .mr-m{flex:none; min-width:34px; font-family:var(--font-mono); font-size:12px;
+    font-weight:600; color:var(--ink-3); text-align:right}
+  .mr-x{flex:1 1 auto; min-width:0; font-size:13.5px; line-height:1.65; color:var(--ink-2)}
+  .mr-p{padding-left:calc(var(--l,0) * 26px); font-size:13.5px; line-height:1.65;
+    color:var(--ink-2); max-width:var(--measure-prose); margin:0 0 9px}
+  .mr-partpre{margin:-4px 0 13px; max-width:var(--measure-prose)}
+  /* a table is the one thing here wider than the measure, so it scrolls in its own
+     box rather than pushing the page sideways. contain:inline-size is what makes that
+     true: the main column is a grid item, so without it the widest table in the draft
+     sets the width of every page, and 375px scrolls horizontally. */
+  .mr-tw{overflow-x:auto; contain:inline-size; margin:4px 0 12px; border:1px solid var(--line);
+    border-radius:var(--radius-inner); background:var(--panel)}
+  .mr-t{border-collapse:collapse; width:100%; min-width:520px; font-size:13px}
+  .mr-t th{text-align:left; font-size:10px; letter-spacing:.07em; text-transform:uppercase;
+    font-weight:700; color:var(--ink-3); padding:10px 13px; background:var(--panel-2);
+    border-bottom:1px solid var(--line); vertical-align:top}
+  .mr-t td{padding:10px 13px; border-bottom:1px solid var(--line); color:var(--ink-2);
+    line-height:1.6; vertical-align:top}
+  .mr-t tr:last-child td{border-bottom:0}
+  @media(max-width:640px){
+    .mr-i{padding-left:calc(var(--l,0) * 16px)}
+    .mr-p{padding-left:calc(var(--l,0) * 16px)}
+    .req.mr .mr-l{min-width:36px}
+  }
+
   /* ===================== POLICY =====================
      A document, read as a document. The measure is a reading measure, the numbering is
      the document's own, and the clause indents carry the structure - no rules, no

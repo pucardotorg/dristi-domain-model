@@ -48,6 +48,14 @@ A policy is the third kind of instrument here. Akoma Ntoso has no policy documen
 - [/data/policy/akn/vision-document-phase-iii-ecourts-2022.akn.xml](/data/policy/akn/vision-document-phase-iii-ecourts-2022.akn.xml): Digital Courts: Vision & Roadmap - e-Courts Project Phase III (e-Committee, Supreme Court of India, current). Transcription: [/data/policy/md/vision-document-phase-iii-ecourts-2022.md](/data/policy/md/vision-document-phase-iii-ecourts-2022.md).
 - [/data/standards/ai-policy-compliance.md](/data/standards/ai-policy-compliance.md): 68 compliance records (20 bind both, 47 bind court, 1 bind vendor), grouped by the document each one resolves against. Read as a sub-tab of Standards adherence in the viewer.
 
+## Model rules (35 sections across 2 tabs)
+
+The source is `Rules of Practice | Draft_Public Inputs` (Draft, out for public inputs). Kept as markdown rather than Akoma Ntoso on purpose: it is a draft, not an instrument in force anywhere, and <act> would assert a status it does not have. It reads under Design in the viewer, beside the standards, because it is something a build can be measured against rather than something the corpus holds as law. Each tab of the source document is one file and one sub-tab; the numbering in the files is the draft's own and is never regenerated.
+
+- [/data/modelrules/modelrules.json](/data/modelrules/modelrules.json): the manifest - the tabs in reading order, and the source document behind them.
+- [/data/modelrules/draft-rules.md](/data/modelrules/draft-rules.md): Draft Rules (33 sections).
+- [/data/modelrules/objects-and-reasons.md](/data/modelrules/objects-and-reasons.md): Objects & Reasons (2 sections).
+
 ## Schemas
 - [/data/schema/profile.schema.json](/data/schema/profile.schema.json)
 - [/data/schema/state.schema.json](/data/schema/state.schema.json)

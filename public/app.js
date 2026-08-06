@@ -322,6 +322,104 @@ async function loadAiPolicy(){
   catch(e){ AIPOLICY={lede:[], groups:[]}; }
 }
 
+/* ------------------------------------------------------------ THE MODEL RULES
+   A fourth kind of document, and the reason it is not in the Policy layer: it is a
+   draft circulated for public inputs, not an instrument in force anywhere. Akoma
+   Ntoso would assert a status it does not have, and the reader would have no way to
+   tell it apart from the notified rules sitting beside it. So it is markdown, one
+   file per tab of the source document, with modelrules.json as the manifest over
+   them. If a State notifies it, it graduates to data/policy/ as AKN, and the shape
+   here is a transcription the converter can already read.
+
+   The manifest, not this file, decides how many tabs there are and what they are
+   called: the tab strip, the routes, the deep links and the search entries are all
+   built from it by registerModelRuleTabs below. */
+let MODELRULES={label:"Model Rules", lede:[], source:{}, tabs:[]};
+const MR_DIR="modelrules/";
+/* A legal document, parsed as a document rather than as cards: a title, our notes,
+   whatever prose runs before the first Part, then Parts holding rule groups holding
+   rules. The one thing the parser will not do is renumber - "104." is carried
+   through as the string the source printed, because a rule that cites Rule 109 is
+   only findable if 109 is still called 109. */
+function parseRuleDoc(md){
+  const out={title:"", notes:[], preamble:[], parts:[]};
+  const notes=[[]];
+  const lines=String(md||"").replace(/<!--[\s\S]*?-->/g,"").split(/\r?\n/);
+  let part=null, rule=null, tbl=null;
+  const host=()=> rule ? rule.blocks : (part ? part.blocks : out.preamble);
+  const openPart=name=>{ rule=null; part={name, blocks:[], rules:[]}; out.parts.push(part); return part; };
+  // a cell may carry an escaped pipe, so park it before splitting on the real ones
+  const cells=t=>t.replace(/\\\|/g,"\u0001").replace(/^\||\|$/g,"").split("|")
+    .map(c=>c.trim().replace(/\u0001/g,"|"));
+  lines.forEach(raw=>{
+    const line=raw.replace(/\s+$/,""), t=line.trim();
+    if(!t){ tbl=null; return; }
+    if(/^>/.test(t)){ const x=t.replace(/^>\s?/,"").trim();
+      if(x) notes[notes.length-1].push(x); else if(notes[notes.length-1].length) notes.push([]);
+      return; }
+    if(/^#\s/.test(t)){ tbl=null; out.title=t.replace(/^#\s*/,"").trim(); return; }
+    if(/^##\s/.test(t)){ tbl=null; openPart(t.replace(/^##\s*/,"").trim()); return; }
+    if(/^###\s/.test(t)){ tbl=null;
+      if(!part) openPart("");
+      const h=t.replace(/^###\s*/,"").trim();
+      // a marker at the head of the heading is the source's own label for the group
+      const m=h.match(/^((?:[IVXLCDM]+|\d+|[A-Za-z])\.)\s+(.+)$/);
+      rule={label:m?m[1]:"", name:m?m[2]:h, blocks:[]};
+      rule.id=stdSlug((rule.label+" "+rule.name).replace(/\./g," "));
+      part.rules.push(rule); return; }
+    if(/^\|/.test(t)){
+      if(/^\|[\s|:-]+\|$/.test(t)){ return; }        // the header rule of a pipe table
+      const row=cells(t);
+      if(!tbl){ tbl={t:"table", head:row, rows:[]}; host().push(tbl); }
+      else tbl.rows.push(row);
+      return; }
+    tbl=null;
+    const ind=(line.match(/^ */)||[""])[0].length;
+    const m=t.match(/^((?:\d+|[A-Za-z]+)\.|-)\s+(.+)$/);
+    host().push(m ? {t:"item", lvl:ind>>1, mk:m[1], text:m[2]}
+                  : {t:"p", lvl:ind>>1, text:t});
+  });
+  out.notes=notes.filter(p=>p.length).map(p=>p.join(" "));
+  return out;
+}
+const mrTab   = id => (MODELRULES.tabs||[]).find(t=>t.id===id) || null;
+const mrGroups= t => ((t&&t.doc&&t.doc.parts)||[]).reduce((a,p)=>a.concat(p.rules),[]);
+/* the first tab is the page itself; the rest are its sub-tabs, so a one-tab document
+   renders with no tab strip at all and a third tab needs no code */
+const mrView  = t => (!t || t===(MODELRULES.tabs||[])[0]) ? "modelrules" : "modelrules-"+t.id;
+async function loadModelRules(){
+  try{ MODELRULES=JSON.parse(await fetchText((DATA_BASE||"")+MR_DIR+"modelrules.json")); }
+  catch(e){ MODELRULES={label:"Model Rules", lede:[], source:{}, tabs:[]}; return; }
+  await Promise.all((MODELRULES.tabs||[]).map(async t=>{
+    try{ t.doc=parseRuleDoc(await fetchText((DATA_BASE||"")+MR_DIR+t.file)); }
+    catch(e){ t.doc=null; }
+  }));
+  registerModelRuleTabs();
+}
+/* The tab strip is data. subTabsHTML already builds a strip from whatever NAV_PAGES
+   declares under a parent, so the only thing needed is to declare the manifest's
+   tabs there - one entry and one view per tab, named after the tab's own id. A tab
+   added to the source becomes a file, an entry in modelrules.json, and then a
+   sub-tab, a route, a deep link and a search hit, with nothing changed here. */
+function registerModelRuleTabs(){
+  const tabs=MODELRULES.tabs||[];
+  const parent=NAV_PAGES.find(p=>p.view==="modelrules");
+  if(!parent||!tabs.length) return;
+  if(MODELRULES.label) parent.label=MODELRULES.label;
+  parent.tab=tabs[0].title;
+  parent.desc=tabs[0].desc||parent.desc;
+  parent.alias=(parent.alias||[]).concat(tabs[0].alias||[]);
+  parent.count=()=>mrGroups(tabs[0]).length;
+  tabs.slice(1).forEach(t=>{
+    const view=mrView(t);
+    if(NAV_PAGES.some(p=>p.view===view)) return;
+    NAV_PAGES.push({view, tab:t.title, label:(parent.label||"Model Rules")+": "+t.title,
+      section:"Design", under:"modelrules", desc:t.desc||"", alias:t.alias||[],
+      count:()=>mrGroups(t).length});
+    V[view]=()=>modelRulesView(t);
+  });
+}
+
 /* re-point STATE_DATA at the active state. Kept async, and kept as the name every
    state-selector calls, so switching state is now just a pointer move. */
 async function loadStateData(){
@@ -1529,6 +1627,130 @@ V.aipolicy=()=>{
     setTimeout(()=>{ const c=document.getElementById("aip-"+wanted); if(c) c.classList.add("open"); scrollToId("aip-"+wanted,70,true); },60); }
   return m;
 };
+
+/* ============================================================ MODEL RULES
+   One view for every tab of the draft, because a tab is a document and they are all
+   read the same way: pick a Part, open a rule group, read the rules under the numbers
+   the drafters gave them. Nothing about this particular draft is written here - the
+   view is handed a tab out of the manifest and renders whatever that tab's file
+   turned out to hold. */
+let mrScrollTo=null;   // a rule group to open and land on when the page next renders
+/* the two bits of markdown a rule carries beyond a link: emphasis, and the line
+   break a table cell needs. stdInline has already escaped everything else. */
+const mrInline = txt => stdInline(txt)
+  .replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, (m,pre,t)=>pre+"<em>"+t+"</em>")
+  .replace(/&lt;br\s*\/?&gt;/g, "<br>");
+function mrBlocksHTML(blocks){
+  return (blocks||[]).map(b=>{
+    if(b.t==="table"){
+      const row=(cells,tag)=>"<tr>"+cells.map(c=>`<${tag}>${mrInline(c)}</${tag}>`).join("")+"</tr>";
+      return `<div class="mr-tw"><table class="mr-t"><thead>${row(b.head,"th")}</thead>`
+        +`<tbody>${(b.rows||[]).map(r=>row(r,"td")).join("")}</tbody></table></div>`;
+    }
+    if(b.t==="item") return `<div class="mr-i" style="--l:${b.lvl|0}">`
+      +`<span class="mr-m">${esc(b.mk)}</span><div class="mr-x">${mrInline(b.text)}</div></div>`;
+    return `<p class="mr-p" style="--l:${b.lvl|0}">${mrInline(b.text)}</p>`;
+  }).join("");
+}
+const mrText = r => (r.name+" "+r.label+" "+(r.blocks||[]).map(b=>
+  b.t==="table" ? [].concat(b.head||[], ...(b.rows||[])).join(" ") : b.text).join(" ")).toLowerCase();
+
+function modelRulesView(tab){
+  const m=el("div","view-req view-std view-mr");
+  const label=MODELRULES.label||"Model Rules";
+  const head=pageHead(esc(label), (MODELRULES.lede||[]).map(esc));
+  const strip=subTabsHTML("modelrules", mrView(tab));
+  if(strip) $(".page-title",head).insertAdjacentHTML("afterend", strip);
+  m.appendChild(head);
+
+  const doc=tab&&tab.doc;
+  if(!doc){ m.appendChild(el("div","empty","No model rules file is linked from this corpus.")); return m; }
+
+  /* what the reader needs before the first rule: what this document is, what status
+     it has, and where the original lives. Plain text and one link, no chips. */
+  const src=MODELRULES.source||{};
+  const meta=[src.status, src.made_by].filter(Boolean).map(esc);
+  if(src.url) meta.push(`<a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer">Read the source document</a>`);
+  const docHead=el("div","mr-doc");
+  docHead.innerHTML=`<div class="mr-doc-t">${mrInline(doc.title||tab.title||"")}</div>`
+    +(meta.length?`<div class="mr-doc-m">${meta.join(" · ")}</div>`:"")
+    +mrBlocksHTML(doc.preamble);
+  m.appendChild(docHead);
+
+  /* our own words, and only our own words, kept behind one line so the document
+     opens on the document. The file marks them with ">" precisely so they can never
+     be mistaken for the draft's text. */
+  if((doc.notes||[]).length){
+    const about=el("div","req std mr-about");
+    about.innerHTML=`<div class="rq-h"><div class="rq-stmt std-name">About this draft and this transcription`
+      +`<span class="caret">${ic('chevron-right')}</span></div></div>`
+      +`<div class="rq-full">${doc.notes.map(p=>`<p class="mr-note">${mrInline(p)}</p>`).join("")}</div>`;
+    about.querySelector(".rq-h").addEventListener("click",()=>about.classList.toggle("open"));
+    m.appendChild(about);
+  }
+
+  const all=mrGroups(tab);
+  if(!all.length){ m.appendChild(el("div","empty","This tab holds no rule groups.")); return m; }
+
+  const controls=el("div","controls");
+  controls.innerHTML=searchBox("mr-search","Search this draft - summons, bail, hearing, evidence, fees…");
+  m.appendChild(controls);
+  const facets=el("div","vfacets"); m.appendChild(facets);
+  const list=el("div"); list.id="mr-list"; list.style.marginTop="10px"; m.appendChild(list);
+
+  const items=all.map(r=>{
+    const part=(doc.parts||[]).find(p=>p.rules.indexOf(r)>=0)||{name:""};
+    return {r, part:part.name, hay:mrText(r)};
+  });
+  const state={q:"", part:"", openAll:false};
+
+  function cardHTML(it){
+    const r=it.r;
+    return `<div class="req std mr" id="mr-${esc(r.id)}" data-mr="${esc(r.id)}">
+      <div class="rq-h"><div class="rq-stmt std-name">`
+      +(r.label?`<span class="mr-l">${esc(r.label)}</span>`:"")
+      +`<span class="mr-n">${esc(r.name)}</span><span class="caret">${ic('chevron-right')}</span></div></div>
+      <div class="rq-full">${mrBlocksHTML(r.blocks)}</div></div>`;
+  }
+  function redraw(){
+    const bySearch=items.filter(it=> !it.hay || !state.q || it.hay.includes(state.q));
+    const cnt={}; bySearch.forEach(it=>{ if(it.part) cnt[it.part]=(cnt[it.part]||0)+1; });
+    const parts=(doc.parts||[]).map(p=>p.name).filter(n=>cnt[n]);
+    facets.innerHTML = parts.length>1
+      ? facetRow("Part", pill("part","","All",bySearch.length,!state.part)
+          +parts.map(n=>pill("part",n,n,cnt[n],state.part===n)).join(""))
+      : "";
+    const final=bySearch.filter(it=> !state.part || it.part===state.part);
+    if(!final.length){ list.innerHTML=""; list.appendChild(el("div","empty","Nothing in this draft matches that search.")); return; }
+    let html=`<div class="std-bar"><span class="std-count">${final.length} of ${items.length} sections</span>`
+      +`<span class="std-toggle" data-all="${state.openAll?"1":"0"}">${state.openAll?"Close all":"Open all"}</span></div>`;
+    (doc.parts||[]).forEach(p=>{
+      const rows=final.filter(i=>i.part===p.name); if(!rows.length) return;
+      if(p.name) html+=`<div class="grouphead">${esc(p.name)} <span class="gh-status">${rows.length}</span></div>`;
+      if((p.blocks||[]).length) html+=`<div class="mr-partpre">${mrBlocksHTML(p.blocks)}</div>`;
+      rows.forEach(it=>{ html+=cardHTML(it); });
+    });
+    list.innerHTML=html;
+    if(state.openAll) list.querySelectorAll(".req.mr").forEach(c=>c.classList.add("open"));
+  }
+  facets.addEventListener("click",e=>{
+    const p=e.target.closest(".chip"); if(!p) return;
+    state.part=(p.dataset.fv && state.part===p.dataset.fv) ? "" : (p.dataset.fv||"");
+    redraw();
+  });
+  list.addEventListener("click",e=>{
+    const t=e.target.closest(".std-toggle");
+    if(t){ state.openAll=!state.openAll; redraw(); return; }
+    const h=e.target.closest(".rq-h"); if(!h) return;
+    h.closest(".req").classList.toggle("open");
+  });
+  setTimeout(()=>{const inp=$("#mr-search"); if(inp)inp.oninput=e=>{ state.q=e.target.value.toLowerCase().trim(); redraw(); };},0);
+  redraw();
+  if(mrScrollTo){ const wanted=mrScrollTo; mrScrollTo=null;
+    setTimeout(()=>{ const c=document.getElementById("mr-"+wanted); if(c) c.classList.add("open"); scrollToId("mr-"+wanted,70,true); },60); }
+  return m;
+}
+V.modelrules=()=>modelRulesView((MODELRULES.tabs||[])[0]);
 
 V.practice=()=>{
   if(!isModelled()) return notModelled();
@@ -2905,6 +3127,16 @@ const NAV_PAGES=[
    desc:"What the Supreme Court's draft AI regulations would require of a court and its vendor, clause by clause.",
    alias:["ai policy","ai compliance","ai regulations","artificial intelligence","ai register","ai incident","apex body","ai committee","genai","vendor"],
    count:()=>aipolItems().length},
+  /* The third thing a build is measured against, and the softest: a rule set that is
+     still a draft. Like the two above it carries no state scope and no case scope -
+     a model a High Court has not adopted yet is not truer in one state than another.
+     Its label, its sub-tabs and its counts all come from modelrules.json; the entry
+     below is only the hook the manifest hangs off. */
+  {view:"modelrules", label:"Model Rules", icon:"gavel", section:"Design",
+   desc:"A draft rule set, out for public inputs, that a build could be written against.",
+   alias:["model rules","draft rules","rules of practice","24x7","on court","public inputs"],
+   count:()=>mrGroups((MODELRULES.tabs||[])[0]).length,
+   tag:()=>`<span class="count">${mrGroups((MODELRULES.tabs||[])[0]).length||'-'}</span>`},
   {view:"overview", label:"Overview", icon:"compass", section:"Overview",
    desc:"Where the model starts: what is modelled, and how to read it.",
    alias:["home","start","summary","introduction"]},
@@ -3067,7 +3299,7 @@ function scrollToId(id, offset, flash){
 
 /* ---- deep-link router: the URL hash carries view + state + position ----
    #<view>?state=<s>&sec=<anchor>&lens=<l>&term=<w>&note=<id>&req=<id>&std=<id>&act=<a>&eid=<e>
-   &aip=<id>&doc=<policy doc>&clause=<clause ref> */
+   &aip=<id>&doc=<policy doc>&clause=<clause ref>&mr=<model rule group> */
 function buildHash(){
   const p=new URLSearchParams();
   if(activeState) p.set("state",activeState);
@@ -3092,12 +3324,13 @@ function applyHash(raw, push){
     if(p.get("lens")) processLens=p.get("lens");
     _extra={}; pendingAnchor=null;
     const term=p.get("term"), note=p.get("note"), sec=p.get("sec"), act=p.get("act"), eid=p.get("eid"), req=p.get("req"), std=p.get("std");
-    const aip=p.get("aip"), pdoc=p.get("doc"), clause=p.get("clause");
+    const aip=p.get("aip"), pdoc=p.get("doc"), clause=p.get("clause"), mr=p.get("mr");
     if(term){ vocabScrollTo=term; _extra.term=term; }
     if(note){ practiceScrollTo=note; _extra.note=note; }
     if(req){ reqScrollTo=req; _extra.req=req; }
     if(std){ stdScrollTo=std; _extra.std=std; }
     if(aip){ aipScrollTo=aip; _extra.aip=aip; }
+    if(mr){ mrScrollTo=mr; _extra.mr=mr; }
     // a policy deep link names the document, and may name the clause inside it
     if(pdoc && policyDoc(pdoc)){ policyDocId=pdoc; _extra.doc=pdoc; }
     if(clause){ policyScrollTo=clause; _extra.clause=clause; }
@@ -3892,7 +4125,7 @@ function showLoadError(err){
     await loadProfile();
     // every state layer and the whole normative layer, in parallel - state is a filter, not a switch
     await Promise.all([loadAllStates(), loadRequirements(), loadStandards(),
-                       loadPolicy(), loadAiPolicy()]);
+                       loadPolicy(), loadAiPolicy(), loadModelRules()]);
     buildNav();
     // the Map ("graph") is hidden for now; keep V.graph defined but never land on it.
     // Restore where the user last was: an explicit URL hash (a shared deep link) wins;

@@ -120,6 +120,18 @@ POL_DOCS = POLICY.get("documents", [])
 AIPOL_PATH = os.path.join(DATA, "standards", "ai-policy-compliance.md")
 AIPOL_COUNT, AIPOL_GROUPS = _md_counts(AIPOL_PATH)
 
+# The model rules: a draft rule set circulated for public inputs. Not Akoma Ntoso,
+# because it is not in force anywhere and <act> would assert that it is; markdown, one
+# file per tab of the source document, with modelrules.json as the manifest over them.
+# Counted and named here for the same reason as the two above - a layer the artifacts
+# do not name is a layer an agent reads the app to discover.
+MR_PATH = os.path.join(DATA, "modelrules", "modelrules.json")
+MODELRULES = load(MR_PATH) if os.path.exists(MR_PATH) else {"tabs": []}
+MR_TABS = MODELRULES.get("tabs", [])
+for _t in MR_TABS:
+    _t["_groups"], _t["_parts"] = _md_counts(os.path.join(DATA, "modelrules", _t.get("file", "")))
+MR_GROUPS = sum(t["_groups"] for t in MR_TABS)
+
 def _aipol_binds():
     """How the compliances split by who they bind - the one number a reader asks for."""
     out = {}
@@ -567,6 +579,8 @@ def data_dictionary():
       % ", ".join(sorted({d.get("kind", "") for d in POL_DOCS if d.get("kind")})))
     w("| `data/policy/md/*.md` | the checked transcription each Akoma Ntoso file is converted from, by `scripts/convert_policy_akn.py` |")
     w("| `data/standards/ai-policy-compliance.md` | the operational obligations drawn out of those documents, one `##` group per document, each record citing a clause of it. The document's half and DRISTI's suggested build are separate fields and must stay so |")
+    w("| `data/modelrules/modelrules.json` | the model-rules manifest: one entry per tab of the draft, in reading order, plus the source document, its status and its URL. The app builds its tab strip from this and nothing else |")
+    w("| `data/modelrules/*.md` | a draft rule set, one file per tab, transcribed under the source's own numbering - `##` a Part, `###` a rule group with the source's Roman label, and the rule numbers carried through as printed. Markdown, not Akoma Ntoso, because a draft out for public inputs is not an instrument in force |")
     w("| `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId` |")
     w("| `domain/%s.json` / `.md` | the denormalized join of all of the above |" % PROFILE)
     w("")
@@ -911,7 +925,27 @@ def llms_txt():
        " (" + ", ".join("%d bind %s" % (n, k) for k, n in sorted(AIPOL_BINDS.items())) + ")"
        if AIPOL_BINDS else ""),
       "",
-      ] if POL_DOCS else []) + [
+      ] if POL_DOCS else []) + ([
+      "## Model rules (%d section%s across %d tab%s)"
+      % (MR_GROUPS, "" if MR_GROUPS == 1 else "s", len(MR_TABS), "" if len(MR_TABS) == 1 else "s"),
+      "",
+      "The source is `%s`%s. Kept as markdown rather than Akoma Ntoso on purpose: it is a "
+      "draft, not an instrument in force anywhere, and <act> would assert a status it does "
+      "not have. It reads under Design in the viewer, beside the standards, because it is "
+      "something a build can be measured against rather than something the corpus holds as "
+      "law. Each tab of the source document is one file and one sub-tab; the numbering in "
+      "the files is the draft's own and is never regenerated."
+      % (MODELRULES.get("source", {}).get("document", "a draft rule set"),
+         " (%s)" % MODELRULES["source"]["status"] if MODELRULES.get("source", {}).get("status") else ""),
+      "",
+      "- [/data/modelrules/modelrules.json](/data/modelrules/modelrules.json): the manifest - "
+      "the tabs in reading order, and the source document behind them.",
+      ] + [
+      "- [/data/modelrules/%s](/data/modelrules/%s): %s (%d section%s)."
+      % (t["file"], t["file"], t.get("title", t.get("id")), t["_groups"],
+         "" if t["_groups"] == 1 else "s")
+      for t in MR_TABS if t.get("file")
+      ] + [""] if MR_TABS else []) + [
       "## Schemas",
       "- [/data/schema/profile.schema.json](/data/schema/profile.schema.json)",
       "- [/data/schema/state.schema.json](/data/schema/state.schema.json)",

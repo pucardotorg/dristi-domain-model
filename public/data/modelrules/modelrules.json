@@ -1,0 +1,45 @@
+{
+  "_comment": [
+    "The Model Rules layer: a draft rule set circulated for public inputs, kept as",
+    "markdown rather than Akoma Ntoso because it is not an instrument in force. When a",
+    "State notifies it, it graduates to data/policy/ as AKN and leaves here.",
+    "",
+    "The source is a Google Doc with tabs, and every tab is one file here and one",
+    "sub-tab in the app. The app builds its tab strip from this list and nothing else,",
+    "so adding a tab is a new file plus an entry below - never a code change. Order",
+    "here is the order on screen; the first entry is the tab the page opens on."
+  ],
+  "id": "criminal-rules-24x7-on-courts",
+  "label": "Model Rules",
+  "lede": [
+    "A model rule set a State's High Court could adopt to run a 24x7 ON Court, drafted under Article 227 of the Constitution and section 523 of the Bharatiya Nagarik Suraksha Sanhita, 2023.",
+    "It is a draft out for public inputs, not law in force, so it belongs with the other things a build is measured against rather than with the corpus of instruments. Every tab of the source document is a tab here."
+  ],
+  "source": {
+    "document": "Rules of Practice | Draft_Public Inputs",
+    "status": "Draft, out for public inputs",
+    "made_by": "The High Court of [State Name]",
+    "made_under": "Article 227 of the Constitution of India and section 523 of the Bharatiya Nagarik Suraksha Sanhita, 2023, with the previous approval of the Governor of [State Name]",
+    "url": "https://docs.google.com/document/d/1lxo4jpE2zk4wp_T0eKNrb9vNXJS-aVpjXeu-cmi8cMY/edit",
+    "transcribed_on": "2026-08-06",
+    "note": "Transcribed from the source document as it reads with its suggested edits shown. Comment threads on the source are not carried over."
+  },
+  "tabs": [
+    {
+      "id": "draft-rules",
+      "title": "Draft Rules",
+      "file": "draft-rules.md",
+      "url": "https://docs.google.com/document/d/1lxo4jpE2zk4wp_T0eKNrb9vNXJS-aVpjXeu-cmi8cMY/edit?tab=t.l6hpgdip559c",
+      "desc": "The draft rules themselves: four Parts, twenty-seven rule groups and six Annexures, covering a case from filing to disposal in a 24x7 ON Court.",
+      "alias": ["model rules", "rules of practice", "criminal rules of practice", "24x7", "on court", "on courts", "draft rules", "designated court", "digital platform", "annexure"]
+    },
+    {
+      "id": "objects-and-reasons",
+      "title": "Objects & Reasons",
+      "file": "objects-and-reasons.md",
+      "url": "https://docs.google.com/document/d/1lxo4jpE2zk4wp_T0eKNrb9vNXJS-aVpjXeu-cmi8cMY/edit?tab=t.tjrfw9tlmlsn",
+      "desc": "The drafters' own account of what the rules change and the principles they were drafted on.",
+      "alias": ["objects and reasons", "statement of objects", "objects & reasons", "why these rules", "drafting principles", "key changes"]
+    }
+  ]
+}

@@ -17,6 +17,8 @@ Generated from the data - the field meanings and the **enumerations are derived 
 | `data/policy/akn/*.akn.xml` | the policy documents as Akoma Ntoso `<doc>`, `@name` carrying the kind (policy, regulations, rules), addressed by `eId` in the stem each document declares - `reg_43_3` is regulation 43(3), `rule_10_3` is rule 10.3. This is what the Policy page reads |
 | `data/policy/md/*.md` | the checked transcription each Akoma Ntoso file is converted from, by `scripts/convert_policy_akn.py` |
 | `data/standards/ai-policy-compliance.md` | the operational obligations drawn out of those documents, one `##` group per document, each record citing a clause of it. The document's half and DRISTI's suggested build are separate fields and must stay so |
+| `data/modelrules/modelrules.json` | the model-rules manifest: one entry per tab of the draft, in reading order, plus the source document, its status and its URL. The app builds its tab strip from this and nothing else |
+| `data/modelrules/*.md` | a draft rule set, one file per tab, transcribed under the source's own numbering - `##` a Part, `###` a rule group with the source's Roman label, and the rule numbers carried through as printed. Markdown, not Akoma Ntoso, because a draft out for public inputs is not an instrument in force |
 | `data/acts/akn/*.akn.xml` | the statutory text (Akoma Ntoso 3.0), addressed by `eId` |
 | `domain/cheque-dishonour-s138.json` / `.md` | the denormalized join of all of the above |
 
