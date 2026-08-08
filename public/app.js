@@ -1353,8 +1353,30 @@ const polUnitShort = doc => ((doc&&doc.unit)||{}).short || "Reg.";
    43(3); both eCommittee model rule sets number 10.3 on the page, and rendering that as
    "Rule 10(3)" invents a form the reader will not find when they go and look. The
    manifest says which - unit.clause_style "dotted" or, by default, parenthesised. */
+/* A citation is labelled from the eId, which is built from what the document prints -
+   so reg_43_3 reads "Reg. 43(3)" and rule_10_3 reads "Rule 10.3", each in its own
+   document's numbering style.
+
+   One case cannot be labelled that way. A unit that prints no number at all takes its
+   division's stem and a placeholder, chp_7_unit, and reconstruction turned that into
+   "Para. 7(unit)" - a label pointing at paragraph 7, which is a real and different
+   paragraph. There is nothing to reconstruct, so the printed <num> of the division is
+   read off the document instead and used as it stands: "VII", not a paragraph number
+   the source never gave. */
+const POL_DIV_STEM=/^(chp|schedule|annex|annexure|appendix|part|title)$/;
 function polCiteLabel(ref, doc){
-  const p=String(ref||"").split("_"); p.shift();
+  const p=String(ref||"").split("_");
+  const stem=p.shift();
+  if(POL_DIV_STEM.test(stem)){
+    const parsed=doc && POLICY_AKN_CACHE[doc.id];
+    const node=parsed && parsed.xdoc && parsed.xdoc.querySelector(`[eId="${esc(ref)}"]`);
+    // the division itself carries the printed label; an unnumbered unit inside it
+    // borrows its parent's, because it has none of its own
+    const div=node && (node.localName==="chapter" ? node : node.parentElement);
+    const numEl=div && [...div.children].find(c=>c.localName==="num");
+    const t=numEl?cleanText(numEl).trim():"";
+    if(t) return t;
+  }
   const n=p.shift()||"";
   const dotted=((doc||{}).unit||{}).clause_style==="dotted";
   const tail=dotted ? p.map(x=>"."+x).join("") : p.map(x=>"("+x+")").join("");
@@ -1382,10 +1404,20 @@ const polUnitOf   = eid => String(eid||"").split("_").slice(0,2).join("_");
    AKN carries that string as an eId, so resolving is a lookup rather than a guess.
    Where the eId is not there (a citation to a clause the drafting nests differently),
    fall back to the numbered unit, which always exists. */
+/* Which id a citation lands on depends on what the cited element IS, which only the
+   document can say. A clause is rendered inside an opened row and carries pol-<doc>-<eId>.
+   A numbered unit is the row itself and carries polreg-<doc>-<eId>, and has no clause
+   anchor at all when it prints no clauses - which is how a citation to an unnumbered
+   unit resolved to an id that is never in the DOM and landed nowhere. Ask the element. */
 function policyAnchorId(docId, parsed, clause){
   const eid=String(clause||"").trim();
   if(!eid) return "";
-  if(policyHasEid(parsed,eid)) return polClauseId(docId, eid);
+  const node=parsed && parsed.xdoc && parsed.xdoc.querySelector(`[eId="${eid}"]`);
+  if(node){
+    if(node.localName==="section") return polRowId(docId, eid);
+    // a clause: its anchor exists once the row it lives in is open
+    return polClauseId(docId, eid);
+  }
   const unit=polUnitOf(eid);
   return policyHasEid(parsed,unit) ? polRowId(docId, unit) : "";
 }
@@ -1543,7 +1575,11 @@ V.policy=()=>{
    view takes when a provision is deep-linked. */
 function policyLandOn(host, docId, parsed, clause){
   const anchor=policyAnchorId(docId, parsed, clause); if(!anchor) return;
-  const row=host.querySelector("#"+CSS.escape(polRowId(docId, polUnitOf(clause))));
+  const sec=(()=>{ const parsed2=POLICY_AKN_CACHE[docId];
+    let n=parsed2 && parsed2.xdoc && parsed2.xdoc.querySelector(`[eId="${String(clause)}"]`);
+    while(n && n.localName!=="section") n=n.parentElement;
+    return n ? n.getAttribute("eId") : polUnitOf(clause); })();
+  const row=host.querySelector("#"+CSS.escape(polRowId(docId, sec)));
   if(row){
     // three things are shut between the page and the clause now: the document, the
     // chapter, and the row. Every ancestor accordion opens, not just the nearest.

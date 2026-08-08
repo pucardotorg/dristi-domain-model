@@ -60,7 +60,7 @@ The requirements above are what the *law* compels. These are what any public dig
 
 - [/data/standards/standards-adherence.md](/data/standards/standards-adherence.md): 41 standards across Accessibility, Security, Performance, Interoperability, Usability, Content & Legal. The file states its own shape in a comment at the top.
 
-## Policy (8 documents) and policy compliance (85 records)
+## Policy (8 documents) and policy compliance (86 records)
 
 A policy is the third kind of instrument here. Akoma Ntoso has no policy document type, so each one is carried as `<doc name="...">` - the element the standard provides for a document type it does not name - with @name saying which kind it is (policy, procedure, regulations, rules), and it would be `<act>` once notified into force. The checked transcription sits in policy/md/ and the source PDF one folder over; `policy.json` is the manifest, and it also declares how each document numbers itself, which is the stem its clause eIds use: regulation 43(3) is `reg_43_3`, rule 10.3 is `rule_10_3`. The compliance file pulls out every operational obligation - anything that must be reported, disclosed, logged, registered, audited, or produced as a record - and cites the clause it comes from. Each record separates what the document requires from what DRISTI suggests building; do not read the second as the first.
 
@@ -73,7 +73,7 @@ A policy is the third kind of instrument here. Akoma Ntoso has no policy documen
 - [/data/policy/akn/policy-action-plan-phase-i-ecourts-2005.akn.xml](/data/policy/akn/policy-action-plan-phase-i-ecourts-2005.akn.xml): National Policy and Action Plan for Implementation of Information and Communication Technology in the Indian Judiciary (e-Committee, Supreme Court of India, superseded). Transcription: [/data/policy/md/policy-action-plan-phase-i-ecourts-2005.md](/data/policy/md/policy-action-plan-phase-i-ecourts-2005.md).
 - [/data/policy/akn/policy-action-plan-phase-ii-ecourts-2014.akn.xml](/data/policy/akn/policy-action-plan-phase-ii-ecourts-2014.akn.xml): Policy and Action Plan Document, Phase II of the eCourts Project (Supreme Court of India, superseded). Transcription: [/data/policy/md/policy-action-plan-phase-ii-ecourts-2014.md](/data/policy/md/policy-action-plan-phase-ii-ecourts-2014.md).
 - [/data/policy/akn/vision-document-phase-iii-ecourts-2022.akn.xml](/data/policy/akn/vision-document-phase-iii-ecourts-2022.akn.xml): Digital Courts: Vision & Roadmap - e-Courts Project Phase III (e-Committee, Supreme Court of India, current). Transcription: [/data/policy/md/vision-document-phase-iii-ecourts-2022.md](/data/policy/md/vision-document-phase-iii-ecourts-2022.md).
-- [/data/standards/ai-policy-compliance.md](/data/standards/ai-policy-compliance.md): 85 compliance records (20 bind both, 64 bind court, 1 bind vendor), grouped by the document each one resolves against. Read as a sub-tab of Standards adherence in the viewer.
+- [/data/standards/ai-policy-compliance.md](/data/standards/ai-policy-compliance.md): 86 compliance records (20 bind both, 65 bind court, 1 bind vendor), grouped by the document each one resolves against. Read as a sub-tab of Standards adherence in the viewer.
 
 ## Model rules (35 sections across 2 tabs)
 

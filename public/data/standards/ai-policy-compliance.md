@@ -2346,6 +2346,40 @@ the same problem: the composition "can be as follows" and then it is desirable t
 or two members with disability. Read as a model that a High Court makes binding by adopting
 it, which is what the adopting High Courts have done.
 
+### A mechanism for accessible pagination, by practice note or direction
+
+The High Courts must develop a proper mechanism for pagination, by issuing practice notes
+or directions, so that the paginated paper-book can be shared with lawyers and lawyers and
+judges are working to the same pagination during oral argument.
+
+**Binds.** court
+
+**Citation.** chp_7_unit
+
+**Timing.** Not stated.
+
+**Compliant when.** A practice note or direction on pagination has been issued, and the
+paper-book a lawyer receives carries the same page numbers the bench is reading from.
+
+**Artifact.** output-document
+
+**Build.** Pagination as a property of the assembled bundle rather than of whatever tool
+last touched it: one numbering applied when the paper-book is compiled, carried into the
+copy served on every party, and stable when a document is added later.
+
+**Automate.** Stamp the page number into the generated bundle at assembly and record the
+range each document occupies, so a served copy can be checked against the court's own
+without anyone comparing them by hand.
+
+**Test.** Assemble a bundle, serve it, and confirm a cited page resolves to the same
+content in the court's copy and the lawyer's; then insert a document and confirm the
+citation still resolves or is reported as moved.
+
+**Note.** Heading VII is the one obligation in this document with no numbered paragraph
+under it, so it is cited to the heading. It is also the only one addressed to the High
+Courts as rule-makers rather than to a court as an administrator, and the SOP fixes no
+period within which the practice note is to issue.
+
 ### The Committee's order directing the registry to supply an accessible filing
 
 A lawyer, litigant or judicial officer with a disability may ask the Committee by email to
