@@ -98,6 +98,16 @@ MARKER = re.compile(r"""^(?:
 ANNEX = re.compile(r"^(schedule|appendix|appendices|annex|annexure|form|table)\b", re.I)
 HIER = re.compile(r"^(chapter|part|title)\s+([IVXLC]+|[0-9]+)\b", re.I)
 
+# A division may name its kind - "Chapter III - Procedure" - or it may not, and simply
+# open with the numeral: the accessible-documents SOP heads its divisions "I Preparing
+# Accessible Documents:" and "XV. Training and sensitization", with no word for what a
+# division is. Both are the same shape, a number then a title, and both belong in
+# <num> + <heading> rather than with the whole line stuffed into <num>. The numeral is
+# matched strictly rather than as "any run of IVXLC" so that a title which happens to
+# open with those letters - CIVIL, MIXED - is not read as a number.
+DIV_NAMED = re.compile(r"^((?:Chapter|Part|Title)\s+(?:[IVXLC]+|[0-9]+))\s*[-–]\s*(.*)$", re.I)
+DIV_ROMAN = re.compile(r"^(M{0,3}(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3})\.?)\s+(\S.*)$")
+
 
 def esc(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
@@ -174,8 +184,15 @@ def parse(md, unit_prefix):
             cur_part = open_part(line[3:].strip())
             reg, stack, marks = None, [], []
             continue
-        if line.startswith("### "):
-            body = line[4:].strip()
+        if line.startswith("###") and (len(line) == 3 or line[3] == " "):
+            # a bare `###` is a unit that prints neither a number nor a heading. The SOP
+            # for accessible court documents heads XVII of its divisions with a Roman
+            # numeral and numbers its paragraphs 1 to 36 straight through them, but under
+            # "VII Pagination:" it prints three bullets and no number at all, and the
+            # contributors are a bulleted list under a heading of their own. Those blocks
+            # are still units - they carry text the division has to hold - so they get a
+            # `###` with nothing on it, and build() names them from the division.
+            body = line[3:].strip()
             m = re.match(r"^(\d+)\.\s*(.*)$", body)
             if cur_part is None:
                 # a document that prints no division over its units - the model
@@ -339,8 +356,10 @@ def build(doc_meta, preface, parts, today):
             chap += 1
             # Part and Title divide a document exactly as Chapter does - the 2005 action
             # plan prints "PART I - NATIONAL POLICY" - and matching only Chapter put the
-            # whole label in <num> and left the division with no <heading> at all.
-            m = re.match(r"^((?:Chapter|Part|Title)\s+(?:[IVXLC]+|[0-9]+))\s*[-–]\s*(.*)$", label, re.I)
+            # whole label in <num> and left the division with no <heading> at all. A
+            # division that names no kind and opens straight on its numeral is the same
+            # shape said shorter, so it splits the same way.
+            m = DIV_NAMED.match(label) or DIV_ROMAN.match(label)
             num, head = (m.group(1), m.group(2)) if m else (label, "")
             a('      <chapter eId="%s">' % (part["stem"] or "chp_%d" % chap))
             a("        <num>%s</num>" % esc(num))
@@ -355,12 +374,16 @@ def build(doc_meta, preface, parts, today):
             # by counting, and would move the moment a unit was inserted above it.
             eid = r["eid"]
             if not eid:
-                # the stem is the document's own word for its unit - a document whose
-                # units are Sections should not have them named chp_. Where there is a
-                # division above them the division's index keeps two identically named
-                # units in different Parts apart.
+                # An unnumbered unit hangs off whatever contains it. Inside a division
+                # that is the division's own stem, which keeps two identically named
+                # units in different Parts apart and, in a document whose units ARE
+                # numbered, stops an unnumbered one reading as a clause of a numbered
+                # one: the SOP's "Microsoft Word (Windows)" is chp_2_..., not para_2_...,
+                # and paragraph 2 keeps para_2 to itself. With no division above it there
+                # is nothing to hang off but the document's own word for a unit - a
+                # document whose units are Sections should not have them named chp_.
                 ustem = doc_meta.get("unit_prefix") or "chp"
-                base = "%s_%s" % (part["stem"] or (("%s_%d" % (ustem, chap)) if wrapped else ustem),
+                base = "%s_%s" % (part["stem"] or (("chp_%d" % chap) if wrapped else ustem),
                                   slug(r["heading"] or "unit"))
                 eid = base if base not in used_eids else "%s_%d" % (base, i)
             used_eids.add(eid)

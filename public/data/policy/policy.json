@@ -113,6 +113,32 @@
       "compliance": "standards/ai-policy-compliance.md"
     },
     {
+      "id": "sop-accessible-court-documents-2022",
+      "title": "Standard Operating Procedure for Preparing Accessible Court Documents",
+      "short": "SOP for Accessible Court Documents",
+      "kind": "procedure",
+      "scope": "national",
+      "issuer": "e-Committee, Supreme Court of India",
+      "status": "model",
+      "status_note": "A model, not law. Paragraph 29 calls it \"this model Standard Operating Procedure\" and paragraph 28 counts three months for practice directions \"from the date of receipt of this Standard Operating Procedure\", so it binds a High Court through what that Court does on receiving it rather than of its own force. It is nonetheless the causal spine of court accessibility administration in India: heading XIV requires an Accessibility Committee in every High Court and every District Court, prescribes what each is made of, gives the committee power to order the registry to supply accessible filings and requires it to publish quarterly what it was asked for and what it disposed of, and the accessibility committees since constituted by the High Courts of Delhi, Gauhati, Tripura, Jharkhand, Telangana, Allahabad, Rajasthan and Punjab and Haryana trace to it. The document prints no date beyond the year 2022 on its cover; 2022-11-28 is the creation date recorded in the PDF the e-Committee first published, which runs to nineteen pages. The copy transcribed here is the file currently published, regenerated as a tagged PDF/A-3a on 2024-12-18; its only textual difference from the 2022 file is a twentieth page listing the contributors.",
+      "dated": "2022-11-28",
+      "unit": {
+        "label": "Paragraph",
+        "short": "Para.",
+        "prefix": "para"
+      },
+      "akn_author": {
+        "id": "sci-ecommittee",
+        "name": "e-Committee, Supreme Court of India",
+        "href": "/ontology/organization/in/supreme-court-ecommittee"
+      },
+      "md": "policy/md/sop-for-preparing-accessible-court-documents-2022.md",
+      "akn": "policy/akn/sop-for-preparing-accessible-court-documents-2022.akn.xml",
+      "source_pdf": "policy/sources/sop-for-preparing-accessible-court-documents-2022.pdf",
+      "source_url": "https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2022/11/20241220105662910.pdf",
+      "compliance": "standards/ai-policy-compliance.md"
+    },
+    {
       "id": "policy-action-plan-phase-i-2005",
       "title": "National Policy and Action Plan for Implementation of Information and Communication Technology in the Indian Judiciary",
       "short": "eCourts Phase I Policy and Action Plan, 2005",

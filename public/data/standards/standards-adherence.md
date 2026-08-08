@@ -60,6 +60,15 @@ blocks the release rather than opening a ticket.
 
 **Check.** [WAVE](https://wave.webaim.org/) - paste a URL, reports violations in place on the rendered page · [PageSpeed Insights](https://pagespeed.web.dev/) - paste a URL, runs the Lighthouse accessibility audit
 
+**Note.** Between the RPwD Act above and the W3C specification sits the judiciary's own
+instrument: the e-Committee's [Standard Operating Procedure for Preparing Accessible
+Court Documents](https://cdnbbsr.s3waas.gov.in/s388ef51f0bf911e452e8dbb1d807a81ab/uploads/2022/11/20241220105662910.pdf),
+2022, held in this corpus under Policy. Its heading XVII sends a reader to the W3C's
+own PDF techniques, naming WCAG 2.0, the version current when it was written. It
+reaches documents rather than screens, so it does not displace this standard for the
+interface; but every PDF a court service generates is measured against it as well, and
+paragraph 35 requires the SOP itself to be reviewed every two years.
+
 ### WAI-ARIA 1.2
 
 Roles, states and properties on every custom widget the design system introduces: the
@@ -93,6 +102,14 @@ field announces its label and its error, and no reader announces raw markup, an
 unlabelled button or the wrong row count.
 
 **Check.** No hosted checker reaches this one. Assistive technology has to be driven by a person, and the failures that matter are the ones automation cannot see.
+
+**Note.** The e-Committee's Standard Operating Procedure for Preparing Accessible Court
+Documents, 2022, is written almost entirely around this reader, and it names four
+defects a screen a court builds will also produce in the documents it emits: fonts
+un-embedded when a PDF is optimised, so the reader runs the words together (paragraph
+4); a security setting that blocks "copying content for accessibility" (paragraph 25);
+watermarks over the text (paragraph 26); and handwritten entries (paragraph 27). The
+walks above should include an issued order and a filed petition, not only screens.
 
 ### Keyboard-only navigability
 
@@ -133,6 +150,15 @@ and for UI component and graphical boundaries, in both themes. No pair is exempt
 without a written reason.
 
 **Check.** [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) - takes two colour values, gives the ratio and the level it passes · [WAVE](https://wave.webaim.org/) - paste a URL, flags contrast errors against the live page
+
+**Note.** The e-Committee's Standard Operating Procedure for Preparing Accessible Court
+Documents, 2022, carries the same rule for documents: paragraph 2(m) requires
+sufficient contrast between foreground text and background and says to measure it with
+a checker rather than judge it by eye, and paragraph 21 asks for high-contrast colours
+or a stated ratio. The ratio is printed there as "4*5*1", which is 4.5:1 mis-set; the
+figure above is the one to work to, and the document itself gives no other. Test the
+generated PDF as well as the screen, since a PDF pipeline can flatten a colour that
+passed in the browser.
 
 ### No reliance on hover states for critical information
 
@@ -227,6 +253,14 @@ through the database and back out into a generated document.
 **Pass when.** Every supported script renders with no missing glyphs and no clipping
 in the interface, in PDF and in print; input methods work; search matches; and the
 `lang` attribute is set correctly so a screen reader switches voice.
+
+**Note.** The e-Committee's Standard Operating Procedure for Preparing Accessible Court
+Documents, 2022, says the same thing for the document rather than the page: paragraph
+2(l) requires regional and vernacular content to be rendered in a unicode font,
+paragraph 2(j) requires the document language to be identified, and paragraph 19
+requires the tagged PDF to declare its primary language and to mark any passage that is
+in another one - which is `lang` on the element, said in PDF. A bilingual order that
+sets no language part is the same defect on either surface.
 
 ## Security
 

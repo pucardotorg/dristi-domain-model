@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <doc name="procedure" contains="originalVersion">
+    <meta>
+      <identification source="#pucar">
+        <FRBRWork>
+          <FRBRthis value="/akn/in/doc/procedure/2022/sop-for-preparing-accessible-court-documents-2022/!main"/>
+          <FRBRuri value="/akn/in/doc/procedure/2022/sop-for-preparing-accessible-court-documents-2022"/>
+          <FRBRalias value="Standard Operating Procedure for Preparing Accessible Court Documents" name="shortTitle"/>
+          <FRBRdate date="2022-11-28" name="generation"/>
+          <FRBRauthor href="#sci-ecommittee"/>
+          <FRBRcountry value="in"/>
+          <FRBRnumber value=""/>
+          <FRBRname value="Standard Operating Procedure for Preparing Accessible Court Documents"/>
+        </FRBRWork>
+        <FRBRExpression>
+          <FRBRthis value="/akn/in/doc/procedure/2022/sop-for-preparing-accessible-court-documents-2022/eng@/!main"/>
+          <FRBRuri value="/akn/in/doc/procedure/2022/sop-for-preparing-accessible-court-documents-2022/eng@"/>
+          <FRBRdate date="2022-11-28" name="generation"/>
+          <FRBRauthor href="#sci-ecommittee"/>
+          <FRBRlanguage language="eng"/>
+        </FRBRExpression>
+        <FRBRManifestation>
+          <FRBRthis value="/akn/in/doc/procedure/2022/sop-for-preparing-accessible-court-documents-2022/eng@/!main.xml"/>
+          <FRBRuri value="/akn/in/doc/procedure/2022/sop-for-preparing-accessible-court-documents-2022/eng@.akn"/>
+          <FRBRdate date="2026-08-08" name="generation"/>
+          <FRBRauthor href="#pucar"/>
+          <FRBRformat value="application/akn+xml"/>
+        </FRBRManifestation>
+      </identification>
+      <lifecycle source="#pucar">
+        <eventRef eId="e_publication" date="2022-11-28" source="#sci-ecommittee" type="generation"/>
+      </lifecycle>
+      <references source="#pucar">
+        <TLCOrganization eId="pucar" href="https://pucar.org" showAs="PUCAR"/>
+        <TLCOrganization eId="sci-ecommittee" href="/ontology/organization/in/supreme-court-ecommittee" showAs="e-Committee, Supreme Court of India"/>
+      </references>
+      <notes source="#pucar">
+        <note eId="note_status"><p>A model, not law. Paragraph 29 calls it "this model Standard Operating Procedure" and paragraph 28 counts three months for practice directions "from the date of receipt of this Standard Operating Procedure", so it binds a High Court through what that Court does on receiving it rather than of its own force. It is nonetheless the causal spine of court accessibility administration in India: heading XIV requires an Accessibility Committee in every High Court and every District Court, prescribes what each is made of, gives the committee power to order the registry to supply accessible filings and requires it to publish quarterly what it was asked for and what it disposed of, and the accessibility committees since constituted by the High Courts of Delhi, Gauhati, Tripura, Jharkhand, Telangana, Allahabad, Rajasthan and Punjab and Haryana trace to it. The document prints no date beyond the year 2022 on its cover; 2022-11-28 is the creation date recorded in the PDF the e-Committee first published, which runs to nineteen pages. The copy transcribed here is the file currently published, regenerated as a tagged PDF/A-3a on 2024-12-18; its only textual difference from the 2022 file is a twentieth page listing the contributors.</p></note>
+        <note eId="note_source"><p>Converted from the transcription of the official PDF published on 2022-11-28, which is kept alongside at policy/sources/sop-for-preparing-accessible-court-documents-2022.pdf. The transcription was checked character for character against the source text. Akoma Ntoso has no policy document type; &lt;doc&gt; is the element the standard provides for a document type it does not name, and @name records what it is. It would be &lt;act&gt; once notified into force.</p></note>
+      </notes>
+    </meta>
+    <preface>
+      <p eId="pref_p1">Standard Operating Procedure for</p>
+      <p eId="pref_p2">Preparing Accessible</p>
+      <p eId="pref_p3">Court Documents</p>
+      <p eId="pref_p4">e-Committee Supreme Court of India</p>
+      <p eId="pref_p5">2022</p>
+      <p eId="pref_p6">Table of Contents</p>
+      <p eId="pref_p7">I PREPARING ACCESSIBLE DOCUMENTS: 1</p>
+      <p eId="pref_p8">II GENERATING ACCESSIBLE PDFS: 3</p>
+      <p eId="pref_p9">MICROSOFT WORD (WINDOWS) 3</p>
+      <p eId="pref_p10">LIBREOFFICE WRITER 3</p>
+      <p eId="pref_p11">MICROSOFT WORD (MAC) 3</p>
+      <p eId="pref_p12">III CHECKING ACCESSIBILITY: 4</p>
+      <p eId="pref_p13">IN MICROSOFT WORD 4</p>
+      <p eId="pref_p14">IN LIBREOFFICE WRITER: 4</p>
+      <p eId="pref_p15">IV PDF REMEDIATION 4</p>
+      <p eId="pref_p16">V BOOKMARKING 5</p>
+      <p eId="pref_p17">VI DIGITAL SIGNATURES 5</p>
+      <p eId="pref_p18">VII PAGINATION: 5</p>
+      <p eId="pref_p19">VIII TAGGING PDFS 6</p>
+      <p eId="pref_p20">IX E-STAMPS 7</p>
+      <p eId="pref_p21">X CONFIGURING SECURITY SETTINGS TO ENABLE SCREEN READER ACCESS 7</p>
+      <p eId="pref_p22">XI AVOIDANCE OF USE OF WATER MARKS 7</p>
+      <p eId="pref_p23">XII NO HANDWRITTEN DATA ENTRIES IN THE PDF 8</p>
+      <p eId="pref_p24">XIII HAVING A SPECIAL DISPENSATION FOR LAWYERS/JUDGES/LITIGANTS WITH DISABILITIES 8</p>
+      <p eId="pref_p25">XIV ACCESSIBILITY COMMITTEE IN EVERY HIGH COURT AND DISTRICT COURT: 8</p>
+      <p eId="pref_p26">XV. TRAINING AND SENSITIZATION 10</p>
+      <p eId="pref_p27">XVI. REVIEW AND REVISION: 10</p>
+      <p eId="pref_p28">XVII ACCESSIBLE PDF TECHNIQUES FOR WCAG 2.0: 10</p>
+      <p eId="pref_p29">ANNEXURE 1 11</p>
+      <p eId="pref_p30">HOW TO CONVERT WORD FILE TO PDF 11</p>
+      <p eId="pref_p31">MICROSOFT WORD 2007 11</p>
+      <p eId="pref_p32">LIBREOFFICE WRITER 11</p>
+      <p eId="pref_p33">FREE PDF CONVERSION WEBSITE. 12</p>
+      <p eId="pref_p34">ANNEXURE 2 13</p>
+      <p eId="pref_p35">CREATING ACCESSIBLE SCANNED DOCUMENTS (PDF REMEDIATION) 13</p>
+      <p eId="pref_p36">PROCESS OF CREATING AN ACCESSIBLE SCANNED DOCUMENT IN ACROBAT PRO: 13</p>
+      <p eId="pref_p37">OPEN-SOURCE SOFTWARE FOR PDF REMEDIATION: 13</p>
+      <p eId="pref_p38">***</p>
+      <p eId="pref_p39">Procedure for Preparing Accessible Court Documents:</p>
+    </preface>
+    <mainBody>
+      <chapter eId="chp_1">
+        <num>I</num>
+        <heading>Preparing Accessible Documents:</heading>
+        <section eId="para_1">
+          <num>1.</num>
+          <content>
+            <p>The original text material and documents [including main petition or appeal, interlocutory applications etc.] can be prepared electronically using Microsoft Word or LibreOffice Writer software.</p>
+          </content>
+        </section>
+        <section eId="para_2">
+          <num>2.</num>
+          <intro>
+            <p>When creating a document, there are a few basic steps that should be followed in order to ensure the document is accessible. The core steps needed for accessibility are:</p>
+          </intro>
+          <subsection eId="para_2_a">
+            <num>a.</num>
+            <intro>
+              <p>Use headings (Build-in Heading styles available in Styles tab must be used).</p>
+            </intro>
+            <paragraph eId="para_2_a_i">
+              <num>i.</num>
+              <content>
+                <p>Headings should form an outline, using the “Heading 1” style for the main heading, and “Heading 2” for sub-headings. If there are additional levels of headings within the document’s outline, using “Heading 3”, “Heading 4”, etc.</p>
+              </content>
+            </paragraph>
+          </subsection>
+          <subsection eId="para_2_b">
+            <num>b.</num>
+            <content>
+              <p>Use lists (Build-in lists styles must be used)</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_c">
+            <num>c.</num>
+            <content>
+              <p>Use meaningful hyperlinks. Ensure that the text of the hyperlink serves the purpose.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_d">
+            <num>d.</num>
+            <content>
+              <p>Provide an image description of pictorial evidence. In other words, add ‘Alt Tag’ to images, shapes, smart art or charts.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_e">
+            <num>e.</num>
+            <content>
+              <p>Using accessible fonts:</p>
+              <p>These include Arial and Calibri. Font size 13. Line spacing 1.5. Gap between two paragraphs should be 20 cm. Cursive fonts should not be used.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_f">
+            <num>f.</num>
+            <content>
+              <p>For newspaper cuttings and other forms of evidence that are illegible/ image-based, provide a plain text transcript of the same.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_g">
+            <num>g.</num>
+            <content>
+              <p>Text in the document should not be underlined, as it hampers smooth access for the disabled.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_h">
+            <num>h.</num>
+            <content>
+              <p>All capitals in the text, mostly used in title of the applications are also a challenge to accessibility of text. Thus sentence case should be used and small caps should be avoided.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_i">
+            <num>i.</num>
+            <content>
+              <p>The paragraphs in the document should be left-aligned. Although justified text may look more visually appealing, it must be avoided as extra spaces within lines make it inaccessible for users.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_j">
+            <num>j.</num>
+            <content>
+              <p>Identify document language.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_k">
+            <num>k.</num>
+            <content>
+              <p>Use tables wisely, by clearly labelling column and row headers. The headers must be in the first row only. If need be, more detailed labelling for CSV type formatting would be good [e.g. spreadsheets found on data.gov.in]. Do not use ‘merged cells’ or ‘split cells’ or do not put in blank lines.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_l">
+            <num>l.</num>
+            <content>
+              <p>Regional/vernacular content must be rendered in unicode font.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_m">
+            <num>m.</num>
+            <content>
+              <p>Use sufficient colour contrast between the foreground text and background colour. Use accessibility checker or applications like Color Contrast to analyse the document for insufficient colour contrast.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_2_n">
+            <num>n.</num>
+            <content>
+              <p>Use the Accessibility Checker for ensuring that the document contains no errors or warnings.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="para_3">
+          <num>3.</num>
+          <content>
+            <p>The documents should be converted into Portable Document Format (PDF) using any PDF converter or in-built PDF conversion plug-in provided in the software. The process of converting word file to PDF is provided in Annexure 1.</p>
+          </content>
+        </section>
+        <section eId="para_4">
+          <num>4.</num>
+          <content>
+            <p>Fonts in PDF documents should not be compressed. To this end, when optimizing PDFs for size, ensure that this is done without un-embedding the fonts or their subsets. When compressed fonts are used, the screen reader used by the visually challenged reads multiple words together, without spaces. For instance, "It Can be Done" is read as "itcanbedone". Letter spacing should be used, so that different characters can be distinguished from one another. Otherwise, for instance, “rn” used together, without spacing, can be mistaken for the letter “m”.</p>
+          </content>
+        </section>
+        <section eId="para_5">
+          <num>5.</num>
+          <content>
+            <p>Documents in Electronic Publication [EPUB] format make for a more conducive reading experience. To the extent possible, all documents should be made available in EPub format.</p>
+          </content>
+        </section>
+        <section eId="para_6">
+          <num>6.</num>
+          <content>
+            <p>Documents prepared using automatic workflow methods, such as dynamic PDFs, must be made accessible to persons with disabilities.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_2">
+        <num>II</num>
+        <heading>Generating Accessible PDFs:</heading>
+        <section eId="chp_2_microsoft_word_windows">
+          <num></num>
+          <heading>Microsoft Word (Windows)</heading>
+          <content>
+            <p></p>
+          </content>
+        </section>
+        <section eId="para_7">
+          <num>7.</num>
+          <content>
+            <p>Go to File &gt; “Save As…” and select PDF from the choices provided. By default this produces a PDF that preserves the document’s accessibility features.</p>
+          </content>
+        </section>
+        <section eId="para_8">
+          <num>8.</num>
+          <content>
+            <p>When saving, select Options and be sure that “Document structure tags for accessibility” is checked. This is checked by default but could become unchecked under certain circumstances.</p>
+          </content>
+        </section>
+        <section eId="para_9">
+          <num>9.</num>
+          <content>
+            <p>If you select “Minimize Size” to reduce the size of your PDF, be sure to repeat the preceding step, as this option might uncheck the “Document structure tags for accessibility” checkbox.</p>
+          </content>
+        </section>
+        <section eId="chp_2_libreoffice_writer">
+          <num></num>
+          <heading>LibreOffice Writer</heading>
+          <content>
+            <p></p>
+          </content>
+        </section>
+        <section eId="para_10">
+          <num>10.</num>
+          <content>
+            <p>Open the file you wish to save. Go to ''File'' &gt; ''Export As'' &gt; “Export as PDF”. It will open PDF options window. Select “Archive (PDF/A)”, “Universal Accessibility (PDF/UA)” and “Tagged PDF (add document structure)” options. Click the Export button. This will create PDF file.</p>
+          </content>
+        </section>
+        <section eId="chp_2_microsoft_word_mac">
+          <num></num>
+          <heading>Microsoft Word (Mac)</heading>
+          <content>
+            <p></p>
+          </content>
+        </section>
+        <section eId="para_11">
+          <num>11.</num>
+          <content>
+            <p>Go to File &gt; “Save As…” and select PDF from the choices provided. By default this produces a PDF that preserves the document’s accessibility features.</p>
+          </content>
+        </section>
+        <section eId="para_12">
+          <num>12.</num>
+          <content>
+            <p>When saving, be sure the radio button labelled “Best for electronic distribution and accessibility” is selected.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_3">
+        <num>III</num>
+        <heading>Checking Accessibility:</heading>
+        <section eId="chp_3_in_microsoft_word">
+          <num></num>
+          <heading>In Microsoft Word</heading>
+          <content>
+            <p>Select Review Tab -&gt; Select Check Accessibility.</p>
+            <p>Note: the precise way to access the ‘check accessibility’ option may change in future versions of Microsoft Word or LibreOffice Writer.</p>
+          </content>
+        </section>
+        <section eId="chp_3_in_libreoffice_writer">
+          <num></num>
+          <heading>In LibreOffice Writer:</heading>
+          <content>
+            <p>Select Tools Tab -&gt; Select Accessibility Check.</p>
+            <p>For activating the “Accessibility Check” feature, the experimental features has to be enabled for LibreOffice.</p>
+            <p>Review your results. You'll see a list of errors, warnings, and tips with how-to-fix recommendations for each.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_4">
+        <num>IV</num>
+        <heading>PDF Remediation</heading>
+        <section eId="para_13">
+          <num>13.</num>
+          <content>
+            <p>In exceptional circumstances, for instance where certain documents that are to be enclosed are originally in hard copy form and have to be scanned, they must be in Optical Character Recognition (OCR) enabled PDF format. They should not be scanned using poor quality solutions like Cam Scanner, or by taking pictures of the physical copy. The document should be scanned using an image resolution of 300 dpi (dot per inch). This exception of scanning documents is only allowed if the document that is to be scanned is legible and has not been electronically prepared using Microsoft Word or LibreOffice Writer Software by the advocate or the party concerned. If the document is illegible, it must be typed and directly converted to PDF. The process of creating accessible scanned documents is provided in Annexure 2.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_5">
+        <num>V</num>
+        <heading>Bookmarking</heading>
+        <section eId="para_14">
+          <num>14.</num>
+          <content>
+            <p>The text documents prepared in Microsoft Word/LibreOffice Writer as well as scanned documents should be merged as a single PDF file and any PDFs generated through merging or otherwise should be book-marked. Any free open source or paid software can be used to split and merge PDFs and add bookmarks. Preferably headings should be used as bookmarks.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_6">
+        <num>VI</num>
+        <heading>Digital Signatures</heading>
+        <section eId="para_15">
+          <num>15.</num>
+          <content>
+            <p>All documents should be digitally signed.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_7">
+        <num>VII</num>
+        <heading>Pagination:</heading>
+        <section eId="chp_7_unit">
+          <num></num>
+          <content>
+            <p>● The process of pagination needs to be more accessible and streamlined. The High Courts need to develop proper mechanism for the same by issuing appropriate practice notes or directions. The properly paginated paper-book can be shared with lawyers. This will ensure that lawyers and judges work with the same pagination and are able to communicate with each other more seamlessly during oral arguments. In addition to improving accessibility, this will also enhance judicial efficiency.</p>
+            <p>● The Registry can publicly display the last page of the filing to enable the lawyers to electronically paginate their filings for, inter alia, any additional documents, interlocutory applications and miscellaneous application.</p>
+            <p>● Footers can be used to insert page numbers so that they can be read by screen readers.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_8">
+        <num>VIII</num>
+        <heading>Tagging PDFs</heading>
+        <section eId="para_16">
+          <num>16.</num>
+          <intro>
+            <p>A tagged PDF includes hidden accessibility mark-ups that, when properly applied, help to optimize the reading experience of those who use screen readers and other assistive technology. Tags can be added to untagged documents using Adobe Acrobat Pro. There are several ways to do this:</p>
+          </intro>
+          <subsection eId="para_16_i">
+            <num>(i)</num>
+            <content>
+              <p>add tags from the Make Accessible Action Wizard (Acrobat Pro Latest Version);</p>
+            </content>
+          </subsection>
+          <subsection eId="para_16_ii">
+            <num>(ii)</num>
+            <content>
+              <p>add tags from the Accessibility Checker results; or</p>
+            </content>
+          </subsection>
+          <subsection eId="para_16_iii">
+            <num>(iii)</num>
+            <content>
+              <p>add tags manually via the Tags panel. For example, "Add tags to the Document" feature of Acrobat Pro can be used to add tagging to the document.</p>
+            </content>
+          </subsection>
+          <subsection eId="para_16_iv">
+            <num>(iv)</num>
+            <content>
+              <p>In LibreOffice Writer, Open the file you wish to save. Go to ''File'' &gt; ''Export As'' &gt; “Export as PDF”. It will open PDF options window. Select “Archive (PDF/A)”, “Universal Accessibility (PDF/UA)” and “Tagged PDF (add document structure)” options. Click the Export button. This will create tagged PDF file.</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="para_18">
+          <num>18.</num>
+          <content>
+            <p>Ensure that the tagged PDF’s reading order is logical.</p>
+          </content>
+        </section>
+        <section eId="para_19">
+          <num>19.</num>
+          <content>
+            <p>Set the document’s primary language. This helps screen readers to detect the language of the text and switch to the appropriate text to speech synthesizer. When there are parts of the document which are other than in the primary language, make sure to set their appropriate language.</p>
+          </content>
+        </section>
+        <section eId="para_20">
+          <num>20.</num>
+          <content>
+            <p>Add the document title so that it is reported in the toolbar and screen reader pronounces the document title correctly.</p>
+          </content>
+        </section>
+        <section eId="para_21">
+          <num>21.</num>
+          <content>
+            <p>Use high-contrast colours. Or ensure that the foreground colour of the text against the background colour meets the ratio of 4*5*1.</p>
+            <p>Add the tags as per the content structure such as marking the content as headings, lists, tables, footnotes, endnotes.</p>
+          </content>
+        </section>
+        <section eId="para_22">
+          <num>22.</num>
+          <content>
+            <p>Ensure that the page thumbnails and tab order are aligned from the page properties as the users of screen readers use tabs to navigate a pdf.</p>
+          </content>
+        </section>
+        <section eId="para_23">
+          <num>23.</num>
+          <content>
+            <p>Make sure to tag all form fields and include relevant description so that the PDF forms can be filled independently by screen reader users. This will only be relevant if any forms are prescribed in PDF format for e-filing.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_9">
+        <num>IX</num>
+        <heading>E-Stamps</heading>
+        <section eId="para_24">
+          <num>24.</num>
+          <content>
+            <p>E-Stamps should be used instead of physical stamps as physical stamps cause difficulty in a screen reader being able to access the text. Whenever physical stamps have to be used, these stamps should not be placed in the pleadings but instead on a separate white paper. Physical stamps should not be placed on judgement copies.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_10">
+        <num>X</num>
+        <heading>Configuring Security Settings to Enable Screen Reader Access</heading>
+        <section eId="para_25">
+          <num>25.</num>
+          <content>
+            <p>Security settings of PDFs must be configured to enable 'copying content for accessibility’. Specifically, in the security tab of the document properties, verify that “copying content for accessibility” is allowed.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_11">
+        <num>XI</num>
+        <heading>Avoidance of Use of Water Marks</heading>
+        <section eId="para_26">
+          <num>26.</num>
+          <content>
+            <p>They make PDFs inaccessible [by coming in the way of the screen reader being able to interact with the textual content directly] and should not be used.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_12">
+        <num>XII</num>
+        <heading>No Handwritten Data Entries in the PDF</heading>
+        <section eId="para_27">
+          <num>27.</num>
+          <content>
+            <p>Handwritten content cannot be identified by screen readers. Therefore, all such data points must be typed out.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_13">
+        <num>XIII</num>
+        <heading>Having a special dispensation for lawyers/judges/litigants with disabilities</heading>
+        <section eId="para_28">
+          <num>28.</num>
+          <content>
+            <p>While the aforesaid measures must be implemented with urgency and seriousness, it is important to recognize that, in many High Courts and District Courts, hard copy [physical] filing is still the norm. Therefore, every High Court and District Court must ensure that a disabled lawyer can opt for e-filing. Presently, physical filing is the norm and even though a lawyer may navigate through this process with the help of his attorney/clerk, everyone cannot afford this luxury. Further, placing the onus on the disabled lawyer to do so is inconsistent with the text and objects of the Rights of Persons with Disabilities Act, 2016. In order to effectuate this, the registry can maintain a list of disabled lawyers practicing in the concerned Court. As soon as a lawyer whose name is in such a list, the option of digital filing should become available to him/her. Under this option, the entire proceedings should go the digital route. Appropriate practice directions in this regard need to be issued by all High Courts within a period of three months from the date of receipt of this Standard Operating Procedure.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_14">
+        <num>XIV</num>
+        <heading>Accessibility committee in every High Court and District Court:</heading>
+        <section eId="para_29">
+          <num>29.</num>
+          <content>
+            <p>Addressing accessibility barriers is an ongoing challenge and therefore requires sustained institutional attention. As a result, it is desirable that every High Court and District Court must set up an Accessibility Committee at the earliest on the receipt of this model Standard Operating Procedure.</p>
+          </content>
+        </section>
+        <section eId="para_30">
+          <num>30.</num>
+          <content>
+            <p>As mentioned in point 28 above, a disabled lawyer/litigant/judge can request the Committee to enable him/her to access any filings in digital format that comply with the accessibility protocols outlined in this Standard Operating Procedure as well as to make their own filings using the e-filing system. For this purpose, the email address of the Committee should be widely publicized on the website of the concerned court. A disabled lawyer/litigant/judicial officer can contact the Committee via email to request access to an accessible filing. On verifying that the requesting party’s name is contained in the database of disabled lawyers maintained by the concerned Court, the Accessibility Committee should pass an order, directing the registry to comply with the request for providing accessible filings in a given matter within a reasonable time period, as prescribed by the Accessibility Committee.</p>
+          </content>
+        </section>
+        <section eId="para_31">
+          <num>31.</num>
+          <content>
+            <p>The composition of the Committee for the High Court can be as follows: one High Court judge, one registrar level officer, two assistant registrar level officers, one technical expert, one staff member and one or two advocates. It is desirable to have One or two members of the committee be persons with disability.</p>
+          </content>
+        </section>
+        <section eId="para_32">
+          <num>32.</num>
+          <content>
+            <p>The composition of the Committee for the District Court can be as follows: one additional district judge, one Sub Judge/Senior, one advocate and a District System Administrator. One or two members of the Committee should be persons with disability. The High Court Accessibility Committee should monitor the work of the District Court Accessibility Committees coming within the concerned High Court’s remit.</p>
+          </content>
+        </section>
+        <section eId="para_33">
+          <num>33.</num>
+          <content>
+            <p>The composition of the Committee and its contact details must be publicized on the website of the concerned Court. Any accessibility challenges faced by the disabled in accessing the justice system [in addition to those mentioned in point 28] can be brought to the Committee's attention and must be dealt with in a swift and effective fashion, in a manner consistent with the Rights of Persons with Disabilities Act, 2016, and the rules framed thereunder. The Committee should also publish, on a quarterly basis, data as to how many requests for accessible filings/court documents or any other reasonable accommodation were made to it and how many amongst them were disposed of.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_15">
+        <num>XV.</num>
+        <heading>Training and sensitization</heading>
+        <section eId="para_34">
+          <num>34.</num>
+          <content>
+            <p>All State Judicial Academies, and the National Judicial Academy, shall, in co-ordination with the relevant courts, should conduct regular trainings for lawyers and court staff on: [a] creating accessible documents and [b] dealing with the needs of persons with disabilities with appropriate care and sensitivity.</p>
+            <p>Such trainings should be made part of the annual calendar of the aforesaid Academies.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_16">
+        <num>XVI.</num>
+        <heading>Review and revision:</heading>
+        <section eId="para_35">
+          <num>35.</num>
+          <content>
+            <p>As technology proceeds at a rapid pace, so do the standards to ensure accessibility. Consequently, this Standard Operating Procedure must be reviewed every two years and suitably modified.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_17">
+        <num>XVII</num>
+        <heading>Accessible PDF Techniques for WCAG 2.0:</heading>
+        <section eId="para_36">
+          <num>36.</num>
+          <content>
+            <p>For more information It can be accessed from the following link:</p>
+            <p>https://www.w3.org/TR/WCAG20-TECHS/pdf.html</p>
+            <p>Note: Whilst the links and references are provided to help relevant stakeholders for guidance only, it shall be the responsibility of each stakeholder to ensure compliance with the latest guidelines, standards and international best practices recommended by the relevant application provider.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="annexure_1">
+        <num>Annexure 1</num>
+        <section eId="annexure_1_1">
+          <num></num>
+          <heading>How to convert word file to PDF</heading>
+          <content>
+            <p></p>
+          </content>
+        </section>
+        <section eId="annexure_1_2">
+          <num></num>
+          <heading>Microsoft Word 2007</heading>
+          <content>
+            <p>Microsoft Word 2007: Open the file you wish to save. Click the "File" button in the top left-hand corner. Go to "Save As" &gt; "PDF”. In case of unavailability of this option, open the URL - http://www.microsoft.com/downloads for the downloading of Microsoft's free PDF and XPS converter.</p>
+            <p>Microsoft Word 2010/13 : Click File, Share. From the Share menu, Click Create PDF Document then on the right-side click Create a PDF.</p>
+            <p>Other Versions of Microsoft Word: Open the file you wish to save. Go to “File” &gt; “Print”. Click the dropdown list of installed printers and select “PDF”.</p>
+          </content>
+        </section>
+        <section eId="annexure_1_3">
+          <num></num>
+          <heading>LibreOffice Writer</heading>
+          <content>
+            <p>It is a free, open-source word processor that is fully compatible with MS Word. It will run in Windows, Mac and Linux operating systems.</p>
+            <p>LibreOffice can be freely downloaded from the following link:</p>
+            <p>https://www.libreoffice.org/download/download/</p>
+            <p>Double click on the downloaded file to install LibreOffice on your computer. Open the Word document you want to convert in LibreOffice Writer.</p>
+            <p>From the main menu, select "File" &gt; “Export As” &gt; "Export as PDF". There is also an export to PDF button right on the main taskbar.</p>
+            <p>Choose a file name for your PDF. Make sure that everything else is how you want it. Click "Okay" or "Save" to convert. This will convert your document.</p>
+          </content>
+        </section>
+        <section eId="annexure_1_4">
+          <num></num>
+          <heading>Free PDF conversion website.</heading>
+          <content>
+            <p>There are many free, easy to use PDF conversion sites available online.</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="annexure_2">
+        <num>Annexure 2</num>
+        <section eId="annexure_2_1">
+          <num></num>
+          <heading>Creating Accessible Scanned Documents (PDF Remediation)</heading>
+          <content>
+            <p>PDF remediation is the process by which digital information is clearly labelled (or, “tagged”) and organized so that people using assistive technology can get the same information from the document that anyone would. It requires a remediation tool and some understanding of remediation procedures.</p>
+          </content>
+        </section>
+        <section eId="annexure_2_2">
+          <num></num>
+          <heading>Process of creating an accessible scanned document in Acrobat Pro:</heading>
+          <subsection eId="annexure_2_2_i">
+            <num>(i)</num>
+            <content>
+              <p>open image scanned document in Acrobat Pro;</p>
+            </content>
+          </subsection>
+          <subsection eId="annexure_2_2_ii">
+            <num>(ii)</num>
+            <content>
+              <p>perform OCR Text Recognition and find all OCR suspect;</p>
+            </content>
+          </subsection>
+          <subsection eId="annexure_2_2_iii">
+            <num>(iii)</num>
+            <content>
+              <p>add tags to the document;</p>
+            </content>
+          </subsection>
+          <subsection eId="annexure_2_2_iv">
+            <num>(iv)</num>
+            <content>
+              <p>use Reading Order and Editing Tools etc. and perform Full Check Features in Acrobat Pro;</p>
+            </content>
+          </subsection>
+          <subsection eId="annexure_2_2_v">
+            <num>(v)</num>
+            <content>
+              <p>if any errors are found, fix them;</p>
+            </content>
+          </subsection>
+          <subsection eId="annexure_2_2_vi">
+            <num>(vi)</num>
+            <content>
+              <p>if no errors are found, check the document in PDF Accessibility Software (PAC3) for PDF/UA compliance; and</p>
+            </content>
+          </subsection>
+          <subsection eId="annexure_2_2_vii">
+            <num>(vii)</num>
+            <content>
+              <p>if any errors are found, edit the document in Acrobat Pro as per point (iv).</p>
+            </content>
+          </subsection>
+        </section>
+        <section eId="annexure_2_3">
+          <num></num>
+          <heading>Open-Source software for PDF Remediation:</heading>
+          <content>
+            <p>OCRMYPDF</p>
+            <p>OCRMYPDF adds an optical character recognition (OCR) text layer to scanned PDF files, allowing them to be searched. It is working as a terminal application. Basic knowledge of terminal usage is required for using this software application.</p>
+            <p>A. Installation: In Ubuntu 20.04</p>
+            <p>sudo apt install ocrmypdf</p>
+            <p>B. Add an OCR layer and convert to PDF/A</p>
+            <p>ocrmypdf input.pdf output.pdf</p>
+            <p>C. Installing local language packages:</p>
+            <p>sudo apt install tesseract-ocr-kan (For installing Kannada OCR package)</p>
+            <p>sudo apt install tesseract-ocr-hin (For installing Hindi OCR package)</p>
+            <p>D. Example (For OCR in local languages):</p>
+            <p>ocrmypdf -l kan k1.pdf k1_ocr.pdf</p>
+            <p>ocrmypdf ṁṁṁ-l tam output.pdf test-tamil.pdfcc</p>
+            <p>*******</p>
+          </content>
+        </section>
+      </chapter>
+      <chapter eId="chp_20">
+        <num>Contributors to the Handbook:</num>
+        <section eId="chp_20_unit">
+          <num></num>
+          <content>
+            <p>• Mr. Atul Madhukar Kurhekar, Member (Processes), eCommittee, Supreme Court of India</p>
+            <p>• Mr. A. Ramesh Babu, Member (Project Management), eCommittee, Supreme Court of India</p>
+            <p>• Ms. R. Arulmozhiselvi, Member (HR), eCommittee, Supreme Court of India</p>
+            <p>• Mr. Rahul Bajaj, Judicial Clerk, Supreme Court of India</p>
+            <p>• Ms. Aishwarya Singh, Judicial Clerk, Supreme Court of India</p>
+          </content>
+        </section>
+      </chapter>
+    </mainBody>
+  </doc>
+</akomaNtoso>

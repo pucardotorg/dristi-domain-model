@@ -2270,3 +2270,607 @@ link to an address not on the file and confirm it is refused.
 which means the attendance record and the recording arrive together and a participant who
 does not want to be recorded cannot take part. The masking in rule 14.2 is the only
 mitigation the model offers, and it has to be asked for before the hearing.
+
+## National - SOP for Accessible Court Documents
+
+The e-Committee's accessible-documents SOP is the instrument the rest of court accessibility
+administration in India hangs off. Two of its headings do the institutional work: heading
+XIII requires every High Court and District Court to let a lawyer with a disability opt for
+e-filing and gives the High Courts three months to say how, and heading XIV requires an
+Accessibility Committee in every High Court and every District Court, fixes what each is
+made of, lets the committee order the registry to produce an accessible filing, makes the
+High Court committee monitor the district ones, and requires the committee to publish every
+quarter what it was asked for and what it disposed of. The accessibility committees since
+constituted by the High Courts of Delhi, Gauhati, Tripura, Jharkhand, Telangana, Allahabad,
+Rajasthan and Punjab and Haryana all trace back to those two headings.
+
+The rest of the document is the other kind of obligation: what an accessible court document
+actually is, paragraph by paragraph, from the heading styles in the word processor to the
+security flag on the finished PDF. Those are operational too, because each one is a record
+that has to come out a particular way, and a system that produces filings, orders and
+judgments either produces them like that or does not.
+
+One duty is deliberately absent. Heading VII asks the High Courts to develop a pagination
+mechanism by issuing practice notes or directions, and it is the one heading of the SOP that
+prints no paragraph number at all - three bullets and nothing else - so there is no clause a
+record could cite in the numbering the rest of this file speaks. It is on the Policy page,
+under heading VII, and it is not a record here.
+
+Every record below binds the court. The SOP names no vendor anywhere and imposes nothing on
+one, so nothing here is marked vendor or both - which does not mean a court can discharge
+them alone, only that the document does not say so. It also addresses advocates and parties
+directly, for the documents they prepare and file; this file's vocabulary has no value for
+that class, so where an obligation falls on the filer as much as on the registry the record
+says so in its own words rather than in the Binds field.
+
+**Document.** sop-accessible-court-documents-2022
+
+### An Accessibility Committee in every High Court and every District Court
+
+Every High Court and every District Court must set up an Accessibility Committee at the
+earliest on receiving the SOP; the High Court committee is one High Court judge, one
+registrar level officer, two assistant registrar level officers, one technical expert, one
+staff member and one or two advocates, and the District Court committee is one additional
+district judge, one Sub Judge/Senior, one advocate and a District System Administrator, with
+one or two members of each being persons with disability.
+
+**Binds.** court
+
+**Citation.** para_29 · para_31 · para_32
+
+**Timing.** At the earliest on receipt of the Standard Operating Procedure; standing once
+constituted.
+
+**Compliant when.** A constitution order exists for the High Court committee and for the
+committee of every District Court in its remit, each order names members against every seat
+the SOP lists, and at least one named member of each is a person with disability.
+
+**Artifact.** schema-field
+
+**Build.** The committee as a first-class record on the court rather than a page of names:
+seats typed to the roles the SOP names, members held against seats with the dates they were
+appointed, and a flag on the seat that carries the disability representation the SOP asks
+for.
+
+**Automate.** Derive the district committees from the establishment list, so a district
+court with no committee is a gap the High Court sees rather than one nobody counted, and
+raise a seat as vacant when the officer holding it is transferred.
+
+**Test.** List every District Court under a High Court and confirm each resolves to a
+constituted committee with all four seats filled; vacate one seat and confirm the committee
+shows as incomplete rather than as constituted.
+
+**Note.** The SOP says "it is desirable that every High Court and District Court must set up
+an Accessibility Committee", and desirable and must do not sit together. Paragraph 31 has
+the same problem: the composition "can be as follows" and then it is desirable to have one
+or two members with disability. Read as a model that a High Court makes binding by adopting
+it, which is what the adopting High Courts have done.
+
+### The Committee's order directing the registry to supply an accessible filing
+
+A lawyer, litigant or judicial officer with a disability may ask the Committee by email to
+have a filing supplied in accessible digital format; on verifying that the requester is in
+the court's database of disabled lawyers the Committee passes an order directing the
+registry to comply within a reasonable time period which the Committee itself prescribes.
+
+**Binds.** court
+
+**Citation.** para_30
+
+**Timing.** On request; the registry complies within the period the Committee prescribes in
+the order.
+
+**Compliant when.** Every request carries a verification against the database, an order with
+a stated period, and a registry action closing it inside that period - or a recorded reason
+why not.
+
+**Artifact.** workflow-step
+
+**Build.** The request as a case-linked object with four states - received, verified,
+ordered, supplied - carrying the matter it concerns, the format asked for, the period the
+order set and the file the registry produced.
+
+**Automate.** Verify the requester against the register of lawyers with disabilities rather
+than asking the Committee to look, start the clock from the order's own period, and escalate
+to the Committee when it runs out with nothing supplied.
+
+**Test.** File a request from a name not on the register and confirm it cannot reach the
+order state; file one from a name on it, set a seven day period, and confirm day eight
+escalates without anyone watching the calendar.
+
+**Note.** The SOP makes the register of lawyers with disabilities the gate for both this and
+the e-filing option in paragraph 28, but says nothing about how a name gets onto it, who
+decides, or what evidence is asked for. That is the gap a court has to close itself, and it
+is the point at which an accessibility measure can quietly become a disclosure requirement.
+
+### The Committee's email address, composition and contact details on the court website
+
+The email address of the Accessibility Committee must be widely publicised on the website of
+the concerned court, and its composition and contact details must be publicised there too.
+
+**Binds.** court
+
+**Citation.** para_30 · para_33
+
+**Timing.** On constitution, and kept current as membership changes.
+
+**Compliant when.** The court website carries a findable page giving the committee's
+members, its contact details and a working email address, and the page changes when the
+committee does.
+
+**Artifact.** screen
+
+**Build.** Publish the page off the committee record rather than maintaining a second copy
+of it, so the published composition cannot drift from the constitution order.
+
+**Automate.** Regenerate the page when a seat changes, and monitor the published mailbox for
+delivery failure, because an address nobody can reach is the same as no address.
+
+**Test.** Change a member on the committee record and confirm the public page changes
+without an edit; send a message to the published address from outside the court network and
+confirm it arrives.
+
+### Quarterly data on accessibility requests made and disposed of
+
+The Committee must publish, every quarter, how many requests for accessible filings, court
+documents or any other reasonable accommodation were made to it and how many of them were
+disposed of.
+
+**Binds.** court
+
+**Citation.** para_33
+
+**Timing.** Quarterly.
+
+**Compliant when.** A published figure exists for every quarter since the committee was
+constituted, each giving requests received and requests disposed of, with no quarter missing.
+
+**Artifact.** output-document
+
+**Build.** Count the quarter off the request records themselves rather than off a return
+somebody types, so the published number and the queue cannot disagree.
+
+**Automate.** Cut the quarter on its closing date, draft the return, and hold it for the
+committee to release; a quarter that closes with no return published is an exception on the
+High Court committee's own view.
+
+**Test.** Close a quarter with three requests, two disposed of, and confirm the draft says
+three and two; suppress the release and confirm the quarter shows as outstanding rather than
+as zero.
+
+**Note.** The SOP asks only for two counts. It does not ask how long a request took, how
+many were refused, or what the accommodation was, so the published figure cannot show a
+court that disposes of everything by refusing it. A court that wants the number to mean
+something should publish time to disposal alongside it, which is ours to suggest and not
+the SOP's to require.
+
+### The High Court committee monitors the district committees
+
+The High Court Accessibility Committee must monitor the work of the District Court
+Accessibility Committees coming within that High Court's remit.
+
+**Binds.** court
+
+**Citation.** para_32
+
+**Timing.** Continuing; the SOP fixes no cadence.
+
+**Compliant when.** The High Court committee has a current view of every district committee
+under it - whether it is constituted, what it has been asked for, and what it has disposed
+of - and a record of having acted on it.
+
+**Artifact.** screen
+
+**Build.** One view over every district committee in the remit, drawing on the same request
+records and quarterly counts the districts publish, so monitoring is reading rather than
+collecting.
+
+**Automate.** Surface the district that has published no quarterly return, the one with
+requests older than the period its own orders set, and the one with an unfilled seat, rather
+than presenting a list that has to be read across.
+
+**Test.** Leave one district's quarter unpublished and confirm it appears on the High Court
+view without anyone reporting it upward.
+
+**Note.** The SOP gives the High Court committee the monitoring duty but no power to do
+anything with what it finds, and no cadence to do it at. Treat the cadence as quarterly
+because that is the rhythm paragraph 33 sets for the data being monitored.
+
+### Accessibility challenges reach the Committee and are dealt with swiftly
+
+Any accessibility challenge faced by a person with a disability in accessing the justice
+system, beyond the accessible-filing requests of paragraph 28, may be brought to the
+Committee's attention, and must be dealt with in a swift and effective fashion consistent
+with the Rights of Persons with Disabilities Act, 2016 and the rules under it.
+
+**Binds.** court
+
+**Citation.** para_33
+
+**Timing.** "Swift and effective"; no period is stated.
+
+**Compliant when.** There is a route for a complaint that is not a filing request, every
+such complaint carries an outcome, and none is sitting without one.
+
+**Artifact.** workflow-step
+
+**Build.** The same request object with a second kind - a general accessibility complaint -
+so a complaint about a ramp, a cause list or a hearing link is tracked with the same
+machinery and appears in the same quarterly count.
+
+**Automate.** Age every open complaint against a locally set service standard, since the SOP
+sets none, and put the oldest in front of the committee rather than waiting to be asked.
+
+**Test.** Raise a complaint that names no case number and confirm it is accepted, tracked
+and counted.
+
+**Note.** The SOP's own words are the standard here - swift and effective - and a standard
+with no number cannot be failed. A court adopting this should fix a period in its practice
+direction, because paragraph 33 read with section 40 and section 46 of the RPwD Act is what
+a complainant would rely on.
+
+### A lawyer with a disability can opt for e-filing, off a list the registry keeps
+
+Every High Court and District Court must ensure that a disabled lawyer can opt for e-filing
+even where physical filing is the norm; to effectuate it the registry may maintain a list of
+disabled lawyers practising in that court, and as soon as a lawyer's name is on that list
+the option of digital filing becomes available, with the whole proceeding then going the
+digital route.
+
+**Binds.** court
+
+**Citation.** para_28
+
+**Timing.** Standing; the option available as soon as the name is on the list.
+
+**Compliant when.** A lawyer on the register can file electronically in a court that
+otherwise files on paper, without asking each time, and the matter stays digital once the
+option is taken.
+
+**Artifact.** access-control
+
+**Build.** The e-filing entitlement as an attribute of the advocate rather than a per-case
+permission, so it follows them into every matter and does not have to be claimed again.
+
+**Automate.** Open the electronic route the moment the name is registered, and keep the
+whole proceeding electronic once it is opened, which is what the SOP means by "the entire
+proceedings should go the digital route" - a matter that reverts to paper halfway defeats
+the purpose.
+
+**Test.** Register an advocate, then file in a court configured for physical filing only,
+and confirm the electronic route opens; check that service, orders and copies in that matter
+also stay electronic.
+
+**Note.** The SOP puts this the right way round and says why: placing the onus on the
+disabled lawyer to navigate physical filing "is inconsistent with the text and objects of
+the Rights of Persons with Disabilities Act, 2016". The list is still a list of disabilities
+held by the registry, so it is personal data of the most sensitive kind and should be
+treated as such whatever the SOP does not say.
+
+### Practice directions on the e-filing option within three months
+
+Appropriate practice directions giving effect to the e-filing option need to be issued by
+all High Courts within three months of receiving the Standard Operating Procedure.
+
+**Binds.** court
+
+**Citation.** para_28
+
+**Timing.** Within three months of the date of receipt of the SOP.
+
+**Compliant when.** The High Court has issued a practice direction, notification or
+administrative order covering the e-filing option, and it is published where an advocate
+would look for it.
+
+**Artifact.** output-document
+
+**Build.** Hold the practice direction as an instrument in the state layer, dated and linked
+to the SOP paragraph it answers, so a reader can see which courts have answered and which
+have not.
+
+**Automate.** Nothing automates the issuing of a practice direction. What can be automated
+is the register: the three-month date derived from the recorded date of receipt, and the
+absence of an instrument against it shown as outstanding.
+
+**Test.** Record a date of receipt and confirm the deadline is computed and shown; add the
+issued direction and confirm the entry closes.
+
+**Note.** This is the only period the SOP fixes anywhere, and it runs from receipt rather
+than from any published date, so the clock differs by High Court and is not knowable from
+the document. That is worth recording per court rather than assuming a common date.
+
+### The Standard Operating Procedure is reviewed every two years
+
+The SOP must itself be reviewed every two years and suitably modified, because the standards
+that make a document accessible move.
+
+**Binds.** court
+
+**Citation.** para_35
+
+**Timing.** Every two years.
+
+**Compliant when.** A review has been carried out within the last two years and its outcome
+recorded, whether or not it changed anything.
+
+**Artifact.** workflow-step
+
+**Build.** A review record against the adopted instrument carrying the date, who reviewed it
+and what changed, which is also what tells a reader whether the version they are following
+is the current one.
+
+**Automate.** Date the adopted instrument and raise the review when it turns two, so a court
+following a superseded version finds out from its own system.
+
+**Test.** Backdate an adoption by twenty-five months and confirm the review is raised.
+
+**Note.** The document in this corpus was published in 2022 and still points at WCAG 2.0, a
+2008 recommendation superseded in 2018 and again in 2023. On paragraph 35's own terms two
+reviews are already due. That is a fact about the source, not a criticism of a court
+following it.
+
+### Regular accessibility training on the academies' annual calendar
+
+All State Judicial Academies and the National Judicial Academy must, with the relevant
+courts, conduct regular training for lawyers and court staff on creating accessible
+documents and on dealing with the needs of persons with disabilities, and that training must
+be part of the academies' annual calendar.
+
+**Binds.** court
+
+**Citation.** para_34
+
+**Timing.** Regular, and on the annual calendar of each academy.
+
+**Compliant when.** The published annual calendar of the academy carries both subjects, the
+sessions actually ran, and attendance is recorded against the staff and advocates who need
+it.
+
+**Artifact.** workflow-step
+
+**Build.** Training as a record against the person rather than against the session, so a
+registry can answer who in it has been trained on producing an accessible filing.
+
+**Automate.** Draw the training need from the role - anyone who prepares, scrutinises or
+serves a document - and show the untrained proportion of a registry rather than a count of
+sessions held.
+
+**Test.** Publish a calendar with no accessibility session and confirm the gap is visible
+before the year starts, not after it.
+
+**Note.** Paragraph 34 reads "shall, in co-ordination with the relevant courts, should
+conduct", carrying both modal verbs. Nothing turns on it here: either way the obligation is
+to conduct the training and to calendar it.
+
+### Every court document is authored accessibly, and an automated one is no exception
+
+A document must be prepared electronically in a word processor and made accessible before it
+becomes a PDF - real heading styles forming an outline, real list styles, meaningful link
+text, alt text on every image, accessible fonts, transcripts for image-based evidence, no
+underlining, sentence case, left alignment, a declared document language, properly labelled
+tables with no merged cells, unicode for vernacular content, and a clean run of the
+accessibility checker - and a document produced by an automated workflow, such as a dynamic
+PDF, must be accessible too; EPUB is to be offered as well as far as possible.
+
+**Binds.** court
+
+**Citation.** para_1 · para_2 · para_3 · para_5 · para_6
+
+**Timing.** Per document, before it is converted or generated.
+
+**Compliant when.** Every document a court generates carries a heading outline, alt text on
+every non-text element, a declared language and tables with header rows, and the same is
+true of anything a template or workflow produces.
+
+**Artifact.** output-document
+
+**Build.** Generate orders, notices and cause lists from templates that carry the structure
+rather than the appearance of structure, so a heading is a heading in the file and not text
+made large, and hold alt text as a required field on any image the system places.
+
+**Automate.** Run an accessibility check in the generation pipeline and fail the document
+rather than the reader: no untagged image, no empty heading level, no table without a header
+row. Where EPUB is offered, produce it from the same structured source rather than from the
+PDF.
+
+**Test.** Generate one of every document type the system produces and run each through an
+accessibility checker; every one should pass without a manual remediation step.
+
+**Note.** Paragraph 2 also asks for font size 13, line spacing 1.5, a 20 cm gap between
+paragraphs and no cursive fonts. The 20 cm is plainly a slip for something much smaller, and
+a system should implement a sane paragraph spacing rather than the printed figure.
+
+### The PDF is exported with structure tags and its fonts intact
+
+The PDF must be produced by the export path that keeps accessibility: in Word by saving as
+PDF with "Document structure tags for accessibility" checked and re-checked after any size
+minimisation, on Mac by choosing "Best for electronic distribution and accessibility", in
+LibreOffice by exporting with Archive (PDF/A), Universal Accessibility (PDF/UA) and Tagged
+PDF selected; and fonts must never be un-embedded when a PDF is optimised for size, because
+a compressed font makes a screen reader run the words together.
+
+**Binds.** court
+
+**Citation.** para_4 · para_7 · para_8 · para_9 · para_10 · para_11 · para_12 · para_16
+
+**Timing.** Per document, at export.
+
+**Compliant when.** Every PDF the court produces or accepts is tagged, its fonts are
+embedded, and it survives a PDF/UA check.
+
+**Artifact.** validation-rule
+
+**Build.** One export path in the system rather than an instruction to staff, producing
+PDF/UA with fonts embedded, and a scrutiny check on an incoming filing that reads the same
+two properties.
+
+**Automate.** Reject at scrutiny, with a message naming the property that failed, rather
+than accepting an untagged filing and asking the registry to remediate it later. Compress
+images, never fonts.
+
+**Test.** Export a document, strip its tags, and confirm scrutiny rejects it; optimise a
+PDF for size and confirm the fonts are still embedded afterwards.
+
+### A scanned enclosure is OCR'd at 300 dpi, or it is typed
+
+Scanning is the exception, allowed only where an enclosure exists only on paper and was not
+itself prepared electronically by the advocate or the party; where it is allowed the scan
+must be OCR-enabled and made at 300 dpi, must not come from a phone camera or a low-quality
+scanning app, and an illegible document must be typed out and converted directly to PDF
+instead.
+
+**Binds.** court
+
+**Citation.** para_13
+
+**Timing.** Per scanned enclosure, at filing.
+
+**Compliant when.** No scanned page enters the record without a text layer, resolution below
+300 dpi is refused, and an illegible original is replaced by typed text rather than by a
+better photograph.
+
+**Artifact.** validation-rule
+
+**Build.** A scrutiny rule on the upload that reads resolution and the presence of a text
+layer, with the exception itself recorded: why this enclosure was scanned rather than
+prepared electronically.
+
+**Automate.** Run OCR on acceptance where the text layer is missing and the scan is
+otherwise good enough, and refuse the upload where it is not, so the remediation happens
+once at the door instead of on demand later.
+
+**Test.** Upload a 150 dpi photograph of a page and confirm it is refused; upload a clean
+300 dpi scan with no text layer and confirm a text layer exists on the stored copy.
+
+### The filing is one bookmarked, digitally signed PDF
+
+Text documents and scanned documents are to be merged into a single PDF, any PDF produced by
+merging is to be bookmarked, preferably using its headings as the bookmarks, and all
+documents are to be digitally signed.
+
+**Binds.** court
+
+**Citation.** para_14 · para_15
+
+**Timing.** Per filing.
+
+**Compliant when.** A filing arrives as one PDF with a bookmark tree that reaches every
+enclosure, and carries a valid digital signature.
+
+**Artifact.** validation-rule
+
+**Build.** Build the bundle from the documents the filer uploaded and generate the bookmarks
+from their headings and their place in the index, rather than asking a filer to bookmark by
+hand.
+
+**Automate.** Merge, bookmark and check the signature at acceptance; a bundle with no
+bookmark tree, or with a bookmark that points nowhere, does not pass scrutiny.
+
+**Test.** File a petition with four enclosures and confirm the stored bundle has four
+reachable bookmarks and a signature that validates.
+
+### Nothing on the page defeats a screen reader
+
+E-stamps must be used rather than physical stamps, and where a physical stamp is
+unavoidable it goes on a separate white sheet and never on a judgment copy; the PDF's
+security settings must permit "copying content for accessibility"; watermarks must not be
+used at all; and no data point may be entered by hand, because a screen reader cannot read
+handwriting.
+
+**Binds.** court
+
+**Citation.** para_24 · para_25 · para_26 · para_27
+
+**Timing.** Per document.
+
+**Compliant when.** No document the court issues or accepts carries a watermark, a stamp
+over its text, a handwritten entry, or a security setting that blocks content extraction for
+accessibility.
+
+**Artifact.** validation-rule
+
+**Build.** Set the permission flags at generation rather than leaving them to the tool's
+defaults, and put the court's mark in the document's own structure rather than as an image
+laid over it.
+
+**Automate.** Check the four properties on every incoming and outgoing PDF and name the
+failing one in the rejection; the security flag in particular fails silently otherwise,
+because the document looks perfectly readable to a sighted scrutiny officer.
+
+**Test.** Produce a PDF with content extraction disabled and confirm it is refused; open an
+issued order in a screen reader and confirm every field, including the stamp and the
+signature block, is announced.
+
+**Note.** Paragraph 25 is the one that catches courts out. A security setting that blocks
+copying is often applied deliberately, to stop a judgment being altered and recirculated,
+and it is exactly the setting that stops a screen reader reading it.
+
+### The tagged PDF declares its language, title, reading order and form fields
+
+A tagged PDF must have a logical reading order; its primary language must be set, with any
+passage in another language marked as such; it must carry a document title so the title bar
+and the screen reader announce it; its tags must follow the content structure, marking
+headings, lists, tables, footnotes and endnotes; its page thumbnails and tab order must be
+aligned from the page properties, because screen reader users navigate by tab; and every
+form field in a PDF form prescribed for e-filing must be tagged and carry a description, so
+it can be filled without sighted help.
+
+**Binds.** court
+
+**Citation.** para_16 · para_18 · para_19 · para_20 · para_22 · para_23
+
+**Timing.** Per document, and per prescribed form.
+
+**Compliant when.** Every generated PDF has a title, a language, a reading order matching
+its visual order, and structure tags; and every prescribed PDF form can be completed
+end to end by a screen reader user.
+
+**Artifact.** output-document
+
+**Build.** Carry title and language as metadata on the document type rather than leaving
+them to whatever the export tool inherits, and generate form fields from the same field
+definitions the electronic form uses, so the label a sighted user sees is the description a
+reader hears.
+
+**Automate.** Assert title, language, tab order and tagged form fields in the generation
+pipeline, and fail the build of a new template that omits any of them, rather than auditing
+templates after they are in use.
+
+**Test.** Complete a prescribed PDF form with the screen off; every field should announce
+what it wants and what it rejected.
+
+**Note.** There is no paragraph 17 in the source. The run goes 16, then 16's clauses (i) to
+(iv), then 18, and paragraphs 18 to 23 are printed indented as though they were part of 16's
+list. The citations here follow the numbers the document prints.
+
+### Contrast that a reader can actually read
+
+Sufficient colour contrast must be used between foreground text and background, checked with
+an accessibility checker or a contrast tool; high-contrast colours must be used in the PDF,
+or the foreground against the background must meet the stated ratio.
+
+**Binds.** court
+
+**Citation.** para_2_m · para_21
+
+**Timing.** Per document and per template.
+
+**Compliant when.** Every text and background pair in every document template meets 4.5:1
+for body text, measured rather than eyeballed, and the same holds for the generated PDF as
+for the screen.
+
+**Artifact.** validation-rule
+
+**Build.** Draw document templates from the same colour tokens the interface uses, so the
+contrast that is unit-tested for the screen is the contrast the PDF inherits.
+
+**Automate.** Test the token pairs in CI, and re-test the rendered PDF, because a PDF
+pipeline can flatten a colour that passed on screen.
+
+**Test.** Run every foreground and background pair in the template set through a contrast
+checker; none should fail.
+
+**Note.** Paragraph 21 prints the ratio as "4*5*1". Read as 4.5:1, which is the WCAG AA
+threshold for body text and the figure the standards layer already carries; the SOP itself
+gives no other number, and the printed form is reproduced in the transcription rather than
+corrected.

@@ -27,7 +27,7 @@ Where a cell says *none*, the case type's profile declares in its `scope` block 
 | `data/requirements/<state>.json` | the normative layer, per state: only what that state's own instruments add, or tighten |
 | `data/standards/standards-adherence.md` | the standards layer: the non-legal obligations a build is measured against, each with its test. Markdown, not JSON, and not joined into the bundle |
 | `data/policy/policy.json` | the policy manifest: each document's issuer, status, unit of numbering, Akoma Ntoso, transcription, source PDF and source URL |
-| `data/policy/akn/*.akn.xml` | the policy documents as Akoma Ntoso `<doc>`, `@name` carrying the kind (policy, regulations, rules), addressed by `eId` in the stem each document declares - `reg_43_3` is regulation 43(3), `rule_10_3` is rule 10.3. This is what the Policy page reads |
+| `data/policy/akn/*.akn.xml` | the policy documents as Akoma Ntoso `<doc>`, `@name` carrying the kind (policy, procedure, regulations, rules), addressed by `eId` in the stem each document declares - `reg_43_3` is regulation 43(3), `rule_10_3` is rule 10.3. This is what the Policy page reads |
 | `data/policy/md/*.md` | the checked transcription each Akoma Ntoso file is converted from, by `scripts/convert_policy_akn.py` |
 | `data/standards/ai-policy-compliance.md` | the operational obligations drawn out of those documents, one `##` group per document, each record citing a clause of it. The document's half and DRISTI's suggested build are separate fields and must stay so |
 | `data/modelrules/modelrules.json` | the model-rules manifest: one entry per tab of the draft, in reading order, plus the source document, its status and its URL. The app builds its tab strip from this and nothing else |

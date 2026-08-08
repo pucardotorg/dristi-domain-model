@@ -23,7 +23,7 @@
         <FRBRManifestation>
           <FRBRthis value="/akn/in/doc/rules/2022/model-rules-for-live-streaming-and-recording-2022/eng@/!main.xml"/>
           <FRBRuri value="/akn/in/doc/rules/2022/model-rules-for-live-streaming-and-recording-2022/eng@.akn"/>
-          <FRBRdate date="2026-07-31" name="generation"/>
+          <FRBRdate date="2026-08-08" name="generation"/>
           <FRBRauthor href="#pucar"/>
           <FRBRformat value="application/akn+xml"/>
         </FRBRManifestation>
