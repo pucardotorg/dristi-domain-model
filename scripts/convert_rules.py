@@ -57,6 +57,22 @@ DOCS = {
     "date": "1971-01-01", "mode": "chapter-flatrule", "eid": "rule", "author": "kerala-hc", "author_show": "High Court of Kerala",
     "cut_before": r"regulate its procedure",
  },
+ "electronic-video-linkage-rules-for-courts-kerala-2021": {
+    "title": "Electronic Video Linkage Rules for Courts (Kerala), 2021",
+    "work": "/akn/in-kl/act/2021/electronic-video-linkage-rules-for-courts",
+    "date": "2021-08-25", "mode": "chapter-flatrule", "eid": "rule", "author": "kerala-hc", "author_show": "High Court of Kerala",
+    # The only copy of this instrument that could be found is a scanned gazette with no
+    # text layer at all (pdftotext returns 28 characters over 28 pages), so the AKN is
+    # built from the OCR extract rather than the PDF - see the header of the .txt for
+    # what was corrected against the page images and what was left as printed.
+    "text_file": "electronic-video-linkage-rules-for-courts-kerala-2021.txt",
+    "ocr": True,
+    # cut away the two covering notifications ahead of the rules, and the two Schedules
+    # after them: the converter has no schedule mode, and left in place Schedule I and
+    # the request form would be swallowed whole into rule 17's body.
+    "cut_before": r"CHAPTER I\s*\nPRELIMINARY",
+    "cut_after": r"\nSCHEDULE I\b",
+ },
  "kerala-police-act-2011": {
     "title": "The Kerala Police Act, 2011",
     "work": "/akn/in-kl/act/2011/8",
@@ -225,6 +241,9 @@ def build(slug, cfg, text):
     if cfg.get("cut_before"):
         m = re.search(cfg["cut_before"], text)
         if m: text = text[m.start():]
+    if cfg.get("cut_after"):
+        m = re.search(cfg["cut_after"], text)
+        if m: text = text[:m.start()]
     chapters = PARSERS[cfg["mode"]](text)
     prefix = cfg["eid"]
     body_parts = []; n_units = 0

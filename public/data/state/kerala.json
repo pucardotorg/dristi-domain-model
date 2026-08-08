@@ -253,6 +253,179 @@
             ]
           }
         ]
+      },
+      {
+        "title": "Electronic Video Linkage Rules for Courts (Kerala), 2021",
+        "cite": "High Court rules · video linkage · 25 August 2021",
+        "alias": "kevl",
+        "note": "Kerala's video-conferencing rules, made under Articles 225 and 227 with the previous approval of the Governor and brought into force on the day they were notified, 25 August 2021. Kerala calls the thing Electronic Video Linkage rather than video conferencing, but the regime is the familiar one: seventeen rules in four chapters covering when a proceeding may run over a live link, who co-ordinates at each end, how a person is identified and sworn, how documents are put to a witness who is not in the room, and who pays. They apply to the High Court, the subordinate courts, Commissioners recording evidence and officers holding inquiries, and they are expressly additional to the Criminal Rules of Practice and the High Court Rules rather than a replacement for them. For a §138 case this is the layer that lets the complainant, the accused or the bank officer who proves the return memo be examined without travelling to the trial court - and, under rule 5(9), the layer that decides whether a deaf, mute or disabled participant can take part at all. The only copy that could be located is a scanned gazette, so the text here is OCR-derived; see the extract in sources/ for what was corrected.",
+        "akn": "state/kerala/akn/electronic-video-linkage-rules-for-courts-kerala-2021.akn.xml",
+        "pdf": "state/kerala/sources/electronic-video-linkage-rules-for-courts-kerala-2021.pdf",
+        "made_under": [
+          {
+            "rel": "made under",
+            "to": "constitution:art_225"
+          },
+          {
+            "rel": "made under",
+            "to": "constitution:art_227"
+          }
+        ],
+        "key": [
+          {
+            "eId": "rule_3",
+            "label": "Principles governing electronic video linkage",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Video linkage may be used at all stages of a judicial proceeding, and a proceeding conducted that way is a judicial proceeding with the same courtesies and protocols. Rule 3(3) then pulls the whole procedural code in behind it - CPC, CrPC, the Evidence Act, the IT Act and the Kerala rules of practice all apply to what happens over the link. That equivalence is what lets a cheque trial take a deposition remotely without the deposition ceasing to be evidence.",
+            "edges": [
+              {
+                "rel": "electronic mode of proceedings under",
+                "to": "bnss:sec_530"
+              },
+              {
+                "rel": "carries the summary trial directed by",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "rule_5",
+            "label": "Preparatory arrangements, and the accessibility duty in rule 5(9)",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Co-ordinators at both ends, the pre-hearing test of the link, the papers the remote co-ordinator must hold, and - in sub-rule (9) - the duty that matters most to a disabled participant: the Court shall direct the co-ordinator, whenever required, to provide a translator where the person to be examined is not conversant with the official language of the Court, an expert in sign language where the person is impaired in speech and/or hearing, and an interpreter or special educator where the person is either permanently or temporarily differently abled. In a §138 trial this is the moment the duty bites - the deaf accused answering the notice of accusation, the blind complainant put to cross-examination, the bank witness proving the return memo. Kerala's list stops at the special educator: unlike Gujarat rule 10(4)(d) it has no limb for a person to read documents aloud to a visually challenged participant, which in a case fought over three documents is the gap that shows. The rules themselves cite no statute for the duty at all.",
+            "edges": [
+              {
+                "rel": "DRISTI reading, not cited in the rules: gives effect to",
+                "to": "rpwd:sec_12"
+              },
+              {
+                "rel": "DRISTI reading, not cited in the rules: serves the duty in",
+                "to": "rpwd:sec_42"
+              },
+              {
+                "rel": "supports the examination on affidavit under",
+                "to": "ni:sec_145"
+              }
+            ]
+          },
+          {
+            "eId": "rule_6",
+            "label": "Application for appearance, evidence and submission",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "How a party or a witness asks to appear, depose or argue over the link, and how the court decides after hearing everyone and satisfying itself the request is not a device to impede a fair trial or delay the case. Sub-rules (8) to (10) carry the inter-district and inter-state routing, which is the practical answer for an out-of-station complainant or a bank officer posted elsewhere.",
+            "edges": [
+              {
+                "rel": "evidence on affidavit under",
+                "to": "ni:sec_145"
+              }
+            ]
+          },
+          {
+            "eId": "rule_7",
+            "label": "Service of summons for a linked hearing",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "A summons to a witness who is to be examined over the link must state the date, time and venue of the remote point and direct the witness to attend there in person with proof of identity, and the ordinary consequences of non-attendance still apply. This is the process that goes to the bank officer who proves the dishonour.",
+            "edges": [
+              {
+                "rel": "form of summons under",
+                "to": "bnss:sec_63"
+              },
+              {
+                "rel": "summons the witness who proves dishonour under",
+                "to": "ni:sec_146"
+              }
+            ]
+          },
+          {
+            "eId": "rule_8",
+            "label": "Examination of persons over the link",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "The mechanics of a remote deposition: identity proved by a government document or an attested affidavit, the oath administered from the court point, demeanour and objections recorded, the transcript signed at both ends with a printout route where digital signatures are missing, and the encrypted master recording retained. Sub-rule (19) lets the court order privacy measures taking account of age, gender and physical condition, and sub-rule (23) lets it send a portable system to a person who cannot reach either point through sickness or physical infirmity.",
+            "edges": [
+              {
+                "rel": "records the evidence otherwise given on affidavit under",
+                "to": "ni:sec_145"
+              },
+              {
+                "rel": "bank entries proved under",
+                "to": "bbea:sec_4"
+              }
+            ]
+          },
+          {
+            "eId": "rule_9",
+            "label": "Exhibiting documents or objects at a remote point",
+            "tier": "evidence",
+            "applies": "always",
+            "note": "How a document is put to a person being examined remotely - zoomed at the court point or transmitted through a document visualizer, with the hard copy following within three days. A cheque case is three documents, the cheque, the return memo and the demand notice, so this rule decides whether a remote cross-examination can do the work of one in the room.",
+            "edges": [
+              {
+                "rel": "proves the instrument dishonoured under",
+                "to": "ni:sec_138"
+              },
+              {
+                "rel": "electronic record under",
+                "to": "bsa:sec_61"
+              }
+            ]
+          },
+          {
+            "eId": "rule_11",
+            "label": "Framing charges and examining the accused over the link",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "The court may in its discretion authorise detention, frame charges and record the accused's statement under s.313 CrPC (now s.351 BNSS) over the link. In a summary cheque trial the equivalent step is the notice of accusation and the examination of the accused, so this is what lets the middle of a §138 trial run without the accused travelling.",
+            "edges": [
+              {
+                "rel": "examination of the accused under",
+                "to": "bnss:sec_351"
+              },
+              {
+                "rel": "summary trial under",
+                "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "rule_12",
+            "label": "Costs, including the fee for the interpreter",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Who pays for the link. Sub-rule (1) counts the fee payable to the translator, interpreter or special educator as an expense of the facility, so the support rule 5(9) promises is priced to a party rather than funded by the court, with sub-rule (6) as the only relief - the court may exempt a party from costs for reasons recorded. Gujarat and Punjab & Haryana price it the same way. On DRISTI's reading that is in tension with the access-to-justice duty in the RPwD Act, which speaks of the State ensuring access rather than a disabled litigant buying it; the rules do not engage with the question.",
+            "edges": [
+              {
+                "rel": "DRISTI reading, not cited in the rules: prices the support owed under",
+                "to": "rpwd:sec_12"
+              }
+            ]
+          },
+          {
+            "eId": "rule_14",
+            "label": "Legal aid clinics, camps, Lok Adalats and Jail Adalats over the link",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "A person at a remote point in jail or prison may be examined over the link by the legal services authorities before an award or order is passed, and the award has the same force as one passed by a regular Lok Adalat. Most cheque cases end in settlement, so this is the digital route into the track that disposes of them.",
+            "edges": [
+              {
+                "rel": "Lok Adalat organised under",
+                "to": "lsa:sec_19"
+              },
+              {
+                "rel": "award under",
+                "to": "lsa:sec_21"
+              },
+              {
+                "rel": "compounding under",
+                "to": "ni:sec_147"
+              }
+            ]
+          }
+        ]
       }
     ]
   },

@@ -684,6 +684,27 @@
             "edges": []
           },
           {
+            "eId": "rule_10",
+            "label": "Preparatory arrangements, and the accessibility duty in rule 10(4)",
+            "tier": "procedure",
+            "applies": "post-2024-07-01",
+            "note": "What has to be in place before the link opens - the coordinator's checks against prompting and unauthorised recording, the advance notice, the papers sent to the remote point - and, in sub-rule (4), the duty that decides whether a disabled participant can take part at all: whenever required the Court shall order the coordinator to provide (a) a translator where the person to be examined is not conversant with the official language of the court, (b) an expert in sign languages where the person is impaired in speech and/or hearing, (c) an interpreter or a special educator where the person is differently abled, temporarily or permanently, and (d) a person for reading of documents where the person to be examined is visually challenged. Limb (d) is the one that has no counterpart anywhere else in this corpus - Kerala rule 5(9) and Punjab & Haryana rule 5.9 both stop at the special educator - and in a cheque case, which is fought over the cheque, the return memo and the demand notice, a reader is the difference between a blind party following the cross-examination and sitting through it. The rules cite no statute for any of the four limbs.",
+            "edges": [
+              {
+                "rel": "DRISTI reading, not cited in the rules: gives effect to",
+                "to": "rpwd:sec_12"
+              },
+              {
+                "rel": "DRISTI reading, not cited in the rules: serves the duty in",
+                "to": "rpwd:sec_42"
+              },
+              {
+                "rel": "prepares the examination on affidavit under",
+                "to": "ni:sec_145"
+              }
+            ]
+          },
+          {
             "eId": "rule_11",
             "label": "Appearance through video conferencing",
             "tier": "procedure",
@@ -748,8 +769,13 @@
             "label": "Costs of video conferencing",
             "tier": "procedure",
             "applies": "post-2024-07-01",
-            "note": "Who bears the cost of a remote hearing. It is part of what a cheque case costs the parties in Gujarat, alongside the fixed court fee.",
-            "edges": []
+            "note": "Who bears the cost of a remote hearing. It is part of what a cheque case costs the parties in Gujarat, alongside the fixed court fee. Limb (a) counts the fee payable to the translator, interpreter or special educator among those expenses, so the support rule 10(4) promises is priced to a party rather than funded by the court, with limb (c) leaving it open to waive the costs. Kerala rule 12(1) and Punjab & Haryana rule 13.1 price it the same way. On DRISTI's reading that sits awkwardly with the access-to-justice duty in the RPwD Act, which speaks of the State ensuring access rather than a disabled litigant buying it; the rules do not engage with the question.",
+            "edges": [
+              {
+                "rel": "DRISTI reading, not cited in the rules: prices the support owed under",
+                "to": "rpwd:sec_12"
+              }
+            ]
           }
         ]
       },

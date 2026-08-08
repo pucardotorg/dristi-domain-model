@@ -493,6 +493,27 @@
             ]
           },
           {
+            "eId": "rule_5",
+            "label": "Preparatory arrangements, and the accessibility duty in rule 5.9",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Who coordinates at each end, which places count as remote points, the thirty-minute readiness check, the bar on prompting the person being examined, and the record sent ahead to the remote coordinator. Rule 5.9 carries the accessibility duty: whenever required the Court shall order the coordinator to provide a translator where the person to be examined is not conversant with the official language of the Court, an expert in sign languages where the person is impaired in speech and/or hearing, and an interpreter or a special educator where the person is differently abled, temporarily or permanently. In a §138 trial that is the moment the duty bites - the deaf accused answering the notice of accusation, the disabled complainant put to cross-examination. The list stops at the special educator: like Kerala rule 5(9), and unlike Gujarat rule 10(4)(d), there is no limb for a person to read documents aloud to a visually challenged participant. The rules cite no statute for the duty.",
+            "edges": [
+              {
+                "rel": "DRISTI reading, not cited in the rules: gives effect to",
+                "to": "rpwd:sec_12"
+              },
+              {
+                "rel": "DRISTI reading, not cited in the rules: serves the duty in",
+                "to": "rpwd:sec_42"
+              },
+              {
+                "rel": "prepares the examination on affidavit under",
+                "to": "ni:sec_145"
+              }
+            ]
+          },
+          {
             "eId": "rule_6",
             "label": "Application for appearance, evidence and submission by video conferencing",
             "tier": "procedure",
@@ -582,6 +603,19 @@
               {
                 "rel": "summary trial under",
                 "to": "ni:sec_143"
+              }
+            ]
+          },
+          {
+            "eId": "rule_13",
+            "label": "Costs, including the fee for the interpreter",
+            "tier": "procedure",
+            "applies": "always",
+            "note": "Who bears the cost of a remote hearing, and on what the court may take into account when apportioning it. Rule 13.1 counts the fee payable to the translator, interpreter or special educator among the expenses of the facility, so the support rule 5.9 promises is priced to a party rather than funded by the court, with 13.4 leaving it open to waive the costs. Gujarat rule 22(a) and Kerala rule 12(1) price it the same way. On DRISTI's reading that sits awkwardly with the access-to-justice duty in the RPwD Act, which speaks of the State ensuring access rather than a disabled litigant buying it; the rules do not engage with the question.",
+            "edges": [
+              {
+                "rel": "DRISTI reading, not cited in the rules: prices the support owed under",
+                "to": "rpwd:sec_12"
               }
             ]
           },
